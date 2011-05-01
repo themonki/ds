@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 total 1
 drwxr-xr-x    3 Yerminso Administ        0 May  1 13:23 .
 drwxr-xr-x    4 Yerminso Administ        0 May  1 13:19 ..
@@ -5,3 +6,7 @@ drwxr-xr-x    7 Yerminso Administ        0 May  1 13:21 .git
 -rw-r--r--    1 Yerminso Administ       31 May  1 13:19 README
 -rw-r--r--    1 Yerminso Administ        0 May  1 13:23 Salida.txt
 que es esto tan feo!! xD
+=======
+README
+Salida.txt
+>>>>>>> 478ee6abd14bc035e5e4dc804755ab1fc5db08e8
