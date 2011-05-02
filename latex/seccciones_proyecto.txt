@@ -1,0 +1,31 @@
+1 Titulo y resumen
+2 Proposito
+3 Alcance
+4 Contexto
+   4.1 Planteamiento del problema y pertinencia del mismo
+   4.2 Marco teorico y estado del arte
+   4.3 Justificacion
+   4.4 Area de aplicacion
+   4.5 Cronograma
+5 Requirimientos
+   5.1 Descripcion del sistema
+   5.2 Vision y alcance
+   5.3 Entrevistas
+   5.4 Usuarios
+   5.5 Matriz de requerimientos
+   5.6 Descripcion detallada
+6 Analisis
+   6.1 Descripcion del subsistema
+   6.2 Diagrama conceptual
+   6.3 Diagrama de casos de uso
+         6.3.1 Diagrama de secuencias de sistema
+         6.3.2 Contratos de operacion
+         6.3.3 Especificacion de casos de uso
+7 Diseno
+   7.1 Diagrama de clases
+   7.2 Modelo ER
+   7.3 Vistas arquitectonicas
+         7.3.1 Vista logica
+         7.3.2 Vista fisica
+         7.3.3 Vista de desarrollo
+         7.3.4 Vista de procesos

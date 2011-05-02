@@ -1,0 +1,70 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\multicolumn{2}{|p{6cm}|}{{\bf {Descripción del requerimiento:}}
+      Permitir modificar los datos de los autores existentes en el sistema y permitir crear nuevos autores. } & 
+     {\bf{ Estado:}} & Análisis \\
+\hline
+\bf {Creado por:} & 
+	Maria Andrea Cruz   & \bf {Actualizado por:} & Felipe Vargas  \\
+\hline
+\bf {Fecha Creación } & Marzo 31 2011 & \bf {Fecha de  Actualización }& Abril 2 del 2011\\
+\hline 
+\multicolumn{2}{|p{6cm}|}{\bf Identificador} & \multicolumn{2}{|p{6cm}|}{R15} \\
+\hline
+\bf {Tipo de requerimiento:} & No Crítico &  \bf{Tipo de requerimiento:} & Funcional\\     
+\hline
+\bf Descripción &\multicolumn{3}{|p{10cm}|}
+{ El sistema debe de permitir a los usuarios con perfil administrador o catalogador modificar los datos de los autores que en el momento se encuentren registrados. El sistema debe permitir crear nuevos autores en el sistema para asociar estos con los nuevos documentos que se vayan ingresando o con otros documentos ya existentes.} \\
+\hline
+\bf Datos de salida &\multicolumn{3}{|p{10cm}|}
+{ El sistema actualiza en la tabla de la base de datos que mantiene la información de los autores el registro relacionado con el autor al que se le han modificado los datos o crea un nuevo registro den la tabla si lo que se ha hecho es crear un nuevo usuario y proporciona un mensaje al usuario notificando el éxito de la operación.} \\
+\hline
+\bf Resultados esperados &\multicolumn{3}{|p{10cm}|}
+{El sistema se ve estimulado con un cambio  en la base de datos ya que se creará una nueva tupla en la tabla que mantiene la información de los autores o se modificará alguna de las tuplas existentes de esta tabla con la nueva información correcta proporcionada por el usuario. } \\
+\hline
+\bf Origen &\multicolumn{3}{|p{10cm}|}{Documento de descripción del problema.} \\
+\hline
+\bf Dirigido a  &\multicolumn{3}{|p{10cm}|}
+{Catalogador, administrador y usuarios normales} \\
+\hline
+\bf Prioridad &\multicolumn{3}{|p{10cm}|}{3} \\
+\hline
+\bf Requerimientos Asociados &\multicolumn{3}{|p{10cm}|}
+{\begin{itemize}
+	\item R14
+\end{itemize}} \\
+\hline
+\multicolumn{4}{|>{\columncolor[rgb]{0.8,0.8,0.8}}c|}{\bf Especificación}\\
+\hline
+
+
+\bf Precondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema debe estar conectado a la base de datos permitiendo añadir registros respecto a un nuevo autores dentro de la  biblioteca digital, el perfil debe estar asociado a administrador o catalogado, debido a que se deben almacenar los atributos correspondientes al autor y algunos que fueron modificados.} \\
+\hline
+\hline
+\bf Poscondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema ahora en su base de datos cuanta con nuevo autor que puede ser usado para la catalogación de documentos así mismo como elemento para realizar una determinada consulta.} \\
+\hline
+\bf Criterios de Aceptación &\multicolumn{3}{|p{10cm}|}
+{Criterio de aceptación del requerimiento} \\
+\hline
+
+\end{longtable}
+\end{center}
+
+%\end{document} 

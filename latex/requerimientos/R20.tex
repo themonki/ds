@@ -1,0 +1,71 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\multicolumn{2}{|p{6cm}|}{{\bf {Descripción del requerimiento:}}
+  Permitir el registro de nuevas áreas de interés.    } & 
+     {\bf{ Estado:}} & Análisis \\
+\hline
+\bf {Creado por:} & 
+	Maria Andrea Cruz   & \bf {Actualizado por:} & Felipe Vargas  \\
+\hline
+\bf {Fecha Creación } & Marzo 31 2011 & \bf {Fecha de  Actualización }& Abril 2 del 2011\\
+\hline 
+\multicolumn{2}{|p{6cm}|}{\bf Identificador} & \multicolumn{2}{|p{6cm}|}{R20} \\
+\hline
+\bf {Tipo de requerimiento:} & No Crítico &  \bf{Tipo de requerimiento:} & Funcional\\     
+\hline
+\bf Descripción &\multicolumn{3}{|p{10cm}|}
+{El sistema debe de permitir el registro en el sistema de nuevas áreas de interés, para poder realizar un nuevo registro en necesario suministrar el nombre del área, una descripción de esta y si es una subárea, indicar a que área pertenece. Este registro lo pueden hacer usuarios que tengan como perfil administrador o catalogador. } \\
+\hline
+\bf Datos de salida &\multicolumn{3}{|p{10cm}|}
+{ El sistema actualiza en la base de datos lo referente a la tabla que mantiene los datos de las áreas de interés añadiendo una nueva tupla que representa una nueva área y se informa al usuario que este realizando la operación el éxito de la misma.} \\
+\hline
+\bf Resultados esperados &\multicolumn{3}{|p{10cm}|}
+{ El sistema se ve estimulado con un cambio en la base de datos con nuevas tuplas agregada a la tabla que mantiene las áreas de interés.} \\
+\hline
+\bf Origen &\multicolumn{3}{|p{10cm}|}{Documento de descripción del problema.} \\
+\hline
+\bf Dirigido a  &\multicolumn{3}{|p{10cm}|}
+{Catalogador, administrador.} \\
+\hline
+\bf Prioridad &\multicolumn{3}{|p{10cm}|}{5} \\
+\hline
+\bf Requerimientos Asociados &\multicolumn{3}{|p{10cm}|}
+{ \begin{itemize}
+	\item R08
+	\item R18
+\end{itemize} } \\
+\hline
+\multicolumn{4}{|>{\columncolor[rgb]{0.8,0.8,0.8}}c|}{\bf Especificación}\\
+\hline
+
+
+\bf Precondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema debe de haberse iniciado, al igual que una conexión con la base de datos y estar bajo el perfil de administrador o catalogador.} \\
+\hline
+\hline
+\bf Poscondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema con nuevas áreas permitra catalogar otros documentos que no se habian tenido en cuenta ya que el área no existía generando mayor número de documentos.} \\
+\hline
+\bf Criterios de Aceptación &\multicolumn{3}{|p{10cm}|}
+{Criterio de aceptación del requerimiento} \\
+\hline
+
+\end{longtable}
+\end{center}
+
+%\end{document} 

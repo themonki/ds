@@ -1,0 +1,72 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%\usepackage{graphicx}
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+\bf {Empresa:} & \multicolumn{2}{|p{6cm}|}  { Escuela de Ingeniería de Sistemas y Computación }  & {\includegraphics[width=80.5pt]{LOGO}} \\
+\hline
+\bf {Nombre del caso de uso:}&\multicolumn{3}{|p{6cm}|}{Catalogar } \\
+\hline 
+\bf Codigo: & CU04  &\bf Fecha: & \\
+
+\hline 
+\bf Autor(es ): &Yerminson Gonzalez    & & \\
+
+\bf Descripcion: &\multicolumn{3}{|p{9cm}|}{Permite la eliminación de  registros de usuarios del sistema.} \\
+\hline 
+\bf Actores: &\multicolumn{3}{|p{9cm}|}{  	Administrador } \\
+\hline
+\bf Precondiciones: &\multicolumn{3}{|p{9cm}|}{Tener el perfil de Usuario Administrador. Haberse autenticado en el Sistema. Haber consultado y seleccionado previamente un Usuario.} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Normal}}\\
+\hline
+\multicolumn{2}{|c|} {\bf Actor } & \multicolumn{2}{|c|}{\bf Sistema } \\
+\hline
+\multicolumn{2}{|p{6cm}|} {
+\begin{itemize}
+\item[1.]El Administrador selecciona la opción eliminar usuario.
+\item[3.]El Administrador indica que si a la 	confirmación.
+\end{itemize}
+} 
+&\multicolumn{2}{|p{6cm}|}{
+\begin{itemize}
+\item[2.]El sistema envía una notificación de confirmación de la acción eliminar.
+\item[4.]El sistema elimina los usuarios seleccionados.
+\item[5.]El sistema envía un mensaje de confirmación al administrador.
+\end{itemize}
+} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Alternativo}}\\
+\hline
+\multicolumn{2}{|p{6cm}|}{
+\begin{itemize}
+\item[1. A. ]El Administrador indica que no a la 	confirmación de eliminación.
+\end{itemize}
+} &
+ \multicolumn{2}{|p{6cm}|}  { 
+ \begin{itemize}
+ \item[2. A.] El sistema cancela la acción de eliminar.
+ \end{itemize}
+}\\
+\hline
+\bf Poscondiciones: &\multicolumn{3}{|p{9cm}|}{ El sistema elimina una tupla de la base de datos correspondiente al usuario registrado.} \\
+\hline
+\bf Excepciones: &\multicolumn{3}{|p{9cm}|}{ El Sistema no puede acceder a la base de datos para realizar la eliminación.} \\
+\hline
+\bf aprobado por : &   & \bf Fecha &  \\
+\hline
+\end{longtable}
+\end{center}
+
+%\end{document} 

@@ -1,0 +1,72 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\multicolumn{2}{|p{6cm}|}{{\bf {Descripción del requerimiento:}}
+    Restringir la modificación y la eliminación de áreas de interés a usuarios con perfil de administrador o catalogador.  } & 
+     {\bf{ Estado:}} & Análisis \\
+\hline
+\bf {Creado por:} & 
+	Maria Andrea Cruz   & \bf {Actualizado por:} & Felipe Vargas  \\
+\hline
+\bf {Fecha Creación } & Marzo 31 2011 & \bf {Fecha de  Actualización }& Abril 2 del 2011\\
+\hline 
+\multicolumn{2}{|p{6cm}|}{\bf Identificador} & \multicolumn{2}{|p{6cm}|}{R19} \\
+\hline
+\bf {Tipo de requerimiento:} & No Crítico &  \bf{Tipo de requerimiento:} & Funcional\\     
+\hline
+\bf Descripción &\multicolumn{3}{|p{10cm}|}
+{ El sistema debe proporcionar la manera de poder realizar cambios en la lista de áreas de interés y sus subáreas y permitir la eliminación de áreas o subáreas existentes solo por usuarios que ingresen al sistema con perfil administrador o catalogador, los cambios  se refieren a la edición del nombre y/o la descripción del área, así como también las subáreas que tiene cada área.} \\
+\hline
+\bf Datos de salida &\multicolumn{3}{|p{10cm}|}
+{ El sistema actualiza en la base de datos lo referente a los atributos de las áreas de interes si lo realizado fue una modificación o actualiza en la base de datos las tablas relacionadas eliminando de estas las tuplas a las que hace referencia la área de interes y se informa al usuario que este realizando la operación el éxito de la misma.} \\
+\hline
+\bf Resultados esperados &\multicolumn{3}{|p{10cm}|}
+{ El sistema se ve estimulado con un cambio en la base de datos con nueva información actualizada y correcta del área de interes o la eliminación de esta según las especificaciones del usuario..} \\
+\hline
+\bf Origen &\multicolumn{3}{|p{10cm}|}{Documento de descripción del problema.} \\
+\hline
+\bf Dirigido a  &\multicolumn{3}{|p{10cm}|}
+{Catalogador, administrador y usuarios normales.} \\
+\hline
+\bf Prioridad &\multicolumn{3}{|p{10cm}|}{5} \\
+\hline
+\bf Requerimientos Asociados &\multicolumn{3}{|p{10cm}|}
+{ \begin{itemize}
+	\item R08
+	\item R18
+	\item R20
+\end{itemize} } \\
+\hline
+\multicolumn{4}{|>{\columncolor[rgb]{0.8,0.8,0.8}}c|}{\bf Especificación}\\
+\hline
+
+
+\bf Precondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema debe de estar conectado a la base de datos permitiendo modificar o eliminar un área de interes de sus registros, el usuario debe estar bajo el perfil de catalogador o administrador.} \\
+\hline
+\hline
+\bf Poscondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema contiene ahora en su base de datos información mejorada que permite obtener documentos de mejor forma al realizar una consulta, o un documento faltante en caso de que se haya eliminado. } \\
+\hline
+\bf Criterios de Aceptación &\multicolumn{3}{|p{10cm}|}
+{Criterio de aceptación del requerimiento} \\
+\hline
+
+\end{longtable}
+\end{center}
+
+%\end{document} 

@@ -1,0 +1,76 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%\usepackage{graphicx}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\bf {Empresa:} & \multicolumn{2}{|p{6cm}|}  { Escuela de Ingeniería de Sistemas y Computación }  & {\includegraphics[width=80.5pt]{LOGO}} \\
+\hline
+\bf {Nombre del caso de uso:}&\multicolumn{3}{|p{6cm}|}{Ingresar Autor} \\
+\hline 
+\bf Codigo: & CU09  &\bf Fecha: & \\
+
+\hline 
+\bf Autor(es ): & Yerminson Gonzalez    & Cristian Leonardo Ríos López & \\
+
+\hline 
+\bf Descripción: &\multicolumn{3}{|p{9cm}|}{ Permite la creación de nuevos autores en el Sistema.} \\
+\hline 
+\bf Actores: &\multicolumn{3}{|p{9cm}|}{ Administrador, Catalogador } \\
+\hline
+\bf Precondiciones: &\multicolumn{3}{|p{9cm}|}{Tener el perfil de usuario Administrador o Catalogador.} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Normal}}\\
+\hline
+\multicolumn{2}{|c|} {\bf Actor } & \multicolumn{2}{|c|}{\bf Sistema } \\
+\hline
+\multicolumn{2}{|p{6cm}|} {
+\begin{itemize}
+\item[1. ]El caso de uso inicia cuando el Usuario solicita crear un nuevo autor.
+\item[3.] El Usuario ingresa datos en los campos proporcionado por la interfaz del sistema para creación de nuevos autores.
+\item[4. ]El Usuario indica al Sistema que ya a ingresado los datos y que desea crear el nuevo autor.
+\item[7.] El Usuario acepta el mensaje de confirmación generado por el sistema y el caso de uso finaliza.
+\end{itemize}
+} 
+ & \multicolumn{2}{|p{6cm}|}{
+ \begin{itemize}
+\item[2.]El Sistema responde mostrando una interfaz con cuatro campos:  nombre, apellido, correo electrónico y el acrónimo.
+\item[5.]El Sistema valida los datos suministrados por el usuario para llevar a acabo el proceso de creación.
+\item[6. ]6. El Sistema crea un nuevo autor en el sistema y responde con un mensaje al Usuario indicando el éxito de la operación. 
+\end{itemize}
+} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Alternativo}}\\
+\hline
+\multicolumn{2}{|p{6cm}|} {
+\begin{itemize}
+\item[1.] El usuario digita de manera incorrecta los datos y solicita al sistema que se validen.
+\item[4.] El usuario acepta el mensaje e intenta nuevamente realizar el registro.
+\end{itemize}} &
+ \multicolumn{2}{|p{6cm}|}  {
+ \begin{itemize}
+\item[2.] El sistema verifica los datos y encuentra el error.
+\item[3.] El sistema envia un mensaje notificando del error a la hora de llenar los campos.
+\end{itemize}}\\
+\hline
+\bf Poscondiciones: &\multicolumn{3}{|p{9cm}|}{El Sistema crea una nueva tupla de la base de datos correspondiente al nuevo autor.} \\
+\hline
+\bf Excepciones: &\multicolumn{3}{|p{9cm}|}{El Sistema no puede acceder a la base de datos y no puede crear la nueva tupla o realizar las consultas para las validaciones de los datos.} \\
+\hline
+\bf aprobado por : &   & \bf Fecha &  \\
+\hline
+\end{longtable}
+\end{center}
+%\end{document} 

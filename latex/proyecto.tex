@@ -1,0 +1,562 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[]{graphicx}
+\usepackage{colortbl} %para las tablas
+\usepackage{longtable} %para las tablas
+\usepackage{geometry}
+\geometry{tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=2cm}
+\title{\textbf{Sistema Biblioteca Digital\\
+				Plan del proyecto, Versión 1. }}
+\author{María Andrea Cruz Blandón \emph{código 0831816} \\
+        Yerminson Doney Gonzalez Muoz \emph{código 0843846} \\
+        Cristian Leonardo Ríos López \emph{código 0842139} \\
+        Luis Felipe Vargas Rojas \emph{código 0836342} \\
+        Edgar Andrés Moncada Taborda \emph{código 0832294}}
+\date{}
+
+\begin{document}
+
+%\maketitle
+
+\thispagestyle{empty}
+\begin{center}
+\Huge{\bf{Sistema de Biblioteca Digital}}\\[5cm]
+
+\large{\bf{
+\begin{tabular}{ll}
+	María Andrea Cruz Blandón. & código 0831816 \\
+	Yerminson Doney Gonzalez Muñoz. & código 0843846 \\
+	Cristian Leonardo Ríos López. & código 0842139 \\
+	Luis Felipe Vargas Rojas. & código 0836342 \\
+	Edgar Andrés Moncada Taborda. & código 0832294
+\end{tabular}
+}}
+\end{center}
+
+\begin{picture}(100,200)
+\put(200,-100){\includegraphics[scale=0.8]{LOGO}}
+\end{picture}\\[3cm]
+\begin{flushright}
+\huge{Plan de Proyecto Versión 1.0}
+\end{flushright}
+
+\newpage
+%\thispagestyle{article}
+\begin{center}
+	\textbf{Resumen}
+\end{center}
+
+En el documento se observarán las siguientes secciones: Propósito, que describe como su nombre lo
+indica, el propósito de este documento, Plan de proyecto, especificando que metodología se usará.\\
+
+Alcance especifica el alcance del plan de proyecto como guía para el desarrollo del sistema de
+biblioteca digital.\\
+
+Contexto, esta sección contiene información sobre el ¿Por qué se plantea un problema?, ¿Por qué se
+decide llevar a cabo esta solución? y otras cuestiones sobre el problema, esta sección está
+dividida en: Planteamiento del problema y pertinencia del mismo, describe el problema que existe en
+el manejo de documentos que se generan y que posee la eisc, Justificación, que describe el por qué
+el sistema biblioteca digital es una buena solución para el problema que se viene presentando en la
+eisc, Área de aplicación del producto resultado del proyecto incluye la aplicación del sistema
+biblioteca digital en el caso particular de la universidad del valle, y Cronograma de actividades
+plantea una agenda para seguirse y cumplirse para realizar todas las actividades con respecto al
+desarrollo del proyecto.\\
+
+Entre las secciones del documento seguimos con, Requerimientos, tiene como contenido los requisitos
+del sistema que se han planteado por parte de Marta Millán y Mauricio Gaona, esta sección se divide
+en: Descripción del sistema, explica a grandes rasgos y con enfoque de requisitos el sistema
+biblioteca digital,  Visión y alcance, esta sección explica de manera mucho más profunda el sistema
+biblioteca digital, al igual que descripción del sistema, mantiene un enfoque de requisitos,
+Usuarios,  contiene información detallada sobre los usuarios del sistema biblioteca digital, esta es una de las secciones importantes puesto que en adelante se referirán a algunos actores con nombres de usuarios descritos aquí, Matriz de requerimientos, es la matriz que contiene todos los
+requerimientos que se han identificado y  Descripción detallada, cada requerimiento de la matriz de
+requerimientos es pasado a una plantilla de documento que describe mas profundamente el
+requerimiento, esto con el fin de eliminar ambigüedades.\\
+
+Lo siguiente corresponde a la sección de Análisis esta contiene: Descripción del subsistema, se
+plantea el procedimiento a seguir con las iteraciones, Diagrama de casos de uso, contiene
+precisamente toda la información y gráficos sobre los diagramas de casos de uso, esta sección se
+divide a su vez en Especificación de casos de uso donde justamente se toma cada uno de los casos de
+usos graficados y se llevan a una plantilla de documento donde se explicará el flujo normal y
+alternativo por si lo tiene, además pre y post condiciones.\\
+
+Finalmente tenemos la sección de Referencias donde se listan todos los documentos que se
+necesitaron tener en cuenta para la realización de este plan de proyecto.
+
+\newpage
+\tableofcontents
+\newpage
+
+	
+\section{Propósito}
+El propósito del plan de proyecto es describir el programa global a seguir para el desarrollo del
+sistema biblioteca digital, se empleará la metodología Rational Unified Process (RUP) por lo que a lo
+largo del documento se usarán terminologías de dicha metodología. Este documento será entonces una
+guía para los desarrolladores del proyecto, quienes lo tendrán en cuenta para llevar acabo las
+diferentes fases del proyecto, aplicando lo descrito en este plan, y servirá para que el jefe del
+proyecto determine los cronogramas y realice la labor de auditoría y seguimiento. 
+
+En este documento se consignarán las descripciones de las diferentes fases de la metodología: 
+Inicio, elaboración, construcción y transición. También es propósito del plan de proyecto tener como
+anexo las descripciones de las iteraciones que se realicen por cada  fase.
+
+\section{Alcance}
+El plan de proyecto para el sistema biblioteca digital solicitado por Martha Millán y Mauricio Gaona,
+usa la metodología RUP tendrá como alcance describir el plan global del desarrollo, cubriendo las
+fases de la metodología, teniendo en cuenta los requerimientos planteados por los stakeholders y
+usando modelos especificados con UML versión 2.0. 
+
+También se debe consignar en este documento las descripciones de las diferentes iteraciones. El
+documento sufrirá cambios y actualizaciones conforme se avance en el desarrollo.
+
+\section{Contexto}
+	\subsection{Planteamiento del problema y pertinencia del mismo}
+	Cada día dentro de la escuela de ingeniería de sistemas se generan producciones académicas por
+	parte de estudiantes y profesores, producciones que de alguna manera no se almacenan
+	correctamente en algunos casos, sobre todo, las producciones digitales que a pesar de que fueron
+	presentadas en ciertas circunstancias importantes no son del conocimiento de todos o no están al
+	alcance de todos porque no se pensó que el tema podría llegar a ser de interés general. Por esta
+	razón se cree que mantener la información en un solo lugar para que esta pueda ser usada en algún
+	momento como herramienta en la formación académica de los estudiantes y profesores se convirtió
+	en un problema que buscamos afrontar y solucionar de la mejor manera, intentando beneficiar  a
+	todas las personas involucradas e interesadas en el.
+
+	El problema nos muestra como se maneja ineficientemente los documentos en la escuela de
+	ingeniería de sistemas y computación, es por esta razón que de alguna manera la solución de este
+	nos permitirá tener un mejor acceso a la información según nuestro intereses y de esta forma
+	ayudar a que el conocimiento dentro de la escuela de ingeniería de sistemas pueda ser accedido,
+	compartido, analizado y estudiado por muchas mas personas permitiendo ampliar de manera cómoda
+	las formas de pensar y el conocimiento sin sufrir por la búsqueda de información.
+	
+	\subsection{Objetivo}
+	Reunir de manera organizada un conjunto de documentos que han sido producidos en el área de
+	ciencias de la computación a lo largo del tiempo y que son de utilidad para  la escuela de
+	ingeniería de sistemas de la universidad del valle. Esto se lograra  mediante un sistema que
+	describe una biblioteca digital  que permite  a lo usuarios realizar consultas sobre  documentos
+	almacenados así mismo si se registran tienen la posibilidad de descargarlo y usarlo como
+	complemento ideal en el aprendizaje de temas de interés. Lo que se busca es poder manejar la
+	información generada de manera que podamos darle un uso adecuado para lo cual habrá personas que
+	organicen esta información en el sistema teniendo un control sobre los documentos que serán
+	añadidos y guardados con las mayores posibles que permitan su rápida ubicación , así como
+	personas que administran todo el sistema llevando un orden de catalogadores y usuarios
+	registrados al igual que estadísticas que muestren el trabajo del sistema y como ha aportado a
+	los usuarios una mejor manera de consultar información.
+
+	De este modo vemos que el camino que queremos seguir esta marcado por una senda que implica
+	mejorar el conocimiento de cada una de de las personas y la manera en que buscan normalmente
+	información sobre este tipo de áreas.	
+	
+	\subsection{Justificación}
+	La escuela de ingeniería de sistemas y computación se ve con la necesidad de organizar los
+	documentos que produce, con ciertas características facilitando la búsqueda, también necesita de
+	un sistema que integre a los usuarios interesados para que además de poder consultar documentos
+	puedan descargarlos, logrando una retroalimentación mucho mas marcada que con la organización
+	actual de documentos donde no están disponibles para todos los interesados. por otro lado se debe
+	seguir estadística sobre esta información para realizar análisis sobre los contenidos.
+
+	Es por todo lo anterior que el planteamiento del sistema biblioteca digital, ofrece una solución
+	que  satisface todas esas necesidades, y que se presenta como un sistema práctico y accesible a
+	todos los interesados por los documentos de las ciencias de la computación.
+	
+	\subsection{Área de aplicación del producto resultado del proyecto. (Área empresarial o
+	institucional en donde se va aplicar el producto)}
+	El área institucional sobre todo para instituciones educativas en este caso la universidad del
+	valle la cual tiene personas dentro de su campus que están interesadas en temas relacionados con
+	ciencias de la computación y que serian beneficiados de gran manera por ese sistema.
+	
+	\subsection{Cronograma de actividades}
+	\begin{minipage}[c]{1\linewidth}
+		\centering
+		\includegraphics[width=16cm, height=4.5cm]{Cronograma}
+	\end{minipage}
+	
+\section{Requerimientos}
+	\subsection{Descripción del sistema}
+	El sistema busca tener agrupados y organizados los documentos creados y que posee la escuela de
+	ingeniería de sistemas y computación (eisc), teniendo en cuenta, los metadatos que el catalogador
+	le otorgue a cada documento y las áreas de interés. Con el fin de tener a disposición de la
+	comunidad de la eisc y de interesados en los documentos de las ciencias de la computación. 
+	
+	El sistema correrá en un equipo como aplicación de escritorio, que este conectado a internet para
+	acceder a la base de datos, donde se encontrarán alojados toda la información de documentos y
+	usuarios.
+	
+	\subsection{Visión y alcance}
+	El proyecto tiene como fin la elaboración del sistema biblioteca digital solicitado por los
+	profesores y representantes de la dirección de la EISC Marta Millan y Mauricio Gaona para la
+	poner a la disposición de los interesados en las ciencias de computación los diferentes tipos de
+	documentos que se producen en la Escuela por Estudiantes y Docentes.
+	
+	Los objetivos principales del sistema son:
+	
+	\textbf{La gestión de usuarios:} incluye los tipo de usuario registrado y no registrado. Para los
+	registrados se administraran con 3 perfiles de usuarios a los cuales se les otorga ciertos
+	permisos. El administrador que gestiona las operaciones y la información relacionada con los
+	demás usuarios, asignar los perfiles y los demás permisos. El catalogador que se le otorga los
+	permisos de catalogación de los documentos digitales. Y por ultimo los usuarios normales y los
+	anteriores que podrán consultar y descargar documentos. Se almacenaran para los usuarios
+	registrados datos personales, sobre áreas de interés y demográficos.
+	
+	\textbf{La catalogación de los documentos:} los diferentes documentos se almacenaran con los
+	diferentes metadatos para su consulta. Se debe guardar datos como autor, área a la que pertenece,
+	datos básicos y palabras claves.
+	
+	\textbf{La generación de Reportes:} Es necesario hacer un seguimiento, a las consultas,
+	catalogaciones y descargas de documentos por lo que el sistema debe generar reportes en formato
+	PDF que contengan esta información.
+	
+		\subsubsection{Entregables}
+		\textbf{Primer Entregable:} En el primer entregable se inicion las fases Inicio y Elaboración
+		de la metodología RUP. En este entregable se incluyen:
+		
+		\begin{itemize}
+		\item\textbf{Plan del proyecto:} es este documento, que consigna el plan global a
+		seguirpara el desarrrollo del sistema biblioteca digital.
+
+		\item\textbf{Matriz de Requerimientos y descripción detallada:} Comprende los requisitos
+		del sistema especificados por los stakeholders y el documento del planteamiento del problema.
+		Se presenta una matriz que contiene identificación de los requerimientos, descripción,
+		fuente, prioridad, estado e involucrados. A cada requerimiento se le realiza una descripción
+		detallada usando una plantilla de documento en donde además de los datos anteriores de la
+		matriz incluye requerimientos asociados, datos salida y resultados esperados. 
+
+		\item\textbf{Diagrama de Casos de uso:} Corresponde a la representación gráfica de los
+		actores y sus relaciones con las funciones del sistema.
+
+		\item\textbf{Casos de uso expandido:} Son las especificaciones de los casos de uso, se
+		realiza por cada caso de uso usando la plantilla de documento que incluye los campos
+		precondiciones, flujo normal, flujo alternativo, postcondiciones y excepciones.
+		\end{itemize}
+
+		\textbf{Segundo Entregable:} Aqui se se refinan fases inicio y elaboración y se inicia fase
+		de construcción.
+		
+		\begin{itemize}
+		\item\textbf{Plan de proyecto:} Refinamiento del primer entregable, y adición de algunos
+		apartes.
+
+		\item\textbf{Diagrama de casos de uso:} Refinamiento del primer entregable.
+
+		\item\textbf{Casos de uso expandido:} Refinamiento del primer entregable. 
+
+		\item\textbf{Requerimientos de usuario norma IEEE830:} Documento que especifica la buena
+		obtención de requisitos de sotfware de manera que el cliente conozca bien que es lo que desea
+		del sistema, y que los desarrrolladores sepan que es lo que deben realizar, tratando de
+		preveer malas estimaciones de tiempo y recursos. 
+		\end{itemize}
+		
+		\textbf{Tercer Entregable:} Se refinan fases inicio, elaboracion y construcción y se
+		adicionan artefactos a la fase de construcción.
+		
+		\begin{itemize}
+		\item\textbf{Plan de proyecto:} Refinamiento del segundo entregable.
+
+		\item\textbf{Diagrama de casos de uso:} Refinamiento del segundo entregable.
+
+		\item\textbf{Casos de uso expandido:} Refinamiento del segundo entregable. 
+
+		\item\textbf{Requerimientos de usuario norma IEEE830:} Refinamiento del segundo
+		entregable.
+
+		\item\textbf{Diagrama del modelo de datos en UML:} Debido a que el sistema biblioteca
+		digital hace uso de una base de datos, este diagrama tiene el modelo Entidad Relacion y
+		Relacional haciendo uso de un profile UML para modelado de datos.
+
+		\item\textbf{Diagrama de clases:} Modelo estático que describirá la estructura del
+		sistema biblioteca digital mostrando sus clases, atributos y relaciones entre ellas, la
+		primera versión de este diagrama de clases esta sujeta a modificaciones conforme el proyecto
+		avance y se realicen iteraciones en la fase de construcción. Estarán contenidos en el aprate
+		Analisis del plan de proyecto.
+
+		\item\textbf{Diagrama de paquetes:} muestra cómo el sistema biblioteca digital está
+		dividido en agrupaciones lógicas mostrando las dependencias entre esas agrupaciones. se
+		presenta de modo modular y denotan una jerarquía. Este diagrama permite un mejor acoplamiento
+		a nivel externo.
+
+		\item\textbf{Diagramas de secuencia:} En estos diagramas se mostrara la interacción de
+		los diferentes objetos del sistema a través del tiempo. Se modelán para cada caso de uso, por
+		lo que para este artefacto los casos de uso deben estar lo suficientemente desarrrollados y
+		refinados.
+
+		\item\textbf{Prototipos interfaz de usuario:} Serán unos prototipos creados con
+		herramientas para graficos y otros interactivos con el fin de obtener retroalimentación de
+		los stakeholders con respecto a los requerimientos, así ellos tendrán un adelanto de lo que
+		será la interfaz del sistema.
+
+		\item\textbf{Modelo de implementación inicial:} Se establece estructura para la
+		implementación inicial, concretando manejo de ejecutables, ajustes de subsistemas de
+		implementación. Se establecen responsables y módulos para la integración.
+		\end{itemize}
+		
+		\textbf{Cuarto Entregable:} Aqui se realizan los ultimos refinamientos de las fases inicio,
+		elaboración y  construcción y se inicia fase de transacción.
+		
+		\begin{itemize}
+		\item\textbf{Plan de proyecto:} Refinamiento del tercer entregable.
+
+		\item\textbf{Diagrama de casos de uso:} Refinamiento del tercer entregable.
+
+		\item\textbf{Casos de uso expandido:} Refinamiento del tercer entregable.
+
+		\item\textbf{Requerimientos de usuario norma IEEE830:} Refinamiento del tercer
+		entregable.
+
+		\item\textbf{Diagrama del modelo de datos en UML:} Refinamiento del tercer entregable.
+		
+		\item\textbf{Diagrama de clases:} Refinamiento del tercer entregable.
+
+		\item\textbf{Diagrama de paquetes:} Refinamiento del tercer entregable.
+
+		\item\textbf{Diagramas de secuencia:} Refinamiento del tercer entregable.
+
+		\item\textbf{Prototipos interfaz de usuario:} Refinamiento del tercer entregable.
+
+		\item\textbf{Casos de pruebas:} Usando plantilla de documento, se establecen los casos de
+		pruebas, describiendo entradas de la prueba, y salidas esperadas, también procedimiento para
+		realizar las pruebas. Dependiendo del tipo de prueba podrán ser o no automatizables.
+
+		\item\textbf{Diagramas de despliegue:} Se utiliza para modelar el hardware utilizado en
+		las implementaciones de sistemas y las relaciones entre sus componentes.
+		
+		\item\textbf{Material de apoyo al usuario final:} Documentos para el usuario final que
+		corresponden a las especificaciones para hacer uso del sistema biblioteca digital y ayuda
+		para el usuario.
+
+		\item\textbf{Modelo de implementacion final:} Producto.
+		\end{itemize}
+
+		\subsubsection{Involucrados}
+		Las personas involucradas en el desarrollo del sistema biblioteca digital son los
+		representantes de la eisc Martha Millán y Mauricio Gaona, y los desarrolladores del proyecto
+		Yerminson Doney Gonzalez Muñóz, Cristian Leonardo Ríos López, Edgar Andrés Moncada Taborda,
+		Luis Felipe Vargas Rojas y María Andrea Cruz Blandón.
+	\subsection{Usuarios}
+	\textbf{Usuario normal:} el usuario normal  de  el sistema tendrá la posibilidad de consultar
+	documentos , descargar documentos , solicitar notificaciones de novedades de ciertas áreas además
+	de modificar algunos de sus datos.
+	
+	\textbf{Catalogador:} que a su ves es un usuario normal tendrá la capacidad de catalogar
+	documentos lo que incluye subir documentos , además de añadir palabras claves y nuevas áreas  de
+	ciencias de la computación al sistema.
+	
+	\textbf{Administrador:}  podrá hacer cambios de perfiles a los usuario el sistema, también podrá
+	borrar usuarios, y cambiar datos de los mismos.
+	
+	\subsection{Matriz de requerimientos}
+		\input{matrizRequerimientos.tex}
+		%\pagebreak	
+	
+	\subsection{Descripción detallada}
+		\input{requerimientos/R01.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R02.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R03.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R04.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R05.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R06.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R07.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R08.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R09.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R10.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R11.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R12.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R13.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R14.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R15.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R16.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R17.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R18.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R19.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R20.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R21.tex}
+		%%\pagebreak
+		
+		\input{requerimientos/R22_38.tex}
+		%%\pagebreak
+	
+\section{Análisis}
+La siguiente es la estructura que se seguira para cada iteración:
+
+\begin{enumerate}
+	\item Análisis de Requerimientos del Sistema.
+	\item Creación y Modificación de los diferentes Artefactos.
+	\item Implementación.
+\end{enumerate}
+
+	\subsection{Descripción de subsistema}
+	Para cada una de las iteraciones se debe tener en cuenta:
+
+	\begin{enumerate}
+		\item El mejoramiento de los requisitos planteados, ya sea su adicion, eliminación y/o
+		modificación para que cumplan con los objetivos principales del sistema: Gestion de
+		usuarios, Catalogación de Documentos, Consultas de usuarios y reportes. Esto se debe
+		realizar para cada uno de los entregables establecidos en la sección de requerimientos. Es
+		fundamental que cada uno de los integrantes del grupo de desarrolladores y los
+		representantes del proyecto participen de dicho proceso.
+
+		\item El mejoramiento de los artefactos y la adición de nuevos para cada uno de los
+		entregables estipulados en las fechas de entrega. Se repartiran entre los diferentes
+		integrantes la creación de los artefactos y en el mejoramiento de estos deberán participar
+		todos los integrantes del equipo de desarrollo.
+
+		\item La Implementación se realizará al finalizar el proceso de desarrollo en el último
+		entregable con la particiación de los integrantes del grupo de desarrolladores.
+	\end{enumerate}
+
+	
+%---------------------------------------------------------------	
+	\subsection{Diagramas de caso de uso}
+	
+	\begin{minipage}[c]{1\linewidth}
+		\centering
+		\includegraphics[scale=.6]{casosUso/CUGestionUsuarios}
+	\end{minipage}	
+	
+	\begin{minipage}[c]{1\linewidth}
+		\centering
+		\includegraphics[width=16cm, height=14cm]{casosUso/CUCatalogar}
+	\end{minipage}
+		\newpage
+	
+	\begin{minipage}[c]{1\linewidth}
+		\centering
+		\includegraphics[scale=.7]{casosUso/CUReportes}
+	\end{minipage} \\\\ \\\\
+	
+	\begin{minipage}[c]{1\linewidth}
+		\begin{center}
+		\includegraphics[scale=.7]{casosUso/CUAutenticar}		
+		\end{center}
+	\end{minipage}
+	
+	\begin{minipage}[c]{1\linewidth}
+		\begin{center}
+		\includegraphics[scale=.5]{casosUso/CUGestionDocumento}
+		\end{center}
+	\end{minipage}
+	
+	
+%---------------------------------------------------------------
+	\newpage		
+		\subsubsection{Especificación de casos de uso}
+			\input{casosUso/C00.tex}
+			%%\pagebreak
+			
+			\input{casosUso/C01.tex}
+			%%\pagebreak
+			
+			\input{casosUso/C02.tex}
+			%%\pagebreak
+			
+			\input{casosUso/C03.tex}
+			%%\pagebreak	
+			
+			\input{casosUso/C04.tex}
+			%\pagebreak				
+			
+			\input{casosUso/C05.tex}
+			%\pagebreak
+			
+			\input{casosUso/C06.tex}
+			%\pagebreak
+			
+			\input{casosUso/C07.tex}
+			%\pagebreak	
+			
+			\input{casosUso/C08.tex}
+			%\pagebreak	
+			
+			\input{casosUso/C09.tex}
+			%\pagebreak			
+			
+			\input{casosUso/C10.tex}
+			%\pagebreak
+			
+			\input{casosUso/C11.tex}
+			%\pagebreak
+			
+			\input{casosUso/C12.tex}
+			%\pagebreak
+			
+			\input{casosUso/C13.tex}
+			%\pagebreak
+
+			\input{casosUso/C14.tex}
+			%\pagebreak			
+			
+			\input{casosUso/C15.tex}
+			%\pagebreak
+			
+			\input{casosUso/C16.tex}
+			%\pagebreak			
+			
+			\input{casosUso/C17.tex}
+			%\pagebreak	
+
+\section{Diseño}
+	\subsection{Diagrama de clases}
+	\subsection{Modelo ER}
+		\begin{minipage}[c]{1\linewidth}
+			\centering
+			\includegraphics[scale=.48]{ModeloDatos}
+		\end{minipage} 
+			
+\section{Referencias}
+	\begin{enumerate}
+		\item Diseño de una plataforma experimental para la búsqueda y recuperación de documentos
+		 en una biblioteca digital PREDICA, Beatriz E. Florián, Maria E. Valencia, Paola J. 
+		 Rodriguez, Marta Millán, Carlos M. Gaona, Javier E. Carrillo, Mauricio Ciprián. Revista
+		 Ingenieria y Competitividad, Volumen 9, No. 2, p 93-104(2007)
+		 
+		\item http://es.wikipedia.org/
+		
+		\item ITSM, Biblioteca Digital del Tecnológico de Monterrey: Documentos Tec, 
+		Ing. Miguel A. Arreola,Ing. Cuauhtemoc Durán, Ing. Alejandro Garza, 
+		Dr. David Garza, Lic. Rosa L. Gómez, Ing. Claudio Ramírez, Ing. Marta Sordia,
+		Ing. Ramón E. Zayas. Abril de 1999		
+		
+		\item Especificación del proyecto.
+	\end{enumerate}		
+			
+\end{document}
+        
+        

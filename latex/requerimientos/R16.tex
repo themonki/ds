@@ -1,0 +1,70 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\multicolumn{2}{|p{6cm}|}{{\bf {Descripción del requerimiento:}}
+  Asociar documentos del sistema con palabras clave.    } & 
+     {\bf{ Estado:}} & Análisis \\
+\hline
+\bf {Creado por:} & 
+	Maria Andrea Cruz   & \bf {Actualizado por:} & Felipe Vargas  \\
+\hline
+\bf {Fecha Creación } & Marzo 31 2011 & \bf {Fecha de  Actualización }& Abril 2 del 2011\\
+\hline 
+\multicolumn{2}{|p{6cm}|}{\bf Identificador} & \multicolumn{2}{|p{6cm}|}{R16} \\
+\hline
+\bf {Tipo de requerimiento:} & No Crítico &  \bf{Tipo de requerimiento:} & Funcional\\     
+\hline
+\bf Descripcion &\multicolumn{3}{|p{10cm}|}
+{El sistema debe de permitir a los usuarios con perfil administrador o catalogador asociar palabras clave a los documentos existentes en el sistema, las palabras clave deben también de existir en el sistema antes de poder usarse. Estas palabras clave son útiles al momento de realizar la búsqueda de algún documento en el sistema. } \\
+\hline
+\bf Datos de salida &\multicolumn{3}{|p{10cm}|}
+{El sistema actualiza en la tabla de la base de datos que mantiene la información de los documentos el registro relacionado con el documento al que se le han agregado nuevas palabras clave y proporciona un mensaje al usuario notificando el éxito de la operación. } \\
+\hline
+\bf resultados esperados &\multicolumn{3}{|p{10cm}|}
+{ El sistema se ve estimulado con un cambio  en la base de datos ya que se actualizará en la tabla que mantiene la información de los documentos el registro del documento al que se le a agregado nuevas palabras clave.} \\
+\hline
+\bf Origen &\multicolumn{3}{|p{10cm}|}{Documento de descripción del problema.} \\
+\hline
+\bf Dirigido a  &\multicolumn{3}{|p{10cm}|}
+{Catalogador, administrador y usuarios normales.} \\
+\hline
+\bf Prioridad &\multicolumn{3}{|p{10cm}|}{5} \\
+\hline
+\bf Requerimientos Asociados &\multicolumn{3}{|p{10cm}|}
+{\begin{itemize}
+	\item R08
+\end{itemize} } \\
+\hline
+\multicolumn{4}{|>{\columncolor[rgb]{0.8,0.8,0.8}}c|}{\bf Especificación}\\
+\hline
+
+
+\bf Precondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema debe estar conectado a la base de datos, contar con un libro que se desee catalogar y unas palabras clave, además el usuario debe de tener como perfil administrador o catalogador.} \\
+\hline
+\hline
+\bf Poscondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema almacena en sus registros el nuevo documento junto con la palabra clave asociada lo que permite que las consultas bien realizadas tengan éxito seguro debido al uso de palabras que perimiten identificar temas.} \\
+\hline
+\bf Criterios de Aceptación &\multicolumn{3}{|p{10cm}|}
+{Criterio de aceptación del requerimiento} \\
+\hline
+
+\end{longtable}
+\end{center}
+
+%\end{document} 

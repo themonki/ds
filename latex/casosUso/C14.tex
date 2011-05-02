@@ -1,0 +1,78 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%\usepackage{graphicx}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\bf {Empresa:} & \multicolumn{2}{|p{6cm}|}  { Escuela de Ingeniería de Sistemas y Computación }  & {\includegraphics[width=80.5pt]{LOGO}} \\
+\hline
+\bf {Nombre del caso de uso:}&\multicolumn{3}{|p{6cm}|}{Consula Avanzada} \\
+\hline 
+\bf Codigo: & CU14  &\bf Fecha: & \\
+
+\hline 
+\bf Autor(es ): & Edgar Andrés Moncada    &  & \\
+
+\hline 
+\bf Descripción: &\multicolumn{3}{|p{9cm}|}{Permite la realización de consulta de los docuementos digitales del Sistema de manera Avanzada.} \\
+\hline 
+\bf Actores: &\multicolumn{3}{|p{9cm}|}{ Administrador, Catalogador, Usuario Normal, Usuario No Registrado } \\
+\hline
+\bf Precondiciones: &\multicolumn{3}{|p{9cm}|}{El Sistema se haya iniciado.} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Normal}}\\
+\hline
+\multicolumn{2}{|c|} {\bf Actor } & \multicolumn{2}{|c|}{\bf Sistema } \\
+\hline
+\multicolumn{2}{|p{6cm}|} {
+\begin{itemize}
+\item[1. ]El caso de uso inicia cuando el Usuario va a realizar una consulta y selecciona la opción de Consulta Avanzada.
+\item[3.]El Usuario ingresa datos en alguno o en combinaciones de los campos de texto, seleccionando los parámetros deseados y selecciona la opción consultar.
+\item[6. ]El Usuario selecciona uno de los resultados de la consulta. 
+\end{itemize}
+} 
+ & \multicolumn{2}{|p{6cm}|}{
+ \begin{itemize}
+\item[2.]El Sistema muestra una interfaz con 3 campos de texto para Titulo, Autor y Palabra Clave con la posibilidad de seleccionar para cada una las restricciones de con todas las palabras, con algunas de las palabras o con ninguna de las palabras; Incluye también los parámetros de Área, Idioma, Fecha de Publicación y Formato del Archivo.
+\item[4.]El Sistema realiza la consulta.
+\item[5. ]El Sistema muestra un listado de los resultados de la consulta.
+\item[7. ] El Sistema muestra todos los datos relacionados con el documento y el caso de uso termina.
+\end{itemize}
+} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Alternativo}}\\
+\hline
+\multicolumn{2}{|p{6cm}|} {
+ \begin{itemize}
+\item[1. A.] El Usuario ingresa datos al campo de texto que no arrojarán ninguna consulta.
+\item[1. B.] El Usuario no selecciona ninguno de los resultados de la consulta y el caso de uso termina.
+\end{itemize}
+} &
+ \multicolumn{2}{|p{6cm}|}  {
+\begin{itemize}
+\item[2. A.] El Sistema realiza la consulta y esta no tiene resultados.
+\item[3. A.] El Sistema envía una notificación indicando que no se encontraron coincidencias.
+ \end{itemize}
+ }\\
+\hline
+\bf Poscondiciones: &\multicolumn{3}{|p{9cm}|}{Se muestra las consultas relacionadas con los datos que ingreso el Usuario.} \\
+\hline
+\bf Excepciones: &\multicolumn{3}{|p{9cm}|}{No se pude acceder a la base de datos para obtener los datos de los Documentos Digitales.} \\
+\hline
+\bf aprobado por : &   & \bf Fecha &  \\
+\hline
+\end{longtable}
+\end{center}
+%\end{document} 

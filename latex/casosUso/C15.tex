@@ -1,0 +1,70 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%\usepackage{graphicx}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\bf {Empresa:} & \multicolumn{2}{|p{6cm}|}  { Escuela de Ingeniería de Sistemas y Computación }  & {\includegraphics[width=80.5pt]{LOGO}} \\
+\hline
+\bf {Nombre del caso de uso:}&\multicolumn{3}{|p{6cm}|}{Descargar Archivo} \\
+\hline 
+\bf Codigo: & CU15  &\bf Fecha: & \\
+
+\hline 
+\bf Autor(es ): & Edgar Andrés Moncada    &  & \\
+
+\hline 
+\bf Descripción: &\multicolumn{3}{|p{9cm}|}{Permite a un Usuario Registrado Descargar los diferentes Documentos Digitales almacenados en el Sistema} \\
+\hline 
+\bf Actores: &\multicolumn{3}{|p{9cm}|}{ Usuario Normal, Catalogador, Administrador} \\
+\hline
+\bf Precondiciones: &\multicolumn{3}{|p{9cm}|}{Haber realizado una consulta del Documento y seleccionado un resultado} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Normal}}\\
+\hline
+\multicolumn{2}{|c|} {\bf Actor } & \multicolumn{2}{|c|}{\bf Sistema } \\
+\hline
+\multicolumn{2}{|p{6cm}|} {
+\begin{itemize}
+\item[1. ]. El Usuario Registrado inicia el caso de uso al seleccionar la opción Descargar.
+\item[3.]El Usuario Registrado ingresa el nombre y selecciona el lugar donde almacenará el documento.
+\end{itemize}
+} 
+ & \multicolumn{2}{|p{6cm}|}{
+ \begin{itemize}
+\item[2.]El Sistema muestra una interfaz para seleccionar el nombre y el lugar donde se almacenara el documento.
+\item[4.]El Sistema almacena el archivo.
+\item[5. ]. El Sistema muestra una notificación de que se realizo el procedimiento correctamente y el caso de uso termina.
+\end{itemize}
+} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Alternativo}}\\
+\hline
+\multicolumn{2}{|p{6cm}|} {
+ \begin{itemize}
+\item[1.] El Usuario no elige ningún lugar para almacenar el Documento y el caso de uso termina.
+\end{itemize}
+} &
+ \multicolumn{2}{|p{6cm}|}  {}\\
+\hline
+\bf Poscondiciones: &\multicolumn{3}{|p{9cm}|}{ El Sistema almacena la fecha, el tipo de usuario y el documento que fue descargado. Se almacena el Documento Digital en el formato en que se encuentra almacenado.} \\
+\hline
+\bf Excepciones: &\multicolumn{3}{|p{9cm}|}{No se puede acceder al repositorio donde estan almacenado los Docuemntos Digitales del Sistema.} \\
+\hline
+\bf aprobado por : &   & \bf Fecha &  \\
+\hline
+\end{longtable}
+\end{center}
+%\end{document} 

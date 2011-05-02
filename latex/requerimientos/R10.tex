@@ -1,0 +1,72 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\multicolumn{2}{|p{6cm}|}{{\bf {Descripción del requerimiento:}}
+     Eliminar documentos y su información. } & 
+     {\bf{ Estado:}} & Análisis \\
+\hline
+\bf {Creado por:} & 
+	Maria Andrea Cruz   & \bf {Actualizado por:} & Felipe Vargas  \\
+\hline
+\bf {Fecha Creación } & Marzo 31 2011 & \bf {Fecha de  Actualización }& Abril 2 del 2011\\
+\hline 
+\multicolumn{2}{|p{6cm}|}{\bf Identificador} & \multicolumn{2}{|p{6cm}|}{R10} \\
+\hline
+\bf {Tipo de requerimiento:} & No Crítico &  \bf{Tipo de requerimiento:} & Funcional\\     
+\hline
+\bf Descripcion &\multicolumn{3}{|p{10cm}|}
+{El sistema debe proporcionar la posibilidad de que los usuarios que tengan como perfil administrador o catalogador puedan eliminar cualquier documento que se encuentre referenciado en la base de datos y toda la información relacionada con el documento. El sistema debe de proveer por medio de una búsqueda en la base de datos el o los documentos que se desean eliminar.} \\
+\hline
+\bf Datos de salida &\multicolumn{3}{|p{10cm}|}
+{El sistema actualiza en la base de datos lo referente a la tabla que mantiene la información de los documentos eliminando de esta la tupla del documento en cuestión y elimina del sistema host el documento, notificando al usuario que este realizando la eliminación de la operación exitosa.} \\
+\hline
+\bf resultados esperados &\multicolumn{3}{|p{10cm}|}
+{El sistema se ve estimulado con un cambio en la base de datos con nueva información en la cual se tiene un documento menos en lo registros.} \\
+\hline
+\bf Origen &\multicolumn{3}{|p{10cm}|}{Documento de descripción del problema.} \\
+\hline
+\bf Dirigido a  &\multicolumn{3}{|p{10cm}|}
+{Catalogador y administrador} \\
+\hline
+\bf Prioridad &\multicolumn{3}{|p{10cm}|}{3} \\
+\hline
+\bf Requerimientos Asociados &\multicolumn{3}{|p{10cm}|}
+{\begin{itemize}
+	\item R06
+	\item R07
+	\item R08
+\end{itemize}} \\
+\hline
+\multicolumn{4}{|>{\columncolor[rgb]{0.8,0.8,0.8}}c|}{\bf Especificación}\\
+\hline
+
+
+\bf Precondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema debe estar conectado a la base de datos, también debe estar logueado un usuario bajo el perfil de administrador o de catalogador lo que le proporcionará una interfaz para esta operación de eliminación de documentos.} \\
+\hline
+\hline
+\bf Poscondiciones &\multicolumn{3}{|p{10cm}|}
+{El sistema cambia en su base de datos el registro correspondiente  a documentos eliminando el documento solicitado lo que en un futuro no permitirá que usuarios en su resultado de consulta tengan en la respuesta alguna coincidencia con este documento} \\
+\hline
+\bf Criterios de Aceptación &\multicolumn{3}{|p{10cm}|}
+{Criterio de aceptación del requerimiento} \\
+\hline
+
+\end{longtable}
+\end{center}
+
+%\end{document} 

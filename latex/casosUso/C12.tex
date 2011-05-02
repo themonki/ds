@@ -1,0 +1,69 @@
+%\documentclass[10pt,a4paper]{article}
+%
+%
+%\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{colortbl}
+%\usepackage{longtable}
+%\usepackage{graphicx}
+%
+%\geometry{tmargin=1cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+%\begin{document}
+\begin{center}
+
+
+\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+
+\hline
+\bf {Empresa:} & \multicolumn{2}{|p{6cm}|}  { Escuela de Ingeniería de Sistemas y Computación }  & {\includegraphics[width=80.5pt]{LOGO}} \\
+\hline
+\bf {Nombre del caso de uso:}&\multicolumn{3}{|p{6cm}|}{Generar Reporte Documento} \\
+\hline 
+\bf Codigo: & CU12  &\bf Fecha: & \\
+
+\hline 
+\bf Autor(es ): & Edgar Andrés Moncada    &  & \\
+
+\hline 
+\bf Descripción: &\multicolumn{3}{|p{9cm}|}{ Permite la generación de reportes que tengan que ver con los Docuementos del Sistema } \\
+\hline 
+\bf Actores: &\multicolumn{3}{|p{9cm}|}{ Administrador } \\
+\hline
+\bf Precondiciones: &\multicolumn{3}{|p{9cm}|}{El Administrador debe  haberse autenticado en el Sistema.} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Normal}}\\
+\hline
+\multicolumn{2}{|c|} {\bf Actor } & \multicolumn{2}{|c|}{\bf Sistema } \\
+\hline
+\multicolumn{2}{|p{6cm}|} {
+\begin{itemize}
+\item[1. ]El caso de uso inicia cuando el Administrador selecciona la opción Generar Reportes de Documentos.
+\item[3.]El Administrador ingresa los datos en los campos y selecciona las opciones para el reporte.
+\item[4. ]El Administrador selecciona la opción Generar Reporte.
+\item[6.] El Administrador selecciona el lugar y le da el nombre a reporte.
+\item[7.] El Administrador selecciona la opción guardar. 
+\end{itemize}
+} 
+ & \multicolumn{2}{|p{6cm}|}{
+ \begin{itemize}
+\item[2.]El Sistema muestra los campos y las diferentes opciones para generar reportes de los documentos.
+\item[5.]El Sistema muestra una interface para elegir el lugar donde se almacenara el documento y el nombre que se le colocara.
+\item[8. ]El Sistema envía una notificación de que se genero el reporte y el caso de uso termina.
+\end{itemize}
+} \\
+\hline
+\multicolumn{4}{|c|}{\bf {Flujo Alternativo}}\\
+\hline
+\multicolumn{2}{|p{6cm}|} {} &
+ \multicolumn{2}{|p{6cm}|}  {}\\
+\hline
+\bf Poscondiciones: &\multicolumn{3}{|p{9cm}|}{Se genera un reporte en formato pdf.} \\
+\hline
+\bf Excepciones: &\multicolumn{3}{|p{9cm}|}{No se pude acceder a la base de datos para obtener los datos seleccionados por el Administrador.} \\
+\hline
+\bf aprobado por : &   & \bf Fecha &  \\
+\hline
+\end{longtable}
+\end{center}
+%\end{document} 
