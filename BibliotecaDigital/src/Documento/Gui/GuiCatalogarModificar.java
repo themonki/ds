@@ -16,11 +16,9 @@ import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Rectangle;
 import java.sql.Date;
-
 import  javax.swing.*;
 
-
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class GuiCatalogarModificar extends JFrame{
 	
 	 
