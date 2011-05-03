@@ -1,8 +1,4 @@
 package Documento.Gui;
-<<<<<<< HEAD
-=======
-
->>>>>>> 0d2fc03a36df4e8494c55568a0ce8ef924c439a7
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
