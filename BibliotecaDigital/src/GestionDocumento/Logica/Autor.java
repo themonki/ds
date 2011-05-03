@@ -6,12 +6,23 @@ package GestionDocumento.Logica;
  * */
 public class Autor {
 	
+
 	String nombre;
 	String apellido;
 	String acronimo;
 	String correo;
 	String id;
 	
+	//Constructor
+	public Autor(String nombre, String apellido, String acronimo,
+			String correo, String id) {
+		
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.acronimo = acronimo;
+		this.correo = correo;
+		this.id = id;
+	}
 	String getNombre(){return nombre;}
 	String apellido(){return apellido;}
 	String getAcronimo(){return acronimo;}

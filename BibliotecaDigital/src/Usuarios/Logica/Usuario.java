@@ -12,6 +12,9 @@ import GestionDocumento.Logica.AreaConocimiento;
 
 public class Usuario {
 
+
+	//Constructor por defecto.
+	public Usuario(){}
 	String login;
 	String contrasena;
 	String nombre1;
@@ -30,6 +33,32 @@ public class Usuario {
 	boolean estado;
 	Vector<AreaConocimiento> areasInteres;
 	
+	// Constructor.
+	public Usuario(String login, String contrasena, String nombre1,
+			String nombre2, String apellido1, String apellido2, String email,
+			String nivelEscolaridad, String vinculoUnivalle,
+			String preguntaSecreta, String respuestaSecreta, String genero,
+			Date fechaRegistro, Date fechaNacimiento, int tipo, boolean estado,
+			Vector<AreaConocimiento> areasInteres) {
+	
+		this.login = login;
+		this.contrasena = contrasena;
+		this.nombre1 = nombre1;
+		this.nombre2 = nombre2;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.email = email;
+		this.nivelEscolaridad = nivelEscolaridad;
+		this.vinculoUnivalle = vinculoUnivalle;
+		this.preguntaSecreta = preguntaSecreta;
+		this.respuestaSecreta = respuestaSecreta;
+		this.genero = genero;
+		this.fechaRegistro = fechaRegistro;
+		this.fechaNacimiento = fechaNacimiento;
+		this.tipo = tipo;
+		this.estado = estado;
+		this.areasInteres = areasInteres;
+	}
 
 	
 	String getLogin(){return login;}
