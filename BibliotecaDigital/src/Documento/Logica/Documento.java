@@ -19,19 +19,10 @@ public class Documento {
 	String formato;
 	String resumen;
 	String catalogadorLogin;
-
 	String descripcion;
-
-
 	String fecha_creacion;
 	String fecha_publicacion;
 	String fechaDeCatalogacion;
-
-	
-
-	
-
-
 	Vector autores;
 	Vector areas;
 	Vector palabrasClave;
