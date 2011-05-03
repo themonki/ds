@@ -20,6 +20,7 @@ import java.sql.Date;
 import  javax.swing.*;
 
 
+@SuppressWarnings("serial")
 public class GuiCatalogarModificar extends JFrame{
 	
 	 
@@ -37,7 +38,7 @@ public class GuiCatalogarModificar extends JFrame{
 	
 	JButton botonCatalogar,nuevaArea,nuevotipo,nuevoAutor,nuevoidioma,nuevapalabra;
 	//faltan las fechas /////////****************///
-  // en caccoo falta campo editorial
+    // en caccoo falta campo editorial
 	
 
 	public GuiCatalogarModificar() {
