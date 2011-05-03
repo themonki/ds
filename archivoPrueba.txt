@@ -1,4 +1,0 @@
-archivoPrueba.txt
-GUICatalogarModificar
-latex
-README
