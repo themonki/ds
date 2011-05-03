@@ -3,7 +3,7 @@ package Utilidades;
 
 /**
  * Autor: Yerminson Gonzalez Munoz
- * Responsabilidad: Realizar la debida conexion con la base de datos
+ * Responsabilidad: Realizar la debida conexion con la base de datos asi como cerrarla.
  * 
  */
 import java.sql.*;
