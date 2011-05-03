@@ -12,7 +12,7 @@ public class FachadaBD {
         Connection conexion;
         Statement instruccion;
         ResultSet tabla;
-        FachadaBD(){
+        public FachadaBD(){
             url="jdbc:postgresql://localhost:5432/proyecto";
             usuario="yerdogm";
             password="yerdogm";
