@@ -29,6 +29,8 @@ public class Documento {
 	Vector<PalabraClave> palabrasClave;
 	
 	//Constructor
+	public Documento(){}
+	
 	public Documento(String idDocumento, String idioma, String derechosDeAutor,
 			String descripcion, String softwareRecomendado, String resolucion,
 			String editorial, String formato, String tituloPrincipal,
@@ -92,7 +94,7 @@ public class Documento {
 	public void setFecha_creacion(String value){fechaCreacion= value;}
 	public void setFecha_publicacion(String value){fechaPublicacion= value;}
 	public void setFechaDeCatalogacion(String value){fechaCatalogacion= value;}	
-	public void setcatalogadorLogin(String value){loginCatalogador= value;}
+	public void setCatalogadorLogin(String value){loginCatalogador= value;}
 	public void setTipoMaterial(String value){tipoMaterial= value;}
 	public void setAutores(Vector<Autor> value){autores= value;}
 	public void setAreas(Vector<AreaConocimiento> value){areas= value;}
