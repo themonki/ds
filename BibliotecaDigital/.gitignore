@@ -3,3 +3,5 @@
 .classpath
 # Ignore generated .class file
 *.class
+#ignore bibliotecaDigital/bin/
+bin/

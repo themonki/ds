@@ -1,5 +1,60 @@
+/*
+ * Nombre: Cristian Ríos.
+ * Responsabilidad: Realizar la debida manipulacion de datos referentes a el area de conocimiento
+ * entre la GUI y el controlado.
+ * Nombre archivo: ControladorAreaConocimiento.java
+ * Fecha Creacion: Mayo 03 2011
+ * Fecha ultima modificación: Mayo 04 2011
+ * */
+
 package GestionDocumento.Controlador;
 
-public class ControladorAreaConocimiento {
+import GestionDocumento.Dao.DaoAreaConocimiento;
+import GestionDocumento.Logica.AreaConocimiento;
+import java.util.Vector;
 
+public class ControladorAreaConocimiento
+{
+	public int insertarAreaConocimiento(String id, String nombre,String descripcion, String areaPadre)
+	{
+		AreaConocimiento area = new AreaConocimiento(id,nombre,descripcion,areaPadre);
+		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
+		int numFilas = daoAreaConocimiento.guardarAreaConocimiento(area);
+		area = null;
+		daoAreaConocimiento = null;
+		return numFilas;
+	}
+	
+	public AreaConocimiento obtenerArea(String id)
+	{
+		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
+		AreaConocimiento area = daoAreaConocimiento.consultarArea(id);
+		daoAreaConocimiento = null;
+		return area;
+	}
+	
+	public Vector<AreaConocimiento> obtenerAreas()
+	{
+		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
+		Vector<AreaConocimiento> areas = daoAreaConocimiento.consultarAreas();
+		daoAreaConocimiento = null;
+		return areas;
+	}
+	
+	public int actualizarArea(String idArea, String atributo, String valor)
+	{
+		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
+		int numFilas = daoAreaConocimiento.modificarArea(idArea, atributo, valor);
+		daoAreaConocimiento = null;
+		return numFilas;
+	}
+	
+	public int aliminarArea(String idArea)
+	{
+		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
+		int numFilas = daoAreaConocimiento.eliminarArea(idArea);
+		daoAreaConocimiento = null;
+		return numFilas;
+	}
+	
 }

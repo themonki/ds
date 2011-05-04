@@ -97,7 +97,7 @@ public class DaoAreaConocimiento
 		return area;
 	}
 	
-	public Vector<AreaConocimiento> consultarTodasAreas()
+	public Vector<AreaConocimiento> consultarAreas()
 	{
 		Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
 		String sqlSelect;
@@ -138,6 +138,53 @@ public class DaoAreaConocimiento
 		return areas;
 	}
 	
+	public int modificarArea(String idArea, String atributo, String valorAtributo)
+	{
+		String sqlUpdate;
+		sqlUpdate = "UPDATE Area_Conocimiento SET " +
+			 atributo + " = '" + 
+			 valorAtributo + "' WHERE id_area = '" +
+			 idArea + "'";
+		
+		try
+		{
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			int numFilas = sentencia.executeUpdate(sqlUpdate);
+			this.fachada.cerrarConexion(conn);
+			return numFilas;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int eliminarArea(String idArea)
+	{
+		String sqlDelete;
+		sqlDelete = "DELETE FROM Area_Conocimiento WHERE id_area = '" + idArea + "'";
+		
+		try
+		{
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			int numFilas = sentencia.executeUpdate(sqlDelete);
+			this.fachada.cerrarConexion(conn);
+			return numFilas;
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
 	/*main para prueba OK*/
 	/*public static void main(String args[])
 	{
@@ -145,7 +192,9 @@ public class DaoAreaConocimiento
 		DaoAreaConocimiento da = new DaoAreaConocimiento();
 		System.out.println(da.guardarAreaConocimiento(a));
 		da.consultarArea("1");
-		da.consultarTodasAreas();
+		da.consultarAreas();
+		da.modificarArea("1", "nombre","computacion centrada");
+		da.eliminarArea("3");
 	}*/
 
 }
