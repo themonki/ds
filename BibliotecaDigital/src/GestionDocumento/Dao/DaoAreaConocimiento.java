@@ -4,7 +4,7 @@
  * entre el controlador y la base de datos.
  * Nombre archivo: DaoAreaConocimiento.java
  * Fecha Creacion: Mayo 03 2011
- * Fecha ultima modificación: Mayo 02 2011
+ * Fecha ultima modificación: Mayo 03 2011
  * */
 
 package GestionDocumento.Dao;
@@ -15,7 +15,6 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.util.Vector;
 import GestionDocumento.Logica.AreaConocimiento;
-import GestionDocumento.Logica.Autor;
 import Utilidades.FachadaBD;
 
 public class DaoAreaConocimiento
@@ -57,7 +56,7 @@ public class DaoAreaConocimiento
 		return -1;
 	}
 	
-	/*consulta area por id_area, como id_area es pk encontrará un dato*/
+	/*consulta area_conocimiento por id_area, como id_area es pk encontrará un dato*/
 	public AreaConocimiento consultarArea(String parametro)
 	{
 		AreaConocimiento area = new AreaConocimiento();
@@ -66,25 +65,25 @@ public class DaoAreaConocimiento
 		sqlSelect = "SELECT * FROM area_conocimiento WHERE area_conocimiento.id_area='" + parametro
 				+ "'";
 		try {
-			Connection conn = fachada.conectar();
+			Connection conn = this.fachada.conectar();
 			Statement sentencia = conn.createStatement();
 			ResultSet tabla = sentencia.executeQuery(sqlSelect);
 
 			if(tabla.next()) {
 
-				area.setIdArea(tabla.getString(1));
-				area.setNombre(tabla.getString(2));
-				area.setDescripcion(tabla.getString(3));
-				area.setIdArea(tabla.getString(4));
+				area.setIdArea(tabla.getString("id_area"));
+				area.setNombre(tabla.getString("nombre"));
+				area.setDescripcion(tabla.getString("descripcion"));
+				area.setIdArea(tabla.getString("area_padre"));
 
 				/*probando*/
-				System.out.println("Id area: " + tabla.getString(1) +
-						" Nombre: " + tabla.getString(2) + 
-						"Nombre: " + tabla.getString(3) + 
-						"Descripcion: " + tabla.getString(4));
+				System.out.println("Id area: " + tabla.getString("id_area") +
+						" Nombre: " + tabla.getString("nombre") + 
+						"Descripcion: " + tabla.getString("descripcion") + 
+						"area Padre: " + tabla.getString("area_padre"));
 
 			}
-			fachada.cerrarConexion(conn);
+			this.fachada.cerrarConexion(conn);
 		}
 
 		catch (SQLException se)
@@ -100,7 +99,53 @@ public class DaoAreaConocimiento
 	
 	public Vector<AreaConocimiento> consultarTodasAreas()
 	{
+		Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
+		String sqlSelect;
+		sqlSelect = "SELECT * FROM Area_Conocimiento";
+		
+		try
+		{
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet tabla = sentencia.executeQuery(sqlSelect);
+			
+			while(tabla.next())
+			{
+				AreaConocimiento area = new AreaConocimiento();
+				
+				area.setIdArea(tabla.getString("id_area"));
+				area.setNombre(tabla.getString("nombre"));
+				area.setDescripcion(tabla.getString("descripcion"));
+				area.setAreaPadre(tabla.getString("area_padre"));
+				
+				/*probando*/
+				System.out.println("Id area: " + tabla.getString("id_area") +
+						" Nombre: " + tabla.getString("nombre") + 
+						"Descripcion: " + tabla.getString("descripcion") + 
+						"area Padre: " + tabla.getString("area_padre"));
+				
+				areas.add(area);
+			}
+			this.fachada.cerrarConexion(conn);
+			
+		}catch(SQLException se)
+		{
+			se.printStackTrace();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return new Vector<AreaConocimiento>();
 	}
+	
+	/*main para prueba OK*/
+	/*public static void main(String args[])
+	{
+		AreaConocimiento a = new AreaConocimiento("3","metodos numericos computacionales","","");
+		DaoAreaConocimiento da = new DaoAreaConocimiento();
+		da.guardarAreaConocimiento(a);
+		da.consultarArea("1");
+		da.consultarTodasAreas();
+	}*/
 
 }
