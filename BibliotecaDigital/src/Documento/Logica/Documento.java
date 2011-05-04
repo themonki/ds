@@ -78,20 +78,20 @@ public class Documento {
 	public Vector<Autor> getAutores(){return this.autores;}
 	public Vector<AreaConocimiento> getAreas(){return this.areas;}
 	public Vector<PalabraClave> getPalabrasClave(){return this.palabrasClave;}	
-	public void setid_doc(String value){ idDocumento = value;}
+	public void setId_doc(String value){ idDocumento = value;}
 	public void setIdioma(String value){ idioma= value;}
-	public void setderechosDeAutor(String value){derechosDeAutor= value;}
+	public void setDerechosDeAutor(String value){derechosDeAutor= value;}
 	public void setDescripcion(String value){descripcion= value;}
 	public void setSoftware_recomentado(String value){softwareRecomendado= value;}
 	public void setResolucion(String value){resolucion= value;}
 	public void setEditorial(String value){editorial= value;}
 	public void setFormato(String value){formato= value;}
-	public void settituloppal(String value){tituloPrincipal= value;}
+	public void setTituloppal(String value){tituloPrincipal= value;}
 	public void setTitulo_secundario(String value){tituloSecundario= value;}
-	public void seturl(String value){link= value;}
+	public void setUrl(String value){link= value;}
 	public void setFecha_creacion(String value){fechaCreacion= value;}
 	public void setFecha_publicacion(String value){fechaPublicacion= value;}
-	public void setfechaDeCatalogacion(String value){fechaCatalogacion= value;}	
+	public void setFechaDeCatalogacion(String value){fechaCatalogacion= value;}	
 	public void setcatalogadorLogin(String value){loginCatalogador= value;}
 	public void setTipoMaterial(String value){tipoMaterial= value;}
 	public void setAutores(Vector<Autor> value){autores= value;}
