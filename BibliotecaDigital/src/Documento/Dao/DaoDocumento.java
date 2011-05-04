@@ -18,11 +18,11 @@ public class DaoDocumento {
 		
 		String sql_guardar;
 		int numFilas;
-		sql_guardar = "INSERT INTO Documento VALUES ("+
-		id + ", " + idioma  + ", " + derechos  + ", " + descripcion + ", " + software + ", " + resolucion +
-		", "+editorial + ", " + formato + ", " + titulo_principal + ", " + titulo_secundario + ", " + link +
-		", "+creacion + ", " + publicacion + ", " + tipo + ", " + login  + ", " + catalogacion
-		+");";
+		sql_guardar = "INSERT INTO Documento VALUES ('"+
+		id + "', '" + idioma  + "', '" + derechos  + "', '" + descripcion + "', '" + software + "', '" + resolucion +
+		"', '"+editorial + "', '" + formato + "', '" + titulo_principal + "', '" + titulo_secundario + "', '" + link +
+		"', '"+creacion + "', '" + publicacion + "', '" + tipo + "', '" + login  + "', '" + catalogacion
+		+"');";
 		
 		try{
             Connection conn= fachada.conectar();
@@ -56,13 +56,13 @@ public class DaoDocumento {
 		String sql_actualizar;
 		int numFilas;
 		sql_actualizar = "UPDATE Documento SET "+
-		"idioma = " + idioma  + ", derechos_autor = " + derechos  + ", descripcion = " + descripcion + 
-		", software_recomendado = " + software + ", resolucion = " + resolucion +
-		", editorial = " + editorial + ", formato = " + formato + ", titulo_principal = " + titulo_principal + ", " 
-		+ ", titulo_secundario =  "+titulo_secundario + ", link = " + link +", fecha_creacion = "+creacion +
-		", fecha_publicacion" + publicacion+ ", tipo_nombre = " + tipo +
-		", login_catalogador = " + login  + ", fecha_catalogacion = " + catalogacion 
-		+" WHERE id = "+id+";";
+		"idioma = '" + idioma  +"', derechos_autor = '" + derechos  +"', descripcion = '" + descripcion + 
+		"', software_recomendado = '" + software +"', resolucion = '" + resolucion +
+		"', editorial = '" + editorial +"', formato = '" + formato +"', titulo_principal = '" + titulo_principal + 
+		"', titulo_secundario =  "+titulo_secundario +"', link = '" + link +", fecha_creacion = '"+creacion +
+		"', fecha_publicacion" + publicacion+"', tipo_nombre = '" + tipo +
+		"', login_catalogador = '" + login  +"', fecha_catalogacion = '" + catalogacion 
+		+"' WHERE id = '"+id+"';";
 		
 		try{
             Connection conn= fachada.conectar();

@@ -61,40 +61,40 @@ public class Usuario {
 	}
 
 	
-	String getLogin(){return login;}
-	String getContrasena(){ return contrasena;}
-	String getNombre1(){ return nombre1; }
-	String getNombre2(){ return nombre2; }
-	String getApellido1(){ return apellido1; }
-	String getApellido2(){ return apellido2; }
-	String getEmail(){ return email; }
-    String getNivelEscolaridad(){ return nivelEscolaridad;}
-    String getVinculoUnivalle(){ return vinculoUnivalle;}
-    String getPreguntaSecreta(){ return preguntaSecreta;}
-    String getRespuestaSecreta(){ return preguntaSecreta;}
-    String getGenero(){return genero;}
-    Date getFechaRegistro(){return fechaRegistro;}
-    Date getFechaNacimiento(){return fechaNacimiento;}
-    int getTipo(){return tipo;}
-    boolean getEstado() {return estado;}
-    Vector<AreaConocimiento> getAreas(){ return areasInteres;}
+	public String getLogin(){return login;}
+	public String getContrasena(){ return contrasena;}
+	public String getNombre1(){ return nombre1; }
+	public String getNombre2(){ return nombre2; }
+	public String getApellido1(){ return apellido1; }
+	public String getApellido2(){ return apellido2; }
+	public String getEmail(){ return email; }
+    public String getNivelEscolaridad(){ return nivelEscolaridad;}
+    public String getVinculoUnivalle(){ return vinculoUnivalle;}
+    public String getPreguntaSecreta(){ return preguntaSecreta;}
+    public String getRespuestaSecreta(){ return preguntaSecreta;}
+    public String getGenero(){return genero;}
+    public Date getFechaRegistro(){return fechaRegistro;}
+    public Date getFechaNacimiento(){return fechaNacimiento;}
+    public int getTipo(){return tipo;}
+    public boolean getEstado() {return estado;}
+    public Vector<AreaConocimiento> getAreas(){ return areasInteres;}
     
-    void setLogin(String value){}
-	void setContrasena(String value){contrasena = value;}
-	void setNombre1(String value){ nombre1=value;}
-	void setNombre2(String value){ nombre2=value;}
-	void setApellido1(String value){apellido1=value;}
-	void setApellido2(String value){apellido2=value;}
-	void setEmail(String value){email = value;}
-	void setNivelEscolaridad(String value){nivelEscolaridad=value;}
-	void setVinculoUnivalle(String value){vinculoUnivalle = value;} 
-	void setPreguntaSecreta(String value){ preguntaSecreta = value;}
-	void setRespuestaSecreta(String value){ respuestaSecreta = value;}
-	void setGenero(String value){genero=value;}
-	void setFechaRegistro(Date value){fechaRegistro = value;}
-	void etFechaNacimiento(Date value){fechaNacimiento = value; }
-	void setTipo(int value){tipo = value;}
-	void setEstado(boolean value){estado = value;}
-	void setAreas(Vector<AreaConocimiento> value){areasInteres = value;}
+    public void setLogin(String value){}
+	public void setContrasena(String value){contrasena = value;}
+	public void setNombre1(String value){ nombre1=value;}
+	public void setNombre2(String value){ nombre2=value;}
+	public void setApellido1(String value){apellido1=value;}
+	public void setApellido2(String value){apellido2=value;}
+	public void setEmail(String value){email = value;}
+	public void setNivelEscolaridad(String value){nivelEscolaridad=value;}
+	public void setVinculoUnivalle(String value){vinculoUnivalle = value;} 
+	public void setPreguntaSecreta(String value){ preguntaSecreta = value;}
+	public void setRespuestaSecreta(String value){ respuestaSecreta = value;}
+	public void setGenero(String value){genero=value;}
+	public void setFechaRegistro(Date value){fechaRegistro = value;}
+	public void etFechaNacimiento(Date value){fechaNacimiento = value; }
+	public void setTipo(int value){tipo = value;}
+	public void setEstado(boolean value){estado = value;}
+	public void setAreas(Vector<AreaConocimiento> value){areasInteres = value;}
 
 }
