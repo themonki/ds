@@ -29,7 +29,7 @@ public class PalabraClave
 		return nombre;
 	}
 	
-	public String getDescricion()
+	public String getDescripcion()
 	{
 		return descripcion;
 	}
@@ -39,7 +39,7 @@ public class PalabraClave
 		this.nombre = nombre;
 	}
 	
-	public void setDescriocion(String descripcion)
+	public void setDescripcion(String descripcion)
 	{
 		this.descripcion = descripcion;
 	}
