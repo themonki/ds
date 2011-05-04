@@ -71,7 +71,7 @@ public class DaoAutor {
 						+ tabla.getString(5));
 
 			}
-			conn.close();
+			fachada.cerrarConexion(conn);
 			System.out.println("Conexion cerrada");
 
 		}
