@@ -19,7 +19,7 @@ import Utilidades.FachadaBD;
 
 public class DaoAreaConocimiento
 {
-	FachadaBD fachada;
+	private FachadaBD fachada;
 	
 	public DaoAreaConocimiento()
 	{
@@ -79,8 +79,8 @@ public class DaoAreaConocimiento
 				/*probando*/
 				System.out.println("Id area: " + tabla.getString("id_area") +
 						" Nombre: " + tabla.getString("nombre") + 
-						"Descripcion: " + tabla.getString("descripcion") + 
-						"area Padre: " + tabla.getString("area_padre"));
+						" Descripcion: " + tabla.getString("descripcion") + 
+						" Area Padre: " + tabla.getString("area_padre"));
 
 			}
 			this.fachada.cerrarConexion(conn);
@@ -121,8 +121,8 @@ public class DaoAreaConocimiento
 				/*probando*/
 				System.out.println("Id area: " + tabla.getString("id_area") +
 						" Nombre: " + tabla.getString("nombre") + 
-						"Descripcion: " + tabla.getString("descripcion") + 
-						"area Padre: " + tabla.getString("area_padre"));
+						" Descripcion: " + tabla.getString("descripcion") + 
+						" Drea Padre: " + tabla.getString("area_padre"));
 				
 				areas.add(area);
 			}
@@ -135,7 +135,7 @@ public class DaoAreaConocimiento
 		{
 			e.printStackTrace();
 		}
-		return new Vector<AreaConocimiento>();
+		return areas;
 	}
 	
 	/*main para prueba OK*/
@@ -143,7 +143,7 @@ public class DaoAreaConocimiento
 	{
 		AreaConocimiento a = new AreaConocimiento("3","metodos numericos computacionales","","");
 		DaoAreaConocimiento da = new DaoAreaConocimiento();
-		da.guardarAreaConocimiento(a);
+		System.out.println(da.guardarAreaConocimiento(a));
 		da.consultarArea("1");
 		da.consultarTodasAreas();
 	}*/
