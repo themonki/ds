@@ -1,12 +1,17 @@
 package Principal.Gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -14,6 +19,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 import Usuarios.Gui.GuiRegistroModificar;
 
@@ -23,6 +30,10 @@ public class GuiPrincipal extends JFrame {
 		private static final long serialVersionUID = 1L;
 
 	
+		private String estadoInicial = "Inicio";
+		private String estadoRegistro = "RegistrandoUsuario";
+		private String estadoIngrensando = "Ingresando";
+		
 
 		// Panel donde se colocan las opciones del administrador que siempre
 		// esta
@@ -45,7 +56,7 @@ public class GuiPrincipal extends JFrame {
 
 
 		// Panel donde se pone la imagen inicial
-		private JPanel panelTitulo;
+		//private JPanel panelTitulo;
 
 		// Imagen que se muestra en la pantalla inicial
 		private JLabel etiquetaImagen;
@@ -74,11 +85,39 @@ public class GuiPrincipal extends JFrame {
 			
 			super("::: Sistema de Biblioteca Digital :::");	
 
-			manejador = new Manejador();		
+			manejador = new Manejador();	
+			
+			//Estilos.
+			//-------------------------------fuentes letras-------------------------
+			Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
+			Font fontSubtitulos = new Font("Book Antiqua",Font.BOLD, 15);
+			Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
+			
+			//-------------------------------Color letras----------------------------
+			
+			String tituloMuestra = "Sistema Biblioteca Digital";
+			Color colorTitulo = new Color(0,50,0);
+			Color colorSubtitulo= new Color(0,50,10);
+			Color colorLabels= new Color(0,60,0);	
+			TitledBorder borde;
+			borde = BorderFactory.createTitledBorder(BorderFactory
+					.createLineBorder(Color.yellow), tituloMuestra);
+			borde.setTitleColor(colorTitulo);
+			borde.setTitleFont(fontTitulo);
+			borde.setTitleJustification(TitledBorder.CENTER);
+			
+			
+			super.setIconImage(new ImageIcon("/recursos/LOGO.png").getImage());
+			
+			
+			
+			
 
+			panelRegistro = new GuiRegistroModificar();
 			contenedor = getContentPane();
 			contenedor.setLayout(new BorderLayout());
-
+			((JComponent) contenedor).setBorder(borde);
+			
 			// Se instancian todos los elementos de la barra del menu.
 			archivo = new JMenu("Archivo");
 			archivo.setMnemonic('A');
@@ -124,11 +163,14 @@ public class GuiPrincipal extends JFrame {
 			// Elementos del panel de inicio que se muestra en el centro apenas
 			// se
 			// carga el programa.
-			panelTitulo = new JPanel(new BorderLayout(1, 2));
-			icono = new ImageIcon("recursos/LOGO.png");
-			etiquetaImagen = new JLabel(icono);
-			panelTitulo.add(etiquetaImagen);
-			titulo = new JLabel("Biblioteca Digital Eisc");
+			
+			//panelTitulo = new JPanel(new GridLayout(1, 2,5,5));
+			//icono = new ImageIcon("recursos/LogoPequeno.png");
+			
+			//etiquetaImagen = new JLabel(icono,JLabel.CENTER);
+			//panelTitulo.add(etiquetaImagen);
+			titulo = new JLabel("Biblioteca Digital Eisc",JLabel.CENTER);
+			//panelTitulo.add(titulo);
 			
 
 			// Elementos del panel nuevo usuario.
@@ -148,11 +190,11 @@ public class GuiPrincipal extends JFrame {
 		
 			
 			
-			estado = new JLabel("Iniciado");
+			estado = new JLabel(estadoInicial);
 
 			contenedor.add(panelOpcionesGenerales, BorderLayout.WEST);
 			contenedor.add(estado, BorderLayout.SOUTH);
-			contenedor.add(panelTitulo, BorderLayout.NORTH);
+			//contenedor.add(panelTitulo, BorderLayout.NORTH);
 			contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 
 			
@@ -167,13 +209,23 @@ public class GuiPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent evento) {
 
 				if (evento.getSource() == crearUsuario) {
-					if (estado.getText().equals("Iniciado")) {
-						//contenedor.remove(panelConsultaBasica);
-						//contenedor.add(GuiRegistroModificar, BorderLayout.CENTER);
-						estado.setText("Registrando nuevo usuario");
+					if (estado.getText().equals(estadoInicial)) {
+						contenedor.remove(panelConsultaBasica);
+						contenedor.add(panelRegistro, BorderLayout.CENTER);
+						estado.setText(estadoRegistro);
 						repaint();
 					}
 
+					
+				}else if(evento.getSource() == volver)
+				{
+					
+					if (estado.getText().equals(estadoRegistro)) {
+						contenedor.remove(panelRegistro);
+						contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+						estado.setText(estadoInicial);
+						repaint();
+					}
 					
 				}
 
@@ -194,7 +246,15 @@ public class GuiPrincipal extends JFrame {
 
 		public static void main(String args[]) {
 
+			try
+			{	
+				UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
+			}
+			catch (Exception e){e.printStackTrace();}
 		
+			GuiPrincipal a = new GuiPrincipal();
+		
+			a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		}
 
