@@ -39,5 +39,22 @@ public class ControladorAutor {
 		return autores;
 	}
 	
+	/*main para prueba OK*/
+	/*public static void main(String args[])
+	{
+		ControladorAutor controladorAutor = new ControladorAutor();
+		
+		System.out.println(controladorAutor.insertarAutor("Edgar", "Moncada", "monki", "monkiloro@gmail.com"));
+		System.out.println(controladorAutor.insertarAutor("Yerminson", "Gonzalez", "yermi", "yermiloro@gmail.com"));
+		
+		Autor a1 = controladorAutor.obtenerAutor("monki");
+		Autor a2 = controladorAutor.obtenerAutor("yermi");
+		
+		System.out.println(a1.getNombre());
+		System.out.println(a2.getNombre());
+		
+		System.out.println(controladorAutor.obtenerAutores().get(0).getNombre());
+	}*/
+	
 
 }

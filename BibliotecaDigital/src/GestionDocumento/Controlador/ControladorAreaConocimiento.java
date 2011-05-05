@@ -57,4 +57,21 @@ public class ControladorAreaConocimiento
 		return numFilas;
 	}
 	
+	/*main para prueba OK*/
+	/*public static void main(String args[])
+	{
+		ControladorAreaConocimiento controladorAreaConocimiento = new ControladorAreaConocimiento();
+		
+		System.out.println(controladorAreaConocimiento.insertarAreaConocimiento("1", "Bases Datos", "Mineria de datos descubrimiento de conocimiento a partir de bases de datos", "0"));
+		
+		AreaConocimiento  a1 = controladorAreaConocimiento.obtenerArea("1");
+	
+		
+		System.out.println(a1.getNombre());
+		
+		
+		System.out.println(controladorAreaConocimiento.obtenerAreas().get(0).getDescripcion());
+	}*/
+	
+	
 }

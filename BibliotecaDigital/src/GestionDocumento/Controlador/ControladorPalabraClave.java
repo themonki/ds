@@ -34,4 +34,23 @@ public class ControladorPalabraClave {
 		daoPalabraClave = null;
 		return palabrasClave;
 	}
+	
+	/*
+	public static void main(String args[])
+	{
+		ControladorPalabraClave controladorPalabraClave = new ControladorPalabraClave();
+		
+		System.out.println(controladorPalabraClave.insertarPalabraClave("bases datos", "mineria de datos"));
+	
+		
+		PalabraClave p1 = controladorPalabraClave.obtenerPalabraClave("bases datos");
+	
+		
+		System.out.println(p1.getNombre());
+		
+		
+		System.out.println(controladorPalabraClave.obtenerPalabrasClave());
+	}*/
+	
+	
 }
