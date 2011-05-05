@@ -142,6 +142,7 @@ public class GuiCatalogarModificar extends JFrame{
 			    spinner.setEditor(editor);
 			    ((JSpinner.DateEditor) spinner.getEditor()).getTextField().setEditable(false);
 
+			    spinner.setFont(font2);
 			    
 			    JPanel panelFecha = new JPanel(new BorderLayout());
 			    panelFecha.add(spinner, BorderLayout.CENTER);
@@ -203,7 +204,7 @@ public class GuiCatalogarModificar extends JFrame{
 		restriccionCampo.gridwidth = 2;
 		restriccionCampo.gridx = 1;
 		restriccionCampo.gridy = 0;
-		restriccionCampo.insets = new Insets(2,40,2,0);
+		restriccionCampo.insets = new Insets(1,40,1,0);
 		
 		
 		restriccionEtiquetas.insets= new Insets(0,14,0,0);// espacios entre componentes
@@ -222,7 +223,7 @@ public class GuiCatalogarModificar extends JFrame{
 		
 		restriccionEtiquetas.gridy=2;
 		restriccionCampo.gridy = 2;
-		restriccionCampo.ipadx=0;
+		restriccionCampo.ipadx=50;
 		restriccionCampo.gridwidth=1;
 
 		restriccionBotones.gridx=2;
@@ -353,7 +354,6 @@ public class GuiCatalogarModificar extends JFrame{
 		setSize(900,670);
 		//-------------------------------------------
 	
-		
 		
 	}
 	
@@ -550,7 +550,8 @@ public class GuiCatalogarModificar extends JFrame{
 				{
 					autoresActualVector.add((String) campoAutor.getSelectedItem());		
 					
-					AutorIdActualVector.add((String) campoAutor.getSelectedItem());		
+					//AutorIdActualVector.add((String) campoAutor.getSelectedItem());		
+					AutorIdActualVector.add((String) AutorIdVector.get( campoAutor.getSelectedIndex()));
 					
 					etiqueta.setText(""+campoAutor.getSelectedItem());			
 					etiqueta.addMouseListener(new eventoMouse(1));			
@@ -566,7 +567,7 @@ public class GuiCatalogarModificar extends JFrame{
 			
 				if (palabActualVec.indexOf(campoPalabras.getSelectedItem())==-1)
 				{
-					palabActualVec.add((String) AutorIdVector.get(campoPalabras.getSelectedIndex()));		
+					palabActualVec.add((String) campoPalabras.getSelectedItem());		
 					etiqueta.setText(""+campoPalabras.getSelectedItem());			
 					etiqueta.addMouseListener(new eventoMouse(2));			
 					panelConpalabrasC.add(etiqueta);			
@@ -627,6 +628,7 @@ public class GuiCatalogarModificar extends JFrame{
 					palabActualVec.removeElement(refe.getText());														
 					panelConpalabrasC.remove(refe);					
 					panelConpalabrasC.updateUI();
+					
 					}
 				
 				if (panel == 3){
