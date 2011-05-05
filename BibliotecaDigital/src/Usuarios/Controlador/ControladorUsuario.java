@@ -9,7 +9,7 @@ import GestionDocumento.Logica.AreaConocimiento;
 
 public class ControladorUsuario {
 	
-	public void insertarUsuario(String login, String contrasena, String nom1, String nom2, String apll1,
+	public int insertarUsuario(String login, String contrasena, String nom1, String nom2, String apll1,
 			String apll2, String email, String nivel, String vinculo, String pregunta, String respuesta,
 			String genero, String registro, String nacimiento, int tipo, boolean estado){
         Usuario u = new Usuario();
@@ -33,24 +33,25 @@ public class ControladorUsuario {
         u.setTipo(tipo);
         u.setEstado(estado);
         
-        insertarUsuario(u);
+        int value =insertarUsuario(u);
         
 
         //por seguridad
-        u=null;       
+        u=null;
+        return value;
 
     }
 	
-	public void insertarUsuario(Usuario u){
+	public int insertarUsuario(Usuario u){
 		DaoUsuario daoUs=new DaoUsuario();
-		daoUs.guardarUsuario(u);
+		int value =daoUs.guardarUsuario(u);
 		
 		System.out.println("Se inserto el usuario");
 		daoUs=null;
-		
+		return value;
 	}
 	
-	public void modificarDocumento(String login, String contrasena, String nom1, String nom2, String apll1,
+	public int modificarUsuario(String login, String contrasena, String nom1, String nom2, String apll1,
 			String apll2, String email, String nivel, String vinculo, String pregunta, String respuesta,
 			String genero, String registro, String nacimiento, int tipo, boolean estado){
 		Usuario u = new Usuario();
@@ -74,19 +75,20 @@ public class ControladorUsuario {
         u.setTipo(tipo);
         u.setEstado(estado);
         
-        modificarUsuario(u);
+        int value = modificarUsuario(u);
 
         //por seguridad		
         u=null;
+        return value;
 	}
 
-	public void modificarUsuario(Usuario u){
+	public int modificarUsuario(Usuario u){
 		DaoUsuario daoUs=new DaoUsuario();
-		daoUs.guardarUsuario(u);
+		int value =daoUs.modificarUsuario(u);
 		
-		System.out.println("Se inserto el usuario");
+		System.out.println("Se modifico el usuario");
 		daoUs=null;
-		
+		return value;
 	}
 	/*METODO QUE PERMITE INSERTAR LAS AREAS A LA Q LE INTERESA EL USUARIO
 	 * 
@@ -112,5 +114,22 @@ public class ControladorUsuario {
 		daoUs=null;
 		
 		return areas;
+	}
+	
+	public static void main(String args[]){
+		ControladorUsuario cu = new ControladorUsuario();
+		Date fechaRegistro = Date.valueOf("6666-06-06");
+		Date fechaNacimiento = Date.valueOf("7777-07-07");
+		Vector<AreaConocimiento> areasInteres = new Vector<AreaConocimiento>();
+		
+		Usuario u = new Usuario("444", "contrasena", "nombre1",
+				"nombre2","apellido1","apellido2", "este",
+				"nivel", "vinculo","preguntaSecreta","respuestaSecreta","m",
+				fechaRegistro, fechaNacimiento, 1, true, areasInteres);
+		//no puede haber emails iguales
+		//System.out.println(cu.insertarUsuario(u));
+		u.setEmail("hola");
+		//System.out.println(cu.modificarUsuario(u));
+		
 	}
 }

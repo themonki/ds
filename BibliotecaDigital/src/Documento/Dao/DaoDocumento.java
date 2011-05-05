@@ -25,8 +25,11 @@ public class DaoDocumento {
 		
 		String sql_guardar;
 		int numFilas;
-		sql_guardar = "INSERT INTO Documento VALUES ('"+
-		id + "', '" + idioma  + "', '" + derechos  + "', '" + descripcion + "', '" + software + "', '" + resolucion +
+		sql_guardar = "INSERT INTO Documento (idioma, derechos_autor, descripcion, software_recomendado, " +
+				"resolucion, editorial, formato, titulo_principal, titulo_secundario, link, " +
+				"fecha_creacion, fecha_publicacion, tipo_nombre, login_catalogador, fecha_catalogacion)" +
+				"VALUES ('"+
+		idioma  + "', '" + derechos  + "', '" + descripcion + "', '" + software + "', '" + resolucion +
 		"', '"+editorial + "', '" + formato + "', '" + titulo_principal + "', '" + titulo_secundario + "', '" + link +
 		"', '"+creacion + "', '" + publicacion + "', '" + tipo + "', '" + login  + "', '" + catalogacion
 		+"');";
@@ -71,10 +74,10 @@ public class DaoDocumento {
 		"idioma = '" + idioma  +"', derechos_autor = '" + derechos  +"', descripcion = '" + descripcion + 
 		"', software_recomendado = '" + software +"', resolucion = '" + resolucion +
 		"', editorial = '" + editorial +"', formato = '" + formato +"', titulo_principal = '" + titulo_principal + 
-		"', titulo_secundario =  "+titulo_secundario +"', link = '" + link +", fecha_creacion = '"+creacion +
-		"', fecha_publicacion" + publicacion+"', tipo_nombre = '" + tipo +
+		"', titulo_secundario = '"+titulo_secundario +"', link = '" + link +"', fecha_creacion = '"+creacion +
+		"', fecha_publicacion = '" + publicacion+"', tipo_nombre = '" + tipo +
 		"', login_catalogador = '" + login  +"', fecha_catalogacion = '" + catalogacion 
-		+"' WHERE id = '"+id+"';";
+		+"' WHERE id_Documento = '"+id+"';";
 		
 		try{
             Connection conn= fachada.conectar();

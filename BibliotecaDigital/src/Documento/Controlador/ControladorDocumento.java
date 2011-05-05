@@ -1,19 +1,23 @@
 package Documento.Controlador;
 
 import java.sql.Date;
+import java.util.Vector;
 
 import Documento.Dao.*;
 import Documento.Logica.*;
+import GestionDocumento.Logica.AreaConocimiento;
+import GestionDocumento.Logica.Autor;
+import GestionDocumento.Logica.PalabraClave;
 
 
 public class ControladorDocumento {
 	
-	public void insertarDocumento(String id, String idioma, String derechos, String descripcion, 
+	public int insertarDocumento(String id, String idioma, String derechos, String descripcion, 
 			String software, String resolucion, String editorial, String formato, 
 			String titulo_principal, String titulo_secundario, String link, String creacion, 
 			String publicacion, String catalogacion, String login){
         Documento d = new Documento();
-        
+        int value;
         d.setId_doc(id);
         d.setIdioma(idioma);
         d.setDerechosDeAutor(derechos);
@@ -33,23 +37,24 @@ public class ControladorDocumento {
         d.setFechaDeCatalogacion(F_catalogacion);
         d.setCatalogadorLogin(login);
         
-        insertarDocumento(d);
+        value =insertarDocumento(d);
 
         //por seguridad
-        d=null;       
+        d=null;
+        return value;
 
     }
 	
-	public void insertarDocumento(Documento d){
+	public int insertarDocumento(Documento d){
 		DaoDocumento daoDoc=new DaoDocumento();
-		daoDoc.guardarDocumento(d);
+		int value= daoDoc.guardarDocumento(d);
 		
 		System.out.println("Se inserto el documento");
 		daoDoc=null;
-		
+		return value;
 	}
 	
-	public void modificarDocumento(String id, String idioma, String derechos, String descripcion, 
+	public int modificarDocumento(String id, String idioma, String derechos, String descripcion, 
 			String software, String resolucion, String editorial, String formato, 
 			String titulo_principal, String titulo_secundario, String link, String creacion, 
 			String publicacion, String catalogacion, String login){
@@ -74,18 +79,51 @@ public class ControladorDocumento {
         d.setFechaDeCatalogacion(F_catalogacion);
         d.setCatalogadorLogin(login);
         
-        modificarDocumento(d);
+        int value = modificarDocumento(d);
 
         //por seguridad
         d=null;
+        return value;
 	}
 
-	public void modificarDocumento(Documento d){
+	public int modificarDocumento(Documento d){
 		DaoDocumento daoDoc=new DaoDocumento();
-		daoDoc.modificarDocumento(d);
+		int value = daoDoc.modificarDocumento(d);
 		
-		System.out.println("Se inserto el documento");
+		System.out.println("Se modifico el documento");
 		daoDoc=null;
-		
+		return value;
+	}
+	
+	
+	public static void main(String args[]){
+		ControladorDocumento cd = new ControladorDocumento();
+		Vector<Autor> autores = new Vector<Autor> ();
+		Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
+		Vector<PalabraClave> palabrasClave = new Vector<PalabraClave>();
+		Date fechaCreacion;
+		Date fechaPublicacion;
+		Date fechaCatalogacion;
+		try{
+			fechaCreacion = Date.valueOf("1111-01-01");
+			fechaPublicacion = Date.valueOf("2222-02-02");
+			fechaCatalogacion = Date.valueOf("3333-03-03");
+			
+			Documento d = new Documento("10002", "idioma", "derechosDeAutor",
+					"descripcion", "softwareRecomendado", "resolucion",
+					"editorial","txt", "tituloPrincipal",
+					"tituloSecundario", "link5", fechaCreacion,
+					fechaPublicacion, fechaCatalogacion,
+					"444", "guia",
+					autores, areas, palabrasClave
+					);
+			//System.out.println(""+ cd.insertarDocumento(d));
+			//d.setIdioma("ingles");
+			//System.out.println(cd.modificarDocumento(d));
+			
+			}catch(Exception e){
+				System.out.println(e.toString());
+				
+			}		
 	}
 }

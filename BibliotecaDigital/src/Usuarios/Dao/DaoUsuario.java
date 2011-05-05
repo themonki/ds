@@ -46,8 +46,7 @@ public class DaoUsuario {
         }
         catch(SQLException e){ System.out.println(e); }
         catch(Exception e){ System.out.println(e); }
-        return -1;		
-	
+        return -1;	
 	}
 	
 	public int guardarUsuario(Usuario u){
@@ -68,15 +67,16 @@ public class DaoUsuario {
 		
 		String sql_actualizar;
 		int numFilas;
-		sql_actualizar = "UPDATE Usuario SET login = '"+ login +"', contrasena = '"+contrasena+"', "+
-		"nombre1 = '"+nom1+"', nombre2 = '"+nom2+"', apellido1 = '"+apll1+"', appellido2 = '"+apll2+"', "+
-		"email = '"+email+"', niveel_escolaridad = '"+nivel+"', pregunta_secreta = '"+pregunta+"', "+
+		
+		sql_actualizar = "UPDATE Usuario SET contrasena = '"+contrasena+"', "+
+		"nombre1 = '"+nom1+"', nombre2 = '"+nom2+"', apellido1 = '"+apll1+"', apellido2 = '"+apll2+"', "+
+		"email = '"+email+"', nivel_escolaridad = '"+nivel+"', pregunta_secreta = '"+pregunta+"', "+
 		"respuesta_secreta = '"+respuesta+"', vinculo_univalle = '"+vinculo+"', genero = '"+genero+"', "+
 		"fecha_nacimiento = '"+nacimiento.toString()+"', fecha_registro = '"+registro+"', "+
 		"tipo = '"+tipo+"', estado = '";
 		
 		if(estado){sql_actualizar+= "t'"; }else {sql_actualizar+= "f'";}
-		sql_actualizar+=";";
+		sql_actualizar+=" WHERE login = '"+ login +"';";
 		
 		try{
             Connection conn= fachada.conectar();
