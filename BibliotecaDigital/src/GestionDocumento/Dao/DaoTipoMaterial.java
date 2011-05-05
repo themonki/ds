@@ -91,12 +91,12 @@ public class DaoTipoMaterial {
 				TipoMaterial tipo = new TipoMaterial();
 
 				tipo.setNombre(tabla.getString("tipo_nombre"));
-				tipo.setNombre(tabla.getString("descripcion"));
+				tipo.setDescripcion(tabla.getString("descripcion"));
 
-				/* probando */
+				/* probando*/ 
 				System.out.println("Id area: " + tabla.getString("tipo_nombre")
 						+ " Descripcion: " + tabla.getString("descripcion"));
-
+/**/
 				tipos.add(tipo);
 			}
 			this.fachada.cerrarConexion(conn);

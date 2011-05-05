@@ -91,7 +91,7 @@ public class DaoAreaConocimiento {
 	public Vector<AreaConocimiento> consultarAreas() {
 		Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
 		String sqlSelect;
-		sqlSelect = "SELECT * FROM Area_Conocimiento";
+		sqlSelect = "SELECT * FROM Area_Conocimiento ;";
 
 		try {
 			Connection conn = this.fachada.conectar();

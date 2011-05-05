@@ -68,7 +68,7 @@ public class ControladorAreaConocimiento {
 
 		vectorAreas = obtenerAreas();
 		int cantidad = vectorAreas.size();
-		for (int i = 1; i < cantidad; i++) {// empieza en uno porque no se
+		for (int i = 0; i < cantidad; i++) {// empieza en uno porque no se
 											// necesita super
 			nombres.add(vectorAreas.get(i).getNombre());
 			ids.add(vectorAreas.get(i).getIdArea());
