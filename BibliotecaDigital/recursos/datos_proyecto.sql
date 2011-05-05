@@ -30,4 +30,10 @@ INSERT INTO TipoMaterial (tipo_nombre, descripcion) VALUES
 	('Tesis de Doctorado','trabajo presentado para el grado por estudiantes de doctorado de ultimos semestres'),
 	('Material de Clase','diapositivas, talleres, ejercicios y documentos del profesor');
 
+INSERT INTO Usuario VALUES
+('444', 'contrasena', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'nivel', 'pregunta', 'respuesta', 'vinculo' ,'m', '777-07-07', '6666-06-06', '1', 't');
+
+INSERT INTO Documento VALUES
+(DEFAULT, 'español', 'si', 'documento', 'adobe', '200','ninguno', 'pdf', 'Libro', 'librito', 'enlace no disponible', '1111-01-01', '2222-02-02', 'Libro', '444', '3333-03-03');
+
 
