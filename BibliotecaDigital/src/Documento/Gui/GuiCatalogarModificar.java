@@ -23,7 +23,7 @@ import  javax.swing.*;
 
 public class GuiCatalogarModificar extends JFrame{
 	
-/*
+
 	JPanel panel,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
 	JLabel tipoMaterial,numeroIndentificacion,tituloPrincipal,idioma,autor,
 	tituloSecundario,traducido,editorial,derechosAutor,descripcion,indicacion,
@@ -518,5 +518,5 @@ public class GuiCatalogarModificar extends JFrame{
 
 	
 	
-	}*/
+	}
 }
