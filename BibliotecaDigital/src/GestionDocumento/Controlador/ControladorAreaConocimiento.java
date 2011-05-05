@@ -1,10 +1,10 @@
 /*
- * Nombre: Cristian Ríos.
+ * Nombre: Cristian Rï¿½os.
  * Responsabilidad: Realizar la debida manipulacion de datos referentes a el area de conocimiento
  * entre la GUI y el controlado.
  * Nombre archivo: ControladorAreaConocimiento.java
  * Fecha Creacion: Mayo 03 2011
- * Fecha ultima modificación: Mayo 04 2011
+ * Fecha ultima modificaciï¿½n: Mayo 04 2011
  * */
 
 package GestionDocumento.Controlador;
@@ -48,8 +48,8 @@ public class ControladorAreaConocimiento
 		daoAreaConocimiento = null;
 		return numFilas;
 	}
-	
-	public int aliminarArea(String idArea)
+	//Corregida letra estaba aliminar . Yermi =D
+	public int eliminarArea(String idArea)
 	{
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
 		int numFilas = daoAreaConocimiento.eliminarArea(idArea);

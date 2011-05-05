@@ -13,6 +13,7 @@ import java.util.Vector;
 import GestionDocumento.Logica.Autor;
 import Utilidades.FachadaBD;
 
+
 public class DaoAutor {
 
 	FachadaBD fachada;
@@ -22,10 +23,10 @@ public class DaoAutor {
 
 	}
 
-	int guardarAutor(Autor autor) {
+	public int guardarAutor(Autor autor) {
 		String sqlGuardar;
-		sqlGuardar = "INSERT INTO autor(id_autor, nombre, email, apellido,acronimo) VALUES ('"
-				+ "NEXTVAL(id_autor_seq),"
+		sqlGuardar = "INSERT INTO autor(id_autor, nombre, email, apellido,acronimo) VALUES ("
+				+ "NEXTVAL('id_autor_seq'),'"
 				+ autor.getNombre()
 				+ "', '"
 				+ autor.getCorreo()
@@ -47,7 +48,7 @@ public class DaoAutor {
 		return -1;
 	}
 
-	Autor consultarAutor(String parametro) {
+	public Autor consultarAutor(String parametro) {
 
 		Autor autor = new Autor();
 		String sqlSelect;
@@ -89,7 +90,7 @@ public class DaoAutor {
 		return autor;
 	}
 
-	Vector<Autor> consultarAutores() {
+	public Vector<Autor> consultarAutores() {
 
 		Vector<Autor> autores = new Vector<Autor>();
 		String sqlSelect;
@@ -131,6 +132,22 @@ public class DaoAutor {
 		}
 		return autores;
 
+	}
+	
+	
+	
+	
+	
+	
+	/*main para prueba OK*/
+	public static void main(String args[])
+	{
+		Autor a = new Autor("Yerminson","Gonzalez","yermigon","yermigon@gmail.com","");
+	    DaoAutor da = new DaoAutor();
+		System.out.println(da.guardarAutor(a));
+		da.consultarAutor("yermigon");
+		System.out.println(da.consultarAutores().size());
+		
 	}
 
 }
