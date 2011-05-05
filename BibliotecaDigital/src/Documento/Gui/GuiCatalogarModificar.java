@@ -48,7 +48,8 @@ public class GuiCatalogarModificar extends JFrame{
   // en caccoo falta campo editorial
 	
 	private Vector<String> palabrasClaveVec,areasVector,autoresVector,       
-	palabActualVec,areasActualVecr,autoresActualVector;
+	palabActualVec,areasActualVecr,autoresActualVector,AutorIdVector,AutorIdActualVector,AreasIdVector,AreasIdActualVector;
+	
 	//----------------CONTROLADORES--------------------------------
 	ControladorAreaConocimiento controladorAreas ;
 	ControladorAutor controladorAutor;
@@ -62,6 +63,7 @@ public class GuiCatalogarModificar extends JFrame{
 	private JLabel resolucion;
 	private JTextField campoResolucion;
 	private JTextField campoSofware;
+	
 	public GuiCatalogarModificar() {
 		
 		//--------------INICIALIZAR CONTROLADORES--------------------------------
@@ -85,21 +87,24 @@ public class GuiCatalogarModificar extends JFrame{
 		areasVector= new Vector<String>();
 		autoresVector= new Vector<String>();
 		palabrasClaveVec= new Vector<String>();
-		//---------------consulta en sql----------------------
-		palabrasClaveVec.add("Software");
-		palabrasClaveVec.add("linux");
-		palabrasClaveVec.add("word");
-		autoresVector.add("juan grabriel");
-		autoresVector.add("andres juan ");
-		autoresVector.add("Leopoldo");
-		areasVector.add("ingles");
-		areasVector.add("astronomia");
-		areasVector.add("nadaderia");
+		//AreasIdVector = new Vector<String>();	
+		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
+		areasVector =contenedorIdNombreArea.get(0);
+		AreasIdVector= contenedorIdNombreArea.get(1); 
+		contenedorIdNombreArea=null;//para destruir el vector 
+		
+		Vector<Vector<String>> contenedorIdAutor = controladorAutor.obtenerTodosAutores();
+		autoresVector=contenedorIdAutor.get(0);
+		AutorIdVector= contenedorIdAutor.get(1);
+		
 		//----------------------------------------
 		palabActualVec= new Vector<String>();
 		areasActualVecr= new Vector<String>();
 		autoresActualVector= new Vector<String>();
+		AreasIdActualVector= new Vector<String>();
+		AutorIdActualVector= new Vector<String>();
 		//----------------------------------------	
+		
 		panel= new JPanel();
 		panel2= new JPanel();
 		panel3= new JPanel();
@@ -253,15 +258,18 @@ public class GuiCatalogarModificar extends JFrame{
 		
 		restriccionEtiquetas.gridy=9;
 		restriccionCampo.gridy = 9;
-		restriccionCampo.ipadx=150;
+		restriccionCampo.ipadx=0;
 		restriccionBotones.gridy=9;
 		restriccionBotones.ipadx=9;
 		restriccionBotones.gridx=2;
 	
+		JPanel pa= new JPanel();
+		pa.add(campoAreas);
 		panel2.add(areas,restriccionEtiquetas);
 		panel2.add(campoAreas,restriccionCampo);
 		panel2.add(nuevaArea,restriccionBotones);
 		
+		restriccionCampo.ipadx=150;
 		restriccionEtiquetas.gridy=10;
 		restriccionCampo.gridy=10;
 
@@ -495,10 +503,14 @@ public class GuiCatalogarModificar extends JFrame{
 				if (autoresActualVector.indexOf(campoAutor.getSelectedItem())==-1)
 				{
 					autoresActualVector.add((String) campoAutor.getSelectedItem());		
+					
+					AutorIdActualVector.add((String) campoAutor.getSelectedItem());		
+					
 					etiqueta.setText(""+campoAutor.getSelectedItem());			
 					etiqueta.addMouseListener(new eventoMouse(1));			
 					panelConAutores.add(etiqueta);			
 					panelConAutores.updateUI();
+					
 				}
 				
 			};
@@ -508,7 +520,7 @@ public class GuiCatalogarModificar extends JFrame{
 			
 				if (palabActualVec.indexOf(campoPalabras.getSelectedItem())==-1)
 				{
-					palabActualVec.add((String) campoPalabras.getSelectedItem());		
+					palabActualVec.add((String) AutorIdVector.get(campoPalabras.getSelectedIndex()));		
 					etiqueta.setText(""+campoPalabras.getSelectedItem());			
 					etiqueta.addMouseListener(new eventoMouse(2));			
 					panelConpalabrasC.add(etiqueta);			
@@ -524,6 +536,7 @@ public class GuiCatalogarModificar extends JFrame{
 				{
 					
 					areasActualVecr.add((String) campoAreas.getSelectedItem());			
+					AreasIdActualVector.add((String) AreasIdVector.get( campoAreas.getSelectedIndex()));
 					etiqueta.setText(""+campoAreas.getSelectedItem());				
 					etiqueta.addMouseListener(new eventoMouse(3));			
 					panelConAreas.add(etiqueta);			
@@ -547,8 +560,14 @@ public class GuiCatalogarModificar extends JFrame{
 				if (panel== 1)
 				{
 				
-					JLabel refe=(JLabel) arg0.getSource();			
-					autoresActualVector.removeElement(refe.getText());																		
+					JLabel refe=(JLabel) arg0.getSource();	
+					
+
+					int index = autoresActualVector.indexOf(refe.getText());
+					
+					autoresActualVector.remove(index);
+					AutorIdActualVector.remove(index);
+																									
 					panelConAutores.remove(refe);									
 					panelConAutores.updateUI();				
 				}
@@ -565,8 +584,12 @@ public class GuiCatalogarModificar extends JFrame{
 				
 				if (panel == 3){
 					JLabel refe=(JLabel) arg0.getSource();
-											
-					areasActualVecr.removeElement(refe.getText());														
+					
+					int index = areasActualVecr.indexOf(refe.getText());
+					
+					areasActualVecr.remove(index);
+					AreasIdActualVector.remove(index);
+					
 					panelConAreas.remove(refe);					
 					panelConAreas.updateUI();
 					}
