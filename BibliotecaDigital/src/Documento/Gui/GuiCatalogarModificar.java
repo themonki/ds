@@ -19,8 +19,12 @@ import java.util.Vector;
 
 import  javax.swing.*;
 
+import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
+import GestionDocumento.Controlador.ControladorAutor;
+import GestionDocumento.Controlador.ControladorPalabraClave;
+import GestionDocumento.Controlador.ControladorTipoMaterial;
 
 
 
@@ -28,7 +32,7 @@ public class GuiCatalogarModificar extends JFrame{
 	
 
 	private JPanel panel,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
-	private JLabel tipoMaterial,numeroIndentificacion,tituloPrincipal,idioma,autor,
+	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
 	tituloSecundario,traducido,editorial,derechosAutor,descripcion,indicacion,
 	palabrasClave,fechaPublicacion,areas;
 	
@@ -47,6 +51,9 @@ public class GuiCatalogarModificar extends JFrame{
 	palabActualVec,areasActualVecr,autoresActualVector;
 	//----------------CONTROLADORES--------------------------------
 	ControladorAreaConocimiento controladorAreas ;
+	ControladorAutor controladorAutor;
+	ControladorPalabraClave controladorpalabrasClave;
+	ControladorTipoMaterial controladorTipoMaterial;
 	//-------------Objetos de la base de datos
 	Documento doc;
 	private JLabel formato;
@@ -56,6 +63,12 @@ public class GuiCatalogarModificar extends JFrame{
 	private JTextField campoResolucion;
 	private JTextField campoSofware;
 	public GuiCatalogarModificar() {
+		
+		//--------------INICIALIZAR CONTROLADORES--------------------------------
+		controladorAreas = new ControladorAreaConocimiento();
+	    controladorAutor= new ControladorAutor();
+		controladorpalabrasClave = new ControladorPalabraClave();
+		controladorTipoMaterial = new ControladorTipoMaterial() ;
 		
 		initComponents();
 	}
@@ -410,7 +423,7 @@ public class GuiCatalogarModificar extends JFrame{
 	}
 
 
-	/*public static void main (String args []){
+	public static void main (String args []){
 		
 		try
 		{
@@ -427,12 +440,8 @@ public class GuiCatalogarModificar extends JFrame{
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		
 
-	}*/
+	}
 	
-
-
-	
-
 	private boolean validacionDeDatos() {
 		if (campoNumeroIdentificacion.getText().length()<10  &&
 		campoTituloSecundario.getText().length()   <50  &&

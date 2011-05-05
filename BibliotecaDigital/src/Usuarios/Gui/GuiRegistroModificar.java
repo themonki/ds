@@ -8,12 +8,14 @@ import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -207,6 +209,29 @@ public class GuiRegistroModificar extends JPanel{
 		label.setFont(fontLabels);
 		return label;
 	}
+	
+	@SuppressWarnings("deprecation")
+	public static void main (String args []){
+	
+	try
+	{
+		
+		
+		UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
+		
+	
+	}
+	catch (Exception e){e.printStackTrace();}
+	
+	JFrame ventana;
+	ventana = new JFrame();
+	ventana.add(new GuiRegistroModificar());
+	ventana.setVisible(true);
+	ventana.setSize(100, 100);
+	ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+	
+
+}
 	
 	
 	
