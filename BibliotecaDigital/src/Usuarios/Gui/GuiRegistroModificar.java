@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
+import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Logica.Usuario;
 
 
@@ -145,15 +147,15 @@ public class GuiRegistroModificar extends JScrollPane{
 		// Controlador para hacer consulta de areas de interes.
 		ControladorAreaConocimiento controladorAreasInteres = new ControladorAreaConocimiento();
 
-		/*Vector<AreaConocimiento> areasInteresVector = controladorAreasInteres.obtenerAreas();
+		Vector<AreaConocimiento> areasInteresVector = controladorAreasInteres.obtenerAreas();
 		
 		//Construir areasInteresArray, con el vector areasInteresVector.
-		
-		for(int i=0;i<areasInteresVector.size();i++){
+		areasInteresArray = new String [areasInteresVector.size()];
+		for(int i=0;i<areasInteresVector.size()-1;i++){
 			areasInteresArray[i]= areasInteresVector.elementAt(i).getNombre();
-		}*/
-		areasInteresArray = new String[1];
-		areasInteresArray[0]="areas Uno";
+		}
+		//areasInteresArray = new String[1];
+		//areasInteresArray[0]="areas Uno";
 		
 		
 		
