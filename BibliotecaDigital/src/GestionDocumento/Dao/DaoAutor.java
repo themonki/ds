@@ -1,5 +1,10 @@
 package GestionDocumento.Dao;
 
+/*
+ * Nombre: Yerminson Gonzalez Munoz
+ * Responsabilidad : Permite la inserccion consulta de autores.
+ * */
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -71,7 +76,7 @@ public class DaoAutor {
 						+ tabla.getString(5));
 
 			}
-			conn.close();
+			fachada.cerrarConexion(conn);
 			System.out.println("Conexion cerrada");
 
 		}
@@ -116,7 +121,7 @@ public class DaoAutor {
 						+ tabla.getString(5));
 
 			}
-			conn.close();
+			fachada.cerrarConexion(conn);
 			System.out.println("Conexion cerrada");
 
 		} catch (SQLException e) {
