@@ -35,11 +35,7 @@ import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Logica.Usuario;
 
-@SuppressWarnings( { "serial" })
-public class GuiRegistroModificar extends JPanel {
 
-<<<<<<< HEAD
-@SuppressWarnings({ "serial" })
 public class GuiRegistroModificar extends JScrollPane{
 
 	//ATRIBUTOS GUI
@@ -51,23 +47,6 @@ public class GuiRegistroModificar extends JScrollPane{
 	JPanel panelAreasInteres, panelPrincipal, panelAdministrador, panelDatos, panelBotones; 
 	JButton registrar, modificar, cancelar;
 	
-=======
-	// ATRIBUTOS GUI
-	JTextField campoLoginTF, campoRespuestaSecreta, campoNombre1, campoNombre2,
-			campoApellido1, campoApellido2, campoEmail, campoNivelEscolaridad;
-	JLabel login, password, verificacionPassword, preguntaSecreta,
-			respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero,
-			fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle,
-			perfilLabel, estadoLabel, areasInteres;
-	JPasswordField campoPassword, campoVerificacionPassword;
-	JComboBox campoPreguntaSecreta, campoGenero, campoPerfil, campoEstado,
-			campoAreasInteres, campoVinculoUnivalle;
-	JSpinner campoFechaNacimiento;
-	JPanel panelAreasInteres, panelPrincipal, panelAdministrador;
-	JButton registrar, modificar;
-	JScrollPane scrollPanelPrincipal;
-
->>>>>>> 50110506029d3cb9d722ffb12a624050f1073bcc
 	Usuario usuarioModificar;
 
 	int modo; // Indica si es modo registrar 0, modo modificar por usuario
@@ -85,7 +64,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	String perfilArray[] = { "Administrador", "Catalogador", "Usuario Normal" };
 	String estadoArray[] = { "Activo", "Desactivo" };
 	String areasInteresArray[];
-<<<<<<< HEAD
+
 	
 	
 	//Estilos.
@@ -113,32 +92,9 @@ public class GuiRegistroModificar extends JScrollPane{
 		this.modo=0;
 		this.usuarioModificar= null;
 		initComponents();		
-=======
-
-	// Estilos.
-	// -------------------------------fuentes letras-------------------------
-	Font fontLabels = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-	Font fontSubtitulos = new Font("Book Antiqua", Font.BOLD, 15);
-	Font fontTitulo = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
-
-	// -------------------------------Color letras----------------------------
-	Color colorTitulo = new Color(0, 50, 0);
-	Color colorSubtitulo = new Color(0, 50, 10);
-	Color colorLabels = new Color(0, 60, 0);
-
-	// Constructor para modificar usuario.
-	GuiRegistroModificar(Usuario usuarioModificar, int modo) {
-		this.modo = modo;
-		this.usuarioModificar = usuarioModificar;
-		initComponents();
 	}
 
-	// Constructor para registrar usuario.
-	GuiRegistroModificar() {
-		this.modo = 0;
-		this.usuarioModificar = null;
->>>>>>> 50110506029d3cb9d722ffb12a624050f1073bcc
-	}
+
 
 	public void initComponents() {
 
@@ -191,7 +147,7 @@ public class GuiRegistroModificar extends JScrollPane{
 
 		// Controlador para hacer consulta de areas de interes.
 		ControladorAreaConocimiento controladorAreasInteres = new ControladorAreaConocimiento();
-<<<<<<< HEAD
+
 		/*Vector<AreaConocimiento> areasInteresVector = controladorAreasInteres.obtenerAreas();
 		
 		//Construir areasInteresArray, con el vector areasInteresVector.
@@ -206,21 +162,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		
 		//Ininializar JTextField, JPasswordField, JComboBox, JSpinner.DateEditor segun modos.
 		if(modo==0){//modo registro
-			
-=======
-		Vector<AreaConocimiento> areasInteresVector = controladorAreasInteres
-				.obtenerAreas();
-
-		// Construir areasInteresArray, con el vector areasInteresVector.
-
-		for (int i = 0; i < areasInteresVector.size(); i++) {
-			areasInteresArray[i] = areasInteresVector.elementAt(i).getNombre();
-		}
-
-		// Ininializar JTextField, JPasswordField, JComboBox segun modos.
-		if (modo == 0) {// modo registro
-
->>>>>>> 50110506029d3cb9d722ffb12a624050f1073bcc
+		
 			campoLoginTF = new JTextField(10);
 			campoRespuestaSecreta = new JTextField(30);
 			campoNombre1 = new JTextField(30);
@@ -231,7 +173,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			campoNivelEscolaridad = new JTextField(30);
 
 			campoPassword = new JPasswordField(20);
-<<<<<<< HEAD
+
 			campoVerificacionPassword = new JPasswordField(20);	
 			
 			campoPreguntaSecreta= new JComboBox(preguntaSecretaArray);
@@ -250,7 +192,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-mm-dd");
 			campoFechaNacimiento.setEditor(spinnerFecha);
 		    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
-=======
+
 			campoVerificacionPassword = new JPasswordField(20);
 
 			campoPreguntaSecreta = new JComboBox(preguntaSecretaArray);
@@ -258,7 +200,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			campoPerfil = new JComboBox(perfilArray);
 			campoEstado = new JComboBox(estadoArray);
 			campoAreasInteres = new JComboBox(areasInteresArray);
->>>>>>> 50110506029d3cb9d722ffb12a624050f1073bcc
+
 		}
 		if (modo == 1) {// modo modificar usuario normal
 			campoLoginTF = new JTextField(usuarioModificar.getLogin());
@@ -282,7 +224,7 @@ public class GuiRegistroModificar extends JScrollPane{
 					.getPreguntaSecreta());
 			campoGenero = new JComboBox(generoArray);
 			campoGenero.setSelectedItem(usuarioModificar.getGenero());
-<<<<<<< HEAD
+
 			campoAreasInteres= new JComboBox(areasInteresArray);
 			campoVinculoUnivalle= new JComboBox(vinculoUnivalleArray);
 			campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
@@ -296,11 +238,10 @@ public class GuiRegistroModificar extends JScrollPane{
 			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-mm-dd");
 			campoFechaNacimiento.setEditor(spinnerFecha);
 		    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
-			
-=======
+
 			campoAreasInteres = new JComboBox(areasInteresArray);
 
->>>>>>> 50110506029d3cb9d722ffb12a624050f1073bcc
+
 		}
 		if (modo == 2) {// modo modificar usuario admin
 			campoLoginTF = new JTextField(usuarioModificar.getLogin());
@@ -414,7 +355,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			panelDatos.add(respuestaSecreta,restriccionEtiqueta);
 			panelDatos.add(campoRespuestaSecreta,restriccionCampo);
 		}
-<<<<<<< HEAD
+
 		
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy =filaPanelDatos;
@@ -493,16 +434,8 @@ public class GuiRegistroModificar extends JScrollPane{
 			panelDatos.add(cancelar,restriccionBotones);
 		}
 		
-		
 		this.getViewport().add(panelDatos);
-		
-			
-		
-		
-=======
 
-		this.setLayout(new BorderLayout());
->>>>>>> 50110506029d3cb9d722ffb12a624050f1073bcc
 	}
 
 	// Inicializa labels, creando una nueva con el nombre indicado(titulo) y
@@ -514,8 +447,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		label.setFont(fontLabels);
 		return label;
 	}
-<<<<<<< HEAD
-	
+
 	//Permite configurar opciones de inseccion, y estilo de los JComponents en los paneles.
 	public GridBagConstraints configurar(int x, int y, Insets insets){
 		
@@ -580,7 +512,6 @@ public class GuiRegistroModificar extends JScrollPane{
 	
 	
 
-=======
->>>>>>> 50110506029d3cb9d722ffb12a624050f1073bcc
+
 
 }
