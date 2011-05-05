@@ -2,6 +2,7 @@ package GestionDocumento.Controlador;
 
 import java.util.Vector;
 import GestionDocumento.Dao.DaoAutor;
+import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 
 /*
@@ -37,6 +38,27 @@ public class ControladorAutor {
 		Vector<Autor> autores = daoAutor.consultarAutores();
 		daoAutor = null;
 		return autores;
+	}
+	/*METODO QUE NECESITA EL MANKO DE FELIPE
+	 * */
+	public Vector< Vector <String> > obtenerTodosAutores(){
+		
+		Vector <Vector <String> > vectorTodosAutores = new Vector<Vector <String> >();
+		Vector <Autor> vectorAutores;
+		Vector <String> nombres = new Vector <String>();
+		Vector <String> ids= new Vector <String>();
+		
+		vectorAutores = obtenerAutores();
+		int cantidad = vectorAutores.size();
+		for(int i = 0; i < cantidad; i++){
+			nombres.add(vectorAutores.get(i).getNombre());
+			ids.add(vectorAutores.get(i).getId());
+		}		
+		vectorTodosAutores.add(nombres);
+		vectorTodosAutores.add(ids);
+		
+		return vectorTodosAutores;
+		
 	}
 	
 	/*main para prueba OK*/

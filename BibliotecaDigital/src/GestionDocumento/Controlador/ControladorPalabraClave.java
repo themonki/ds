@@ -3,6 +3,7 @@ package GestionDocumento.Controlador;
 import java.util.Vector;
 
 import GestionDocumento.Dao.DaoPalabraClave;
+import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;;
 
 public class ControladorPalabraClave {
@@ -33,6 +34,23 @@ public class ControladorPalabraClave {
 		Vector<PalabraClave> palabrasClave = daoPalabraClave.consultarPalabras();
 		daoPalabraClave = null;
 		return palabrasClave;
+	}
+	/*
+	 * 
+	 * */
+	public Vector <String> obtenerTodasPalabrasClave(){
+				
+		Vector <PalabraClave> vectorPalabras;
+		Vector <String> nombres = new Vector <String>();
+		
+		vectorPalabras = obtenerPalabrasClave();
+		int cantidad = vectorPalabras.size();
+		for(int i = 0; i < cantidad; i++){
+			nombres.add(vectorPalabras.get(i).getNombre());			
+		}		
+				
+		return nombres;
+		
 	}
 	
 	/*
