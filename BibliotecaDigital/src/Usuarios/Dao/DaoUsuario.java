@@ -189,5 +189,47 @@ public class DaoUsuario {
 		return areas;
 
 	}
+	
+	public Vector<Usuario> consultarUsuarios()
+	{
+		Vector<Usuario> usuarios = new Vector<Usuario>();
+		String sqlSelect;
+		
+		sqlSelect = "SELECT * FROM Usuario";
+		
+		try {
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet tabla = sentencia.executeQuery(sqlSelect);
+
+			while (tabla.next()) {
+				Usuario usuario = new Usuario();
+
+				usuario.setLogin(tabla.getString("login"));
+				usuario.setContrasena(tabla.getString("contrasena"));
+				usuario.setNombre1(tabla.getString("nombre1"));
+				usuario.setNombre2(tabla.getString("nombre2"));
+				usuario.setApellido1(tabla.getString("apellido1"));
+				usuario.setApellido2(tabla.getString("apellido2"));
+				usuario.setEmail(tabla.getString("email"));
+				usuario.setNivelEscolaridad(tabla.getString("nivel_escolaridad"));
+				usuario.setPreguntaSecreta(tabla.getString("pregunta_secreta"));
+				usuario.setRespuestaSecreta(tabla.getString("respuesta_secreta"));
+				usuario.setVinculoUnivalle(tabla.getString("vinculo_univalle"));
+				usuario.setGenero(tabla.getString("genero"));
+								
+
+				
+				usuarios.add(usuario);
+			}
+			this.fachada.cerrarConexion(conn);
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return usuarios;
+	}
 
 }
