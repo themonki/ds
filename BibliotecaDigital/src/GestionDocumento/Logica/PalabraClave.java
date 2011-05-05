@@ -1,46 +1,39 @@
 /*
- * Nombre: Cristian Ríos.
+ * Nombre: Cristian Rï¿½os.
  * Responsabilidad: Clase que representa una palabra clave.
  * Nombre del archivo: PalabraClave.java
- * Fecha creación: Mayo 03 2011
- * Fecha ultima modificación: Mayo 03 2011
+ * Fecha creaciï¿½n: Mayo 03 2011
+ * Fecha ultima modificaciï¿½n: Mayo 03 2011
  * */
 
 package GestionDocumento.Logica;
 
-public class PalabraClave
-{
+public class PalabraClave {
 	private String nombre;
 	private String descripcion;
-	
-	public PalabraClave()
-	{
+
+	public PalabraClave() {
 		nombre = descripcion = "";
 	}
-	
-	public PalabraClave(String nombre, String descripcion)
-	{
+
+	public PalabraClave(String nombre, String descripcion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}
-	
-	public String getNombre()
-	{
+
+	public String getNombre() {
 		return nombre;
 	}
-	
-	public String getDescripcion()
-	{
+
+	public String getDescripcion() {
 		return descripcion;
 	}
-	
-	public void setNombre(String nombre)
-	{
+
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public void setDescripcion(String descripcion)
-	{
+
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 

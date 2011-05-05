@@ -567,7 +567,8 @@ public class GuiCatalogarModificar extends JFrame{
 					
 					autoresActualVector.remove(index);
 					AutorIdActualVector.remove(index);
-																									
+					
+																				
 					panelConAutores.remove(refe);									
 					panelConAutores.updateUI();				
 				}

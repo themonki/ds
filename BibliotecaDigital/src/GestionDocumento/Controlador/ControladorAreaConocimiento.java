@@ -13,11 +13,11 @@ import GestionDocumento.Dao.DaoAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 import java.util.Vector;
 
-public class ControladorAreaConocimiento
-{
-	public int insertarAreaConocimiento(String id, String nombre,String descripcion, String areaPadre)
-	{
-		AreaConocimiento area = new AreaConocimiento(id,nombre,descripcion,areaPadre);
+public class ControladorAreaConocimiento {
+	public int insertarAreaConocimiento(String id, String nombre,
+			String descripcion, String areaPadre) {
+		AreaConocimiento area = new AreaConocimiento(id, nombre, descripcion,
+				areaPadre);
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
 		int numFilas = daoAreaConocimiento.guardarAreaConocimiento(area);
 		area = null;
@@ -25,76 +25,81 @@ public class ControladorAreaConocimiento
 		return numFilas;
 		
 	}
-	
-	public AreaConocimiento obtenerArea(String id)
-	{
+
+	public AreaConocimiento obtenerArea(String id) {
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
 		AreaConocimiento area = daoAreaConocimiento.consultarArea(id);
 		daoAreaConocimiento = null;
 		return area;
 	}
-	
-	public Vector<AreaConocimiento> obtenerAreas()
-	{
+
+	public Vector<AreaConocimiento> obtenerAreas() {
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
 		Vector<AreaConocimiento> areas = daoAreaConocimiento.consultarAreas();
 		daoAreaConocimiento = null;
 		return areas;
 	}
-	
-	public int actualizarArea(String idArea, String atributo, String valor)
-	{
+
+	public int actualizarArea(String idArea, String atributo, String valor) {
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
-		int numFilas = daoAreaConocimiento.modificarArea(idArea, atributo, valor);
+		int numFilas = daoAreaConocimiento.modificarArea(idArea, atributo,
+				valor);
 		daoAreaConocimiento = null;
 		return numFilas;
 	}
-	//Corregida letra estaba aliminar . Yermi =D
-	public int eliminarArea(String idArea)
-	{
+
+	// Corregida letra estaba aliminar . Yermi =D
+	public int eliminarArea(String idArea) {
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
 		int numFilas = daoAreaConocimiento.eliminarArea(idArea);
 		daoAreaConocimiento = null;
 		return numFilas;
 	}
-	
-	
-	public Vector< Vector <String> > obtenerTodasAreas(){
-		
-		Vector <Vector <String> > vectorTodasAreas = new Vector<Vector <String> >();
-		Vector <AreaConocimiento> vectorAreas;
-		Vector <String> nombres = new Vector <String>();
-		Vector <String> ids= new Vector <String>();
-		
+
+	/*
+	 * METODO QUE NECESITA EL MANKO DE FELIPE
+	 */
+	public Vector<Vector<String>> obtenerTodasAreas() {
+
+		Vector<Vector<String>> vectorTodasAreas = new Vector<Vector<String>>();
+		Vector<AreaConocimiento> vectorAreas;
+		Vector<String> nombres = new Vector<String>();
+		Vector<String> ids = new Vector<String>();
+
 		vectorAreas = obtenerAreas();
 		int cantidad = vectorAreas.size();
-		for(int i = 1; i < cantidad; i++){//empieza en uno porque no se necesita super
+		for (int i = 1; i < cantidad; i++) {// empieza en uno porque no se
+											// necesita super
 			nombres.add(vectorAreas.get(i).getNombre());
 			ids.add(vectorAreas.get(i).getIdArea());
 		}
-		
+
 		vectorTodasAreas.add(nombres);
 		vectorTodasAreas.add(ids);
-		
+
 		return vectorTodasAreas;
-		
+
 	}
-	
-	/*main para prueba OK*/
-	/*public static void main(String args[])
-	{
-		ControladorAreaConocimiento controladorAreaConocimiento = new ControladorAreaConocimiento();
-		
-		System.out.println(controladorAreaConocimiento.insertarAreaConocimiento("1", "Bases Datos", "Mineria de datos descubrimiento de conocimiento a partir de bases de datos", "0"));
-		
-		AreaConocimiento  a1 = controladorAreaConocimiento.obtenerArea("1");
-	
-		
-		System.out.println(a1.getNombre());
-		
-		
-		System.out.println(controladorAreaConocimiento.obtenerAreas().get(0).getDescripcion());
-	}*/
-	
-	
+
+	/* main para prueba OK */
+	/*
+	 * public static void main(String args[]) { ControladorAreaConocimiento
+	 * controladorAreaConocimiento = new ControladorAreaConocimiento();
+	 * 
+	 * 
+	 * System.out.println(controladorAreaConocimiento.insertarAreaConocimiento("1"
+	 * , "Bases Datos",
+	 * "Mineria de datos descubrimiento de conocimiento a partir de bases de datos"
+	 * , "0"));
+	 * 
+	 * AreaConocimiento a1 = controladorAreaConocimiento.obtenerArea("1");
+	 * 
+	 * 
+	 * System.out.println(a1.getNombre());
+	 * 
+	 * 
+	 * System.out.println(controladorAreaConocimiento.obtenerAreas().get(0).
+	 * getDescripcion()); }
+	 */
+
 }
