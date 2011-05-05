@@ -1,3 +1,8 @@
+/*
+ * AUTOR: EDGAR ANDRES MONCADA
+ * 
+ * */
+
 package Documento.Dao;
 
 import java.sql.*;
@@ -10,7 +15,9 @@ public class DaoDocumento {
 	public DaoDocumento(){
 		fachada = new FachadaBD();
 	}
-	
+	/*metodo que permite insertar en la base de datos en la tabla documento recibiendo todos
+	 * los datos individualmente
+	 * */
 	public int guardarDocumento(String id, String idioma, String derechos, String descripcion,
 			String software,String resolucion,String editorial ,String formato,String titulo_principal,
 			String titulo_secundario,String link,String creacion,String publicacion,String catalogacion,
@@ -37,17 +44,22 @@ public class DaoDocumento {
         return -1;		
 	
 	}
-	
+	/*metodo que permite insertar en la base de datos en la tabla documento recibiendo un objeto
+	 * de tipo documento 
+	 * */
 	public int guardarDocumento(Documento d){
 		int value = guardarDocumento(d.getId_doc(), d.getIdioma(), d.getDerechosDeAutor(), 
 				d.getDescripcion(),	d.getSoftware_recomentado(), d.getResolucion(), 
 				d.getEditorial(), d.getFormato(),d.getTituloppal(), d.getTitulo_secundario(), 
-				d.getUrl(), d.getFecha_creacion(), d.getFecha_publicacion(), 
-				d.getFechaDeCatalogacion(), d.getCatalogadorLogin(),d.getTipoMaterial());
+				d.getUrl(), d.getFecha_creacion().toString(), d.getFecha_publicacion().toString(), 
+				d.getFechaDeCatalogacion().toString(), d.getCatalogadorLogin(),d.getTipoMaterial());
 		return value;
 		
 	}
 	
+	/*metodo que permite actualizar en la base de datos en la tabla documento recibiendo cada uno
+	 * de los atributos de la relacion documento 
+	 * */
 	public int modificarDocumento(String id, String idioma, String derechos, String descripcion,
 			String software,String resolucion,String editorial ,String formato,String titulo_principal,
 			String titulo_secundario,String link,String creacion,String publicacion,String catalogacion,
@@ -78,12 +90,15 @@ public class DaoDocumento {
 	
 	}
 	
+	/*metodo que permite actualizar en la base de datos en la tabla documento recibiendo un objeto
+	 * de tipo documento 
+	 * */
 	public int modificarDocumento(Documento d){
 		int value = modificarDocumento(d.getId_doc(), d.getIdioma(), d.getDerechosDeAutor(), 
 				d.getDescripcion(),	d.getSoftware_recomentado(), d.getResolucion(), 
 				d.getEditorial(), d.getFormato(),d.getTituloppal(), d.getTitulo_secundario(), 
-				d.getUrl(), d.getFecha_creacion(), d.getFecha_publicacion(), 
-				d.getFechaDeCatalogacion(), d.getCatalogadorLogin(),d.getTipoMaterial());
+				d.getUrl(), d.getFecha_creacion().toString(), d.getFecha_publicacion().toString(), 
+				d.getFechaDeCatalogacion().toString(), d.getCatalogadorLogin(),d.getTipoMaterial());
 		return value;
 		
 	}
