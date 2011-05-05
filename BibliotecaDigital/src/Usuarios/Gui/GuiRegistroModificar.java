@@ -9,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
+
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -29,12 +32,14 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
+import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Logica.Usuario;
 
 
 public class GuiRegistroModificar extends JScrollPane{
 
 	//ATRIBUTOS GUI
+	private
 	JTextField campoLoginTF, campoRespuestaSecreta, campoNombre1, campoNombre2, campoApellido1, campoApellido2, campoEmail, campoNivelEscolaridad, campoFechaNacimientoAdmin;
 	JLabel login, password, verificacionPassword, preguntaSecreta, respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero, fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle, perfilLabel, estadoLabel, areasInteres;
 	JPasswordField campoPassword,campoVerificacionPassword;
@@ -44,6 +49,9 @@ public class GuiRegistroModificar extends JScrollPane{
 	JButton registrar, modificar, cancelar;
 	
 	Usuario usuarioModificar;
+	
+	Vector<String> areaConocimientoVector;
+	Vector<AreaConocimiento> areasInteresVector;
 
 	int modo; // Indica si es modo registrar 0, modo modificar por usuario
 				// normal 1 o modo modificar por usuario administrador 2.
@@ -60,8 +68,6 @@ public class GuiRegistroModificar extends JScrollPane{
 	String perfilArray[] = { "Administrador", "Catalogador", "Usuario Normal" };
 	String estadoArray[] = { "Activo", "Desactivo" };
 	String areasInteresArray[];
-
-	
 	
 	//Estilos.
 	//-------------------------------fuentes letras-------------------------
@@ -77,14 +83,14 @@ public class GuiRegistroModificar extends JScrollPane{
 	
 	
 	//Constructor para modificar usuario.
-	GuiRegistroModificar(Usuario usuarioModificar, int modo){ 
+	public GuiRegistroModificar(Usuario usuarioModificar, int modo){ 
 		this.modo=modo;
 		this.usuarioModificar= usuarioModificar;
 		initComponents();		
 	}
 	
 	//Constructor para registrar usuario.
-	GuiRegistroModificar(){
+	public GuiRegistroModificar(){
 		this.modo=0;
 		this.usuarioModificar= null;
 		initComponents();		
@@ -93,7 +99,7 @@ public class GuiRegistroModificar extends JScrollPane{
 
 
 	//Inicializar todos los JComponents segun modos, y organizar vistas.
-	public void initComponents() {
+	private void initComponents() {
 
 		// titulo del panel, segun el modo.
 		String title = "";
@@ -145,15 +151,17 @@ public class GuiRegistroModificar extends JScrollPane{
 		// Controlador para hacer consulta de areas de interes.
 		ControladorAreaConocimiento controladorAreasInteres = new ControladorAreaConocimiento();
 
-		/*Vector<AreaConocimiento> areasInteresVector = controladorAreasInteres.obtenerAreas();
+		areasInteresVector = controladorAreasInteres.obtenerAreas();
 		
 		//Construir areasInteresArray, con el vector areasInteresVector.
 		
-		for(int i=0;i<areasInteresVector.size();i++){
+		areasInteresArray = new String [areasInteresVector.size()];
+		for(int i=0;i<areasInteresVector.size()-1;i++){
 			areasInteresArray[i]= areasInteresVector.elementAt(i).getNombre();
-		}*/
-		areasInteresArray = new String[1];
-		areasInteresArray[0]="areas Uno";
+		}
+		
+		//areasInteresArray = new String[1];
+		//areasInteresArray[0]="areas Uno";
 		
 		
 		
@@ -186,7 +194,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			campoFechaNacimiento = new JSpinner(modeloFecha);
 		    campoFechaNacimiento.setFont(fontLabels);
 		    campoFechaNacimiento.setForeground(colorLabels);
-			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-mm-dd");
+			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
 			campoFechaNacimiento.setEditor(spinnerFecha);
 		    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
 
@@ -232,7 +240,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			campoFechaNacimiento = new JSpinner(modeloFecha);
 		    campoFechaNacimiento.setFont(fontLabels);
 		    campoFechaNacimiento.setForeground(colorLabels);
-			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-mm-dd");
+			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
 			campoFechaNacimiento.setEditor(spinnerFecha);
 		    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
 
@@ -324,6 +332,11 @@ public class GuiRegistroModificar extends JScrollPane{
 		restriccionCampo.gridy=filaPanelDatos;
 		panelDatos.add(apellido2,restriccionEtiqueta);
 		panelDatos.add(campoApellido2,restriccionCampo);
+		filaPanelDatos++;
+		restriccionEtiqueta.gridy = filaPanelDatos;
+		restriccionCampo.gridy = filaPanelDatos;
+		panelDatos.add(fechaNacimiento,restriccionEtiqueta);
+		panelDatos.add(campoFechaNacimiento, restriccionCampo);
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy =filaPanelDatos;
 		restriccionCampo.gridy=filaPanelDatos;
@@ -438,7 +451,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	// Inicializa labels, creando una nueva con el nombre indicado(titulo) y
 	// estilo
 	// de letra y color predifinidos.
-	public JLabel inicializarLabel(String titulo) {
+	private JLabel inicializarLabel(String titulo) {
 		JLabel label = new JLabel(titulo, JLabel.LEFT);
 		label.setForeground(colorLabels);
 		label.setFont(fontLabels);
@@ -446,7 +459,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	}
 
 	//Permite configurar opciones de inseccion, y estilo de los JComponents en los paneles.
-	public GridBagConstraints configurar(int x, int y, Insets insets){
+	private GridBagConstraints configurar(int x, int y, Insets insets){
 		
 		GridBagConstraints configuracion = new GridBagConstraints();
 		configuracion.gridx=x;
@@ -465,7 +478,69 @@ public class GuiRegistroModificar extends JScrollPane{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			if(e.getSource()== registrar){
+				
+				String loginString, nombre1String, nombre2String, apellido1String, apellido2String,
+				       emailString, passwordString, verPasswordString, preguntaSecretaString, 
+				       respuestaSecretaString, nivelEscolaridadString, vinculoUnivalleString,
+				       generoString, fechaNacimientoString, fechaRegistroString;
+				Vector<AreaConocimiento> areasInteresUsuario;
+				int perfilUsuario = 3;
+				boolean estado= true;
+				
+				//Obtener datos
+				loginString = campoLoginTF.getText();
+				nombre1String = campoNombre1.getText();
+				nombre2String = campoNombre2.getText();
+				apellido1String = campoApellido1.getText();
+				apellido2String = campoApellido2.getText();
+				emailString = campoEmail.getText();
+				passwordString = new String(campoPassword.getPassword());
+				verPasswordString = new String(campoVerificacionPassword.getPassword());
+				preguntaSecretaString = (String) campoPreguntaSecreta.getSelectedItem();
+				respuestaSecretaString = campoRespuestaSecreta.getText();
+				nivelEscolaridadString = campoNivelEscolaridad.getText();
+				vinculoUnivalleString = (String) campoVinculoUnivalle.getSelectedItem();
+				generoString = (String) campoGenero.getSelectedItem();
+				
+				Date fecha= ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getModel().getDate();
+			    SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
+				fechaNacimientoString = formatoFecha.format(fecha);
+				java.sql.Date fechaNacimientoDate = java.sql.Date.valueOf(fechaNacimientoString);
+				
+				Date fechaRegistro = new Date();
+				SimpleDateFormat formatoFechaRegistro= new SimpleDateFormat("yyyy-MM-dd");
+				fechaRegistroString = formatoFechaRegistro.format(fechaRegistro);
+				java.sql.Date fechaRegistroDate = java.sql.Date.valueOf(fechaRegistroString);
+				
+				areasInteresUsuario = new Vector<AreaConocimiento>();
+				
+				for(int i=0; i<areaConocimientoVector.size();i++){
+					areasInteresUsuario.addElement(
+							areasInteresVector.elementAt(
+									areasInteresVector.indexOf(
+											areaConocimientoVector.elementAt(i))));
+				}
+				
+				//Crear usuario para introducirlo en la base de la biblioteca digital.
+				usuarioModificar = new Usuario(loginString,passwordString,nombre1String,
+						nombre2String, apellido1String, apellido2String, emailString,
+						nivelEscolaridadString, vinculoUnivalleString, preguntaSecretaString,
+						respuestaSecretaString, generoString, fechaRegistroDate,
+						fechaNacimientoDate, perfilUsuario, estado, areasInteresUsuario);
+				
+				
+				
+				
+			}
+			if(e.getSource() == modificar){
+				if(modo==1){
+					
+				}
+				if(modo==2){
+					
+				}
+			}
 			
 		}
 		
