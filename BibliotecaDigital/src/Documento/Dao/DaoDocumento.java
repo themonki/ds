@@ -6,6 +6,8 @@
 package Documento.Dao;
 
 import java.sql.*;
+import java.util.Vector;
+
 import Utilidades.FachadaBD;
 import Documento.Logica.*;
 
@@ -154,5 +156,94 @@ public class DaoDocumento {
 		return value;
 
 	}
+	
+	public int guardarDocumentoAreas(String id_doc, Vector <String> ids_area){		
+		
+		String sql_guardar;
+		int numFilas, cantidad = ids_area.size();
+		sql_guardar = "INSERT INTO Pertenece_Documento_Area_Conocimiento VALUES ";
+		
+		for(int i = 0; i < cantidad; i++){			
+			if(i==cantidad-1){
+				sql_guardar+="('"+ ids_area.get(i) + "', '"+id_doc +"' )";
+			}else {
+				sql_guardar+="('"+ ids_area.get(i) + "', '"+id_doc +"' ),";
+			}
+		}
+		sql_guardar += ";";
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+
+			numFilas = sentencia.executeUpdate(sql_guardar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+public int guardarDocumentoPalabrasClave(String id_doc, Vector <String> ids_palabras){		
+		
+		String sql_guardar;
+		int numFilas, cantidad = ids_palabras.size();
+		sql_guardar = "INSERT INTO Tiene_Documento_Palabra_Clave VALUES ";
+		
+		for(int i = 0; i < cantidad; i++){			
+			if(i==cantidad-1){
+				sql_guardar+="('"+ ids_palabras.get(i) + "', '"+id_doc +"' )";
+			}else {
+				sql_guardar+="('"+ ids_palabras.get(i) + "', '"+id_doc +"' ),";
+			}
+		}
+		sql_guardar += ";";
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+
+			numFilas = sentencia.executeUpdate(sql_guardar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+
+public int guardarDocumentoAutores(String id_doc, Vector <String> ids_autores){		
+	
+	String sql_guardar;
+	int numFilas, cantidad = ids_autores.size();
+	sql_guardar = "INSERT INTO Escribe_Autor_Documento VALUES ";
+	
+	for(int i = 0; i < cantidad; i++){			
+		if(i==cantidad-1){
+			sql_guardar+="('"+ ids_autores.get(i) + "', '"+id_doc +"' )";
+		}else {
+			sql_guardar+="('"+ ids_autores.get(i) + "', '"+id_doc +"' ),";
+		}
+	}
+	sql_guardar += ";";
+
+	try {
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();
+
+		numFilas = sentencia.executeUpdate(sql_guardar);
+		conn.close();
+		return numFilas;
+	} catch (SQLException e) {
+		System.out.println(e);
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+	return -1;
+}
 
 }

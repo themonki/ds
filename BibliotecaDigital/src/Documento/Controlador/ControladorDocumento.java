@@ -97,34 +97,112 @@ public class ControladorDocumento {
 	}
 
 	// ////
-	public int insertarDocumentoAreas(Vector<AreaConocimiento> vac, Documento d) {
+	public int insertarDocumentoAreas(Documento d) {
 		DaoDocumento daoDoc = new DaoDocumento();
-
-		int value = 0;
-
+		Vector <AreaConocimiento> vac = d.getAreas();
+		Vector <String> area_ids = new Vector<String>();
+		int value, cantidad = vac.size();
+		for(int i =0; i < cantidad; i++ ){
+			
+			area_ids.add(vac.get(i).getIdArea());
+		}
+		value = daoDoc.guardarDocumentoAreas(d.getId_doc(), area_ids);
 		return value;
 	}
 	// /////
-
-	/*
-	 * public static void main(String args[]){ ControladorDocumento cd = new
-	 * ControladorDocumento(); Vector<Autor> autores = new Vector<Autor> ();
-	 * Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
-	 * Vector<PalabraClave> palabrasClave = new Vector<PalabraClave>(); Date
-	 * fechaCreacion; Date fechaPublicacion; Date fechaCatalogacion; try{
-	 * fechaCreacion = Date.valueOf("1111-01-01"); fechaPublicacion =
-	 * Date.valueOf("2222-02-02"); fechaCatalogacion =
-	 * Date.valueOf("3333-03-03");
-	 * 
-	 * Documento d = new Documento("10002", "idioma", "derechosDeAutor",
-	 * "descripcion", "softwareRecomendado", "resolucion", "editorial","txt",
-	 * "tituloPrincipal", "tituloSecundario", "link5", fechaCreacion,
-	 * fechaPublicacion, fechaCatalogacion, "444", "guia", autores, areas,
-	 * palabrasClave ); //System.out.println(""+ cd.insertarDocumento(d));
-	 * //d.setIdioma("ingles"); //System.out.println(cd.modificarDocumento(d));
-	 * 
-	 * }catch(Exception e){ System.out.println(e.toString());
-	 * 
-	 * } }
-	 */
+	
+	public int insertarDocumentoAreas(Vector<String> area_ids, String id_doc){
+		DaoDocumento daoDoc = new DaoDocumento();
+		int value;
+		value = daoDoc.guardarDocumentoAreas(id_doc, area_ids);
+		return value;
+	}
+	
+	public int insertarDocumentoPalabrasClave(Documento d){
+		DaoDocumento daoDoc = new DaoDocumento();
+		Vector <PalabraClave> vac = d.getPalabrasClave();
+		Vector <String> palabras_ids = new Vector<String>();
+		int value, cantidad = vac.size();
+		for(int i =0; i < cantidad; i++ ){
+			
+			palabras_ids.add(vac.get(i).getNombre());
+		}
+		value = daoDoc.guardarDocumentoPalabrasClave(d.getId_doc(), palabras_ids);
+		return value;
+	}
+	public int insertarDocumentoPalabrasClave(Vector<String> palabras_ids, String id_doc){
+		DaoDocumento daoDoc = new DaoDocumento();
+		int value;
+		value = daoDoc.guardarDocumentoAreas(id_doc, palabras_ids);
+		return value;
+	}
+	public int insertarDocumentoAutores(Documento d){
+		DaoDocumento daoDoc = new DaoDocumento();
+		Vector <Autor> vac = d.getAutores();
+		Vector <String> autores_ids = new Vector<String>();
+		int value, cantidad = vac.size();
+		for(int i =0; i < cantidad; i++ ){
+			
+			autores_ids.add(vac.get(i).getId());
+		}
+		value = daoDoc.guardarDocumentoPalabrasClave(d.getId_doc(), autores_ids);
+		return value;
+	}
+	public int insertarDocumentoAutores(Vector<String> autores_ids, String id_doc){
+		DaoDocumento daoDoc = new DaoDocumento();
+		int value;
+		value = daoDoc.guardarDocumentoAreas(id_doc, autores_ids);
+		return value;
+	}
+	
+	public int catalogarDocumento(Documento d){
+		
+		this.insertarDocumento(d);
+		this.insertarDocumentoAreas(d);
+		this.insertarDocumentoPalabrasClave(d);
+		this.insertarDocumentoAutores(d);
+		
+		
+		return 1;
+	}
+	
+	public int catalogarDocumento(Documento d, Vector<String> areas_ids, 
+			Vector<String> autores_ids, Vector<String> palabras_ids ){
+		
+		String id_doc = d.getId_doc();
+		this.insertarDocumento(d);
+		this.insertarDocumentoAreas(areas_ids, id_doc);
+		this.insertarDocumentoPalabrasClave(palabras_ids, id_doc);
+		this.insertarDocumentoAutores(autores_ids, id_doc);
+		return 1;
+	}
+	
+	  public static void main(String args[]){ 
+		  ControladorDocumento cd = new  ControladorDocumento(); 
+		  
+		  Vector<String> area_ids = new Vector<String>();
+		  area_ids.add("1");
+		  area_ids.add("4");
+		  
+		 System.out.println(cd.insertarDocumentoAreas(area_ids, "10002" ));
+		  /*Vector<Autor> autores = new Vector<Autor> ();
+	  Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
+	  Vector<PalabraClave> palabrasClave = new Vector<PalabraClave>(); Date
+	  fechaCreacion; Date fechaPublicacion; Date fechaCatalogacion; try{
+	  fechaCreacion = Date.valueOf("1111-01-01"); fechaPublicacion =
+	  Date.valueOf("2222-02-02"); fechaCatalogacion =
+	  Date.valueOf("3333-03-03");
+	  
+	  Documento d = new Documento("10002", "idioma", "derechosDeAutor",
+	  "descripcion", "softwareRecomendado", "resolucion", "editorial","txt",
+	  "tituloPrincipal", "tituloSecundario", "link5", fechaCreacion,
+	  fechaPublicacion, fechaCatalogacion, "444", "guia", autores, areas,
+	  palabrasClave ); //System.out.println(""+ cd.insertarDocumento(d));
+	  //d.setIdioma("ingles"); //System.out.println(cd.modificarDocumento(d));
+	  
+	  }catch(Exception e){ System.out.println(e.toString());
+	  
+	  } */
+		  }
+	 
 }
