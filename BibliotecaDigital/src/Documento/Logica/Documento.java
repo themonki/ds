@@ -1,6 +1,7 @@
 package Documento.Logica;
 
 import java.util.Vector;
+import java.sql.Date;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
@@ -19,9 +20,9 @@ public class Documento {
 	String tituloPrincipal;	
 	String tituloSecundario;
 	String link;	
-	String fechaCreacion;
-	String fechaPublicacion;
-	String fechaCatalogacion;
+	Date fechaCreacion;
+	Date fechaPublicacion;
+	Date fechaCatalogacion;
 	String loginCatalogador;
 	String tipoMaterial;		
 	Vector<Autor> autores;
@@ -34,8 +35,8 @@ public class Documento {
 	public Documento(String idDocumento, String idioma, String derechosDeAutor,
 			String descripcion, String softwareRecomendado, String resolucion,
 			String editorial, String formato, String tituloPrincipal,
-			String tituloSecundario, String link, String fechaCreacion,
-			String fechaPublicacion, String fechaCatalogacion,
+			String tituloSecundario, String link, Date fechaCreacion,
+			Date fechaPublicacion, Date fechaCatalogacion,
 			String loginCatalogador, String tipoMaterial,
 			Vector<Autor> autores, Vector<AreaConocimiento> areas,
 			Vector<PalabraClave> palabrasClave) {
@@ -72,9 +73,9 @@ public class Documento {
 	public String getTituloppal(){return this.tituloPrincipal;}
 	public String getTitulo_secundario(){return this.tituloSecundario;}
 	public String getUrl(){return this.link;}
-	public String getFecha_creacion(){return this.fechaCreacion;}
-	public String getFecha_publicacion(){return this.fechaPublicacion;}
-	public String getFechaDeCatalogacion(){return this.fechaCatalogacion;}
+	public Date getFecha_creacion(){return this.fechaCreacion;}
+	public Date getFecha_publicacion(){return this.fechaPublicacion;}
+	public Date getFechaDeCatalogacion(){return this.fechaCatalogacion;}
 	public String getCatalogadorLogin(){return this.loginCatalogador;}
 	public String getTipoMaterial(){return this.tipoMaterial;}
 	public Vector<Autor> getAutores(){return this.autores;}
@@ -91,9 +92,9 @@ public class Documento {
 	public void setTituloppal(String value){tituloPrincipal= value;}
 	public void setTitulo_secundario(String value){tituloSecundario= value;}
 	public void setUrl(String value){link= value;}
-	public void setFecha_creacion(String value){fechaCreacion= value;}
-	public void setFecha_publicacion(String value){fechaPublicacion= value;}
-	public void setFechaDeCatalogacion(String value){fechaCatalogacion= value;}	
+	public void setFecha_creacion(Date value){fechaCreacion= value;}
+	public void setFecha_publicacion(Date value){fechaPublicacion= value;}
+	public void setFechaDeCatalogacion(Date value){fechaCatalogacion= value;}	
 	public void setCatalogadorLogin(String value){loginCatalogador= value;}
 	public void setTipoMaterial(String value){tipoMaterial= value;}
 	public void setAutores(Vector<Autor> value){autores= value;}

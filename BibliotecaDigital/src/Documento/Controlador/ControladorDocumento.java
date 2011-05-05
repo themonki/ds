@@ -1,5 +1,7 @@
 package Documento.Controlador;
 
+import java.sql.Date;
+
 import Documento.Dao.*;
 import Documento.Logica.*;
 
@@ -23,9 +25,12 @@ public class ControladorDocumento {
         d.setTituloppal(titulo_principal);
         d.setTitulo_secundario(titulo_secundario);
         d.setUrl(link);
-        d.setFecha_creacion(creacion);
-        d.setFecha_publicacion(publicacion);
-        d.setFechaDeCatalogacion(catalogacion);
+        Date f_creacion = Date.valueOf(creacion);//formato yyyy-mm-dd
+        d.setFecha_creacion(f_creacion);
+        Date f_publicacion = Date.valueOf(publicacion);//formato yyyy-mm-dd
+        d.setFecha_publicacion(f_publicacion);
+        Date F_catalogacion = Date.valueOf(catalogacion);//formato yyyy-mm-dd
+        d.setFechaDeCatalogacion(F_catalogacion);
         d.setCatalogadorLogin(login);
         
         insertarDocumento(d);
@@ -61,9 +66,12 @@ public class ControladorDocumento {
         d.setTituloppal(titulo_principal);
         d.setTitulo_secundario(titulo_secundario);
         d.setUrl(link);
-        d.setFecha_creacion(creacion);
-        d.setFecha_publicacion(publicacion);
-        d.setFechaDeCatalogacion(catalogacion);
+        Date f_creacion = Date.valueOf(creacion);//formato yyyy-mm-dd
+        d.setFecha_creacion(f_creacion);
+        Date f_publicacion = Date.valueOf(publicacion);//formato yyyy-mm-dd
+        d.setFecha_publicacion(f_publicacion);
+        Date F_catalogacion = Date.valueOf(catalogacion);//formato yyyy-mm-dd
+        d.setFechaDeCatalogacion(F_catalogacion);
         d.setCatalogadorLogin(login);
         
         modificarDocumento(d);

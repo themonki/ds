@@ -92,7 +92,7 @@ public class Usuario {
 	public void setRespuestaSecreta(String value){ respuestaSecreta = value;}
 	public void setGenero(String value){genero=value;}
 	public void setFechaRegistro(Date value){fechaRegistro = value;}
-	public void etFechaNacimiento(Date value){fechaNacimiento = value; }
+	public void setFechaNacimiento(Date value){fechaNacimiento = value; }
 	public void setTipo(int value){tipo = value;}
 	public void setEstado(boolean value){estado = value;}
 	public void setAreas(Vector<AreaConocimiento> value){areasInteres = value;}

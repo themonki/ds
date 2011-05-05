@@ -1,3 +1,8 @@
+/*
+ * AUTOR: EDGAR ANDRES MONCADA
+ * 
+ * */
+
 package Usuarios.Dao;
 
 import java.sql.*;
@@ -56,12 +61,22 @@ public class DaoUsuario {
 		
 	}
 	
-	public int modificarUsuario(){
+	public int modificarUsuario(String login, String contrasena, String nom1, String nom2, String apll1,
+			String apll2, String email, String nivel, String vinculo, String pregunta, String respuesta,
+			String genero, Date registro, Date nacimiento, int tipo, boolean estado 
+			){
 		
 		String sql_actualizar;
 		int numFilas;
-		sql_actualizar = "UPDATE Usuario SET "+
-		"";
+		sql_actualizar = "UPDATE Usuario SET login = '"+ login +"', contrasena = '"+contrasena+"', "+
+		"nombre1 = '"+nom1+"', nombre2 = '"+nom2+"', apellido1 = '"+apll1+"', appellido2 = '"+apll2+"', "+
+		"email = '"+email+"', niveel_escolaridad = '"+nivel+"', pregunta_secreta = '"+pregunta+"', "+
+		"respuesta_secreta = '"+respuesta+"', vinculo_univalle = '"+vinculo+"', genero = '"+genero+"', "+
+		"fecha_nacimiento = '"+nacimiento.toString()+"', fecha_registro = '"+registro+"', "+
+		"tipo = '"+tipo+"', estado = '";
+		
+		if(estado){sql_actualizar+= "t'"; }else {sql_actualizar+= "f'";}
+		sql_actualizar+=";";
 		
 		try{
             Connection conn= fachada.conectar();
@@ -78,8 +93,41 @@ public class DaoUsuario {
 	}
 	
 	public int modificarUsuario(Usuario u){
-		int value = modificarUsuario();
+		int value = modificarUsuario(u.getLogin(), u.getContrasena(), u.getNombre1(), u.getNombre2(),
+				u.getApellido1(), u.getApellido2(), u.getEmail(), u.getNivelEscolaridad(),
+				u.getVinculoUnivalle(),u.getPreguntaSecreta(), u.getRespuestaSecreta(), u.getGenero(),
+				u.getFechaRegistro(), u.getFechaNacimiento(), u.getTipo(), u.getEstado()
+		);
 		return value;
+		
+	}
+	
+	public int insertarUsuarioAreas(String login, Vector <AreaConocimiento> va, int cantidad){
+		int numFilas=0;
+		String sql_guardar = "INSERT INTO Interesa_Usuario_Area_Conocimiento (login, id_area)" +
+				"VALUES ", id_area ="";
+				
+		for(int i =0; i < cantidad ; i++){
+			id_area= va.get(i).getIdArea();
+			if(i==cantidad-1){//ultimo valor				
+				sql_guardar+= "('"+login+"','"+id_area+"')";
+			}else{
+				sql_guardar+= "('"+login+"','"+id_area+"'),";
+			}
+		}
+		sql_guardar+= ";";
+		
+		try{
+            Connection conn= fachada.conectar();
+            Statement sentencia = conn.createStatement();
+
+            numFilas = sentencia.executeUpdate(sql_guardar);
+            conn.close();
+            return numFilas;
+        }
+        catch(SQLException e){ System.out.println(e); }
+        catch(Exception e){ System.out.println(e); }
+        return -1;	
 		
 	}
 }
