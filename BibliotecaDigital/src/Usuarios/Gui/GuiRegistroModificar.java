@@ -118,12 +118,12 @@ public class GuiRegistroModificar extends JScrollPane{
 		nombre2 = inicializarLabel("Segundo nombre: ");
 		apellido1 = inicializarLabel("Primer apellido: ");
 		apellido2 = inicializarLabel("Segundo apellido: ");
-		genero = inicializarLabel("Género: ");
+		genero = inicializarLabel("GÃ©nero: ");
 		fechaNacimiento = inicializarLabel("Fecha de nacimiento: ");
 		email = inicializarLabel("email: ");
 		nivelEscolaridad = inicializarLabel("Nivel Escolaridad: ");
 		vinculoUnivalle = inicializarLabel("Vinculo con Univalle: ");
-		areasInteres = inicializarLabel("Areas de Interés: ");
+		areasInteres = inicializarLabel("Areas de InterÃ©s: ");
 
 		if (modo == 0 || modo == 1) {
 
@@ -286,7 +286,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		panelAreasInteres = new JPanel();
 		
 		TitledBorder bordeAreaInteres;
-		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.yellow),"Áreas de interés");
+		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.yellow),"Ã�reas de interÃ©s");
 		bordeAreaInteres.setTitleColor(colorSubtitulo);
 		bordeAreaInteres.setTitleFont(fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
@@ -487,7 +487,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		ventana.setVisible(true);
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+	
 	}
-
-
+	
 }

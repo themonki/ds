@@ -14,8 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Date;
-import java.util.Vector;
+//import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import  javax.swing.*;
 
@@ -34,7 +35,7 @@ public class GuiCatalogarModificar extends JFrame{
 	private JPanel panel,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
 	tituloSecundario,traducido,editorial,derechosAutor,descripcion,indicacion,
-	palabrasClave,fechaPublicacion,areas;
+	palabrasClave,fechaPublicacion,areas,dia,mes,ano;
 	
 	private JTextArea campoDescripcion;
 
@@ -48,7 +49,8 @@ public class GuiCatalogarModificar extends JFrame{
   // en caccoo falta campo editorial
 	
 	private Vector<String> palabrasClaveVec,areasVector,autoresVector,       
-	palabActualVec,areasActualVecr,autoresActualVector,AutorIdVector,AutorIdActualVector,AreasIdVector,AreasIdActualVector;
+	palabActualVec,areasActualVecr,autoresActualVector,AutorIdVector,AutorIdActualVector,AreasIdVector,AreasIdActualVector,
+	tipoMaterialVec,formatosVector;
 	
 	//----------------CONTROLADORES--------------------------------
 	ControladorAreaConocimiento controladorAreas ;
@@ -58,7 +60,7 @@ public class GuiCatalogarModificar extends JFrame{
 	//-------------Objetos de la base de datos
 	Documento doc;
 	private JLabel formato;
-	private JTextField campoFormato;
+	private JComboBox campoFormato;
 	private JLabel softwareRecomendado;
 	private JLabel resolucion;
 	private JTextField campoResolucion;
@@ -80,19 +82,21 @@ public class GuiCatalogarModificar extends JFrame{
 		//super.setTitle("Catalogar Documento");
 		//super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
 	    indicacion = new JLabel("   Catalogar Documento");
-	    controladorAreas= new ControladorAreaConocimiento();
 	
 	   
 		//---------------vectores para los ComboBox------------------
 		areasVector= new Vector<String>();
 		autoresVector= new Vector<String>();
 		palabrasClaveVec= new Vector<String>();
-		//AreasIdVector = new Vector<String>();	
+		
+		
 		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
 		areasVector =contenedorIdNombreArea.get(0);
-		AreasIdVector= contenedorIdNombreArea.get(1); 
+		AreasIdVector= contenedorIdNombreArea.get(1);
 		contenedorIdNombreArea=null;//para destruir el vector 
 		
+		palabrasClaveVec= controladorpalabrasClave.obtenerTodasPalabrasClave();
+		tipoMaterialVec= controladorTipoMaterial.obtenerTodosTiposMateriales();
 		Vector<Vector<String>> contenedorIdAutor = controladorAutor.obtenerTodosAutores();
 		autoresVector=contenedorIdAutor.get(0);
 		AutorIdVector= contenedorIdAutor.get(1);
@@ -103,8 +107,10 @@ public class GuiCatalogarModificar extends JFrame{
 		autoresActualVector= new Vector<String>();
 		AreasIdActualVector= new Vector<String>();
 		AutorIdActualVector= new Vector<String>();
-		//----------------------------------------	
 		
+		//----------------------------------------	
+		inicializarFormatos();
+		//--------------------------------------
 		panel= new JPanel();
 		panel2= new JPanel();
 		panel3= new JPanel();
@@ -125,10 +131,35 @@ public class GuiCatalogarModificar extends JFrame{
 		inicializarComboBox(font2);	
 		//------------------------------------------------------------
 		inicializarTexfield();
-		///--------------------------------------------------
+		//--------------------------------------------------
 		inicializarButton();
 		
-	   
+		///fechaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	    
+		        SpinnerModel model = new SpinnerDateModel();
+			    JSpinner spinner = new JSpinner(model);
+			    JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
+			   
+			    spinner.setEditor(editor);
+			    ((JSpinner.DateEditor) spinner.getEditor()).getTextField().setEditable(false);
+
+			    
+			    JPanel panelFecha = new JPanel(new BorderLayout());
+			    panelFecha.add(spinner, BorderLayout.CENTER);
+			    
+			   
+			    
+			    /*Date fecha=  editor.getModel().getDate();
+			    SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+			    String fes= sdf.format(fecha);
+			    //add();
+			    */
+		//---------------------------------------------------------	    
+
+			
+		
+		
+		
+		
 	    //-----------labels locales-----------------------
 	    JLabel 
 		autores= new JLabel("           Lista De Autores Actual.           ",JLabel.CENTER),
@@ -191,7 +222,7 @@ public class GuiCatalogarModificar extends JFrame{
 		
 		restriccionEtiquetas.gridy=2;
 		restriccionCampo.gridy = 2;
-		restriccionCampo.ipadx=140;
+		restriccionCampo.ipadx=0;
 		restriccionCampo.gridwidth=1;
 
 		restriccionBotones.gridx=2;
@@ -218,7 +249,7 @@ public class GuiCatalogarModificar extends JFrame{
 		
 		restriccionEtiquetas.gridy=5;
 		restriccionCampo.gridy = 5;
-		restriccionCampo.ipadx=100;
+		restriccionCampo.ipadx=0;
 		restriccionCampo.gridwidth=1;
 		restriccionBotones.gridy=5;
 		restriccionBotones.anchor= GridBagConstraints.EAST;
@@ -239,7 +270,7 @@ public class GuiCatalogarModificar extends JFrame{
 		
 		restriccionEtiquetas.gridy=7;
 		restriccionCampo.gridy = 7;
-		restriccionCampo.ipadx=10;
+		restriccionCampo.ipadx=0;
 		restriccionCampo.gridwidth=1;
 		restriccionBotones.gridy=7;
 		restriccionBotones.ipadx=7;
@@ -250,6 +281,7 @@ public class GuiCatalogarModificar extends JFrame{
 		panel2.add(campoPalabras,restriccionCampo);
 		panel2.add(nuevapalabra,restriccionBotones);
 		
+		restriccionCampo.ipadx=7;
 		restriccionEtiquetas.gridy=8;
 		restriccionCampo.gridy = 8;
 		
@@ -263,13 +295,11 @@ public class GuiCatalogarModificar extends JFrame{
 		restriccionBotones.ipadx=9;
 		restriccionBotones.gridx=2;
 	
-		JPanel pa= new JPanel();
-		pa.add(campoAreas);
 		panel2.add(areas,restriccionEtiquetas);
 		panel2.add(campoAreas,restriccionCampo);
 		panel2.add(nuevaArea,restriccionBotones);
 		
-		restriccionCampo.ipadx=150;
+		restriccionCampo.ipadx=0;
 		restriccionEtiquetas.gridy=10;
 		restriccionCampo.gridy=10;
 
@@ -279,15 +309,17 @@ public class GuiCatalogarModificar extends JFrame{
 		
 		restriccionEtiquetas.gridy=11;
 		restriccionCampo.gridy=11;
+		restriccionCampo.ipadx=150;
 
 		panel2.add(softwareRecomendado,restriccionEtiquetas);	
 		panel2.add(campoSofware,restriccionCampo);	
 		
-		
+		restriccionCampo.ipadx=0;
 		restriccionEtiquetas.gridy=12;
 		restriccionCampo.gridy=12;
 
-		panel2.add(fechaPublicacion,restriccionEtiquetas);	
+		panel2.add(fechaPublicacion,restriccionEtiquetas);
+		panel2.add(panelFecha,restriccionCampo);	
 		
 		panel3.add(panel2);
 		
@@ -325,6 +357,16 @@ public class GuiCatalogarModificar extends JFrame{
 		
 	}
 	
+	private void inicializarFormatos() {
+		formatosVector= new Vector<String>();
+		formatosVector.add("jpg");
+		formatosVector.add("pdf");
+		formatosVector.add("doc");
+		formatosVector.add("odt");
+		formatosVector.add("otro");
+		
+	}
+
 	private void inicializarButton() {
 		botonCatalogar= new JButton("   FINALIZAR   "); 
 	    nuevaArea= new JButton("Crear Area");
@@ -341,7 +383,6 @@ public class GuiCatalogarModificar extends JFrame{
 		campoTituloPpal = new JTextField();   
 		campoEditorial= new JTextField();
 		campoDescripcion= new JTextArea(5,30);
-		campoFormato= new JTextField();
 		campoResolucion= new JTextField(); 
 		campoSofware= new JTextField();
 		
@@ -365,6 +406,9 @@ public class GuiCatalogarModificar extends JFrame{
 	    areas= new JLabel("Areas :");
 	    softwareRecomendado= new JLabel("Software Para Edicion");
 	    resolucion= new JLabel("Resolucion");
+	    dia= new JLabel("Dia");
+	    mes= new JLabel("Mes");
+	    ano= new JLabel("Año");
  
 	    Color colorletras= new Color(0,60,0);
 	   
@@ -409,11 +453,13 @@ public class GuiCatalogarModificar extends JFrame{
 	    campoTraducido= new JComboBox();
 	    campoIdioma= new JComboBox();
 	    campoDerechosAutor= new JComboBox();
-	    campoTipoMaterial= new JComboBox();
+	    campoTipoMaterial= new JComboBox(tipoMaterialVec);
 	    campoAutor = new JComboBox(autoresVector);
 	    campoPalabras= new JComboBox(palabrasClaveVec);
+		campoFormato= new JComboBox(formatosVector);
 	    //-------------------font combobox--------------------------
-	    campoPalabras.setFont(font2);
+		campoFormato.setFont(font2);
+		campoPalabras.setFont(font2);
 	    campoAreas.setFont(font2);
 	    campoDescripcion.setFont(font2);
 	    campoTraducido.setFont(font2);
@@ -456,11 +502,10 @@ public class GuiCatalogarModificar extends JFrame{
 		campoTituloPpal.getText().length() <50   &&
 		campoEditorial.getText().length() <30   &&
 		campoDescripcion.getText().length() < 200  &&
-		campoFormato.getText().length() <5   &&
 		campoResolucion.getText().length()<15 &&
 		campoSofware.getText().length()<10  &&
 		!campoTituloPpal.getText().isEmpty() &&
-		!campoFormato.getText().isEmpty()   &&
+		//!campoFormato.getText()..getSelectedIndex()   &&
 		!campoDescripcion.getText().isEmpty()   
 	//	campoIdioma.getSelectedIndex()!= -1
 		)
@@ -477,7 +522,7 @@ public class GuiCatalogarModificar extends JFrame{
 		public void actionPerformed(ActionEvent event) 
 		{
 			
-			if(validacionDeDatos())
+			if(validacionDeDatos())	
 				System.out.println("yujuuuuuuu");
 			//doc = new Documento(null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), softwareRecomendado, resolucion, editorial, formato, tituloPrincipal, tituloSecundario, null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), autores, areas, palabrasClave)
 			
@@ -492,6 +537,7 @@ public class GuiCatalogarModificar extends JFrame{
 
 		//int panel;
 		//ManejadorComboBox(int i){panel = i;};
+		
 		public void actionPerformed(ActionEvent event) {
 			
 
@@ -614,18 +660,13 @@ public class GuiCatalogarModificar extends JFrame{
 				refe.setForeground(Color.black);
 				refe.setIcon(new ImageIcon(""));				
 								
-			}
+			} 
 			
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0){}
 
 		
 		}
-
-			
-		
-
-	
 	
 	}
 }
