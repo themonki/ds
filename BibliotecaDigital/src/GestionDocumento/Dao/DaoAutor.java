@@ -54,6 +54,7 @@ public class DaoAutor {
 		// Por ahora se asume que el parametro discriminador es el acronimo
 		sqlSelect = "SELECT * FROM autor WHERE autor.acronimo='" + parametro
 				+ "'";
+		
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -132,6 +133,7 @@ public class DaoAutor {
 		return autores;
 
 	}
+
 
 	/* main para prueba OK */
 	public static void main(String args[]) {

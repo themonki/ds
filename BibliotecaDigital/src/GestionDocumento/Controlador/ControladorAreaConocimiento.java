@@ -23,6 +23,7 @@ public class ControladorAreaConocimiento {
 		area = null;
 		daoAreaConocimiento = null;
 		return numFilas;
+		
 	}
 
 	public AreaConocimiento obtenerArea(String id) {
