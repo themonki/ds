@@ -13,7 +13,6 @@ import java.util.Vector;
 import GestionDocumento.Logica.Autor;
 import Utilidades.FachadaBD;
 
-
 public class DaoAutor {
 
 	FachadaBD fachada;
@@ -55,6 +54,7 @@ public class DaoAutor {
 		// Por ahora se asume que el parametro discriminador es el acronimo
 		sqlSelect = "SELECT * FROM autor WHERE autor.acronimo='" + parametro
 				+ "'";
+		
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -112,7 +112,7 @@ public class DaoAutor {
 				autorAux.setCorreo(tabla.getString(3));
 				autorAux.setApellido(tabla.getString(4));
 				autorAux.setAcronimo(tabla.getString(5));
-				
+
 				autores.add(autorAux);
 
 				System.out.println("Id Autor: " + tabla.getString(1)
@@ -133,21 +133,17 @@ public class DaoAutor {
 		return autores;
 
 	}
-	
-	
-	
-	
-	
-	
-	/*main para prueba OK*/
-	public static void main(String args[])
-	{
-		Autor a = new Autor("Yerminson","Gonzalez","yermigon","yermigon@gmail.com","");
-	    DaoAutor da = new DaoAutor();
+
+
+	/* main para prueba OK */
+	public static void main(String args[]) {
+		Autor a = new Autor("Yerminson", "Gonzalez", "yermigon",
+				"yermigon@gmail.com", "");
+		DaoAutor da = new DaoAutor();
 		System.out.println(da.guardarAutor(a));
 		da.consultarAutor("yermigon");
 		System.out.println(da.consultarAutores().size());
-		
+
 	}
 
 }
