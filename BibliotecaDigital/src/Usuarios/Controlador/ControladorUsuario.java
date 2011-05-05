@@ -100,5 +100,17 @@ public class ControladorUsuario {
 		System.out.println("Se inserto las areas del usuario");
 		daoUs=null;
 	}
-
+	
+	/*METODO PARA OBTENER LAS AREAS DE INTERES DE UN USUARIO 
+	 * */
+	public Vector <AreaConocimiento> obtenerUsuarioAreas(String login){
+		Vector <AreaConocimiento> areas;
+		
+		DaoUsuario daoUs=new DaoUsuario();
+		areas = daoUs.consultarUsuarioAreas(login);
+		System.out.println("Se obtuvieron las areas del usuario");
+		daoUs=null;
+		
+		return areas;
+	}
 }

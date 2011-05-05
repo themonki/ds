@@ -130,4 +130,36 @@ public class DaoUsuario {
         return -1;	
 		
 	}
+	/*METODO QUE RETORNA TODAS LAS AREAS A LAS QUE ESTE RELACIONADO EL USUARIO
+	 * */
+	public Vector <AreaConocimiento> consultarUsuarioAreas(String login){
+		
+		String consulta_sql="SELECT ac.id_area, ac.nombre FROM Area_Conocimiento ac" +
+				"NATURAL JOIN Interesa_Usuario_Area_Conocimiento i" +
+				"WHERE i.login = '"+login+"'";
+		ResultSet resultado;
+		Vector <AreaConocimiento> areas = new Vector<AreaConocimiento>();
+		
+		try{
+            Connection conn= fachada.conectar();
+            Statement sentencia = conn.createStatement();
+
+            resultado = sentencia.executeQuery(consulta_sql);
+            
+            while(resultado.next()){
+            	AreaConocimiento area = new AreaConocimiento();
+            	area.setIdArea(resultado.getString(1));
+            	area.setNombre(resultado.getString(1));
+            	areas.add(area);            	
+            }
+            
+            conn.close();        
+            
+        }
+        catch(SQLException e){ System.out.println(e); }
+        catch(Exception e){ System.out.println(e); }
+        return areas;
+        
+	}
+
 }
