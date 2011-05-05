@@ -7,6 +7,7 @@ package Utilidades;
  * 
  */
 import java.sql.*;
+
 public class FachadaBD {
         String url, usuario, password;
         Connection conexion;
