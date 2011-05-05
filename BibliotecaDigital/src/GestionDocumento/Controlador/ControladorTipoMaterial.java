@@ -2,55 +2,74 @@ package GestionDocumento.Controlador;
 
 import java.util.Vector;
 import GestionDocumento.Dao.DaoTipoMaterial;
+import GestionDocumento.Logica.PalabraClave;
 import GestionDocumento.Logica.TipoMaterial;
+
 /*
  * Yerminson Gonzalez
  * */
 public class ControladorTipoMaterial {
-	
-	
 
-	public int insertarTipoMaterial(String nombre,String descripcion)
-	{
-		TipoMaterial tipoMaterial = new TipoMaterial(nombre,descripcion);
+	public int insertarTipoMaterial(String nombre, String descripcion) {
+		TipoMaterial tipoMaterial = new TipoMaterial(nombre, descripcion);
 		DaoTipoMaterial daoTipoMaterial = new DaoTipoMaterial();
 		int numFilas = daoTipoMaterial.guardarTipoMaterial(tipoMaterial);
 		tipoMaterial = null;
 		daoTipoMaterial = null;
 		return numFilas;
 	}
-	
-	public TipoMaterial obtenerTipoMaterial(String nombre)
-	{
+
+	public TipoMaterial obtenerTipoMaterial(String nombre) {
 		DaoTipoMaterial daoTipoMaterial = new DaoTipoMaterial();
-		TipoMaterial tipoMaterial = daoTipoMaterial.consultarTipoMaterial(nombre);
+		TipoMaterial tipoMaterial = daoTipoMaterial
+				.consultarTipoMaterial(nombre);
 		daoTipoMaterial = null;
 		return tipoMaterial;
 	}
-	
-	public Vector<TipoMaterial> obtenerTiposMateriales()
-	{
+
+	public Vector<TipoMaterial> obtenerTiposMateriales() {
 		DaoTipoMaterial daoTioMaterial = new DaoTipoMaterial();
-		Vector<TipoMaterial> todosTiposMateriales = daoTioMaterial.consultarTodosTipoMaterial();
+		Vector<TipoMaterial> todosTiposMateriales = daoTioMaterial
+				.consultarTodosTipoMaterial();
 		daoTioMaterial = null;
 		return todosTiposMateriales;
 	}
-	
+
 	/*
-	public static void main(String args[])
-	{
-		ControladorTipoMaterial controladorTipoMaterial = new ControladorTipoMaterial();
-		
-		System.out.println(controladorTipoMaterial.insertarTipoMaterial("tesis", "algo importante"));
-	
-		
-		TipoMaterial t1 = controladorTipoMaterial.obtenerTipoMaterial("tesis");
-	
-		
-		System.out.println(t1.getNombre());
-		
-		
-		System.out.println(controladorTipoMaterial.obtenerTiposMateriales().get(0).getDescripcion());
-	}*/
+	 * METODO QUE NECESITA EL MANKO DE FELIPE
+	 */
+	public Vector<String> obtenerTodosTiposMateriales() {
+
+		Vector<TipoMaterial> vectorTipos;
+		Vector<String> nombres = new Vector<String>();
+
+		vectorTipos = obtenerTiposMateriales();
+		int cantidad = vectorTipos.size();
+		for (int i = 0; i < cantidad; i++) {
+			nombres.add(vectorTipos.get(i).getNombre());
+		}
+
+		return nombres;
+
+	}
+
+	/*
+	 * public static void main(String args[]) { ControladorTipoMaterial
+	 * controladorTipoMaterial = new ControladorTipoMaterial();
+	 * 
+	 * System.out.println(controladorTipoMaterial.insertarTipoMaterial("tesis",
+	 * "algo importante"));
+	 * 
+	 * 
+	 * TipoMaterial t1 = controladorTipoMaterial.obtenerTipoMaterial("tesis");
+	 * 
+	 * 
+	 * System.out.println(t1.getNombre());
+	 * 
+	 * 
+	 * 
+	 * System.out.println(controladorTipoMaterial.obtenerTiposMateriales().get(0)
+	 * .getDescripcion()); }
+	 */
 
 }

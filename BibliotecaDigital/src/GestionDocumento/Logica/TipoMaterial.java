@@ -1,46 +1,39 @@
 /*
- * Nombre: Cristian Ríos.
+ * Nombre: Cristian Rï¿½os.
  * Responsabilidad: Clase que representa un tipo de material.
  * Nombre del archivo: TipoMaterial.java
- * Fecha creación: Mayo 03 2011
- * Fecha ultima modificación: Mayo 03 2011
+ * Fecha creaciï¿½n: Mayo 03 2011
+ * Fecha ultima modificaciï¿½n: Mayo 03 2011
  * */
 
 package GestionDocumento.Logica;
 
-public class TipoMaterial
-{
+public class TipoMaterial {
 	private String tipoNombre;
 	private String descripcion;
-	
-	public TipoMaterial()
-	{
+
+	public TipoMaterial() {
 		tipoNombre = descripcion = "";
 	}
-	
-	public TipoMaterial(String nombre, String descripcion)
-	{
+
+	public TipoMaterial(String nombre, String descripcion) {
 		this.tipoNombre = nombre;
 		this.descripcion = descripcion;
 	}
-	
-	public String getNombre()
-	{
+
+	public String getNombre() {
 		return this.tipoNombre;
 	}
-	
-	public String getDescripcion()
-	{
+
+	public String getDescripcion() {
 		return this.descripcion;
 	}
-	
-	public void setNombre(String nombre)
-	{
+
+	public void setNombre(String nombre) {
 		this.tipoNombre = nombre;
 	}
 
-	public void setDescripcion(String descripcion)
-	{
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 }
