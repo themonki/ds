@@ -19,31 +19,42 @@ import java.util.Vector;
 
 import  javax.swing.*;
 
+import Documento.Logica.Documento;
+import GestionDocumento.Controlador.ControladorAreaConocimiento;
+
 
 
 public class GuiCatalogarModificar extends JFrame{
 	
 
-	JPanel panel,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
-	JLabel tipoMaterial,numeroIndentificacion,tituloPrincipal,idioma,autor,
+	private JPanel panel,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
+	private JLabel tipoMaterial,numeroIndentificacion,tituloPrincipal,idioma,autor,
 	tituloSecundario,traducido,editorial,derechosAutor,descripcion,indicacion,
 	palabrasClave,fechaPublicacion,areas;
 	
-	JTextArea campoDescripcion;
+	private JTextArea campoDescripcion;
 
-	JComboBox campoPalabras,campoAutor,campoTipoMaterial,
+	private JComboBox campoPalabras,campoAutor,campoTipoMaterial,
 	campoTraducido,campoIdioma,campoDerechosAutor,campoAreas;
 	  
-	JTextField campoEditorial,campoNumeroIdentificacion,campoTituloSecundario,campoTituloPpal;
+	private JTextField campoEditorial,campoNumeroIdentificacion,campoTituloSecundario,campoTituloPpal;
 	
-	JButton botonCatalogar,nuevaArea,nuevotipo,nuevoAutor,nuevoidioma,nuevapalabra;
+	private JButton botonCatalogar,nuevaArea,nuevotipo,nuevoAutor,nuevoidioma,nuevapalabra;
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
 	
-	Vector<String> palabrasClaveVec,areasVector,autoresVector,       
+	private Vector<String> palabrasClaveVec,areasVector,autoresVector,       
 	palabActualVec,areasActualVecr,autoresActualVector;
-	
-	
+	//----------------CONTROLADORES--------------------------------
+	ControladorAreaConocimiento controladorAreas ;
+	//-------------Objetos de la base de datos
+	Documento doc;
+	private JLabel formato;
+	private JTextField campoFormato;
+	private JLabel softwareRecomendado;
+	private JLabel resolucion;
+	private JTextField campoResolucion;
+	private JTextField campoSofware;
 	public GuiCatalogarModificar() {
 		
 		initComponents();
@@ -54,8 +65,9 @@ public class GuiCatalogarModificar extends JFrame{
 		//super.setTitle("Catalogar Documento");
 		//super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
 	    indicacion = new JLabel("   Catalogar Documento");
-		
+	    controladorAreas= new ControladorAreaConocimiento();
 	
+	   
 		//---------------vectores para los ComboBox------------------
 		areasVector= new Vector<String>();
 		autoresVector= new Vector<String>();
@@ -101,9 +113,9 @@ public class GuiCatalogarModificar extends JFrame{
 	   
 	    //-----------labels locales-----------------------
 	    JLabel 
-		autores= new JLabel("    Lista De Autores Actual.       ",JLabel.CENTER),
-		palabrasC= new JLabel("      Palabras Clave Actuales.     "),
-		areaPertenece= new JLabel("     Areas Actuales.    ");
+		autores= new JLabel("           Lista De Autores Actual.           ",JLabel.CENTER),
+		palabrasC= new JLabel("         Palabras Clave Actuales.          "),
+		areaPertenece= new JLabel("          Areas Actuales.              ");
 	    indicacion = new JLabel("   Catalogar Documento",JLabel.CENTER);
 		Color colorletras= new Color(0,50,10);
 		areaPertenece.setFont(font2);
@@ -142,7 +154,7 @@ public class GuiCatalogarModificar extends JFrame{
 		restriccionCampo.gridwidth = 2;
 		restriccionCampo.gridx = 1;
 		restriccionCampo.gridy = 0;
-		restriccionCampo.insets = new Insets(5,40,5,0);
+		restriccionCampo.insets = new Insets(2,40,2,0);
 		
 		
 		restriccionEtiquetas.insets= new Insets(0,14,0,0);// espacios entre componentes
@@ -238,11 +250,23 @@ public class GuiCatalogarModificar extends JFrame{
 		panel2.add(nuevaArea,restriccionBotones);
 		
 		restriccionEtiquetas.gridy=10;
+		restriccionCampo.gridy=10;
+
+		panel2.add(formato,restriccionEtiquetas);	
+		panel2.add(campoFormato,restriccionCampo);	
+		
+		
+		restriccionEtiquetas.gridy=11;
+		restriccionCampo.gridy=11;
+
+		panel2.add(softwareRecomendado,restriccionEtiquetas);	
+		panel2.add(campoSofware,restriccionCampo);	
+		
+		
+		restriccionEtiquetas.gridy=12;
+		restriccionCampo.gridy=12;
 
 		panel2.add(fechaPublicacion,restriccionEtiquetas);	
-		
-		
-		
 		
 		panel3.add(panel2);
 		
@@ -286,6 +310,8 @@ public class GuiCatalogarModificar extends JFrame{
 	    nuevotipo= new JButton("Crear Tipo");
 	    nuevoAutor = new JButton("Crear Autor");
 	    nuevapalabra= new JButton("Crear Palabra");
+	    
+	    botonCatalogar.addActionListener(new ManejadorBoton());
 	}
 
 	private void inicializarTexfield() { 
@@ -294,29 +320,35 @@ public class GuiCatalogarModificar extends JFrame{
 		campoTituloPpal = new JTextField();   
 		campoEditorial= new JTextField();
 		campoDescripcion= new JTextArea(5,30);
+		campoFormato= new JTextField();
+		campoResolucion= new JTextField(); 
+		campoSofware= new JTextField();
 		
 	}
 
 	private void inicializarLabels(Font font1) 
 	{
 		
-		tipoMaterial= new JLabel(" Tipo De Material:",JLabel.LEFT);
-		tituloPrincipal= new JLabel(" Titulo Principal:",JLabel.LEFT);
-		idioma= new JLabel(" Idioma:",JLabel.LEFT);
+		tipoMaterial= new JLabel(" Tipo De Material:  ",JLabel.LEFT);
+		tituloPrincipal= new JLabel(" Titulo Principal:  *",JLabel.LEFT);
+		idioma= new JLabel(" Idioma:  *",JLabel.LEFT);
 	    tituloSecundario= new JLabel(" Titulo Secundario:",JLabel.LEFT);
 	    traducido= new JLabel(" Traducido a :",JLabel.LEFT);
-	    editorial= new JLabel(" Editorial:",JLabel.LEFT);
+	    editorial= new JLabel(" Editorial:  ",JLabel.LEFT);
 	    derechosAutor= new JLabel(" Derechos De Autor:",JLabel.LEFT);
-	    descripcion= new JLabel(" Descripcion:",JLabel.CENTER);
+	    descripcion= new JLabel(" Descripcion:   *",JLabel.CENTER);
 	    autor = new JLabel(" Autor:");
-	
+	    formato = new JLabel("Formato  :  *");
 	    palabrasClave= new JLabel(" Palabras Clave:");
 	    fechaPublicacion= new JLabel("Fecha De Publicacion:");//&&&&&&
 	    areas= new JLabel("Areas :");
-	    
+	    softwareRecomendado= new JLabel("Software Para Edicion");
+	    resolucion= new JLabel("Resolucion");
  
 	    Color colorletras= new Color(0,60,0);
-	    
+	   
+	    resolucion.setFont(font1); 
+	    softwareRecomendado.setFont(font1);
 	    palabrasClave.setFont(font1);
 	    autor.setFont(font1);
 	    descripcion.setFont(font1);
@@ -329,9 +361,11 @@ public class GuiCatalogarModificar extends JFrame{
 		derechosAutor.setFont(font1);
 		areas.setFont(font1);
 		fechaPublicacion.setFont(font1);
+		formato.setFont(font1);
 		
 		indicacion.setFont(font1);
-		
+		resolucion.setForeground(colorletras);
+		softwareRecomendado.setForeground(colorletras);
 		palabrasClave.setForeground(colorletras);
 	    autor.setForeground(colorletras);
 	    descripcion.setForeground(colorletras);
@@ -344,6 +378,7 @@ public class GuiCatalogarModificar extends JFrame{
 		derechosAutor.setForeground(colorletras);
 		areas.setForeground(colorletras);
 		fechaPublicacion.setForeground(colorletras);
+		formato.setForeground(colorletras);
 	}
 
 	private void inicializarComboBox(Font font2) 
@@ -355,7 +390,7 @@ public class GuiCatalogarModificar extends JFrame{
 	    campoDerechosAutor= new JComboBox();
 	    campoTipoMaterial= new JComboBox();
 	    campoAutor = new JComboBox(autoresVector);
-	    campoPalabras= new JComboBox(palabrasClaveVec);	  
+	    campoPalabras= new JComboBox(palabrasClaveVec);
 	    //-------------------font combobox--------------------------
 	    campoPalabras.setFont(font2);
 	    campoAreas.setFont(font2);
@@ -374,7 +409,8 @@ public class GuiCatalogarModificar extends JFrame{
 	    
 	}
 
-	/*public static void main (String args []){
+
+	public static void main (String args []){
 		
 		try
 		{
@@ -391,8 +427,44 @@ public class GuiCatalogarModificar extends JFrame{
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		
 	}
-	*/
 	
+
+	private boolean validacionDeDatos() {
+		if (campoNumeroIdentificacion.getText().length()<10  &&
+		campoTituloSecundario.getText().length()   <50  &&
+		campoTituloPpal.getText().length() <50   &&
+		campoEditorial.getText().length() <30   &&
+		campoDescripcion.getText().length() < 200  &&
+		campoFormato.getText().length() <5   &&
+		campoResolucion.getText().length()<15 &&
+		campoSofware.getText().length()<10  &&
+		!campoTituloPpal.getText().isEmpty() &&
+		!campoFormato.getText().isEmpty()   &&
+		!campoDescripcion.getText().isEmpty()   
+	//	campoIdioma.getSelectedIndex()!= -1
+		)
+			
+			return true;
+		
+		return false;
+		
+	}
+	private class ManejadorBoton implements ActionListener 
+	{
+
+		
+		public void actionPerformed(ActionEvent event) 
+		{
+			
+			if(validacionDeDatos())
+				System.out.println("yujuuuuuuu");
+			//doc = new Documento(null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), softwareRecomendado, resolucion, editorial, formato, tituloPrincipal, tituloSecundario, null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), autores, areas, palabrasClave)
+			
+		}
+
+		
+
+	}
 	
 	 
 	private class ManejadorComboBox implements ActionListener {
@@ -492,7 +564,7 @@ public class GuiCatalogarModificar extends JFrame{
 			
 				JLabel refe=(JLabel) arg0.getSource();
 				refe.setForeground(Color.red);
-				refe.setIcon(new ImageIcon("CRUZ.gif"));
+				refe.setIcon(new ImageIcon("recursos/CRUZ.gif"));
 				refe.updateUI();
 				
 				
