@@ -390,8 +390,8 @@ public class GuiCatalogarModificar extends JFrame{
 		ventana = new GuiCatalogarModificar();
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		
-	}
-	*/
+	}*/
+	
 	
 	
 	 
