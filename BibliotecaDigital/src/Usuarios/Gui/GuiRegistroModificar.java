@@ -20,11 +20,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-<<<<<<< HEAD
-=======
+
+
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
->>>>>>> d759cc3bd787c3fb844ae5183a6ea33383306f3f
+
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
@@ -488,33 +488,6 @@ public class GuiRegistroModificar extends JScrollPane{
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
-	
-	@SuppressWarnings("deprecation")
-	public static void main (String args []){
-	
-	try
-	{
-		
-		
-		UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-		
-	
-	}
-	catch (Exception e){e.printStackTrace();}
-	
-	JFrame ventana;
-	ventana = new JFrame();
-	ventana.add(new GuiRegistroModificar());
-	ventana.setVisible(true);
-	ventana.setSize(100, 100);
-	ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-	
-
-}
-	
-	
-	
-
 
 
 }
