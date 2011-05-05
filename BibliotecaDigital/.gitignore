@@ -1,7 +1,0 @@
-# Lines starting with '#' are considered comments.
-# Ignore any file named .classpath.
-.classpath
-# Ignore generated .class file
-*.class
-#ignore bibliotecaDigital/bin/
-bin/

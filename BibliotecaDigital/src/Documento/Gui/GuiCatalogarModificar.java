@@ -1,22 +1,15 @@
 package Documento.Gui;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Label;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -25,13 +18,12 @@ import java.sql.Date;
 import java.util.Vector;
 
 import  javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+
 
 
 public class GuiCatalogarModificar extends JFrame{
 	
-	 
+
 	JPanel panel,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
 	JLabel tipoMaterial,numeroIndentificacion,tituloPrincipal,idioma,autor,
 	tituloSecundario,traducido,editorial,derechosAutor,descripcion,indicacion,
@@ -48,8 +40,8 @@ public class GuiCatalogarModificar extends JFrame{
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
 	
-	Vector<String> palabrasClaveVec,areasVector,autoresVector,
-	       palabActualVec,areasActualVecr,autoresActualVector;
+	Vector<String> palabrasClaveVec,areasVector,autoresVector,       
+	palabActualVec,areasActualVecr,autoresActualVector;
 	
 	
 	public GuiCatalogarModificar() {
@@ -59,8 +51,8 @@ public class GuiCatalogarModificar extends JFrame{
 
 	public void initComponents(){
 		
-		super.setTitle("Catalogar Documento");
-		super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
+		//super.setTitle("Catalogar Documento");
+		//super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
 	    indicacion = new JLabel("   Catalogar Documento");
 		
 	
@@ -245,13 +237,22 @@ public class GuiCatalogarModificar extends JFrame{
 		panel2.add(campoAreas,restriccionCampo);
 		panel2.add(nuevaArea,restriccionBotones);
 		
+		restriccionEtiquetas.gridy=10;
+
+		panel2.add(fechaPublicacion,restriccionEtiquetas);	
+		
+		
+		
+		
 		panel3.add(panel2);
+		
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		panel5.add(scroll);
 		panel.add(botonCatalogar);
+		
 		panel4.add(descripcion,BorderLayout.NORTH);
 		panel4.add(panel5,BorderLayout.CENTER);
 		panel4.add(panel,BorderLayout.SOUTH);
@@ -310,7 +311,7 @@ public class GuiCatalogarModificar extends JFrame{
 	    autor = new JLabel(" Autor:");
 	
 	    palabrasClave= new JLabel(" Palabras Clave:");
-	    fechaPublicacion= new JLabel("Fecha De Publicacion");//&&&&&&
+	    fechaPublicacion= new JLabel("Fecha De Publicacion:");//&&&&&&
 	    areas= new JLabel("Areas :");
 	    
  
@@ -327,6 +328,7 @@ public class GuiCatalogarModificar extends JFrame{
 		editorial.setFont(font1);
 		derechosAutor.setFont(font1);
 		areas.setFont(font1);
+		fechaPublicacion.setFont(font1);
 		
 		indicacion.setFont(font1);
 		
@@ -340,7 +342,8 @@ public class GuiCatalogarModificar extends JFrame{
 		traducido.setForeground(colorletras);
 		editorial.setForeground(colorletras);
 		derechosAutor.setForeground(colorletras);
-		areas.setForeground(colorletras);		
+		areas.setForeground(colorletras);
+		fechaPublicacion.setForeground(colorletras);
 	}
 
 	private void inicializarComboBox(Font font2) 
@@ -371,7 +374,7 @@ public class GuiCatalogarModificar extends JFrame{
 	    
 	}
 
-	public static void main (String args []){
+	/*public static void main (String args []){
 		
 		try
 		{
@@ -388,7 +391,7 @@ public class GuiCatalogarModificar extends JFrame{
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		
 	}
-	
+	*/
 	
 	
 	 
