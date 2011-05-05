@@ -1,10 +1,11 @@
 package Usuarios.Controlador;
 
 import java.sql.Date;
-import java.text.DateFormat;
+import java.util.Vector;
 
 import Usuarios.Dao.DaoUsuario;
-import Usuarios.Logica.Usuario;;;
+import Usuarios.Logica.Usuario;
+import GestionDocumento.Logica.AreaConocimiento;
 
 public class ControladorUsuario {
 	
@@ -75,7 +76,7 @@ public class ControladorUsuario {
         
         modificarUsuario(u);
 
-        //por seguridad
+        //por seguridad		
         u=null;
 	}
 
@@ -86,6 +87,18 @@ public class ControladorUsuario {
 		System.out.println("Se inserto el usuario");
 		daoUs=null;
 		
+	}
+	/*METODO QUE PERMITE INSERTAR LAS AREAS A LA Q LE INTERESA EL USUARIO
+	 * 
+	 * */
+	public void insertarUsuarioAreas(Vector <AreaConocimiento> va, Usuario u){
+		
+		int cantidad = va.size();
+		String login = u.getLogin();
+		DaoUsuario daoUs=new DaoUsuario();
+		daoUs.insertarUsuarioAreas(login,va, cantidad );
+		System.out.println("Se inserto las areas del usuario");
+		daoUs=null;
 	}
 
 }

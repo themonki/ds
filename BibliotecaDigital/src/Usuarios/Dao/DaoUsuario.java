@@ -6,6 +6,9 @@
 package Usuarios.Dao;
 
 import java.sql.*;
+import java.util.Vector;
+
+import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Logica.Usuario;
 import Utilidades.FachadaBD;
 
@@ -96,6 +99,35 @@ public class DaoUsuario {
 				u.getFechaRegistro(), u.getFechaNacimiento(), u.getTipo(), u.getEstado()
 		);
 		return value;
+		
+	}
+	
+	public int insertarUsuarioAreas(String login, Vector <AreaConocimiento> va, int cantidad){
+		int numFilas=0;
+		String sql_guardar = "INSERT INTO Interesa_Usuario_Area_Conocimiento (login, id_area)" +
+				"VALUES ", id_area ="";
+				
+		for(int i =0; i < cantidad ; i++){
+			id_area= va.get(i).getIdArea();
+			if(i==cantidad-1){//ultimo valor				
+				sql_guardar+= "('"+login+"','"+id_area+"')";
+			}else{
+				sql_guardar+= "('"+login+"','"+id_area+"'),";
+			}
+		}
+		sql_guardar+= ";";
+		
+		try{
+            Connection conn= fachada.conectar();
+            Statement sentencia = conn.createStatement();
+
+            numFilas = sentencia.executeUpdate(sql_guardar);
+            conn.close();
+            return numFilas;
+        }
+        catch(SQLException e){ System.out.println(e); }
+        catch(Exception e){ System.out.println(e); }
+        return -1;	
 		
 	}
 }
