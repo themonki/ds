@@ -1,16 +1,14 @@
 package Usuarios.Gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -27,9 +25,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
-import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Logica.Usuario;
 
 
@@ -93,6 +89,7 @@ public class GuiRegistroModificar extends JScrollPane{
 
 
 
+	//Inicializar todos los JComponents segun modos, y organizar vistas.
 	public void initComponents() {
 
 		// titulo del panel, segun el modo.
@@ -460,15 +457,23 @@ public class GuiRegistroModificar extends JScrollPane{
 		return configuracion;
 	}
 	
+	//ActionListeners de diferntes JComponents
+	private class ManejadorBoton implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+
+	//Main, frame para ver scrollpane.
 	public static void main (String args []){
 		
 		try
-		{
-			
-			
+		{	
 			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-			
-		
 		}
 		catch (Exception e){e.printStackTrace();}
 		
@@ -479,8 +484,6 @@ public class GuiRegistroModificar extends JScrollPane{
 		ventana.setVisible(true);
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		
-
 	}
 	
 	
