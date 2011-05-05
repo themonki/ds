@@ -410,7 +410,7 @@ public class GuiCatalogarModificar extends JFrame{
 	}
 
 
-	public static void main (String args []){
+	/*public static void main (String args []){
 		
 		try
 		{
@@ -426,12 +426,11 @@ public class GuiCatalogarModificar extends JFrame{
 		ventana = new GuiCatalogarModificar();
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		
-<<<<<<< HEAD
+
 	}*/
 	
-=======
-	}
->>>>>>> 4effdb1055ad58b6eefd0ba0fd3b24e69e5973ff
+
+
 	
 
 	private boolean validacionDeDatos() {
