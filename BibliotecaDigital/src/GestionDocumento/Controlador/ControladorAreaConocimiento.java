@@ -58,6 +58,28 @@ public class ControladorAreaConocimiento
 		return numFilas;
 	}
 	
+	
+	public Vector< Vector <String> > obtenerTodasAreas(){
+		
+		Vector <Vector <String> > vectorTodasAreas = new Vector<Vector <String> >();
+		Vector <AreaConocimiento> vectorAreas;
+		Vector <String> nombres = new Vector <String>();
+		Vector <String> ids= new Vector <String>();
+		
+		vectorAreas = obtenerAreas();
+		int cantidad = vectorAreas.size();
+		for(int i = 0; i < cantidad; i++){
+			nombres.add(vectorAreas.get(i).getNombre());
+			ids.add(vectorAreas.get(i).getIdArea());
+		}
+		
+		vectorTodasAreas.add(nombres);
+		vectorTodasAreas.add(ids);
+		
+		return vectorTodasAreas;
+		
+	}
+	
 	/*main para prueba OK*/
 	/*public static void main(String args[])
 	{
