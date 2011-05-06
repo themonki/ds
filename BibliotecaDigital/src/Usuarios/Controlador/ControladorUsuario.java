@@ -160,9 +160,10 @@ public class ControladorUsuario {
 	}
 	
 
-	/*
-	 * public static void main(String args[]){ ControladorUsuario cu = new
-	 * ControladorUsuario(); Date fechaRegistro = Date.valueOf("6666-06-06");
+	
+	  public static void main(String args[])
+	  { ControladorUsuario cu = new ControladorUsuario();
+	 /* Date fechaRegistro = Date.valueOf("6666-06-06");
 	 * Date fechaNacimiento = Date.valueOf("7777-07-07"); AreaConocimiento area1
 	 * = new AreaConocimiento(); AreaConocimiento area2 = new
 	 * AreaConocimiento(); area1.setIdArea("1"); area2.setIdArea("2");
@@ -177,7 +178,8 @@ public class ControladorUsuario {
 	 * System.out.println("insertar areas interes");
 	 * cu.insertarUsuarioAreas(areasInteres, u);
 	 * 
-	 * 
-	 * } /*
-	 */
+	 **/
+	  Usuario u = cu.consultarUsuario("clrl");
+	  System.out.print(u.getNombre1());
+	 }
 }

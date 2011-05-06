@@ -30,6 +30,7 @@ import Usuarios.Logica.Usuario;
 
 public class GuiConsultarUsuarios extends JScrollPane{
 	
+	private static final long serialVersionUID = 1L;
 	JLabel login, nombre;
 	JTextField campoLogin, campoNombre;
 	JScrollPane scrolResultados, scrolUsuario;
@@ -132,9 +133,9 @@ public class GuiConsultarUsuarios extends JScrollPane{
 			if(e.getSource()== consultar){
 				
 				ControladorUsuario controlador = new ControladorUsuario();
-				Usuario usuarioEncontrado = controlador.consultarUsuario(login.getText());
-				if(usuarioEncontrado.getLogin() != null){
-					usuariosVector = new Vector<Usuario>();
+				Usuario usuarioEncontrado = controlador.consultarUsuario(campoLogin.getText());
+				if(usuarioEncontrado.getLogin() != null)
+				{	usuariosVector = new Vector<Usuario>();
 					usuariosVector.add(usuarioEncontrado);
 					resultadoLista = new JList();
 					modeloLista = new DefaultListModel();

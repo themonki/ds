@@ -129,7 +129,9 @@ public class Usuario {
 		return areasInteres;
 	}
 
-	public void setLogin(String value) {
+	public void setLogin(String value)
+	{
+		login = value;
 	}
 
 	public void setContrasena(String value) {
