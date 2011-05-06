@@ -12,7 +12,7 @@ public class ControladorUsuario {
 	public int insertarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
-			String genero, String registro, String nacimiento, int tipo,
+			String genero, String registro, String nacimiento, String tipo,
 			boolean estado) {
 		Usuario u = new Usuario();
 
@@ -55,7 +55,7 @@ public class ControladorUsuario {
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
-			String genero, String registro, String nacimiento, int tipo,
+			String genero, String registro, String nacimiento, String tipo,
 			boolean estado) {
 		Usuario u = new Usuario();
 
@@ -122,6 +122,41 @@ public class ControladorUsuario {
 		daoUs = null;
 
 		return areas;
+	}
+	//metodo que va a agregar las nuevas areas y va a quitar las otras seleccionadas
+	public int modificarUsuarioArea(Usuario u){
+		DaoUsuario daoUs = new DaoUsuario();
+		Vector <AreaConocimiento> areasNuevas = u.getAreas();
+		/*se insertan las areas nuevas, si por alguna razon se agrego, se quito entonces se borra despues,
+		 * si se agrego y se quito
+		 * */
+		int value=0;
+		//se quitan todas las areas que hagan referencia a ese login
+		value += daoUs.quitarAreasModificadas(u.getLogin());
+		//inserta las areas a las que ahora hace referencia
+		value = daoUs.insertarAreasModificadas(u.getLogin(), areasNuevas);
+				
+		return value;
+	}
+	
+	/*añadico por cristian*/
+	/*metodo que dado un login retorna un obejto usuario asociado al login*/
+	public Usuario consultarUsuario(String login)
+	{
+		DaoUsuario daoUsuario = new DaoUsuario();
+		Usuario usuario = daoUsuario.consultarUsuario(login);
+		daoUsuario = null;
+		return usuario;
+	}
+	
+	/*añadido cristian*/
+	/*metodo que retorna todos los usaurios*/
+	public Vector<Usuario> consultarUsuarios()
+	{
+		DaoUsuario daoUsuario = new DaoUsuario();
+		Vector<Usuario> usuarios = daoUsuario.consultarUsuarios();
+		daoUsuario = null;
+		return usuarios;
 	}
 	/*
 	 * public static void main(String args[]){ ControladorUsuario cu = new

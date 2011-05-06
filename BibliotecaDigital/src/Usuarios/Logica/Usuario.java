@@ -30,7 +30,7 @@ public class Usuario {
 	String genero;
 	Date fechaRegistro;
 	Date fechaNacimiento;
-	int tipo;
+	String tipo;
 	boolean estado;
 	Vector<AreaConocimiento> areasInteres;
 
@@ -39,7 +39,7 @@ public class Usuario {
 			String nombre2, String apellido1, String apellido2, String email,
 			String nivelEscolaridad, String vinculoUnivalle,
 			String preguntaSecreta, String respuestaSecreta, String genero,
-			Date fechaRegistro, Date fechaNacimiento, int tipo, boolean estado,
+			Date fechaRegistro, Date fechaNacimiento, String tipo, boolean estado,
 			Vector<AreaConocimiento> areasInteres) {
 
 		this.login = login;
@@ -117,7 +117,7 @@ public class Usuario {
 		return fechaNacimiento;
 	}
 
-	public int getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
@@ -184,7 +184,7 @@ public class Usuario {
 		fechaNacimiento = value;
 	}
 
-	public void setTipo(int value) {
+	public void setTipo(String value) {
 		tipo = value;
 	}
 

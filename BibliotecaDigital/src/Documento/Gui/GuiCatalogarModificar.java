@@ -3,6 +3,7 @@ package Documento.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -33,9 +34,11 @@ public class GuiCatalogarModificar extends JFrame{
 	
 
 	private JPanel panel,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
+	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
+	
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
 	tituloSecundario,traducido,editorial,derechosAutor,descripcion,indicacion,
-	palabrasClave,fechaPublicacion,areas,dia,mes,ano;
+	palabrasClave,fechaPublicacion,areas;
 	
 	private JTextArea campoDescripcion;
 
@@ -120,6 +123,19 @@ public class GuiCatalogarModificar extends JFrame{
 		panelConpalabrasC= new JPanel();
 		panel8= new JPanel();
 		panelConAreas= new JPanel();
+		
+		panelScrollAreas= new JScrollPane();
+		panelScrollAutores= new JScrollPane();
+		panelScrollPalabras= new JScrollPane();
+		
+		
+		panelScrollAreas.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		panelScrollAutores.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		panelScrollPalabras.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		//scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		
 		//-------------------------------fuentes letras-------------------------
 		Font font1 = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
 		Font font2 = new Font("Book Antiqua",Font.BOLD, 15);
@@ -146,37 +162,23 @@ public class GuiCatalogarModificar extends JFrame{
 			    
 			    JPanel panelFecha = new JPanel(new BorderLayout());
 			    panelFecha.add(spinner, BorderLayout.CENTER);
-			    
-			   
-			    
+			    		   
 			    /*Date fecha=  editor.getModel().getDate();
 			    SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
 			    String fes= sdf.format(fecha);
 			    //add();
-			    */
-		//---------------------------------------------------------	    
+			    */  
 
-			
-		
-		
-		
-		
 	    //-----------labels locales-----------------------
 	    JLabel 
-		autores= new JLabel("           Lista De Autores Actual.           ",JLabel.CENTER),
-		palabrasC= new JLabel("         Palabras Clave Actuales.          "),
-		areaPertenece= new JLabel("          Areas Actuales.              ");
+		//autores= new JLabel("           Lista De Autores Actual.           ",JLabel.CENTER),
+		//palabrasC= new JLabel("         Palabras Clave Actuales.          "),
+		//areaPertenece= new JLabel("          Areas Actuales.              ");
 	    indicacion = new JLabel("   Catalogar Documento",JLabel.CENTER);
 		Color colorletras= new Color(0,50,10);
-		areaPertenece.setFont(font2);
-		palabrasC.setFont(font2);
-		autores.setFont(font2);
-		indicacion.setFont(font3);
-		areaPertenece.setForeground(colorletras);
-		palabrasC.setForeground(colorletras);
-		autores.setForeground(colorletras);
+	
 		indicacion.setForeground(new Color(0,50,0));
-		indicacion.setBackground(Color.red);
+		indicacion.setFont(font3);
 		
 		
 	    //-----------------------------ponerBordeaPanel----------	
@@ -184,10 +186,18 @@ public class GuiCatalogarModificar extends JFrame{
 		panel5.setBorder(BorderFactory.createLineBorder(Color.yellow));
 		panel4.setBorder(BorderFactory.createLineBorder(Color.yellow));
 		panel2.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		panelConAutores.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		panelConAreas.setBorder(BorderFactory.createLineBorder(Color.yellow));
+		//panelConAutores.setBorder(BorderFactory.createLineBorder(Color.yellow));
+		//panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.yellow));	
+		//panelConAreas.setBorder(BorderFactory.createLineBorder(Color.yellow));
 
+		panelConAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
+			    .createLineBorder(Color.yellow), "Autores Actuales"));
+		
+		panelConpalabrasC.setBorder(BorderFactory.createTitledBorder(BorderFactory
+			    .createLineBorder(Color.yellow), "Palabras Actuales"));
+		
+		panelConAreas.setBorder(BorderFactory.createTitledBorder(BorderFactory
+			    .createLineBorder(Color.yellow), "Areas Actuales"));
 		
 		//Organizacion de layouts y paneles
 		panel2.setLayout(new GridBagLayout());
@@ -233,6 +243,8 @@ public class GuiCatalogarModificar extends JFrame{
 		panel2.add(autor,restriccionEtiquetas);
 		panel2.add(campoAutor,restriccionCampo);		
 		panel2.add(nuevoAutor,restriccionBotones);
+		
+			
 		
 		restriccionEtiquetas.gridy=3;
 		restriccionCampo.gridy = 3;
@@ -300,10 +312,10 @@ public class GuiCatalogarModificar extends JFrame{
 		panel2.add(campoAreas,restriccionCampo);
 		panel2.add(nuevaArea,restriccionBotones);
 		
-		restriccionCampo.ipadx=0;
+
+		
 		restriccionEtiquetas.gridy=10;
 		restriccionCampo.gridy=10;
-
 		panel2.add(formato,restriccionEtiquetas);	
 		panel2.add(campoFormato,restriccionCampo);	
 		
@@ -335,12 +347,18 @@ public class GuiCatalogarModificar extends JFrame{
 		panel4.add(panel5,BorderLayout.CENTER);
 		panel4.add(panel,BorderLayout.SOUTH);
 		
-		panelConAutores.add(autores); 
-		panelConpalabrasC.add(palabrasC);
-		panelConAreas.add(areaPertenece);
-		panel8.add(panelConAutores);
-		panel8.add(panelConpalabrasC);
-		panel8.add(panelConAreas);
+	
+		panel8.setLayout(new GridLayout(3,1));
+		panelScrollAutores.setViewportView(panelConAutores);
+		panelScrollPalabras.setViewportView(panelConAreas);
+		panelScrollAreas.setViewportView(panelConpalabrasC);
+		
+		
+		panel8.add(panelScrollAutores);
+		panel8.add(panelScrollPalabras);
+		panel8.add(panelScrollAreas);
+		
+		
 
 		
 		setLayout(new BorderLayout());
@@ -406,9 +424,7 @@ public class GuiCatalogarModificar extends JFrame{
 	    areas= new JLabel("Areas :");
 	    softwareRecomendado= new JLabel("Software Para Edicion");
 	    resolucion= new JLabel("Resolucion");
-	    dia= new JLabel("Dia");
-	    mes= new JLabel("Mes");
-	    ano= new JLabel("Año");
+	   
  
 	    Color colorletras= new Color(0,60,0);
 	   
