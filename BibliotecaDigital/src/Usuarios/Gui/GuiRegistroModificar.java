@@ -541,13 +541,13 @@ public class GuiRegistroModificar extends JScrollPane{
 				
 				
 				areasInteresUsuario = new Vector<AreaConocimiento>();
-				/*
+				
 				for(int i=0; i<areaConocimientoVector.size();i++){
 					areasInteresUsuario.addElement(
 							areasInteresVector.elementAt(
 									areasInteresArray.indexOf(
 											areaConocimientoVector.elementAt(i))));
-				}*/
+				}
 				
 				if(!(passwordString.equals(verPasswordString))){
 					
