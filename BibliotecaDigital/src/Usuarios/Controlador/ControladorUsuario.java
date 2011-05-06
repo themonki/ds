@@ -139,7 +139,7 @@ public class ControladorUsuario {
 		return value;
 	}
 	
-	/*añadico por cristian*/
+	/*aï¿½adico por cristian*/
 	/*metodo que dado un login retorna un obejto usuario asociado al login*/
 	public Usuario consultarUsuario(String login)
 	{
@@ -149,7 +149,7 @@ public class ControladorUsuario {
 		return usuario;
 	}
 	
-	/*añadido cristian*/
+	/*aï¿½adido cristian*/
 	/*metodo que retorna todos los usaurios*/
 	public Vector<Usuario> consultarUsuarios()
 	{
@@ -179,7 +179,7 @@ public class ControladorUsuario {
 	 * cu.insertarUsuarioAreas(areasInteres, u);
 	 * 
 	 **/
-	  Usuario u = cu.consultarUsuario("clrl");
-	  System.out.print(u.getNombre1());
+	  //Usuario u = cu.consultarUsuario("clrl");
+	  //System.out.print(u.getNombre1());
 	 }
 }
