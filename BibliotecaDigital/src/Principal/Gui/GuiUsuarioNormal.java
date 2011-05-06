@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -26,6 +25,7 @@ import javax.swing.border.TitledBorder;
 
 
 import Usuarios.Gui.GuiRegistroModificar;
+import Usuarios.Logica.Usuario;
 
 public class GuiUsuarioNormal extends JFrame {
 	
@@ -40,9 +40,10 @@ public class GuiUsuarioNormal extends JFrame {
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
-	private JButton volver;
+	private JButton volver; //incio
 	private JButton modificarUsuario;	
 	private JButton consultaAvanzada;
+	private JButton logout;
 	
 
 	
@@ -52,17 +53,6 @@ public class GuiUsuarioNormal extends JFrame {
 	// ventana y son escuchados.
 	private Manejador manejador;
 
-
-	// Panel donde se pone la imagen inicial
-	private JPanel panelTitulo;
-
-	// Imagen que se muestra en la pantalla inicial
-	private JLabel etiquetaImagen;
-	private ImageIcon icono;
-	private JLabel titulo;
-	
-	
-	
 	private JPanel panelConsultaBasica;
 	private JLabel etiquetaConsulta;
 	private JTextField campoConsulta;
@@ -77,15 +67,19 @@ public class GuiUsuarioNormal extends JFrame {
 	private JMenuItem salir;
 	private JMenuItem informacion;
 	private JMenuBar barra;
+	private Usuario usuario;
 
 	// Elementos del panel consulta basica
 	
 	private GuiRegistroModificar panelModificacion;
 	
 	
-	public GuiUsuarioNormal(){
+	public GuiUsuarioNormal(Usuario usuario){
+		
+	
 		
 		super("::: Sistema de Biblioteca Digital :::");	
+		this.usuario = usuario;
 
 		manejador = new Manejador();	
 		
@@ -108,12 +102,7 @@ public class GuiUsuarioNormal extends JFrame {
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
 		
-					
-		
-		
-		
-
-		panelModificacion = new GuiRegistroModificar();
+		panelModificacion = new GuiRegistroModificar(usuario,0);
 	
 		
 		
@@ -154,12 +143,15 @@ public class GuiUsuarioNormal extends JFrame {
 		modificarUsuario.addActionListener(manejador);			
 		consultaAvanzada = new JButton("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
+		logout = new JButton("Salir");
+		logout.addActionListener(manejador);
 					
 
 		// Se agregan los elementos al panel de opciones del administrador.
 		panelOpcionesGenerales.add(volver);
 		panelOpcionesGenerales.add(modificarUsuario);
 		panelOpcionesGenerales.add(consultaAvanzada);
+		panelOpcionesGenerales.add(logout);
 		
 	
 
@@ -167,18 +159,7 @@ public class GuiUsuarioNormal extends JFrame {
 		// se
 		// carga el programa.
 		
-	
-		
-		panelTitulo = new JPanel(new GridLayout(1, 1,5,5));
-		//icono = new ImageIcon("recursos/LogoPequeno.png");
-		
-		//etiquetaImagen = new JLabel(icono,JLabel.CENTER);
-		//panelTitulo.add(etiquetaImagen);
-		titulo = new JLabel("Biblioteca Digital Eisc",JLabel.CENTER);
-		//panelTitulo.add(titulo);
-		
 
-		//contenedorConsultaBasica = new JPanel(new FlowLayout());
 		// Elementos del panel nuevo usuario.
 		panelConsultaBasica = new JPanel(new FlowLayout(1,60,40));
 
@@ -188,7 +169,7 @@ public class GuiUsuarioNormal extends JFrame {
 		campoConsulta.setFont(fontLabels);
 		panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
 		
-		consultar = new JButton("Consular");
+		consultar = new JButton("Consultar");
 		consultar.addActionListener(manejador);
 		limpiarCampoConsulta = new JButton("Limpiar Campo");
 		limpiarCampoConsulta.addActionListener(manejador);
@@ -216,22 +197,21 @@ public class GuiUsuarioNormal extends JFrame {
 		setVisible(true);
 
 	}
-
-	public class Manejador implements ActionListener{		
+	
+	public class Manejador implements ActionListener
+	{		
 		@Override
-		public void actionPerformed(ActionEvent evento) {
+		public void actionPerformed(ActionEvent evento)
+		{
 
-			if (evento.getSource() == modificarUsuario) {
-				
-			
-				
-				if (estado.getText().equals(estadoInicial)){
-				
+			if (evento.getSource() == modificarUsuario)
+			{			
+				if (estado.getText().equals(estadoInicial))
+				{				
 					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
 					repaint();
-					
 					
 				}else if(estado.getText().equals(estadoConsultaAvanzada))
 				{		
@@ -240,14 +220,14 @@ public class GuiUsuarioNormal extends JFrame {
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
 					repaint();
-					
+				
 				}
 
-				
 			}else if(evento.getSource() == volver)
 			{
 				
-				if (estado.getText().equals(estadoModificacion)) {
+				if (estado.getText().equals(estadoModificacion))
+				{
 					contenedor.remove(panelModificacion);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
@@ -255,7 +235,6 @@ public class GuiUsuarioNormal extends JFrame {
 				}
 				else if(estado.getText().equals(estadoConsultaAvanzada))
 				{
-					
 					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
@@ -267,7 +246,8 @@ public class GuiUsuarioNormal extends JFrame {
 			else if(evento.getSource() == consultaAvanzada)
 			{
 				
-				if (estado.getText().equals(estadoModificacion)) {
+				if (estado.getText().equals(estadoModificacion))
+				{
 				
 					contenedor.remove(panelModificacion);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
@@ -285,23 +265,18 @@ public class GuiUsuarioNormal extends JFrame {
 					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 			}
+			else if(evento.getSource() == logout)
+			{
 
-			
-
-			
-
-			
-
+				new GuiPrincipal();
+				dispose();
+			}
 		}
-
-		
-
-
 	}
 
 
 
-	public static void main(String args[]) {
+/*	public static void main(String args[]) {
 
 		try
 		{	
@@ -313,7 +288,7 @@ public class GuiUsuarioNormal extends JFrame {
 	
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	}
+	}*/
 
 
 

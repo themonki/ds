@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -30,8 +29,11 @@ import Usuarios.Gui.GuiRegistroModificar;
 public class GuiPrincipal extends JFrame {
 	
 
+	
+	
 		private static final long serialVersionUID = 1L;
 
+		
 	
 		// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 		private String estadoInicial = "Inicio";
@@ -44,7 +46,6 @@ public class GuiPrincipal extends JFrame {
 		private JButton volver;
 		private JButton crearUsuario;	
 		private JButton ingresarSistema;
-		private JButton logout;
 		private JButton consultaAvanzada;
 		
 	
@@ -54,16 +55,6 @@ public class GuiPrincipal extends JFrame {
 		// Clase interna que permite administrar todos los eventos que genera la
 		// ventana y son escuchados.
 		private Manejador manejador;
-
-
-		// Panel donde se pone la imagen inicial
-		private JPanel panelTitulo;
-
-		// Imagen que se muestra en la pantalla inicial
-		private JLabel etiquetaImagen;
-		private ImageIcon icono;
-		private JLabel titulo;
-		
 		
 		
 		private JPanel panelConsultaBasica;
@@ -117,7 +108,7 @@ public class GuiPrincipal extends JFrame {
 			
 
 			panelRegistro = new GuiRegistroModificar();
-			panelAutentificar = new GuiAutenticar();
+			panelAutentificar = new GuiAutenticar(this);
 			
 			
 			contenedor = getContentPane();
@@ -157,8 +148,6 @@ public class GuiPrincipal extends JFrame {
 			crearUsuario.addActionListener(manejador);			
 			ingresarSistema = new JButton("Ingresar");
 			ingresarSistema.addActionListener(manejador);
-			logout = new JButton("Logout");
-			logout.addActionListener(manejador);
 			consultaAvanzada = new JButton("Consulta Avanzada");
 			consultaAvanzada.addActionListener(manejador);			
 						
@@ -166,28 +155,17 @@ public class GuiPrincipal extends JFrame {
 			// Se agregan los elementos al panel de opciones del administrador.
 			panelOpcionesGenerales.add(volver);
 			panelOpcionesGenerales.add(crearUsuario);
-			panelOpcionesGenerales.add(ingresarSistema);			
 			panelOpcionesGenerales.add(consultaAvanzada);
-			panelOpcionesGenerales.add(logout);
+			panelOpcionesGenerales.add(ingresarSistema);			
+			
 			
 		
 
 			// Elementos del panel de inicio que se muestra en el centro apenas
 			// se
-			// carga el programa.
+			// carga el programa.			
 			
-		
 			
-			panelTitulo = new JPanel(new GridLayout(1, 1,5,5));
-			//icono = new ImageIcon("recursos/LogoPequeno.png");
-			
-			//etiquetaImagen = new JLabel(icono,JLabel.CENTER);
-			//panelTitulo.add(etiquetaImagen);
-			titulo = new JLabel("Biblioteca Digital Eisc",JLabel.CENTER);
-			//panelTitulo.add(titulo);
-			
-
-			//contenedorConsultaBasica = new JPanel(new FlowLayout());
 			// Elementos del panel nuevo usuario.
 			panelConsultaBasica = new JPanel(new FlowLayout(1,60,40));
 
@@ -197,7 +175,7 @@ public class GuiPrincipal extends JFrame {
 			campoConsulta.setFont(fontLabels);
 			panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
 			
-			consultar = new JButton("Consular");
+			consultar = new JButton("Consultar");
 			consultar.addActionListener(manejador);
 			limpiarCampoConsulta = new JButton("Limpiar Campo");
 			limpiarCampoConsulta.addActionListener(manejador);
@@ -207,8 +185,6 @@ public class GuiPrincipal extends JFrame {
 			panelConsultaBasica.add(etiquetaConsulta);
 			panelConsultaBasica.add(campoConsulta);
 			panelConsultaBasica.add(panelBotonesConsulta);
-			
-			
 			
 			estado = new JLabel(estadoInicial);
 
@@ -226,12 +202,16 @@ public class GuiPrincipal extends JFrame {
 
 		}
 
-		public class Manejador implements ActionListener{		
+		public class Manejador implements ActionListener
+		{		
 			@Override
-			public void actionPerformed(ActionEvent evento) {
+			public void actionPerformed(ActionEvent evento)
+			{
 
-				if (evento.getSource() == crearUsuario) {
-					if (estado.getText().equals(estadoInicial)) {
+				if (evento.getSource() == crearUsuario)
+				{
+					if (estado.getText().equals(estadoInicial))
+					{
 						contenedor.remove(panelConsultaBasica);
 						contenedor.add(panelRegistro, BorderLayout.CENTER);
 						estado.setText(estadoRegistro);
@@ -253,8 +233,6 @@ public class GuiPrincipal extends JFrame {
 						repaint();
 						
 					}
-
-					
 				}else if(evento.getSource() == volver)
 				{
 					
@@ -281,13 +259,12 @@ public class GuiPrincipal extends JFrame {
 						repaint();
 						
 					}
-					
-					
 				}
 				else if(evento.getSource() == ingresarSistema)
 				{
 					
-					if (estado.getText().equals(estadoRegistro)) {
+					if (estado.getText().equals(estadoRegistro))
+					{
 						contenedor.remove(panelRegistro);
 						contenedor.add(panelAutentificar, BorderLayout.CENTER);
 						estado.setText(estadoIngrensando);
@@ -337,20 +314,8 @@ public class GuiPrincipal extends JFrame {
 						JOptionPane.showMessageDialog(null,"En construccion");
 						
 					}
-				}
-				
-
-				
-
-				
-
-				
-
+				}	
 			}
-
-			
-
-
 		}
 
 	
@@ -369,6 +334,7 @@ public class GuiPrincipal extends JFrame {
 
 		}
 
+		
 	
 
 }

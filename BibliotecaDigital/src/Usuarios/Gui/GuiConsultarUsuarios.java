@@ -2,6 +2,7 @@ package Usuarios.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -29,6 +30,7 @@ import Usuarios.Logica.Usuario;
 
 public class GuiConsultarUsuarios extends JScrollPane{
 	
+	private static final long serialVersionUID = 1L;
 	JLabel login, nombre;
 	JTextField campoLogin, campoNombre;
 	JScrollPane scrolResultados, scrolUsuario;
@@ -131,27 +133,34 @@ public class GuiConsultarUsuarios extends JScrollPane{
 			if(e.getSource()== consultar){
 				
 				ControladorUsuario controlador = new ControladorUsuario();
-				Usuario usuarioEncontrado = controlador.consultarUsuario(login.getText());
-				usuariosVector = new Vector<Usuario>();
-				usuariosVector.add(usuarioEncontrado);
-				resultadoLista = new JList();
-				modeloLista = new DefaultListModel();
-				resultadoLista.setModel(modeloLista);
-				resultadoLista.addListSelectionListener(new ManejadorLista());
-				
-				for(int i=0;i<usuariosVector.size();i++){
+				Usuario usuarioEncontrado = controlador.consultarUsuario(campoLogin.getText());
+				if(usuarioEncontrado.getLogin() != null)
+				{	usuariosVector = new Vector<Usuario>();
+					usuariosVector.add(usuarioEncontrado);
+					resultadoLista = new JList();
+					modeloLista = new DefaultListModel();
+					resultadoLista.setModel(modeloLista);
+					resultadoLista.addListSelectionListener(new ManejadorLista());
+					resultadoLista.setPreferredSize(new Dimension(245,400));
 					
-					modeloLista.addElement(usuariosVector.elementAt(i));
-				}
-				
-				panelPrincipal.add(panelResultado, BorderLayout.CENTER);
-				panelPrincipal.updateUI();
-				
-				/*
-				//PARA CUANDO SE CREE LA LISTA RESULTADO.
-				scrolResultados = new JScrollPane(resultadoLista);
-				panelResultado.add(scrolResultados);*/
-				
+					for(int i=0;i<usuariosVector.size();i++){
+						
+						modeloLista.addElement(usuariosVector.elementAt(i));
+					}
+					
+					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
+					panelPrincipal.updateUI();
+					
+					
+					//PARA CUANDO SE CREE LA LISTA RESULTADO.
+					scrolResultados = new JScrollPane(resultadoLista);
+					panelResultado.add(scrolResultados);
+				}else{
+					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
+					panelPrincipal.updateUI();
+					panelResultado.add(new JLabel("No hay Resultados"));
+					
+				}	
 			}
 		}		
 	}
@@ -163,6 +172,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 			int usuarioElegido = resultadoLista.getSelectedIndex();
 			
 			scrolUsuario = new GuiRegistroModificar((Usuario) modeloLista.getElementAt(usuarioElegido), 2);
+			scrolUsuario.setPreferredSize(new Dimension(300,400));
 			panelPrincipal.remove(panelResultado);
 			panelPrincipal.add(panelResultado, BorderLayout.WEST);
 			panelPrincipal.add(scrolUsuario, BorderLayout.CENTER);
