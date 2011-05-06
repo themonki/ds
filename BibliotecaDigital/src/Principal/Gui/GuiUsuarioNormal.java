@@ -102,7 +102,7 @@ public class GuiUsuarioNormal extends JFrame {
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
 		
-		panelModificacion = new GuiRegistroModificar(usuario,0);
+		panelModificacion = new GuiRegistroModificar(usuario,1);
 	
 		
 		

@@ -539,18 +539,16 @@ public class GuiRegistroModificar extends JScrollPane{
 				fechaRegistroString = formatoFechaRegistro.format(fechaRegistro);
 				java.sql.Date fechaRegistroDate = java.sql.Date.valueOf(fechaRegistroString);
 				
-				
 				areasInteresUsuario = new Vector<AreaConocimiento>();
-				/*
+				
 				for(int i=0; i<areaConocimientoVector.size();i++){
 					areasInteresUsuario.addElement(
 							areasInteresVector.elementAt(
 									areasInteresArray.indexOf(
 											areaConocimientoVector.elementAt(i))));
-				}*/
+				}
 				
-				if(!(passwordString.equals(verPasswordString))){
-					
+				if(passwordString!=verPasswordString){
 					//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
@@ -562,9 +560,7 @@ public class GuiRegistroModificar extends JScrollPane{
 						respuestaSecretaString, generoString, fechaRegistroDate,
 						fechaNacimientoDate, "3", estado, areasInteresUsuario);
 				
-				System.out.println(usuarioModificar.toString());
 				ControladorUsuario controlador = new ControladorUsuario();
-				
 				controlador.insertarUsuario(usuarioModificar);
 				controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
 				
@@ -618,7 +614,7 @@ public class GuiRegistroModificar extends JScrollPane{
 
 					} //HOLA YERMI
 					
-					if(!(passwordString.equals(verPasswordString))){
+					if(passwordString!=verPasswordString){
 						//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
 						return;
 					}
