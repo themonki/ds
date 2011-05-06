@@ -168,9 +168,10 @@ public class GuiRegistroModificar extends JScrollPane{
 		for(int i=0;i<areasInteresVector.size()-1;i++){
 			areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre());
 		}
-		
-		//areasInteresArray = new String[1];
-		//areasInteresArray[0]="areas Uno";
+		/*String areasInteresArrayr[];
+		areasInteresArrayr = new String[2];
+		areasInteresArrayr[0]="areas Uno";
+		areasInteresArrayr[1]="areas Dos";*/
 		
 		
 		
@@ -467,6 +468,9 @@ public class GuiRegistroModificar extends JScrollPane{
 		}
 		
 		this.getViewport().add(panelDatos);
+		
+		//Inicializar vector de areas de interes usuario;
+		 areaConocimientoVector = new Vector<String>();
 
 	}
 
@@ -662,14 +666,17 @@ public class GuiRegistroModificar extends JScrollPane{
 	private class ManejadorComboBox implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
+			
 			if(e.getSource()== campoAreasInteres){
+				
 				if (areaConocimientoVector.indexOf(campoAreasInteres.getSelectedItem())==-1)
 				{
 					JLabel nuevaArea= new JLabel();
-					areaConocimientoVector.add((String) campoAreasInteres.getSelectedItem());			
-					nuevaArea.setText(" "+campoAreasInteres.getSelectedItem());				
+					areaConocimientoVector.add((String) campoAreasInteres.getSelectedItem());
+					nuevaArea.setText(""+campoAreasInteres.getSelectedItem());				
 					nuevaArea.addMouseListener(new ManejadorMouse());			
-					panelAreasInteres.add(nuevaArea);			
+					panelAreasInteres.add(nuevaArea);
+					
 					panelAreasInteres.updateUI();
 				}
 			}			
@@ -682,7 +689,6 @@ public class GuiRegistroModificar extends JScrollPane{
 				JLabel areaSeleccionada =(JLabel) e.getSource();
 				
 				int index = areaConocimientoVector.indexOf(areaSeleccionada.getText());
-				
 				areaConocimientoVector.remove(index);				
 				panelAreasInteres.remove(areaSeleccionada);					
 				panelAreasInteres.updateUI();
@@ -783,7 +789,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		
 	}
 	
-	/*public static void main (String args []){
+	public static void main (String args []){
 		
 		try
 		{	
@@ -798,7 +804,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		ventana.setVisible(true);
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-	}*/
+	}
 
 
 }
