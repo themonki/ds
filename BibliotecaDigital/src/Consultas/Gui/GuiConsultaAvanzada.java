@@ -1,5 +1,6 @@
 package Consultas.Gui;
 
-public class GuiConsultaAvanzada {
+public class GuiConsultaAvanzada
+{
 
 }

@@ -155,6 +155,8 @@ public class ControladorUsuario {
 		daoUsuario = null;
 		return usuarios;
 	}
+	
+
 	/*
 	 * public static void main(String args[]){ ControladorUsuario cu = new
 	 * ControladorUsuario(); Date fechaRegistro = Date.valueOf("6666-06-06");
