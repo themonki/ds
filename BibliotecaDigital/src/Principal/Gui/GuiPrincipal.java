@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import Usuarios.Gui.GuiAutenticar;
 import Usuarios.Gui.GuiRegistroModificar;
 
 public class GuiPrincipal extends JFrame {
@@ -32,7 +33,7 @@ public class GuiPrincipal extends JFrame {
 	
 		private String estadoInicial = "Inicio";
 		private String estadoRegistro = "RegistrandoUsuario";
-		private String estadoIngrensando = "Ingresando";
+		private String estadoIngrensando = "Autentificando";
 		
 
 		// Panel donde se colocan las opciones del administrador que siempre
@@ -80,6 +81,7 @@ public class GuiPrincipal extends JFrame {
 		// Elementos del panel consulta basica
 		
 		private GuiRegistroModificar panelRegistro;
+		private GuiAutenticar panelAutentificar;
 		
 		public GuiPrincipal(){
 			
@@ -95,7 +97,7 @@ public class GuiPrincipal extends JFrame {
 			
 			//-------------------------------Color letras----------------------------
 			
-			String tituloMuestra = "Sistema Biblioteca Digital";
+			String tituloMuestra = "::Sistema Biblioteca Digital::";
 			Color colorTitulo = new Color(0,50,0);
 			Color colorSubtitulo= new Color(0,50,10);
 			Color colorLabels= new Color(0,60,0);	
@@ -114,6 +116,7 @@ public class GuiPrincipal extends JFrame {
 			
 
 			panelRegistro = new GuiRegistroModificar();
+			panelAutentificar = new GuiAutenticar();
 			contenedor = getContentPane();
 			contenedor.setLayout(new BorderLayout());
 			((JComponent) contenedor).setBorder(borde);
@@ -178,6 +181,7 @@ public class GuiPrincipal extends JFrame {
 
 			campoConsulta = new JTextField(20);
 			panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
+			
 			consultar = new JButton("Consular");
 			consultar.addActionListener(manejador);
 			limpiarCampoConsulta = new JButton("Limpiar Campo");
@@ -187,7 +191,7 @@ public class GuiPrincipal extends JFrame {
 			panelBotonesConsulta.add(limpiarCampoConsulta);
 			
 			panelConsultaBasica.add(campoConsulta);
-		
+			panelConsultaBasica.add(panelBotonesConsulta);
 			
 			
 			estado = new JLabel(estadoInicial);
@@ -214,6 +218,14 @@ public class GuiPrincipal extends JFrame {
 						contenedor.add(panelRegistro, BorderLayout.CENTER);
 						estado.setText(estadoRegistro);
 						repaint();
+					}else if(estado.getText().equals(estadoIngrensando))
+					{
+						
+						contenedor.remove(panelAutentificar);
+						contenedor.add(panelRegistro, BorderLayout.CENTER);
+						estado.setText(estadoRegistro);
+						repaint();
+						
 					}
 
 					
@@ -226,7 +238,34 @@ public class GuiPrincipal extends JFrame {
 						estado.setText(estadoInicial);
 						repaint();
 					}
+					else if(estado.getText().equals(estadoIngrensando))
+					{
+						
+						contenedor.remove(panelAutentificar);
+						contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+						estado.setText(estadoInicial);
+						repaint();
+						
+					}
 					
+				}
+				else if(evento.getSource() == ingresarSistema)
+				{
+					
+					if (estado.getText().equals(estadoRegistro)) {
+						contenedor.remove(panelRegistro);
+						contenedor.add(panelAutentificar, BorderLayout.CENTER);
+						estado.setText(estadoIngrensando);
+						repaint();
+					}else if(estado.getText().equals(estadoInicial))
+					{
+						
+						contenedor.remove(panelConsultaBasica);
+						contenedor.add(panelAutentificar, BorderLayout.CENTER);
+						estado.setText(estadoIngrensando);
+						repaint();
+						
+					}
 				}
 
 				
