@@ -508,7 +508,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()== registrar){
-				
+				System.out.println("Entra y va a ingresar usuario");
 				String loginString, nombre1String, nombre2String, apellido1String, apellido2String,
 				       emailString, passwordString, verPasswordString, preguntaSecretaString, 
 				       respuestaSecretaString, nivelEscolaridadString, vinculoUnivalleString,
@@ -551,7 +551,7 @@ public class GuiRegistroModificar extends JScrollPane{
 											areaConocimientoVector.elementAt(i))));
 				}
 				
-				if(passwordString!=verPasswordString){
+				if(!(passwordString.equals(verPasswordString))){
 					//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
@@ -564,6 +564,7 @@ public class GuiRegistroModificar extends JScrollPane{
 						fechaNacimientoDate, "3", estado, areasInteresUsuario);
 				
 				ControladorUsuario controlador = new ControladorUsuario();
+				System.out.println("Entra y va a ingresar usuario");
 				controlador.insertarUsuario(usuarioModificar);
 				controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
 				
@@ -617,7 +618,7 @@ public class GuiRegistroModificar extends JScrollPane{
 
 					} 
 					
-					if(passwordString!=verPasswordString){
+					if(!(passwordString.equals(verPasswordString))){
 						//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
 						return;
 					}
