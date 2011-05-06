@@ -105,7 +105,7 @@ public class GuiCatalogador extends JFrame {
 		
 		// se instancias paneles adicionales
 		panelModificacion = new GuiRegistroModificar(usuario,1);
-		panelCatalogarModificar = new GuiCatalogarModificar();
+		panelCatalogarModificar = new GuiCatalogarModificar(usuario.getLogin());
 	
 		contenedor = getContentPane();
 		contenedor.setLayout(new BorderLayout(20,20));
