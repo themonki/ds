@@ -3,6 +3,7 @@ package Principal.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -22,6 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
+import com.nilo.plaf.nimrod.NimRODLookAndFeel;
+import com.nilo.plaf.nimrod.NimRODTheme;
 
 import Usuarios.Gui.GuiAutenticar;
 import Usuarios.Gui.GuiRegistroModificar;
@@ -96,7 +100,7 @@ public class GuiPrincipal extends JFrame {
 			
 			TitledBorder borde;
 			borde = BorderFactory.createTitledBorder(BorderFactory
-					.createLineBorder(Color.yellow), tituloMuestra);
+					.createLineBorder(Color.black), tituloMuestra);
 			borde.setTitleColor(colorTitulo);
 			borde.setTitleFont(fontTitulo);
 			borde.setTitleJustification(TitledBorder.CENTER);
@@ -140,7 +144,7 @@ public class GuiPrincipal extends JFrame {
 
 			// Se instancian todos los elementos que pertenecen al panel del
 			// administrador
-			panelOpcionesGenerales = new JPanel(new FlowLayout());
+			panelOpcionesGenerales = new JPanel(new GridLayout(8,1,10,20));
 
 			volver = new JButton("Inicio");
 			volver.addActionListener(manejador);
@@ -152,13 +156,17 @@ public class GuiPrincipal extends JFrame {
 			consultaAvanzada.addActionListener(manejador);			
 						
 
+			
+			//crearUsuario.setPreferredSize(new Dimension(10, 10));
 			// Se agregan los elementos al panel de opciones del administrador.
 			panelOpcionesGenerales.add(volver);
 			panelOpcionesGenerales.add(crearUsuario);
 			panelOpcionesGenerales.add(consultaAvanzada);
 			panelOpcionesGenerales.add(ingresarSistema);			
 			
-			
+			JPanel panelconOpciones2= new JPanel();
+			panelconOpciones2.add(panelOpcionesGenerales);
+			panelOpcionesGenerales.setBackground(new Color(250, 230,250));
 		
 
 			// Elementos del panel de inicio que se muestra en el centro apenas
@@ -171,7 +179,7 @@ public class GuiPrincipal extends JFrame {
 
 			etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
 			etiquetaConsulta.setFont(fontLabels);
-			campoConsulta = new JTextField(40);
+			campoConsulta = new JTextField(30);
 			campoConsulta.setFont(fontLabels);
 			panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
 			
@@ -188,16 +196,16 @@ public class GuiPrincipal extends JFrame {
 			
 			estado = new JLabel(estadoInicial);
 
-			contenedor.add(panelOpcionesGenerales, BorderLayout.NORTH);
+			contenedor.add(panelconOpciones2, BorderLayout.WEST);
 			contenedor.add(estado, BorderLayout.SOUTH);
 			contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-			contenedor.add(new JPanel(), BorderLayout.EAST);
-			contenedor.add(new JPanel(), BorderLayout.WEST);
+			//contenedor.add(new JPanel(), BorderLayout.EAST);
+			//contenedor.add(new JPanel(), BorderLayout.WEST);
 		
 
 			
 			
-			setSize(600, 500);
+			setSize(700, 500);
 			setVisible(true);
 
 		}
@@ -323,8 +331,23 @@ public class GuiPrincipal extends JFrame {
 		public static void main(String args[]) {
 
 			try
-			{	
-				UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
+			{				NimRODTheme nt = new NimRODTheme();
+			nt.setPrimary1( new Color(10,10,230));
+			nt.setPrimary2( new Color(110,110,150));
+			nt.setPrimary3( new Color(0,0,230));
+			//nt.setPrimary(new Color(100,100,100));
+			//nt.setSecondary(new Color(230, 220,250));
+			nt.setSecondary1(new Color(0,0,100));
+			nt.setSecondary2(new Color(0, 100,0));
+			nt.setSecondary3(new Color(250,250,250));
+			nt.setWhite(new Color(250, 230,250));
+			
+			
+
+			NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
+			NimRODLF.setCurrentTheme( nt);
+			UIManager.setLookAndFeel( NimRODLF);
+				//UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
 			}
 			catch (Exception e){e.printStackTrace();}
 		
