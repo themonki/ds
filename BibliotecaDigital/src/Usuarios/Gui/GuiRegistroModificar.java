@@ -7,6 +7,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -14,10 +18,12 @@ import java.util.Vector;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -31,8 +37,10 @@ import javax.swing.SpinnerModel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
+import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
 
 
@@ -52,6 +60,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	
 	Vector<String> areaConocimientoVector;
 	Vector<AreaConocimiento> areasInteresVector;
+	Vector<AreaConocimiento> areasInteresUsuarioViejas;
 
 	int modo; // Indica si es modo registrar 0, modo modificar por usuario
 				// normal 1 o modo modificar por usuario administrador 2.
@@ -67,7 +76,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	String generoArray[] = { "M", "F" };
 	String perfilArray[] = { "Administrador", "Catalogador", "Usuario Normal" };
 	String estadoArray[] = { "Activo", "Desactivo" };
-	String areasInteresArray[];
+	Vector<String> areasInteresArray;
 	
 	//Estilos.
 	//-------------------------------fuentes letras-------------------------
@@ -86,6 +95,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	public GuiRegistroModificar(Usuario usuarioModificar, int modo){ 
 		this.modo=modo;
 		this.usuarioModificar= usuarioModificar;
+		this.areasInteresUsuarioViejas = this.usuarioModificar.getAreas();
 		initComponents();		
 	}
 	
@@ -110,8 +120,7 @@ public class GuiRegistroModificar extends JScrollPane{
 
 		// Linea y titulo del panel.
 		TitledBorder borde;
-		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.yellow), title);
+		borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.yellow), title);
 		borde.setTitleColor(colorTitulo);
 		borde.setTitleFont(fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -155,9 +164,9 @@ public class GuiRegistroModificar extends JScrollPane{
 		
 		//Construir areasInteresArray, con el vector areasInteresVector.
 		
-		areasInteresArray = new String [areasInteresVector.size()];
+		areasInteresArray = new Vector<String> (areasInteresVector.size());
 		for(int i=0;i<areasInteresVector.size()-1;i++){
-			areasInteresArray[i]= areasInteresVector.elementAt(i).getNombre();
+			areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre());
 		}
 		
 		//areasInteresArray = new String[1];
@@ -169,23 +178,33 @@ public class GuiRegistroModificar extends JScrollPane{
 		if(modo==0){//modo registro
 		
 			campoLoginTF = new JTextField(10);
+			campoLoginTF.addKeyListener(new ManejadorJTextField());
 			campoRespuestaSecreta = new JTextField(30);
+			campoRespuestaSecreta.addKeyListener(new ManejadorJTextField());
 			campoNombre1 = new JTextField(30);
+			campoNombre1.addKeyListener(new ManejadorJTextField());
 			campoNombre2 = new JTextField(30);
+			campoNombre2.addKeyListener(new ManejadorJTextField());
 			campoApellido1 = new JTextField(30);
+			campoApellido1.addKeyListener(new ManejadorJTextField());
 			campoApellido2 = new JTextField(30);
+			campoApellido2.addKeyListener(new ManejadorJTextField());
 			campoEmail = new JTextField(30);
+			campoEmail.addKeyListener(new ManejadorJTextField());
 			campoNivelEscolaridad = new JTextField(30);
+			campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
 
-			campoPassword = new JPasswordField(20);
-
-			campoVerificacionPassword = new JPasswordField(20);	
+			campoPassword = new JPasswordField(25);
+			campoPassword.addKeyListener(new ManejadorJTextField());
 			
+			campoVerificacionPassword = new JPasswordField(25);	
+			campoVerificacionPassword.addKeyListener(new ManejadorJTextField());
 			campoPreguntaSecreta= new JComboBox(preguntaSecretaArray);
 			campoGenero= new JComboBox(generoArray);
 			campoPerfil= new JComboBox(perfilArray);
 			campoEstado= new JComboBox(estadoArray);
 			campoAreasInteres= new JComboBox(areasInteresArray);
+			campoAreasInteres.addActionListener(new ManejadorComboBox());
 			campoVinculoUnivalle = new JComboBox(vinculoUnivalleArray);
 			
 			//Crear spinner para la fecha de nacimiento.
@@ -198,13 +217,6 @@ public class GuiRegistroModificar extends JScrollPane{
 			campoFechaNacimiento.setEditor(spinnerFecha);
 		    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
 
-			campoVerificacionPassword = new JPasswordField(20);
-
-			campoPreguntaSecreta = new JComboBox(preguntaSecretaArray);
-			campoGenero = new JComboBox(generoArray);
-			campoPerfil = new JComboBox(perfilArray);
-			campoEstado = new JComboBox(estadoArray);
-			campoAreasInteres = new JComboBox(areasInteresArray);
 
 		}
 		if (modo == 1) {// modo modificar usuario normal
@@ -212,17 +224,26 @@ public class GuiRegistroModificar extends JScrollPane{
 			campoLoginTF.setEditable(false);
 			campoRespuestaSecreta = new JTextField(usuarioModificar
 					.getRespuestaSecreta());
+			campoRespuestaSecreta.addKeyListener(new ManejadorJTextField());
 			campoNombre1 = new JTextField(usuarioModificar.getNombre1());
+			campoNombre1.addKeyListener(new ManejadorJTextField());
 			campoNombre2 = new JTextField(usuarioModificar.getNombre2());
+			campoNombre2.addKeyListener(new ManejadorJTextField());
 			campoApellido1 = new JTextField(usuarioModificar.getApellido1());
+			campoApellido1.addKeyListener(new ManejadorJTextField());
 			campoApellido2 = new JTextField(usuarioModificar.getApellido2());
+			campoApellido2.addKeyListener(new ManejadorJTextField());
 			campoEmail = new JTextField(usuarioModificar.getEmail());
+			campoEmail.addKeyListener(new ManejadorJTextField());
 			campoNivelEscolaridad = new JTextField(usuarioModificar
 					.getNivelEscolaridad());
+			campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
 
 			campoPassword = new JPasswordField(usuarioModificar.getContrasena());
+			campoPassword.addKeyListener(new ManejadorJTextField());
 			campoVerificacionPassword = new JPasswordField(usuarioModificar
 					.getContrasena());
+			campoVerificacionPassword.addKeyListener(new ManejadorJTextField());
 
 			campoPreguntaSecreta = new JComboBox(preguntaSecretaArray);
 			campoPreguntaSecreta.setSelectedItem(usuarioModificar
@@ -231,6 +252,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			campoGenero.setSelectedItem(usuarioModificar.getGenero());
 
 			campoAreasInteres= new JComboBox(areasInteresArray);
+			campoAreasInteres.addActionListener(new ManejadorComboBox());
 			campoVinculoUnivalle= new JComboBox(vinculoUnivalleArray);
 			campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
 			
@@ -243,10 +265,6 @@ public class GuiRegistroModificar extends JScrollPane{
 			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
 			campoFechaNacimiento.setEditor(spinnerFecha);
 		    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
-
-			campoAreasInteres = new JComboBox(areasInteresArray);
-
-
 		}
 		if (modo == 2) {// modo modificar usuario admin
 			campoLoginTF = new JTextField(usuarioModificar.getLogin());
@@ -279,7 +297,8 @@ public class GuiRegistroModificar extends JScrollPane{
 			campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
 			campoVinculoUnivalle.setEnabled(false);
 			campoPerfil= new JComboBox(perfilArray);
-			campoPerfil.setSelectedIndex(usuarioModificar.getTipo());
+			
+			campoPerfil.setSelectedItem(usuarioModificar.getTipo());
 			campoEstado= new JComboBox(estadoArray);
 			campoEstado.setSelectedIndex(usuarioModificar.getEstado()? 0: 1);
 			
@@ -422,8 +441,11 @@ public class GuiRegistroModificar extends JScrollPane{
 						
 		//Inicializar Botones segun modo.
 		registrar = new JButton("REGISTRAR");
+		registrar.addActionListener(new ManejadorBoton());
 		modificar = new JButton("MODIFICAR");
+		modificar.addActionListener(new ManejadorBoton());
 		cancelar = new JButton("CANCELAR");
+		cancelar.addActionListener(new ManejadorBoton());
 		 
 		filaPanelDatos++;
 		GridBagConstraints restriccionBotones = new GridBagConstraints();
@@ -483,9 +505,9 @@ public class GuiRegistroModificar extends JScrollPane{
 				String loginString, nombre1String, nombre2String, apellido1String, apellido2String,
 				       emailString, passwordString, verPasswordString, preguntaSecretaString, 
 				       respuestaSecretaString, nivelEscolaridadString, vinculoUnivalleString,
-				       generoString, fechaNacimientoString, fechaRegistroString;
+				       generoString, fechaNacimientoString, fechaRegistroString, perfilString;
 				Vector<AreaConocimiento> areasInteresUsuario;
-				int perfilUsuario = 3;
+				perfilString = "3";
 				boolean estado= true;
 				
 				//Obtener datos
@@ -522,24 +544,114 @@ public class GuiRegistroModificar extends JScrollPane{
 											areaConocimientoVector.elementAt(i))));
 				}
 				
+				if(passwordString!=verPasswordString){
+					//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				
 				//Crear usuario para introducirlo en la base de la biblioteca digital.
 				usuarioModificar = new Usuario(loginString,passwordString,nombre1String,
 						nombre2String, apellido1String, apellido2String, emailString,
 						nivelEscolaridadString, vinculoUnivalleString, preguntaSecretaString,
 						respuestaSecretaString, generoString, fechaRegistroDate,
-						fechaNacimientoDate, perfilUsuario, estado, areasInteresUsuario);
+						fechaNacimientoDate, "3", estado, areasInteresUsuario);
 				
-				
-				
+				ControladorUsuario controlador = new ControladorUsuario();
+				controlador.insertarUsuario(usuarioModificar);
+				controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
 				
 			}
 			if(e.getSource() == modificar){
 				if(modo==1){
+					String nombre1String, nombre2String, apellido1String, apellido2String,
+					emailString, passwordString, verPasswordString, preguntaSecretaString, 
+					respuestaSecretaString, nivelEscolaridadString, vinculoUnivalleString,
+					generoString, fechaNacimientoString, fechaRegistroString;
+					Vector<AreaConocimiento> areasInteresUsuario;
+
+					//Obtener datos
 					
+					nombre1String = campoNombre1.getText();
+					nombre2String = campoNombre2.getText();
+					apellido1String = campoApellido1.getText();
+					apellido2String = campoApellido2.getText();
+					emailString = campoEmail.getText();
+					passwordString = new String(campoPassword.getPassword());
+					verPasswordString = new String(campoVerificacionPassword.getPassword());
+					preguntaSecretaString = (String) campoPreguntaSecreta.getSelectedItem();
+					respuestaSecretaString = campoRespuestaSecreta.getText();
+					nivelEscolaridadString = campoNivelEscolaridad.getText();
+					vinculoUnivalleString = (String) campoVinculoUnivalle.getSelectedItem();
+					generoString = (String) campoGenero.getSelectedItem();
+
+					Date fecha= ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getModel().getDate();
+					SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
+					fechaNacimientoString = formatoFecha.format(fecha);
+					java.sql.Date fechaNacimientoDate = java.sql.Date.valueOf(fechaNacimientoString);
+
+					
+					areasInteresUsuario = areasInteresUsuarioViejas;
+					
+					for(int i=0; i<areasInteresUsuario.size();i++){
+						if(areaConocimientoVector.indexOf(
+								areasInteresUsuario.elementAt(i).getNombre()) == -1)
+						{
+							areasInteresUsuario.remove(i);
+						}
+					}
+
+					for(int i=0; i<areaConocimientoVector.size();i++){
+						if(areasInteresUsuario.indexOf(
+								areasInteresVector.elementAt(
+											areasInteresArray.indexOf(
+													areaConocimientoVector.elementAt(i)))) == -1 ){
+							areasInteresUsuario.addElement(areasInteresVector.elementAt(i));
+						}
+
+					}
+					
+					if(passwordString!=verPasswordString){
+						//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
+						return;
+					}
+
+					//se modifica usuario.
+					usuarioModificar.setNombre1(nombre1String);
+					usuarioModificar.setNombre2(nombre2String);
+					usuarioModificar.setApellido1(apellido1String);
+					usuarioModificar.setApellido2(apellido2String);
+					usuarioModificar.setEmail(emailString);
+					usuarioModificar.setContrasena(passwordString);
+					usuarioModificar.setPreguntaSecreta(preguntaSecretaString);
+					usuarioModificar.setRespuestaSecreta(respuestaSecretaString);
+					usuarioModificar.setVinculoUnivalle(vinculoUnivalleString);
+					usuarioModificar.setNivelEscolaridad(nivelEscolaridadString);
+					usuarioModificar.setGenero(generoString);
+					usuarioModificar.setAreas(areasInteresUsuario);
+					
+
+					ControladorUsuario controlador = new ControladorUsuario();
+					controlador.modificarUsuario(usuarioModificar);
+					//FALTA MODIFICAR AREAS USUARIIO.
 				}
 				if(modo==2){
 					
+					boolean estadoBool = campoEstado.getSelectedItem().equals("Activo")? true : false;
+					int perfilInt = campoPerfil.getSelectedIndex()+1;
+					String perfilString;
+					perfilString = Integer.toString(perfilInt);
+					
+					//modificar peril y estado al usuario
+					usuarioModificar.setTipo(perfilString);
+					usuarioModificar.setEstado(estadoBool);
+					ControladorUsuario controlador = new ControladorUsuario();
+					controlador.modificarUsuario(usuarioModificar);
+					
+					
 				}
+			}
+			if(e.getSource()== cancelar){
+				return;
 			}
 			
 		}
@@ -547,7 +659,131 @@ public class GuiRegistroModificar extends JScrollPane{
 	}
 
 	//Main, frame para ver scrollpane.
-	public static void main (String args []){
+	private class ManejadorComboBox implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()== campoAreasInteres){
+				if (areaConocimientoVector.indexOf(campoAreasInteres.getSelectedItem())==-1)
+				{
+					JLabel nuevaArea= new JLabel();
+					areaConocimientoVector.add((String) campoAreasInteres.getSelectedItem());			
+					nuevaArea.setText(" "+campoAreasInteres.getSelectedItem());				
+					nuevaArea.addMouseListener(new ManejadorMouse());			
+					panelAreasInteres.add(nuevaArea);			
+					panelAreasInteres.updateUI();
+				}
+			}			
+		}
+		
+		private class ManejadorMouse implements MouseListener{
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JLabel areaSeleccionada =(JLabel) e.getSource();
+				
+				int index = areaConocimientoVector.indexOf(areaSeleccionada.getText());
+				
+				areaConocimientoVector.remove(index);				
+				panelAreasInteres.remove(areaSeleccionada);					
+				panelAreasInteres.updateUI();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				JLabel areaAEliminar=(JLabel) e.getSource();
+				areaAEliminar.setForeground(Color.red);
+				areaAEliminar.setIcon(new ImageIcon("recursos/CRUZ.gif"));
+				areaAEliminar.updateUI();				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				JLabel area=(JLabel) e.getSource();
+				area.setForeground(Color.black);
+				area.setIcon(new ImageIcon(""));				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		}
+		
+	}
+	
+	private class ManejadorJTextField implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			if( campoEmail == e.getSource()){
+				
+				if(campoEmail.getText().length()>49)
+				{
+					if(e.getKeyCode()!=e.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoEmail.setText(campoEmail.getText().substring(0,48));
+					}
+				}
+			}
+			
+			if(e.getSource()== campoPassword || e.getSource()== campoVerificacionPassword){
+				if(new String(campoPassword.getPassword()).length()>19)
+				{
+
+					if(e.getKeyCode()!=e.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoPassword.setText(new String(campoPassword.getPassword()).substring(0,19));
+					}
+				}
+				if(new String(campoVerificacionPassword.getPassword()).length()>19)
+				{
+
+					if(e.getKeyCode()!=e.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoVerificacionPassword.setText(new String(campoVerificacionPassword.getPassword()).substring(0,19));
+					}
+				}
+				
+			}
+			if(e.getSource()!= campoEmail & e.getSource()!= campoPassword & e.getSource()!= campoVerificacionPassword)
+			{
+				JTextField campo = (JTextField)e.getSource();
+				if(campo.getText().length()>campo.getColumns()-1)
+				{
+
+					if(e.getKeyCode()!=e.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campo.setText(campo.getText().substring(0,campo.getColumns()-1));
+					}
+
+				} 
+			}	
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	/*public static void main (String args []){
 		
 		try
 		{	
@@ -562,7 +798,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		ventana.setVisible(true);
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-	}
+	}*/
 
 
 }
