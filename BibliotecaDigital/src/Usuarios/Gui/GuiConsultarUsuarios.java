@@ -171,6 +171,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 			int usuarioElegido = resultadoLista.getSelectedIndex();
 			
 			scrolUsuario = new GuiRegistroModificar((Usuario) modeloLista.getElementAt(usuarioElegido), 2);
+			scrolUsuario.setPreferredSize(new Dimension(300,400));
 			panelPrincipal.remove(panelResultado);
 			panelPrincipal.add(panelResultado, BorderLayout.WEST);
 			panelPrincipal.add(scrolUsuario, BorderLayout.CENTER);
