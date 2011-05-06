@@ -1,5 +1,5 @@
 /*
- * Nombre: Cristian Rï¿½os.
+ * Nombre: Cristian Ríos.
  * Responsabilidad: Realizar la debida manipulacion de datos referentes a el area de conocimiento
  * entre la GUI y el controlado.
  * Nombre archivo: ControladorAreaConocimiento.java
@@ -13,9 +13,11 @@ import GestionDocumento.Dao.DaoAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 import java.util.Vector;
 
-public class ControladorAreaConocimiento {
+public class ControladorAreaConocimiento
+{
 	public int insertarAreaConocimiento(String id, String nombre,
-			String descripcion, String areaPadre) {
+			String descripcion, String areaPadre)
+	{
 		AreaConocimiento area = new AreaConocimiento(id, nombre, descripcion,
 				areaPadre);
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
