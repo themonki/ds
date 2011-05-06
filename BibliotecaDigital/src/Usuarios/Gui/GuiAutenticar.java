@@ -27,6 +27,9 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import Principal.Controlador.ControladorVentanaPrincipal;
+import Usuarios.Controlador.ControladorUsuario;
+
 public class GuiAutenticar extends JPanel
 {
 
@@ -141,9 +144,16 @@ public class GuiAutenticar extends JPanel
 	private class ManejadorBoton implements ActionListener
 	{
 		@Override
-		public void actionPerformed(ActionEvent e)
+		public void actionPerformed(ActionEvent evento)
 		{
-			// TODO Auto-generated method stub
+			if(evento.getSource() == botonAutenticar)
+			{
+				ControladorVentanaPrincipal controladorVentanaPrincipal = new ControladorVentanaPrincipal();
+				controladorVentanaPrincipal.verificarUsuario(campoNombre.getText(),new String(campoContrasena.getPassword()) );
+				
+				
+				
+			}
 			
 		}
 		
