@@ -18,12 +18,13 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import Usuarios.Gui.GuiAutenticar;
+
 import Usuarios.Gui.GuiRegistroModificar;
 
 public class GuiUsuarioNormal extends JFrame {
@@ -34,8 +35,8 @@ public class GuiUsuarioNormal extends JFrame {
 
 	// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 	private String estadoInicial = "Inicio";
-	private String estadoRegistro = "ModificandoUsuario";
-	private String estadoIngrensando = "Autentificando";		
+	private String estadoModificacion = "ModificandoUsuario";
+	private String estadoConsultaAvanzada = "ConsultaAvanzada";		
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
@@ -79,8 +80,8 @@ public class GuiUsuarioNormal extends JFrame {
 
 	// Elementos del panel consulta basica
 	
-	private GuiRegistroModificar panelRegistro;
-	private GuiAutenticar panelAutentificar;
+	private GuiRegistroModificar panelModificacion;
+	
 	
 	public GuiUsuarioNormal(){
 		
@@ -112,8 +113,8 @@ public class GuiUsuarioNormal extends JFrame {
 		
 		
 
-		panelRegistro = new GuiRegistroModificar();
-		panelAutentificar = new GuiAutenticar();
+		panelModificacion = new GuiRegistroModificar();
+	
 		
 		
 		contenedor = getContentPane();
@@ -151,7 +152,7 @@ public class GuiUsuarioNormal extends JFrame {
 		volver.addActionListener(manejador);
 		modificarUsuario = new JButton("Modificar Datos");
 		modificarUsuario.addActionListener(manejador);			
-		consultaAvanzada = new JButton("Ingresar");
+		consultaAvanzada = new JButton("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
 					
 
@@ -221,17 +222,23 @@ public class GuiUsuarioNormal extends JFrame {
 		public void actionPerformed(ActionEvent evento) {
 
 			if (evento.getSource() == modificarUsuario) {
-				if (estado.getText().equals(estadoInicial)) {
+				
+			
+				
+				if (estado.getText().equals(estadoInicial)){
+				
 					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelRegistro, BorderLayout.CENTER);
-					estado.setText(estadoRegistro);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
 					repaint();
-				}else if(estado.getText().equals(estadoIngrensando))
-				{
 					
-					contenedor.remove(panelAutentificar);
-					contenedor.add(panelRegistro, BorderLayout.CENTER);
-					estado.setText(estadoRegistro);
+					
+				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				{		
+					
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
 					repaint();
 					
 				}
@@ -240,16 +247,16 @@ public class GuiUsuarioNormal extends JFrame {
 			}else if(evento.getSource() == volver)
 			{
 				
-				if (estado.getText().equals(estadoRegistro)) {
-					contenedor.remove(panelRegistro);
+				if (estado.getText().equals(estadoModificacion)) {
+					contenedor.remove(panelModificacion);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
 					repaint();
 				}
-				else if(estado.getText().equals(estadoIngrensando))
+				else if(estado.getText().equals(estadoConsultaAvanzada))
 				{
 					
-					contenedor.remove(panelAutentificar);
+					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
 					repaint();
@@ -260,19 +267,22 @@ public class GuiUsuarioNormal extends JFrame {
 			else if(evento.getSource() == consultaAvanzada)
 			{
 				
-				if (estado.getText().equals(estadoRegistro)) {
-					contenedor.remove(panelRegistro);
-					contenedor.add(panelAutentificar, BorderLayout.CENTER);
-					estado.setText(estadoIngrensando);
+				if (estado.getText().equals(estadoModificacion)) {
+				
+					contenedor.remove(panelModificacion);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoConsultaAvanzada);
 					repaint();
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}else if(estado.getText().equals(estadoInicial))
 				{
 					
 					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelAutentificar, BorderLayout.CENTER);
-					estado.setText(estadoIngrensando);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoConsultaAvanzada);
 					repaint();
 					
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 			}
 
@@ -299,7 +309,7 @@ public class GuiUsuarioNormal extends JFrame {
 		}
 		catch (Exception e){e.printStackTrace();}
 	
-		GuiPrincipal a = new GuiPrincipal();
+		GuiUsuarioNormal a = new GuiUsuarioNormal();
 	
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
