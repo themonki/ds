@@ -361,10 +361,8 @@ public class DaoUsuario {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return -1;
-		
+		return -1;		
 	}
-
 	
 	public static void main(String args[])
 	{
