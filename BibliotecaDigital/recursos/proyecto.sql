@@ -1,3 +1,4 @@
+/*
 ﻿--script biblioteca digital
 --María Andrea Cruz Blandón código 0831816
 --Yerminson Doney Gonzalez Muñoz código 0843846
@@ -5,7 +6,7 @@
 --Luis Felipe Vargas Rojas
 --Edgar Andrés Moncada Taborda
 
-DROP TABLE Usuario CASCADE;
+*/DROP TABLE Usuario CASCADE;
 CREATE TABLE Usuario
 (
 	login VARCHAR(10),
