@@ -120,7 +120,7 @@ public class GuiAdministrador extends JFrame {
 		
 		
 		panelConsultarUsuarios = new GuiConsultarUsuarios(); 
-		//panelModificacion = new GuiRegistroModificar();
+		//panelModificacion = new GuiRegistroModificar(this.usuario,2);
 	
 		
 		
@@ -320,7 +320,7 @@ public class GuiAdministrador extends JFrame {
 			else if(evento.getSource()==modificarMiUsuario){
 				panelModificacion = new GuiRegistroModificar(usuario,1);
 				if (estado.getText().equals(estadoConsultaAvanzada)) {
-					contenedor.remove(panelConsultarUsuarios);
+					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
 					repaint();

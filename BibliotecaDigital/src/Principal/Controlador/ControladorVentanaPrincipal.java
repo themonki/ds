@@ -20,6 +20,7 @@ public class ControladorVentanaPrincipal {
 		Usuario usuario = controladorUsuario.consultarUsuario(login);
 		if(usuario.getNombre1() == null)
 		{
+			JOptionPane.showMessageDialog(null, "Login de usuario incorrecto");
 			GuiPrincipal guiPrincipal = new GuiPrincipal();
 			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
@@ -28,8 +29,8 @@ public class ControladorVentanaPrincipal {
 			System.out.println("entre password iguales");
 			if(usuario.getTipo().equals("1"))
 			{
-				//GuiAdministrador guiAdministrador = new GuiAdministrador(usuario);
-				//guiAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				GuiAdministrador guiAdministrador = new GuiAdministrador(usuario);
+				guiAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 			}else if(usuario.getTipo().equals("2"))
 			{
