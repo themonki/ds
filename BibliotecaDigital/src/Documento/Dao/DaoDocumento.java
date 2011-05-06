@@ -10,6 +10,7 @@ import java.util.Vector;
 
 import Utilidades.FachadaBD;
 import Documento.Logica.*;
+import GestionDocumento.Logica.AreaConocimiento;
 
 public class DaoDocumento {
 
@@ -162,7 +163,9 @@ public class DaoDocumento {
 		String sql_guardar;
 		int numFilas, cantidad = ids_area.size();
 		sql_guardar = "INSERT INTO Pertenece_Documento_Area_Conocimiento VALUES ";
-		
+		if(cantidad==0){
+			return 0;
+		}
 		for(int i = 0; i < cantidad; i++){			
 			if(i==cantidad-1){
 				sql_guardar+="('"+ ids_area.get(i) + "', '"+id_doc +"' )";
@@ -171,7 +174,6 @@ public class DaoDocumento {
 			}
 		}
 		sql_guardar += ";";
-
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -180,9 +182,9 @@ public class DaoDocumento {
 			conn.close();
 			return numFilas;
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println(e);			
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println(e);			
 		}
 		return -1;
 	}
@@ -191,6 +193,10 @@ public int guardarDocumentoPalabrasClave(String id_doc, Vector <String> ids_pala
 		String sql_guardar;
 		int numFilas, cantidad = ids_palabras.size();
 		sql_guardar = "INSERT INTO Tiene_Documento_Palabra_Clave VALUES ";
+		
+		if(cantidad==0){
+			return 0;
+		}
 		
 		for(int i = 0; i < cantidad; i++){			
 			if(i==cantidad-1){
@@ -209,9 +215,9 @@ public int guardarDocumentoPalabrasClave(String id_doc, Vector <String> ids_pala
 			conn.close();
 			return numFilas;
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println(e);			
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println(e);			
 		}
 		return -1;
 	}
@@ -221,7 +227,9 @@ public int guardarDocumentoAutores(String id_doc, Vector <String> ids_autores){
 	String sql_guardar;
 	int numFilas, cantidad = ids_autores.size();
 	sql_guardar = "INSERT INTO Escribe_Autor_Documento VALUES ";
-	
+	if(cantidad==0){
+		return 0;
+	}
 	for(int i = 0; i < cantidad; i++){			
 		if(i==cantidad-1){
 			sql_guardar+="('"+ ids_autores.get(i) + "', '"+id_doc +"' )";
@@ -246,4 +254,32 @@ public int guardarDocumentoAutores(String id_doc, Vector <String> ids_autores){
 	return -1;
 }
 
+public String obtenerLoginDocumento(){
+	String login="0";
+	String consulta_sql = "SELECT MAX(d.id_documento) FROM Documento d";
+	ResultSet resultado;
+	Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
+
+	try{
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();
+
+		resultado = sentencia.executeQuery(consulta_sql);
+		while (resultado.next()) {
+			login = resultado.getString(1);			
+			}
+		conn.close();
+
+	} catch (SQLException e) {
+		System.out.println(e);
+		
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+
+	return login;
+	
 }
+
+}
+
