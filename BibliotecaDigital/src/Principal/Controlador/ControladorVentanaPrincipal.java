@@ -20,6 +20,7 @@ public class ControladorVentanaPrincipal {
 		Usuario usuario = controladorUsuario.consultarUsuario(login);
 		if(usuario.getNombre1() == null)
 		{
+			JOptionPane.showMessageDialog(null, "Login de usuario incorrecto");
 			GuiPrincipal guiPrincipal = new GuiPrincipal();
 			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			

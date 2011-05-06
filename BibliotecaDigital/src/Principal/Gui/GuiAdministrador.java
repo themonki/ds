@@ -120,7 +120,7 @@ public class GuiAdministrador extends JFrame {
 		
 		
 		panelConsultarUsuarios = new GuiConsultarUsuarios(); 
-		//panelModificacion = new GuiRegistroModificar();
+		panelModificacion = new GuiRegistroModificar(this.usuario,2);
 	
 		
 		
