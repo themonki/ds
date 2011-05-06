@@ -801,6 +801,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		}
 		catch (Exception e){e.printStackTrace();}
 		
+		//Ventana para visualizar el jscrollpane
 		JFrame ventana;
 		ventana = new JFrame();
 		GuiRegistroModificar miPanel = new GuiRegistroModificar();
