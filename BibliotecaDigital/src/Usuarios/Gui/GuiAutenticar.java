@@ -146,16 +146,22 @@ public class GuiAutenticar extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent evento)
 		{
+
 			if(evento.getSource() == botonAutenticar)
 			{
 				ControladorVentanaPrincipal controladorVentanaPrincipal = new ControladorVentanaPrincipal();
-				controladorVentanaPrincipal.verificarUsuario(campoNombre.getText(),new String(campoContrasena.getPassword()) );
-				
+				controladorVentanaPrincipal.verificarUsuario(campoNombre.getText(),new String(campoContrasena.getPassword()));
 				
 				
 			}
 			
 		}
+				
+				
+
+			
+			
+		
 		
 	}
 	
