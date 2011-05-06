@@ -3,6 +3,7 @@ package Principal.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -31,18 +32,13 @@ public class GuiPrincipal extends JFrame {
 		private static final long serialVersionUID = 1L;
 
 	
+		// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 		private String estadoInicial = "Inicio";
 		private String estadoRegistro = "RegistrandoUsuario";
-		private String estadoIngrensando = "Autentificando";
-		
+		private String estadoIngrensando = "Autentificando";		
 
-		// Panel donde se colocan las opciones del administrador que siempre
-		// esta
-		// visible
-		private JPanel panelOpcionesGenerales;
-
-		// Botones que muestran las operaciones que puede realizar el
-		// administrador
+		// Opciones basicas para un usuario
+		private JPanel panelOpcionesGenerales;		
 		private JButton volver;
 		private JButton crearUsuario;	
 		private JButton ingresarSistema;
@@ -57,14 +53,17 @@ public class GuiPrincipal extends JFrame {
 
 
 		// Panel donde se pone la imagen inicial
-		//private JPanel panelTitulo;
+		private JPanel panelTitulo;
 
 		// Imagen que se muestra en la pantalla inicial
 		private JLabel etiquetaImagen;
 		private ImageIcon icono;
 		private JLabel titulo;
 		
+		
+		
 		private JPanel panelConsultaBasica;
+		private JLabel etiquetaConsulta;
 		private JTextField campoConsulta;
 		private JPanel panelBotonesConsulta;
 		private JButton consultar;
@@ -91,16 +90,15 @@ public class GuiPrincipal extends JFrame {
 			
 			//Estilos.
 			//-------------------------------fuentes letras-------------------------
-			Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-			Font fontSubtitulos = new Font("Book Antiqua",Font.BOLD, 15);
+	
 			Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
+			Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
 			
 			//-------------------------------Color letras----------------------------
 			
 			String tituloMuestra = "::Sistema Biblioteca Digital::";
 			Color colorTitulo = new Color(0,50,0);
-			Color colorSubtitulo= new Color(0,50,10);
-			Color colorLabels= new Color(0,60,0);	
+			
 			TitledBorder borde;
 			borde = BorderFactory.createTitledBorder(BorderFactory
 					.createLineBorder(Color.yellow), tituloMuestra);
@@ -109,16 +107,17 @@ public class GuiPrincipal extends JFrame {
 			borde.setTitleJustification(TitledBorder.CENTER);
 			
 			
-			super.setIconImage(new ImageIcon("/recursos/LOGO.png").getImage());
-			
+						
 			
 			
 			
 
 			panelRegistro = new GuiRegistroModificar();
 			panelAutentificar = new GuiAutenticar();
+			
+			
 			contenedor = getContentPane();
-			contenedor.setLayout(new BorderLayout());
+			contenedor.setLayout(new BorderLayout(20,20));
 			((JComponent) contenedor).setBorder(borde);
 			
 			// Se instancian todos los elementos de la barra del menu.
@@ -146,7 +145,7 @@ public class GuiPrincipal extends JFrame {
 
 			// Se instancian todos los elementos que pertenecen al panel del
 			// administrador
-			panelOpcionesGenerales = new JPanel(new GridLayout(3, 1, 5, 5));
+			panelOpcionesGenerales = new JPanel(new FlowLayout());
 
 			volver = new JButton("Inicio");
 			volver.addActionListener(manejador);
@@ -167,7 +166,9 @@ public class GuiPrincipal extends JFrame {
 			// se
 			// carga el programa.
 			
-			//panelTitulo = new JPanel(new GridLayout(1, 2,5,5));
+		
+			
+			panelTitulo = new JPanel(new GridLayout(1, 1,5,5));
 			//icono = new ImageIcon("recursos/LogoPequeno.png");
 			
 			//etiquetaImagen = new JLabel(icono,JLabel.CENTER);
@@ -176,10 +177,14 @@ public class GuiPrincipal extends JFrame {
 			//panelTitulo.add(titulo);
 			
 
+			//contenedorConsultaBasica = new JPanel(new FlowLayout());
 			// Elementos del panel nuevo usuario.
-			panelConsultaBasica = new JPanel(new GridLayout(2, 1, 5, 5));
+			panelConsultaBasica = new JPanel(new FlowLayout(1,60,40));
 
-			campoConsulta = new JTextField(20);
+			etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
+			etiquetaConsulta.setFont(fontLabels);
+			campoConsulta = new JTextField(60);
+			campoConsulta.setFont(fontLabels);
 			panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
 			
 			consultar = new JButton("Consular");
@@ -189,17 +194,20 @@ public class GuiPrincipal extends JFrame {
 			
 			panelBotonesConsulta.add(consultar);
 			panelBotonesConsulta.add(limpiarCampoConsulta);
-			
+			panelConsultaBasica.add(etiquetaConsulta);
 			panelConsultaBasica.add(campoConsulta);
 			panelConsultaBasica.add(panelBotonesConsulta);
 			
 			
+			
 			estado = new JLabel(estadoInicial);
 
-			contenedor.add(panelOpcionesGenerales, BorderLayout.WEST);
+			contenedor.add(panelOpcionesGenerales, BorderLayout.NORTH);
 			contenedor.add(estado, BorderLayout.SOUTH);
-			//contenedor.add(panelTitulo, BorderLayout.NORTH);
 			contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+			contenedor.add(new JPanel(), BorderLayout.EAST);
+			contenedor.add(new JPanel(), BorderLayout.WEST);
+		
 
 			
 			
