@@ -1,5 +1,12 @@
 package Documento.Controlador;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Date;
 import java.util.Vector;
 import Documento.Dao.*;
@@ -175,6 +182,37 @@ public class ControladorDocumento {
 		this.insertarDocumentoPalabrasClave(palabras_ids, id_doc);
 		this.insertarDocumentoAutores(autores_ids, id_doc);
 		return 1;
+	}
+	//el path completo del archivo
+	public String copiarDocumento(String url){
+		String dir_exe = System.getProperty("user.dir");
+		File src = new File(url), carp_dest=  new File(dir_exe+"/repositorio/");
+		String nombre = src.getName();
+		File dst= new File(dir_exe+"/repositorio/"+nombre);
+		InputStream in;
+		OutputStream out;
+		carp_dest.mkdir();
+		try {
+			in = new FileInputStream(src);
+			out = new FileOutputStream(dst);
+			
+			 byte[] buf = new byte[1024]; 
+		        int len; 
+		        while ((len = in.read(buf)) > 0) { 
+		            out.write(buf, 0, len); 
+		        } 
+		        in.close(); 
+		        out.close();
+		        return dst.getAbsolutePath();
+		
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+		}
+		return "";
 	}
 	
 	  public static void main(String args[]){ 

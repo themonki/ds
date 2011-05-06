@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import  javax.swing.*;
+import java.io.File;
 
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
@@ -32,22 +33,23 @@ import GestionDocumento.Controlador.ControladorTipoMaterial;
 
 public class GuiCatalogarModificar extends JPanel{
 	
-
+	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
+	String derechosAutorDisponibles [] = {"Si", "No"};
 	private JPanel panel,panelFecha,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
-	tituloSecundario,traducido,editorial,derechosAutor,descripcion,indicacion,
-	palabrasClave,fechaPublicacion,areas;
+	tituloSecundario,/*traducido,*/editorial,derechosAutor,descripcion,indicacion,
+	palabrasClave,fechaPublicacion,areas, enlaceDoc;
 	
 	private JTextArea campoDescripcion;
 
 	private JComboBox campoPalabras,campoAutor,campoTipoMaterial,
-	campoTraducido,campoIdioma,campoDerechosAutor,campoAreas;
+	/*campoTraducido,*/campoIdioma,campoDerechosAutor,campoAreas;
 	  
-	private JTextField campoEditorial,campoNumeroIdentificacion,campoTituloSecundario,campoTituloPpal;
+	private JTextField campoEditorial,campoNumeroIdentificacion,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc;
 	
-	private JButton botonCatalogar,nuevaArea,nuevotipo,nuevoAutor,nuevoidioma,nuevapalabra;
+	private JButton botonCatalogar,nuevaArea,nuevotipo,nuevoAutor,nuevoidioma,nuevapalabra, examinarDoc;
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
 	SpinnerModel model;
@@ -252,8 +254,8 @@ public class GuiCatalogarModificar extends JPanel{
 		restriccionEtiquetas.gridy=4;
 		restriccionCampo.gridy = 4;
 		
-		panel2.add(traducido,restriccionEtiquetas);
-		panel2.add(campoTraducido,restriccionCampo);
+		//panel2.add(traducido,restriccionEtiquetas);
+		//panel2.add(campoTraducido,restriccionCampo);
 		
 		restriccionEtiquetas.gridy=5;
 		restriccionCampo.gridy = 5;
@@ -327,7 +329,18 @@ public class GuiCatalogarModificar extends JPanel{
 		restriccionCampo.gridy=12;
 
 		panel2.add(fechaPublicacion,restriccionEtiquetas);
-		panel2.add(panelFecha,restriccionCampo);	
+		panel2.add(panelFecha,restriccionCampo);
+		
+		restriccionEtiquetas.gridy=13;
+		restriccionCampo.gridy=13;
+		restriccionCampo.ipadx=370;
+		restriccionBotones.gridy=13;
+		restriccionBotones.ipadx=13;
+		restriccionBotones.gridx=2;
+
+		panel2.add(enlaceDoc,restriccionEtiquetas);	
+		panel2.add(campoEnlaceDoc,restriccionCampo);
+		panel2.add(examinarDoc, restriccionBotones);
 		
 		panel3.add(panel2);
 		
@@ -360,10 +373,13 @@ public class GuiCatalogarModificar extends JPanel{
 		add(panel4,BorderLayout.SOUTH);
 		//------------------------------------------
 		setVisible(true);
+		setSize(600,800 );
 		//-------------------------------------------
 	
 		
 	}
+
+	
 	
 	private void inicializarFormatos() {
 		formatosVector= new Vector<String>();
@@ -381,8 +397,10 @@ public class GuiCatalogarModificar extends JPanel{
 	    nuevotipo= new JButton("Crear Tipo");
 	    nuevoAutor = new JButton("Crear Autor");
 	    nuevapalabra= new JButton("Crear Palabra");
+	    examinarDoc= new JButton ("Examinar...");
 	    
 	    botonCatalogar.addActionListener(new ManejadorBoton());
+	    examinarDoc.addActionListener(new ManejadorBoton(this));
 	}
 
 	private void inicializarTexfield() { 
@@ -393,6 +411,7 @@ public class GuiCatalogarModificar extends JPanel{
 		campoDescripcion= new JTextArea(5,30);
 		campoResolucion= new JTextField(); 
 		campoSofware= new JTextField();
+		campoEnlaceDoc= new JTextField();	
 		
 	}
 
@@ -403,7 +422,7 @@ public class GuiCatalogarModificar extends JPanel{
 		tituloPrincipal= new JLabel(" Titulo Principal:  *",JLabel.LEFT);
 		idioma= new JLabel(" Idioma:  *",JLabel.LEFT);
 	    tituloSecundario= new JLabel(" Titulo Secundario:",JLabel.LEFT);
-	    traducido= new JLabel(" Traducido a :",JLabel.LEFT);
+	    //traducido= new JLabel(" Traducido a :",JLabel.LEFT);
 	    editorial= new JLabel(" Editorial:  ",JLabel.LEFT);
 	    derechosAutor= new JLabel(" Derechos De Autor:",JLabel.LEFT);
 	    descripcion= new JLabel(" Descripcion:   *",JLabel.CENTER);
@@ -414,7 +433,7 @@ public class GuiCatalogarModificar extends JPanel{
 	    areas= new JLabel("Areas :");
 	    softwareRecomendado= new JLabel("Software Para Edicion");
 	    resolucion= new JLabel("Resolucion");
-	   
+	    enlaceDoc = new JLabel("Path Documento");
  
 	    Color colorletras= new Color(0,60,0);
 	   
@@ -427,12 +446,13 @@ public class GuiCatalogarModificar extends JPanel{
 		tituloPrincipal.setFont(font1);
 		tituloSecundario.setFont(font1);
 		idioma.setFont(font1);
-		traducido.setFont(font1);
+		//traducido.setFont(font1);
 		editorial.setFont(font1);
 		derechosAutor.setFont(font1);
 		areas.setFont(font1);
 		fechaPublicacion.setFont(font1);
 		formato.setFont(font1);
+		enlaceDoc.setFont(font1);
 		
 
 		resolucion.setForeground(colorletras);
@@ -444,21 +464,22 @@ public class GuiCatalogarModificar extends JPanel{
 		tituloPrincipal.setForeground(colorletras);
 		tituloSecundario.setForeground(colorletras);
 		idioma.setForeground(colorletras);
-		traducido.setForeground(colorletras);
+		//traducido.setForeground(colorletras);
 		editorial.setForeground(colorletras);
 		derechosAutor.setForeground(colorletras);
 		areas.setForeground(colorletras);
 		fechaPublicacion.setForeground(colorletras);
 		formato.setForeground(colorletras);
+		enlaceDoc.setForeground(colorletras);
 	}
 
 	private void inicializarComboBox(Font font2) 
 	{
 		campoAreas= new JComboBox(areasVector);
 	    campoDescripcion= new JTextArea();
-	    campoTraducido= new JComboBox();
-	    campoIdioma= new JComboBox();
-	    campoDerechosAutor= new JComboBox();
+	    //campoTraducido= new JComboBox();
+	    campoIdioma= new JComboBox(idiomasDisponibles);
+	    campoDerechosAutor= new JComboBox(derechosAutorDisponibles);
 	    campoTipoMaterial= new JComboBox(tipoMaterialVec);
 	    campoAutor = new JComboBox(autoresVector);
 	    campoPalabras= new JComboBox(palabrasClaveVec);
@@ -468,7 +489,7 @@ public class GuiCatalogarModificar extends JPanel{
 		campoPalabras.setFont(font2);
 	    campoAreas.setFont(font2);
 	    campoDescripcion.setFont(font2);
-	    campoTraducido.setFont(font2);
+	    //campoTraducido.setFont(font2);
 	    campoIdioma.setFont(font2);
 	    campoDerechosAutor.setFont(font2);
 	    campoTipoMaterial.setFont(font2);
@@ -479,25 +500,26 @@ public class GuiCatalogarModificar extends JPanel{
 	    campoAutor.addActionListener(new ManejadorComboBox());
 	    campoPalabras.addActionListener(new ManejadorComboBox());    
 	    campoAreas.addActionListener(new ManejadorComboBox());
-	    
+	    	    
 	}
-
 
 	public static void main (String args []){
 		
 		try
-		{
-			
-			
+		{			
 			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-			
-		
+
 		}
 		catch (Exception e){e.printStackTrace();}
 		JFrame ventana= new JFrame() ;
 		ventana.setVisible(true);
-		ventana.setSize(500,500);
-		JScrollPane scroll= new JScrollPane();
+		int ancho = 1000, alto = 600;
+		
+		//centrar en la pantalla
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        ventana.setLocation((screenSize.width)/2-ancho/2,(screenSize.height)/2-alto/2);
+		//
+        JScrollPane scroll= new JScrollPane();
 		System.out.print("**********************************");
 		GuiCatalogarModificar ventana2;
 		ventana2 = new GuiCatalogarModificar();
@@ -505,7 +527,7 @@ public class GuiCatalogarModificar extends JPanel{
 		scroll.setViewportView(ventana2);
 		ventana.add(scroll);
 		ventana.repaint();
-		
+		ventana.setSize(ancho,alto);
 
 	}
 	
@@ -521,6 +543,8 @@ public class GuiCatalogarModificar extends JPanel{
 		//!campoFormato.getText()..getSelectedIndex()   &&
 		!campoDescripcion.getText().isEmpty()   
 	//	campoIdioma.getSelectedIndex()!= -1
+		&& !campoEnlaceDoc.getText().isEmpty()
+		&& campoEnlaceDoc.getText().length()<200
 		)
 			
 			return true;
@@ -530,11 +554,15 @@ public class GuiCatalogarModificar extends JPanel{
 	}
 	private class ManejadorBoton implements ActionListener 
 	{
-
+		private GuiCatalogarModificar p;
+		public ManejadorBoton(GuiCatalogarModificar p){
+			this.p = p;			
+		}
+		public ManejadorBoton(){}
 		
 		public void actionPerformed(ActionEvent event) 
 		{
-			
+			if(event.getSource()==botonCatalogar){
 			if(validacionDeDatos())	
 				System.out.println("yujuuuuuuu");
 			
@@ -542,7 +570,7 @@ public class GuiCatalogarModificar extends JPanel{
 			doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSofware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
 			doc.setTituloppal(campoTituloPpal.getText());
 			doc.setTitulo_secundario(campoTituloSecundario.getText());
-			doc.setIdioma((String ) campoIdioma.getSelectedItem());
+			doc.setIdioma((String) campoIdioma.getSelectedItem());
 			//doc.set
 			doc.setTipoMaterial((String)campoTipoMaterial.getSelectedItem());
 			doc.setEditorial(campoEditorial.getText());
@@ -557,10 +585,21 @@ public class GuiCatalogarModificar extends JPanel{
 			 doc.setFecha_creacion(java.sql.Date.valueOf(fes));
 			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes));
 			 doc.setCatalogadorLogin("444");// el login del catalogador
+			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
-				
-		
 			
+			
+			}//if getsource
+			
+			if(event.getSource()==examinarDoc){
+				JFileChooser manager = new JFileChooser();
+				 int returnVal = manager.showSaveDialog(p);
+				 if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
+						File file = manager.getSelectedFile();
+						String url = file.getAbsolutePath();						
+						campoEnlaceDoc.setText(url);
+				 }						
+			}			
 			
 		}
 
