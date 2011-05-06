@@ -305,6 +305,8 @@ public class DaoUsuario {
 				System.out.println("Registro: " + tabla.getDate("fecha_registro"));
 				System.out.println("Tipo: " + tabla.getString("tipo"));
 				System.out.println("Estado: " + tabla.getBoolean("estado"));
+				
+				usuario.setAreas(consultarUsuarioAreas(usuario.getLogin()));
 
 			}
 			this.fachada.cerrarConexion(conn);
