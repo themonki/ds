@@ -356,7 +356,10 @@ public class GuiRegistroModificar extends JScrollPane{
 		restriccionEtiqueta.gridy = filaPanelDatos;
 		restriccionCampo.gridy = filaPanelDatos;
 		panelDatos.add(fechaNacimiento,restriccionEtiqueta);
-		panelDatos.add(campoFechaNacimiento, restriccionCampo);
+		if(modo==1 | modo==0)
+			panelDatos.add(campoFechaNacimiento, restriccionCampo);
+		if(modo==2)
+			panelDatos.add(campoFechaNacimientoAdmin,restriccionCampo);
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy =filaPanelDatos;
 		restriccionCampo.gridy=filaPanelDatos;
@@ -541,13 +544,13 @@ public class GuiRegistroModificar extends JScrollPane{
 				
 				
 				areasInteresUsuario = new Vector<AreaConocimiento>();
-				/*
+				
 				for(int i=0; i<areaConocimientoVector.size();i++){
 					areasInteresUsuario.addElement(
 							areasInteresVector.elementAt(
 									areasInteresArray.indexOf(
 											areaConocimientoVector.elementAt(i))));
-				}*/
+				}
 				
 				if(!(passwordString.equals(verPasswordString))){
 					
@@ -616,7 +619,7 @@ public class GuiRegistroModificar extends JScrollPane{
 							areasInteresUsuario.addElement(areasInteresVector.elementAt(i));
 						}
 
-					} //HOLA YERMI
+					} 
 					
 					if(!(passwordString.equals(verPasswordString))){
 						//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
