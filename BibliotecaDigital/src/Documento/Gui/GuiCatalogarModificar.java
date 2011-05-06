@@ -411,7 +411,8 @@ public class GuiCatalogarModificar extends JPanel{
 		campoDescripcion= new JTextArea(5,30);
 		campoResolucion= new JTextField(); 
 		campoSofware= new JTextField();
-		campoEnlaceDoc= new JTextField();	
+		campoEnlaceDoc= new JTextField();
+		campoEnlaceDoc.setEditable(false);
 		
 	}
 
