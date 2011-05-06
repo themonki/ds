@@ -12,7 +12,7 @@ public class ControladorUsuario {
 	public int insertarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
-			String genero, String registro, String nacimiento, int tipo,
+			String genero, String registro, String nacimiento, String tipo,
 			boolean estado) {
 		Usuario u = new Usuario();
 
@@ -55,7 +55,7 @@ public class ControladorUsuario {
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
-			String genero, String registro, String nacimiento, int tipo,
+			String genero, String registro, String nacimiento, String tipo,
 			boolean estado) {
 		Usuario u = new Usuario();
 

@@ -203,7 +203,8 @@ public class DaoUsuario {
 			Statement sentencia = conn.createStatement();
 			ResultSet tabla = sentencia.executeQuery(sqlSelect);
 
-			while (tabla.next()) {
+			while (tabla.next())
+			{
 				Usuario usuario = new Usuario();
 
 				usuario.setLogin(tabla.getString("login"));
@@ -253,12 +254,75 @@ public class DaoUsuario {
 		}
 		return usuarios;
 	}
+	
+	public Usuario consultarUsuario(String login)
+	{
+		Usuario usuario = new Usuario();
+		String sqlSelect;
+		
+		sqlSelect = "SELECT * FROM Usuario WHERE Usuario.login = '" + login + "'";
+		
+		try {
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet tabla = sentencia.executeQuery(sqlSelect);
+
+			if(tabla.next())
+			{
+
+				usuario.setLogin(tabla.getString("login"));
+				usuario.setContrasena(tabla.getString("contrasena"));
+				usuario.setNombre1(tabla.getString("nombre1"));
+				usuario.setNombre2(tabla.getString("nombre2"));
+				usuario.setApellido1(tabla.getString("apellido1"));
+				usuario.setApellido2(tabla.getString("apellido2"));
+				usuario.setEmail(tabla.getString("email"));
+				usuario.setNivelEscolaridad(tabla.getString("nivel_escolaridad"));
+				usuario.setPreguntaSecreta(tabla.getString("pregunta_secreta"));
+				usuario.setRespuestaSecreta(tabla.getString("respuesta_secreta"));
+				usuario.setVinculoUnivalle(tabla.getString("vinculo_univalle"));
+				usuario.setGenero(tabla.getString("genero"));
+				usuario.setFechaNacimiento(tabla.getDate("fecha_nacimiento"));
+				usuario.setFechaRegistro(tabla.getDate("fecha_registro"));
+				usuario.setTipo(tabla.getString("tipo"));
+				usuario.setEstado(tabla.getBoolean("estado"));
+				
+				/*probando*/
+				System.out.println("Fecha: " + tabla.getDate("fecha_nacimiento"));
+				System.out.println("Login: " + tabla.getString("login"));
+				System.out.println("Contrasena: " + tabla.getString("contrasena"));
+				System.out.println("Nombre1: " + tabla.getString("nombre1"));
+				System.out.println("Nombre2: " + tabla.getString("nombre2"));
+				System.out.println("Apellido1: " + tabla.getString("apellido1"));
+				System.out.println("Apellido2: " + tabla.getString("apellido2"));
+				System.out.println("Email: " + tabla.getString("email"));
+				System.out.println("Escolaridad: " + tabla.getString("nivel_escolaridad"));
+				System.out.println("Pregunta: " + tabla.getString("pregunta_secreta"));
+				System.out.println("Respuesta: " + tabla.getString("respuesta_secreta"));
+				System.out.println("Vinculo: " + tabla.getString("vinculo_univalle"));
+				System.out.println("Genero: " + tabla.getString("genero"));
+				System.out.println("Nacimiento: " + tabla.getDate("fecha_nacimiento"));
+				System.out.println("Registro: " + tabla.getDate("fecha_registro"));
+				System.out.println("Tipo: " + tabla.getString("tipo"));
+				System.out.println("Estado: " + tabla.getBoolean("estado"));
+
+			}
+			this.fachada.cerrarConexion(conn);
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return usuario;
+	}
 
 	
 	public static void main(String args[])
 	{
 		DaoUsuario da = new DaoUsuario();
 		da.consultarUsuarios();
+		da.consultarUsuario("444");
 		
 	}
 }
