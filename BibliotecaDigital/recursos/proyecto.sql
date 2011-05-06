@@ -1,10 +1,12 @@
+﻿/*
 ﻿--script biblioteca digital
 --María Andrea Cruz Blandón código 0831816
 --Yerminson Doney Gonzalez Muñoz código 0843846
 --Cristian Leonardo Ríos López código 0814239
 --Luis Felipe Vargas Rojas
+--Edgar Andrés Moncada Taborda
 
-DROP TABLE Usuario CASCADE;
+*/DROP TABLE Usuario CASCADE;
 CREATE TABLE Usuario
 (
 	login VARCHAR(10),
@@ -198,3 +200,47 @@ CREATE TABLE Pertenece_Documento_Area_Conocimiento
   	CONSTRAINT idArea_fk FOREIGN KEY (id_area) REFERENCES Area_Conocimiento(id_area)
   	ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+
+-------------------------------------Insertar datos-------------------------------------------------
+--lo siguiente es un machetazo para poder insertar las demas areas sin alterar la tabla, me imagino que quedara entre nosotros xD
+
+--insertando areas
+INSERT INTO Area_Conocimiento(id_area,nombre,descripcion,area_padre) VALUES('','Super','','');
+INSERT INTO Area_Conocimiento(id_area,nombre,descripcion,area_padre) VALUES('1','Computacion centrada en la red','','');
+INSERT INTO Area_Conocimiento(id_area,nombre,descripcion,area_padre) VALUES('2','Construccion de Aplicaciones web','','1');
+INSERT INTO Area_Conocimiento VALUES ('3', 'Metodos Numericos Computacionales', '','');
+INSERT INTO Area_Conocimiento VALUES ('4', 'Modelos de Simulacion','','3');
+INSERT INTO Area_Conocimiento VALUES ('5', 'Investigacion de Operaciones','','3');
+INSERT INTO Area_Conocimiento VALUES ('6', 'Ingenieria de Software','','');
+INSERT INTO Area_Conocimiento VALUES ('7', 'Diseno de Software','','6');
+INSERT INTO Area_Conocimiento VALUES ('8', 'Gestion de Informacion','','');
+INSERT INTO Area_Conocimiento VALUES ('9', 'Hipermedia e Hipertexto','','8');
+
+--insertando autores
+INSERT INTO Autor (nombre, apellido, acronimo, email) VALUES('EDGAR','MONCADA','MONKI','MONKI@GMAIL.COM');
+INSERT INTO Autor (nombre, apellido, acronimo, email) VALUES('FELIPE','VARGAS','FELIPEX','FELIPEX@HOTMAIL.COM');
+INSERT INTO Autor VALUES (DEFAULT,'Lorazo','Perez','Lope','lorazo@loro.com');
+	
+--insertando palabras clave
+INSERT INTO Palabra_Clave (nombre, descripcion) VALUES('red','todo lo que tenga que ver con redes de computadoras');
+INSERT INTO Palabra_Clave VALUES('programacion','programacion de computadores');
+INSERT INTO Palabra_Clave VALUES('grafos','referente a teoria de grafos');
+
+--insertando tipos de material
+INSERT INTO TipoMaterial (tipo_nombre, descripcion) VALUES
+	('Libro','documento extenso creado por un especifico tema');
+INSERT INTO TipoMAterial VALUES('Articulo','documento pequeno creado por un especifico tema');
+INSERT INTO TipoMAterial VALUES('Memoria','biografia');
+INSERT INTO TipoMAterial VALUES('Trabajo de Grado','trabajo presentado para el grado por estudiantes de pregrado de ultimos semestres');
+INSERT INTO TipoMAterial VALUES('Tesis de Maestria','trabajo presentado para el grado por estudiantes de maestria de ultimos semestres');
+INSERT INTO TipoMAterial VALUES('Tesis de Doctorado','trabajo presentado para el grado por estudiantes de doctorado de ultimos semestres');
+INSERT INTO TipoMAterial VALUES('Material de Clase','diapositivas, talleres, ejercicios y documentos del profesor');
+
+--insertando usuarios
+INSERT INTO Usuario VALUES('444', 'contrasena', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'nivel', 'pregunta', 'respuesta', 'vinculo' ,'m', '777-07-07', '6666-06-06', '1', 't');
+INSERT INTO Usuario VALUES('clrl','clrl','cristian','leoanrdo','rios','lopez','dragonblanco452@gmail.com','tecnico','pregunta','respuesta','estudiante','m','1989-06-09','1989-06-09','1','t');
+
+--insertando documentos
+INSERT INTO Documento VALUES(DEFAULT, 'español', 'si', 'documento', 'adobe', '200','ninguno', 'pdf', 'Libro', 'librito', 'enlace no disponible', '1111-01-01', '2222-02-02', 'Libro', '444', '3333-03-03');
+INSERT INTO Documento VALUES(DEFAULT,'ingles','si','paraiso','writer','150','mas alla','doc','en el paraiso','lo mismo','sin enlace','2000-01-15','2002-02-20','Articulo','clrl','2010-06-07');

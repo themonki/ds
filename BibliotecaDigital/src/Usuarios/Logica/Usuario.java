@@ -129,7 +129,9 @@ public class Usuario {
 		return areasInteres;
 	}
 
-	public void setLogin(String value) {
+	public void setLogin(String value)
+	{
+		login = value;
 	}
 
 	public void setContrasena(String value) {
@@ -194,6 +196,12 @@ public class Usuario {
 
 	public void setAreas(Vector<AreaConocimiento> value) {
 		areasInteres = value;
+	}
+	
+	public String toString(){
+		String usuario;
+		usuario = login + " " + nombre1;
+		return usuario;
 	}
 
 }

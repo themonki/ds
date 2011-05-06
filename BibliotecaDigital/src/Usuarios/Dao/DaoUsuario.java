@@ -160,12 +160,12 @@ public class DaoUsuario {
 	 */
 	public Vector<AreaConocimiento> consultarUsuarioAreas(String login) {
 
-		String consulta_sql = "SELECT ac.id_area, ac.nombre FROM Area_Conocimiento ac"
-				+ "NATURAL JOIN Interesa_Usuario_Area_Conocimiento i"
-				+ "WHERE i.login = '" + login + "'";
+		String consulta_sql = "SELECT ac.id_area, ac.nombre FROM Area_Conocimiento ac "
+				+ "NATURAL JOIN Interesa_Usuario_Area_Conocimiento "
+				+ "WHERE login = '" + login + "';";
 		ResultSet resultado;
 		Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
-
+		//System.out.println(consulta_sql);
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -178,7 +178,7 @@ public class DaoUsuario {
 				area.setNombre(resultado.getString(1));
 				areas.add(area);
 			}
-
+			
 			conn.close();
 
 		} catch (SQLException e) {
@@ -242,6 +242,8 @@ public class DaoUsuario {
 				System.out.println("Registro: " + tabla.getDate("fecha_registro"));
 				System.out.println("Tipo: " + tabla.getString("tipo"));
 				System.out.println("Estado: " + tabla.getBoolean("estado"));
+				
+				usuario.setAreas(consultarUsuarioAreas(usuario.getLogin()));
 
 				usuarios.add(usuario);
 			}
@@ -287,7 +289,7 @@ public class DaoUsuario {
 				usuario.setTipo(tabla.getString("tipo"));
 				usuario.setEstado(tabla.getBoolean("estado"));
 				
-				/*probando*/
+				/*probando*//*
 				System.out.println("Fecha: " + tabla.getDate("fecha_nacimiento"));
 				System.out.println("Login: " + tabla.getString("login"));
 				System.out.println("Contrasena: " + tabla.getString("contrasena"));
@@ -305,6 +307,8 @@ public class DaoUsuario {
 				System.out.println("Registro: " + tabla.getDate("fecha_registro"));
 				System.out.println("Tipo: " + tabla.getString("tipo"));
 				System.out.println("Estado: " + tabla.getBoolean("estado"));
+				*/
+				usuario.setAreas(consultarUsuarioAreas(usuario.getLogin()));
 
 			}
 			this.fachada.cerrarConexion(conn);

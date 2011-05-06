@@ -133,12 +133,12 @@ public class GuiRegistroModificar extends JScrollPane{
 		nombre2 = inicializarLabel("Segundo nombre: ");
 		apellido1 = inicializarLabel("Primer apellido: ");
 		apellido2 = inicializarLabel("Segundo apellido: ");
-		genero = inicializarLabel("Género: ");
+		genero = inicializarLabel("GÃ©nero: ");
 		fechaNacimiento = inicializarLabel("Fecha de nacimiento: ");
 		email = inicializarLabel("email: ");
 		nivelEscolaridad = inicializarLabel("Nivel Escolaridad: ");
 		vinculoUnivalle = inicializarLabel("Vinculo con Univalle: ");
-		areasInteres = inicializarLabel("Areas de Interés: ");
+		areasInteres = inicializarLabel("Areas de InterÃ©s: ");
 
 		if (modo == 0 || modo == 1) {
 
@@ -314,7 +314,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		panelAreasInteres = new JPanel();
 		
 		TitledBorder bordeAreaInteres;
-		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.yellow),"Áreas de interés");
+		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.yellow),"Ã�reas de interÃ©s");
 		bordeAreaInteres.setTitleColor(colorSubtitulo);
 		bordeAreaInteres.setTitleFont(fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
@@ -330,9 +330,12 @@ public class GuiRegistroModificar extends JScrollPane{
 		panelDatos = new JPanel(new GridBagLayout());
 		GridBagConstraints restriccionEtiqueta = configurar(0,0,new Insets(2,14,2,2));
 		GridBagConstraints restriccionCampo = configurar(1,0,new Insets(2,40,2,2));
+		
+		restriccionCampo.ipady=0;
 		panelDatos.add(login, restriccionEtiqueta);
 		panelDatos.add(campoLoginTF,restriccionCampo);
 		filaPanelDatos++;
+	
 		restriccionEtiqueta.gridy =filaPanelDatos;
 		restriccionCampo.gridy=filaPanelDatos;
 		panelDatos.add(nombre1,restriccionEtiqueta);
@@ -356,7 +359,10 @@ public class GuiRegistroModificar extends JScrollPane{
 		restriccionEtiqueta.gridy = filaPanelDatos;
 		restriccionCampo.gridy = filaPanelDatos;
 		panelDatos.add(fechaNacimiento,restriccionEtiqueta);
-		panelDatos.add(campoFechaNacimiento, restriccionCampo);
+		if(modo==1 | modo==0)
+			panelDatos.add(campoFechaNacimiento, restriccionCampo);
+		if(modo==2)
+			panelDatos.add(campoFechaNacimientoAdmin,restriccionCampo);
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy =filaPanelDatos;
 		restriccionCampo.gridy=filaPanelDatos;
@@ -505,7 +511,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()== registrar){
-				
+				System.out.println("Entra y va a ingresar usuario");
 				String loginString, nombre1String, nombre2String, apellido1String, apellido2String,
 				       emailString, passwordString, verPasswordString, preguntaSecretaString, 
 				       respuestaSecretaString, nivelEscolaridadString, vinculoUnivalleString,
@@ -544,11 +550,11 @@ public class GuiRegistroModificar extends JScrollPane{
 				for(int i=0; i<areaConocimientoVector.size();i++){
 					areasInteresUsuario.addElement(
 							areasInteresVector.elementAt(
-									areasInteresVector.indexOf(
+									areasInteresArray.indexOf(
 											areaConocimientoVector.elementAt(i))));
 				}
 				
-				if(passwordString!=verPasswordString){
+				if(!(passwordString.equals(verPasswordString))){
 					//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
@@ -561,6 +567,7 @@ public class GuiRegistroModificar extends JScrollPane{
 						fechaNacimientoDate, "3", estado, areasInteresUsuario);
 				
 				ControladorUsuario controlador = new ControladorUsuario();
+				System.out.println("Entra y va a ingresar usuario");
 				controlador.insertarUsuario(usuarioModificar);
 				controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
 				
@@ -612,9 +619,9 @@ public class GuiRegistroModificar extends JScrollPane{
 							areasInteresUsuario.addElement(areasInteresVector.elementAt(i));
 						}
 
-					}
+					} 
 					
-					if(passwordString!=verPasswordString){
+					if(!(passwordString.equals(verPasswordString))){
 						//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
 						return;
 					}
@@ -797,6 +804,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		}
 		catch (Exception e){e.printStackTrace();}
 		
+		//Ventana para visualizar el jscrollpane
 		JFrame ventana;
 		ventana = new JFrame();
 		GuiRegistroModificar miPanel = new GuiRegistroModificar();

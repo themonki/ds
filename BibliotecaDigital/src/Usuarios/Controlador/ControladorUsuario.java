@@ -139,7 +139,7 @@ public class ControladorUsuario {
 		return value;
 	}
 	
-	/*añadico por cristian*/
+	/*aï¿½adico por cristian*/
 	/*metodo que dado un login retorna un obejto usuario asociado al login*/
 	public Usuario consultarUsuario(String login)
 	{
@@ -149,7 +149,7 @@ public class ControladorUsuario {
 		return usuario;
 	}
 	
-	/*añadido cristian*/
+	/*aï¿½adido cristian*/
 	/*metodo que retorna todos los usaurios*/
 	public Vector<Usuario> consultarUsuarios()
 	{
@@ -158,9 +158,12 @@ public class ControladorUsuario {
 		daoUsuario = null;
 		return usuarios;
 	}
-	/*
-	 * public static void main(String args[]){ ControladorUsuario cu = new
-	 * ControladorUsuario(); Date fechaRegistro = Date.valueOf("6666-06-06");
+	
+
+	
+	  public static void main(String args[])
+	  { ControladorUsuario cu = new ControladorUsuario();
+	 /* Date fechaRegistro = Date.valueOf("6666-06-06");
 	 * Date fechaNacimiento = Date.valueOf("7777-07-07"); AreaConocimiento area1
 	 * = new AreaConocimiento(); AreaConocimiento area2 = new
 	 * AreaConocimiento(); area1.setIdArea("1"); area2.setIdArea("2");
@@ -175,7 +178,8 @@ public class ControladorUsuario {
 	 * System.out.println("insertar areas interes");
 	 * cu.insertarUsuarioAreas(areasInteres, u);
 	 * 
-	 * 
-	 * } /*
-	 */
+	 **/
+	  //Usuario u = cu.consultarUsuario("clrl");
+	  //System.out.print(u.getNombre1());
+	 }
 }

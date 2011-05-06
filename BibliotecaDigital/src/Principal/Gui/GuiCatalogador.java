@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -18,16 +17,18 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import Principal.Gui.GuiPrincipal.Manejador;
-import Usuarios.Gui.GuiAutenticar;
-import Usuarios.Gui.GuiRegistroModificar;
 
-public class GuiCatalogador extends JFrame{
+import Documento.Gui.GuiCatalogarModificar;
+import Usuarios.Gui.GuiRegistroModificar;
+import Usuarios.Logica.Usuario;
+
+public class GuiCatalogador extends JFrame {
 	
 
 	private static final long serialVersionUID = 1L;
@@ -35,34 +36,26 @@ public class GuiCatalogador extends JFrame{
 
 	// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 	private String estadoInicial = "Inicio";
-	private String estadoRegistro = "RegistrandoUsuario";
-	private String estadoIngrensando = "Autentificando";		
+	private String estadoModificacion = "ModificandoUsuario";
+	private String estadoConsultaAvanzada = "ConsultaAvanzada";	
+	private String estadoCatalogando = "CatalogandoDocumento";
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
-	private JButton volver;
-	private JButton crearUsuario;	
-	private JButton ingresarSistema;
+	private JButton volver; //incio
+	private JButton modificarUsuario;	
+	private JButton consultaAvanzada;
+	private JButton logout;
+	private JButton catalogar;
 	
 
-	
 	private JLabel estado;
 
 	// Clase interna que permite administrar todos los eventos que genera la
 	// ventana y son escuchados.
 	private Manejador manejador;
-
-
-	// Panel donde se pone la imagen inicial
-	private JPanel panelTitulo;
-
-	// Imagen que se muestra en la pantalla inicial
-	private JLabel etiquetaImagen;
-	private ImageIcon icono;
-	private JLabel titulo;
 	
-	
-	
+	// Elementos del panel consulta basica
 	private JPanel panelConsultaBasica;
 	private JLabel etiquetaConsulta;
 	private JTextField campoConsulta;
@@ -78,15 +71,18 @@ public class GuiCatalogador extends JFrame{
 	private JMenuItem informacion;
 	private JMenuBar barra;
 
-	// Elementos del panel consulta basica
+	// otros paneles
+	private GuiRegistroModificar panelModificacion;
+	private GuiCatalogarModificar panelCatalogarModificar;
+	private Usuario usuario;
 	
-	//private GuiRegistroModificar panelRegistro;
-	private GuiAutenticar panelAutentificar;
 	
-	public GuiCatalogador(){
+	public GuiCatalogador(Usuario usuario)
+	{
 		
 		super("::: Sistema de Biblioteca Digital :::");	
 
+		this.usuario = usuario;
 		manejador = new Manejador();	
 		
 		//Estilos.
@@ -107,16 +103,10 @@ public class GuiCatalogador extends JFrame{
 		borde.setTitleFont(fontTitulo);
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
-		
-					
-		
-		
-		
-
-		//panelRegistro = new GuiRegistroModificar();
-		panelAutentificar = new GuiAutenticar();
-		
-		
+		// se instancias paneles adicionales
+		panelModificacion = new GuiRegistroModificar(usuario,1);
+		panelCatalogarModificar = new GuiCatalogarModificar(usuario.getLogin());
+	
 		contenedor = getContentPane();
 		contenedor.setLayout(new BorderLayout(20,20));
 		((JComponent) contenedor).setBorder(borde);
@@ -144,41 +134,30 @@ public class GuiCatalogador extends JFrame{
 		barra.add(acercaDe);
 		setJMenuBar(barra);
 
-		// Se instancian todos los elementos que pertenecen al panel del
-		// administrador
+		// Se instancian todos los elementos que pertenecen al panel de
+		// opciones de catalogador
 		panelOpcionesGenerales = new JPanel(new FlowLayout());
 
 		volver = new JButton("Inicio");
 		volver.addActionListener(manejador);
-		crearUsuario = new JButton("Registrarse");
-		crearUsuario.addActionListener(manejador);			
-		ingresarSistema = new JButton("Ingresar");
-		ingresarSistema.addActionListener(manejador);
+		modificarUsuario = new JButton("Modificar Datos");
+		modificarUsuario.addActionListener(manejador);			
+		consultaAvanzada = new JButton("Consulta Avanzada");
+		consultaAvanzada.addActionListener(manejador);
+		catalogar = new JButton("Catalogar Documento");
+		catalogar.addActionListener(manejador);
+		logout = new JButton("Salir");
+		logout.addActionListener(manejador);
 					
 
-		// Se agregan los elementos al panel de opciones del administrador.
+		// Se agregan los elementos al panel de opciones del catalogador.
 		panelOpcionesGenerales.add(volver);
-		panelOpcionesGenerales.add(crearUsuario);
-		panelOpcionesGenerales.add(ingresarSistema);
+		panelOpcionesGenerales.add(modificarUsuario);
+		panelOpcionesGenerales.add(consultaAvanzada);
+		panelOpcionesGenerales.add(catalogar);
+		panelOpcionesGenerales.add(logout);
 		
-	
-
-		// Elementos del panel de inicio que se muestra en el centro apenas
-		// se
-		// carga el programa.
 		
-	
-		
-		panelTitulo = new JPanel(new GridLayout(1, 1,5,5));
-		//icono = new ImageIcon("recursos/LogoPequeno.png");
-		
-		//etiquetaImagen = new JLabel(icono,JLabel.CENTER);
-		//panelTitulo.add(etiquetaImagen);
-		titulo = new JLabel("Biblioteca Digital Eisc",JLabel.CENTER);
-		//panelTitulo.add(titulo);
-		
-
-		//contenedorConsultaBasica = new JPanel(new FlowLayout());
 		// Elementos del panel nuevo usuario.
 		panelConsultaBasica = new JPanel(new FlowLayout(1,60,40));
 
@@ -188,7 +167,7 @@ public class GuiCatalogador extends JFrame{
 		campoConsulta.setFont(fontLabels);
 		panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
 		
-		consultar = new JButton("Consular");
+		consultar = new JButton("Consultar");
 		consultar.addActionListener(manejador);
 		limpiarCampoConsulta = new JButton("Limpiar Campo");
 		limpiarCampoConsulta.addActionListener(manejador);
@@ -200,6 +179,7 @@ public class GuiCatalogador extends JFrame{
 		panelConsultaBasica.add(panelBotonesConsulta);
 		
 		
+		panelModificacion = new GuiRegistroModificar(usuario,1);
 		
 		estado = new JLabel(estadoInicial);
 
@@ -210,79 +190,134 @@ public class GuiCatalogador extends JFrame{
 		contenedor.add(new JPanel(), BorderLayout.WEST);
 	
 
-		
-		
 		setSize(600, 320);
 		setVisible(true);
 
 	}
 
-	public class Manejador implements ActionListener{		
+	public class Manejador implements ActionListener
+	{		
 		@Override
-		public void actionPerformed(ActionEvent evento) {
+		public void actionPerformed(ActionEvent evento)
+		{
 
-			if (evento.getSource() == crearUsuario) {
-				/*if (estado.getText().equals(estadoInicial)) {
-				//	contenedor.remove(panelConsultaBasica);
-					//contenedor.add(panelRegistro, BorderLayout.CENTER);
-				//	estado.setText(estadoRegistro);
-					repaint();*/
-				}else if(estado.getText().equals(estadoIngrensando))
-				{
-					/*
-					//contenedor.remove(panelAutentificar);
-					//contenedor.add(panelRegistro, BorderLayout.CENTER);
-					//estado.setText(estadoRegistro);
+			if (evento.getSource() == modificarUsuario)
+			{			
+				if (estado.getText().equals(estadoInicial))
+				{				
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
 					repaint();
-					*/
+					
+				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				{		
+					
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
+					repaint();
+				
+				}else if(estado.getText().equals(estadoCatalogando))
+				{
+					contenedor.remove(panelCatalogarModificar);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
+					repaint();
 				}
 
-				
-			if(evento.getSource() == volver)
+			}else if(evento.getSource() == volver)
 			{
 				
-				if (estado.getText().equals(estadoRegistro)) {
-					/*contenedor.remove(panelRegistro);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
-					repaint();*/
-				}
-				else if(estado.getText().equals(estadoIngrensando))
+				if (estado.getText().equals(estadoModificacion))
 				{
-					
-					contenedor.remove(panelAutentificar);
+					contenedor.remove(panelModificacion);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
 					repaint();
-					
+				
+				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				{
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoInicial);
+					repaint();
+				
+				}else if(estado.getText().equals(estadoCatalogando))
+				{
+					contenedor.remove(panelCatalogarModificar);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoInicial);
+					repaint();
 				}
 				
 			}
-			else if(evento.getSource() == ingresarSistema)
+			else if(evento.getSource() == consultaAvanzada)
 			{
 				
-				if (estado.getText().equals(estadoRegistro)) {
-					/*contenedor.remove(panelRegistro);
-					contenedor.add(panelAutentificar, BorderLayout.CENTER);
-					estado.setText(estadoIngrensando);
-					repaint();*/
+				if (estado.getText().equals(estadoModificacion))
+				{
+					contenedor.remove(panelModificacion);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoConsultaAvanzada);
+					repaint();
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				
 				}else if(estado.getText().equals(estadoInicial))
 				{
 					
 					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelAutentificar, BorderLayout.CENTER);
-					estado.setText(estadoIngrensando);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoConsultaAvanzada);
 					repaint();
 					
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				
+				}else if(estado.getText().equals(estadoCatalogando))
+				{
+					contenedor.remove(panelCatalogarModificar);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoConsultaAvanzada);
+					repaint();
+					
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 			}
+			else if(evento.getSource() == catalogar)
+			{
+				if(estado.getText().equals(estadoInicial))
+				{
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelCatalogarModificar);
+					estado.setText(estadoCatalogando);
+					repaint();
+					
+				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				{
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelCatalogarModificar);
+					estado.setText(estadoCatalogando);
+					repaint();
+					
+				}else if(estado.getText().equals(estadoModificacion))
+				{
+					contenedor.remove(panelModificacion);
+					contenedor.add(panelCatalogarModificar);
+					estado.setText(estadoCatalogando);
+					repaint();
+				}
+				
+			}
+			else if(evento.getSource() == logout)
+			{
+				new GuiPrincipal();
+				dispose();
+			}
 		}
-
-		
 	}
 
 
-
+/*
 	public static void main(String args[]) {
 
 		try
@@ -291,10 +326,12 @@ public class GuiCatalogador extends JFrame{
 		}
 		catch (Exception e){e.printStackTrace();}
 	
-		GuiPrincipal a = new GuiPrincipal();
+		GuiCatalogador a = new GuiCatalogador();
 	
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	}
+	}*/
+
+
 
 }
