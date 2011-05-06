@@ -498,7 +498,7 @@ public class GuiCatalogarModificar extends JPanel{
 		ventana.setVisible(true);
 		ventana.setSize(500,500);
 		JScrollPane scroll= new JScrollPane();
-		
+		System.out.print("**********************************");
 		GuiCatalogarModificar ventana2;
 		ventana2 = new GuiCatalogarModificar();
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -556,7 +556,7 @@ public class GuiCatalogarModificar extends JPanel{
 			 doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
 			 doc.setFecha_creacion(java.sql.Date.valueOf(fes));
 			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes));
-				 
+			 doc.setCatalogadorLogin("444");// el login del catalogador
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
 				
 		
