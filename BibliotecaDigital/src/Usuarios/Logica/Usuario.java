@@ -195,5 +195,11 @@ public class Usuario {
 	public void setAreas(Vector<AreaConocimiento> value) {
 		areasInteres = value;
 	}
+	
+	public String toString(){
+		String usuario;
+		usuario = login + " " + nombre1;
+		return usuario;
+	}
 
 }
