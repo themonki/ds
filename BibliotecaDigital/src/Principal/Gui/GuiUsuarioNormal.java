@@ -273,7 +273,7 @@ public class GuiUsuarioNormal extends JFrame {
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoConsultaAvanzada);
 					repaint();
-					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}else if(estado.getText().equals(estadoInicial))
 				{
 					
@@ -282,7 +282,7 @@ public class GuiUsuarioNormal extends JFrame {
 					estado.setText(estadoConsultaAvanzada);
 					repaint();
 					
-					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 			}
 
