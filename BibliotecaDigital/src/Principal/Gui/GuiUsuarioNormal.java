@@ -25,6 +25,7 @@ import javax.swing.border.TitledBorder;
 
 
 import Usuarios.Gui.GuiRegistroModificar;
+import Usuarios.Logica.Usuario;
 
 public class GuiUsuarioNormal extends JFrame {
 	
@@ -66,15 +67,19 @@ public class GuiUsuarioNormal extends JFrame {
 	private JMenuItem salir;
 	private JMenuItem informacion;
 	private JMenuBar barra;
+	private Usuario usuario;
 
 	// Elementos del panel consulta basica
 	
 	private GuiRegistroModificar panelModificacion;
 	
 	
-	public GuiUsuarioNormal(){
+	public GuiUsuarioNormal(Usuario usuario){
+		
+	
 		
 		super("::: Sistema de Biblioteca Digital :::");	
+		this.usuario = usuario;
 
 		manejador = new Manejador();	
 		
@@ -97,7 +102,7 @@ public class GuiUsuarioNormal extends JFrame {
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
 		
-		panelModificacion = new GuiRegistroModificar();
+		panelModificacion = new GuiRegistroModificar(usuario,0);
 	
 		
 		
@@ -271,7 +276,7 @@ public class GuiUsuarioNormal extends JFrame {
 
 
 
-	public static void main(String args[]) {
+/*	public static void main(String args[]) {
 
 		try
 		{	
@@ -283,7 +288,7 @@ public class GuiUsuarioNormal extends JFrame {
 	
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	}
+	}*/
 
 
 

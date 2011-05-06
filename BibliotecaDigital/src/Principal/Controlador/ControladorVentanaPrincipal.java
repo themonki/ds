@@ -28,19 +28,19 @@ public class ControladorVentanaPrincipal {
 			System.out.println("entre password iguales");
 			if(usuario.getTipo().equals("1"))
 			{
-				GuiAdministrador guiAdministrador = new GuiAdministrador();
+				//GuiAdministrador guiAdministrador = new GuiAdministrador(usuario);
 				//guiAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 			}else if(usuario.getTipo().equals("2"))
 			{
-				GuiCatalogador guiCatalogador = new GuiCatalogador();
+				GuiCatalogador guiCatalogador = new GuiCatalogador(usuario);
 				guiCatalogador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 				
 			}else if(usuario.getTipo().equals("3"))
 			{
 				
-				GuiUsuarioNormal guiUsuarioNormal = new GuiUsuarioNormal();
+				GuiUsuarioNormal guiUsuarioNormal = new GuiUsuarioNormal(usuario);
 				guiUsuarioNormal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 			
