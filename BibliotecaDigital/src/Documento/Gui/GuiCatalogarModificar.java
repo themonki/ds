@@ -30,10 +30,10 @@ import GestionDocumento.Controlador.ControladorTipoMaterial;
 
 
 
-public class GuiCatalogarModificar extends JFrame{
+public class GuiCatalogarModificar extends JPanel{
 	
 
-	private JPanel panel,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
+	private JPanel panel,panelFecha,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
@@ -50,6 +50,10 @@ public class GuiCatalogarModificar extends JFrame{
 	private JButton botonCatalogar,nuevaArea,nuevotipo,nuevoAutor,nuevoidioma,nuevapalabra;
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
+	SpinnerModel model;
+	Date fecha;
+	JSpinner spinner;
+	JSpinner.DateEditor editor; 
 	
 	private Vector<String> palabrasClaveVec,areasVector,autoresVector,       
 	palabActualVec,areasActualVecr,autoresActualVector,AutorIdVector,AutorIdActualVector,AreasIdVector,AreasIdActualVector,
@@ -60,6 +64,7 @@ public class GuiCatalogarModificar extends JFrame{
 	ControladorAutor controladorAutor;
 	ControladorPalabraClave controladorpalabrasClave;
 	ControladorTipoMaterial controladorTipoMaterial;
+	ControladorDocumento controladorDocumento;
 	//-------------Objetos de la base de datos
 	Documento doc;
 	private JLabel formato;
@@ -76,7 +81,7 @@ public class GuiCatalogarModificar extends JFrame{
 	    controladorAutor= new ControladorAutor();
 		controladorpalabrasClave = new ControladorPalabraClave();
 		controladorTipoMaterial = new ControladorTipoMaterial() ;
-		
+		controladorDocumento= new ControladorDocumento();
 		initComponents();
 	}
 
@@ -84,7 +89,11 @@ public class GuiCatalogarModificar extends JFrame{
 		
 		//super.setTitle("Catalogar Documento");
 		//super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
-	    indicacion = new JLabel("   Catalogar Documento");
+		setBorder(BorderFactory.createTitledBorder(BorderFactory
+			    .createLineBorder(Color.yellow), "Catalogar Documento"));
+		
+		
+		//indicacion = new JLabel("   Catalogar Documento");
 	
 	   
 		//---------------vectores para los ComboBox------------------
@@ -139,7 +148,6 @@ public class GuiCatalogarModificar extends JFrame{
 		//-------------------------------fuentes letras-------------------------
 		Font font1 = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
 		Font font2 = new Font("Book Antiqua",Font.BOLD, 15);
-		Font font3 = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
 		
 		//----------------------------------------------------
 		inicializarLabels(font1);
@@ -151,34 +159,22 @@ public class GuiCatalogarModificar extends JFrame{
 		inicializarButton();
 		
 		///fechaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	    
-		        SpinnerModel model = new SpinnerDateModel();
-			    JSpinner spinner = new JSpinner(model);
-			    JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
+		        model = new SpinnerDateModel();
+			    spinner = new JSpinner(model);
+			    editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
 			   
 			    spinner.setEditor(editor);
 			    ((JSpinner.DateEditor) spinner.getEditor()).getTextField().setEditable(false);
 
 			    spinner.setFont(font2);
 			    
-			    JPanel panelFecha = new JPanel(new BorderLayout());
+			    panelFecha = new JPanel(new BorderLayout());
 			    panelFecha.add(spinner, BorderLayout.CENTER);
 			    		   
-			    /*Date fecha=  editor.getModel().getDate();
-			    SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-			    String fes= sdf.format(fecha);
-			    //add();
-			    */  
+			   
+			    
 
-	    //-----------labels locales-----------------------
-	    JLabel 
-		//autores= new JLabel("           Lista De Autores Actual.           ",JLabel.CENTER),
-		//palabrasC= new JLabel("         Palabras Clave Actuales.          "),
-		//areaPertenece= new JLabel("          Areas Actuales.              ");
-	    indicacion = new JLabel("   Catalogar Documento",JLabel.CENTER);
-		Color colorletras= new Color(0,50,10);
-	
-		indicacion.setForeground(new Color(0,50,0));
-		indicacion.setFont(font3);
+	    
 		
 		
 	    //-----------------------------ponerBordeaPanel----------	
@@ -245,7 +241,6 @@ public class GuiCatalogarModificar extends JFrame{
 		panel2.add(nuevoAutor,restriccionBotones);
 		
 			
-		
 		restriccionEtiquetas.gridy=3;
 		restriccionCampo.gridy = 3;
 		restriccionCampo.ipadx=90;
@@ -348,7 +343,7 @@ public class GuiCatalogarModificar extends JFrame{
 		panel4.add(panel,BorderLayout.SOUTH);
 		
 	
-		panel8.setLayout(new GridLayout(3,1));
+		
 		panelScrollAutores.setViewportView(panelConAutores);
 		panelScrollPalabras.setViewportView(panelConAreas);
 		panelScrollAreas.setViewportView(panelConpalabrasC);
@@ -357,19 +352,14 @@ public class GuiCatalogarModificar extends JFrame{
 		panel8.add(panelScrollAutores);
 		panel8.add(panelScrollPalabras);
 		panel8.add(panelScrollAreas);
-		
-		
 
 		
 		setLayout(new BorderLayout());
-		add(indicacion,BorderLayout.NORTH);	
 		add(panel8,BorderLayout.CENTER);
 		add(panel3,BorderLayout.WEST);		
 		add(panel4,BorderLayout.SOUTH);
 		//------------------------------------------
 		setVisible(true);
-		setResizable(true);
-		setSize(900,670);
 		//-------------------------------------------
 	
 		
@@ -444,7 +434,7 @@ public class GuiCatalogarModificar extends JFrame{
 		fechaPublicacion.setFont(font1);
 		formato.setFont(font1);
 		
-		indicacion.setFont(font1);
+
 		resolucion.setForeground(colorletras);
 		softwareRecomendado.setForeground(colorletras);
 		palabrasClave.setForeground(colorletras);
@@ -504,10 +494,17 @@ public class GuiCatalogarModificar extends JFrame{
 		
 		}
 		catch (Exception e){e.printStackTrace();}
-		
-		GuiCatalogarModificar ventana;
-		ventana = new GuiCatalogarModificar();
+		JFrame ventana= new JFrame() ;
+		ventana.setVisible(true);
+		ventana.setSize(500,500);
+		JScrollPane scroll= new JScrollPane();
+		System.out.print("**********************************");
+		GuiCatalogarModificar ventana2;
+		ventana2 = new GuiCatalogarModificar();
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		scroll.setViewportView(ventana2);
+		ventana.add(scroll);
+		ventana.repaint();
 		
 
 	}
@@ -540,7 +537,30 @@ public class GuiCatalogarModificar extends JFrame{
 			
 			if(validacionDeDatos())	
 				System.out.println("yujuuuuuuu");
-			//doc = new Documento(null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), softwareRecomendado, resolucion, editorial, formato, tituloPrincipal, tituloSecundario, null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), autores, areas, palabrasClave)
+			
+			
+			doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSofware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
+			doc.setTituloppal(campoTituloPpal.getText());
+			doc.setTitulo_secundario(campoTituloSecundario.getText());
+			doc.setIdioma((String ) campoIdioma.getSelectedItem());
+			//doc.set
+			doc.setTipoMaterial((String)campoTipoMaterial.getSelectedItem());
+			doc.setEditorial(campoEditorial.getText());
+			doc.setFormato((String) campoFormato.getSelectedItem());
+			doc.setSoftware_recomentado(campoSofware.getText());
+			//---------------------------------------
+			 fecha=  editor.getModel().getDate();
+			 SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");  
+			 String fes= sdf.format(fecha);
+			 System.out.println(java.sql.Date.valueOf(fes));
+			 doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
+			 doc.setFecha_creacion(java.sql.Date.valueOf(fes));
+			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes));
+			 doc.setCatalogadorLogin("444");// el login del catalogador
+			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
+				
+		
+			
 			
 		}
 

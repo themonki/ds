@@ -171,9 +171,9 @@ public class ControladorDocumento {
 		
 		String id_doc = d.getId_doc();
 		this.insertarDocumento(d);
-		this.insertarDocumentoAreas(areas_ids, id_doc);
-		this.insertarDocumentoPalabrasClave(palabras_ids, id_doc);
-		this.insertarDocumentoAutores(autores_ids, id_doc);
+		//this.insertarDocumentoAreas(areas_ids, id_doc);
+		//this.insertarDocumentoPalabrasClave(palabras_ids, id_doc);
+		//this.insertarDocumentoAutores(autores_ids, id_doc);
 		return 1;
 	}
 	
