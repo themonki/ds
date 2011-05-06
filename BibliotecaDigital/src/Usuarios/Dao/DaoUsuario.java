@@ -190,7 +190,7 @@ public class DaoUsuario {
 
 	}
 	
-	/*añadido por cristian*/
+	/*aï¿½adido por cristian*/
 	public Vector<Usuario> consultarUsuarios()
 	{
 		Vector<Usuario> usuarios = new Vector<Usuario>();
@@ -315,6 +315,61 @@ public class DaoUsuario {
 			e.printStackTrace();
 		}
 		return usuario;
+	}
+	
+	//inserta las areas una por una
+	public int insertarAreasModificadas(String login, Vector <AreaConocimiento> areasNuevas){
+		
+		String sql_agregar="", sql_guardar;
+		int cantidad = areasNuevas.size();
+		sql_guardar = "INSERT INTO Interesa_Usuario_Area_Conocimiento VALUES ";
+		
+		for(int i = 0; i < cantidad; i++){
+			sql_agregar+="('"+ login + "', '"+areasNuevas.get(i).getIdArea() +"' );";
+			
+			try {
+				Connection conn = fachada.conectar();
+				Statement sentencia = conn.createStatement();
+				sentencia.executeUpdate(sql_guardar+sql_agregar);
+				sql_agregar="";
+				conn.close();
+				//return numFilas;
+			} catch (SQLException e) {
+				System.out.println(e);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		
+		}//fin for
+		return 1;
+		
+	}
+
+	public int quitarAreasModificadas(String login, Vector <AreaConocimiento> areasQuitar){
+		
+		String sql_agregar="", sql_borrar;
+		int cantidad = areasQuitar.size();
+		sql_borrar = "DELETE FROM Interesa_Usuario_Area_Conocimiento WHERE ";
+		
+		for(int i = 0; i < cantidad; i++){
+			sql_agregar+="login = '"+ login + "' AND id_area = '"+areasQuitar.get(i).getIdArea() +"' );";
+			
+			try {
+				Connection conn = fachada.conectar();
+				Statement sentencia = conn.createStatement();
+				sentencia.executeUpdate(sql_borrar+sql_agregar);
+				sql_agregar="";
+				conn.close();
+				//return numFilas;
+			} catch (SQLException e) {
+				System.out.println(e);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		
+		}//fin for
+		return 1;
+		
 	}
 
 	

@@ -123,6 +123,18 @@ public class ControladorUsuario {
 
 		return areas;
 	}
+	//metodo que va a agregar las nuevas areas y va a quitar las otras seleccionadas
+	public int modificarUsuarioArea(Usuario u, Vector <AreaConocimiento> areasNuevas, Vector <AreaConocimiento> areasQuitar){
+		DaoUsuario daoUs = new DaoUsuario();
+		/*se insertan las areas nuevas, si por alguna razon se agrego, se quito entonces se borra despues,
+		 * si se agrego y se quito, entonces dira que no se puede insertar y no inserta los demas
+		 * */
+		int value;
+		value = daoUs.insertarAreasModificadas(u.getLogin(), areasNuevas);
+		
+		value += daoUs.quitarAreasModificadas(u.getLogin(), areasQuitar);
+		return value;
+	}
 	/*
 	 * public static void main(String args[]){ ControladorUsuario cu = new
 	 * ControladorUsuario(); Date fechaRegistro = Date.valueOf("6666-06-06");
