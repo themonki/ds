@@ -25,6 +25,7 @@ public class ControladorVentanaPrincipal {
 			
 		}else if(password.equals(usuario.getContrasena()))
 		{
+			System.out.println("entre password iguales");
 			if(usuario.getTipo().equals("1"))
 			{
 				GuiAdministrador guiAdministrador = new GuiAdministrador();
