@@ -76,7 +76,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	String generoArray[] = { "M", "F" };
 	String perfilArray[] = { "Administrador", "Catalogador", "Usuario Normal" };
 	String estadoArray[] = { "Activo", "Desactivo" };
-	String areasInteresArray[];
+	Vector<String> areasInteresArray;
 	
 	//Estilos.
 	//-------------------------------fuentes letras-------------------------
@@ -164,9 +164,9 @@ public class GuiRegistroModificar extends JScrollPane{
 		
 		//Construir areasInteresArray, con el vector areasInteresVector.
 		
-		areasInteresArray = new String [areasInteresVector.size()];
+		areasInteresArray = new Vector<String> (areasInteresVector.size());
 		for(int i=0;i<areasInteresVector.size()-1;i++){
-			areasInteresArray[i]= areasInteresVector.elementAt(i).getNombre();
+			areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre());
 		}
 		
 		//areasInteresArray = new String[1];
@@ -590,13 +590,24 @@ public class GuiRegistroModificar extends JScrollPane{
 					java.sql.Date fechaNacimientoDate = java.sql.Date.valueOf(fechaNacimientoString);
 
 					
-					areasInteresUsuario = new Vector<AreaConocimiento>();
+					areasInteresUsuario = areasInteresUsuarioViejas;
+					
+					for(int i=0; i<areasInteresUsuario.size();i++){
+						if(areaConocimientoVector.indexOf(
+								areasInteresUsuario.elementAt(i).getNombre()) == -1)
+						{
+							areasInteresUsuario.remove(i);
+						}
+					}
 
 					for(int i=0; i<areaConocimientoVector.size();i++){
-						areasInteresUsuario.addElement(
+						if(areasInteresUsuario.indexOf(
 								areasInteresVector.elementAt(
-										areasInteresVector.indexOf(
-												areaConocimientoVector.elementAt(i))));
+											areasInteresArray.indexOf(
+													areaConocimientoVector.elementAt(i)))) == -1 ){
+							areasInteresUsuario.addElement(areasInteresVector.elementAt(i));
+						}
+
 					}
 					
 					if(passwordString!=verPasswordString){
