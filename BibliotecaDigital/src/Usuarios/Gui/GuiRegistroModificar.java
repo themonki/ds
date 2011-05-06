@@ -544,7 +544,7 @@ public class GuiRegistroModificar extends JScrollPane{
 				for(int i=0; i<areaConocimientoVector.size();i++){
 					areasInteresUsuario.addElement(
 							areasInteresVector.elementAt(
-									areasInteresVector.indexOf(
+									areasInteresArray.indexOf(
 											areaConocimientoVector.elementAt(i))));
 				}
 				

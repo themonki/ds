@@ -137,6 +137,8 @@ public class GuiConsultarUsuarios extends JScrollPane{
 				if(usuarioEncontrado.getLogin() != null)
 				{	usuariosVector = new Vector<Usuario>();
 					usuariosVector.add(usuarioEncontrado);
+					resultadoLista = null;
+					modeloLista = null;
 					resultadoLista = new JList();
 					modeloLista = new DefaultListModel();
 					resultadoLista.setModel(modeloLista);
