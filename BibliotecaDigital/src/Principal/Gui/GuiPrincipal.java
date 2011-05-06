@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -35,13 +36,16 @@ public class GuiPrincipal extends JFrame {
 		// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 		private String estadoInicial = "Inicio";
 		private String estadoRegistro = "RegistrandoUsuario";
-		private String estadoIngrensando = "Autentificando";		
+		private String estadoIngrensando = "Autentificando";
+		private String estadoConsultaAvanzada = "consultaAvanzada";
 
 		// Opciones basicas para un usuario
 		private JPanel panelOpcionesGenerales;		
 		private JButton volver;
 		private JButton crearUsuario;	
 		private JButton ingresarSistema;
+		private JButton logout;
+		private JButton consultaAvanzada;
 		
 	
 		
@@ -153,12 +157,18 @@ public class GuiPrincipal extends JFrame {
 			crearUsuario.addActionListener(manejador);			
 			ingresarSistema = new JButton("Ingresar");
 			ingresarSistema.addActionListener(manejador);
+			logout = new JButton("Logout");
+			logout.addActionListener(manejador);
+			consultaAvanzada = new JButton("Consulta Avanzada");
+			consultaAvanzada.addActionListener(manejador);			
 						
 
 			// Se agregan los elementos al panel de opciones del administrador.
 			panelOpcionesGenerales.add(volver);
 			panelOpcionesGenerales.add(crearUsuario);
-			panelOpcionesGenerales.add(ingresarSistema);
+			panelOpcionesGenerales.add(ingresarSistema);			
+			panelOpcionesGenerales.add(consultaAvanzada);
+			panelOpcionesGenerales.add(logout);
 			
 		
 
@@ -234,6 +244,14 @@ public class GuiPrincipal extends JFrame {
 						estado.setText(estadoRegistro);
 						repaint();
 						
+					}else if(estado.getText().equals(estadoConsultaAvanzada))
+					{
+						
+						contenedor.remove(panelConsultaBasica);
+						contenedor.add(panelRegistro, BorderLayout.CENTER);
+						estado.setText(estadoRegistro);
+						repaint();
+						
 					}
 
 					
@@ -254,7 +272,16 @@ public class GuiPrincipal extends JFrame {
 						estado.setText(estadoInicial);
 						repaint();
 						
+					}else if(estado.getText().equals(estadoConsultaAvanzada))
+					{
+						
+						contenedor.remove(panelConsultaBasica);
+						contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+						estado.setText(estadoInicial);
+						repaint();
+						
 					}
+					
 					
 				}
 				else if(evento.getSource() == ingresarSistema)
@@ -273,8 +300,45 @@ public class GuiPrincipal extends JFrame {
 						estado.setText(estadoIngrensando);
 						repaint();
 						
+					}else if(estado.getText().equals(estadoConsultaAvanzada))
+					{
+						
+						contenedor.remove(panelConsultaBasica);
+						contenedor.add(panelAutentificar, BorderLayout.CENTER);
+						estado.setText(estadoIngrensando);
+						repaint();
+						
+					}
+				
+				}else if(evento.getSource() == consultaAvanzada)
+				{
+					
+					if (estado.getText().equals(estadoRegistro)) {
+						contenedor.remove(panelRegistro);
+						contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+						estado.setText(estadoConsultaAvanzada);
+						repaint();
+						JOptionPane.showMessageDialog(null,"En construccion");
+					}else if(estado.getText().equals(estadoInicial))
+					{
+						
+						contenedor.remove(panelConsultaBasica);
+						contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+						estado.setText(estadoConsultaAvanzada);
+						repaint();
+						JOptionPane.showMessageDialog(null,"En construccion");
+					}else if(estado.getText().equals(estadoIngrensando))
+					{
+						
+						contenedor.remove(panelAutentificar);
+						contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+						estado.setText(estadoConsultaAvanzada);
+						repaint();
+						JOptionPane.showMessageDialog(null,"En construccion");
+						
 					}
 				}
+				
 
 				
 

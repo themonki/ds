@@ -133,7 +133,7 @@ public class ControladorDocumento {
 	public int insertarDocumentoPalabrasClave(Vector<String> palabras_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
-		value = daoDoc.guardarDocumentoAreas(id_doc, palabras_ids);
+		value = daoDoc.guardarDocumentoPalabrasClave(id_doc, palabras_ids);
 		return value;
 	}
 	public int insertarDocumentoAutores(Documento d){
@@ -145,13 +145,13 @@ public class ControladorDocumento {
 			
 			autores_ids.add(vac.get(i).getId());
 		}
-		value = daoDoc.guardarDocumentoPalabrasClave(d.getId_doc(), autores_ids);
+		value = daoDoc.guardarDocumentoAutores(d.getId_doc(), autores_ids);
 		return value;
 	}
 	public int insertarDocumentoAutores(Vector<String> autores_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
-		value = daoDoc.guardarDocumentoAreas(id_doc, autores_ids);
+		value = daoDoc.guardarDocumentoAutores(id_doc, autores_ids);
 		return value;
 	}
 	
@@ -168,12 +168,12 @@ public class ControladorDocumento {
 	
 	public int catalogarDocumento(Documento d, Vector<String> areas_ids, 
 			Vector<String> autores_ids, Vector<String> palabras_ids ){
-		
-		String id_doc = d.getId_doc();
+		DaoDocumento daoDoc = new DaoDocumento();		
 		this.insertarDocumento(d);
-		//this.insertarDocumentoAreas(areas_ids, id_doc);
-		//this.insertarDocumentoPalabrasClave(palabras_ids, id_doc);
-		//this.insertarDocumentoAutores(autores_ids, id_doc);
+		String id_doc = daoDoc.obtenerLoginDocumento();//se obtiene el logindel documento q se acbo de catalogar
+		this.insertarDocumentoAreas(areas_ids, id_doc);
+		this.insertarDocumentoPalabrasClave(palabras_ids, id_doc);
+		this.insertarDocumentoAutores(autores_ids, id_doc);
 		return 1;
 	}
 	
