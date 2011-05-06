@@ -160,12 +160,12 @@ public class DaoUsuario {
 	 */
 	public Vector<AreaConocimiento> consultarUsuarioAreas(String login) {
 
-		String consulta_sql = "SELECT ac.id_area, ac.nombre FROM Area_Conocimiento ac"
-				+ "NATURAL JOIN Interesa_Usuario_Area_Conocimiento i"
-				+ "WHERE i.login = '" + login + "'";
+		String consulta_sql = "SELECT ac.id_area, ac.nombre FROM Area_Conocimiento ac "
+				+ "NATURAL JOIN Interesa_Usuario_Area_Conocimiento "
+				+ "WHERE login = '" + login + "';";
 		ResultSet resultado;
 		Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
-
+		//System.out.println(consulta_sql);
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -178,7 +178,7 @@ public class DaoUsuario {
 				area.setNombre(resultado.getString(1));
 				areas.add(area);
 			}
-
+			
 			conn.close();
 
 		} catch (SQLException e) {
