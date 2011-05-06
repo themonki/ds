@@ -287,7 +287,7 @@ public class DaoUsuario {
 				usuario.setTipo(tabla.getString("tipo"));
 				usuario.setEstado(tabla.getBoolean("estado"));
 				
-				/*probando*/
+				/*probando*//*
 				System.out.println("Fecha: " + tabla.getDate("fecha_nacimiento"));
 				System.out.println("Login: " + tabla.getString("login"));
 				System.out.println("Contrasena: " + tabla.getString("contrasena"));
@@ -305,7 +305,7 @@ public class DaoUsuario {
 				System.out.println("Registro: " + tabla.getDate("fecha_registro"));
 				System.out.println("Tipo: " + tabla.getString("tipo"));
 				System.out.println("Estado: " + tabla.getBoolean("estado"));
-				
+				*/
 				usuario.setAreas(consultarUsuarioAreas(usuario.getLogin()));
 
 			}
