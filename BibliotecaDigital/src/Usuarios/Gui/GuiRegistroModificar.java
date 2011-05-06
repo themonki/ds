@@ -612,7 +612,7 @@ public class GuiRegistroModificar extends JScrollPane{
 							areasInteresUsuario.addElement(areasInteresVector.elementAt(i));
 						}
 
-					}
+					} //HOLA YERMI
 					
 					if(passwordString!=verPasswordString){
 						//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
