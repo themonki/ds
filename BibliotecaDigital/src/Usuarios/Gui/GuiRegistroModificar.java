@@ -783,7 +783,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		
 	}
 	
-	public static void main (String args []){
+	/*public static void main (String args []){
 		
 		try
 		{	
@@ -798,7 +798,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		ventana.setVisible(true);
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-	}
+	}*/
 
 
 }
