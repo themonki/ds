@@ -137,9 +137,9 @@ public class GuiConsultarUsuarios extends JScrollPane{
 				if(usuarioEncontrado.getLogin() != null)
 				{	usuariosVector = new Vector<Usuario>();
 					usuariosVector.add(usuarioEncontrado);
-					resultadoLista = null;
-					modeloLista = null;
-					resultadoLista = new JList();
+					//resultadoLista = null;
+					modeloLista = null;if(resultadoLista==null){
+					resultadoLista = new JList();}else {resultadoLista.removeAll();}
 					modeloLista = new DefaultListModel();
 					resultadoLista.setModel(modeloLista);
 					resultadoLista.addListSelectionListener(new ManejadorLista());
@@ -148,15 +148,14 @@ public class GuiConsultarUsuarios extends JScrollPane{
 					for(int i=0;i<usuariosVector.size();i++){
 						
 						modeloLista.addElement(usuariosVector.elementAt(i));
-					}
-					
+					}					
 					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
 					panelPrincipal.updateUI();
 					
-					
+					if(scrolResultados==null){
 					//PARA CUANDO SE CREE LA LISTA RESULTADO.
 					scrolResultados = new JScrollPane(resultadoLista);
-					panelResultado.add(scrolResultados);
+					panelResultado.add(scrolResultados);}
 				}else{
 					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
 					panelPrincipal.updateUI();
@@ -172,7 +171,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			int usuarioElegido = resultadoLista.getSelectedIndex();
-			
+			if(scrolUsuario!=null){panelPrincipal.remove(scrolUsuario);}
 			scrolUsuario = new GuiRegistroModificar((Usuario) modeloLista.getElementAt(usuarioElegido), 2);
 			scrolUsuario.setPreferredSize(new Dimension(300,400));
 			panelPrincipal.remove(panelResultado);

@@ -233,7 +233,7 @@ public class GuiAdministrador extends JFrame {
 
 			if (evento.getSource() == modificarUsuario) {
 				
-			
+				panelConsultarUsuarios = new GuiConsultarUsuarios();
 				
 				if (estado.getText().equals(estadoInicial)){
 				

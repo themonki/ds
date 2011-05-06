@@ -416,7 +416,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy =filaPanelDatos;
 		restriccionCampo.gridy= filaPanelDatos;
-		panelDatos.add(areasInteres,restriccionEtiqueta);
+		panelDatos.add(areasInteres,restriccionEtiqueta);if(campoAreasInteres==null)campoAreasInteres=new JComboBox();
 		panelDatos.add(campoAreasInteres, restriccionCampo);
 		filaPanelDatos++;
 		GridBagConstraints restriccionPanelArea = new GridBagConstraints();
@@ -438,7 +438,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			restriccionEtiquetaAdmin.gridy=1;
 			panelAdministrador.add(estadoLabel, restriccionEtiquetaAdmin);
 			panelAdministrador.add(campoEstado, restriccionCampoAdmin);
-			
+			//campoAreasInteres=new JComboBox();
 			filaPanelDatos++;
 			restriccionEtiqueta.gridy =filaPanelDatos;
 			panelDatos.add(panelAdministrador,restriccionEtiqueta);
