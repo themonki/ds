@@ -35,6 +35,7 @@ public class GuiCatalogarModificar extends JPanel{
 	
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
+	String loginCatalogador;
 	private JPanel panel,panelFecha,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
@@ -76,7 +77,7 @@ public class GuiCatalogarModificar extends JPanel{
 	private JTextField campoResolucion;
 	private JTextField campoSofware;
 	
-	public GuiCatalogarModificar() {
+	public GuiCatalogarModificar(String loginIngreso) {
 		
 		//--------------INICIALIZAR CONTROLADORES--------------------------------
 		controladorAreas = new ControladorAreaConocimiento();
@@ -84,6 +85,7 @@ public class GuiCatalogarModificar extends JPanel{
 		controladorpalabrasClave = new ControladorPalabraClave();
 		controladorTipoMaterial = new ControladorTipoMaterial() ;
 		controladorDocumento= new ControladorDocumento();
+		loginCatalogador = loginIngreso;
 		initComponents();
 	}
 
@@ -503,7 +505,7 @@ public class GuiCatalogarModificar extends JPanel{
 	    campoAreas.addActionListener(new ManejadorComboBox());
 	    	    
 	}
-
+/*
 	public static void main (String args []){
 		
 		try
@@ -523,7 +525,7 @@ public class GuiCatalogarModificar extends JPanel{
         JScrollPane scroll= new JScrollPane();
 		System.out.print("**********************************");
 		GuiCatalogarModificar ventana2;
-		ventana2 = new GuiCatalogarModificar();
+		ventana2 = new GuiCatalogarModificar("444");
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		scroll.setViewportView(ventana2);
 		ventana.add(scroll);
@@ -531,7 +533,7 @@ public class GuiCatalogarModificar extends JPanel{
 		ventana.setSize(ancho,alto);
 
 	}
-	
+*/
 	private boolean validacionDeDatos() {
 		if (campoNumeroIdentificacion.getText().length()<10  &&
 		campoTituloSecundario.getText().length()   <50  &&
@@ -585,7 +587,7 @@ public class GuiCatalogarModificar extends JPanel{
 			 doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
 			 doc.setFecha_creacion(java.sql.Date.valueOf(fes));
 			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes));
-			 doc.setCatalogadorLogin("444");// el login del catalogador
+			 doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
 			
