@@ -1,9 +1,9 @@
 /*
- * Nombre autor: Cristian Ríos
+ * Nombre autor: Cristian Rï¿½os
  * Responsabilidad: crear la interfaz que permite a un usuario ingresar al sistema.
  * Nombre Archivo: GuiAutenticar.java
- * Fecha creación: Mayo 05 2011
- * Fecha Ultima modificación: Mayo 05 2011 
+ * Fecha creaciï¿½n: Mayo 05 2011
+ * Fecha Ultima modificaciï¿½n: Mayo 05 2011 
  * */
 
 package Usuarios.Gui;
@@ -25,12 +25,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 public class GuiAutenticar extends JPanel
 {
 
 	private static final long serialVersionUID = 1L;
-	private JLabel nombreUsuario, contrasena, indicacion;
+	private JLabel nombreUsuario, contrasena;
 	private JTextField campoNombre;
 	private JPasswordField campoContrasena;
 	private JButton botonAutenticar;
@@ -53,6 +54,20 @@ public class GuiAutenticar extends JPanel
 		// ---------------------------------------------------------
 		iniciarCampos();
 		// ----------------------------------------------------------
+		
+		String title = "::Autentificar::";
+
+		Color colorTitulo = new Color(0,50,0);
+		Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
+		// Linea y titulo del panel.
+		TitledBorder borde;
+		borde = BorderFactory.createTitledBorder(BorderFactory
+				.createLineBorder(Color.yellow), title);
+		borde.setTitleColor(colorTitulo);
+		borde.setTitleFont(fontTitulo);
+		borde.setTitleJustification(TitledBorder.LEFT);
+		
+		
 
 		GridBagConstraints restriccionCampo = new GridBagConstraints(), restriccionEtiquetas = new GridBagConstraints();
 
@@ -85,8 +100,8 @@ public class GuiAutenticar extends JPanel
 		this.setLayout(new BorderLayout());
 		this.add(panelDatos, BorderLayout.CENTER);
 		this.add(panelDatos, BorderLayout.CENTER);
-		this.add(indicacion, BorderLayout.NORTH);
 		this.add(panelBoton, BorderLayout.SOUTH);
+		this.setBorder(borde);
 
 		this.setSize(430, 220);
 		this.setVisible(true);
@@ -109,15 +124,15 @@ public class GuiAutenticar extends JPanel
 
 		Color colorletras = new Color(0, 60, 0);
 
-		indicacion = new JLabel("Autenticarse", JLabel.CENTER);
-		nombreUsuario = new JLabel("Login  :");
-		contrasena = new JLabel("Contraseña  :");
 		
-		indicacion.setFont(font3);
+		nombreUsuario = new JLabel("Login  :");
+		contrasena = new JLabel("ContraseÃ±a  :");
+		
+		
 		contrasena.setFont(font1);
 		nombreUsuario.setFont(font1);
 		
-		indicacion.setForeground(colorletras);
+		
 		contrasena.setForeground(colorletras);
 		nombreUsuario.setForeground(colorletras);
 		
