@@ -35,7 +35,7 @@ public class GuiAutenticar extends JPanel
 	private JPasswordField campoContrasena;
 	private JButton botonAutenticar;
 	
-	GuiAutenticar()
+	public GuiAutenticar()
 	{
 		this.initComponents();
 	}
