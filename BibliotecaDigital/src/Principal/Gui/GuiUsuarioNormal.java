@@ -223,9 +223,9 @@ public class GuiUsuarioNormal extends JFrame {
 
 			if (evento.getSource() == modificarUsuario) {
 				
+			
 				
-				
-				if (estado.getText().equals(estadoInicial)) {
+				if (estado.getText().equals(estadoInicial)){
 				
 					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
@@ -233,8 +233,9 @@ public class GuiUsuarioNormal extends JFrame {
 					repaint();
 					
 					
-				}else if(estado.getText().equals(consultaAvanzada))
-				{				
+				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				{		
+					
 					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
