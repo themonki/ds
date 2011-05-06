@@ -179,6 +179,7 @@ public class GuiCatalogador extends JFrame {
 		panelConsultaBasica.add(panelBotonesConsulta);
 		
 		
+		panelModificacion = new GuiRegistroModificar(usuario,1);
 		
 		estado = new JLabel(estadoInicial);
 
