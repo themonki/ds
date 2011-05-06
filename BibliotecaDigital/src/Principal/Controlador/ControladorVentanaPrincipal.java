@@ -28,8 +28,8 @@ public class ControladorVentanaPrincipal {
 			System.out.println("entre password iguales");
 			if(usuario.getTipo().equals("1"))
 			{
-				//GuiAdministrador guiAdministrador = new GuiAdministrador(usuario);
-				//guiAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				GuiAdministrador guiAdministrador = new GuiAdministrador(usuario);
+				guiAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 			}else if(usuario.getTipo().equals("2"))
 			{
