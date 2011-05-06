@@ -27,6 +27,10 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import Principal.Controlador.ControladorVentanaPrincipal;
+import Principal.Gui.GuiPrincipal;
+import Usuarios.Controlador.ControladorUsuario;
+
 public class GuiAutenticar extends JPanel
 {
 
@@ -35,9 +39,11 @@ public class GuiAutenticar extends JPanel
 	private JTextField campoNombre;
 	private JPasswordField campoContrasena;
 	private JButton botonAutenticar;
+	private GuiPrincipal gp;
 	
-	public GuiAutenticar()
+	public GuiAutenticar(GuiPrincipal gp)
 	{
+		this.gp = gp;
 		this.initComponents();
 	}
 	
@@ -141,19 +147,30 @@ public class GuiAutenticar extends JPanel
 	private class ManejadorBoton implements ActionListener
 	{
 		@Override
-		public void actionPerformed(ActionEvent e)
+		public void actionPerformed(ActionEvent evento)
 		{
-			if(e.getSource() == botonAutenticar)
+
+			if(evento.getSource() == botonAutenticar)
 			{
-				String contrasena = new String(campoContrasena.getPassword());
+				
+				ControladorVentanaPrincipal controladorVentanaPrincipal = new ControladorVentanaPrincipal();
+				controladorVentanaPrincipal.verificarUsuario(campoNombre.getText(),new String(campoContrasena.getPassword()));
+				gp.setVisible(false);
+				gp.dispose();
 				
 			}
 			
 		}
+				
+				
+
+			
+			
+		
 		
 	}
 	
-	public static void main(String args[])
+/*	public static void main(String args[])
 	{
 
 		try
@@ -172,5 +189,5 @@ public class GuiAutenticar extends JPanel
 		ventana.setVisible(true);
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-	}
+	}*/
 }

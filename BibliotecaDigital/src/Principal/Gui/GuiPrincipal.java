@@ -29,8 +29,11 @@ import Usuarios.Gui.GuiRegistroModificar;
 public class GuiPrincipal extends JFrame {
 	
 
+	
+	
 		private static final long serialVersionUID = 1L;
 
+		
 	
 		// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 		private String estadoInicial = "Inicio";
@@ -105,7 +108,7 @@ public class GuiPrincipal extends JFrame {
 			
 
 			panelRegistro = new GuiRegistroModificar();
-			panelAutentificar = new GuiAutenticar();
+			panelAutentificar = new GuiAutenticar(this);
 			
 			
 			contenedor = getContentPane();
@@ -331,6 +334,7 @@ public class GuiPrincipal extends JFrame {
 
 		}
 
+		
 	
 
 }

@@ -26,6 +26,7 @@ import javax.swing.border.TitledBorder;
 
 import Documento.Gui.GuiCatalogarModificar;
 import Usuarios.Gui.GuiRegistroModificar;
+import Usuarios.Logica.Usuario;
 
 public class GuiCatalogador extends JFrame {
 	
@@ -73,13 +74,15 @@ public class GuiCatalogador extends JFrame {
 	// otros paneles
 	private GuiRegistroModificar panelModificacion;
 	private GuiCatalogarModificar panelCatalogarModificar;
+	private Usuario usuario;
 	
 	
-	public GuiCatalogador()
+	public GuiCatalogador(Usuario usuario)
 	{
 		
 		super("::: Sistema de Biblioteca Digital :::");	
 
+		this.usuario = usuario;
 		manejador = new Manejador();	
 		
 		//Estilos.
@@ -101,7 +104,7 @@ public class GuiCatalogador extends JFrame {
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
 		// se instancias paneles adicionales
-		panelModificacion = new GuiRegistroModificar();
+		panelModificacion = new GuiRegistroModificar(usuario,0);
 		panelCatalogarModificar = new GuiCatalogarModificar();
 	
 		contenedor = getContentPane();
@@ -313,7 +316,7 @@ public class GuiCatalogador extends JFrame {
 	}
 
 
-
+/*
 	public static void main(String args[]) {
 
 		try
@@ -326,7 +329,7 @@ public class GuiCatalogador extends JFrame {
 	
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	}
+	}*/
 
 
 
