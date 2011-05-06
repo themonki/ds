@@ -47,7 +47,7 @@ public class GuiAdministrador extends JFrame {
 	private JButton modificarUsuario;	
 	private JButton consultaAvanzada;
 	private JButton modificarMiUsuario;
-	
+	private JButton logout;
 
 	
 	private JLabel estado;
@@ -163,14 +163,14 @@ public class GuiAdministrador extends JFrame {
 		modificarMiUsuario.addActionListener(manejador);
 		consultaAvanzada = new JButton("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
-					
-
+		logout = new JButton("Salir");
+		logout.addActionListener(manejador);
 		// Se agregan los elementos al panel de opciones del administrador.
 		panelOpcionesGenerales.add(volver);
 		panelOpcionesGenerales.add(modificarUsuario);
 		panelOpcionesGenerales.add(modificarMiUsuario);
 		panelOpcionesGenerales.add(consultaAvanzada);
-		
+		panelOpcionesGenerales.add(logout);
 	
 
 		// Elementos del panel de inicio que se muestra en el centro apenas
@@ -339,11 +339,11 @@ public class GuiAdministrador extends JFrame {
 				}
 				
 				
-			}
-
-			
-
-			
+			}else if(evento.getSource() == logout)
+			{
+				new GuiPrincipal();
+				dispose();
+			}	
 
 			
 
