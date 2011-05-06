@@ -333,7 +333,7 @@ public class DaoUsuario {
 				sentencia.executeUpdate(sql_guardar+sql_agregar);
 				sql_agregar="";
 				conn.close();
-				//return numFilas;
+				return 1;
 			} catch (SQLException e) {
 				System.out.println(e);
 			} catch (Exception e) {
@@ -341,34 +341,27 @@ public class DaoUsuario {
 			}
 		
 		}//fin for
-		return 1;
+		return -1;
 		
 	}
-
-	public int quitarAreasModificadas(String login, Vector <AreaConocimiento> areasQuitar){
+//remueve todas las areas de un usuario
+	public int quitarAreasModificadas(String login){
 		
-		String sql_agregar="", sql_borrar;
-		int cantidad = areasQuitar.size();
-		sql_borrar = "DELETE FROM Interesa_Usuario_Area_Conocimiento WHERE ";
-		
-		for(int i = 0; i < cantidad; i++){
-			sql_agregar+="login = '"+ login + "' AND id_area = '"+areasQuitar.get(i).getIdArea() +"' );";
-			
-			try {
-				Connection conn = fachada.conectar();
-				Statement sentencia = conn.createStatement();
-				sentencia.executeUpdate(sql_borrar+sql_agregar);
-				sql_agregar="";
-				conn.close();
-				//return numFilas;
-			} catch (SQLException e) {
-				System.out.println(e);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-		
-		}//fin for
-		return 1;
+		String sql_borrar;
+		sql_borrar = "DELETE FROM Interesa_Usuario_Area_Conocimiento WHERE login = '"+login+"'";
+					
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			sentencia.executeUpdate(sql_borrar);				
+			conn.close();
+			return 1;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
 		
 	}
 

@@ -124,15 +124,18 @@ public class ControladorUsuario {
 		return areas;
 	}
 	//metodo que va a agregar las nuevas areas y va a quitar las otras seleccionadas
-	public int modificarUsuarioArea(Usuario u, Vector <AreaConocimiento> areasNuevas, Vector <AreaConocimiento> areasQuitar){
+	public int modificarUsuarioArea(Usuario u){
 		DaoUsuario daoUs = new DaoUsuario();
+		Vector <AreaConocimiento> areasNuevas = u.getAreas();
 		/*se insertan las areas nuevas, si por alguna razon se agrego, se quito entonces se borra despues,
-		 * si se agrego y se quito, entonces dira que no se puede insertar y no inserta los demas
+		 * si se agrego y se quito
 		 * */
-		int value;
+		int value=0;
+		//se quitan todas las areas que hagan referencia a ese login
+		value += daoUs.quitarAreasModificadas(u.getLogin());
+		//inserta las areas a las que ahora hace referencia
 		value = daoUs.insertarAreasModificadas(u.getLogin(), areasNuevas);
-		
-		value += daoUs.quitarAreasModificadas(u.getLogin(), areasQuitar);
+				
 		return value;
 	}
 	/*
