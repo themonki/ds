@@ -31,7 +31,7 @@ import GestionDocumento.Controlador.ControladorTipoMaterial;
 
 
 
-public class GuiCatalogarModificar extends JPanel{
+public class GuiCatalogarModificar extends JScrollPane{
 	
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
@@ -203,7 +203,7 @@ public class GuiCatalogarModificar extends JPanel{
 		panel2.setLayout(new GridBagLayout());
 		panel3.setLayout(new FlowLayout());
 		panel4.setLayout(new BorderLayout());
-		panel8.setLayout(new GridLayout(3,1,30,10));
+		panel8.setLayout(new GridLayout(1,3));
 		
 		GridBagConstraints restriccionCampo= new GridBagConstraints()
 		,restriccionEtiquetas= new GridBagConstraints(),
@@ -345,6 +345,12 @@ public class GuiCatalogarModificar extends JPanel{
 		panel2.add(campoEnlaceDoc,restriccionCampo);
 		panel2.add(examinarDoc, restriccionBotones);
 		
+		
+	
+		//panel2.add(campoEnlaceDoc,restriccionCampo);
+		//panel2.add(examinarDoc, restriccionBotones);
+		
+		
 		panel3.add(panel2);
 		
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
@@ -364,16 +370,23 @@ public class GuiCatalogarModificar extends JPanel{
 		panelScrollPalabras.setViewportView(panelConAreas);
 		panelScrollAreas.setViewportView(panelConpalabrasC);
 		
-		
+	
 		panel8.add(panelScrollAutores);
 		panel8.add(panelScrollPalabras);
 		panel8.add(panelScrollAreas);
 
+		panel8.setPreferredSize( new Dimension(100, 100));
 		
-		setLayout(new BorderLayout());
-		add(panel8,BorderLayout.CENTER);
-		add(panel3,BorderLayout.WEST);		
-		add(panel4,BorderLayout.SOUTH);
+		JPanel panel22= new JPanel();
+		panel22.setLayout(new BorderLayout());
+		panel22.add(panel8,BorderLayout.CENTER);
+		panel22.add(panel3,BorderLayout.NORTH);		
+		panel22.add(panel4,BorderLayout.SOUTH);
+		this.setViewportView(panel22);
+		
+		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
 		//------------------------------------------
 		setSize(900,900);
 		setVisible(true);
@@ -512,8 +525,11 @@ public class GuiCatalogarModificar extends JPanel{
 		
 		try
 		{			
+			
 			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
 
+			
+			
 		}
 		catch (Exception e){e.printStackTrace();}
 		JFrame ventana= new JFrame() ;
@@ -521,31 +537,24 @@ public class GuiCatalogarModificar extends JPanel{
 	
 		//JScrollPane scroll= new JScrollPane();
 
-		ventana.setVisible(true);
 		int ancho = 1000, alto = 600;
 		
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         ventana.setLocation((screenSize.width)/2-ancho/2,(screenSize.height)/2-alto/2);
 		//
-        JScrollPane scroll= new JScrollPane();
+        //JScrollPane scroll= new JScrollPane();
 
-		System.out.print("**********************************");
-		GuiCatalogarModificar ventana2;
+        GuiCatalogarModificar ventana2;
 		ventana2 = new GuiCatalogarModificar("444");
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		scroll.setViewportView(ventana2);
-		scroll.setSize(100,100);
-		scroll.setVisible(true);
-		ventana.add(scroll);
-
-		
-
-		ventana.repaint();
-		ventana.setSize(ancho,alto);
-		
-		ventana.setVisible(true);
+		//scroll.setViewportView(ventana2);
+		//scroll.setSize(100,100);
+		//scroll.setVisible(true);
+		ventana.add(ventana2);
 		ventana.setSize(400,400);
+		ventana.setVisible(true);
+
 	}
 
 	private boolean validacionDeDatos() {

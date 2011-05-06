@@ -103,12 +103,14 @@ public class GuiAutenticar extends JPanel
 
 		panelBoton.add(botonAutenticar);
 
-		this.setLayout(new BorderLayout());
-		this.add(panelDatos, BorderLayout.CENTER);
-		this.add(panelDatos, BorderLayout.CENTER);
-		this.add(panelBoton, BorderLayout.SOUTH);
-		this.setBorder(borde);
+		JPanel borde22 = new JPanel();
+		borde22.setLayout(new BorderLayout());
+		borde22.add(panelDatos, BorderLayout.CENTER);
+		borde22.add(panelDatos, BorderLayout.CENTER);
+		borde22.add(panelBoton, BorderLayout.SOUTH);
+		borde22.setBorder(borde);
 
+		this.add(borde22);
 		this.setSize(430, 220);
 		this.setVisible(true);
 	}

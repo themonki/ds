@@ -167,11 +167,11 @@ public class GuiPrincipal extends JFrame {
 			
 			
 			// Elementos del panel nuevo usuario.
-			panelConsultaBasica = new JPanel(new FlowLayout(1,60,40));
+			panelConsultaBasica = new JPanel(new FlowLayout(1,200,40));
 
 			etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
 			etiquetaConsulta.setFont(fontLabels);
-			campoConsulta = new JTextField(60);
+			campoConsulta = new JTextField(40);
 			campoConsulta.setFont(fontLabels);
 			panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
 			
