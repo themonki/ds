@@ -138,6 +138,26 @@ public class ControladorUsuario {
 				
 		return value;
 	}
+	
+	/*añadico por cristian*/
+	/*metodo que dado un login retorna un obejto usuario asociado al login*/
+	public Usuario consultarUsuario(String login)
+	{
+		DaoUsuario daoUsuario = new DaoUsuario();
+		Usuario usuario = daoUsuario.consultarUsuario(login);
+		daoUsuario = null;
+		return usuario;
+	}
+	
+	/*añadido cristian*/
+	/*metodo que retorna todos los usaurios*/
+	public Vector<Usuario> consultarUsuarios()
+	{
+		DaoUsuario daoUsuario = new DaoUsuario();
+		Vector<Usuario> usuarios = daoUsuario.consultarUsuarios();
+		daoUsuario = null;
+		return usuarios;
+	}
 	/*
 	 * public static void main(String args[]){ ControladorUsuario cu = new
 	 * ControladorUsuario(); Date fechaRegistro = Date.valueOf("6666-06-06");
