@@ -2,6 +2,7 @@ package Usuarios.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -132,26 +133,33 @@ public class GuiConsultarUsuarios extends JScrollPane{
 				
 				ControladorUsuario controlador = new ControladorUsuario();
 				Usuario usuarioEncontrado = controlador.consultarUsuario(login.getText());
-				usuariosVector = new Vector<Usuario>();
-				usuariosVector.add(usuarioEncontrado);
-				resultadoLista = new JList();
-				modeloLista = new DefaultListModel();
-				resultadoLista.setModel(modeloLista);
-				resultadoLista.addListSelectionListener(new ManejadorLista());
-				
-				for(int i=0;i<usuariosVector.size();i++){
+				if(usuarioEncontrado.getLogin() != null){
+					usuariosVector = new Vector<Usuario>();
+					usuariosVector.add(usuarioEncontrado);
+					resultadoLista = new JList();
+					modeloLista = new DefaultListModel();
+					resultadoLista.setModel(modeloLista);
+					resultadoLista.addListSelectionListener(new ManejadorLista());
+					resultadoLista.setPreferredSize(new Dimension(245,400));
 					
-					modeloLista.addElement(usuariosVector.elementAt(i));
-				}
-				
-				panelPrincipal.add(panelResultado, BorderLayout.CENTER);
-				panelPrincipal.updateUI();
-				
-				/*
-				//PARA CUANDO SE CREE LA LISTA RESULTADO.
-				scrolResultados = new JScrollPane(resultadoLista);
-				panelResultado.add(scrolResultados);*/
-				
+					for(int i=0;i<usuariosVector.size();i++){
+						
+						modeloLista.addElement(usuariosVector.elementAt(i));
+					}
+					
+					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
+					panelPrincipal.updateUI();
+					
+					
+					//PARA CUANDO SE CREE LA LISTA RESULTADO.
+					scrolResultados = new JScrollPane(resultadoLista);
+					panelResultado.add(scrolResultados);
+				}else{
+					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
+					panelPrincipal.updateUI();
+					panelResultado.add(new JLabel("No hay Resultados"));
+					
+				}	
 			}
 		}		
 	}
