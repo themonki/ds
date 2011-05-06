@@ -19,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -47,7 +48,7 @@ public class GuiCatalogador extends JFrame {
 	private JButton consultaAvanzada;
 	private JButton logout;
 	private JButton catalogar;
-	
+	private JScrollPane scrolCatalogar;
 
 	private JLabel estado;
 
@@ -287,8 +288,8 @@ public class GuiCatalogador extends JFrame {
 			{
 				if(estado.getText().equals(estadoInicial))
 				{
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelCatalogarModificar);
+					contenedor.remove(panelConsultaBasica);scrolCatalogar = new JScrollPane(panelCatalogarModificar);
+					contenedor.add(scrolCatalogar);
 					estado.setText(estadoCatalogando);
 					repaint();
 					
