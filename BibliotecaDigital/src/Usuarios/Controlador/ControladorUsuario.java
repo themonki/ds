@@ -8,7 +8,7 @@ import Usuarios.Logica.Usuario;
 import GestionDocumento.Logica.AreaConocimiento;
 
 public class ControladorUsuario {
-
+	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo atributo por atributo
 	public int insertarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
@@ -42,7 +42,7 @@ public class ControladorUsuario {
 		return value;
 
 	}
-
+	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo un objeto usuario
 	public int insertarUsuario(Usuario u) {
 		DaoUsuario daoUs = new DaoUsuario();
 		int value = daoUs.guardarUsuario(u);
@@ -51,7 +51,7 @@ public class ControladorUsuario {
 		daoUs = null;
 		return value;
 	}
-
+	//modifica los datos en la tabla Usuario recibiendo atributo por atributo
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
@@ -84,10 +84,10 @@ public class ControladorUsuario {
 		u = null;
 		return value;
 	}
-
+	//modifica los datos en la tabla Usuario recibiendo un objeto Usuario
 	public int modificarUsuario(Usuario u) {
 		DaoUsuario daoUs = new DaoUsuario();
-		int value = daoUs.modificarUsuario(u);
+		int value = daoUs.modificarUsuario(u);		
 
 		System.out.println("Se modifico el usuario");
 		daoUs = null;
@@ -99,12 +99,11 @@ public class ControladorUsuario {
 	 * necesita un objeto usuario que tenga el login y un vector con areas que
 	 * contengan los ids de las areas respectivas
 	 */
-	public int insertarUsuarioAreas(Vector<AreaConocimiento> va, Usuario u) {
-
-		int cantidad = va.size();
+	public int insertarUsuarioAreas(Usuario u) {
+		Vector<AreaConocimiento> va = u.getAreas();
 		String login = u.getLogin();
 		DaoUsuario daoUs = new DaoUsuario();
-		int value = daoUs.insertarUsuarioAreas(login, va, cantidad);
+		int value = daoUs.insertarUsuarioAreas(login, va);
 		System.out.println("Se inserto las areas del usuario");
 		daoUs = null;
 		return value;
@@ -123,18 +122,22 @@ public class ControladorUsuario {
 
 		return areas;
 	}
-	//metodo que va a agregar las nuevas areas y va a quitar las otras seleccionadas
+	//metodo que va a agregar las nuevas areas y va a quitar las modificarUsuarioAreaotras seleccionadas
 	public int modificarUsuarioArea(Usuario u){
 		DaoUsuario daoUs = new DaoUsuario();
 		Vector <AreaConocimiento> areasNuevas = u.getAreas();
+		if(areasNuevas.size()>0){
+			System.out.println("ahi algoooo");
+			System.out.println(areasNuevas.get(0).getIdArea());
+		}
 		/*se insertan las areas nuevas, si por alguna razon se agrego, se quito entonces se borra despues,
 		 * si se agrego y se quito
 		 * */
 		int value=0;
 		//se quitan todas las areas que hagan referencia a ese login
-		value += daoUs.quitarAreasModificadas(u.getLogin());
+		value += daoUs.quitarUsuarioAreas(u.getLogin());
 		//inserta las areas a las que ahora hace referencia
-		value = daoUs.insertarAreasModificadas(u.getLogin(), areasNuevas);
+		value = daoUs.insertarUsuarioAreas(u.getLogin(), areasNuevas);
 				
 		return value;
 	}
@@ -158,7 +161,32 @@ public class ControladorUsuario {
 		daoUsuario = null;
 		return usuarios;
 	}
+	//metodo que sirve para actualizar todos los datos del usuario y sus areas, recibe un objeto usuario
+	public int modificarDatosUsuario(Usuario u){
+		int value =0;
+		value = this.modificarUsuario(u);
+		value +=this.modificarUsuarioArea(u);
+		return value;
+	}
 	
+	//metodo que sirve para registar los datos del usuario y sus areas, recibe un objeto unusuario
+	public int insertarDatosUsuario(Usuario u){
+		int value =0;
+		value = this.insertarUsuario(u);
+		value +=this.insertarUsuarioAreas(u);
+		return value;
+	}
+	
+	public int modificarPerfilEstado(Usuario u){
+		int value =0;
+		DaoUsuario daoUs = new DaoUsuario(); 
+		String estado = "f";
+		if(u.getEstado()){
+			estado = "t";
+		}
+		value = daoUs.modificarPerfilEstado(u.getLogin(), u.getTipo(), estado );
+		return value;
+	} 
 
 	
 	  public static void main(String args[])

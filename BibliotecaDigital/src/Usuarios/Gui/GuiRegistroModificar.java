@@ -686,8 +686,9 @@ public class GuiRegistroModificar extends JScrollPane{
 						fechaNacimientoDate, perfilString, estado, areasInteresUsuario);
 				
 				ControladorUsuario controlador = new ControladorUsuario();
-				controlador.insertarUsuario(usuarioModificar);
-				controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
+				controlador.insertarDatosUsuario(usuarioModificar);
+				//controlador.insertarUsuario(usuarioModificar);
+				//controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
 				System.out.println("Ingresa usuario");
 				
 				//Se indica que ya se puede loguear.
@@ -768,8 +769,9 @@ public class GuiRegistroModificar extends JScrollPane{
 					
 
 					ControladorUsuario controlador = new ControladorUsuario();
-					controlador.modificarUsuario(usuarioModificar);
-					controlador.modificarUsuarioArea(usuarioModificar);
+					controlador.modificarDatosUsuario(usuarioModificar);
+					//controlador.modificarUsuario(usuarioModificar);
+					//controlador.modificarUsuarioArea(usuarioModificar);
 					JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");
 					
 					
@@ -786,7 +788,8 @@ public class GuiRegistroModificar extends JScrollPane{
 					usuarioModificar.setTipo(perfilString);
 					usuarioModificar.setEstado(estadoBool);
 					ControladorUsuario controlador = new ControladorUsuario();
-					controlador.modificarUsuario(usuarioModificar);
+					controlador.modificarPerfilEstado(usuarioModificar);
+					//controlador.modificarUsuario(usuarioModificar);
 					
 					JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente los datos del usuario" + usuarioModificar.getLogin());
 				}
