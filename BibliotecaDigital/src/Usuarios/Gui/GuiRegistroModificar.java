@@ -780,7 +780,7 @@ public class GuiRegistroModificar extends JScrollPane{
 
 					ControladorUsuario controlador = new ControladorUsuario();
 					controlador.modificarUsuario(usuarioModificar);
-					
+					controlador.modificarUsuarioArea(usuarioModificar);
 					JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");
 					
 				}
