@@ -1,6 +1,8 @@
 package Usuarios.Gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,6 +14,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
@@ -47,24 +50,27 @@ import Usuarios.Logica.Usuario;
 public class GuiRegistroModificar extends JScrollPane{
 
 	//ATRIBUTOS GUI
-	private
-	JTextField campoLoginTF, campoRespuestaSecreta, campoNombre1, campoNombre2, campoApellido1, campoApellido2, campoEmail, campoNivelEscolaridad, campoFechaNacimientoAdmin;
-	JLabel login, password, verificacionPassword, preguntaSecreta, respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero, fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle, perfilLabel, estadoLabel, areasInteres;
-	JPasswordField campoPassword,campoVerificacionPassword;
-	JComboBox campoPreguntaSecreta, campoGenero, campoPerfil, campoEstado, campoAreasInteres, campoVinculoUnivalle;
-	JSpinner campoFechaNacimiento;
-	JPanel panelAreasInteres, panelPrincipal, panelAdministrador, panelDatos, panelBotones; 
-	JButton registrar, modificar, cancelar;
 	
-	Usuario usuarioModificar;
+	private JTextField campoLoginTF, campoRespuestaSecreta, campoNombre1, campoNombre2, campoApellido1, campoApellido2, campoEmail, campoNivelEscolaridad, campoFechaNacimientoAdmin;
 	
-	Vector<String> areaConocimientoVector;
-	Vector<AreaConocimiento> areasInteresVector;
-	Vector<AreaConocimiento> areasInteresUsuarioViejas;
+	private JLabel login, password, verificacionPassword, preguntaSecreta, respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero, fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle, perfilLabel, estadoLabel, areasInteres;
+	private JPasswordField campoPassword,campoVerificacionPassword;
+	private JComboBox campoPreguntaSecreta, campoGenero, campoPerfil, campoEstado, campoAreasInteres, campoVinculoUnivalle;
+	private JSpinner campoFechaNacimiento;
+	private JPanel panelAreasInteres, panelPrincipal, panelAdministrador, panelDatos, panelBotones; 
+	private JButton registrar, modificar;
+	private JScrollPane scrollAreaInteres;
+	
+	private Usuario usuarioModificar; //usuario para construir o modificar, y enviarlo a la base de datos.
+	
+	private Vector<String> areaConocimientoVector; //contiene las areas de interes que el usuario ha elegido.
+	private Vector<AreaConocimiento> areasInteresVector; //vector que contiene todas las areas de interes del sistema.
+	private Vector<AreaConocimiento> areasInteresUsuarioViejas; // vector que contendra las areas viejas anadidas las nuevas, y eliminadas la que usuario decide eliminar.
 
 	int modo; // Indica si es modo registrar 0, modo modificar por usuario
-				// normal 1 o modo modificar por usuario administrador 2.
+			  // normal 1 o modo modificar por usuario administrador 2.
 
+	
 	// Arrays para JComboBox
 	String preguntaSecretaArray[] = { "Mejor amigo de la infancia",
 			"Ciudad natal de la abuela", "Superheroe preferido",
@@ -90,6 +96,12 @@ public class GuiRegistroModificar extends JScrollPane{
 	Color colorLabels= new Color(0,60,0);	
 	
 	
+	//Constructor para registrar usuario.
+	public GuiRegistroModificar(){
+		this.modo=0;
+		this.usuarioModificar= null;
+		initComponents();		
+	}
 	
 	//Constructor para modificar usuario.
 	public GuiRegistroModificar(Usuario usuarioModificar, int modo){ 
@@ -98,20 +110,11 @@ public class GuiRegistroModificar extends JScrollPane{
 		this.areasInteresUsuarioViejas = this.usuarioModificar.getAreas();
 		initComponents();		
 	}
-	
-	//Constructor para registrar usuario.
-	public GuiRegistroModificar(){
-		this.modo=0;
-		this.usuarioModificar= null;
-		initComponents();		
-	}
-
-
 
 	//Inicializar todos los JComponents segun modos, y organizar vistas.
 	private void initComponents() {
 
-		// titulo del panel, segun el modo.
+		// titulo del JPanel, segun el modo.
 		String title = "";
 		if (modo == 0)
 			title = "::Registro::";
@@ -125,29 +128,28 @@ public class GuiRegistroModificar extends JScrollPane{
 		borde.setTitleFont(fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 
-		// super.setIconImage(new ImageIcon("/recursos/LOGO.png").getImage());
-
 		// Inicializar Labels que apareceran en cualquier modo
-		login = inicializarLabel("Login: ");
-		nombre1 = inicializarLabel("Primer nombre: ");
+		
+		login = inicializarLabel("Login:* ");
+		nombre1 = inicializarLabel("Primer nombre:* ");
 		nombre2 = inicializarLabel("Segundo nombre: ");
-		apellido1 = inicializarLabel("Primer apellido: ");
+		apellido1 = inicializarLabel("Primer apellido:* ");
 		apellido2 = inicializarLabel("Segundo apellido: ");
-		genero = inicializarLabel("GÃ©nero: ");
+		genero = inicializarLabel("Género: ");
 		fechaNacimiento = inicializarLabel("Fecha de nacimiento: ");
-		email = inicializarLabel("email: ");
+		email = inicializarLabel("email:* ");
 		nivelEscolaridad = inicializarLabel("Nivel Escolaridad: ");
 		vinculoUnivalle = inicializarLabel("Vinculo con Univalle: ");
-		areasInteres = inicializarLabel("Areas de InterÃ©s: ");
+		areasInteres = inicializarLabel("Áreas de Interés: ");
 
 		if (modo == 0 || modo == 1) {
 
 			// Inicializar labels solo para los modos registro y modificar
 			// usuario normal.
-			password = inicializarLabel("Password: ");
-			verificacionPassword = inicializarLabel("Verificar password: ");
+			password = inicializarLabel("Password:* ");
+			verificacionPassword = inicializarLabel("Verificar password:* ");
 			preguntaSecreta = inicializarLabel("Pregunta secreta: ");
-			respuestaSecreta = inicializarLabel("Respuesta secreta: ");
+			respuestaSecreta = inicializarLabel("Respuesta secreta:* ");
 		}
 
 		if (modo == 2) {
@@ -162,171 +164,59 @@ public class GuiRegistroModificar extends JScrollPane{
 
 		areasInteresVector = controladorAreasInteres.obtenerAreas();
 		
-		//Construir areasInteresArray, con el vector areasInteresVector.
+		// Construir areasInteresArray (el que se usar para inicializar el jcombobox), 
+		// con el vector areasInteresVector.
 		
 		areasInteresArray = new Vector<String> (areasInteresVector.size());
 		for(int i=0;i<areasInteresVector.size()-1;i++){
-			areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre());
+			areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre()); //llenamos el vector con el nombre de las areas que hay en el sistema.
 		}
-		/*String areasInteresArrayr[];
-		areasInteresArrayr = new String[2];
-		areasInteresArrayr[0]="areas Uno";
-		areasInteresArrayr[1]="areas Dos";*/
-		
 		
 		
 		//Ininializar JTextField, JPasswordField, JComboBox, JSpinner.DateEditor segun modos.
-		if(modo==0){//modo registro
 		
-			campoLoginTF = new JTextField(10);
-			campoLoginTF.addKeyListener(new ManejadorJTextField());
-			campoRespuestaSecreta = new JTextField(30);
-			campoRespuestaSecreta.addKeyListener(new ManejadorJTextField());
-			campoNombre1 = new JTextField(30);
-			campoNombre1.addKeyListener(new ManejadorJTextField());
-			campoNombre2 = new JTextField(30);
-			campoNombre2.addKeyListener(new ManejadorJTextField());
-			campoApellido1 = new JTextField(30);
-			campoApellido1.addKeyListener(new ManejadorJTextField());
-			campoApellido2 = new JTextField(30);
-			campoApellido2.addKeyListener(new ManejadorJTextField());
-			campoEmail = new JTextField(30);
-			campoEmail.addKeyListener(new ManejadorJTextField());
-			campoNivelEscolaridad = new JTextField(30);
-			campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
+		if(modo==0)//modo registro
+			inicializarJComponentsRegistro();
+		
+		if (modo == 1) // modo modificar usuario normal
+			inicializarJComponentsModificarUsuarioNormal();
+		
+		if (modo == 2) // modo modificar usuario admin
+			inicializarJComponentsModificarAdministrador();
 
-			campoPassword = new JPasswordField(25);
-			campoPassword.addKeyListener(new ManejadorJTextField());
-			
-			campoVerificacionPassword = new JPasswordField(25);	
-			campoVerificacionPassword.addKeyListener(new ManejadorJTextField());
-			campoPreguntaSecreta= new JComboBox(preguntaSecretaArray);
-			campoGenero= new JComboBox(generoArray);
-			campoPerfil= new JComboBox(perfilArray);
-			campoEstado= new JComboBox(estadoArray);
-			campoAreasInteres= new JComboBox(areasInteresArray);
-			campoAreasInteres.addActionListener(new ManejadorComboBox());
-			campoVinculoUnivalle = new JComboBox(vinculoUnivalleArray);
-			
-			//Crear spinner para la fecha de nacimiento.
-			
-			SpinnerModel modeloFecha = new SpinnerDateModel();
-			campoFechaNacimiento = new JSpinner(modeloFecha);
-		    campoFechaNacimiento.setFont(fontLabels);
-		    campoFechaNacimiento.setForeground(colorLabels);
-			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
-			campoFechaNacimiento.setEditor(spinnerFecha);
-		    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
-
-
-		}
-		if (modo == 1) {// modo modificar usuario normal
-			campoLoginTF = new JTextField(usuarioModificar.getLogin());
-			campoLoginTF.setEditable(false);
-			campoRespuestaSecreta = new JTextField(usuarioModificar
-					.getRespuestaSecreta());
-			campoRespuestaSecreta.addKeyListener(new ManejadorJTextField());
-			campoNombre1 = new JTextField(usuarioModificar.getNombre1());
-			campoNombre1.addKeyListener(new ManejadorJTextField());
-			campoNombre2 = new JTextField(usuarioModificar.getNombre2());
-			campoNombre2.addKeyListener(new ManejadorJTextField());
-			campoApellido1 = new JTextField(usuarioModificar.getApellido1());
-			campoApellido1.addKeyListener(new ManejadorJTextField());
-			campoApellido2 = new JTextField(usuarioModificar.getApellido2());
-			campoApellido2.addKeyListener(new ManejadorJTextField());
-			campoEmail = new JTextField(usuarioModificar.getEmail());
-			campoEmail.addKeyListener(new ManejadorJTextField());
-			campoNivelEscolaridad = new JTextField(usuarioModificar
-					.getNivelEscolaridad());
-			campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
-
-			campoPassword = new JPasswordField(usuarioModificar.getContrasena());
-			campoPassword.addKeyListener(new ManejadorJTextField());
-			campoVerificacionPassword = new JPasswordField(usuarioModificar
-					.getContrasena());
-			campoVerificacionPassword.addKeyListener(new ManejadorJTextField());
-
-			campoPreguntaSecreta = new JComboBox(preguntaSecretaArray);
-			campoPreguntaSecreta.setSelectedItem(usuarioModificar
-					.getPreguntaSecreta());
-			campoGenero = new JComboBox(generoArray);
-			campoGenero.setSelectedItem(usuarioModificar.getGenero());
-
-			campoAreasInteres= new JComboBox(areasInteresArray);
-			campoAreasInteres.addActionListener(new ManejadorComboBox());
-			campoVinculoUnivalle= new JComboBox(vinculoUnivalleArray);
-			campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
-			
-			//Crear spinner para la fecha de nacimiento.
-			
-			SpinnerModel modeloFecha = new SpinnerDateModel();
-			campoFechaNacimiento = new JSpinner(modeloFecha);
-		    campoFechaNacimiento.setFont(fontLabels);
-		    campoFechaNacimiento.setForeground(colorLabels);
-			JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
-			campoFechaNacimiento.setEditor(spinnerFecha);
-		    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
-		}
-		if (modo == 2) {// modo modificar usuario admin
-			campoLoginTF = new JTextField(usuarioModificar.getLogin());
-			campoLoginTF.setEditable(false);
-			campoNombre1 = new JTextField(usuarioModificar.getNombre1());
-			campoNombre1.setEditable(false);
-			campoNombre2 = new JTextField(usuarioModificar.getNombre2());
-			campoNombre2.setEditable(false);
-			campoApellido1 = new JTextField(usuarioModificar.getApellido1());
-			campoApellido1.setEditable(false);
-			campoApellido2 = new JTextField(usuarioModificar.getApellido2());
-			campoApellido2.setEditable(false);
-			campoEmail = new JTextField(usuarioModificar.getEmail());
-			campoEmail.setEditable(false);
-			campoNivelEscolaridad = new JTextField(usuarioModificar
-					.getNivelEscolaridad());
-			campoNivelEscolaridad.setEditable(false);
-			
-			//Obtener fecha para organizar el formato para mostrar
-			Date fechaNacimientoUsuarioModificar = usuarioModificar.getFechaNacimiento();
-			SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-		    String fechaNacimientoUsuarioModificarString= formatoFecha.format(fechaNacimientoUsuarioModificar);
-			campoFechaNacimientoAdmin = new JTextField(fechaNacimientoUsuarioModificarString);
-			campoFechaNacimientoAdmin.setEditable(false);
-			
-			campoGenero= new JComboBox(generoArray);
-			campoGenero.setSelectedItem(usuarioModificar.getGenero());
-			campoGenero.setEnabled(false);
-			campoVinculoUnivalle=  new JComboBox(vinculoUnivalleArray);
-			campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
-			campoVinculoUnivalle.setEnabled(false);
-			campoPerfil= new JComboBox(perfilArray);
-			
-			campoPerfil.setSelectedItem(usuarioModificar.getTipo());
-			campoEstado= new JComboBox(estadoArray);
-			campoEstado.setSelectedIndex(usuarioModificar.getEstado()? 0: 1);
-			
-
-
-
-		}
+		
 		
 		//Paneles para organizar la vista
 		
+		
 		//Vista Panel Areas de Interes
 		panelAreasInteres = new JPanel();
-		
 		TitledBorder bordeAreaInteres;
-		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"Ã�reas de interÃ©s");
+		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"Áreas de interés");
 		bordeAreaInteres.setTitleColor(colorSubtitulo);
 		bordeAreaInteres.setTitleFont(fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
 		panelAreasInteres.setBorder(bordeAreaInteres);
-		panelAreasInteres.setSize(450, 50);
+		panelAreasInteres.setSize(450, 100);
 		
+		//scroll para areas de interes, por si crece demasiado.
+		scrollAreaInteres = new JScrollPane(panelAreasInteres);
+		scrollAreaInteres.getViewport().add(panelAreasInteres);
+		scrollAreaInteres.setPreferredSize(new Dimension(450,100));
+		
+		//Panel donde se incluira todo.
 		panelPrincipal = new JPanel();
 		
+		//Panel que solo contiene los campos que puede modificarle un administrador
+		//a un usuario cualquiera del sistema.
 		panelAdministrador = new JPanel(new GridBagLayout());
+		
+		//Panel botones 
+		panelBotones = new JPanel(new GridBagLayout());
 				
-		//ingresar elementos al panel de datos
-		int filaPanelDatos=0;
+		//Inicializar e ingresar elementos al panel de datos.
+		
+		int filaPanelDatos=0; //Variable que indica en que fila se debe incluir un componente.
 		panelDatos = new JPanel(new GridBagLayout());
 		GridBagConstraints restriccionEtiqueta = configurar(0,0,new Insets(2,14,2,2));
 		GridBagConstraints restriccionCampo = configurar(1,0,new Insets(2,40,2,2));
@@ -359,10 +249,12 @@ public class GuiRegistroModificar extends JScrollPane{
 		restriccionEtiqueta.gridy = filaPanelDatos;
 		restriccionCampo.gridy = filaPanelDatos;
 		panelDatos.add(fechaNacimiento,restriccionEtiqueta);
+		
 		if(modo==1 | modo==0)
 			panelDatos.add(campoFechaNacimiento, restriccionCampo);
 		if(modo==2)
 			panelDatos.add(campoFechaNacimientoAdmin,restriccionCampo);
+		
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy =filaPanelDatos;
 		restriccionCampo.gridy=filaPanelDatos;
@@ -416,16 +308,16 @@ public class GuiRegistroModificar extends JScrollPane{
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy =filaPanelDatos;
 		restriccionCampo.gridy= filaPanelDatos;
-		panelDatos.add(areasInteres,restriccionEtiqueta);if(campoAreasInteres==null)campoAreasInteres=new JComboBox();
-		panelDatos.add(campoAreasInteres, restriccionCampo);
+		
+		if(modo==0 || modo==1){ //para usuarios a registrar, o usuarios normales que van a modificar.
+			panelDatos.add(areasInteres,restriccionEtiqueta);
+			panelDatos.add(campoAreasInteres, restriccionCampo);
+		}
+		if(modo==2){
+			panelDatos.add(areasInteres,restriccionEtiqueta);
+		}
+		
 		filaPanelDatos++;
-		GridBagConstraints restriccionPanelArea = new GridBagConstraints();
-		restriccionPanelArea.gridy= filaPanelDatos;
-		restriccionPanelArea.gridwidth= 2;
-		restriccionPanelArea.ipadx= 450;
-		restriccionPanelArea.ipady= 50;
-		restriccionPanelArea.anchor= GridBagConstraints.CENTER;
-		panelDatos.add(panelAreasInteres,restriccionPanelArea);
 		
 		//Ingresar JComponents al panel administrador
 		if(modo==2){
@@ -438,51 +330,211 @@ public class GuiRegistroModificar extends JScrollPane{
 			restriccionEtiquetaAdmin.gridy=1;
 			panelAdministrador.add(estadoLabel, restriccionEtiquetaAdmin);
 			panelAdministrador.add(campoEstado, restriccionCampoAdmin);
-			//campoAreasInteres=new JComboBox();
+			
 			filaPanelDatos++;
 			restriccionEtiqueta.gridy =filaPanelDatos;
 			panelDatos.add(panelAdministrador,restriccionEtiqueta);
 		}
 		
-		panelDatos.setBorder(borde);
+		//panelDatos.setBorder(borde);
 						
 		//Inicializar Botones segun modo.
 		registrar = new JButton("REGISTRAR");
 		registrar.addActionListener(new ManejadorBoton());
 		modificar = new JButton("MODIFICAR");
 		modificar.addActionListener(new ManejadorBoton());
-		cancelar = new JButton("CANCELAR");
-		cancelar.addActionListener(new ManejadorBoton());
 		 
-		filaPanelDatos++;
+		
 		GridBagConstraints restriccionBotones = new GridBagConstraints();
-		restriccionBotones.gridy=filaPanelDatos;
+		restriccionBotones.gridy=0;
 		restriccionBotones.insets= new Insets(4,2,2,2);
 		restriccionBotones.anchor = GridBagConstraints.CENTER;
 		
+		//Elegir boton a introducir segun el modo.
 		if(modo == 0){
 			restriccionBotones.gridx=0;
-			panelDatos.add(registrar, restriccionBotones);
-			restriccionBotones.gridx=1;
-			panelDatos.add(cancelar,restriccionBotones);
+			panelBotones.add(registrar, restriccionBotones);
 		}
 		if(modo==1 || modo==2){
 			restriccionBotones.gridx=0;
-			panelDatos.add(modificar,restriccionBotones);
-			restriccionBotones.gridx=1;
-			panelDatos.add(cancelar,restriccionBotones);
+			panelBotones.add(modificar,restriccionBotones);
 		}
 		
-		this.getViewport().add(panelDatos);
+		//Organizar vista para el panel principal.
+		panelPrincipal.setLayout(new BorderLayout(0,10)); 
+		panelPrincipal.add(panelDatos,BorderLayout.NORTH);
+		panelPrincipal.add(scrollAreaInteres,BorderLayout.CENTER);
+		panelPrincipal.add(panelBotones,BorderLayout.SOUTH);
+		panelPrincipal.setBorder(borde);
 		
-		//Inicializar vector de areas de interes usuario;
+		this.getViewport().add(panelPrincipal);
+		
+		//Inicializar vector de areas de interes usuario.
 		 areaConocimientoVector = new Vector<String>();
+		
+		//Para el modo modificar por parte de un usuario normal
+		//se debe tener, ya visualizado en el panel de areas las areas que tiene
+		//desde su ultima modificacion o registro.
+		if(modo==1){	
+			
+			for(int i=0; i<areasInteresUsuarioViejas.size();i++){
+				String nombreArea = areasInteresUsuarioViejas.elementAt(i).getNombre();
+				System.out.println("Nombre Area: " + nombreArea);
+				areaConocimientoVector.add(nombreArea);
+				JLabel nuevaArea= new JLabel();
+				nuevaArea.setText(nombreArea);				
+				nuevaArea.addMouseListener(new ManejadorMouse());			
+				panelAreasInteres.add(nuevaArea);
+				panelAreasInteres.updateUI();
+				
+			}
+		}
+		
+		
+		
 
 	}
 
+	//Incializar jcomponents para registro
+	
+	//Inicializar jcomponents para registrar usuario.
+	private void inicializarJComponentsRegistro(){
+		
+		//JTextField 
+		campoLoginTF = new JTextField(10);
+		campoLoginTF.addKeyListener(new ManejadorJTextField());
+		campoRespuestaSecreta = new JTextField(30);
+		campoRespuestaSecreta.addKeyListener(new ManejadorJTextField());
+		campoNombre1 = new JTextField(30);
+		campoNombre1.addKeyListener(new ManejadorJTextField());
+		campoNombre2 = new JTextField(30);
+		campoNombre2.addKeyListener(new ManejadorJTextField());
+		campoApellido1 = new JTextField(30);
+		campoApellido1.addKeyListener(new ManejadorJTextField());
+		campoApellido2 = new JTextField(30);
+		campoApellido2.addKeyListener(new ManejadorJTextField());
+		campoEmail = new JTextField(30);
+		campoEmail.addKeyListener(new ManejadorJTextField());
+		campoNivelEscolaridad = new JTextField(30);
+		campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
+
+		//JPasswordField
+		campoPassword = new JPasswordField(25);
+		campoPassword.addKeyListener(new ManejadorJTextField());
+		campoVerificacionPassword = new JPasswordField(25);	
+		campoVerificacionPassword.addKeyListener(new ManejadorJTextField());
+		
+		//JComboBox
+		campoPreguntaSecreta= new JComboBox(preguntaSecretaArray);
+		campoPreguntaSecreta.setSelectedIndex(0); //seleccionar el primero como default.
+		campoGenero= new JComboBox(generoArray);
+		campoGenero.setSelectedIndex(0);
+		campoAreasInteres= new JComboBox(areasInteresArray);
+		campoAreasInteres.addActionListener(new ManejadorComboBox());
+		campoVinculoUnivalle = new JComboBox(vinculoUnivalleArray);
+		campoVinculoUnivalle.setSelectedIndex(0);
+		
+		
+		//Crear spinner para la fecha de nacimiento.
+		SpinnerModel modeloFecha = new SpinnerDateModel();
+		campoFechaNacimiento = new JSpinner(modeloFecha);
+	    campoFechaNacimiento.setFont(fontLabels);
+	    campoFechaNacimiento.setForeground(colorLabels);
+		JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
+		campoFechaNacimiento.setEditor(spinnerFecha);
+	    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
+	}
+	
+	//Inicializar jcomponents para modificar en perfil administrador.
+	private void inicializarJComponentsModificarAdministrador(){
+		
+		//Obtener datos del usuario e ingresarlos a los correspondientes JTextField
+		campoLoginTF = new JTextField(usuarioModificar.getLogin());
+		campoLoginTF.setEditable(false);
+		campoNombre1 = new JTextField(usuarioModificar.getNombre1());
+		campoNombre1.setEditable(false);
+		campoNombre2 = new JTextField(usuarioModificar.getNombre2());
+		campoNombre2.setEditable(false);
+		campoApellido1 = new JTextField(usuarioModificar.getApellido1());
+		campoApellido1.setEditable(false);
+		campoApellido2 = new JTextField(usuarioModificar.getApellido2());
+		campoApellido2.setEditable(false);
+		campoEmail = new JTextField(usuarioModificar.getEmail());
+		campoEmail.setEditable(false);
+		campoNivelEscolaridad = new JTextField(usuarioModificar.getNivelEscolaridad());
+		campoNivelEscolaridad.setEditable(false);
+		
+		//Obtener fecha para organizar el formato para mostrar
+		Date fechaNacimientoUsuarioModificar = usuarioModificar.getFechaNacimiento();
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+	    String fechaNacimientoUsuarioModificarString= formatoFecha.format(fechaNacimientoUsuarioModificar);
+		campoFechaNacimientoAdmin = new JTextField(fechaNacimientoUsuarioModificarString);
+		campoFechaNacimientoAdmin.setEditable(false);
+		
+		//Obtner datos para seleccionarlos en los jcombobox.
+		campoGenero= new JComboBox(generoArray);
+		campoGenero.setSelectedItem(usuarioModificar.getGenero());
+		campoGenero.setEnabled(false);
+		campoVinculoUnivalle=  new JComboBox(vinculoUnivalleArray);
+		campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
+		campoVinculoUnivalle.setEnabled(false);
+		campoPerfil= new JComboBox(perfilArray);
+		campoPerfil.setSelectedIndex(Integer.parseInt(usuarioModificar.getTipo()));
+		campoEstado= new JComboBox(estadoArray);
+		campoEstado.setSelectedIndex(usuarioModificar.getEstado()? 0: 1);
+	}
+	
+	//Inicializar jcomponents para modificar en perfil usuario normal.
+	private void inicializarJComponentsModificarUsuarioNormal(){
+		
+		//Obtener datos de usuario e introducirlos en los JTextField.
+		campoLoginTF = new JTextField(usuarioModificar.getLogin());
+		campoLoginTF.setEditable(false);
+		campoRespuestaSecreta = new JTextField(usuarioModificar.getRespuestaSecreta());
+		campoRespuestaSecreta.addKeyListener(new ManejadorJTextField());
+		campoNombre1 = new JTextField(usuarioModificar.getNombre1());
+		campoNombre1.addKeyListener(new ManejadorJTextField());
+		campoNombre2 = new JTextField(usuarioModificar.getNombre2());
+		campoNombre2.addKeyListener(new ManejadorJTextField());
+		campoApellido1 = new JTextField(usuarioModificar.getApellido1());
+		campoApellido1.addKeyListener(new ManejadorJTextField());
+		campoApellido2 = new JTextField(usuarioModificar.getApellido2());
+		campoApellido2.addKeyListener(new ManejadorJTextField());
+		campoEmail = new JTextField(usuarioModificar.getEmail());
+		campoEmail.addKeyListener(new ManejadorJTextField());
+		campoNivelEscolaridad = new JTextField(usuarioModificar.getNivelEscolaridad());
+		campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
+
+		//Obtener password para introducirla en los campo password y verificarPassword.
+		campoPassword = new JPasswordField(usuarioModificar.getContrasena());
+		campoPassword.addKeyListener(new ManejadorJTextField());
+		campoVerificacionPassword = new JPasswordField(usuarioModificar.getContrasena());
+		campoVerificacionPassword.addKeyListener(new ManejadorJTextField());
+
+		//Obtener los datos que deben de aparecer seleccionados en los JComboBox.
+		campoPreguntaSecreta = new JComboBox(preguntaSecretaArray);
+		campoPreguntaSecreta.setSelectedItem(usuarioModificar.getPreguntaSecreta());		
+		campoGenero = new JComboBox(generoArray);
+		campoGenero.setSelectedItem(usuarioModificar.getGenero());
+		campoAreasInteres= new JComboBox(areasInteresArray);
+		campoAreasInteres.addActionListener(new ManejadorComboBox());
+		campoVinculoUnivalle= new JComboBox(vinculoUnivalleArray);
+		campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
+				
+		//Crear spinner para la fecha de nacimiento. y obtenerla del usuario
+		Date fechaNacimientoUsuario = usuarioModificar.getFechaNacimiento();
+		SpinnerModel modeloFecha = new SpinnerDateModel(fechaNacimientoUsuario,null,null,Calendar.DAY_OF_YEAR);
+		campoFechaNacimiento = new JSpinner(modeloFecha);
+	    campoFechaNacimiento.setFont(fontLabels);
+	    campoFechaNacimiento.setForeground(colorLabels);
+		JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
+		campoFechaNacimiento.setEditor(spinnerFecha);
+	    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
+	    
+	}
+	
 	// Inicializa labels, creando una nueva con el nombre indicado(titulo) y
-	// estilo
-	// de letra y color predifinidos.
+	// estilo de letra y color predifinidos.
 	private JLabel inicializarLabel(String titulo) {
 		JLabel label = new JLabel(titulo, JLabel.LEFT);
 		label.setForeground(colorLabels);
@@ -491,6 +543,8 @@ public class GuiRegistroModificar extends JScrollPane{
 	}
 
 	//Permite configurar opciones de inseccion, y estilo de los JComponents en los paneles.
+	
+	//Configura las restricciones para ingresar en el panel de datos.
 	private GridBagConstraints configurar(int x, int y, Insets insets){
 		
 		GridBagConstraints configuracion = new GridBagConstraints();
@@ -505,20 +559,28 @@ public class GuiRegistroModificar extends JScrollPane{
 		return configuracion;
 	}
 	
+	
 	//ActionListeners de diferntes JComponents
+	
+	//ActionListener de los botones dependiendo del modo.
 	private class ManejadorBoton implements ActionListener{
 
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()== registrar){
+				
 				System.out.println("Entra y va a ingresar usuario");
+				
 				String loginString, nombre1String, nombre2String, apellido1String, apellido2String,
 				       emailString, passwordString, verPasswordString, preguntaSecretaString, 
 				       respuestaSecretaString, nivelEscolaridadString, vinculoUnivalleString,
 				       generoString, fechaNacimientoString, fechaRegistroString, perfilString;
+				
 				Vector<AreaConocimiento> areasInteresUsuario;
-				perfilString = "3";
-				boolean estado= true;
+				
+				perfilString = "3"; //Por default usuario normal, identificado con 3.
+				boolean estado= true; //Por default usuario activo.
 				
 				//Obtener datos
 				loginString = campoLoginTF.getText();
@@ -564,7 +626,7 @@ public class GuiRegistroModificar extends JScrollPane{
 						nombre2String, apellido1String, apellido2String, emailString,
 						nivelEscolaridadString, vinculoUnivalleString, preguntaSecretaString,
 						respuestaSecretaString, generoString, fechaRegistroDate,
-						fechaNacimientoDate, "3", estado, areasInteresUsuario);
+						fechaNacimientoDate, perfilString, estado, areasInteresUsuario);
 				
 				ControladorUsuario controlador = new ControladorUsuario();
 				System.out.println("Entra y va a ingresar usuario");
@@ -577,7 +639,7 @@ public class GuiRegistroModificar extends JScrollPane{
 					String nombre1String, nombre2String, apellido1String, apellido2String,
 					emailString, passwordString, verPasswordString, preguntaSecretaString, 
 					respuestaSecretaString, nivelEscolaridadString, vinculoUnivalleString,
-					generoString, fechaNacimientoString, fechaRegistroString;
+					generoString, fechaNacimientoString;
 					Vector<AreaConocimiento> areasInteresUsuario;
 
 					//Obtener datos
@@ -622,7 +684,9 @@ public class GuiRegistroModificar extends JScrollPane{
 					} 
 					
 					if(!(passwordString.equals(verPasswordString))){
-						//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
+						campoPassword.selectAll();
+						campoVerificacionPassword.selectAll();
 						return;
 					}
 
@@ -661,21 +725,20 @@ public class GuiRegistroModificar extends JScrollPane{
 					
 				}
 			}
-			if(e.getSource()== cancelar){
-				return;
-			}
 			
 		}
 		
 	}
 
-	//Main, frame para ver scrollpane.
+	//ActionListener para manejar areas de interes que seleccione o deseleccione el usuario.
+	
+	//ActionListener del JComboBox de areas de interes.
 	private class ManejadorComboBox implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			
+
 			if(e.getSource()== campoAreasInteres){
-				
+
 				if (areaConocimientoVector.indexOf(campoAreasInteres.getSelectedItem())==-1)
 				{
 					JLabel nuevaArea= new JLabel();
@@ -683,55 +746,59 @@ public class GuiRegistroModificar extends JScrollPane{
 					nuevaArea.setText(""+campoAreasInteres.getSelectedItem());				
 					nuevaArea.addMouseListener(new ManejadorMouse());			
 					panelAreasInteres.add(nuevaArea);
-					
+
 					panelAreasInteres.updateUI();
 				}
 			}			
 		}
-		
-		private class ManejadorMouse implements MouseListener{
 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JLabel areaSeleccionada =(JLabel) e.getSource();
-				
-				int index = areaConocimientoVector.indexOf(areaSeleccionada.getText());
-				areaConocimientoVector.remove(index);				
-				panelAreasInteres.remove(areaSeleccionada);					
-				panelAreasInteres.updateUI();
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				JLabel areaAEliminar=(JLabel) e.getSource();
-				areaAEliminar.setForeground(Color.red);
-				areaAEliminar.setIcon(new ImageIcon("recursos/CRUZ.gif"));
-				areaAEliminar.updateUI();				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				JLabel area=(JLabel) e.getSource();
-				area.setForeground(Color.black);
-				area.setIcon(new ImageIcon(""));				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		}
-		
 	}
 	
+	//Manejador para las etiqutas (areas de interes) que agrega el usuario, y
+	//se visualizan en el panelAreasInteres.
+	private class ManejadorMouse implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			JLabel areaSeleccionada =(JLabel) e.getSource();
+
+			int index = areaConocimientoVector.indexOf(areaSeleccionada.getText());
+			areaConocimientoVector.remove(index);				
+			panelAreasInteres.remove(areaSeleccionada);					
+			panelAreasInteres.updateUI();
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			JLabel areaAEliminar=(JLabel) e.getSource();
+			areaAEliminar.setForeground(Color.red);
+			areaAEliminar.setIcon(new ImageIcon("recursos/CRUZ.gif"));
+			areaAEliminar.updateUI();				
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			JLabel area=(JLabel) e.getSource();
+			area.setForeground(Color.black);
+			area.setIcon(new ImageIcon(""));				
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+	
+	
+	//KeyListener para no permitir mas de determinados tamanos de cadenas.
 	private class ManejadorJTextField implements KeyListener{
 
 		@Override
@@ -741,7 +808,7 @@ public class GuiRegistroModificar extends JScrollPane{
 				
 				if(campoEmail.getText().length()>49)
 				{
-					if(e.getKeyCode()!=e.VK_BACK_SPACE){
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoEmail.setText(campoEmail.getText().substring(0,48));
 					}
@@ -752,7 +819,7 @@ public class GuiRegistroModificar extends JScrollPane{
 				if(new String(campoPassword.getPassword()).length()>19)
 				{
 
-					if(e.getKeyCode()!=e.VK_BACK_SPACE){
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoPassword.setText(new String(campoPassword.getPassword()).substring(0,19));
 					}
@@ -760,7 +827,7 @@ public class GuiRegistroModificar extends JScrollPane{
 				if(new String(campoVerificacionPassword.getPassword()).length()>19)
 				{
 
-					if(e.getKeyCode()!=e.VK_BACK_SPACE){
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoVerificacionPassword.setText(new String(campoVerificacionPassword.getPassword()).substring(0,19));
 					}
@@ -773,7 +840,7 @@ public class GuiRegistroModificar extends JScrollPane{
 				if(campo.getText().length()>campo.getColumns()-1)
 				{
 
-					if(e.getKeyCode()!=e.VK_BACK_SPACE){
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campo.setText(campo.getText().substring(0,campo.getColumns()-1));
 					}
@@ -796,14 +863,16 @@ public class GuiRegistroModificar extends JScrollPane{
 		
 	}
 	
+	
+	//Main, frame para ver scrollpane.
 	public static void main (String args []){
-		
+
 		try
 		{	
 			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
 		}
 		catch (Exception e){e.printStackTrace();}
-		
+
 		//Ventana para visualizar el jscrollpane
 		JFrame ventana;
 		ventana = new JFrame();

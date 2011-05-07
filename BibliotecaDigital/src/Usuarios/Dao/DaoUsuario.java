@@ -174,8 +174,8 @@ public class DaoUsuario {
 
 			while (resultado.next()) {
 				AreaConocimiento area = new AreaConocimiento();
-				area.setIdArea(resultado.getString(1));
-				area.setNombre(resultado.getString(1));
+				area.setIdArea(resultado.getString("id_area"));
+				area.setNombre(resultado.getString("nombre"));
 				areas.add(area);
 			}
 			
