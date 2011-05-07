@@ -159,18 +159,22 @@ public class GuiRegistroModificar extends JScrollPane{
 			estadoLabel = inicializarLabel("Estado: ");
 		}
 
-		// Controlador para hacer consulta de areas de interes.
-		ControladorAreaConocimiento controladorAreasInteres = new ControladorAreaConocimiento();
+		//Solo lo necesito si es en modo registro o modificar en modo usuario normal
+		if(modo==0 || modo==1){
+			// Controlador para hacer consulta de areas de interes.
+			ControladorAreaConocimiento controladorAreasInteres = new ControladorAreaConocimiento();
 
-		areasInteresVector = controladorAreasInteres.obtenerAreas();
-		
-		// Construir areasInteresArray (el que se usar para inicializar el jcombobox), 
-		// con el vector areasInteresVector.
-		
-		areasInteresArray = new Vector<String> (areasInteresVector.size());
-		for(int i=0;i<areasInteresVector.size()-1;i++){
-			areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre()); //llenamos el vector con el nombre de las areas que hay en el sistema.
+			areasInteresVector = controladorAreasInteres.obtenerAreas();
+			
+			// Construir areasInteresArray (el que se usar para inicializar el jcombobox), 
+			// con el vector areasInteresVector.
+			
+			areasInteresArray = new Vector<String> (areasInteresVector.size());
+			for(int i=0;i<areasInteresVector.size()-1;i++){
+				areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre()); //llenamos el vector con el nombre de las areas que hay en el sistema.
+			}
 		}
+
 		
 		
 		//Ininializar JTextField, JPasswordField, JComboBox, JSpinner.DateEditor segun modos.
@@ -379,11 +383,27 @@ public class GuiRegistroModificar extends JScrollPane{
 			
 			for(int i=0; i<areasInteresUsuarioViejas.size();i++){
 				String nombreArea = areasInteresUsuarioViejas.elementAt(i).getNombre();
-				System.out.println("Nombre Area: " + nombreArea);
+				//System.out.println("Nombre Area: " + nombreArea);
 				areaConocimientoVector.add(nombreArea);
 				JLabel nuevaArea= new JLabel();
 				nuevaArea.setText(nombreArea);				
 				nuevaArea.addMouseListener(new ManejadorMouse());			
+				panelAreasInteres.add(nuevaArea);
+				panelAreasInteres.updateUI();
+				
+			}
+		}
+		//Para el modo modificar por parte de un usuario administrador
+		//se debe tener, ya visualizado en el panel de areas las areas que tiene
+		//desde su ultima modificacion o registro pero no se podran modificar.
+		if(modo==2){	
+			
+			for(int i=0; i<areasInteresUsuarioViejas.size();i++){
+				String nombreArea = areasInteresUsuarioViejas.elementAt(i).getNombre();
+				//System.out.println("Nombre Area: " + nombreArea);
+				areaConocimientoVector.add(nombreArea);
+				JLabel nuevaArea= new JLabel();
+				nuevaArea.setText(nombreArea);						
 				panelAreasInteres.add(nuevaArea);
 				panelAreasInteres.updateUI();
 				
@@ -449,19 +469,26 @@ public class GuiRegistroModificar extends JScrollPane{
 	private void inicializarJComponentsModificarAdministrador(){
 		
 		//Obtener datos del usuario e ingresarlos a los correspondientes JTextField
-		campoLoginTF = new JTextField(usuarioModificar.getLogin());
+		campoLoginTF = new JTextField(10);
+		campoLoginTF.setText(usuarioModificar.getLogin());
 		campoLoginTF.setEditable(false);
-		campoNombre1 = new JTextField(usuarioModificar.getNombre1());
+		campoNombre1 = new JTextField(30);
+		campoNombre1.setText(usuarioModificar.getNombre1());
 		campoNombre1.setEditable(false);
-		campoNombre2 = new JTextField(usuarioModificar.getNombre2());
+		campoNombre2 = new JTextField(30);
+		campoNombre2.setText(usuarioModificar.getNombre2());
 		campoNombre2.setEditable(false);
-		campoApellido1 = new JTextField(usuarioModificar.getApellido1());
+		campoApellido1 = new JTextField(30);
+		campoApellido1.setText(usuarioModificar.getApellido1());
 		campoApellido1.setEditable(false);
-		campoApellido2 = new JTextField(usuarioModificar.getApellido2());
+		campoApellido2 = new JTextField(30);
+		campoApellido2.setText(usuarioModificar.getApellido2());
 		campoApellido2.setEditable(false);
-		campoEmail = new JTextField(usuarioModificar.getEmail());
+		campoEmail = new JTextField(30);
+		campoEmail.setText(usuarioModificar.getEmail());
 		campoEmail.setEditable(false);
-		campoNivelEscolaridad = new JTextField(usuarioModificar.getNivelEscolaridad());
+		campoNivelEscolaridad = new JTextField(30);
+		campoNivelEscolaridad.setText(usuarioModificar.getNivelEscolaridad());
 		campoNivelEscolaridad.setEditable(false);
 		
 		//Obtener fecha para organizar el formato para mostrar
@@ -479,7 +506,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
 		campoVinculoUnivalle.setEnabled(false);
 		campoPerfil= new JComboBox(perfilArray);
-		campoPerfil.setSelectedIndex(Integer.parseInt(usuarioModificar.getTipo()));
+		campoPerfil.setSelectedIndex(Integer.parseInt(usuarioModificar.getTipo())-1);
 		campoEstado= new JComboBox(estadoArray);
 		campoEstado.setSelectedIndex(usuarioModificar.getEstado()? 0: 1);
 	}
@@ -488,27 +515,37 @@ public class GuiRegistroModificar extends JScrollPane{
 	private void inicializarJComponentsModificarUsuarioNormal(){
 		
 		//Obtener datos de usuario e introducirlos en los JTextField.
-		campoLoginTF = new JTextField(usuarioModificar.getLogin());
+		campoLoginTF = new JTextField(10);
+		campoLoginTF.setText(usuarioModificar.getLogin());
 		campoLoginTF.setEditable(false);
-		campoRespuestaSecreta = new JTextField(usuarioModificar.getRespuestaSecreta());
+		campoRespuestaSecreta = new JTextField(30);
+		campoRespuestaSecreta.setText(usuarioModificar.getRespuestaSecreta());
 		campoRespuestaSecreta.addKeyListener(new ManejadorJTextField());
-		campoNombre1 = new JTextField(usuarioModificar.getNombre1());
+		campoNombre1 = new JTextField(30);
+		campoNombre1.setText(usuarioModificar.getNombre1());
 		campoNombre1.addKeyListener(new ManejadorJTextField());
-		campoNombre2 = new JTextField(usuarioModificar.getNombre2());
+		campoNombre2 = new JTextField(30);
+		campoNombre2.setText(usuarioModificar.getNombre2());
 		campoNombre2.addKeyListener(new ManejadorJTextField());
-		campoApellido1 = new JTextField(usuarioModificar.getApellido1());
+		campoApellido1 = new JTextField(30);
+		campoApellido1.setText(usuarioModificar.getApellido1());
 		campoApellido1.addKeyListener(new ManejadorJTextField());
-		campoApellido2 = new JTextField(usuarioModificar.getApellido2());
+		campoApellido2 = new JTextField(30);
+		campoApellido2.setText(usuarioModificar.getApellido2());
 		campoApellido2.addKeyListener(new ManejadorJTextField());
-		campoEmail = new JTextField(usuarioModificar.getEmail());
+		campoEmail = new JTextField(30);
+		campoEmail.setText(usuarioModificar.getEmail());
 		campoEmail.addKeyListener(new ManejadorJTextField());
-		campoNivelEscolaridad = new JTextField(usuarioModificar.getNivelEscolaridad());
+		campoNivelEscolaridad = new JTextField(30);
+		campoNivelEscolaridad.setText(usuarioModificar.getNivelEscolaridad());
 		campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
 
 		//Obtener password para introducirla en los campo password y verificarPassword.
-		campoPassword = new JPasswordField(usuarioModificar.getContrasena());
+		campoPassword = new JPasswordField(20);
+		campoPassword.setText(usuarioModificar.getContrasena());
 		campoPassword.addKeyListener(new ManejadorJTextField());
-		campoVerificacionPassword = new JPasswordField(usuarioModificar.getContrasena());
+		campoVerificacionPassword = new JPasswordField(20);
+		campoVerificacionPassword.setText(usuarioModificar.getContrasena());
 		campoVerificacionPassword.addKeyListener(new ManejadorJTextField());
 
 		//Obtener los datos que deben de aparecer seleccionados en los JComboBox.
@@ -557,6 +594,25 @@ public class GuiRegistroModificar extends JScrollPane{
 		configuracion.insets= insets;
 		configuracion.anchor= GridBagConstraints.WEST;
 		return configuracion;
+	}
+	
+	//Funcion que limpia los campos despues de registrar.
+	private void LimpiarCampos(){
+		campoLoginTF.setText("");
+		campoNombre1.setText("");
+		campoNombre2.setText("");
+		campoApellido1.setText("");
+		campoApellido2.setText("");
+		campoPassword.setText("");
+		campoVerificacionPassword.setText("");
+		campoEmail.setText("");
+		campoPreguntaSecreta.setSelectedIndex(0);
+		campoRespuestaSecreta.setText("");
+		campoNivelEscolaridad.setText("");
+		campoVinculoUnivalle.setSelectedIndex(0);
+		campoGenero.setSelectedIndex(0);
+		campoAreasInteres.setSelectedIndex(0);
+		panelAreasInteres.removeAll();
 	}
 	
 	
@@ -617,7 +673,11 @@ public class GuiRegistroModificar extends JScrollPane{
 				}
 				
 				if(!(passwordString.equals(verPasswordString))){
-					//JOptionPane.showMessageDialog(, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
+					campoPassword.selectAll();
+					campoPassword.requestFocus(true);
+					campoVerificacionPassword.selectAll();
+					campoVerificacionPassword.requestFocus(true);
 					return;
 				}
 				
@@ -629,10 +689,14 @@ public class GuiRegistroModificar extends JScrollPane{
 						fechaNacimientoDate, perfilString, estado, areasInteresUsuario);
 				
 				ControladorUsuario controlador = new ControladorUsuario();
-				System.out.println("Entra y va a ingresar usuario");
 				controlador.insertarUsuario(usuarioModificar);
 				controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
+				System.out.println("Ingresa usuario");
 				
+				//Se indica que ya se puede loguear.
+				JOptionPane.showMessageDialog(null, "Ya se encuentra registrado.\n Puede ingresar al sistema.");
+				
+				LimpiarCampos();
 			}
 			if(e.getSource() == modificar){
 				if(modo==1){
@@ -663,8 +727,13 @@ public class GuiRegistroModificar extends JScrollPane{
 					java.sql.Date fechaNacimientoDate = java.sql.Date.valueOf(fechaNacimientoString);
 
 					
+					//Organizar vector de areasInteresUsuario, esto es
+					//mirar que areas se deben eliminar de las antiguas.
+					//anadir las nuevas al resultado anterios.
+					
 					areasInteresUsuario = areasInteresUsuarioViejas;
 					
+					//Se eliminan areas que el usuario ya no le interesan.
 					for(int i=0; i<areasInteresUsuario.size();i++){
 						if(areaConocimientoVector.indexOf(
 								areasInteresUsuario.elementAt(i).getNombre()) == -1)
@@ -673,6 +742,7 @@ public class GuiRegistroModificar extends JScrollPane{
 						}
 					}
 
+					//Ingresar las nuevas areas de interes del usuario.
 					for(int i=0; i<areaConocimientoVector.size();i++){
 						if(areasInteresUsuario.indexOf(
 								areasInteresVector.elementAt(
@@ -684,9 +754,11 @@ public class GuiRegistroModificar extends JScrollPane{
 					} 
 					
 					if(!(passwordString.equals(verPasswordString))){
-						JOptionPane.showMessageDialog(null, "Verifique el password.", "password diferentes", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Verifique el password.", "Passwords Diferentes", JOptionPane.WARNING_MESSAGE);
 						campoPassword.selectAll();
+						campoPassword.requestFocus(true);
 						campoVerificacionPassword.selectAll();
+						campoVerificacionPassword.requestFocus(true);
 						return;
 					}
 
@@ -703,11 +775,14 @@ public class GuiRegistroModificar extends JScrollPane{
 					usuarioModificar.setNivelEscolaridad(nivelEscolaridadString);
 					usuarioModificar.setGenero(generoString);
 					usuarioModificar.setAreas(areasInteresUsuario);
+					usuarioModificar.setFechaNacimiento(fechaNacimientoDate);
 					
 
 					ControladorUsuario controlador = new ControladorUsuario();
 					controlador.modificarUsuario(usuarioModificar);
-					//FALTA MODIFICAR AREAS USUARIIO.
+					
+					JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");
+					
 				}
 				if(modo==2){
 					
@@ -722,7 +797,7 @@ public class GuiRegistroModificar extends JScrollPane{
 					ControladorUsuario controlador = new ControladorUsuario();
 					controlador.modificarUsuario(usuarioModificar);
 					
-					
+					JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente los datos del usuario" + usuarioModificar.getLogin());
 				}
 			}
 			

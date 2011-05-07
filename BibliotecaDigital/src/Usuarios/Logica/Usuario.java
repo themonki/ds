@@ -102,7 +102,7 @@ public class Usuario {
 	}
 
 	public String getRespuestaSecreta() {
-		return preguntaSecreta;
+		return respuestaSecreta;
 	}
 
 	public String getGenero() {

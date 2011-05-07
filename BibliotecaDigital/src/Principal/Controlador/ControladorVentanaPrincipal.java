@@ -24,7 +24,12 @@ public class ControladorVentanaPrincipal {
 			GuiPrincipal guiPrincipal = new GuiPrincipal();
 			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
-		}else if(password.equals(usuario.getContrasena()))
+		}else if(usuario.getEstado()==false){ //usuario Desactivado.
+			JOptionPane.showMessageDialog(null, "USUARIO DESACTIVADO\nComuniquese con el administrador\n para ser activado de nuevo.", "Usuario Desactivado", JOptionPane.WARNING_MESSAGE);
+			GuiPrincipal guiPrincipal = new GuiPrincipal();
+			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		else if(password.equals(usuario.getContrasena()))
 		{
 			System.out.println("entre password iguales");
 			if(usuario.getTipo().equals("1"))

@@ -16,6 +16,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -53,8 +55,8 @@ public class GuiAutenticar extends JPanel
 		JPanel panelDatosInterno = new JPanel(new GridBagLayout());
 		JPanel panelDatos = new JPanel();
 		// --------------------------------------------------------
-		panelDatosInterno.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		panelBoton.setBorder(BorderFactory.createLineBorder(Color.yellow));
+		panelDatosInterno.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelBoton.setBorder(BorderFactory.createLineBorder(Color.black));
 		// ---------------------------------------------------------
 		iniciarLabels();
 		// ---------------------------------------------------------
@@ -68,7 +70,7 @@ public class GuiAutenticar extends JPanel
 		// Linea y titulo del panel.
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.yellow), title);
+				.createLineBorder(Color.black), title);
 		borde.setTitleColor(colorTitulo);
 		borde.setTitleFont(fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -119,6 +121,7 @@ public class GuiAutenticar extends JPanel
 	{
 		campoNombre = new JTextField(20);
 		campoContrasena = new JPasswordField(20);
+		campoContrasena.addKeyListener(new ManejadorJPasswordField());
 		
 		botonAutenticar = new JButton("Ingresar al Sistema");
 		botonAutenticar.addActionListener(new ManejadorBoton());
@@ -154,21 +157,34 @@ public class GuiAutenticar extends JPanel
 
 			if(evento.getSource() == botonAutenticar)
 			{
-				
 				ControladorVentanaPrincipal controladorVentanaPrincipal = new ControladorVentanaPrincipal();
 				controladorVentanaPrincipal.verificarUsuario(campoNombre.getText(),new String(campoContrasena.getPassword()));
 				gp.setVisible(false);
 				gp.dispose();
 				
-			}
+			}			
+		}	
+	}
+	
+	private class ManejadorJPasswordField implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode() == KeyEvent.VK_ENTER)
+				botonAutenticar.doClick();			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
 			
 		}
-				
-				
 
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
 			
-			
-		
+		}
 		
 	}
 	
