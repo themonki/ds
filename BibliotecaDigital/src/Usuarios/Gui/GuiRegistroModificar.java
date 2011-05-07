@@ -18,13 +18,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
-
-import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -32,14 +29,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-
-
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
-
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
 
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
@@ -50,7 +42,8 @@ import Usuarios.Logica.Usuario;
 public class GuiRegistroModificar extends JScrollPane{
 
 	//ATRIBUTOS GUI
-	
+	private static final long serialVersionUID = 1L;
+
 	private JTextField campoLoginTF, campoRespuestaSecreta, campoNombre1, campoNombre2, campoApellido1, campoApellido2, campoEmail, campoNivelEscolaridad, campoFechaNacimientoAdmin;
 	
 	private JLabel login, password, verificacionPassword, preguntaSecreta, respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero, fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle, perfilLabel, estadoLabel, areasInteres;
@@ -105,7 +98,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	
 	//Constructor para modificar usuario.
 	public GuiRegistroModificar(Usuario usuarioModificar, int modo){ 
-		this.modo=modo;
+		this.modo=modo; //1 normal 2 
 		this.usuarioModificar= usuarioModificar;
 		this.areasInteresUsuarioViejas = this.usuarioModificar.getAreas();
 		initComponents();		
@@ -940,7 +933,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	
 	
 	//Main, frame para ver scrollpane.
-	public static void main (String args []){
+	/*public static void main (String args []){
 
 		try
 		{	
@@ -957,5 +950,5 @@ public class GuiRegistroModificar extends JScrollPane{
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
-	}
+	}*/
 }

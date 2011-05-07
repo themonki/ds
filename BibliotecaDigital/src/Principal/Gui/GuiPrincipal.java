@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,24 +19,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
 
+import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiAutenticar;
 import Usuarios.Gui.GuiRegistroModificar;
 
-public class GuiPrincipal extends JFrame {
-	
-
-	
-	
+public class GuiPrincipal extends JFrame
+{
 		private static final long serialVersionUID = 1L;
-
-		
 	
 		// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 		private String estadoInicial = "Inicio";
@@ -52,21 +46,11 @@ public class GuiPrincipal extends JFrame {
 		private JButton ingresarSistema;
 		private JButton consultaAvanzada;
 		
-	
-		
 		private JLabel estado;
 
 		// Clase interna que permite administrar todos los eventos que genera la
 		// ventana y son escuchados.
 		private Manejador manejador;
-		
-		
-		private JPanel panelConsultaBasica;
-		private JLabel etiquetaConsulta;
-		private JTextField campoConsulta;
-		private JPanel panelBotonesConsulta;
-		private JButton consultar;
-		private JButton limpiarCampoConsulta;
 
 		// Elementos de la barra de menu
 		private JMenu archivo;
@@ -76,12 +60,13 @@ public class GuiPrincipal extends JFrame {
 		private JMenuItem informacion;
 		private JMenuBar barra;
 
-		// Elementos del panel consulta basica
-		
+		// Paneles a usar		
 		private GuiRegistroModificar panelRegistro;
 		private GuiAutenticar panelAutentificar;
+		private GuiConsultaBasica panelConsultaBasica;
 		
-		public GuiPrincipal(){
+		public GuiPrincipal()
+		{
 			
 			super("::: Sistema de Biblioteca Digital :::");	
 
@@ -91,7 +76,7 @@ public class GuiPrincipal extends JFrame {
 			//-------------------------------fuentes letras-------------------------
 	
 			Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-			Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
+			//Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
 			
 			//-------------------------------Color letras----------------------------
 			
@@ -105,16 +90,12 @@ public class GuiPrincipal extends JFrame {
 			borde.setTitleFont(fontTitulo);
 			borde.setTitleJustification(TitledBorder.CENTER);
 			
-			
-						
-			
-			
-			
-
+			// se instancias paneles adicionales
 			panelRegistro = new GuiRegistroModificar();
+			panelConsultaBasica = new GuiConsultaBasica();
 			panelAutentificar = new GuiAutenticar(this);
 			
-			
+			//se obtiene el contenedor de la gui principal
 			contenedor = getContentPane();
 			contenedor.setLayout(new BorderLayout(20,20));
 			((JComponent) contenedor).setBorder(borde);
@@ -142,8 +123,8 @@ public class GuiPrincipal extends JFrame {
 			barra.add(acercaDe);
 			setJMenuBar(barra);
 
-			// Se instancian todos los elementos que pertenecen al panel del
-			// administrador
+			// Se instancian todos los elementos que pertenecen al panel de
+			//opciones
 			panelOpcionesGenerales = new JPanel(new GridLayout(8,1,10,20));
 
 			volver = new JButton("Inicio");
@@ -169,31 +150,6 @@ public class GuiPrincipal extends JFrame {
 			panelOpcionesGenerales.setBackground(new Color(250, 230,250));
 		
 
-			// Elementos del panel de inicio que se muestra en el centro apenas
-			// se
-			// carga el programa.			
-			
-			
-			// Elementos del panel nuevo usuario.
-			panelConsultaBasica = new JPanel(new FlowLayout(1,200,40));
-
-			etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
-			etiquetaConsulta.setFont(fontLabels);
-			campoConsulta = new JTextField(30);
-			campoConsulta.setFont(fontLabels);
-			panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
-			
-			consultar = new JButton("Consultar");
-			consultar.addActionListener(manejador);
-			limpiarCampoConsulta = new JButton("Limpiar Campo");
-			limpiarCampoConsulta.addActionListener(manejador);
-			
-			panelBotonesConsulta.add(consultar);
-			panelBotonesConsulta.add(limpiarCampoConsulta);
-			panelConsultaBasica.add(etiquetaConsulta);
-			panelConsultaBasica.add(campoConsulta);
-			panelConsultaBasica.add(panelBotonesConsulta);
-			
 			estado = new JLabel(estadoInicial);
 
 			contenedor.add(panelconOpciones2, BorderLayout.WEST);
@@ -202,8 +158,9 @@ public class GuiPrincipal extends JFrame {
 			//contenedor.add(new JPanel(), BorderLayout.EAST);
 			//contenedor.add(new JPanel(), BorderLayout.WEST);
 		
-
-			
+			//centrar en la pantalla
+			Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+			this.setLocation((screenSize.width)/2-700/2,(screenSize.height)/2-500/2);
 			
 			setSize(700, 500);
 			setVisible(true);
@@ -331,28 +288,29 @@ public class GuiPrincipal extends JFrame {
 		public static void main(String args[]) {
 
 			try
-			{				NimRODTheme nt = new NimRODTheme();
-			nt.setPrimary1( new Color(10,10,230));
-			nt.setPrimary2( new Color(110,110,150));
-			nt.setPrimary3( new Color(0,0,230));
-			//nt.setPrimary(new Color(100,100,100));
-			//nt.setSecondary(new Color(230, 220,250));
-			nt.setSecondary1(new Color(0,0,100));
-			nt.setSecondary2(new Color(0, 100,0));
-			nt.setSecondary3(new Color(250,250,250));
-			nt.setWhite(new Color(250, 230,250));
-			
-			
-
-			NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
-			NimRODLF.setCurrentTheme( nt);
-			UIManager.setLookAndFeel( NimRODLF);
+			{				
+				NimRODTheme nt = new NimRODTheme();
+				nt.setPrimary1( new Color(10,10,230));
+				nt.setPrimary2( new Color(110,110,150));
+				nt.setPrimary3( new Color(0,0,230));
+				//nt.setPrimary(new Color(100,100,100));
+				//nt.setSecondary(new Color(230, 220,250));
+				nt.setSecondary1(new Color(0,0,100));
+				nt.setSecondary2(new Color(0, 100,0));
+				nt.setSecondary3(new Color(250,250,250));
+				nt.setWhite(new Color(250, 230,250));
+				
+				
+	
+				NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
+				NimRODLookAndFeel.setCurrentTheme( nt);
+				UIManager.setLookAndFeel( NimRODLF);
 				//UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 			GuiPrincipal a = new GuiPrincipal();
-		
+			
 			a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		}
