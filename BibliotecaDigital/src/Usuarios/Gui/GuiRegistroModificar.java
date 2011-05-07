@@ -385,6 +385,10 @@ public class GuiRegistroModificar extends JScrollPane{
 				panelAreasInteres.updateUI();
 				
 			}
+			
+			/*for(int i=0;i<areaConocimientoVector.size();i++){
+				System.out.println("Areas que tenia el usuario: " + areaConocimientoVector.elementAt(i));
+			}*/
 		}
 		//Para el modo modificar por parte de un usuario administrador
 		//se debe tener, ya visualizado en el panel de areas las areas que tiene
@@ -604,7 +608,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoNivelEscolaridad.setText("");
 		campoVinculoUnivalle.setSelectedIndex(0);
 		campoGenero.setSelectedIndex(0);
-		campoAreasInteres.setSelectedIndex(0);
+		//campoAreasInteres.setSelectedIndex(0);
 		panelAreasInteres.removeAll();
 	}
 	
@@ -723,28 +727,20 @@ public class GuiRegistroModificar extends JScrollPane{
 					//Organizar vector de areasInteresUsuario, esto es
 					//mirar que areas se deben eliminar de las antiguas.
 					//anadir las nuevas al resultado anterios.
-					
-					areasInteresUsuario = areasInteresUsuarioViejas;
-					
-					//Se eliminan areas que el usuario ya no le interesan.
-					for(int i=0; i<areasInteresUsuario.size();i++){
-						if(areaConocimientoVector.indexOf(
-								areasInteresUsuario.elementAt(i).getNombre()) == -1)
-						{
-							areasInteresUsuario.remove(i);
-						}
-					}
+					areasInteresUsuario = new Vector<AreaConocimiento>();
 
-					//Ingresar las nuevas areas de interes del usuario.
 					for(int i=0; i<areaConocimientoVector.size();i++){
-						if(areasInteresUsuario.indexOf(
+						areasInteresUsuario.addElement(
 								areasInteresVector.elementAt(
-											areasInteresArray.indexOf(
-													areaConocimientoVector.elementAt(i)))) == -1 ){
-							areasInteresUsuario.addElement(areasInteresVector.elementAt(i));
-						}
-
-					} 
+										areasInteresArray.indexOf(
+												areaConocimientoVector.elementAt(i))));
+					}
+					
+					/*
+					for(int i=0; i<areasInteresUsuario.size();i++)
+					{
+						System.out.println("Area Uusuario: " + areasInteresUsuario.elementAt(i).getNombre());
+					}*/
 					
 					if(!(passwordString.equals(verPasswordString))){
 						JOptionPane.showMessageDialog(null, "Verifique el password.", "Passwords Diferentes", JOptionPane.WARNING_MESSAGE);
@@ -775,6 +771,8 @@ public class GuiRegistroModificar extends JScrollPane{
 					controlador.modificarUsuario(usuarioModificar);
 					controlador.modificarUsuarioArea(usuarioModificar);
 					JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");
+					
+					
 					
 				}
 				if(modo==2){
