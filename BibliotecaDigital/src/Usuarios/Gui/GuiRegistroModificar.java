@@ -164,7 +164,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			
 			areasInteresArray = new Vector<String> (areasInteresVector.size());
 			for(int i=0;i<areasInteresVector.size()-1;i++){
-				areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre()); //llenamos el vector con el nombre de las areas que hay en el sistema.
+				areasInteresArray.add(i, areasInteresVector.elementAt(i+1).getNombre()); //llenamos el vector con el nombre de las areas que hay en el sistema.
 			}
 		}
 
@@ -666,7 +666,7 @@ public class GuiRegistroModificar extends JScrollPane{
 					areasInteresUsuario.addElement(
 							areasInteresVector.elementAt(
 									areasInteresArray.indexOf(
-											areaConocimientoVector.elementAt(i))));
+											areaConocimientoVector.elementAt(i))+1));
 				}
 				
 				if(!(passwordString.equals(verPasswordString))){
@@ -734,7 +734,7 @@ public class GuiRegistroModificar extends JScrollPane{
 						areasInteresUsuario.addElement(
 								areasInteresVector.elementAt(
 										areasInteresArray.indexOf(
-												areaConocimientoVector.elementAt(i))));
+												areaConocimientoVector.elementAt(i))+1));
 					}
 					
 					/*
