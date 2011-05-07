@@ -342,13 +342,13 @@ public class DaoUsuario {
 	public int modificarPerfilEstado(String login, String tipo, String estado){
 		String sql_guardar;
 		int numFilas;
-		sql_guardar = "UPDATE Usuario SET tipo = '"+tipo+"' , estado '"+estado+"'" +
+		sql_guardar = "UPDATE Usuario SET tipo = '"+tipo+"' , estado = '"+estado+"'" +
 				" WHERE login = '"+login+"';";
 
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
-
+			System.out.println(sql_guardar);
 			numFilas = sentencia.executeUpdate(sql_guardar);
 			conn.close();
 			return numFilas;
