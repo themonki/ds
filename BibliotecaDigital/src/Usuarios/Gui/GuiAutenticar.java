@@ -56,7 +56,7 @@ public class GuiAutenticar extends JPanel
 		JPanel panelDatos = new JPanel();
 		// --------------------------------------------------------
 		panelDatosInterno.setBorder(BorderFactory.createLineBorder(Color.black));
-		panelBoton.setBorder(BorderFactory.createLineBorder(Color.black));
+		//panelBoton.setBorder(BorderFactory.createLineBorder(Color.black));
 		// ---------------------------------------------------------
 		iniciarLabels();
 		// ---------------------------------------------------------
