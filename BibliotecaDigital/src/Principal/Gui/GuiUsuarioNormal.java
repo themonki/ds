@@ -3,7 +3,7 @@ package Principal.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,17 +19,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 
+import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
 
-public class GuiUsuarioNormal extends JFrame {
-	
-
+public class GuiUsuarioNormal extends JFrame
+{
 	private static final long serialVersionUID = 1L;
 
 
@@ -38,27 +36,18 @@ public class GuiUsuarioNormal extends JFrame {
 	private String estadoModificacion = "ModificandoUsuario";
 	private String estadoConsultaAvanzada = "ConsultaAvanzada";		
 
-	// Opciones basicas para un usuario
+	// Opciones basicas para un usuario normal
 	private JPanel panelOpcionesGenerales;		
 	private JButton volver; //incio
 	private JButton modificarUsuario;	
 	private JButton consultaAvanzada;
 	private JButton logout;
 	
-
-	
 	private JLabel estado;
 
 	// Clase interna que permite administrar todos los eventos que genera la
 	// ventana y son escuchados.
 	private Manejador manejador;
-
-	private JPanel panelConsultaBasica;
-	private JLabel etiquetaConsulta;
-	private JTextField campoConsulta;
-	private JPanel panelBotonesConsulta;
-	private JButton consultar;
-	private JButton limpiarCampoConsulta;
 
 	// Elementos de la barra de menu
 	private JMenu archivo;
@@ -69,15 +58,13 @@ public class GuiUsuarioNormal extends JFrame {
 	private JMenuBar barra;
 	private Usuario usuario;
 
-	// Elementos del panel consulta basica
-	
+	// Otor paneles a usar
 	private GuiRegistroModificar panelModificacion;
+	private GuiConsultaBasica panelConsultaBasica;
 	
 	
-	public GuiUsuarioNormal(Usuario usuario){
-		
-	
-		
+	public GuiUsuarioNormal(Usuario usuario)
+	{
 		super("::: Sistema de Biblioteca Digital :::");	
 		this.usuario = usuario;
 
@@ -87,7 +74,7 @@ public class GuiUsuarioNormal extends JFrame {
 		//-------------------------------fuentes letras-------------------------
 
 		Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-		Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
+		//Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
 		
 		//-------------------------------Color letras----------------------------
 		
@@ -101,10 +88,10 @@ public class GuiUsuarioNormal extends JFrame {
 		borde.setTitleFont(fontTitulo);
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
-		
+		// se instancias paneles adicionales
 		panelModificacion = new GuiRegistroModificar(usuario,1);
+		panelConsultaBasica = new GuiConsultaBasica();
 	
-		
 		
 		contenedor = getContentPane();
 		contenedor.setLayout(new BorderLayout(20,20));
@@ -134,8 +121,8 @@ public class GuiUsuarioNormal extends JFrame {
 		setJMenuBar(barra);
 
 		// Se instancian todos los elementos que pertenecen al panel del
-		// administrador
-		panelOpcionesGenerales = new JPanel(new FlowLayout());
+		// usuario normal
+		panelOpcionesGenerales = new JPanel(new GridLayout(8,1,10,20));
 
 		volver = new JButton("Inicio");
 		volver.addActionListener(manejador);
@@ -147,53 +134,29 @@ public class GuiUsuarioNormal extends JFrame {
 		logout.addActionListener(manejador);
 					
 
-		// Se agregan los elementos al panel de opciones del administrador.
+		// Se agregan los elementos al panel de opciones del usuario normal.
 		panelOpcionesGenerales.add(volver);
 		panelOpcionesGenerales.add(modificarUsuario);
 		panelOpcionesGenerales.add(consultaAvanzada);
 		panelOpcionesGenerales.add(logout);
 		
-	
-
-		// Elementos del panel de inicio que se muestra en el centro apenas
-		// se
-		// carga el programa.
-		
-
-		// Elementos del panel nuevo usuario.
-		panelConsultaBasica = new JPanel(new FlowLayout(1,60,40));
-
-		etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
-		etiquetaConsulta.setFont(fontLabels);
-		campoConsulta = new JTextField(60);
-		campoConsulta.setFont(fontLabels);
-		panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
-		
-		consultar = new JButton("Consultar");
-		consultar.addActionListener(manejador);
-		limpiarCampoConsulta = new JButton("Limpiar Campo");
-		limpiarCampoConsulta.addActionListener(manejador);
-		
-		panelBotonesConsulta.add(consultar);
-		panelBotonesConsulta.add(limpiarCampoConsulta);
-		panelConsultaBasica.add(etiquetaConsulta);
-		panelConsultaBasica.add(campoConsulta);
-		panelConsultaBasica.add(panelBotonesConsulta);
-		
-		
+		panelOpcionesGenerales.setBackground(new Color(250, 230 , 250));
+		JPanel panelconOpciones2= new JPanel(); //evita que los botones crescan si la ventana es redimensionada
+		panelconOpciones2.add(panelOpcionesGenerales);
 		
 		estado = new JLabel(estadoInicial);
 
-		contenedor.add(panelOpcionesGenerales, BorderLayout.NORTH);
+		contenedor.add(panelconOpciones2, BorderLayout.WEST);
 		contenedor.add(estado, BorderLayout.SOUTH);
 		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		contenedor.add(new JPanel(), BorderLayout.EAST);
-		contenedor.add(new JPanel(), BorderLayout.WEST);
+		//contenedor.add(new JPanel(), BorderLayout.EAST);
+		//contenedor.add(new JPanel(), BorderLayout.WEST);
 	
-
+		//centrar en la pantalla
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screenSize.width)/2-700/2,(screenSize.height)/2-500/2);
 		
-		
-		setSize(600, 320);
+		setSize(700, 500);
 		setVisible(true);
 
 	}

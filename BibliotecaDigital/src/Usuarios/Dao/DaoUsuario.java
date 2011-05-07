@@ -123,9 +123,8 @@ public class DaoUsuario {
 
 	}
 
-	public int insertarUsuarioAreas(String login, Vector<AreaConocimiento> va,
-			int cantidad) {
-		int numFilas = 0;
+	public int insertarUsuarioAreas(String login, Vector<AreaConocimiento> va) {
+		int numFilas = 0, cantidad = va.size();
 		String sql_guardar = "INSERT INTO Interesa_Usuario_Area_Conocimiento (login, id_area)"
 				+ "VALUES ", id_area = "";
 
@@ -137,12 +136,11 @@ public class DaoUsuario {
 				sql_guardar += "('" + login + "','" + id_area + "'),";
 			}
 		}
-		sql_guardar += ";";
-
+		sql_guardar += ";";		
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
-
+			System.out.println(sql_guardar);
 			numFilas = sentencia.executeUpdate(sql_guardar);
 			conn.close();
 			return numFilas;
@@ -321,39 +319,12 @@ public class DaoUsuario {
 		return usuario;
 	}
 	
-	//inserta las areas una por una
-	public int insertarAreasModificadas(String login, Vector <AreaConocimiento> areasNuevas){
-		
-		String sql_agregar="", sql_guardar;
-		int cantidad = areasNuevas.size();
-		sql_guardar = "INSERT INTO Interesa_Usuario_Area_Conocimiento VALUES ";
-		
-		for(int i = 0; i < cantidad; i++){
-			sql_agregar+="('"+ login + "', '"+areasNuevas.get(i).getIdArea() +"' );";
-			
-			try {
-				Connection conn = fachada.conectar();
-				Statement sentencia = conn.createStatement();
-				sentencia.executeUpdate(sql_guardar+sql_agregar);
-				sql_agregar="";
-				conn.close();
-				return 1;
-			} catch (SQLException e) {
-				System.out.println(e);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-		
-		}//fin for
-		return -1;
-		
-	}
+	
 //remueve todas las areas de un usuario
-	public int quitarAreasModificadas(String login){
-		
+	public int quitarUsuarioAreas(String login){		
 		String sql_borrar;
-		sql_borrar = "DELETE FROM Interesa_Usuario_Area_Conocimiento WHERE login = '"+login+"'";
-					
+		sql_borrar = "DELETE FROM Interesa_Usuario_Area_Conocimiento WHERE login = '"+login+"';";
+		System.out.println(sql_borrar);			
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -366,6 +337,27 @@ public class DaoUsuario {
 			System.out.println(e);
 		}
 		return -1;		
+	}
+	//actualizar el perfil y el estado de un usuario
+	public int modificarPerfilEstado(String login, String tipo, String estado){
+		String sql_guardar;
+		int numFilas;
+		sql_guardar = "UPDATE Usuario SET tipo = '"+tipo+"' , estado = '"+estado+"'" +
+				" WHERE login = '"+login+"';";
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			System.out.println(sql_guardar);
+			numFilas = sentencia.executeUpdate(sql_guardar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
 	}
 	
 	public static void main(String args[])

@@ -18,13 +18,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
-
-import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -32,14 +29,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-
-
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
-
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
 
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
@@ -50,7 +42,8 @@ import Usuarios.Logica.Usuario;
 public class GuiRegistroModificar extends JScrollPane{
 
 	//ATRIBUTOS GUI
-	
+	private static final long serialVersionUID = 1L;
+
 	private JTextField campoLoginTF, campoRespuestaSecreta, campoNombre1, campoNombre2, campoApellido1, campoApellido2, campoEmail, campoNivelEscolaridad, campoFechaNacimientoAdmin;
 	
 	private JLabel login, password, verificacionPassword, preguntaSecreta, respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero, fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle, perfilLabel, estadoLabel, areasInteres;
@@ -105,7 +98,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	
 	//Constructor para modificar usuario.
 	public GuiRegistroModificar(Usuario usuarioModificar, int modo){ 
-		this.modo=modo;
+		this.modo=modo; //1 normal 2 
 		this.usuarioModificar= usuarioModificar;
 		this.areasInteresUsuarioViejas = this.usuarioModificar.getAreas();
 		initComponents();		
@@ -171,7 +164,7 @@ public class GuiRegistroModificar extends JScrollPane{
 			
 			areasInteresArray = new Vector<String> (areasInteresVector.size());
 			for(int i=0;i<areasInteresVector.size()-1;i++){
-				areasInteresArray.add(i, areasInteresVector.elementAt(i).getNombre()); //llenamos el vector con el nombre de las areas que hay en el sistema.
+				areasInteresArray.add(i, areasInteresVector.elementAt(i+1).getNombre()); //llenamos el vector con el nombre de las areas que hay en el sistema.
 			}
 		}
 
@@ -392,6 +385,10 @@ public class GuiRegistroModificar extends JScrollPane{
 				panelAreasInteres.updateUI();
 				
 			}
+			
+			/*for(int i=0;i<areaConocimientoVector.size();i++){
+				System.out.println("Areas que tenia el usuario: " + areaConocimientoVector.elementAt(i));
+			}*/
 		}
 		//Para el modo modificar por parte de un usuario administrador
 		//se debe tener, ya visualizado en el panel de areas las areas que tiene
@@ -611,7 +608,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoNivelEscolaridad.setText("");
 		campoVinculoUnivalle.setSelectedIndex(0);
 		campoGenero.setSelectedIndex(0);
-		campoAreasInteres.setSelectedIndex(0);
+		//campoAreasInteres.setSelectedIndex(0);
 		panelAreasInteres.removeAll();
 	}
 	
@@ -669,7 +666,7 @@ public class GuiRegistroModificar extends JScrollPane{
 					areasInteresUsuario.addElement(
 							areasInteresVector.elementAt(
 									areasInteresArray.indexOf(
-											areaConocimientoVector.elementAt(i))));
+											areaConocimientoVector.elementAt(i))+1));
 				}
 				
 				if(!(passwordString.equals(verPasswordString))){
@@ -689,8 +686,9 @@ public class GuiRegistroModificar extends JScrollPane{
 						fechaNacimientoDate, perfilString, estado, areasInteresUsuario);
 				
 				ControladorUsuario controlador = new ControladorUsuario();
-				controlador.insertarUsuario(usuarioModificar);
-				controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
+				controlador.insertarDatosUsuario(usuarioModificar);
+				//controlador.insertarUsuario(usuarioModificar);
+				//controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
 				System.out.println("Ingresa usuario");
 				
 				//Se indica que ya se puede loguear.
@@ -730,28 +728,20 @@ public class GuiRegistroModificar extends JScrollPane{
 					//Organizar vector de areasInteresUsuario, esto es
 					//mirar que areas se deben eliminar de las antiguas.
 					//anadir las nuevas al resultado anterios.
-					
-					areasInteresUsuario = areasInteresUsuarioViejas;
-					
-					//Se eliminan areas que el usuario ya no le interesan.
-					for(int i=0; i<areasInteresUsuario.size();i++){
-						if(areaConocimientoVector.indexOf(
-								areasInteresUsuario.elementAt(i).getNombre()) == -1)
-						{
-							areasInteresUsuario.remove(i);
-						}
-					}
+					areasInteresUsuario = new Vector<AreaConocimiento>();
 
-					//Ingresar las nuevas areas de interes del usuario.
 					for(int i=0; i<areaConocimientoVector.size();i++){
-						if(areasInteresUsuario.indexOf(
+						areasInteresUsuario.addElement(
 								areasInteresVector.elementAt(
-											areasInteresArray.indexOf(
-													areaConocimientoVector.elementAt(i)))) == -1 ){
-							areasInteresUsuario.addElement(areasInteresVector.elementAt(i));
-						}
-
-					} 
+										areasInteresArray.indexOf(
+												areaConocimientoVector.elementAt(i))+1));
+					}
+					
+					/*
+					for(int i=0; i<areasInteresUsuario.size();i++)
+					{
+						System.out.println("Area Uusuario: " + areasInteresUsuario.elementAt(i).getNombre());
+					}*/
 					
 					if(!(passwordString.equals(verPasswordString))){
 						JOptionPane.showMessageDialog(null, "Verifique el password.", "Passwords Diferentes", JOptionPane.WARNING_MESSAGE);
@@ -779,9 +769,12 @@ public class GuiRegistroModificar extends JScrollPane{
 					
 
 					ControladorUsuario controlador = new ControladorUsuario();
-					controlador.modificarUsuario(usuarioModificar);
-					
+					controlador.modificarDatosUsuario(usuarioModificar);
+					//controlador.modificarUsuario(usuarioModificar);
+					//controlador.modificarUsuarioArea(usuarioModificar);
 					JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");
+					
+					
 					
 				}
 				if(modo==2){
@@ -795,7 +788,8 @@ public class GuiRegistroModificar extends JScrollPane{
 					usuarioModificar.setTipo(perfilString);
 					usuarioModificar.setEstado(estadoBool);
 					ControladorUsuario controlador = new ControladorUsuario();
-					controlador.modificarUsuario(usuarioModificar);
+					controlador.modificarPerfilEstado(usuarioModificar);
+					//controlador.modificarUsuario(usuarioModificar);
 					
 					JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente los datos del usuario" + usuarioModificar.getLogin());
 				}
@@ -940,7 +934,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	
 	
 	//Main, frame para ver scrollpane.
-	public static void main (String args []){
+	/*public static void main (String args []){
 
 		try
 		{	
@@ -957,5 +951,5 @@ public class GuiRegistroModificar extends JScrollPane{
 		ventana.setSize(650,500);		
 		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
-	}
+	}*/
 }
