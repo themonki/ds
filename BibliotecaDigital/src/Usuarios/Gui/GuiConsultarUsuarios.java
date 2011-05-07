@@ -126,20 +126,31 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		return label;
 	}
 	
-	private class ManejadorBoton implements ActionListener{
-
+	private class ManejadorBoton implements ActionListener
+	{
+		private String estadoResultado = "";
+		private JLabel mensajeEstado;
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()== consultar){
+		public void actionPerformed(ActionEvent e)
+		{
+			
+			if(e.getSource()== consultar)
+			{
 				
 				ControladorUsuario controlador = new ControladorUsuario();
 				Usuario usuarioEncontrado = controlador.consultarUsuario(campoLogin.getText());
 				if(usuarioEncontrado.getLogin() != null)
-				{	usuariosVector = new Vector<Usuario>();
+				{	
+					usuariosVector = new Vector<Usuario>();
 					usuariosVector.add(usuarioEncontrado);
 					//resultadoLista = null;
-					modeloLista = null;if(resultadoLista==null){
-					resultadoLista = new JList();}else {resultadoLista.removeAll();}
+					modeloLista = null;
+					
+					if(resultadoLista==null){
+						resultadoLista = new JList();
+					}else {
+						resultadoLista.removeAll();
+					}
 					modeloLista = new DefaultListModel();
 					resultadoLista.setModel(modeloLista);
 					resultadoLista.addListSelectionListener(new ManejadorLista());
@@ -149,18 +160,32 @@ public class GuiConsultarUsuarios extends JScrollPane{
 						
 						modeloLista.addElement(usuariosVector.elementAt(i));
 					}					
-					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
-					panelPrincipal.updateUI();
 					
 					if(scrolResultados==null){
-					//PARA CUANDO SE CREE LA LISTA RESULTADO.
-					scrolResultados = new JScrollPane(resultadoLista);
-					panelResultado.add(scrolResultados);}
-				}else{
+						//PARA CUANDO SE CREE LA LISTA RESULTADO.
+						scrolResultados = new JScrollPane(resultadoLista);
+					}
+					
+					if(estadoResultado.equals("noResultado"))
+						panelResultado.remove(mensajeEstado);
+					estadoResultado = "resultado";
+					
+					panelResultado.add(scrolResultados);
 					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
 					panelPrincipal.updateUI();
-					panelResultado.add(new JLabel("No hay Resultados"));
 					
+				}else
+				{
+					if(estadoResultado.equals("resultado"))
+						panelResultado.remove(scrolResultados);
+					estadoResultado = "noResultado";
+					
+					if(mensajeEstado == null)
+						mensajeEstado = new JLabel("No hay resultados!");
+					
+					panelResultado.add(mensajeEstado);
+					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
+					panelPrincipal.updateUI();
 				}	
 			}
 		}		

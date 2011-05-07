@@ -59,8 +59,5 @@ public class ControladorVentanaPrincipal {
 			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		
-		
-		
-		
 	}
 }
