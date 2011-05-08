@@ -142,25 +142,25 @@ public class ControladorUsuario {
 		return value;
 	}
 	
-	/*aï¿½adico por cristian*/
-	/*metodo que dado un login retorna un obejto usuario asociado al login*/
-	public Usuario consultarUsuario(String login)
+	/*añadido cristian*/
+	/*metodo que retorna un vector con todos los usuarios que concidan con alguno de los atributos*/
+	public Vector<Usuario> consultarUsuarios(Vector<String> atributo, Vector<String> valor)
 	{
 		DaoUsuario daoUsuario = new DaoUsuario();
-		Usuario usuario = daoUsuario.consultarUsuario(login);
-		daoUsuario = null;
-		return usuario;
-	}
-	
-	/*aï¿½adido cristian*/
-	/*metodo que retorna todos los usaurios*/
-	public Vector<Usuario> consultarUsuarios()
-	{
-		DaoUsuario daoUsuario = new DaoUsuario();
-		Vector<Usuario> usuarios = daoUsuario.consultarUsuarios();
+		Vector<Usuario> usuarios = daoUsuario.consultarUsuarios(atributo,valor);
 		daoUsuario = null;
 		return usuarios;
 	}
+	
+	/*metodo que retorma un usuario que concida con el login*/
+	public Usuario consultarUsuario(String login)
+	 {
+	  DaoUsuario daoUsuario = new DaoUsuario();
+	  Usuario usuario = daoUsuario.consultarUsuario(login);
+	  daoUsuario = null;
+	  return usuario;
+	 }
+	
 	//metodo que sirve para actualizar todos los datos del usuario y sus areas, recibe un objeto usuario
 	public int modificarDatosUsuario(Usuario u){
 		int value =0;
