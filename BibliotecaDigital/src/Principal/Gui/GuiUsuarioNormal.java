@@ -32,7 +32,7 @@ public class GuiUsuarioNormal extends JFrame
 
 
 	// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
-	private String estadoInicial = "Inicio";
+	private  String estadoInicial = "Inicio";
 	private String estadoModificacion = "ModificandoUsuario";
 	private String estadoConsultaAvanzada = "ConsultaAvanzada";		
 
@@ -43,7 +43,7 @@ public class GuiUsuarioNormal extends JFrame
 	private JButton consultaAvanzada;
 	private JButton logout;
 	
-	private JLabel estado;
+	private  JLabel estado;
 
 	// Clase interna que permite administrar todos los eventos que genera la
 	// ventana y son escuchados.
@@ -52,15 +52,15 @@ public class GuiUsuarioNormal extends JFrame
 	// Elementos de la barra de menu
 	private JMenu archivo;
 	private JMenu acercaDe;
-	private Container contenedor;
+	private  Container contenedor;
 	private JMenuItem salir;
 	private JMenuItem informacion;
 	private JMenuBar barra;
 	private Usuario usuario;
 
 	// Otor paneles a usar
-	private GuiRegistroModificar panelModificacion;
-	private GuiConsultaBasica panelConsultaBasica;
+	private static GuiRegistroModificar panelModificacion;
+	private static GuiConsultaBasica panelConsultaBasica;
 	
 	
 	public GuiUsuarioNormal(Usuario usuario)
@@ -252,6 +252,18 @@ public class GuiUsuarioNormal extends JFrame
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}*/
+	
+	/*public static void cambiarPanelInicial()
+	{
+		contenedor.remove(panelModificacion);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText(estadoInicial);
+	
+		
+	}*/
+
+
+
 
 
 

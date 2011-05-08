@@ -36,6 +36,7 @@ import javax.swing.border.TitledBorder;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 import Principal.Gui.GuiPrincipal;
+import Principal.Gui.GuiUsuarioNormal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
 
@@ -773,9 +774,11 @@ public class GuiRegistroModificar extends JScrollPane{
 					int modificar = controlador.modificarDatosUsuario(usuarioModificar);
 					//controlador.modificarUsuario(usuarioModificar);
 					//controlador.modificarUsuarioArea(usuarioModificar);
-					if(modificar != 0)
-						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");
-					
+					if(modificar != 0){
+						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");					
+						
+					 }
+					 
 					
 					
 				}
@@ -792,8 +795,10 @@ public class GuiRegistroModificar extends JScrollPane{
 					ControladorUsuario controlador = new ControladorUsuario();
 					int modificar = controlador.modificarPerfilEstado(usuarioModificar);
 					//controlador.modificarUsuario(usuarioModificar);
-					if(modificar != 0)
+					if(modificar != 0){
 						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente los datos del usuario" + usuarioModificar.getLogin());
+				
+					}
 				}
 			}
 			
