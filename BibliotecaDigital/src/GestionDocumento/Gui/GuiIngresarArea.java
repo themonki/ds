@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
+
 import javax.swing.*;
 import GestionDocumento.Controlador.*;
 import GestionDocumento.Logica.*;
@@ -66,7 +68,7 @@ public class GuiIngresarArea extends JFrame {
 		add(indicacion, BorderLayout.NORTH);
 		add(panel3, BorderLayout.CENTER);
 		add(panel4, BorderLayout.SOUTH);
-		setSize(410, 320);setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setSize(730, 320);
 		setVisible(true);
 	}
 
@@ -77,7 +79,15 @@ public class GuiIngresarArea extends JFrame {
 		campoAreaPadre = new JComboBox();
 		botonIngresarArea = new JButton("Registrar Area");
 		botonIngresarArea.addActionListener(new ManejadorBoton());
-
+		
+		ControladorAreaConocimiento conArea = new ControladorAreaConocimiento();
+		Vector <AreaConocimiento> vac = conArea.obtenerAreas();
+		int cantidad = vac.size();
+		
+		for(int i = 0; i < cantidad; i++){
+			campoAreaPadre.addItem(vac.get(i).getNombre());
+		}
+		
 	}
 
 	private void iniciarLabels() {
@@ -107,21 +117,22 @@ public class GuiIngresarArea extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			AreaConocimiento area = new AreaConocimiento();
+			ControladorAreaConocimiento controlador = new ControladorAreaConocimiento();
 			String nombre = campoNombre.getText();
 			String descripcion = campoDescripcionArea.getText();
 			int padreSeleccionado = campoAreaPadre.getSelectedIndex();
-			String padre;
+			String padre, contador = ""+campoAreaPadre.getItemCount();;
+			System.out.println(padreSeleccionado);
 			if(padreSeleccionado == 0){
 				padre = "";
 				}
 			else{
 				padre= ""+padreSeleccionado;
 			}
-			area.setNombre(nombre);
-			area.setDescripcion(descripcion);
-			area.setAreaPadre(padre);			
+			
+			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);
+			dispose();
 		}		
-		
 	}
 	
 	

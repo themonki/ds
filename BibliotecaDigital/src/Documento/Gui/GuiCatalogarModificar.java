@@ -667,23 +667,19 @@ public class GuiCatalogarModificar extends JScrollPane{
 	private GuiIngresarPalabraClave ingresarPalabraNueva;
 	private GuiIngresarAutor ingresarAutorNuevo;
 	private GuiIngresarTipoMaterial ingresarTipoNuevo;*/
-			if(event.getSource()==nuevaArea){
-				/*ingresarAreaNueva = new GuiIngresarArea();
-				ingresarAreaNueva.setVisible(true);
-				*/
-				new GuiIngresarArea().setVisible(true);
+			if(event.getSource()==nuevaArea){				
+				new GuiIngresarArea().setVisible(true);				
 			}
 			if(event.getSource()==nuevoTipo){
-				
+				new GuiIngresarTipoMaterial().setVisible(true);
 			}
 			if(event.getSource()==nuevoAutor){
-				
+				new GuiIngresarAutor().setVisible(true);
 			}
 			if(event.getSource()==nuevaPalabra){
-				
+				new GuiIngresarPalabraClave().setVisible(true);
 			}
-			
-		}
+	}
 
 		
 
