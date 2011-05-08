@@ -27,7 +27,7 @@ public class GuiIngresarAutor extends JFrame {
 	JComboBox campoAreaPadre;
 	JButton botonIngresarAutor;
 
-	GuiIngresarAutor() {
+	public GuiIngresarAutor() {
 		initComponents();
 	}
 

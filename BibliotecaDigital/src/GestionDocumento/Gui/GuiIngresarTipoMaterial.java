@@ -27,7 +27,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 
 	JPanel panel, panel1, panel2, panel3, panel4, panel5;
 
-	GuiIngresarTipoMaterial() {
+	public GuiIngresarTipoMaterial() {
 		initComponents();
 	}
 

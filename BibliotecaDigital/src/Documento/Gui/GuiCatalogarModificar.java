@@ -32,10 +32,16 @@ import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Controlador.ControladorAutor;
 import GestionDocumento.Controlador.ControladorPalabraClave;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
+import GestionDocumento.Gui.*;
 
 
 
 public class GuiCatalogarModificar extends JScrollPane{
+	
+	private GuiIngresarArea ingresarAreaNueva;
+	private GuiIngresarPalabraClave ingresarPalabraNueva;
+	private GuiIngresarAutor ingresarAutorNuevo;
+	private GuiIngresarTipoMaterial ingresarTipoNuevo;
 	
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
@@ -54,7 +60,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	  
 	private JTextField campoEditorial,campoNumeroIdentificacion,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc;
 	
-	private JButton botonCatalogar,nuevaArea,nuevotipo,nuevoAutor,nuevoidioma,nuevapalabra, examinarDoc;
+	private JButton botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
 	SpinnerModel model;
@@ -274,7 +280,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		panel2.add(tipoMaterial,restriccionEtiquetas);
 		panel2.add(campoTipoMaterial,restriccionCampo);
-		panel2.add(nuevotipo,restriccionBotones);
+		panel2.add(nuevoTipo,restriccionBotones);
 		
 		restriccionEtiquetas.gridy=6;
 		restriccionCampo.gridy = 6;
@@ -295,7 +301,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		panel2.add(palabrasClave,restriccionEtiquetas);
 		panel2.add(campoPalabras,restriccionCampo);
-		panel2.add(nuevapalabra,restriccionBotones);
+		panel2.add(nuevaPalabra,restriccionBotones);
 		
 		restriccionCampo.ipadx=7;
 		restriccionEtiquetas.gridy=8;
@@ -415,13 +421,17 @@ public class GuiCatalogarModificar extends JScrollPane{
 	private void inicializarButton() {
 		botonCatalogar= new JButton("   FINALIZAR   "); 
 	    nuevaArea= new JButton("Crear Area");
-	    nuevotipo= new JButton("Crear Tipo");
+	    nuevoTipo= new JButton("Crear Tipo");
 	    nuevoAutor = new JButton("Crear Autor");
-	    nuevapalabra= new JButton("Crear Palabra");
+	    nuevaPalabra= new JButton("Crear Palabra");
 	    examinarDoc= new JButton ("Examinar...");
 	    
 	    botonCatalogar.addActionListener(new ManejadorBoton());
 	    examinarDoc.addActionListener(new ManejadorBoton(this));
+	    nuevaArea.addActionListener(new ManejadorBoton());
+	    nuevoTipo.addActionListener(new ManejadorBoton());
+	    nuevoAutor.addActionListener(new ManejadorBoton());
+	    nuevaPalabra.addActionListener(new ManejadorBoton());
 	}
 
 	private void inicializarTexfield() { 
@@ -645,13 +655,33 @@ public class GuiCatalogarModificar extends JScrollPane{
 			
 			if(event.getSource()==examinarDoc){
 				JFileChooser manager = new JFileChooser();
-				 int returnVal = manager.showSaveDialog(p);
+				 int returnVal = manager.showSaveDialog(new JFrame());
 				 if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
 						File file = manager.getSelectedFile();
 						String url = file.getAbsolutePath();						
 						campoEnlaceDoc.setText(url);
 				 }						
-			}			
+			}
+			//,nuevaArea,nuevotipo,nuevoAutor,nuevapalabra
+			/*private GuiIngresarArea ingresarAreaNueva;
+	private GuiIngresarPalabraClave ingresarPalabraNueva;
+	private GuiIngresarAutor ingresarAutorNuevo;
+	private GuiIngresarTipoMaterial ingresarTipoNuevo;*/
+			if(event.getSource()==nuevaArea){
+				/*ingresarAreaNueva = new GuiIngresarArea();
+				ingresarAreaNueva.setVisible(true);
+				*/
+				new GuiIngresarArea().setVisible(true);
+			}
+			if(event.getSource()==nuevoTipo){
+				
+			}
+			if(event.getSource()==nuevoAutor){
+				
+			}
+			if(event.getSource()==nuevaPalabra){
+				
+			}
 			
 		}
 
