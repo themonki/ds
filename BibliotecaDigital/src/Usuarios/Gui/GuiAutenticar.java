@@ -158,9 +158,16 @@ public class GuiAutenticar extends JPanel
 			if(evento.getSource() == botonAutenticar)
 			{
 				ControladorVentanaPrincipal controladorVentanaPrincipal = new ControladorVentanaPrincipal();
-				controladorVentanaPrincipal.verificarUsuario(campoNombre.getText(),new String(campoContrasena.getPassword()));
-				gp.setVisible(false);
-				gp.dispose();
+				if(controladorVentanaPrincipal.verificarUsuario(campoNombre.getText(),new String(campoContrasena.getPassword())))
+				{
+					
+				
+					gp.setVisible(false);
+					gp.dispose();
+					
+					
+				}
+				
 				
 			}			
 		}	

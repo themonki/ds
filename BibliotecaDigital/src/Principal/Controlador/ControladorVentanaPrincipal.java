@@ -13,25 +13,28 @@ import Usuarios.Logica.Usuario;
 public class ControladorVentanaPrincipal {
 
 	
-	public void verificarUsuario(String login, String password)
+	public boolean verificarUsuario(String login, String password)
 	{
 		
 		ControladorUsuario controladorUsuario = new ControladorUsuario();
 		Usuario usuario = controladorUsuario.consultarUsuario(login);
+		boolean respuesta = false;
 		
 		if(login.equals("") || password.equals(""))
-		{	/*mostrar mensaje de error*/}
+		{	
+			
+			JOptionPane.showMessageDialog(null, "El campo login o password esta vacio");
+			
+		}
 		
 		if(usuario.getNombre1() == null)
 		{
 			JOptionPane.showMessageDialog(null, "Login de usuario incorrecto");
-			GuiPrincipal guiPrincipal = new GuiPrincipal();
-			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
 			
 		}else if(usuario.getEstado()==false){ //usuario Desactivado.
 			JOptionPane.showMessageDialog(null, "USUARIO DESACTIVADO\nComuniquese con el administrador\n para ser activado de nuevo.", "Usuario Desactivado", JOptionPane.WARNING_MESSAGE);
-			GuiPrincipal guiPrincipal = new GuiPrincipal();
-			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
 		}
 		else if(password.equals(usuario.getContrasena()))
 		{
@@ -54,14 +57,17 @@ public class ControladorVentanaPrincipal {
 				guiUsuarioNormal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 			
+			respuesta = true;
+			
 		}
 		else
 		{
 		
 			JOptionPane.showMessageDialog(null, "La contraseña no es valida para el usuario: "+usuario.getLogin());
-			GuiPrincipal guiPrincipal = new GuiPrincipal();
-			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			respuesta = false;
 		}
+		
+		return respuesta;
 		
 	}
 }
