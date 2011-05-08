@@ -20,7 +20,7 @@ public class ControladorVentanaPrincipal {
 		Usuario usuario = controladorUsuario.consultarUsuario(login);
 		
 		if(login.equals("") || password.equals(""))
-			/*mostrar mensaje de error*/
+		{	/*mostrar mensaje de error*/}
 		
 		if(usuario.getNombre1() == null)
 		{
