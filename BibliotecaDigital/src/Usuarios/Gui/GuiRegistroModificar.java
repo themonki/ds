@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,11 +31,9 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 import javax.swing.border.TitledBorder;
-
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 import Principal.Gui.GuiPrincipal;
-import Principal.Gui.GuiUsuarioNormal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
 
@@ -699,7 +696,8 @@ public class GuiRegistroModificar extends JScrollPane{
 					JOptionPane.showMessageDialog(null, "Su registro a sido exitoso.\n Puede ingresar al sistema.");
 					LimpiarCampos();
 					GuiPrincipal.cambiarPanelIngresar();
-					repaint();
+					
+				
 				}
 				
 				

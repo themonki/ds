@@ -365,6 +365,16 @@ public class GuiAdministrador extends JFrame
 		}
 	}
 
+	
+	public void cambiarPanelInicio()
+	{
+		
+		contenedor.remove(panelModificacion);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText(estadoInicial);
+		repaint();
+		
+	}
 
 
 	/*public static void main(String args[])
