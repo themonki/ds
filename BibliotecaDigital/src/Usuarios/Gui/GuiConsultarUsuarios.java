@@ -188,7 +188,6 @@ public class GuiConsultarUsuarios extends JScrollPane{
 					{
 						System.out.print("se removieron elementos de resultado en list");
 						panelPrincipal.remove(scrolUsuario);
-						panelPrincipal.remove(panelResultado);
 					}
 					estadoResultado = "resultado";
 					
