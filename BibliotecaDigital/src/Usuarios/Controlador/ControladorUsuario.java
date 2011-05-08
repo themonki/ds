@@ -3,6 +3,8 @@ package Usuarios.Controlador;
 import java.sql.Date;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import Usuarios.Dao.DaoUsuario;
 import Usuarios.Logica.Usuario;
 import GestionDocumento.Logica.AreaConocimiento;
@@ -43,14 +45,128 @@ public class ControladorUsuario {
 
 	}
 	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo un objeto usuario
-	public int insertarUsuario(Usuario u) {
+	public int insertarUsuario(Usuario u)
+	{
 		DaoUsuario daoUs = new DaoUsuario();
-		int value = daoUs.guardarUsuario(u);
+		int value = 0;
+		if(verificarDatosInsertar(u))
+			value = daoUs.guardarUsuario(u);
 
 		System.out.println("Se inserto el usuario");
 		daoUs = null;
 		return value;
 	}
+	
+	private boolean verificarDatosInsertar(Usuario u)
+	{	
+		Vector<String> atributo = new Vector<String>();
+		Vector<String> valor = new Vector<String>();
+		DaoUsuario du = new DaoUsuario();
+		Vector<Usuario> respuesta;
+		Usuario uRespuesta;
+		
+		if(u.getLogin().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar un Login.");
+			return false;
+		}
+		if(u.getContrasena().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar una contraseña.");
+			return false;
+		}
+		if(u.getNombre1().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer nombre.");
+			return false;
+		}
+		if(u.getApellido1().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer apellido.");
+			return false;
+		}
+		if(u.getEmail().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
+			return false;
+		}
+		if(u.getRespuestaSecreta().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
+			return false;
+		}
+		uRespuesta = du.consultarUsuario(u.getLogin());
+		if(uRespuesta.getLogin() != null)
+		{
+			JOptionPane.showMessageDialog(null, "El Login ya existe, por favor seleccione uno distinto.");
+			return false;
+		}
+		atributo.add("email");
+		valor.add(u.getEmail());
+		respuesta = du.consultarUsuarios(atributo, valor);
+		if(respuesta.size() != 0)
+		{
+			JOptionPane.showMessageDialog(null, "El email ya existe, por favor seleccione uno distinto.");
+			return false;
+		}
+		atributo = null;
+		valor = null;
+		du = null;
+		respuesta = null;
+		uRespuesta = null;
+		
+		return true;
+	}
+	
+	private boolean verificarDatosModificar(Usuario u)
+	{
+		Vector<String> atributo = new Vector<String>();
+		Vector<String> valor = new Vector<String>();
+		DaoUsuario du = new DaoUsuario();
+		Vector<Usuario> respuesta;
+		
+		if(u.getContrasena().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar una contraseña.");
+			return false;
+		}
+		if(u.getNombre1().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer nombre.");
+			return false;
+		}
+		if(u.getApellido1().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer apellido.");
+			return false;
+		}
+		if(u.getEmail().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
+			return false;
+		}
+		if(u.getRespuestaSecreta().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
+			return false;
+		}
+		atributo.add("email");
+		valor.add(u.getEmail());
+		respuesta = du.consultarUsuarios(atributo, valor);
+		if(respuesta.size() != 0)
+			if(!respuesta.elementAt(0).getLogin().equals(u.getLogin()))
+			{
+				JOptionPane.showMessageDialog(null, "El email ya existe, por favor seleccione uno distinto.");
+				return false;
+			}
+		
+		atributo = null;
+		valor = null;
+		du = null;
+		respuesta = null;
+		return true;
+	}
+	
 	//modifica los datos en la tabla Usuario recibiendo atributo por atributo
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
@@ -87,9 +203,10 @@ public class ControladorUsuario {
 	//modifica los datos en la tabla Usuario recibiendo un objeto Usuario
 	public int modificarUsuario(Usuario u) {
 		DaoUsuario daoUs = new DaoUsuario();
-		int value = daoUs.modificarUsuario(u);		
+		int value = 0;
+		if(verificarDatosModificar(u))
+			value = daoUs.modificarUsuario(u);		
 
-		System.out.println("Se modifico el usuario");
 		daoUs = null;
 		return value;
 	}
@@ -165,7 +282,8 @@ public class ControladorUsuario {
 	public int modificarDatosUsuario(Usuario u){
 		int value =0;
 		value = this.modificarUsuario(u);
-		value +=this.modificarUsuarioArea(u);
+		if(value != 0)
+			value +=this.modificarUsuarioArea(u);
 		return value;
 	}
 	
@@ -173,7 +291,8 @@ public class ControladorUsuario {
 	public int insertarDatosUsuario(Usuario u){
 		int value =0;
 		value = this.insertarUsuario(u);
-		value +=this.insertarUsuarioAreas(u);
+		if(value != 0)
+			value +=this.insertarUsuarioAreas(u);
 		return value;
 	}
 	

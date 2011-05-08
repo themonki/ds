@@ -241,6 +241,10 @@ INSERT INTO TipoMAterial VALUES('Material de Clase','diapositivas, talleres, eje
 INSERT INTO Usuario VALUES('444', 'contrasena', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'nivel', 'pregunta', 'respuesta', 'vinculo' ,'m', '777-07-07', '6666-06-06', '1', 't');
 INSERT INTO Usuario VALUES('clrl','clrl','cristian','leoanrdo','rios','lopez','dragonblanco452@gmail.com','tecnico','pregunta','respuesta','estudiante','m','1989-06-09','1989-06-09','1','t');
 
+--insertando interesa_usuario_area_conocimiento
+INSERT INTO interesa_usuario_area_conocimiento VALUES('444','3');
+INSERT INTO interesa_usuario_area_conocimiento VALUES('444','9');
+
 --insertando documentos
 INSERT INTO Documento VALUES(DEFAULT, 'español', 'si', 'documento', 'adobe', '200','ninguno', 'pdf', 'Libro', 'librito', 'enlace no disponible', '1111-01-01', '2222-02-02', 'Libro', '444', '3333-03-03');
 INSERT INTO Documento VALUES(DEFAULT,'ingles','si','paraiso','writer','150','mas alla','doc','en el paraiso','lo mismo','sin enlace','2000-01-15','2002-02-20','Articulo','clrl','2010-06-07');
