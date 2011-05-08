@@ -611,8 +611,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		public void actionPerformed(ActionEvent event) 
 		{
 			if(event.getSource()==botonCatalogar){
-			if(validacionDeDatos())	
-				System.out.println("yujuuuuuuu");
+			if(validacionDeDatos()){	
 			
 			
 			doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSofware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
@@ -641,6 +640,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
 			
 			
+			}
 			}//if getsource
 			
 			if(event.getSource()==examinarDoc){
