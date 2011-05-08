@@ -187,7 +187,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 					if(estadoResultado.equals("modificandoUsuario"))
 					{
 						System.out.print("se removieron elementos de resultado en list");
-						panelResultado.remove(scrolUsuario);
+						panelPrincipal.remove(scrolUsuario);
 						panelPrincipal.remove(panelResultado);
 					}
 					estadoResultado = "resultado";
@@ -203,6 +203,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 					if(estadoResultado.equals("modificandoUsuario"))
 					{
 						System.out.print("se removieron elementos de resultado en label");
+						panelResultado.remove(scrolResultados);
 						panelPrincipal.remove(scrolUsuario);
 						panelPrincipal.remove(panelResultado);
 					}
