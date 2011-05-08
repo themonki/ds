@@ -26,7 +26,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 
 	JPanel panel1, panel, panel2, panel3;
 
-	GuiIngresarPalabraClave() {
+	public GuiIngresarPalabraClave() {
 		initComponents();
 	}
 

@@ -5,8 +5,11 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
+import GestionDocumento.Controlador.*;
+import GestionDocumento.Logica.*;
 
 public class GuiIngresarArea extends JFrame {
 
@@ -18,7 +21,8 @@ public class GuiIngresarArea extends JFrame {
 
 	JPanel panel, panel2, panel3, panel4, panel5;
 
-	GuiIngresarArea() {
+	public GuiIngresarArea() {
+		super("Ingresar Area");
 		initComponents();
 	}
 
@@ -62,7 +66,7 @@ public class GuiIngresarArea extends JFrame {
 		add(indicacion, BorderLayout.NORTH);
 		add(panel3, BorderLayout.CENTER);
 		add(panel4, BorderLayout.SOUTH);
-		setSize(410, 320);
+		setSize(410, 320);setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 
@@ -72,6 +76,7 @@ public class GuiIngresarArea extends JFrame {
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoAreaPadre = new JComboBox();
 		botonIngresarArea = new JButton("Registrar Area");
+		botonIngresarArea.addActionListener(new ManejadorBoton());
 
 	}
 
@@ -96,6 +101,30 @@ public class GuiIngresarArea extends JFrame {
 		descripcionArea.setForeground(colorletras);
 		nombre.setForeground(colorletras);
 	}
+	
+	private class ManejadorBoton implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			
+			AreaConocimiento area = new AreaConocimiento();
+			String nombre = campoNombre.getText();
+			String descripcion = campoDescripcionArea.getText();
+			int padreSeleccionado = campoAreaPadre.getSelectedIndex();
+			String padre;
+			if(padreSeleccionado == 0){
+				padre = "";
+				}
+			else{
+				padre= ""+padreSeleccionado;
+			}
+			area.setNombre(nombre);
+			area.setDescripcion(descripcion);
+			area.setAreaPadre(padre);			
+		}		
+		
+	}
+	
+	
 
 	public static void main(String args[]) {
 
@@ -109,7 +138,7 @@ public class GuiIngresarArea extends JFrame {
 
 		GuiIngresarArea ventana;
 		ventana = new GuiIngresarArea();
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
 

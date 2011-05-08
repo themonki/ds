@@ -1,5 +1,5 @@
 /*
- * Nombre: Cristian Ríos.
+ * Nombre: Cristian Rï¿½os.
  * Responsabilidad: Realizar la debida manipulacion de datos referentes a el area de conocimiento
  * entre la GUI y el controlado.
  * Nombre archivo: ControladorAreaConocimiento.java
@@ -18,8 +18,7 @@ public class ControladorAreaConocimiento
 	public int insertarAreaConocimiento(String id, String nombre,
 			String descripcion, String areaPadre)
 	{
-		AreaConocimiento area = new AreaConocimiento(id, nombre, descripcion,
-				areaPadre);
+		AreaConocimiento area = new AreaConocimiento(id, nombre, descripcion,areaPadre);
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
 		int numFilas = daoAreaConocimiento.guardarAreaConocimiento(area);
 		area = null;
