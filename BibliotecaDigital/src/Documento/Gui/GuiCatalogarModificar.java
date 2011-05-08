@@ -457,7 +457,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    resolucion= new JLabel("Resolucion");
 	    enlaceDoc = new JLabel("Path Documento");
  
-	    Color colorletras= new Color(0,10,0);
+	    Color colorletras= new Color(250,210,210);
 	   
 	    resolucion.setFont(font1); 
 	    softwareRecomendado.setFont(font1);
@@ -531,14 +531,15 @@ public class GuiCatalogarModificar extends JScrollPane{
 		{			
 			NimRODTheme nt = new NimRODTheme();
 			nt.setPrimary1( new Color(10,10,230));
-			nt.setPrimary2( new Color(110,110,150));
+			nt.setPrimary2( new Color(0,110,150));
 			nt.setPrimary3( new Color(0,0,230));
 			//nt.setPrimary(new Color(100,100,100));
 			//nt.setSecondary(new Color(230, 220,250));
-			nt.setSecondary1(new Color(0,0,100));
+			nt.setSecondary1(new Color(1,0,100));
 			nt.setSecondary2(new Color(0, 100,0));
-			nt.setSecondary3(new Color(250,250,250));
-			nt.setWhite(new Color(250, 230,250));
+			nt.setSecondary3(new Color(150,20,10));
+			nt.setWhite(new Color(20, 230,250));
+			nt.setBlack(new Color(250,230,250));
 			
 			
 
