@@ -35,6 +35,7 @@ import javax.swing.border.TitledBorder;
 
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
+import Principal.Gui.GuiPrincipal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
 
@@ -696,6 +697,8 @@ public class GuiRegistroModificar extends JScrollPane{
 				{
 					JOptionPane.showMessageDialog(null, "Su registro a sido exitoso.\n Puede ingresar al sistema.");
 					LimpiarCampos();
+					GuiPrincipal.cambiarPanelIngresar();
+					repaint();
 				}
 				
 				

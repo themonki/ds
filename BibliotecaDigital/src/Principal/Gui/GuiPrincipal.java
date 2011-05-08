@@ -36,7 +36,7 @@ public class GuiPrincipal extends JFrame
 		// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 		private String estadoInicial = "Inicio";
 		private String estadoRegistro = "RegistrandoUsuario";
-		private String estadoIngrensando = "Autentificando";
+		private static String estadoIngrensando = "Autentificando";
 		private String estadoConsultaAvanzada = "consultaAvanzada";
 
 		// Opciones basicas para un usuario
@@ -46,7 +46,7 @@ public class GuiPrincipal extends JFrame
 		private JButton ingresarSistema;
 		private JButton consultaAvanzada;
 		
-		private JLabel estado;
+		private static JLabel estado;
 
 		// Clase interna que permite administrar todos los eventos que genera la
 		// ventana y son escuchados.
@@ -55,14 +55,14 @@ public class GuiPrincipal extends JFrame
 		// Elementos de la barra de menu
 		private JMenu archivo;
 		private JMenu acercaDe;
-		private Container contenedor;
+		private static Container contenedor;
 		private JMenuItem salir;
 		private JMenuItem informacion;
 		private JMenuBar barra;
 
 		// Paneles a usar		
-		private GuiRegistroModificar panelRegistro;
-		private GuiAutenticar panelAutentificar;
+		private static GuiRegistroModificar panelRegistro;
+		private static GuiAutenticar panelAutentificar;
 		private GuiConsultaBasica panelConsultaBasica;
 		
 		public GuiPrincipal()
@@ -313,7 +313,18 @@ public class GuiPrincipal extends JFrame
 			a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		}
-
+		
+		public static void cambiarPanelIngresar()
+		{
+			
+			contenedor.remove(panelRegistro);
+			contenedor.add(panelAutentificar, BorderLayout.CENTER);
+			estado.setText(estadoIngrensando);
+			
+			
+		}
+		
+		
 		
 	
 
