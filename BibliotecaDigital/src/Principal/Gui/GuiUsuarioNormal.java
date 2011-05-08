@@ -83,7 +83,7 @@ public class GuiUsuarioNormal extends JFrame
 		
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.yellow), tituloMuestra);
+				.createLineBorder(Color.black), tituloMuestra);
 		borde.setTitleColor(colorTitulo);
 		borde.setTitleFont(fontTitulo);
 		borde.setTitleJustification(TitledBorder.CENTER);
