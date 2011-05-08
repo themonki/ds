@@ -31,11 +31,12 @@ import Usuarios.Logica.Usuario;
 public class GuiConsultarUsuarios extends JScrollPane{
 	
 	private static final long serialVersionUID = 1L;
-	JLabel login, nombre;
-	JTextField campoLogin, campoNombre;
-	JScrollPane scrolResultados, scrolUsuario;
-	JButton consultar;
-	JPanel panelResultado, panelOpciones, panelPrincipal;
+	private JLabel login, nombre;
+	private JTextField campoLogin, campoNombre;
+	private JScrollPane scrolResultados, scrolUsuario;
+	private JButton consultar;
+	private JPanel panelResultado, panelOpciones, panelPrincipal;
+	private String estadoResultado = "";
 	
 	//Resultados
 	JList resultadoLista;
@@ -126,20 +127,46 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		return label;
 	}
 	
-	private class ManejadorBoton implements ActionListener{
-
+	private class ManejadorBoton implements ActionListener
+	{
+		private JLabel mensajeEstado;
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()== consultar){
+		public void actionPerformed(ActionEvent e)
+		{
+			
+			if(e.getSource()== consultar)
+			{
 				
 				ControladorUsuario controlador = new ControladorUsuario();
-				Usuario usuarioEncontrado = controlador.consultarUsuario(campoLogin.getText());
-				if(usuarioEncontrado.getLogin() != null)
-				{	usuariosVector = new Vector<Usuario>();
-					usuariosVector.add(usuarioEncontrado);
-					//resultadoLista = null;
-					modeloLista = null;if(resultadoLista==null){
-					resultadoLista = new JList();}else {resultadoLista.removeAll();}
+				
+				String login = campoLogin.getText();
+				String nombre = campoNombre.getText();
+				Vector<String> atributo = new Vector<String>();
+				Vector<String> valor = new Vector<String>();
+				
+				if(!login.equals(""))
+				{
+					atributo.add("login");
+					valor.add(login);
+				}
+				if(!nombre.equals(""))
+				{
+					atributo.add("nombre1");
+					valor.add(nombre);
+				}
+				
+				usuariosVector = controlador.consultarUsuarios(atributo, valor);
+				
+				if(usuariosVector.size() != 0)
+				{	
+					System.out.print("hay usuarios");
+					modeloLista = null;
+					
+					if(resultadoLista==null){
+						resultadoLista = new JList();
+					}else {
+						resultadoLista.removeAll();
+					}
 					modeloLista = new DefaultListModel();
 					resultadoLista.setModel(modeloLista);
 					resultadoLista.addListSelectionListener(new ManejadorLista());
@@ -149,18 +176,43 @@ public class GuiConsultarUsuarios extends JScrollPane{
 						
 						modeloLista.addElement(usuariosVector.elementAt(i));
 					}					
-					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
-					panelPrincipal.updateUI();
 					
 					if(scrolResultados==null){
-					//PARA CUANDO SE CREE LA LISTA RESULTADO.
-					scrolResultados = new JScrollPane(resultadoLista);
-					panelResultado.add(scrolResultados);}
-				}else{
+						//PARA CUANDO SE CREE LA LISTA RESULTADO.
+						scrolResultados = new JScrollPane(resultadoLista);
+					}
+					
+					if(estadoResultado.equals("noResultado"))
+						panelResultado.remove(mensajeEstado);
+					if(estadoResultado.equals("modificandoUsuario"))
+					{
+						panelPrincipal.remove(scrolUsuario);
+						panelPrincipal.remove(panelResultado);
+					}
+					estadoResultado = "resultado";
+					
+					panelResultado.add(scrolResultados);
 					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
 					panelPrincipal.updateUI();
-					panelResultado.add(new JLabel("No hay Resultados"));
 					
+				}else
+				{
+					if(estadoResultado.equals("resultado"))
+						panelResultado.remove(scrolResultados);
+					if(estadoResultado.equals("modificandoUsuario"))
+					{
+						panelResultado.remove(scrolResultados);
+						panelPrincipal.remove(scrolUsuario);
+						panelPrincipal.remove(panelResultado);
+					}
+					estadoResultado = "noResultado";
+					
+					if(mensajeEstado == null)
+						mensajeEstado = new JLabel("No hay resultados!");
+					
+					panelResultado.add(mensajeEstado);
+					panelPrincipal.add(panelResultado, BorderLayout.CENTER);
+					panelPrincipal.updateUI();
 				}	
 			}
 		}		
@@ -169,15 +221,20 @@ public class GuiConsultarUsuarios extends JScrollPane{
 	private class ManejadorLista implements ListSelectionListener{
 
 		@Override
-		public void valueChanged(ListSelectionEvent e) {
+		public void valueChanged(ListSelectionEvent e)
+		{
 			int usuarioElegido = resultadoLista.getSelectedIndex();
-			if(scrolUsuario!=null){panelPrincipal.remove(scrolUsuario);}
-			scrolUsuario = new GuiRegistroModificar((Usuario) modeloLista.getElementAt(usuarioElegido), 2);
-			scrolUsuario.setPreferredSize(new Dimension(300,400));
-			panelPrincipal.remove(panelResultado);
-			panelPrincipal.add(panelResultado, BorderLayout.WEST);
-			panelPrincipal.add(scrolUsuario, BorderLayout.CENTER);
-			panelPrincipal.updateUI();
+			if(usuarioElegido>=0)
+			{
+				estadoResultado = "modificandoUsuario";
+				if(scrolUsuario!=null){panelPrincipal.remove(scrolUsuario);}
+				scrolUsuario = new GuiRegistroModificar((Usuario) modeloLista.getElementAt(usuarioElegido), 2);
+				scrolUsuario.setPreferredSize(new Dimension(300,400));
+				panelPrincipal.remove(panelResultado);
+				panelPrincipal.add(panelResultado, BorderLayout.WEST);
+				panelPrincipal.add(scrolUsuario, BorderLayout.CENTER);
+				panelPrincipal.updateUI();
+			}
 		}
 		
 	}

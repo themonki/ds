@@ -18,6 +18,10 @@ public class ControladorVentanaPrincipal {
 		
 		ControladorUsuario controladorUsuario = new ControladorUsuario();
 		Usuario usuario = controladorUsuario.consultarUsuario(login);
+		
+		if(login.equals("") || password.equals(""))
+		{	/*mostrar mensaje de error*/}
+		
 		if(usuario.getNombre1() == null)
 		{
 			JOptionPane.showMessageDialog(null, "Login de usuario incorrecto");
@@ -58,9 +62,6 @@ public class ControladorVentanaPrincipal {
 			GuiPrincipal guiPrincipal = new GuiPrincipal();
 			guiPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-		
-		
-		
 		
 	}
 }
