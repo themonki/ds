@@ -49,10 +49,10 @@ public class ControladorUsuario {
 	{
 		DaoUsuario daoUs = new DaoUsuario();
 		int value = 0;
-		if(verificarDatosInsertar(u))
+		if(verificarDatosInsertar(u)){
 			value = daoUs.guardarUsuario(u);
-
-		System.out.println("Se inserto el usuario");
+			System.out.println("Se inserto el usuario");
+			}
 		daoUs = null;
 		return value;
 	}
@@ -244,8 +244,10 @@ public class ControladorUsuario {
 	public int modificarUsuario(Usuario u) {
 		DaoUsuario daoUs = new DaoUsuario();
 		int value = 0;
-		if(verificarDatosModificar(u))
-			value = daoUs.modificarUsuario(u);		
+		if(verificarDatosModificar(u)){
+			value = daoUs.modificarUsuario(u);
+			System.out.println("Se modifico el usuario");
+		}		
 
 		daoUs = null;
 		return value;
@@ -283,10 +285,6 @@ public class ControladorUsuario {
 	public int modificarUsuarioArea(Usuario u){
 		DaoUsuario daoUs = new DaoUsuario();
 		Vector <AreaConocimiento> areasNuevas = u.getAreas();
-		if(areasNuevas.size()>0){
-			System.out.println("ahi algoooo");
-			System.out.println(areasNuevas.get(0).getIdArea());
-		}
 		/*se insertan las areas nuevas, si por alguna razon se agrego, se quito entonces se borra despues,
 		 * si se agrego y se quito
 		 * */
