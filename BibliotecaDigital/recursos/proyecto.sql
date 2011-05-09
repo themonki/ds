@@ -47,7 +47,7 @@ CREATE TABLE Usuario
 CREATE TABLE Area_Conocimiento
 (
 	id_area VARCHAR(3),
-	nombre VARCHAR(35) NOT NULL UNIQUE,
+	nombre VARCHAR(50) NOT NULL UNIQUE,
 	descripcion VARCHAR(200),
 	area_padre VARCHAR(3),
 	CONSTRAINT id_area_pk PRIMARY KEY(id_area),
@@ -249,40 +249,40 @@ INSERT INTO Area_Conocimiento VALUES ('26', 'Procesamiento de Lenguaje Natural',
 INSERT INTO Area_Conocimiento VALUES ('27', 'Sistemas Multimedia','','8');
 INSERT INTO Area_Conocimiento VALUES ('28', 'Fundamentos de Programacion','','');
 INSERT INTO Area_Conocimiento VALUES ('29', 'Programacion Orientada por Eventos','','28');
-INSERT INTO Area_Conocimiento VALUES ('29', 'Robotica','','18');
-INSERT INTO Area_Conocimiento VALUES ('30', 'Algoritmos y Complejidad','','');
-INSERT INTO Area_Conocimiento VALUES ('31', 'Algoritmos Paralelos','','30');
-INSERT INTO Area_Conocimiento VALUES ('32', 'Interaccion Humano Computador','','');
-INSERT INTO Area_Conocimiento VALUES ('33', 'Aspectos de Comunicacion','','32');
-INSERT INTO Area_Conocimiento VALUES ('34', 'Desarrollo de Software Centrado en Humano','','32');
-INSERT INTO Area_Conocimiento VALUES ('35', 'Diseno de Interfaces Graficas de Usuario','','32');
-INSERT INTO Area_Conocimiento VALUES ('36', 'Procesamiento de Transacciones','','8');
-INSERT INTO Area_Conocimiento VALUES ('37', 'Mineria de Datos','','8');
-INSERT INTO Area_Conocimiento VALUES ('38', 'Computacion Visual y Grafica','','');
-INSERT INTO Area_Conocimiento VALUES ('39', 'Rendering Avanzado','','38');
-INSERT INTO Area_Conocimiento VALUES ('40', 'Animacion por Computador','','38');
-INSERT INTO Area_Conocimiento VALUES ('41', 'Realidad Virtual','','38');
-INSERT INTO Area_Conocimiento VALUES ('42', 'Arquitectura y Organizacion','','');
-INSERT INTO Area_Conocimiento VALUES ('43', 'Arquitectura para Redes en Sistemas Distribuidos','','42');
-INSERT INTO Area_Conocimiento VALUES ('44', 'Analisis Numerico','','3');
-INSERT INTO Area_Conocimiento VALUES ('45', 'Modelamiento de Datos','','8');
-INSERT INTO Area_Conocimiento VALUES ('46', 'Bases de Datos Relacionales','','8');
-INSERT INTO Area_Conocimiento VALUES ('47', 'Bases de Datos Distribuidas','','8');
-INSERT INTO Area_Conocimiento VALUES ('48', 'Seguridad en Redes','','1');
-INSERT INTO Area_Conocimiento VALUES ('49', 'Bioinformatica','','');
-INSERT INTO Area_Conocimiento VALUES ('50', 'Estructuras Discretas','','');
-INSERT INTO Area_Conocimiento VALUES ('51', 'Grafos y Arboles','','');
-INSERT INTO Area_Conocimiento VALUES ('52', 'Sistemas de Bases de Datos','','8');
-INSERT INTO Area_Conocimiento VALUES ('53', 'Representacion de Conocimiento','','18');
-INSERT INTO Area_Conocimiento VALUES ('54', 'Probabilidad Discreta','','51');
-INSERT INTO Area_Conocimiento VALUES ('55', 'Visualizacion','','38');
-INSERT INTO Area_Conocimiento VALUES ('56', 'Sistemas Operativos','','');
-INSERT INTO Area_Conocimiento VALUES ('57', 'Sistemas en Tiempo Real','','56');
-INSERT INTO Area_Conocimiento VALUES ('58', 'Tolerancia a Fallas','','62');
-INSERT INTO Area_Conocimiento VALUES ('59', 'Algoritmos Criptograficos','','30');
-INSERT INTO Area_Conocimiento VALUES ('60', 'Maquinas Virtuales','','17');
-INSERT INTO Area_Conocimiento VALUES ('61', 'Programacion Funcional','','17');
-INSERT INTO Area_Conocimiento VALUES ('62', 'Aprendizaje Redes Neuronales','','18');
+INSERT INTO Area_Conocimiento VALUES ('30', 'Robotica','','18');
+INSERT INTO Area_Conocimiento VALUES ('31', 'Algoritmos y Complejidad','','');
+INSERT INTO Area_Conocimiento VALUES ('32', 'Algoritmos Paralelos','','31');
+INSERT INTO Area_Conocimiento VALUES ('33', 'Interaccion Humano Computador','','');
+INSERT INTO Area_Conocimiento VALUES ('34', 'Aspectos de Comunicacion','','33');
+INSERT INTO Area_Conocimiento VALUES ('35', 'Desarrollo de Software Centrado en Humano','','33');
+INSERT INTO Area_Conocimiento VALUES ('36', 'Diseno de Interfaces Graficas de Usuario','','33');
+INSERT INTO Area_Conocimiento VALUES ('37', 'Procesamiento de Transacciones','','8');
+INSERT INTO Area_Conocimiento VALUES ('38', 'Mineria de Datos','','8');
+INSERT INTO Area_Conocimiento VALUES ('39', 'Computacion Visual y Grafica','','');
+INSERT INTO Area_Conocimiento VALUES ('40', 'Rendering Avanzado','','39');
+INSERT INTO Area_Conocimiento VALUES ('41', 'Animacion por Computador','','39');
+INSERT INTO Area_Conocimiento VALUES ('42', 'Realidad Virtual','','39');
+INSERT INTO Area_Conocimiento VALUES ('43', 'Arquitectura y Organizacion','','');
+INSERT INTO Area_Conocimiento VALUES ('44', 'Arquitectura para Redes en Sistemas Distribuidos','','43');
+INSERT INTO Area_Conocimiento VALUES ('45', 'Analisis Numerico','','3');
+INSERT INTO Area_Conocimiento VALUES ('46', 'Modelamiento de Datos','','8');
+INSERT INTO Area_Conocimiento VALUES ('47', 'Bases de Datos Relacionales','','8');
+INSERT INTO Area_Conocimiento VALUES ('48', 'Bases de Datos Distribuidas','','8');
+INSERT INTO Area_Conocimiento VALUES ('49', 'Seguridad en Redes','','1');
+INSERT INTO Area_Conocimiento VALUES ('50', 'Bioinformatica','','');
+INSERT INTO Area_Conocimiento VALUES ('51', 'Estructuras Discretas','','');
+INSERT INTO Area_Conocimiento VALUES ('52', 'Grafos y Arboles','','51');
+INSERT INTO Area_Conocimiento VALUES ('53', 'Sistemas de Bases de Datos','','8');
+INSERT INTO Area_Conocimiento VALUES ('54', 'Representacion de Conocimiento','','18');
+INSERT INTO Area_Conocimiento VALUES ('55', 'Probabilidad Discreta','','51');
+INSERT INTO Area_Conocimiento VALUES ('56', 'Visualizacion','','39');
+INSERT INTO Area_Conocimiento VALUES ('57', 'Sistemas Operativos','','');
+INSERT INTO Area_Conocimiento VALUES ('58', 'Sistemas en Tiempo Real','','57');
+INSERT INTO Area_Conocimiento VALUES ('59', 'Tolerancia a Fallas','','57');
+INSERT INTO Area_Conocimiento VALUES ('60', 'Algoritmos Criptograficos','','31');
+INSERT INTO Area_Conocimiento VALUES ('61', 'Maquinas Virtuales','','17');
+INSERT INTO Area_Conocimiento VALUES ('62', 'Programacion Funcional','','17');
+INSERT INTO Area_Conocimiento VALUES ('63', 'Aprendizaje Redes Neuronales','','18');
 
 --insertando autores
 INSERT INTO Autor (nombre, apellido, acronimo, email) VALUES('EDGAR','MONCADA','MONKI','MONKI@GMAIL.COM');
