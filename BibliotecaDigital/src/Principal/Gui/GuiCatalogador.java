@@ -265,7 +265,7 @@ public class GuiCatalogador extends JFrame
 			{
 				if(estado.getText().equals(estadoInicial))
 				{
-					contenedor.remove(panelConsultaBasica);//scrolCatalogar = new JScrollPane(panelCatalogarModificar);
+					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelCatalogarModificar);
 					estado.setText(estadoCatalogando);
 					repaint();
