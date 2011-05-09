@@ -99,7 +99,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		
 		
 		panelResultado = new JPanel();
-		TitledBorder borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.yellow), "::Resultados::");
+		TitledBorder borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "::Resultados::");
 		borde.setTitleColor(colorSubtitulo);
 		borde.setTitleFont(fontSubtitulos);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -108,7 +108,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		
 		
 		panelPrincipal = new JPanel();
-		TitledBorder bordePrincipal = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.yellow), "::CONSULTAR USUARIOS::");
+		TitledBorder bordePrincipal = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "::CONSULTAR USUARIOS::");
 		bordePrincipal.setTitleColor(colorSubtitulo);
 		bordePrincipal.setTitleFont(fontSubtitulos);
 		bordePrincipal.setTitleJustification(TitledBorder.LEFT);
