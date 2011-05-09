@@ -166,6 +166,15 @@ public class GuiAutenticar extends JPanel
 					gp.dispose();
 					
 					
+				}else{
+					if(controladorVentanaPrincipal.getError()==1)
+					{
+						campoNombre.selectAll();
+						campoNombre.requestFocus(true);
+					}else if(controladorVentanaPrincipal.getError() == 2){
+						campoContrasena.selectAll();
+						campoContrasena.requestFocus(true);
+					}
 				}
 				
 				

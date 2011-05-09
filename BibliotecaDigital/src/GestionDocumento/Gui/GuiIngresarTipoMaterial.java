@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import GestionDocumento.Controlador.*;
 
 public class GuiIngresarTipoMaterial extends JFrame {
 
@@ -27,7 +30,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 
 	JPanel panel, panel1, panel2, panel3, panel4, panel5;
 
-	GuiIngresarTipoMaterial() {
+	public GuiIngresarTipoMaterial() {
 		initComponents();
 	}
 
@@ -68,6 +71,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		add(panel3, BorderLayout.CENTER);
 		add(panel4, BorderLayout.SOUTH);
 		setSize(400, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 
@@ -76,7 +80,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
 		Color colorletras = new Color(0, 60, 0);
 
-		indicacion = new JLabel("Registrar Palabra Clave ", JLabel.CENTER);
+		indicacion = new JLabel("Registrar Tipo de Material", JLabel.CENTER);
 		nombre = new JLabel("Nombre Del Tipo :");
 		descripcion = new JLabel("Descripcion.", JLabel.CENTER);
 
@@ -94,8 +98,19 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		campoNombre = new JTextField(15);
 		campoDescripcion = new JTextArea(5, 20);
 		botonIngresarTipo = new JButton("Registrar Tipo Material");
+		botonIngresarTipo.addActionListener(new ManejadorBoton());
 
 	}
+	
+	private class ManejadorBoton implements ActionListener {
+		
+		public void actionPerformed(ActionEvent arg0) {
+			ControladorTipoMaterial conMaterial = new ControladorTipoMaterial();
+			conMaterial.insertarTipoMaterial(campoNombre.getText(), campoDescripcion.getText());
+			dispose();
+		}		
+	}
+
 
 	public static void main(String args[]) {
 

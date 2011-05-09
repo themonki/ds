@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,9 +31,9 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 import javax.swing.border.TitledBorder;
-
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
+import Principal.Gui.GuiPrincipal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
 
@@ -696,6 +695,9 @@ public class GuiRegistroModificar extends JScrollPane{
 				{
 					JOptionPane.showMessageDialog(null, "Su registro a sido exitoso.\n Puede ingresar al sistema.");
 					LimpiarCampos();
+					GuiPrincipal.cambiarPanelIngresar();
+					
+				
 				}
 				
 				
@@ -770,9 +772,11 @@ public class GuiRegistroModificar extends JScrollPane{
 					int modificar = controlador.modificarDatosUsuario(usuarioModificar);
 					//controlador.modificarUsuario(usuarioModificar);
 					//controlador.modificarUsuarioArea(usuarioModificar);
-					if(modificar != 0)
-						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");
-					
+					if(modificar != 0){
+						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");					
+						
+					 }
+					 
 					
 					
 				}
@@ -789,8 +793,10 @@ public class GuiRegistroModificar extends JScrollPane{
 					ControladorUsuario controlador = new ControladorUsuario();
 					int modificar = controlador.modificarPerfilEstado(usuarioModificar);
 					//controlador.modificarUsuario(usuarioModificar);
-					if(modificar != 0)
-						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente los datos del usuario" + usuarioModificar.getLogin());
+					if(modificar != 0){
+						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente los datos del usuario: " + usuarioModificar.getLogin());
+				
+					}
 				}
 			}
 			

@@ -48,7 +48,6 @@ public class GuiCatalogador extends JFrame
 	private JButton consultaAvanzada;
 	private JButton logout;
 	private JButton catalogar;
-	private JScrollPane scrolCatalogar;
 
 	private JLabel estado;
 
@@ -76,7 +75,7 @@ public class GuiCatalogador extends JFrame
 	{
 		
 		super("::: Sistema de Biblioteca Digital :::");	
-
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 		manejador = new Manejador();	
 		
@@ -266,8 +265,8 @@ public class GuiCatalogador extends JFrame
 			{
 				if(estado.getText().equals(estadoInicial))
 				{
-					contenedor.remove(panelConsultaBasica);scrolCatalogar = new JScrollPane(panelCatalogarModificar);
-					contenedor.add(scrolCatalogar);
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelCatalogarModificar);
 					estado.setText(estadoCatalogando);
 					repaint();
 					
@@ -295,6 +294,15 @@ public class GuiCatalogador extends JFrame
 		}
 	}
 
+	public void cambiarPanelInicio()
+	{
+		
+		contenedor.remove(panelModificacion);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText(estadoInicial);
+		repaint();
+		
+	}
 
 /*
 	public static void main(String args[]) {

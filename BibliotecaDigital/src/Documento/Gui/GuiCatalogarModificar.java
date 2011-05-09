@@ -32,10 +32,16 @@ import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Controlador.ControladorAutor;
 import GestionDocumento.Controlador.ControladorPalabraClave;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
+import GestionDocumento.Gui.*;
 
 
 
 public class GuiCatalogarModificar extends JScrollPane{
+	
+	private GuiIngresarArea ingresarAreaNueva;
+	private GuiIngresarPalabraClave ingresarPalabraNueva;
+	private GuiIngresarAutor ingresarAutorNuevo;
+	private GuiIngresarTipoMaterial ingresarTipoNuevo;
 	
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
@@ -54,7 +60,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	  
 	private JTextField campoEditorial,campoNumeroIdentificacion,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc;
 	
-	private JButton botonCatalogar,nuevaArea,nuevotipo,nuevoAutor,nuevoidioma,nuevapalabra, examinarDoc;
+	private JButton botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
 	SpinnerModel model;
@@ -112,7 +118,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
 		areasVector =contenedorIdNombreArea.get(0);
+		areasVector.remove(0);
 		AreasIdVector= contenedorIdNombreArea.get(1);
+		AreasIdVector.remove(0);
 		contenedorIdNombreArea=null;//para destruir el vector 
 		
 		palabrasClaveVec= controladorpalabrasClave.obtenerTodasPalabrasClave();
@@ -274,7 +282,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		panel2.add(tipoMaterial,restriccionEtiquetas);
 		panel2.add(campoTipoMaterial,restriccionCampo);
-		panel2.add(nuevotipo,restriccionBotones);
+		panel2.add(nuevoTipo,restriccionBotones);
 		
 		restriccionEtiquetas.gridy=6;
 		restriccionCampo.gridy = 6;
@@ -295,7 +303,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		panel2.add(palabrasClave,restriccionEtiquetas);
 		panel2.add(campoPalabras,restriccionCampo);
-		panel2.add(nuevapalabra,restriccionBotones);
+		panel2.add(nuevaPalabra,restriccionBotones);
 		
 		restriccionCampo.ipadx=7;
 		restriccionEtiquetas.gridy=8;
@@ -415,13 +423,17 @@ public class GuiCatalogarModificar extends JScrollPane{
 	private void inicializarButton() {
 		botonCatalogar= new JButton("   FINALIZAR   "); 
 	    nuevaArea= new JButton("Crear Area");
-	    nuevotipo= new JButton("Crear Tipo");
+	    nuevoTipo= new JButton("Crear Tipo");
 	    nuevoAutor = new JButton("Crear Autor");
-	    nuevapalabra= new JButton("Crear Palabra");
+	    nuevaPalabra= new JButton("Crear Palabra");
 	    examinarDoc= new JButton ("Examinar...");
 	    
 	    botonCatalogar.addActionListener(new ManejadorBoton());
 	    examinarDoc.addActionListener(new ManejadorBoton(this));
+	    nuevaArea.addActionListener(new ManejadorBoton());
+	    nuevoTipo.addActionListener(new ManejadorBoton());
+	    nuevoAutor.addActionListener(new ManejadorBoton());
+	    nuevaPalabra.addActionListener(new ManejadorBoton());
 	}
 
 	private void inicializarTexfield() { 
@@ -631,16 +643,16 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
 			 doc.setFecha_creacion(java.sql.Date.valueOf(fes));
 			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes));
-
-			 doc.setCatalogadorLogin("444");// el login del catalogador
-			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );		
-
 			 doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
+			 
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
+<<<<<<< HEAD
 			
 			
 			
+=======
+>>>>>>> cb0933cca0944f234291f9cb511a47d9ff63ed59
 			}
 			else System.out.println("no valido ");
 			
@@ -649,15 +661,26 @@ public class GuiCatalogarModificar extends JScrollPane{
 			
 			if(event.getSource()==examinarDoc){
 				JFileChooser manager = new JFileChooser();
-				 int returnVal = manager.showSaveDialog(p);
+				 int returnVal = manager.showSaveDialog(new JFrame());
 				 if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
 						File file = manager.getSelectedFile();
 						String url = file.getAbsolutePath();						
 						campoEnlaceDoc.setText(url);
 				 }						
-			}			
-			
-		}
+			}
+			if(event.getSource()==nuevaArea){				
+				new GuiIngresarArea().setVisible(true);				
+			}
+			if(event.getSource()==nuevoTipo){
+				new GuiIngresarTipoMaterial().setVisible(true);
+			}
+			if(event.getSource()==nuevoAutor){
+				new GuiIngresarAutor().setVisible(true);
+			}
+			if(event.getSource()==nuevaPalabra){
+				new GuiIngresarPalabraClave().setVisible(true);
+			}
+	}
 
 		
 

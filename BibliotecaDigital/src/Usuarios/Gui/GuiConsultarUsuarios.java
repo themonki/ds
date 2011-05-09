@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -143,6 +144,11 @@ public class GuiConsultarUsuarios extends JScrollPane{
 				String nombre = campoNombre.getText();
 				Vector<String> atributo = new Vector<String>();
 				Vector<String> valor = new Vector<String>();
+				
+				if(login.equals("") & nombre.equals("")){
+					JOptionPane.showMessageDialog(null,"Debe ingresar al menos un parametro de busqueda.");
+					return;
+				}
 				
 				if(!login.equals(""))
 				{

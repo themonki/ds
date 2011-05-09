@@ -8,7 +8,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,15 +20,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import GestionDocumento.Controlador.*;
 
 public class GuiIngresarAutor extends JFrame {
 	JLabel nombre, apellido, indicacion, correoElectronico, acronimo;
 	JTextField campoNombre, campoApellido, campoCorreoElectronico,
 			campoAcronimo;
-	JComboBox campoAreaPadre;
 	JButton botonIngresarAutor;
 
-	GuiIngresarAutor() {
+	public GuiIngresarAutor() {
 		initComponents();
 	}
 
@@ -90,6 +91,7 @@ public class GuiIngresarAutor extends JFrame {
 		add(panel, BorderLayout.SOUTH);
 
 		setSize(470, 280);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 
@@ -98,9 +100,8 @@ public class GuiIngresarAutor extends JFrame {
 		campoApellido = new JTextField(20);
 		campoCorreoElectronico = new JTextField(17);
 		campoAcronimo = new JTextField(12);
-
-		campoAreaPadre = new JComboBox();
 		botonIngresarAutor = new JButton("Ingresar Autor");
+		botonIngresarAutor.addActionListener(new ManejadorBoton());
 
 	}
 
@@ -128,6 +129,16 @@ public class GuiIngresarAutor extends JFrame {
 		acronimo.setForeground(colorletras);
 		correoElectronico.setForeground(colorletras);
 
+	}
+	
+	private class ManejadorBoton implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			ControladorAutor conAutor = new ControladorAutor();
+			conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
+					campoAcronimo.getText(), campoCorreoElectronico.getText());
+			dispose();
+		}	
 	}
 
 	public static void main(String args[]) {

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -76,6 +75,7 @@ public class GuiAdministrador extends JFrame
 	public GuiAdministrador(Usuario usuario){
 		
 		super("::: Sistema de Biblioteca Digital :::");	
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 		manejador = new Manejador();	
 		
@@ -359,12 +359,23 @@ public class GuiAdministrador extends JFrame
 				
 			}else if(evento.getSource() == logout)
 			{
-				new GuiPrincipal();
-				dispose();
+				GuiPrincipal gp = new GuiPrincipal();
+				gp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				//gp.dispose();
 			}	
 		}
 	}
 
+	
+	public void cambiarPanelInicio()
+	{
+		
+		contenedor.remove(panelModificacion);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText(estadoInicial);
+		repaint();
+		
+	}
 
 
 	/*public static void main(String args[])

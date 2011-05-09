@@ -60,11 +60,11 @@ public class DaoTipoMaterial {
 				tipo.setNombre(tabla.getString("tipo_nombre"));
 				tipo.setDescripcion(tabla.getString("descripcion"));
 
-				/* probando */
+				/* probando 
 				System.out.println("Tipo Nombre: "
 						+ tabla.getString("tipo_nombre") + " Descripcion: "
 						+ tabla.getString("descripcion"));
-			}
+*/			}
 			this.fachada.cerrarConexion(conn);
 		}
 
@@ -93,7 +93,7 @@ public class DaoTipoMaterial {
 				tipo.setNombre(tabla.getString("tipo_nombre"));
 				tipo.setDescripcion(tabla.getString("descripcion"));
 
-				/* probando*/ 
+				/* probando 
 				System.out.println("Id area: " + tabla.getString("tipo_nombre")
 						+ " Descripcion: " + tabla.getString("descripcion"));
 /**/

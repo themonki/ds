@@ -214,7 +214,7 @@ public class ControladorDocumento {
 		}
 		return "";
 	}
-	
+/*	
 	  public static void main(String args[]){ 
 		  ControladorDocumento cd = new  ControladorDocumento(); 
 		  
@@ -240,7 +240,7 @@ public class ControladorDocumento {
 	  
 	  }catch(Exception e){ System.out.println(e.toString());
 	  
-	  } */
-		  }
+	  } x
+		  }*/
 	 
 }
