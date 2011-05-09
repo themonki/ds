@@ -26,6 +26,7 @@ public class GuiIngresarArea extends JFrame {
 	public GuiIngresarArea() {
 		super("Ingresar Area");
 		initComponents();
+		
 	}
 
 	public void initComponents() {

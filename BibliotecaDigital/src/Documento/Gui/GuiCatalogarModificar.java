@@ -647,12 +647,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
 			 
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
-<<<<<<< HEAD
-			
-			
-			
-=======
->>>>>>> cb0933cca0944f234291f9cb511a47d9ff63ed59
+
 			}
 			else System.out.println("no valido ");
 			
@@ -669,16 +664,25 @@ public class GuiCatalogarModificar extends JScrollPane{
 				 }						
 			}
 			if(event.getSource()==nuevaArea){				
-				new GuiIngresarArea().setVisible(true);				
+				GuiIngresarArea guiArea=	new GuiIngresarArea();
+				guiArea.setVisible(true);
+				guiArea.setAlwaysOnTop(true);
 			}
 			if(event.getSource()==nuevoTipo){
-				new GuiIngresarTipoMaterial().setVisible(true);
+				GuiIngresarTipoMaterial guiMaterial = new GuiIngresarTipoMaterial();
+				guiMaterial.setVisible(true);
+				guiMaterial.setAlwaysOnTop(true);
+				
 			}
 			if(event.getSource()==nuevoAutor){
-				new GuiIngresarAutor().setVisible(true);
+				GuiIngresarAutor guiAutor= new GuiIngresarAutor();
+				guiAutor.setVisible(true);
+				guiAutor.setAlwaysOnTop(true);
 			}
 			if(event.getSource()==nuevaPalabra){
-				new GuiIngresarPalabraClave().setVisible(true);
+				GuiIngresarPalabraClave guiPalabra = new GuiIngresarPalabraClave();
+				guiPalabra.setVisible(true );
+				guiPalabra.setAlwaysOnTop(true);
 			}
 	}
 
