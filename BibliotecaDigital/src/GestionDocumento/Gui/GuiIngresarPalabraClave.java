@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -103,9 +104,13 @@ public class GuiIngresarPalabraClave extends JFrame {
 	private class ManejadorBoton implements ActionListener {
 		
 		public void actionPerformed(ActionEvent arg0) {
-			ControladorPalabraClave conPalabra = new ControladorPalabraClave();
-			conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText());
-			dispose();
+			
+			if(validarDatos()){
+			
+				ControladorPalabraClave conPalabra = new ControladorPalabraClave();
+				conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText());
+				dispose();
+			}
 		}		
 	}
 
@@ -125,5 +130,32 @@ public class GuiIngresarPalabraClave extends JFrame {
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+	
+	
+	boolean validarDatos()
+	{
+		String nombre = campoNombre.getText();
+		String descripcion = campoDescripcion.getText();
+		String advertencia = "";
+		boolean respuesta = true;
+		
+		if(nombre.isEmpty())
+		{		
+			advertencia += "Debe de proporcionar un nombre para la palabra clave \n";
+			respuesta = false;
+		}
+		if(descripcion.isEmpty())
+		{
+			
+			advertencia += "Debe de proporcionar una descripcion para la palabra clave \n";
+			respuesta = false;
+		}
+		
+		if(!respuesta)
+		JOptionPane.showMessageDialog(this, advertencia);
+	
+		return respuesta;
+	}
+	
 
 }

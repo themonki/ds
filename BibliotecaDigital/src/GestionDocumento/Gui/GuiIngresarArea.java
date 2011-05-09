@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -128,6 +129,9 @@ public class GuiIngresarArea extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			AreaConocimiento area = new AreaConocimiento();
+			
+			if(validarDatos()){
+			
 			ControladorAreaConocimiento controlador = new ControladorAreaConocimiento();
 			String nombre = campoNombre.getText();
 			String descripcion = campoDescripcionArea.getText();
@@ -143,6 +147,8 @@ public class GuiIngresarArea extends JFrame {
 			
 			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);
 			dispose();
+			
+			}
 		}		
 	}
 	
@@ -163,5 +169,35 @@ public class GuiIngresarArea extends JFrame {
 		//ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+	
+	
+	boolean validarDatos()
+	{
+		String nombre = campoNombre.getText();
+		String descripcionArea = campoDescripcionArea.getText();
+	
+		String advertencia = "";
+		boolean respuesta = true;
+		
+		
+		if(nombre.isEmpty())
+		{		
+			advertencia += "Debe de proporcionar un nombre para el area de conocimiento \n";
+			respuesta = false;
+		}
+		if(descripcionArea.isEmpty())
+		{
+			
+			advertencia += "Debe de proporcionar una descripcion para el area de conocimiento \n";
+			respuesta = false;
+		}
+		
+		
+		if(!respuesta)
+		JOptionPane.showMessageDialog(this, advertencia);
+	
+		return respuesta;
+	}
+	
 
 }
