@@ -5,9 +5,9 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Dao.DaoUsuario;
 import Usuarios.Logica.Usuario;
-import GestionDocumento.Logica.AreaConocimiento;
 
 public class ControladorUsuario {
 	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo atributo por atributo

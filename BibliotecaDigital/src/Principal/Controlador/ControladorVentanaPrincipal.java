@@ -2,6 +2,7 @@ package Principal.Controlador;
 
 
 import javax.swing.JOptionPane;
+
 import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiUsuarioNormal;

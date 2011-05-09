@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -15,16 +14,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-//import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import  javax.swing.*;
-
-import com.nilo.plaf.nimrod.NimRODLookAndFeel;
-import com.nilo.plaf.nimrod.NimRODTheme;
-
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerModel;
 
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
@@ -32,7 +40,10 @@ import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Controlador.ControladorAutor;
 import GestionDocumento.Controlador.ControladorPalabraClave;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
-import GestionDocumento.Gui.*;
+import GestionDocumento.Gui.GuiIngresarArea;
+import GestionDocumento.Gui.GuiIngresarAutor;
+import GestionDocumento.Gui.GuiIngresarPalabraClave;
+import GestionDocumento.Gui.GuiIngresarTipoMaterial;
 
 
 

@@ -3,7 +3,6 @@ package GestionDocumento.Controlador;
 import java.util.Vector;
 
 import GestionDocumento.Dao.DaoPalabraClave;
-import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
 
 ;

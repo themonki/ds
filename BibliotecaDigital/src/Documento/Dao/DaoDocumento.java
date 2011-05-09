@@ -5,12 +5,15 @@
 
 package Documento.Dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 
-import Utilidades.FachadaBD;
-import Documento.Logica.*;
+import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
+import Utilidades.FachadaBD;
 
 public class DaoDocumento {
 

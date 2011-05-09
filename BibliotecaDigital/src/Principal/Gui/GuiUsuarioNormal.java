@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-
 import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;

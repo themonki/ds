@@ -9,11 +9,12 @@
 
 package GestionDocumento.Dao;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Connection;
 import java.util.Vector;
+
 import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.FachadaBD;
 

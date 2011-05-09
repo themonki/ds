@@ -1,7 +1,8 @@
 package Documento.Logica;
 
-import java.util.Vector;
 import java.sql.Date;
+import java.util.Vector;
+
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;

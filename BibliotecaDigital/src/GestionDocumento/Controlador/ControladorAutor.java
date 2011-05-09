@@ -1,8 +1,8 @@
 package GestionDocumento.Controlador;
 
 import java.util.Vector;
+
 import GestionDocumento.Dao.DaoAutor;
-import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 
 /*

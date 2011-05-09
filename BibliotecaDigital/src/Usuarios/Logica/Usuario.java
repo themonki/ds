@@ -8,6 +8,7 @@ package Usuarios.Logica;
  * */
 import java.sql.Date;
 import java.util.Vector;
+
 import GestionDocumento.Logica.AreaConocimiento;
 
 public class Usuario {

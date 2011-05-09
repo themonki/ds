@@ -5,11 +5,12 @@ package GestionDocumento.Dao;
  * Responsabilidad : Permite la inserccion consulta de autores.
  * */
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Connection;
 import java.util.Vector;
+
 import GestionDocumento.Logica.Autor;
 import Utilidades.FachadaBD;
 
