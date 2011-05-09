@@ -126,7 +126,7 @@ public class DaoUsuario {
 	public int insertarUsuarioAreas(String login, Vector<AreaConocimiento> va) {
 		int numFilas = 0, cantidad = va.size();
 		String sql_guardar = "INSERT INTO Interesa_Usuario_Area_Conocimiento (login, id_area)"
-				+ "VALUES ", id_area = "";
+				+ " VALUES ", id_area = "";
 
 		for (int i = 0; i < cantidad; i++) {
 			id_area = va.get(i).getIdArea();
@@ -187,7 +187,7 @@ public class DaoUsuario {
 
 	}
 	
-	/*añadido por cristian, retorna un vector con todos los usuarios que coincidan en algun atributo*/
+	/*aï¿½adido por cristian, retorna un vector con todos los usuarios que coincidan en algun atributo*/
 	public Vector<Usuario> consultarUsuarios(Vector<String> atributo, Vector<String> valor)
 	{
 		Vector<Usuario> usuarios = new Vector<Usuario>();

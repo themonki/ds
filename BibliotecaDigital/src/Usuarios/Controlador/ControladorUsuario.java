@@ -64,58 +64,75 @@ public class ControladorUsuario {
 		DaoUsuario du = new DaoUsuario();
 		Vector<Usuario> respuesta;
 		Usuario uRespuesta;
-		
+		String mensaje="";
+		boolean estado=true; 
 		if(u.getLogin().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar un Login.");
-			return false;
+			mensaje+="Debe de proporcionar un Login\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar un Login.");
+			//return false;
 		}
 		if(u.getContrasena().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar una contraseña.");
-			return false;
+			mensaje+="Debe de proporcionar una contrasena\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una contrasena.");
+			//return false;
 		}
 		if(u.getNombre1().equals(""))
-		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer nombre.");
-			return false;
+		{	
+			mensaje+="Debe de proporcionar el primer nombre\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer nombre.");
+			//return false;
 		}
 		if(u.getApellido1().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer apellido.");
-			return false;
+			mensaje+="Debe de proporcionar el primer apellido\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer apellido.");
+			//return false;
 		}
 		if(u.getEmail().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
-			return false;
+			mensaje+="Debe de proporcionar un email\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
+			//return false;
 		}
 		if(u.getRespuestaSecreta().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
-			return false;
+			mensaje+="Debe de proporcionar una respuesta a la pregunta secreta\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
+			//return false;
 		}
 		uRespuesta = du.consultarUsuario(u.getLogin());
 		if(uRespuesta.getLogin() != null)
 		{
-			JOptionPane.showMessageDialog(null, "El Login ya existe, por favor seleccione uno distinto.");
-			return false;
+			mensaje+="El Login ya existe, por favor seleccione uno distinto\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "El Login ya existe, por favor seleccione uno distinto.");
+			//return false;
 		}
 		atributo.add("email");
 		valor.add(u.getEmail());
 		respuesta = du.consultarUsuarios(atributo, valor);
 		if(respuesta.size() != 0)
-		{
-			JOptionPane.showMessageDialog(null, "El email ya existe, por favor seleccione uno distinto.");
-			return false;
+		{	
+			mensaje+="El email ya existe, por favor seleccione uno distinto\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "El email ya existe, por favor seleccione uno distinto.");
+			//return false;
 		}
 		atributo = null;
 		valor = null;
 		du = null;
 		respuesta = null;
 		uRespuesta = null;
-		
-		return true;
+		if(!estado) JOptionPane.showMessageDialog(null, mensaje);
+		return estado;
 	}
 	
 	private boolean verificarDatosModificar(Usuario u)
@@ -124,47 +141,70 @@ public class ControladorUsuario {
 		Vector<String> valor = new Vector<String>();
 		DaoUsuario du = new DaoUsuario();
 		Vector<Usuario> respuesta;
+		Usuario uRespuesta;
+		String mensaje="";
+		boolean estado=true;
 		
 		if(u.getContrasena().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar una contraseña.");
-			return false;
+			mensaje+="Debe de proporcionar una contrasena\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una contrasena.");
+			//return false;
 		}
 		if(u.getNombre1().equals(""))
-		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer nombre.");
-			return false;
+		{	
+			mensaje+="Debe de proporcionar el primer nombre\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer nombre.");
+			//return false;
 		}
 		if(u.getApellido1().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer apellido.");
-			return false;
+			mensaje+="Debe de proporcionar el primer apellido\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer apellido.");
+			//return false;
 		}
 		if(u.getEmail().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
-			return false;
+			mensaje+="Debe de proporcionar un email\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
+			//return false;
 		}
 		if(u.getRespuestaSecreta().equals(""))
 		{
-			JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
-			return false;
+			mensaje+="Debe de proporcionar una respuesta a la pregunta secreta\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
+			//return false;
+		}
+		uRespuesta = du.consultarUsuario(u.getLogin());
+		if(uRespuesta.getLogin() != null)
+		{
+			mensaje+="El Login ya existe, por favor seleccione uno distinto\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "El Login ya existe, por favor seleccione uno distinto.");
+			//return false;
 		}
 		atributo.add("email");
 		valor.add(u.getEmail());
 		respuesta = du.consultarUsuarios(atributo, valor);
 		if(respuesta.size() != 0)
-			if(!respuesta.elementAt(0).getLogin().equals(u.getLogin()))
-			{
-				JOptionPane.showMessageDialog(null, "El email ya existe, por favor seleccione uno distinto.");
-				return false;
-			}
-		
+		{	
+			mensaje+="El email ya existe, por favor seleccione uno distinto\n";
+			estado=false;
+			//JOptionPane.showMessageDialog(null, "El email ya existe, por favor seleccione uno distinto.");
+			//return false;
+		}
 		atributo = null;
 		valor = null;
 		du = null;
 		respuesta = null;
-		return true;
+		uRespuesta = null;
+		if(!estado) JOptionPane.showMessageDialog(null, mensaje);
+		return estado;
 	}
 	
 	//modifica los datos en la tabla Usuario recibiendo atributo por atributo
@@ -259,7 +299,7 @@ public class ControladorUsuario {
 		return value;
 	}
 	
-	/*añadido cristian*/
+	/*aï¿½adido cristian*/
 	/*metodo que retorna un vector con todos los usuarios que concidan con alguno de los atributos*/
 	public Vector<Usuario> consultarUsuarios(Vector<String> atributo, Vector<String> valor)
 	{
