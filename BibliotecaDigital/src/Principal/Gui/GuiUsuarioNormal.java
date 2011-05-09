@@ -66,6 +66,7 @@ public class GuiUsuarioNormal extends JFrame
 	public GuiUsuarioNormal(Usuario usuario)
 	{
 		super("::: Sistema de Biblioteca Digital :::");	
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 
 		manejador = new Manejador();	
