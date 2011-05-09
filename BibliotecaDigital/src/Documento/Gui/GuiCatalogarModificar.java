@@ -70,7 +70,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	private JComboBox campoPalabras,campoAutor,campoTipoMaterial,
 	/*campoTraducido,*/campoIdioma,campoDerechosAutor,campoAreas, campoFormato;
 	  
-	private JTextField campoEditorial,campoNumeroIdentificacion,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc,
+	private JTextField campoEditorial,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc,
 	campoSofware, campoResolucion;
 	
 	private JButton botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
@@ -443,8 +443,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    nuevaPalabra.addActionListener(new ManejadorBoton());
 	}
 
-	private void inicializarTexfield() { 
-		campoNumeroIdentificacion = new JTextField();
+	private void inicializarTexfield() {
 		campoTituloSecundario= new JTextField();    
 		campoTituloPpal = new JTextField();   
 		campoEditorial= new JTextField();
