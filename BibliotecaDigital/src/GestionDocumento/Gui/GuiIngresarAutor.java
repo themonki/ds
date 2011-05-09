@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -153,5 +154,46 @@ public class GuiIngresarAutor extends JFrame {
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+	
+	boolean validarDatos()
+	{
+		String nombre = campoNombre.getText();
+		String apellido = campoApellido.getText();
+		String email = campoCorreoElectronico.getText();
+		String acronimo = campoAcronimo.getText();
+		String advertencia = "";
+		
+		
+		boolean respuesta = true;
+		
+		if(nombre.isEmpty())
+		{		
+			advertencia += "Debe de proporcionar un nombre para la palabra clave \n";
+			respuesta = false;
+		}else if(nombre.length() > 100)
+		{
+			advertencia += "Debe de proporcionar un nombre de menor tamaño para el autor \n";
+			respuesta = false;
+		}
+		
+		if(apellido.length() > 30)
+		{
+			advertencia += "Debe de proporcionar un apellido menor tamaño para el autor \n";
+			respuesta = false;
+		}
+		if(apellido.isEmpty())
+		{
+			
+			advertencia += "Debe de proporcionar un apellido para el autor \n";
+			respuesta = false;
+		}
+		
+		if(!respuesta)
+		JOptionPane.showMessageDialog(this, advertencia);
+	
+		return respuesta;
+	}
+	
+	
 
 }
