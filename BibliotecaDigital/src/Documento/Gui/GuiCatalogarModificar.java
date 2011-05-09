@@ -62,7 +62,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
-	tituloSecundario,/*traducido,*/editorial,derechosAutor,descripcion,indicacion,
+	tituloSecundario,/*traducido,*/editorial,derechosAutor,descripcion,
 	palabrasClave,fechaPublicacion,areas, enlaceDoc, resolucion,softwareRecomendado, formato;
 	
 	private JTextArea campoDescripcion;
