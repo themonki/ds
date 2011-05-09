@@ -1,12 +1,25 @@
-﻿/*
-﻿--script biblioteca digital
---María Andrea Cruz Blandón código 0831816
---Yerminson Doney Gonzalez Muñoz código 0843846
---Cristian Leonardo Ríos López código 0814239
---Luis Felipe Vargas Rojas
---Edgar Andrés Moncada Taborda
-
-*/DROP TABLE Usuario CASCADE;
+/*
+Scrib biblioteca digital
+Maria Andrea Cruz Blandon - 0831816
+Yerminson Doney Gonzalez Muños - 0843846
+Cristian Leonardo Rios Lopez - 0814239
+Luis Felipe Vargas Rojas - 0836342
+Edgar Andres Moncada - 0832294
+*/
+DROP TABLE Usuario CASCADE;
+DROP TABLE Area_Conocimiento CASCADE;
+DROP TABLE Interesa_Usuario_Area_Conocimiento;
+DROP TABLE TipoMaterial CASCADE;
+DROP TABLE Documento CASCADE;
+DROP SEQUENCE id_documento_seq CASCADE;
+DROP TABLE Descarga_Usuario_Documento CASCADE;
+DROP SEQUENCE id_autor_seq CASCADE;
+DROP TABLE Autor CASCADE;
+DROP TABLE Escribe_Autor_Documento CASCADE;
+DROP TABLE Consulta CASCADE;
+DROP TABLE Palabra_Clave CASCADE;
+DROP TABLE Tiene_Documento_Palabra_Clave CASCADE;
+DROP TABLE Pertenece_Documento_Area_Conocimiento CASCADE;
 CREATE TABLE Usuario
 (
 	login VARCHAR(10),
@@ -30,7 +43,7 @@ CREATE TABLE Usuario
 
 
 --necesita Area_Conocimiento OK
-DROP TABLE Area_Conocimiento CASCADE;
+--DROP TABLE Area_Conocimiento CASCADE;
 CREATE TABLE Area_Conocimiento
 (
 	id_area VARCHAR(3),
@@ -44,7 +57,7 @@ CREATE TABLE Area_Conocimiento
 
 --necesita Usuario OK
 --necesita Area_Conocimiento OK
-DROP TABLE Interesa_Usuario_Area_Conocimiento;
+--DROP TABLE Interesa_Usuario_Area_Conocimiento;
 CREATE TABLE Interesa_Usuario_Area_Conocimiento
 (
 	login VARCHAR(10),
@@ -56,7 +69,7 @@ CREATE TABLE Interesa_Usuario_Area_Conocimiento
 	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-DROP TABLE TipoMaterial CASCADE;
+--DROP TABLE TipoMaterial CASCADE;
 CREATE TABLE TipoMaterial
 (
 	tipo_nombre VARCHAR(20),
@@ -64,7 +77,7 @@ CREATE TABLE TipoMaterial
 	CONSTRAINT tipoNombre_pk PRIMARY KEY (tipo_nombre)
 );
 
-DROP SEQUENCE id_documento_seq CASCADE;
+--DROP SEQUENCE id_documento_seq CASCADE;
 CREATE SEQUENCE id_documento_seq
     INCREMENT BY 1
     NO MAXVALUE
@@ -74,7 +87,7 @@ CREATE SEQUENCE id_documento_seq
 
 --necesita TipoMaterial OK
 --necesita Usuario OK
-DROP TABLE Documento CASCADE;
+--DROP TABLE Documento CASCADE;
 CREATE TABLE Documento
 (
 	id_Documento INT DEFAULT nextval('id_documento_seq'::regclass),
@@ -102,7 +115,7 @@ CREATE TABLE Documento
  
 --necesita Documento OK
 --necesita Usuario OK
-DROP TABLE Descarga_Usuario_Documento CASCADE;
+--DROP TABLE Descarga_Usuario_Documento CASCADE;
 CREATE TABLE Descarga_Usuario_Documento
 (
 	fecha DATE,
@@ -116,7 +129,7 @@ CREATE TABLE Descarga_Usuario_Documento
 	ON DELETE RESTRICT ON UPDATE CASCADE --REVISAR LOS DELETE CON RESTRICT
 );
 
-DROP SEQUENCE id_autor_seq CASCADE;
+--DROP SEQUENCE id_autor_seq CASCADE;
 CREATE SEQUENCE id_autor_seq
     INCREMENT BY 1
     NO MAXVALUE
@@ -124,7 +137,7 @@ CREATE SEQUENCE id_autor_seq
 	START WITH 10000
     CACHE 1;
 
-DROP TABLE Autor CASCADE;
+--DROP TABLE Autor CASCADE;
 CREATE TABLE Autor
 (
 	id_autor INT DEFAULT nextval('id_autor_seq'::regclass),
@@ -137,7 +150,7 @@ CREATE TABLE Autor
 
 --necesita Autor OK
 --necesita Documento OK
-DROP TABLE Escribe_Autor_Documento CASCADE;
+--DROP TABLE Escribe_Autor_Documento CASCADE;
 CREATE TABLE Escribe_Autor_Documento
 (
 	id_autor INT,
@@ -151,7 +164,7 @@ CREATE TABLE Escribe_Autor_Documento
 
 --necesita Documento OK
 --necesita Usuario OK
-DROP TABLE Consulta CASCADE;
+--DROP TABLE Consulta CASCADE;
 CREATE TABLE Consulta
 (
 	id_documento INT,
@@ -165,7 +178,7 @@ CREATE TABLE Consulta
   	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-DROP TABLE Palabra_Clave CASCADE;
+--DROP TABLE Palabra_Clave CASCADE;
 CREATE TABLE Palabra_Clave
 (
 	nombre VARCHAR(20),
@@ -175,7 +188,7 @@ CREATE TABLE Palabra_Clave
 
 --necesita Palabra_Clave OK
 --necesita Documento OK
-DROP TABLE Tiene_Documento_Palabra_Clave CASCADE;
+--DROP TABLE Tiene_Documento_Palabra_Clave CASCADE;
 CREATE TABLE Tiene_Documento_Palabra_Clave
 (
 	nombre VARCHAR(20),
@@ -189,7 +202,7 @@ CREATE TABLE Tiene_Documento_Palabra_Clave
 
 --necesita Documento OK
 --necesita Area_Conocimiento OK
-DROP TABLE Pertenece_Documento_Area_Conocimiento CASCADE;
+--DROP TABLE Pertenece_Documento_Area_Conocimiento CASCADE;
 CREATE TABLE Pertenece_Documento_Area_Conocimiento
 (
 	id_area VARCHAR(3),
@@ -206,9 +219,9 @@ CREATE TABLE Pertenece_Documento_Area_Conocimiento
 --lo siguiente es un machetazo para poder insertar las demas areas sin alterar la tabla, me imagino que quedara entre nosotros xD
 
 --insertando areas
-INSERT INTO Area_Conocimiento(id_area,nombre,descripcion,area_padre) VALUES('','Super','','');
-INSERT INTO Area_Conocimiento(id_area,nombre,descripcion,area_padre) VALUES('1','Computacion centrada en la red','','');
-INSERT INTO Area_Conocimiento(id_area,nombre,descripcion,area_padre) VALUES('2','Construccion de Aplicaciones web','','1');
+INSERT INTO Area_Conocimiento VALUES ('', 'Super','','');
+INSERT INTO Area_Conocimiento VALUES ('1', 'Computacion centrada en la red','','');
+INSERT INTO Area_Conocimiento VALUES ('2', 'Construccion de Aplicaciones web','','1');
 INSERT INTO Area_Conocimiento VALUES ('3', 'Metodos Numericos Computacionales', '','');
 INSERT INTO Area_Conocimiento VALUES ('4', 'Modelos de Simulacion','','3');
 INSERT INTO Area_Conocimiento VALUES ('5', 'Investigacion de Operaciones','','3');
@@ -216,6 +229,60 @@ INSERT INTO Area_Conocimiento VALUES ('6', 'Ingenieria de Software','','');
 INSERT INTO Area_Conocimiento VALUES ('7', 'Diseno de Software','','6');
 INSERT INTO Area_Conocimiento VALUES ('8', 'Gestion de Informacion','','');
 INSERT INTO Area_Conocimiento VALUES ('9', 'Hipermedia e Hipertexto','','8');
+INSERT INTO Area_Conocimiento VALUES ('10', 'Modelo de Sistemas de Informacion','','8');
+INSERT INTO Area_Conocimiento VALUES ('11', 'Lenguajes de Consulta de Bases de Datos','','8');
+INSERT INTO Area_Conocimiento VALUES ('12', 'Bibliotecas Digitales','','8');
+INSERT INTO Area_Conocimiento VALUES ('13', 'Recuperacion de Informacion','','8');
+INSERT INTO Area_Conocimiento VALUES ('14', 'Redes de Comunicacion','','1');
+INSERT INTO Area_Conocimiento VALUES ('15', 'Diseno Fisico de Bases de Datos','','8');
+INSERT INTO Area_Conocimiento VALUES ('16', 'Lenguajes de Programacion','','');
+INSERT INTO Area_Conocimiento VALUES ('17', 'Programacion Orientada a Objetos','','17');
+INSERT INTO Area_Conocimiento VALUES ('18', 'Sistemas Inteligentes','','');
+INSERT INTO Area_Conocimiento VALUES ('19', 'Busqueda por Satisfaccion de Reestricciones','','18');
+INSERT INTO Area_Conocimiento VALUES ('20', 'Entornos de Desarrollo de Software','','6');
+INSERT INTO Area_Conocimiento VALUES ('21', 'Diseno de Bases de Datos Relacionales','','8');
+INSERT INTO Area_Conocimiento VALUES ('22', 'Validacion de Software','','6');
+INSERT INTO Area_Conocimiento VALUES ('23', 'Computacion Wevb Cliente Servidor','','1');
+INSERT INTO Area_Conocimiento VALUES ('24', 'Tecnologias Multimedia','','1');
+INSERT INTO Area_Conocimiento VALUES ('25', 'Computacion Inalambrica','','1');
+INSERT INTO Area_Conocimiento VALUES ('26', 'Procesamiento de Lenguaje Natural','','18');
+INSERT INTO Area_Conocimiento VALUES ('27', 'Sistemas Multimedia','','8');
+INSERT INTO Area_Conocimiento VALUES ('28', 'Fundamentos de Programacion','','');
+INSERT INTO Area_Conocimiento VALUES ('29', 'Programacion Orientada por Eventos','','28');
+INSERT INTO Area_Conocimiento VALUES ('29', 'Robotica','','18');
+INSERT INTO Area_Conocimiento VALUES ('30', 'Algoritmos y Complejidad','','');
+INSERT INTO Area_Conocimiento VALUES ('31', 'Algoritmos Paralelos','','30');
+INSERT INTO Area_Conocimiento VALUES ('32', 'Interaccion Humano Computador','','');
+INSERT INTO Area_Conocimiento VALUES ('33', 'Aspectos de Comunicacion','','32');
+INSERT INTO Area_Conocimiento VALUES ('34', 'Desarrollo de Software Centrado en Humano','','32');
+INSERT INTO Area_Conocimiento VALUES ('35', 'Diseno de Interfaces Graficas de Usuario','','32');
+INSERT INTO Area_Conocimiento VALUES ('36', 'Procesamiento de Transacciones','','8');
+INSERT INTO Area_Conocimiento VALUES ('37', 'Mineria de Datos','','8');
+INSERT INTO Area_Conocimiento VALUES ('38', 'Computacion Visual y Grafica','','');
+INSERT INTO Area_Conocimiento VALUES ('39', 'Rendering Avanzado','','38');
+INSERT INTO Area_Conocimiento VALUES ('40', 'Animacion por Computador','','38');
+INSERT INTO Area_Conocimiento VALUES ('41', 'Realidad Virtual','','38');
+INSERT INTO Area_Conocimiento VALUES ('42', 'Arquitectura y Organizacion','','');
+INSERT INTO Area_Conocimiento VALUES ('43', 'Arquitectura para Redes en Sistemas Distribuidos','','42');
+INSERT INTO Area_Conocimiento VALUES ('44', 'Analisis Numerico','','3');
+INSERT INTO Area_Conocimiento VALUES ('45', 'Modelamiento de Datos','','8');
+INSERT INTO Area_Conocimiento VALUES ('46', 'Bases de Datos Relacionales','','8');
+INSERT INTO Area_Conocimiento VALUES ('47', 'Bases de Datos Distribuidas','','8');
+INSERT INTO Area_Conocimiento VALUES ('48', 'Seguridad en Redes','','1');
+INSERT INTO Area_Conocimiento VALUES ('49', 'Bioinformatica','','');
+INSERT INTO Area_Conocimiento VALUES ('50', 'Estructuras Discretas','','');
+INSERT INTO Area_Conocimiento VALUES ('51', 'Grafos y Arboles','','');
+INSERT INTO Area_Conocimiento VALUES ('52', 'Sistemas de Bases de Datos','','8');
+INSERT INTO Area_Conocimiento VALUES ('53', 'Representacion de Conocimiento','','18');
+INSERT INTO Area_Conocimiento VALUES ('54', 'Probabilidad Discreta','','51');
+INSERT INTO Area_Conocimiento VALUES ('55', 'Visualizacion','','38');
+INSERT INTO Area_Conocimiento VALUES ('56', 'Sistemas Operativos','','');
+INSERT INTO Area_Conocimiento VALUES ('57', 'Sistemas en Tiempo Real','','56');
+INSERT INTO Area_Conocimiento VALUES ('58', 'Tolerancia a Fallas','','62');
+INSERT INTO Area_Conocimiento VALUES ('59', 'Algoritmos Criptograficos','','30');
+INSERT INTO Area_Conocimiento VALUES ('60', 'Maquinas Virtuales','','17');
+INSERT INTO Area_Conocimiento VALUES ('61', 'Programacion Funcional','','17');
+INSERT INTO Area_Conocimiento VALUES ('62', 'Aprendizaje Redes Neuronales','','18');
 
 --insertando autores
 INSERT INTO Autor (nombre, apellido, acronimo, email) VALUES('EDGAR','MONCADA','MONKI','MONKI@GMAIL.COM');
@@ -238,13 +305,13 @@ INSERT INTO TipoMAterial VALUES('Tesis de Doctorado','trabajo presentado para el
 INSERT INTO TipoMAterial VALUES('Material de Clase','diapositivas, talleres, ejercicios y documentos del profesor');
 
 --insertando usuarios
-INSERT INTO Usuario VALUES('444', 'contrasena', 'nombre1', 'nombre2', 'apellido1', 'apellido2', 'email', 'nivel', 'pregunta', 'respuesta', 'vinculo' ,'m', '777-07-07', '6666-06-06', '1', 't');
-INSERT INTO Usuario VALUES('clrl','clrl','cristian','leoanrdo','rios','lopez','dragonblanco452@gmail.com','tecnico','pregunta','respuesta','estudiante','m','1989-06-09','1989-06-09','1','t');
+INSERT INTO Usuario VALUES('admin', 'digital', 'Biblioteca', 'Digital', 'Eisc', 'Univalle', 'bibliotecaeisc@correo.univalle.co', '', '', '', '' ,'', '2011-05-08', '2011-05-08', '1', 't');
+INSERT INTO Usuario VALUES('clrl','clrl','cristian','leoanrdo','rios','lopez','dragonblanco452@gmail.com','tecnico','pregunta','respuesta','estudiante','m','1989-06-09','2011-05-08','2','t');
 
 --insertando interesa_usuario_area_conocimiento
-INSERT INTO interesa_usuario_area_conocimiento VALUES('444','3');
-INSERT INTO interesa_usuario_area_conocimiento VALUES('444','9');
+INSERT INTO interesa_usuario_area_conocimiento VALUES('admin','3');
+INSERT INTO interesa_usuario_area_conocimiento VALUES('admin','9');
 
 --insertando documentos
-INSERT INTO Documento VALUES(DEFAULT, 'español', 'si', 'documento', 'adobe', '200','ninguno', 'pdf', 'Libro', 'librito', 'enlace no disponible', '1111-01-01', '2222-02-02', 'Libro', '444', '3333-03-03');
+INSERT INTO Documento VALUES(DEFAULT, 'español', 'si', 'documento', 'adobe', '200','ninguno', 'pdf', 'Libro', 'librito', 'enlace no disponible', '1111-01-01', '2222-02-02', 'Libro', 'admin', '3333-03-03');
 INSERT INTO Documento VALUES(DEFAULT,'ingles','si','paraiso','writer','150','mas alla','doc','en el paraiso','lo mismo','sin enlace','2000-01-15','2002-02-20','Articulo','clrl','2010-06-07');
