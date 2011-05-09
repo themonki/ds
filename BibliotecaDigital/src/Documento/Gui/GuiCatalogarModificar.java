@@ -26,6 +26,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -61,15 +62,16 @@ public class GuiCatalogarModificar extends JScrollPane{
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
-	tituloSecundario,/*traducido,*/editorial,derechosAutor,descripcion,indicacion,
-	palabrasClave,fechaPublicacion,areas, enlaceDoc;
+	tituloSecundario,/*traducido,*/editorial,derechosAutor,descripcion,
+	palabrasClave,fechaPublicacion,areas, enlaceDoc, resolucion,softwareRecomendado, formato;
 	
 	private JTextArea campoDescripcion;
 
 	private JComboBox campoPalabras,campoAutor,campoTipoMaterial,
-	/*campoTraducido,*/campoIdioma,campoDerechosAutor,campoAreas;
+	/*campoTraducido,*/campoIdioma,campoDerechosAutor,campoAreas, campoFormato;
 	  
-	private JTextField campoEditorial,campoNumeroIdentificacion,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc;
+	private JTextField campoEditorial,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc,
+	campoSofware, campoResolucion;
 	
 	private JButton botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
 	//faltan las fechas /////////****************///
@@ -91,12 +93,6 @@ public class GuiCatalogarModificar extends JScrollPane{
 	ControladorDocumento controladorDocumento;
 	//-------------Objetos de la base de datos
 	Documento doc;
-	private JLabel formato;
-	private JComboBox campoFormato;
-	private JLabel softwareRecomendado;
-	private JLabel resolucion;
-	private JTextField campoResolucion;
-	private JTextField campoSofware;
 	
 	public GuiCatalogarModificar(String loginIngreso) {
 		
@@ -447,8 +443,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    nuevaPalabra.addActionListener(new ManejadorBoton());
 	}
 
-	private void inicializarTexfield() { 
-		campoNumeroIdentificacion = new JTextField();
+	private void inicializarTexfield() {
 		campoTituloSecundario= new JTextField();    
 		campoTituloPpal = new JTextField();   
 		campoEditorial= new JTextField();
@@ -602,24 +597,50 @@ public class GuiCatalogarModificar extends JScrollPane{
 	}
 
 	private boolean validacionDeDatos() {
-		if (campoNumeroIdentificacion.getText().length()<10  &&
-		campoTituloSecundario.getText().length()   <50  &&
-		campoTituloPpal.getText().length() <50   &&
-		campoEditorial.getText().length() <30   &&
-		campoDescripcion.getText().length() < 200  &&
-		campoResolucion.getText().length()<15 &&
-		campoSofware.getText().length()<10  &&
-		!campoTituloPpal.getText().isEmpty() &&
-		//!campoFormato.getText()..getSelectedIndex()   &&
-		!campoDescripcion.getText().isEmpty()   
-	//	campoIdioma.getSelectedIndex()!= -1
-		&& !campoEnlaceDoc.getText().isEmpty()
-		&& campoEnlaceDoc.getText().length()<200
-		)
-			
-			return true;
-		
-		return false;
+		String mensaje="";
+		boolean estado = true;
+		if(campoTituloPpal.getText().equals("")){
+			mensaje+="Debe proporcionar un Titulo Principal al documento\n";
+			estado=false;
+		}
+		if(campoTituloPpal.getText().length()>50){
+			mensaje+="El Titulo Principal es demasiado largo\n";
+			estado=false;
+		}
+		if(campoTituloSecundario.getText().length()>50){
+			mensaje+="El Titulo Secundario es demasiado largo\n";
+			estado=false;
+		}
+		if(campoEnlaceDoc.getText().length()>200){
+			mensaje+="Error con el path\n";
+			estado=false;
+		}
+		if(campoEnlaceDoc.getText().equals("")){
+			mensaje+="Debe cargar un Documento\n";
+			estado=false;
+		}
+		if(formato.getText().equals("")){
+			mensaje+="Debe seleccionar un formato para el Documento\n";
+			estado=false;
+		}
+		if(campoDescripcion.getText().equals("")){
+			mensaje+="Debe proporcionar una descripcion o resumen del Documento\n";
+			estado=false;
+		}
+		if(campoDescripcion.getText().length()>200){
+			mensaje+="La descripcion es demasiado larga\n";
+			estado=false;
+		}
+		if(campoEditorial.getText().length()>30){
+			mensaje+="La editorial es demasiado larga\n";
+			estado=false;
+		}
+		/*if(campoSoftware.getText().length()>30){
+			mensaje+="La editorial es demasiado larga\n";
+			estado=false;
+		}*/
+		if(!estado){JOptionPane.showMessageDialog(null, mensaje);}
+		return estado;		
 		
 	}
 	private class ManejadorBoton implements ActionListener 
