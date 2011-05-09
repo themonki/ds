@@ -69,6 +69,7 @@ public class GuiIngresarArea extends JFrame {
 		add(panel3, BorderLayout.CENTER);
 		add(panel4, BorderLayout.SOUTH);
 		setSize(730, 320);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 

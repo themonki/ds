@@ -60,7 +60,7 @@ public class DaoAutor {
 			Statement sentencia = conn.createStatement();
 			ResultSet tabla = sentencia.executeQuery(sqlSelect);
 			// Provisional probar resultados
-			System.out.println("IdAutor-Nombre-Email-Apellido-Acronimo");
+			//System.out.println("IdAutor-Nombre-Email-Apellido-Acronimo");
 
 			while (tabla.next()) {
 
@@ -70,12 +70,12 @@ public class DaoAutor {
 				autor.setApellido(tabla.getString(4));
 
 				autor.setAcronimo(tabla.getString(5));
-				System.out.println("Id Autor: " + tabla.getString(1)
+/*				System.out.println("Id Autor: " + tabla.getString(1)
 						+ " Nombre: " + tabla.getString(2) + " Email:"
 						+ tabla.getString(3) + "Apellido: "
 						+ tabla.getString(4) + "Acronimo: "
 						+ tabla.getString(5));
-
+*/
 			}
 			fachada.cerrarConexion(conn);
 			System.out.println("Conexion cerrada");
@@ -101,7 +101,7 @@ public class DaoAutor {
 			Statement sentencia = conn.createStatement();
 			ResultSet tabla = sentencia.executeQuery(sqlSelect);
 			// Provisional probar resultados
-			System.out.println("IdAutor-Nombre-Email-Apellido-Acronimo");
+			//System.out.println("IdAutor-Nombre-Email-Apellido-Acronimo");
 
 			while (tabla.next()) {
 
@@ -114,13 +114,13 @@ public class DaoAutor {
 				autorAux.setAcronimo(tabla.getString(5));
 
 				autores.add(autorAux);
-
+/*
 				System.out.println("Id Autor: " + tabla.getString(1)
 						+ " Nombre: " + tabla.getString(2) + " Email:"
 						+ tabla.getString(3) + "Apellido: "
 						+ tabla.getString(4) + "Acronimo: "
 						+ tabla.getString(5));
-
+*/
 			}
 			fachada.cerrarConexion(conn);
 			System.out.println("Conexion cerrada");
@@ -135,7 +135,7 @@ public class DaoAutor {
 	}
 
 
-	/* main para prueba OK */
+	/* main para prueba OK
 	public static void main(String args[]) {
 		Autor a = new Autor("Yerminson", "Gonzalez", "yermigon",
 				"yermigon@gmail.com", "");
@@ -144,6 +144,6 @@ public class DaoAutor {
 		da.consultarAutor("yermigon");
 		System.out.println(da.consultarAutores().size());
 
-	}
+	} */
 
 }

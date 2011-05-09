@@ -118,7 +118,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
 		areasVector =contenedorIdNombreArea.get(0);
+		areasVector.remove(0);
 		AreasIdVector= contenedorIdNombreArea.get(1);
+		AreasIdVector.remove(0);
 		contenedorIdNombreArea=null;//para destruir el vector 
 		
 		palabrasClaveVec= controladorpalabrasClave.obtenerTodasPalabrasClave();
@@ -641,15 +643,10 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
 			 doc.setFecha_creacion(java.sql.Date.valueOf(fes));
 			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes));
-
-			 doc.setCatalogadorLogin("444");// el login del catalogador
-			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );		
-
 			 doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
+			 
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
-			
-			
 			}
 			}//if getsource
 			
@@ -662,11 +659,6 @@ public class GuiCatalogarModificar extends JScrollPane{
 						campoEnlaceDoc.setText(url);
 				 }						
 			}
-			//,nuevaArea,nuevotipo,nuevoAutor,nuevapalabra
-			/*private GuiIngresarArea ingresarAreaNueva;
-	private GuiIngresarPalabraClave ingresarPalabraNueva;
-	private GuiIngresarAutor ingresarAutorNuevo;
-	private GuiIngresarTipoMaterial ingresarTipoNuevo;*/
 			if(event.getSource()==nuevaArea){				
 				new GuiIngresarArea().setVisible(true);				
 			}

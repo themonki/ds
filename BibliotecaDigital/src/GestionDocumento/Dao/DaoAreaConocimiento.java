@@ -69,12 +69,12 @@ public class DaoAreaConocimiento {
 				area.setDescripcion(tabla.getString("descripcion"));
 				area.setIdArea(tabla.getString("area_padre"));
 
-				/* probando */
+				/* probando 
 				System.out.println("Id area: " + tabla.getString("id_area")
 						+ " Nombre: " + tabla.getString("nombre")
 						+ " Descripcion: " + tabla.getString("descripcion")
 						+ " Area Padre: " + tabla.getString("area_padre"));
-
+*/
 			}
 			this.fachada.cerrarConexion(conn);
 		}
@@ -106,12 +106,12 @@ public class DaoAreaConocimiento {
 				area.setDescripcion(tabla.getString("descripcion"));
 				area.setAreaPadre(tabla.getString("area_padre"));
 
-				/* probando */
+				/* probando 
 				System.out.println("Id area: " + tabla.getString("id_area")
 						+ " Nombre: " + tabla.getString("nombre")
 						+ " Descripcion: " + tabla.getString("descripcion")
 						+ " Drea Padre: " + tabla.getString("area_padre"));
-
+				 */
 				areas.add(area);
 			}
 			this.fachada.cerrarConexion(conn);

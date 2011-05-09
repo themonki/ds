@@ -91,6 +91,7 @@ public class GuiIngresarAutor extends JFrame {
 		add(panel, BorderLayout.SOUTH);
 
 		setSize(470, 280);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 

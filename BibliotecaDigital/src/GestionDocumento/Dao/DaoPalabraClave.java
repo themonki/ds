@@ -59,10 +59,10 @@ public class DaoPalabraClave {
 				pal.setNombre(tabla.getString("nombre"));
 				pal.setDescripcion(tabla.getString("descripcion"));
 
-				/* probando */
+				/* probando 
 				System.out.println("Nombre: " + tabla.getString("nombre")
 						+ " Descripcion: " + tabla.getString("descripcion"));
-
+*/
 			}
 			this.fachada.cerrarConexion(conn);
 
@@ -91,10 +91,10 @@ public class DaoPalabraClave {
 				palabra.setNombre(tabla.getString("nombre"));
 				palabra.setDescripcion(tabla.getString("descripcion"));
 
-				/* probando */
+				/* probando 
 				System.out.println("Nombre: " + tabla.getString("nombre")
 						+ " Descripcion: " + tabla.getString("descripcion"));
-
+*/
 				palabras.add(palabra);
 			}
 			this.fachada.cerrarConexion(conn);

@@ -70,6 +70,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 		add(panel3, BorderLayout.CENTER);
 		add(panel4, BorderLayout.SOUTH);
 		setSize(400, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 
