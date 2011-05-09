@@ -623,8 +623,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		{
 			if(event.getSource()==botonCatalogar){
 			if(validacionDeDatos())
-			{	
-			
+			{		
 			
 			doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSofware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
 			doc.setTituloppal(campoTituloPpal.getText());
@@ -647,15 +646,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
 			 
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
-<<<<<<< HEAD
-			
-			
-			
-=======
->>>>>>> cb0933cca0944f234291f9cb511a47d9ff63ed59
 			}
-			else System.out.println("no valido ");
-			
+			else System.out.println("no valido ");			
 			
 			}//if getsource
 			
@@ -680,9 +672,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			if(event.getSource()==nuevaPalabra){
 				new GuiIngresarPalabraClave().setVisible(true);
 			}
-	}
-
-		
+	}		
 
 	}
 	
