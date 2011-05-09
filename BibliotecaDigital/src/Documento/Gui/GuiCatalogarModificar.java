@@ -457,7 +457,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    resolucion= new JLabel("Resolucion");
 	    enlaceDoc = new JLabel("Path Documento");
  
-	    Color colorletras= new Color(250,210,210);
+	    Color colorletras= new Color(10,10,10);
 	   
 	    resolucion.setFont(font1); 
 	    softwareRecomendado.setFont(font1);
@@ -529,7 +529,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		try
 		{			
-			NimRODTheme nt = new NimRODTheme();
+			/*NimRODTheme nt = new NimRODTheme();
 			nt.setPrimary1( new Color(10,10,230));
 			nt.setPrimary2( new Color(0,110,150));
 			nt.setPrimary3( new Color(0,0,230));
@@ -542,10 +542,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 			nt.setBlack(new Color(250,230,250));
 			
 			
-
 			NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
 			NimRODLF.setCurrentTheme( nt);
-			UIManager.setLookAndFeel( NimRODLF);
+			UIManager.setLookAndFeel( NimRODLF);*/
 			//LookAndFeel n = new NimRODLookAndFeel( );
 			
 			//UIManager.setLookAndFeel(); 
@@ -611,7 +610,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 		public void actionPerformed(ActionEvent event) 
 		{
 			if(event.getSource()==botonCatalogar){
-			if(validacionDeDatos()){	
+			if(validacionDeDatos())
+			{	
 			
 			
 			doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSofware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
@@ -640,7 +640,11 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
 			
 			
+			
 			}
+			else System.out.println("no valido ");
+			
+			
 			}//if getsource
 			
 			if(event.getSource()==examinarDoc){
