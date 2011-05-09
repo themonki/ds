@@ -279,6 +279,11 @@ public class GuiPrincipal extends JFrame
 						
 					}
 				}	
+				if(evento.getSource() == salir )
+				{
+					System.exit(0);
+					
+				}
 			}
 		}
 
