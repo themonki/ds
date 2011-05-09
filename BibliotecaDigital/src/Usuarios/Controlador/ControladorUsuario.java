@@ -101,6 +101,10 @@ public class ControladorUsuario {
 			//JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
 			//return false;
 		}
+		if(!u.getEmail().contains("@")){
+			mensaje+="Por favor digite un correo valido. ej: usuario@mail.com\n";
+			estado=false;
+		}
 		if(u.getRespuestaSecreta().equals(""))
 		{
 			mensaje+="Debe de proporcionar una respuesta a la pregunta secreta\n";
@@ -172,6 +176,10 @@ public class ControladorUsuario {
 			estado=false;
 			//JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
 			//return false;
+		}
+		if(!u.getEmail().contains("@")){
+			mensaje+="Por favor digite un correo valido. ej: usuario@mail.com\n";
+			estado=false;
 		}
 		if(u.getRespuestaSecreta().equals(""))
 		{
