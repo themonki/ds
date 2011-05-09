@@ -1,11 +1,10 @@
 package Principal.Controlador;
 
-import javax.swing.JFrame;
+
 import javax.swing.JOptionPane;
 
 import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
-import Principal.Gui.GuiPrincipal;
 import Principal.Gui.GuiUsuarioNormal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
@@ -24,6 +23,8 @@ public class ControladorVentanaPrincipal {
 		Usuario usuario = controladorUsuario.consultarUsuario(login);
 		boolean respuesta = false;
 		
+		
+				
 		if(login.equals(""))
 		{	
 			

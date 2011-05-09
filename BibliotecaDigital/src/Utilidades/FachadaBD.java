@@ -5,7 +5,10 @@ package Utilidades;
  * Responsabilidad: Realizar la debida conexion con la base de datos asi como cerrarla.
  * 
  */
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class FachadaBD {
 	String url, usuario, password;

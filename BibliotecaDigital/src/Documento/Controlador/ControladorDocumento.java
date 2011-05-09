@@ -9,8 +9,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.util.Vector;
-import Documento.Dao.*;
-import Documento.Logica.*;
+
+import Documento.Dao.DaoDocumento;
+import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;

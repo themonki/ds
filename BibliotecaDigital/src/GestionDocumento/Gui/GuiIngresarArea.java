@@ -9,9 +9,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.*;
-import GestionDocumento.Controlador.*;
-import GestionDocumento.Logica.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+
+import GestionDocumento.Controlador.ControladorAreaConocimiento;
+import GestionDocumento.Logica.AreaConocimiento;
 
 public class GuiIngresarArea extends JFrame {
 

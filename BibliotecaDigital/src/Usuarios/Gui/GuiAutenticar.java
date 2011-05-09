@@ -21,17 +21,14 @@ import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import Principal.Controlador.ControladorVentanaPrincipal;
 import Principal.Gui.GuiPrincipal;
-import Usuarios.Controlador.ControladorUsuario;
 
 public class GuiAutenticar extends JPanel
 {

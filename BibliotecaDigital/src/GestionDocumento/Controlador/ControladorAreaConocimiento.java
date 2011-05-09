@@ -9,9 +9,10 @@
 
 package GestionDocumento.Controlador;
 
+import java.util.Vector;
+
 import GestionDocumento.Dao.DaoAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
-import java.util.Vector;
 
 public class ControladorAreaConocimiento
 {

@@ -361,7 +361,7 @@ public class GuiAdministrador extends JFrame
 			{
 				GuiPrincipal gp = new GuiPrincipal();
 				gp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				//gp.dispose();
+				dispose();
 			}	
 		}
 	}
