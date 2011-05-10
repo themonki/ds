@@ -612,7 +612,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    campoAreas.addActionListener(new ManejadorComboBox());
 	    	    
 	}
-
+/*
 	public static void main (String args []){
 		
 		try
@@ -632,7 +632,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			
 			NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
 			NimRODLF.setCurrentTheme( nt);
-			UIManager.setLookAndFeel( NimRODLF);*/
+			UIManager.setLookAndFeel( NimRODLF);
 			//LookAndFeel n = new NimRODLookAndFeel( );
 			
 			//UIManager.setLookAndFeel(); 
@@ -665,7 +665,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		ventana.setVisible(true);
 
 	}
-
+*/
 	private boolean validacionDeDatos() {
 		String mensaje="";
 		boolean estado = true;
@@ -681,8 +681,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		if (campoEnlaceDoc.getText().equals("")){
 			
 			mensaje+="Debe proporcionar una ruta para guardar el Documento\n";
-			estado=false;
-			
+			estado=false;			
 		}
 		
 		if(!estado){JOptionPane.showMessageDialog(null, mensaje);}
@@ -736,8 +735,13 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
 			 
-			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
-
+			 if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
+			 	{
+			 		JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");
+			 	}
+			 	else{
+			 		JOptionPane.showMessageDialog(null, "Parece que este documento ya fue catalogado\nCambie el nombre del archivo o asegurese de que\nno esta catalogando un mismo documento","ERROR", JOptionPane.WARNING_MESSAGE);
+			 	}
 			}
 			else System.out.println("no valido ");			
 			
@@ -988,6 +992,23 @@ public class GuiCatalogarModificar extends JScrollPane{
 				
 			}
 			
+		}
+		
+		public void limpiarCampor(){
+			campoEditorial.setText("");
+			campoTituloSecundario.setText("");
+			campoTituloPpal.setText("");
+			campoEnlaceDoc.setText("");
+			campoSoftware.setText("");
+			campoResolucion.setText("");
+			campoDescripcion.setText("");
+			campoPalabras.setSelectedIndex(0);
+			campoAutor.setSelectedIndex(0);
+			campoTipoMaterial.setSelectedIndex(0);
+			campoIdioma.setSelectedIndex(0);
+			campoDerechosAutor.setSelectedIndex(0);
+			campoAreas.setSelectedIndex(0);
+			campoFormato.setSelectedIndex(0);
 		}
 		
 }
