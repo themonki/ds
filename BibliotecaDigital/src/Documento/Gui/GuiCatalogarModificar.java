@@ -683,7 +683,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 =======
 */
 	private boolean validacionDeDatos() {
->>>>>>> cd6069a7629da2ef6066d9c63cf09be8b5e416d7
+
 		String mensaje="";
 		boolean estado = true;
 		
