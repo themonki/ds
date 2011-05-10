@@ -78,12 +78,12 @@ public class GuiIngresarArea extends JFrame {
 		panel4.add(descripcionArea, BorderLayout.NORTH);
 		panel4.add(panel5, BorderLayout.CENTER);
 		panel4.add(panel, BorderLayout.SOUTH);
-
+		
 		setLayout(new BorderLayout());
 		add(indicacion, BorderLayout.NORTH);
 		add(panel3, BorderLayout.CENTER);
 		add(panel4, BorderLayout.SOUTH);
-		setSize(730, 320);
+		setSize(820, 320);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -96,6 +96,7 @@ public class GuiIngresarArea extends JFrame {
 		ManejadorJTextField manejador = new ManejadorJTextField();
 		campoNombre = new JTextField(15);
 		campoNombre.addKeyListener(manejador);
+		campoNombre.setFocusable(true);
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoDescripcionArea.addKeyListener(manejador);
 		campoAreaPadre = new JComboBox();
