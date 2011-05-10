@@ -729,6 +729,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 			doc.setEditorial(campoEditorial.getText());
 			doc.setFormato((String) campoFormato.getSelectedItem());
 			doc.setSoftware_recomentado(campoSoftware.getText());
+			doc.setDescripcion(campoDescripcion.getText());
+			doc.setResolucion(campoResolucion.getText());
+			doc.setDerechosDeAutor(campoDerechosAutor.getSelectedItem().toString());
 			//---------------------------------------
 			 // tomar fechas de splinner 
 			fecha=  editor.getModel().getDate();
@@ -1041,6 +1044,18 @@ public class GuiCatalogarModificar extends JScrollPane{
 			campoDerechosAutor.setSelectedIndex(0);
 			campoAreas.setSelectedIndex(0);
 			campoFormato.setSelectedIndex(0);
+			panelConAutores.removeAll();									
+			panelConAutores.updateUI();
+			panelConpalabrasC.removeAll();
+			panelConpalabrasC.updateUI();
+			panelConAreas.removeAll();
+			panelConAreas.updateUI();       
+	        palabActualVec.removeAllElements();
+	        areasActualVecr.removeAllElements();
+	        autoresActualVector.removeAllElements();
+	        AutorIdActualVector.removeAllElements();
+	        AreasIdActualVector.removeAllElements();
+	        
 		}
 		
 }
