@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
 
 public class GuiIngresarTipoMaterial extends JFrame {
@@ -32,8 +33,14 @@ public class GuiIngresarTipoMaterial extends JFrame {
 	JButton botonIngresarTipo;
 
 	JPanel panel, panel1, panel2, panel3, panel4, panel5;
+	
+	GuiCatalogarModificar guicatalogarModi;
 
 	public GuiIngresarTipoMaterial() {
+		initComponents();
+	}
+	public GuiIngresarTipoMaterial(GuiCatalogarModificar guicatalogarModi) {
+		this.guicatalogarModi=guicatalogarModi;
 		initComponents();
 	}
 
@@ -115,7 +122,11 @@ public class GuiIngresarTipoMaterial extends JFrame {
 			if(validarDatos()){
 		
 				ControladorTipoMaterial conMaterial = new ControladorTipoMaterial();
-				conMaterial.insertarTipoMaterial(campoNombre.getText(), campoDescripcion.getText());
+				if(conMaterial.insertarTipoMaterial(campoNombre.getText(), campoDescripcion.getText())>=1)
+				{
+				guicatalogarModi.vectoresParaComboBox();
+				guicatalogarModi.actualizarTipoMaterial();
+				}
 				dispose();
 			}
 		}		

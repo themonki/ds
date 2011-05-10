@@ -23,6 +23,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 
@@ -33,12 +34,19 @@ public class GuiIngresarArea extends JFrame {
 	JComboBox campoAreaPadre;
 	JTextArea campoDescripcionArea;
 	JButton botonIngresarArea;
+	GuiCatalogarModificar guiCatalogarModi;
 
 	JPanel panel, panel2, panel3, panel4, panel5;
 
 	public GuiIngresarArea() {
 		super("Ingresar Area");
 		initComponents();
+		
+	}
+	public GuiIngresarArea(GuiCatalogarModificar guiCatalogarModi) {
+		super("Ingresar Area");
+		initComponents();
+		this.guiCatalogarModi=guiCatalogarModi;
 		
 	}
 
@@ -151,7 +159,11 @@ public class GuiIngresarArea extends JFrame {
 				padre= ""+padreSeleccionado;
 			}
 			
-			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);
+			if(controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre)>=1)
+			{
+			guiCatalogarModi.vectoresParaComboBox();
+			guiCatalogarModi.actualizarAreas();
+			}
 			dispose();
 			
 			}

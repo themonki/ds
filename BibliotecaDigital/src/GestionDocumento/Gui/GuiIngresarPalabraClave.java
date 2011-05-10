@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorPalabraClave;
 public class GuiIngresarPalabraClave extends JFrame {
 
@@ -30,10 +31,18 @@ public class GuiIngresarPalabraClave extends JFrame {
 	JButton botonIngresarPalabra;
 
 	JPanel panel1, panel, panel2, panel3;
+	
+	GuiCatalogarModificar guicatalogarModi ;
 
 	public GuiIngresarPalabraClave() {
 		initComponents();
 	}
+	
+	public GuiIngresarPalabraClave(GuiCatalogarModificar guicatalogarModi) {
+		initComponents();
+		this.guicatalogarModi=guicatalogarModi;
+	}
+	
 
 	public void initComponents() {
 		// ---------------------------------------------------------------
@@ -115,7 +124,11 @@ public class GuiIngresarPalabraClave extends JFrame {
 			if(validarDatos()){
 			
 				ControladorPalabraClave conPalabra = new ControladorPalabraClave();
-				conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText());
+				if(conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText())>=1)
+				{
+				guicatalogarModi.vectoresParaComboBox();
+				guicatalogarModi.actualizarPalabras();
+				}
 				dispose();
 			}
 		}		

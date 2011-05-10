@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorAutor;
 
 public class GuiIngresarAutor extends JFrame {
@@ -26,9 +27,15 @@ public class GuiIngresarAutor extends JFrame {
 	JTextField campoNombre, campoApellido, campoCorreoElectronico,
 			campoAcronimo;
 	JButton botonIngresarAutor;
+	
+	GuiCatalogarModificar 	guiCatalogarModi;
 
 	public GuiIngresarAutor() {
 		initComponents();
+	}
+	public GuiIngresarAutor(GuiCatalogarModificar 	guiCatalogarModi ) {
+		initComponents();
+		this.guiCatalogarModi= guiCatalogarModi;
 	}
 
 	public void initComponents() {
@@ -140,8 +147,13 @@ public class GuiIngresarAutor extends JFrame {
 		
 		public void actionPerformed(ActionEvent e) {
 			ControladorAutor conAutor = new ControladorAutor();
-			conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
-					campoAcronimo.getText(), campoCorreoElectronico.getText());
+			if(conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
+					campoAcronimo.getText(), campoCorreoElectronico.getText())>=1)
+			{
+			
+			guiCatalogarModi.vectoresParaComboBox();
+			guiCatalogarModi.actualizarAutores();
+			}
 			dispose();
 		}	
 	}
