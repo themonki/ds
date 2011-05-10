@@ -691,6 +691,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 						File file = manager.getSelectedFile();
 						String url = file.getAbsolutePath();						
 						campoEnlaceDoc.setText(url);
+						
 				 }						
 			}
 			if(event.getSource()==nuevaArea){				

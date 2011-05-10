@@ -47,9 +47,9 @@ public class GuiIngresarArea extends JFrame {
 		panel5 = new JPanel(new FlowLayout());
 		panel4 = new JPanel(new BorderLayout());
 		// --------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		panel5.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		panel.setBorder(BorderFactory.createLineBorder(Color.yellow));
+		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel5.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		// ---------------------------------------------
 		iniciarLabels();

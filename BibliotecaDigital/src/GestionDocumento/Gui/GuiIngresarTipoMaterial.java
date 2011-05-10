@@ -42,9 +42,9 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		panel4 = new JPanel(new BorderLayout());
 		panel = new JPanel();
 		// ----------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		panel5.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		panel.setBorder(BorderFactory.createLineBorder(Color.yellow));
+		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel5.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel.setBorder(BorderFactory.createLineBorder(Color.black));
 		// ------------------------------------------------------------
 		iniciarLabels();
 		iniciarCampos();
