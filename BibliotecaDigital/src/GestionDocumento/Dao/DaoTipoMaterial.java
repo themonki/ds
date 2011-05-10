@@ -37,9 +37,9 @@ public class DaoTipoMaterial {
 			this.fachada.cerrarConexion(conn);
 			return numFilas;
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return -1;
 	}
@@ -67,12 +67,12 @@ public class DaoTipoMaterial {
 						+ tabla.getString("descripcion"));
 */			}
 			this.fachada.cerrarConexion(conn);
-		}
+		
 
-		catch (SQLException se) {
-			se.printStackTrace();
+		} catch (SQLException se) {
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 
 		return tipo;
@@ -103,9 +103,9 @@ public class DaoTipoMaterial {
 			this.fachada.cerrarConexion(conn);
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return tipos;
 	}

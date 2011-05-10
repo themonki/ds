@@ -37,9 +37,9 @@ public class DaoPalabraClave {
 			this.fachada.cerrarConexion(conn);
 			return numFilas;
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return -1;
 	}
@@ -68,9 +68,9 @@ public class DaoPalabraClave {
 			this.fachada.cerrarConexion(conn);
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 
 		return pal;
@@ -101,9 +101,9 @@ public class DaoPalabraClave {
 			this.fachada.cerrarConexion(conn);
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return palabras;
 	}

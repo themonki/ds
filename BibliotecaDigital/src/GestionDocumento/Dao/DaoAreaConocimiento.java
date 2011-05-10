@@ -41,9 +41,9 @@ public class DaoAreaConocimiento {
 			this.fachada.cerrarConexion(conn);
 			return numFilas;
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return -1;
 	}
@@ -78,12 +78,11 @@ public class DaoAreaConocimiento {
 */
 			}
 			this.fachada.cerrarConexion(conn);
-		}
 
-		catch (SQLException se) {
-			se.printStackTrace();
+		} catch (SQLException se) {
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 
 		return area;
@@ -118,9 +117,9 @@ public class DaoAreaConocimiento {
 			this.fachada.cerrarConexion(conn);
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return areas;
 	}
@@ -138,9 +137,9 @@ public class DaoAreaConocimiento {
 			this.fachada.cerrarConexion(conn);
 			return numFilas;
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return -1;
 	}
@@ -157,9 +156,9 @@ public class DaoAreaConocimiento {
 			this.fachada.cerrarConexion(conn);
 			return numFilas;
 		} catch (SQLException se) {
-			se.printStackTrace();
+			System.out.println(se.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return -1;
 	}
