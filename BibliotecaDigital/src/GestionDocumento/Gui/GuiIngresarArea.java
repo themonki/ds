@@ -173,7 +173,6 @@ public class GuiIngresarArea extends JFrame {
 
 			}
 
-			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);			
 			dispose();
 			}
 		}		
