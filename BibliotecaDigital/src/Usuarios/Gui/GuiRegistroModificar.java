@@ -938,25 +938,4 @@ public class GuiRegistroModificar extends JScrollPane{
 		}
 		
 	}
-	
-	
-	//Main, frame para ver scrollpane.
-	/*public static void main (String args []){
-
-		try
-		{	
-			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-		}
-		catch (Exception e){e.printStackTrace();}
-
-		//Ventana para visualizar el jscrollpane
-		JFrame ventana;
-		ventana = new JFrame();
-		GuiRegistroModificar miPanel = new GuiRegistroModificar();
-		ventana.getContentPane().add(miPanel);
-		ventana.setVisible(true);
-		ventana.setSize(650,500);		
-		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-
-	}*/
 }

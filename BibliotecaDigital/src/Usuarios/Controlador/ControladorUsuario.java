@@ -352,27 +352,4 @@ public class ControladorUsuario {
 		value = daoUs.modificarPerfilEstado(u.getLogin(), u.getTipo(), estado );
 		return value;
 	} 
-
-	
-	  public static void main(String args[])
-	  { ControladorUsuario cu = new ControladorUsuario();
-	 /* Date fechaRegistro = Date.valueOf("6666-06-06");
-	 * Date fechaNacimiento = Date.valueOf("7777-07-07"); AreaConocimiento area1
-	 * = new AreaConocimiento(); AreaConocimiento area2 = new
-	 * AreaConocimiento(); area1.setIdArea("1"); area2.setIdArea("2");
-	 * Vector<AreaConocimiento> areasInteres = new Vector<AreaConocimiento>();
-	 * areasInteres.add(area1); areasInteres.add(area2); Usuario u = new
-	 * Usuario("444", "contrasena", "nombre1",
-	 * "nombre2","apellido1","apellido2", "este", "nivel",
-	 * "vinculo","preguntaSecreta","respuestaSecreta","m", fechaRegistro,
-	 * fechaNacimiento, 1, true, areasInteres); //no puede haber emails iguales
-	 * System.out.println(cu.insertarUsuario(u)); u.setEmail("hola");
-	 * //System.out.println(cu.modificarUsuario(u));
-	 * System.out.println("insertar areas interes");
-	 * cu.insertarUsuarioAreas(areasInteres, u);
-	 * 
-	 **/
-	  //Usuario u = cu.consultarUsuario("clrl");
-	  //System.out.print(u.getNombre1());
-	 }
 }

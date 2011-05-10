@@ -248,20 +248,6 @@ public class GuiUsuarioNormal extends JFrame
 		
 		
 	}
-
-/*	public static void main(String args[]) {
-
-		try
-		{	
-			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-		}
-		catch (Exception e){e.printStackTrace();}
-	
-		GuiUsuarioNormal a = new GuiUsuarioNormal();
-	
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}*/
 	
 	/*public static void cambiarPanelInicial()
 	{

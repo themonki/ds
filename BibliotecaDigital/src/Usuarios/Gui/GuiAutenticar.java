@@ -200,25 +200,4 @@ public class GuiAutenticar extends JPanel
 		}
 		
 	}
-	
-/*	public static void main(String args[])
-	{
-
-		try
-		{
-			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel");
-
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		JFrame ventana;
-		ventana = new JFrame();
-		GuiAutenticar miPanel = new GuiAutenticar();
-		ventana.getContentPane().add(miPanel);
-		ventana.setVisible(true);
-		ventana.setSize(650,500);		
-		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-	}*/
 }

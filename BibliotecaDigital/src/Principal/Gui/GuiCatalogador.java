@@ -302,21 +302,4 @@ public class GuiCatalogador extends JFrame
 		
 	}
 
-/*
-	public static void main(String args[]) {
-
-		try
-		{	
-			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-		}
-		catch (Exception e){e.printStackTrace();}
-	
-		GuiCatalogador a = new GuiCatalogador();
-	
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}*/
-
-
-
 }
