@@ -151,19 +151,19 @@ public class GuiIngresarAutor extends JFrame {
 		
 		public void actionPerformed(ActionEvent e) {
 			ControladorAutor conAutor = new ControladorAutor();
+		
+		if(validarDatos()){
 			if(conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
 					campoAcronimo.getText(), campoCorreoElectronico.getText())>=1)
 			{
-			
 			guiCatalogarModi.vectoresParaComboBox();
 			guiCatalogarModi.actualizarAutores();
-			}
-		if(validarDatos()){
-			
-			conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
-					campoAcronimo.getText(), campoCorreoElectronico.getText());			
-			dispose();
 			JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
+
+			}
+		
+			
+			dispose();
 		}	
 		}
 	}

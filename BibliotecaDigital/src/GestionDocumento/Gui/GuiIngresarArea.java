@@ -169,11 +169,12 @@ public class GuiIngresarArea extends JFrame {
 			{
 			guiCatalogarModi.vectoresParaComboBox();
 			guiCatalogarModi.actualizarAreas();
+			JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
+
 			}
 
 			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);			
 			dispose();
-			JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
 			}
 		}		
 	}
