@@ -366,18 +366,4 @@ public class DaoUsuario {
 		}
 		return -1;
 	}
-	
-	public static void main(String args[])
-	{
-		DaoUsuario da = new DaoUsuario();
-		Vector<String> atributo = new Vector<String>();
-		atributo.add("login");
-		atributo.add("nombre1");
-		Vector<String> valores = new Vector<String>();
-		valores.add("1");
-		valores.add("cr");
-		da.consultarUsuarios(atributo,valores);
-		//da.consultarUsuario("444");
-		
-	}
 }

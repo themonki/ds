@@ -377,23 +377,4 @@ public class GuiAdministrador extends JFrame
 		
 	}
 
-
-	/*public static void main(String args[])
-	{
-
-		try
-		{	
-			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-		}
-		catch (Exception e){e.printStackTrace();}
-		Usuario usuario = new Usuario();
-	
-		GuiAdministrador a = new GuiAdministrador(usuario);
-	
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}*/
-
-
-
 }

@@ -244,22 +244,4 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		}
 		
 	}
-	
-	public static void main (String args []){
-		
-		try
-		{	
-			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-		}
-		catch (Exception e){e.printStackTrace();}
-		
-		JFrame ventana;
-		ventana = new JFrame();
-		GuiConsultarUsuarios miPanel = new GuiConsultarUsuarios();
-		ventana.getContentPane().add(miPanel);
-		ventana.setVisible(true);
-		ventana.setSize(300,450);		
-		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-	}
-
 }

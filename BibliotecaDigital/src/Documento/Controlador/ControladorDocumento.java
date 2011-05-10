@@ -214,34 +214,5 @@ public class ControladorDocumento {
 			System.out.println(e.toString());
 		}
 		return "";
-	}
-/*	
-	  public static void main(String args[]){ 
-		  ControladorDocumento cd = new  ControladorDocumento(); 
-		  
-		  Vector<String> area_ids = new Vector<String>();
-		  area_ids.add("1");
-		  area_ids.add("4");
-		  
-		 System.out.println(cd.insertarDocumentoAreas(area_ids, "10002" ));
-		  /*Vector<Autor> autores = new Vector<Autor> ();
-	  Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
-	  Vector<PalabraClave> palabrasClave = new Vector<PalabraClave>(); Date
-	  fechaCreacion; Date fechaPublicacion; Date fechaCatalogacion; try{
-	  fechaCreacion = Date.valueOf("1111-01-01"); fechaPublicacion =
-	  Date.valueOf("2222-02-02"); fechaCatalogacion =
-	  Date.valueOf("3333-03-03");
-	  
-	  Documento d = new Documento("10002", "idioma", "derechosDeAutor",
-	  "descripcion", "softwareRecomendado", "resolucion", "editorial","txt",
-	  "tituloPrincipal", "tituloSecundario", "link5", fechaCreacion,
-	  fechaPublicacion, fechaCatalogacion, "444", "guia", autores, areas,
-	  palabrasClave ); //System.out.println(""+ cd.insertarDocumento(d));
-	  //d.setIdioma("ingles"); //System.out.println(cd.modificarDocumento(d));
-	  
-	  }catch(Exception e){ System.out.println(e.toString());
-	  
-	  } x
-		  }*/
-	 
+	}	 
 }
