@@ -417,22 +417,23 @@ public class GuiCatalogarModificar extends JScrollPane{
 	private void nuevaArea() {
 		GuiIngresarArea guiArea=	new GuiIngresarArea(this);
 		guiArea.setVisible(true);
-		guiArea.setAlwaysOnTop(true);			
+		//guiArea.setAlwaysOnTop(true);			
 	}
 	private void nuevoTipoMaterial() {
 		GuiIngresarTipoMaterial guiMaterial = new GuiIngresarTipoMaterial(this);
 		guiMaterial.setVisible(true);
-		guiMaterial.setAlwaysOnTop(true);		
+		//guiMaterial.setAlwaysOnTop(true);		
 	}	
 	private void nuevaAutor() {
 		GuiIngresarAutor guiAutor= new GuiIngresarAutor(this);
 		guiAutor.setVisible(true);
-		guiAutor.setAlwaysOnTop(true);		
+		//guiAutor.setAlwaysOnTop(true);		
 	}	
-	private void nuevaPalabra() {
+	private void nuevaPalabra() 
+	{
 		GuiIngresarPalabraClave guiPalabra = new GuiIngresarPalabraClave(this);
 		guiPalabra.setVisible(true );
-		guiPalabra.setAlwaysOnTop(true);		
+		//guiPalabra.setAlwaysOnTop(true);		
 	}	
 
 	
