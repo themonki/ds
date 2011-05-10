@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -87,8 +89,11 @@ public class GuiIngresarArea extends JFrame {
 
 	private void iniciarCampos() {
 
+		ManejadorJTextField manejador = new ManejadorJTextField();
 		campoNombre = new JTextField(15);
+		campoNombre.addKeyListener(manejador);
 		campoDescripcionArea = new JTextArea(5, 20);
+		campoDescripcionArea.addKeyListener(manejador);
 		campoAreaPadre = new JComboBox();
 		botonIngresarArea = new JButton("Registrar Area");
 		botonIngresarArea.addActionListener(new ManejadorBoton());
@@ -151,6 +156,55 @@ public class GuiIngresarArea extends JFrame {
 			
 			}
 		}		
+	}
+	
+	
+	
+	private class ManejadorJTextField implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			if( campoNombre == e.getSource()){
+				
+				if(campoNombre.getText().length()>50)
+				{
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoNombre.setText(campoNombre.getText().substring(0,49));
+					}
+				}
+			}
+			
+			if(e.getSource()== campoDescripcionArea){
+				if(campoDescripcionArea.getText().length()>200)
+				{
+
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoDescripcionArea.setText(campoDescripcionArea.getText().substring(0,199));
+					}
+				}					
+			}
+			
+			
+
+		
+			
+				
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 	
 	

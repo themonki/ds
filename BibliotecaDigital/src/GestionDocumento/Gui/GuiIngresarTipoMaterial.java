@@ -196,13 +196,13 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		
 		if(nombre.isEmpty())
 		{		
-			advertencia += "Debe de proporcionar un nombre para la palabra clave \n";
+			advertencia += "Debe de proporcionar un nombre para el tipo de material \n";
 			respuesta = false;
 		}
 		if(descripcion.isEmpty())
 		{
 			
-			advertencia += "Debe de proporcionar una descripcion para la palabra clave \n";
+			advertencia += "Debe de proporcionar una descripcion para el tipo de material \n";
 			respuesta = false;
 		}
 		if(!respuesta)
