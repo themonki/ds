@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -96,8 +98,11 @@ public class GuiIngresarTipoMaterial extends JFrame {
 	}
 
 	private void iniciarCampos() {
+		ManejadorJTextField manejador = new ManejadorJTextField();
 		campoNombre = new JTextField(15);
+		campoNombre.addKeyListener(manejador);
 		campoDescripcion = new JTextArea(5, 20);
+		campoDescripcion.addKeyListener(manejador);
 		botonIngresarTipo = new JButton("Registrar Tipo Material");
 		botonIngresarTipo.addActionListener(new ManejadorBoton());
 
@@ -114,6 +119,53 @@ public class GuiIngresarTipoMaterial extends JFrame {
 				dispose();
 			}
 		}		
+	}
+	
+	private class ManejadorJTextField implements KeyListener{
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			if( campoNombre == e.getSource()){
+				
+				if(campoNombre.getText().length()>20)
+				{
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoNombre.setText(campoNombre.getText().substring(0,19));
+					}
+				}
+			}
+			
+			if(e.getSource()== campoDescripcion){
+				if(campoDescripcion.getText().length()>200)
+				{
+
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoDescripcion.setText(campoDescripcion.getText().substring(0,199));
+					}
+				}					
+			}
+			
+			
+
+		
+			
+				
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 
