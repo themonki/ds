@@ -167,14 +167,14 @@ public class GuiIngresarArea extends JFrame {
 
 			if(controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre)>=1)
 			{
-			guiCatalogarModi.vectoresParaComboBox();
-			guiCatalogarModi.actualizarAreas();
-			JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
-
-			}
-
-			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);			
-			dispose();
+				guiCatalogarModi.vectoresParaComboBox();
+				guiCatalogarModi.actualizarAreas();
+				JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
+				dispose();
+			}else{
+				JOptionPane.showMessageDialog(null, "El Area de Conocimiento ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+			}	
+			
 			}
 		}		
 	}
