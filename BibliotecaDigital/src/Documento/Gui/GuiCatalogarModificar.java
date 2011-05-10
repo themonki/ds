@@ -119,25 +119,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 		//indicacion = new JLabel("   Catalogar Documento");
 	
 	   
-		//---------------vectores para los ComboBox------------------
-		areasVector= new Vector<String>();
-		autoresVector= new Vector<String>();
-		palabrasClaveVec= new Vector<String>();
-		
-		
-		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
-		areasVector =contenedorIdNombreArea.get(0);
-		areasVector.remove(0);
-		AreasIdVector= contenedorIdNombreArea.get(1);
-		AreasIdVector.remove(0);
-		contenedorIdNombreArea=null;//para destruir el vector 
-		
-		palabrasClaveVec= controladorpalabrasClave.obtenerTodasPalabrasClave();
-		tipoMaterialVec= controladorTipoMaterial.obtenerTodosTiposMateriales();
-		Vector<Vector<String>> contenedorIdAutor = controladorAutor.obtenerTodosAutores();
-		autoresVector=contenedorIdAutor.get(0);
-		AutorIdVector= contenedorIdAutor.get(1);
-		
+	
+		//----------------------------------------
+		vectoresParaComboBox();
 		//----------------------------------------
 		palabActualVec= new Vector<String>();
 		areasActualVecr= new Vector<String>();
@@ -430,9 +414,69 @@ public class GuiCatalogarModificar extends JScrollPane{
 	
 		
 	}
+	private void nuevaArea() {
+		GuiIngresarArea guiArea=	new GuiIngresarArea(this);
+		guiArea.setVisible(true);
+		guiArea.setAlwaysOnTop(true);			
+	}
+	private void nuevoTipoMaterial() {
+		GuiIngresarTipoMaterial guiMaterial = new GuiIngresarTipoMaterial(this);
+		guiMaterial.setVisible(true);
+		guiMaterial.setAlwaysOnTop(true);		
+	}	
+	private void nuevaAutor() {
+		GuiIngresarAutor guiAutor= new GuiIngresarAutor(this);
+		guiAutor.setVisible(true);
+		guiAutor.setAlwaysOnTop(true);		
+	}	
+	private void nuevaPalabra() {
+		GuiIngresarPalabraClave guiPalabra = new GuiIngresarPalabraClave(this);
+		guiPalabra.setVisible(true );
+		guiPalabra.setAlwaysOnTop(true);		
+	}	
 
 	
 	
+	public void vectoresParaComboBox() {
+		//---------------vectores para los ComboBox------------------
+		areasVector= new Vector<String>();
+		autoresVector= new Vector<String>();
+		palabrasClaveVec= new Vector<String>();
+		
+		
+		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
+		areasVector =contenedorIdNombreArea.get(0);
+		areasVector.remove(0);
+		AreasIdVector= contenedorIdNombreArea.get(1);
+		AreasIdVector.remove(0);
+		contenedorIdNombreArea=null;//para destruir el vector 
+		
+		palabrasClaveVec= controladorpalabrasClave.obtenerTodasPalabrasClave();
+		tipoMaterialVec= controladorTipoMaterial.obtenerTodosTiposMateriales();
+		
+		Vector<Vector<String>> contenedorIdAutor = controladorAutor.obtenerTodosAutores();
+		autoresVector=contenedorIdAutor.get(0);
+		AutorIdVector= contenedorIdAutor.get(1);
+					
+	}
+
+	public void actualizarAreas() 
+	{
+		campoAreas.addItem(areasVector.get(areasVector.size()-1));
+	}
+	public void actualizarAutores() 
+	{
+		campoAutor.addItem(autoresVector.get(autoresVector.size()-1));
+	}
+	public void actualizarPalabras() 
+	{
+		campoPalabras.addItem(palabrasClaveVec.get(palabrasClaveVec.size()-1));
+	}
+	public void actualizarTipoMaterial() 
+	{
+		campoTipoMaterial.addItem(tipoMaterialVec.get(tipoMaterialVec.size()-1));
+	}
+
 	private void inicializarFormatos() {
 		formatosVector= new Vector<String>();
 		formatosVector.add("jpg");
@@ -669,16 +713,18 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 
 			 fecha2=  editor.getModel().getDate();
 			 SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");  
-			 String fes2= sdf.format(fecha2);
+			 String fes2= sdf2.format(fecha2);
 			   
 			 doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
 			
-			 
 			 java.util.Date fechaactual = new Date();// fecha actual 
+			 SimpleDateFormat sdf3= new SimpleDateFormat("yyyy-MM-dd");  
+			 String fes3= sdf3.format(fechaactual);
+			 
 			 
 			 doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
 			 
-			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fechaactual.toString()));
+			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
 			 
 			 doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
@@ -701,27 +747,24 @@ public class GuiCatalogarModificar extends JScrollPane{
 				 }						
 			}
 			if(event.getSource()==nuevaArea){				
-				GuiIngresarArea guiArea=	new GuiIngresarArea();
-				guiArea.setVisible(true);
-				guiArea.setAlwaysOnTop(true);
+				
+				nuevaArea();
+				
 			}
 			if(event.getSource()==nuevoTipo){
-				GuiIngresarTipoMaterial guiMaterial = new GuiIngresarTipoMaterial();
-				guiMaterial.setVisible(true);
-				guiMaterial.setAlwaysOnTop(true);
+				nuevoTipoMaterial();
 				
 			}
 			if(event.getSource()==nuevoAutor){
-				GuiIngresarAutor guiAutor= new GuiIngresarAutor();
-				guiAutor.setVisible(true);
-				guiAutor.setAlwaysOnTop(true);
+				nuevaAutor();
 			}
 			if(event.getSource()==nuevaPalabra){
-				GuiIngresarPalabraClave guiPalabra = new GuiIngresarPalabraClave();
-				guiPalabra.setVisible(true );
-				guiPalabra.setAlwaysOnTop(true);
+				nuevaPalabra();
+				
+				
 			}
-	}		
+	}
+			
 
 	}
 	
