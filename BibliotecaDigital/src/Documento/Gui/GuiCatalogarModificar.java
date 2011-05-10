@@ -199,9 +199,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panel5.setBorder(BorderFactory.createLineBorder(coloborde));
 		panel4.setBorder(BorderFactory.createLineBorder(coloborde));
 		panel2.setBorder(BorderFactory.createLineBorder(coloborde));
-		//panelConAutores.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		//panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.yellow));	
-		//panelConAreas.setBorder(BorderFactory.createLineBorder(Color.yellow));
+		//panelConAutores.setBorder(BorderFactory.createLineBorder(Color.black));
+		//panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.black));	
+		//panelConAreas.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		panelConAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
 			    .createLineBorder(coloborde), "Autores Actuales"));
