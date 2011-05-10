@@ -8,7 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -94,10 +95,16 @@ public class GuiIngresarAutor extends JFrame {
 	}
 
 	private void iniciarCampos() {
+		ManejadorJTextField manejador = new ManejadorJTextField();
+	
 		campoNombre = new JTextField(20);
+		campoNombre.addKeyListener(manejador);
 		campoApellido = new JTextField(20);
+		campoApellido.addKeyListener(manejador);
 		campoCorreoElectronico = new JTextField(17);
+		campoCorreoElectronico.addKeyListener(manejador);
 		campoAcronimo = new JTextField(12);
+		campoAcronimo.addKeyListener(manejador);
 		botonIngresarAutor = new JButton("Ingresar Autor");
 		botonIngresarAutor.addActionListener(new ManejadorBoton());
 
@@ -138,7 +145,72 @@ public class GuiIngresarAutor extends JFrame {
 			dispose();
 		}	
 	}
+	
+	private class ManejadorJTextField implements KeyListener{
 
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			if( campoNombre == e.getSource()){
+				
+				if(campoNombre.getText().length()>100)
+				{
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoNombre.setText(campoNombre.getText().substring(0,99));
+					}
+				}
+			}
+			
+			if(e.getSource()== campoApellido){
+				if(campoApellido.getText().length()>30)
+				{
+
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoApellido.setText(campoApellido.getText().substring(0,29));
+					}
+				}					
+			}
+			if(e.getSource()== campoAcronimo){
+				if(campoAcronimo.getText().length()>20)
+				{
+
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoAcronimo.setText(campoAcronimo.getText().substring(0,19));
+					}
+				}					
+			}
+			if(e.getSource()== campoCorreoElectronico){
+				if(campoCorreoElectronico.getText().length()>50)
+				{
+
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoCorreoElectronico.setText(campoCorreoElectronico.getText().substring(0,49));
+					}
+				}					
+			}
+			
+
+		
+			
+				
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	public static void main(String args[]) {
 
 		try {
@@ -159,8 +231,6 @@ public class GuiIngresarAutor extends JFrame {
 	{
 		String nombre = campoNombre.getText();
 		String apellido = campoApellido.getText();
-		String email = campoCorreoElectronico.getText();
-		String acronimo = campoAcronimo.getText();
 		String advertencia = "";
 		
 		
@@ -169,16 +239,6 @@ public class GuiIngresarAutor extends JFrame {
 		if(nombre.isEmpty())
 		{		
 			advertencia += "Debe de proporcionar un nombre para la palabra clave \n";
-			respuesta = false;
-		}else if(nombre.length() > 100)
-		{
-			advertencia += "Debe de proporcionar un nombre de menor tamaño para el autor \n";
-			respuesta = false;
-		}
-		
-		if(apellido.length() > 30)
-		{
-			advertencia += "Debe de proporcionar un apellido menor tamaño para el autor \n";
 			respuesta = false;
 		}
 		if(apellido.isEmpty())
@@ -193,7 +253,7 @@ public class GuiIngresarAutor extends JFrame {
 	
 		return respuesta;
 	}
-	
+
 	
 
 }
