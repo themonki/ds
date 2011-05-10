@@ -151,7 +151,6 @@ public class GuiIngresarAutor extends JFrame {
 		
 		public void actionPerformed(ActionEvent e) {
 			ControladorAutor conAutor = new ControladorAutor();
-<<<<<<< HEAD
 			if(conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
 					campoAcronimo.getText(), campoCorreoElectronico.getText())>=1)
 			{
@@ -159,12 +158,10 @@ public class GuiIngresarAutor extends JFrame {
 			guiCatalogarModi.vectoresParaComboBox();
 			guiCatalogarModi.actualizarAutores();
 			}
-=======
 		if(validarDatos()){
 			
 			conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
 					campoAcronimo.getText(), campoCorreoElectronico.getText());			
->>>>>>> 3c77bdbefffe3d01e80c45ad001cac98ff860fe7
 			dispose();
 			JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
 		}	

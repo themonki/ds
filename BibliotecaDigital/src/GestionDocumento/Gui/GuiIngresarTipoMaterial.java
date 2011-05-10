@@ -126,15 +126,14 @@ public class GuiIngresarTipoMaterial extends JFrame {
 			if(validarDatos()){
 		
 				ControladorTipoMaterial conMaterial = new ControladorTipoMaterial();
-<<<<<<< HEAD
 				if(conMaterial.insertarTipoMaterial(campoNombre.getText(), campoDescripcion.getText())>=1)
 				{
 				guicatalogarModi.vectoresParaComboBox();
 				guicatalogarModi.actualizarTipoMaterial();
 				}
-=======
+
 				conMaterial.insertarTipoMaterial(campoNombre.getText(), campoDescripcion.getText());				
->>>>>>> 3c77bdbefffe3d01e80c45ad001cac98ff860fe7
+
 				dispose();
 				JOptionPane.showMessageDialog(null, "Se ingreso el Tipo de Material Correctamente");
 			}

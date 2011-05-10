@@ -128,15 +128,13 @@ public class GuiIngresarPalabraClave extends JFrame {
 			if(validarDatos()){
 			
 				ControladorPalabraClave conPalabra = new ControladorPalabraClave();
-<<<<<<< HEAD
 				if(conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText())>=1)
 				{
 				guicatalogarModi.vectoresParaComboBox();
 				guicatalogarModi.actualizarPalabras();
 				}
-=======
 				conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText());				
->>>>>>> 3c77bdbefffe3d01e80c45ad001cac98ff860fe7
+
 				dispose();
 				JOptionPane.showMessageDialog(null, "Se ingreso la Palabra Clave correctamente");
 			}
