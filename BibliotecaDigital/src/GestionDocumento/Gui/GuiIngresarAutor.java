@@ -140,10 +140,13 @@ public class GuiIngresarAutor extends JFrame {
 		
 		public void actionPerformed(ActionEvent e) {
 			ControladorAutor conAutor = new ControladorAutor();
+		if(validarDatos()){
+			
 			conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
 					campoAcronimo.getText(), campoCorreoElectronico.getText());
 			dispose();
 		}	
+		}
 	}
 	
 	private class ManejadorJTextField implements KeyListener{
