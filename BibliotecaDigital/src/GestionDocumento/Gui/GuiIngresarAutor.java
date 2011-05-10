@@ -2,6 +2,7 @@ package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -91,6 +92,9 @@ public class GuiIngresarAutor extends JFrame {
 
 		setSize(470, 280);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//centrar en la pantalla
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 		setVisible(true);
 	}
 
@@ -143,8 +147,9 @@ public class GuiIngresarAutor extends JFrame {
 		if(validarDatos()){
 			
 			conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
-					campoAcronimo.getText(), campoCorreoElectronico.getText());
+					campoAcronimo.getText(), campoCorreoElectronico.getText());			
 			dispose();
+			JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
 		}	
 		}
 	}

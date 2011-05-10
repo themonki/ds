@@ -2,6 +2,7 @@ package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -84,6 +85,9 @@ public class GuiIngresarArea extends JFrame {
 		add(panel4, BorderLayout.SOUTH);
 		setSize(730, 320);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//centrar en la pantalla
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 		setVisible(true);
 	}
 
@@ -151,9 +155,9 @@ public class GuiIngresarArea extends JFrame {
 				padre= ""+padreSeleccionado;
 			}
 			
-			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);
+			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);			
 			dispose();
-			
+			JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
 			}
 		}		
 	}
