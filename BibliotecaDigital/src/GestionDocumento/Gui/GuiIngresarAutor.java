@@ -2,6 +2,7 @@ package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -96,8 +97,11 @@ public class GuiIngresarAutor extends JFrame {
 		add(indicacion, BorderLayout.NORTH);
 		add(panel, BorderLayout.SOUTH);
 
-		setSize(470, 280);
+		setSize(490, 280);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//centrar en la pantalla
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 		setVisible(true);
 	}
 
@@ -147,6 +151,7 @@ public class GuiIngresarAutor extends JFrame {
 		
 		public void actionPerformed(ActionEvent e) {
 			ControladorAutor conAutor = new ControladorAutor();
+<<<<<<< HEAD
 			if(conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
 					campoAcronimo.getText(), campoCorreoElectronico.getText())>=1)
 			{
@@ -154,8 +159,16 @@ public class GuiIngresarAutor extends JFrame {
 			guiCatalogarModi.vectoresParaComboBox();
 			guiCatalogarModi.actualizarAutores();
 			}
+=======
+		if(validarDatos()){
+			
+			conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
+					campoAcronimo.getText(), campoCorreoElectronico.getText());			
+>>>>>>> 3c77bdbefffe3d01e80c45ad001cac98ff860fe7
 			dispose();
+			JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
 		}	
+		}
 	}
 	
 	private class ManejadorJTextField implements KeyListener{

@@ -2,6 +2,7 @@ package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -85,13 +86,16 @@ public class GuiIngresarArea extends JFrame {
 		panel4.add(descripcionArea, BorderLayout.NORTH);
 		panel4.add(panel5, BorderLayout.CENTER);
 		panel4.add(panel, BorderLayout.SOUTH);
-
+		
 		setLayout(new BorderLayout());
 		add(indicacion, BorderLayout.NORTH);
 		add(panel3, BorderLayout.CENTER);
 		add(panel4, BorderLayout.SOUTH);
-		setSize(730, 320);
+		setSize(820, 320);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//centrar en la pantalla
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 		setVisible(true);
 	}
 
@@ -100,6 +104,7 @@ public class GuiIngresarArea extends JFrame {
 		ManejadorJTextField manejador = new ManejadorJTextField();
 		campoNombre = new JTextField(15);
 		campoNombre.addKeyListener(manejador);
+		campoNombre.setFocusable(true);
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoDescripcionArea.addKeyListener(manejador);
 		campoAreaPadre = new JComboBox();
@@ -159,13 +164,17 @@ public class GuiIngresarArea extends JFrame {
 				padre= ""+padreSeleccionado;
 			}
 			
+<<<<<<< HEAD
 			if(controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre)>=1)
 			{
 			guiCatalogarModi.vectoresParaComboBox();
 			guiCatalogarModi.actualizarAreas();
 			}
+=======
+			controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre);			
+>>>>>>> 3c77bdbefffe3d01e80c45ad001cac98ff860fe7
 			dispose();
-			
+			JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
 			}
 		}		
 	}

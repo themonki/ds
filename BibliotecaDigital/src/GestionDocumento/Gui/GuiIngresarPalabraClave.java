@@ -2,6 +2,7 @@ package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -83,6 +84,9 @@ public class GuiIngresarPalabraClave extends JFrame {
 		add(panel4, BorderLayout.SOUTH);
 		setSize(400, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//centrar en la pantalla
+		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 		setVisible(true);
 	}
 
@@ -124,12 +128,17 @@ public class GuiIngresarPalabraClave extends JFrame {
 			if(validarDatos()){
 			
 				ControladorPalabraClave conPalabra = new ControladorPalabraClave();
+<<<<<<< HEAD
 				if(conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText())>=1)
 				{
 				guicatalogarModi.vectoresParaComboBox();
 				guicatalogarModi.actualizarPalabras();
 				}
+=======
+				conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText());				
+>>>>>>> 3c77bdbefffe3d01e80c45ad001cac98ff860fe7
 				dispose();
+				JOptionPane.showMessageDialog(null, "Se ingreso la Palabra Clave correctamente");
 			}
 		}		
 	}

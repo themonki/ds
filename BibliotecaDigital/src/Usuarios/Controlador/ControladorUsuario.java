@@ -141,11 +141,6 @@ public class ControladorUsuario {
 	
 	private boolean verificarDatosModificar(Usuario u)
 	{
-		Vector<String> atributo = new Vector<String>();
-		Vector<String> valor = new Vector<String>();
-		DaoUsuario du = new DaoUsuario();
-		Vector<Usuario> respuesta;
-		Usuario uRespuesta;
 		String mensaje="";
 		boolean estado=true;
 		
@@ -188,29 +183,6 @@ public class ControladorUsuario {
 			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
 			//return false;
 		}
-		uRespuesta = du.consultarUsuario(u.getLogin());
-		if(uRespuesta.getLogin() != null)
-		{
-			mensaje+="El Login ya existe, por favor seleccione uno distinto\n";
-			estado=false;
-			//JOptionPane.showMessageDialog(null, "El Login ya existe, por favor seleccione uno distinto.");
-			//return false;
-		}
-		atributo.add("email");
-		valor.add(u.getEmail());
-		respuesta = du.consultarUsuarios(atributo, valor);
-		if(respuesta.size() != 0)
-		{	
-			mensaje+="El email ya existe, por favor seleccione uno distinto\n";
-			estado=false;
-			//JOptionPane.showMessageDialog(null, "El email ya existe, por favor seleccione uno distinto.");
-			//return false;
-		}
-		atributo = null;
-		valor = null;
-		du = null;
-		respuesta = null;
-		uRespuesta = null;
 		if(!estado) JOptionPane.showMessageDialog(null, mensaje);
 		return estado;
 	}
@@ -328,7 +300,7 @@ public class ControladorUsuario {
 	public int modificarDatosUsuario(Usuario u){
 		int value =0;
 		value = this.modificarUsuario(u);
-		if(value != 0)
+		if((value != 0) && (u.getAreas().size()>=1))
 			value +=this.modificarUsuarioArea(u);
 		return value;
 	}
@@ -337,7 +309,7 @@ public class ControladorUsuario {
 	public int insertarDatosUsuario(Usuario u){
 		int value =0;
 		value = this.insertarUsuario(u);
-		if(value != 0)
+		if((value != 0) && (u.getAreas().size()>=1))
 			value +=this.insertarUsuarioAreas(u);
 		return value;
 	}
