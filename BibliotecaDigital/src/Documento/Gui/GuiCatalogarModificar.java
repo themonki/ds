@@ -756,6 +756,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
 			 	{
 			 		JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");
+			 		limpiarCampos();
 			 	}
 			 	else{
 			 		JOptionPane.showMessageDialog(null, "Parece que este documento ya fue catalogado\nCambie el nombre del archivo o asegurese de que\nno esta catalogando un mismo documento","ERROR", JOptionPane.WARNING_MESSAGE);
@@ -1025,7 +1026,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			
 		}
 		
-		public void limpiarCampor(){
+		public void limpiarCampos(){
 			campoEditorial.setText("");
 			campoTituloSecundario.setText("");
 			campoTituloPpal.setText("");

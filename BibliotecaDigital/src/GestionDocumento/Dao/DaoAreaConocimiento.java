@@ -37,7 +37,7 @@ public class DaoAreaConocimiento {
 		try {
 			Connection conn = this.fachada.conectar();
 			Statement sentencia = conn.createStatement();
-			int numFilas = sentencia.executeUpdate(sqlInsert);
+			int numFilas = sentencia.executeUpdate(sqlInsert);System.out.println(sqlInsert);
 			this.fachada.cerrarConexion(conn);
 			return numFilas;
 		} catch (SQLException se) {

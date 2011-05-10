@@ -133,11 +133,10 @@ public class GuiIngresarPalabraClave extends JFrame {
 				guicatalogarModi.vectoresParaComboBox();
 				guicatalogarModi.actualizarPalabras();
 				JOptionPane.showMessageDialog(null, "Se ingreso la Palabra Clave correctamente");
-
-				}
-					
-
 				dispose();
+				}else{
+					JOptionPane.showMessageDialog(null, "La Palabra Clave ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}
 		}		
