@@ -199,9 +199,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panel5.setBorder(BorderFactory.createLineBorder(coloborde));
 		panel4.setBorder(BorderFactory.createLineBorder(coloborde));
 		panel2.setBorder(BorderFactory.createLineBorder(coloborde));
-		//panelConAutores.setBorder(BorderFactory.createLineBorder(Color.yellow));
-		//panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.yellow));	
-		//panelConAreas.setBorder(BorderFactory.createLineBorder(Color.yellow));
+		//panelConAutores.setBorder(BorderFactory.createLineBorder(Color.black));
+		//panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.black));	
+		//panelConAreas.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		panelConAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
 			    .createLineBorder(coloborde), "Autores Actuales"));
@@ -352,6 +352,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panel2.add(fechaPublicacion,restriccionEtiquetas);
 		panel2.add(panelFecha2,restriccionCampo);
 		
+		
+		
 		restriccionEtiquetas.gridy=14;
 		restriccionCampo.gridy=14;
 		restriccionCampo.ipadx=5;
@@ -363,6 +365,12 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panel2.add(enlaceDoc,restriccionEtiquetas);	
 		panel2.add(campoEnlaceDoc,restriccionCampo);
 		panel2.add(examinarDoc, restriccionBotones);
+		
+		restriccionEtiquetas.gridy=15;
+		restriccionCampo.gridy=15;
+		
+		panel2.add(resolucion,restriccionEtiquetas);
+		panel2.add(campoResolucion,restriccionCampo);
 		
 		
 	
@@ -509,7 +517,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		campoTituloPpal = new JTextField();   
 		campoEditorial= new JTextField();
 		campoDescripcion= new JTextArea(5,30);
-		campoResolucion= new JTextField(); 
+		campoResolucion= new JTextField(10); 
 		campoSoftware= new JTextField();
 		campoEnlaceDoc= new JTextField(30);
 		campoEnlaceDoc.setEditable(false);
@@ -521,6 +529,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 		campoEditorial.addKeyListener(new ManejadorJTextField());
 		campoTituloPpal.addKeyListener(new ManejadorJTextField());
 		campoTituloSecundario.addKeyListener(new ManejadorJTextField());
+		campoResolucion.addKeyListener(new ManejadorJTextField());
+		
 	}
 
 	private void inicializarLabels(Font font1) 
@@ -612,7 +622,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    campoAreas.addActionListener(new ManejadorComboBox());
 	    	    
 	}
-
+/*
 	public static void main (String args []){
 		
 		try
@@ -632,7 +642,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			
 			NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
 			NimRODLF.setCurrentTheme( nt);
-			UIManager.setLookAndFeel( NimRODLF);*/
+			UIManager.setLookAndFeel( NimRODLF);
 			//LookAndFeel n = new NimRODLookAndFeel( );
 			
 			//UIManager.setLookAndFeel(); 
@@ -664,9 +674,16 @@ public class GuiCatalogarModificar extends JScrollPane{
 		ventana.setSize(400,400);
 		ventana.setVisible(true);
 
+	
 	}
+<<<<<<< HEAD
 
+	private boolean validacionDeDatos() 
+	{
+=======
+*/
 	private boolean validacionDeDatos() {
+
 		String mensaje="";
 		boolean estado = true;
 		
@@ -681,14 +698,14 @@ public class GuiCatalogarModificar extends JScrollPane{
 		if (campoEnlaceDoc.getText().equals("")){
 			
 			mensaje+="Debe proporcionar una ruta para guardar el Documento\n";
-			estado=false;
-			
+			estado=false;			
 		}
 		
 		if(!estado){JOptionPane.showMessageDialog(null, mensaje);}
 		return estado;		
 		
 	}
+	
 	private class ManejadorBoton implements ActionListener 
 	{
 		private GuiCatalogarModificar p;
@@ -736,8 +753,14 @@ public class GuiCatalogarModificar extends JScrollPane{
 			 doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
 			 
-			 controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  );
-
+			 if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
+			 	{
+			 		JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");
+			 		limpiarCampos();
+			 	}
+			 	else{
+			 		JOptionPane.showMessageDialog(null, "Parece que este documento ya fue catalogado\nCambie el nombre del archivo o asegurese de que\nno esta catalogando un mismo documento","ERROR", JOptionPane.WARNING_MESSAGE);
+			 	}
 			}
 			else System.out.println("no valido ");			
 			
@@ -974,20 +997,50 @@ public class GuiCatalogarModificar extends JScrollPane{
 						
 						}		
 					}
+					if(e.getSource()== campoResolucion)
+					{
+						if(new String(campoResolucion.getText()).length()>14)
+						{
+
+							if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+								getToolkit().beep();//sonido
+								campoResolucion.setText(new String(campoResolucion.getText()).substring(0,14));
+							
+							}
+						
+						}		
+					}
 				}
 
-			@Override
+			
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 
-			@Override
+			
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 			
+		}
+		
+		public void limpiarCampos(){
+			campoEditorial.setText("");
+			campoTituloSecundario.setText("");
+			campoTituloPpal.setText("");
+			campoEnlaceDoc.setText("");
+			campoSoftware.setText("");
+			campoResolucion.setText("");
+			campoDescripcion.setText("");
+			campoPalabras.setSelectedIndex(0);
+			campoAutor.setSelectedIndex(0);
+			campoTipoMaterial.setSelectedIndex(0);
+			campoIdioma.setSelectedIndex(0);
+			campoDerechosAutor.setSelectedIndex(0);
+			campoAreas.setSelectedIndex(0);
+			campoFormato.setSelectedIndex(0);
 		}
 		
 }
