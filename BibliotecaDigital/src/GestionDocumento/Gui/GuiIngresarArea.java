@@ -205,26 +205,7 @@ public class GuiIngresarArea extends JFrame {
 			// TODO Auto-generated method stub
 			
 		}
-	}
-	
-	
-
-	public static void main(String args[]) {
-
-		try {
-
-			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		GuiIngresarArea ventana;
-		ventana = new GuiIngresarArea();
-		//ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}
-	
+	}	
 	
 	boolean validarDatos()
 	{
