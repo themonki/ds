@@ -352,6 +352,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panel2.add(fechaPublicacion,restriccionEtiquetas);
 		panel2.add(panelFecha2,restriccionCampo);
 		
+		
+		
 		restriccionEtiquetas.gridy=14;
 		restriccionCampo.gridy=14;
 		restriccionCampo.ipadx=5;
@@ -363,6 +365,12 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panel2.add(enlaceDoc,restriccionEtiquetas);	
 		panel2.add(campoEnlaceDoc,restriccionCampo);
 		panel2.add(examinarDoc, restriccionBotones);
+		
+		restriccionEtiquetas.gridy=15;
+		restriccionCampo.gridy=15;
+		
+		panel2.add(resolucion,restriccionEtiquetas);
+		panel2.add(campoResolucion,restriccionCampo);
 		
 		
 	
@@ -509,7 +517,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		campoTituloPpal = new JTextField();   
 		campoEditorial= new JTextField();
 		campoDescripcion= new JTextArea(5,30);
-		campoResolucion= new JTextField(); 
+		campoResolucion= new JTextField(10); 
 		campoSoftware= new JTextField();
 		campoEnlaceDoc= new JTextField(30);
 		campoEnlaceDoc.setEditable(false);
@@ -521,6 +529,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 		campoEditorial.addKeyListener(new ManejadorJTextField());
 		campoTituloPpal.addKeyListener(new ManejadorJTextField());
 		campoTituloSecundario.addKeyListener(new ManejadorJTextField());
+		campoResolucion.addKeyListener(new ManejadorJTextField());
+		
 	}
 
 	private void inicializarLabels(Font font1) 
@@ -664,9 +674,11 @@ public class GuiCatalogarModificar extends JScrollPane{
 		ventana.setSize(400,400);
 		ventana.setVisible(true);
 
+	
 	}
 
-	private boolean validacionDeDatos() {
+	private boolean validacionDeDatos() 
+	{
 		String mensaje="";
 		boolean estado = true;
 		
@@ -689,6 +701,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		return estado;		
 		
 	}
+	
 	private class ManejadorBoton implements ActionListener 
 	{
 		private GuiCatalogarModificar p;
@@ -974,15 +987,28 @@ public class GuiCatalogarModificar extends JScrollPane{
 						
 						}		
 					}
+					if(e.getSource()== campoResolucion)
+					{
+						if(new String(campoResolucion.getText()).length()>14)
+						{
+
+							if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+								getToolkit().beep();//sonido
+								campoResolucion.setText(new String(campoResolucion.getText()).substring(0,14));
+							
+							}
+						
+						}		
+					}
 				}
 
-			@Override
+			
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 
-			@Override
+			
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 				
