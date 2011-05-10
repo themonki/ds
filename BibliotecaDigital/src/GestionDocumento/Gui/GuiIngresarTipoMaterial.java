@@ -167,25 +167,6 @@ public class GuiIngresarTipoMaterial extends JFrame {
 			
 		}
 	}
-
-
-	public static void main(String args[]) {
-
-		try {
-
-			UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		GuiIngresarTipoMaterial ventana;
-		ventana = new GuiIngresarTipoMaterial();
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}
-	
-	
 	
 	boolean validarDatos()
 	{

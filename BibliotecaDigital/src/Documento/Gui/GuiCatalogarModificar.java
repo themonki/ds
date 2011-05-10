@@ -12,6 +12,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -58,12 +60,12 @@ public class GuiCatalogarModificar extends JScrollPane{
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
-	private JPanel panel,panelFecha,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas;
+	private JPanel panel,panelFecha,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
 	tituloSecundario,/*traducido,*/editorial,derechosAutor,descripcion,
-	palabrasClave,fechaPublicacion,areas, enlaceDoc, resolucion,softwareRecomendado, formato;
+	palabrasClave,fechaPublicacion,areas, enlaceDoc, resolucion,softwareRecomendado, formato,fechaCreacion;
 	
 	private JTextArea campoDescripcion;
 
@@ -71,15 +73,15 @@ public class GuiCatalogarModificar extends JScrollPane{
 	/*campoTraducido,*/campoIdioma,campoDerechosAutor,campoAreas, campoFormato;
 	  
 	private JTextField campoEditorial,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc,
-	campoSofware, campoResolucion;
+	campoSoftware, campoResolucion;
 	
 	private JButton botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
-	SpinnerModel model;
-	Date fecha;
-	JSpinner spinner;
-	JSpinner.DateEditor editor; 
+	SpinnerModel model,model2;
+	Date fecha,fecha2;
+	JSpinner spinner,spinner2;
+	JSpinner.DateEditor editor,editor2; 
 	
 	private Vector<String> palabrasClaveVec,areasVector,autoresVector,       
 	palabActualVec,areasActualVecr,autoresActualVector,AutorIdVector,AutorIdActualVector,AreasIdVector,AreasIdActualVector,
@@ -183,17 +185,25 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		///fechaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	    
 		        model = new SpinnerDateModel();
+		        model2= new SpinnerDateModel();
 			    spinner = new JSpinner(model);
+			    spinner2= new JSpinner(model2);
 			    editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
-			   
+			    editor2 = new JSpinner.DateEditor(spinner2, "yyyy-MM-dd");
+			    
 			    spinner.setEditor(editor);
+			    spinner2.setEditor(editor2);
 			    ((JSpinner.DateEditor) spinner.getEditor()).getTextField().setEditable(false);
+			    ((JSpinner.DateEditor) spinner2.getEditor()).getTextField().setEditable(false);
 
 			    spinner.setFont(font2);
+			    spinner2.setFont (font2);
 			    
 			    panelFecha = new JPanel(new BorderLayout());
 			    panelFecha.add(spinner, BorderLayout.CENTER);
-			    		   
+			    
+			    panelFecha2 = new JPanel(new BorderLayout());
+			    panelFecha2.add(spinner2, BorderLayout.CENTER);
 			   
 			    
 
@@ -343,20 +353,26 @@ public class GuiCatalogarModificar extends JScrollPane{
 		restriccionCampo.ipadx=150;
 
 		panel2.add(softwareRecomendado,restriccionEtiquetas);	
-		panel2.add(campoSofware,restriccionCampo);	
+		panel2.add(campoSoftware,restriccionCampo);	
 		
 		restriccionCampo.ipadx=0;
 		restriccionEtiquetas.gridy=12;
 		restriccionCampo.gridy=12;
 
-		panel2.add(fechaPublicacion,restriccionEtiquetas);
+		panel2.add(fechaCreacion,restriccionEtiquetas);
 		panel2.add(panelFecha,restriccionCampo);
 		
 		restriccionEtiquetas.gridy=13;
 		restriccionCampo.gridy=13;
+		
+		panel2.add(fechaPublicacion,restriccionEtiquetas);
+		panel2.add(panelFecha2,restriccionCampo);
+		
+		restriccionEtiquetas.gridy=14;
+		restriccionCampo.gridy=14;
 		restriccionCampo.ipadx=5;
-		restriccionBotones.gridy=13;
-		restriccionBotones.ipadx=13;
+		restriccionBotones.gridy=14;
+		restriccionBotones.ipadx=14;
 		restriccionBotones.gridx=2;
 
 		
@@ -449,10 +465,17 @@ public class GuiCatalogarModificar extends JScrollPane{
 		campoEditorial= new JTextField();
 		campoDescripcion= new JTextArea(5,30);
 		campoResolucion= new JTextField(); 
-		campoSofware= new JTextField();
+		campoSoftware= new JTextField();
 		campoEnlaceDoc= new JTextField(30);
 		campoEnlaceDoc.setEditable(false);
 		
+		// manejadores para el tamaño de los campos 
+	
+		campoDescripcion.addKeyListener(new ManejadorJTextField());
+		campoSoftware.addKeyListener(new ManejadorJTextField());
+		campoEditorial.addKeyListener(new ManejadorJTextField());
+		campoTituloPpal.addKeyListener(new ManejadorJTextField());
+		campoTituloSecundario.addKeyListener(new ManejadorJTextField());
 	}
 
 	private void inicializarLabels(Font font1) 
@@ -474,9 +497,10 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    softwareRecomendado= new JLabel("Software Para Edicion");
 	    resolucion= new JLabel("Resolucion");
 	    enlaceDoc = new JLabel("Path Documento");
+	    fechaCreacion= new JLabel("Fecha De Creacion");
  
 	    Color colorletras= new Color(10,10,10);
-	   
+	    fechaCreacion.setFont(font1);
 	    resolucion.setFont(font1); 
 	    softwareRecomendado.setFont(font1);
 	    palabrasClave.setFont(font1);
@@ -495,6 +519,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		enlaceDoc.setFont(font1);
 		
 
+		fechaCreacion.setForeground(colorletras);
 		resolucion.setForeground(colorletras);
 		softwareRecomendado.setForeground(colorletras);
 		palabrasClave.setForeground(colorletras);
@@ -599,46 +624,16 @@ public class GuiCatalogarModificar extends JScrollPane{
 	private boolean validacionDeDatos() {
 		String mensaje="";
 		boolean estado = true;
+		
 		if(campoTituloPpal.getText().equals("")){
 			mensaje+="Debe proporcionar un Titulo Principal al documento\n";
-			estado=false;
-		}
-		if(campoTituloPpal.getText().length()>50){
-			mensaje+="El Titulo Principal es demasiado largo\n";
-			estado=false;
-		}
-		if(campoTituloSecundario.getText().length()>50){
-			mensaje+="El Titulo Secundario es demasiado largo\n";
-			estado=false;
-		}
-		if(campoEnlaceDoc.getText().length()>200){
-			mensaje+="Error con el path\n";
-			estado=false;
-		}
-		if(campoEnlaceDoc.getText().equals("")){
-			mensaje+="Debe cargar un Documento\n";
-			estado=false;
-		}
-		if(formato.getText().equals("")){
-			mensaje+="Debe seleccionar un formato para el Documento\n";
 			estado=false;
 		}
 		if(campoDescripcion.getText().equals("")){
 			mensaje+="Debe proporcionar una descripcion o resumen del Documento\n";
 			estado=false;
 		}
-		if(campoDescripcion.getText().length()>200){
-			mensaje+="La descripcion es demasiado larga\n";
-			estado=false;
-		}
-		if(campoEditorial.getText().length()>30){
-			mensaje+="La editorial es demasiado larga\n";
-			estado=false;
-		}
-		/*if(campoSoftware.getText().length()>30){
-			mensaje+="La editorial es demasiado larga\n";
-			estado=false;
-		}*/
+		
 		if(!estado){JOptionPane.showMessageDialog(null, mensaje);}
 		return estado;		
 		
@@ -657,7 +652,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			if(validacionDeDatos())
 			{		
 			
-			doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSofware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
+			doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSoftware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
 			doc.setTituloppal(campoTituloPpal.getText());
 			doc.setTitulo_secundario(campoTituloSecundario.getText());
 			doc.setIdioma((String) campoIdioma.getSelectedItem());
@@ -665,15 +660,26 @@ public class GuiCatalogarModificar extends JScrollPane{
 			doc.setTipoMaterial((String)campoTipoMaterial.getSelectedItem());
 			doc.setEditorial(campoEditorial.getText());
 			doc.setFormato((String) campoFormato.getSelectedItem());
-			doc.setSoftware_recomentado(campoSofware.getText());
+			doc.setSoftware_recomentado(campoSoftware.getText());
 			//---------------------------------------
-			 fecha=  editor.getModel().getDate();
+			 // tomar fechas de splinner 
+			fecha=  editor.getModel().getDate();
 			 SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");  
 			 String fes= sdf.format(fecha);
-			 System.out.println(java.sql.Date.valueOf(fes));
+			 
+			 fecha2=  editor.getModel().getDate();
+			 SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");  
+			 String fes2= sdf.format(fecha2);
+			   
 			 doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
-			 doc.setFecha_creacion(java.sql.Date.valueOf(fes));
-			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes));
+			
+			 
+			 java.util.Date fechaactual = new Date();// fecha actual 
+			 
+			 doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
+			 
+			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fechaactual.toString()));
+			 
 			 doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
 			 
@@ -722,8 +728,6 @@ public class GuiCatalogarModificar extends JScrollPane{
 	 
 	private class ManejadorComboBox implements ActionListener {
 
-		//int panel;
-		//ManejadorComboBox(int i){panel = i;};
 		
 		public void actionPerformed(ActionEvent event) {
 			
@@ -779,8 +783,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 				
 			
 			};
-			
-		
+			}
 		}
 		
 		private class eventoMouse implements MouseListener {
@@ -856,6 +859,88 @@ public class GuiCatalogarModificar extends JScrollPane{
 
 		
 		}
-	
-	}
+		private class ManejadorJTextField implements KeyListener{
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+			
+				
+				if(e.getSource()== campoTituloPpal || e.getSource()== campoTituloSecundario){
+					if(new String(campoTituloPpal.getText()).length()>49)
+					{
+
+						if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+							getToolkit().beep();//sonido
+							campoTituloPpal.setText(new String(campoTituloPpal.getText()).substring(0,49));
+						}
+					}
+					if(new String(campoTituloSecundario.getText()).length()>49)
+					{
+
+						if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+							getToolkit().beep();//sonido
+							campoTituloSecundario.setText(new String(campoTituloSecundario.getText()).substring(0,49));
+						}
+					}
+					}
+					
+					if(e.getSource()== campoEditorial)
+					{
+						if(new String(campoEditorial.getText()).length()>29)
+						{
+
+							if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+								getToolkit().beep();//sonido
+								campoEditorial.setText(new String(campoEditorial.getText()).substring(0,29));
+							
+							}
+						
+						}		
+					}
+					if(e.getSource()== campoSoftware)
+					{
+						if(new String(campoSoftware.getText()).length()>19)
+						{
+
+							if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+								getToolkit().beep();//sonido
+								campoSoftware.setText(new String(campoSoftware.getText()).substring(0,19));
+							
+							}
+						
+						}		
+					}
+					if(e.getSource()== campoDescripcion)
+					{
+						if(new String(campoDescripcion.getText()).length()>199)
+						{
+
+							if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+								getToolkit().beep();//sonido
+								campoDescripcion.setText(new String(campoDescripcion.getText()).substring(0,199));
+							
+							}
+						
+						}		
+					}
+				}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		}
+		
 }
+	
+	
+

@@ -50,28 +50,4 @@ public class ControladorTipoMaterial {
 		return nombres;
 
 	}
-
-	
-	  public static void main(String args[]) { 
-		  ControladorTipoMaterial
-	  controladorTipoMaterial = new ControladorTipoMaterial();
-	  /*
-	  System.out.println(controladorTipoMaterial.insertarTipoMaterial("tesis",
-	  "algo importante"));
-	  
-	  
-	  TipoMaterial t1 = controladorTipoMaterial.obtenerTipoMaterial("tesis");
-	  
-	  
-	  System.out.println(t1.getNombre());
-	  
-	  
-	  
-	  System.out.println(controladorTipoMaterial.obtenerTiposMateriales().get(0)
-	  .getDescripcion()); */
-	  
-	  controladorTipoMaterial.obtenerTodosTiposMateriales();
-	  
-	  }
-
 }
