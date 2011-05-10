@@ -678,6 +678,12 @@ public class GuiCatalogarModificar extends JScrollPane{
 			mensaje+="Debe proporcionar una descripcion o resumen del Documento\n";
 			estado=false;
 		}
+		if (campoEnlaceDoc.getText().equals("")){
+			
+			mensaje+="Debe proporcionar una ruta para guardar el Documento\n";
+			estado=false;
+			
+		}
 		
 		if(!estado){JOptionPane.showMessageDialog(null, mensaje);}
 		return estado;		
