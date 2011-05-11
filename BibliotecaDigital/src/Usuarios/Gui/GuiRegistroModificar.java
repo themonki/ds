@@ -45,11 +45,11 @@ public class GuiRegistroModificar extends JScrollPane{
 	//ATRIBUTOS GUI
 	private static final long serialVersionUID = 1L;
 
-	private JTextField campoLoginTF, campoRespuestaSecreta, campoNombre1, campoNombre2, campoApellido1, campoApellido2, campoEmail, campoNivelEscolaridad, campoFechaNacimientoAdmin;
+	private JTextField campoLoginTF, campoRespuestaSecreta, campoNombre1, campoNombre2, campoApellido1, campoApellido2, campoEmail, campoFechaNacimientoAdmin;
 	
 	private JLabel login, password, verificacionPassword, preguntaSecreta, respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero, fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle, perfilLabel, estadoLabel, areasInteres;
 	private JPasswordField campoPassword,campoVerificacionPassword;
-	private JComboBox campoPreguntaSecreta, campoGenero, campoPerfil, campoEstado, campoAreasInteres, campoVinculoUnivalle;
+	private JComboBox campoPreguntaSecreta, campoGenero, campoPerfil, campoEstado, campoAreasInteres, campoVinculoUnivalle, campoNivelEscolaridad;
 	private JSpinner campoFechaNacimiento;
 	private JPanel panelAreasInteres, panelPrincipal, panelAdministrador, panelDatos, panelBotones; 
 	private JButton registrar, modificar;
@@ -73,6 +73,10 @@ public class GuiRegistroModificar extends JScrollPane{
 	String vinculoUnivalleArray[] = { "Estudiante de pregrado",
 			"Estudiante de postgrado", "Egresado", "Profesor activo",
 			"Jubilado", "Ninguno" };
+	String nivelEscolaridadArray[] = {"Básica Primaria", "Básica Secundaria", 
+			"Media Académica", "Media Técnica", "Especialización Técnica",
+			"Técnica Profesional", "Tecnología", "Especialización Tecnológica",
+			"Profesional/Universidad", "Especialización", "Maestría", "Doctorado"};
 	String generoArray[] = { "M", "F" };
 	String perfilArray[] = { "Administrador", "Catalogador", "Usuario Normal" };
 	String estadoArray[] = { "Activo", "Desactivo" };
@@ -433,8 +437,6 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoApellido2.addKeyListener(new ManejadorJTextField());
 		campoEmail = new JTextField(30);
 		campoEmail.addKeyListener(new ManejadorJTextField());
-		campoNivelEscolaridad = new JTextField(30);
-		campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
 
 		//JPasswordField
 		campoPassword = new JPasswordField(25);
@@ -451,6 +453,8 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoAreasInteres.addActionListener(new ManejadorComboBox());
 		campoVinculoUnivalle = new JComboBox(vinculoUnivalleArray);
 		campoVinculoUnivalle.setSelectedIndex(0);
+		campoNivelEscolaridad = new JComboBox(nivelEscolaridadArray);
+		campoNivelEscolaridad.setSelectedIndex(0);
 		
 		
 		//Crear spinner para la fecha de nacimiento.
@@ -485,9 +489,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoEmail = new JTextField(30);
 		campoEmail.setText(usuarioModificar.getEmail());
 		campoEmail.setEditable(false);
-		campoNivelEscolaridad = new JTextField(30);
-		campoNivelEscolaridad.setText(usuarioModificar.getNivelEscolaridad());
-		campoNivelEscolaridad.setEditable(false);
+		
 		
 		//Obtener fecha para organizar el formato para mostrar
 		Date fechaNacimientoUsuarioModificar = usuarioModificar.getFechaNacimiento();
@@ -503,6 +505,9 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoVinculoUnivalle=  new JComboBox(vinculoUnivalleArray);
 		campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
 		campoVinculoUnivalle.setEnabled(false);
+		campoNivelEscolaridad = new JComboBox(nivelEscolaridadArray);
+		campoNivelEscolaridad.setSelectedItem(usuarioModificar.getNivelEscolaridad());
+		campoNivelEscolaridad.setEnabled(false);
 		campoPerfil= new JComboBox(perfilArray);
 		campoPerfil.setSelectedIndex(Integer.parseInt(usuarioModificar.getTipo())-1);
 		campoEstado= new JComboBox(estadoArray);
@@ -534,9 +539,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoEmail = new JTextField(30);
 		campoEmail.setText(usuarioModificar.getEmail());
 		campoEmail.addKeyListener(new ManejadorJTextField());
-		campoNivelEscolaridad = new JTextField(30);
-		campoNivelEscolaridad.setText(usuarioModificar.getNivelEscolaridad());
-		campoNivelEscolaridad.addKeyListener(new ManejadorJTextField());
+		
 
 		//Obtener password para introducirla en los campo password y verificarPassword.
 		campoPassword = new JPasswordField(20);
@@ -555,6 +558,8 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoAreasInteres.addActionListener(new ManejadorComboBox());
 		campoVinculoUnivalle= new JComboBox(vinculoUnivalleArray);
 		campoVinculoUnivalle.setSelectedItem(usuarioModificar.getVinculoUnivalle());
+		campoNivelEscolaridad = new JComboBox(nivelEscolaridadArray);
+		campoNivelEscolaridad.setSelectedItem(usuarioModificar.getNivelEscolaridad());
 				
 		//Crear spinner para la fecha de nacimiento. y obtenerla del usuario
 		Date fechaNacimientoUsuario = usuarioModificar.getFechaNacimiento();
@@ -606,7 +611,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoEmail.setText("");
 		campoPreguntaSecreta.setSelectedIndex(0);
 		campoRespuestaSecreta.setText("");
-		campoNivelEscolaridad.setText("");
+		campoNivelEscolaridad.setSelectedIndex(0);
 		campoVinculoUnivalle.setSelectedIndex(0);
 		campoGenero.setSelectedIndex(0);
 		//campoAreasInteres.setSelectedIndex(0);
@@ -647,7 +652,7 @@ public class GuiRegistroModificar extends JScrollPane{
 				verPasswordString = new String(campoVerificacionPassword.getPassword());
 				preguntaSecretaString = (String) campoPreguntaSecreta.getSelectedItem();
 				respuestaSecretaString = campoRespuestaSecreta.getText();
-				nivelEscolaridadString = campoNivelEscolaridad.getText();
+				nivelEscolaridadString = (String) campoNivelEscolaridad.getSelectedItem();
 				vinculoUnivalleString = (String) campoVinculoUnivalle.getSelectedItem();
 				generoString = (String) campoGenero.getSelectedItem();
 				
@@ -723,7 +728,7 @@ public class GuiRegistroModificar extends JScrollPane{
 					verPasswordString = new String(campoVerificacionPassword.getPassword());
 					preguntaSecretaString = (String) campoPreguntaSecreta.getSelectedItem();
 					respuestaSecretaString = campoRespuestaSecreta.getText();
-					nivelEscolaridadString = campoNivelEscolaridad.getText();
+					nivelEscolaridadString = (String) campoNivelEscolaridad.getSelectedItem();
 					vinculoUnivalleString = (String) campoVinculoUnivalle.getSelectedItem();
 					generoString = (String) campoGenero.getSelectedItem();
 
