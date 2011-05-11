@@ -167,15 +167,14 @@ public class GuiIngresarArea extends JFrame {
 
 			if(controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre)>=1)
 			{
-<<<<<<< HEAD
 			guiCatalogarModi.vectoresParaComboBox();
 			guiCatalogarModi.actualizarAreas();
 			JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
 
 			}
 
+			
 			dispose();
-=======
 				guiCatalogarModi.vectoresParaComboBox();
 				guiCatalogarModi.actualizarAreas();
 				JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
@@ -184,11 +183,8 @@ public class GuiIngresarArea extends JFrame {
 				JOptionPane.showMessageDialog(null, "El Area de Conocimiento ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
 			}	
 			
->>>>>>> af6b90863758068ce427fae2a57c9f1c667e50a4
 			}
 		}		
-	}
-	
 	
 	
 	private class ManejadorJTextField implements KeyListener{
@@ -216,22 +212,15 @@ public class GuiIngresarArea extends JFrame {
 						campoDescripcionArea.setText(campoDescripcionArea.getText().substring(0,199));
 					}
 				}					
-			}
-			
-			
+			}}
 
-		
-			
-				
-		}
-
-		@Override
+	
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
 
-		@Override
+		
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
