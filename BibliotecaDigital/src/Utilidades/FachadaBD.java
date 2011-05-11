@@ -13,8 +13,8 @@ import java.sql.Statement;
 public class FachadaBD {
 	String url, usuario, password;
 	Connection conexion;
-	Statement instruccion;
-	ResultSet tabla;
+	//Statement instruccion;
+	//ResultSet tabla;
 
 	public FachadaBD() {
 		url = "jdbc:postgresql://localhost:5432/proyecto";

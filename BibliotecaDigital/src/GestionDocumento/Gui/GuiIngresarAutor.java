@@ -159,11 +159,12 @@ public class GuiIngresarAutor extends JFrame {
 			guiCatalogarModi.vectoresParaComboBox();
 			guiCatalogarModi.actualizarAutores();
 			JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
-
-			}
-		
-			
 			dispose();
+
+			}else{				
+				JOptionPane.showMessageDialog(null, "El autor ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+			}		
+			
 		}	
 		}
 	}

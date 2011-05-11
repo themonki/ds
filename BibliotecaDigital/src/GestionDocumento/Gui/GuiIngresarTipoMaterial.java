@@ -131,10 +131,10 @@ public class GuiIngresarTipoMaterial extends JFrame {
 				guicatalogarModi.vectoresParaComboBox();
 				guicatalogarModi.actualizarTipoMaterial();
 				JOptionPane.showMessageDialog(null, "Se ingreso el Tipo de Material Correctamente");
-
-				}
-
 				dispose();
+				}else{
+					JOptionPane.showMessageDialog(null, "El Tipo de Material ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}		
 	}
