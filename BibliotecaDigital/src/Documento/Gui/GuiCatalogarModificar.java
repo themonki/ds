@@ -700,9 +700,16 @@ public class GuiCatalogarModificar extends JScrollPane{
 			mensaje+="Debe proporcionar una ruta para guardar el Documento\n";
 			estado=false;			
 		}
-		
+		if(AreasIdActualVector.size()==0){
+			mensaje+="Debe proporcionar por lo menos un Area de Conocimiento\n";
+			estado=false;
+		}
+		if(AutorIdActualVector.size()==0){
+			mensaje+="Debe proporcionar por lo menos un Autor\n";
+			estado=false;
+		}		
 		if(!estado){JOptionPane.showMessageDialog(null, mensaje);}
-		return estado;		
+		return estado;
 		
 	}
 	
