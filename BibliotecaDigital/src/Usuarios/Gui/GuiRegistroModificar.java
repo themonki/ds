@@ -113,7 +113,7 @@ public class GuiRegistroModificar extends JScrollPane{
 
 		// Linea y titulo del panel.
 		TitledBorder borde;
-		borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Estilos.colorBorder), title);
+		borde = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), title);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -186,7 +186,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		//Vista Panel Areas de Interes
 		panelAreasInteres = new JPanel();
 		TitledBorder bordeAreaInteres;
-		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Estilos.colorBorder),"Áreas de interés");
+		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder),"Áreas de interés");
 		bordeAreaInteres.setTitleColor(Estilos.colorSubtitulo);
 		bordeAreaInteres.setTitleFont(Estilos.fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);

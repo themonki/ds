@@ -54,7 +54,7 @@ public class GuiAutenticar extends JPanel
 		JPanel panelDatosInterno = new JPanel(new GridBagLayout());
 		JPanel panelDatos = new JPanel();
 		// --------------------------------------------------------
-		panelDatosInterno.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelDatosInterno.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		//panelBoton.setBorder(BorderFactory.createLineBorder(Color.black));
 		// ---------------------------------------------------------
 		iniciarLabels();
@@ -68,7 +68,7 @@ public class GuiAutenticar extends JPanel
 		// Linea y titulo del panel.
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Estilos.colorBorder), title);
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), title);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);

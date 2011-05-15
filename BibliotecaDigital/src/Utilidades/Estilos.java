@@ -20,4 +20,5 @@ public class Estilos {
 	
 	//------------------------------Color Border -----------------------------
 	public static Color colorBorder = new Color(34,0,11);
+	public static Color colorLightBorder = new Color(167,153,157);
 }

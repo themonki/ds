@@ -116,7 +116,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		//super.setTitle("Catalogar Documento");
 		//super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
 		setBorder(BorderFactory.createTitledBorder(BorderFactory
-			    .createLineBorder(Color.black), "Catalogar Documento"));
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Catalogar Documento"));
 		
 		
 		//indicacion = new JLabel("   Catalogar Documento");
@@ -194,21 +194,21 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		
 	    //-----------------------------ponerBordeaPanel----------	
-		panel5.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
-		panel4.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
-		panel2.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		panel4.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		//panelConAutores.setBorder(BorderFactory.createLineBorder(Color.black));
 		//panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.black));	
 		//panelConAreas.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		panelConAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
-			    .createLineBorder(Estilos.colorBorder), "Autores Actuales"));
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Autores Actuales"));
 		
 		panelConpalabrasC.setBorder(BorderFactory.createTitledBorder(BorderFactory
-			    .createLineBorder(Estilos.colorBorder), "Palabras Actuales"));
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Palabras Actuales"));
 		
 		panelConAreas.setBorder(BorderFactory.createTitledBorder(BorderFactory
-			    .createLineBorder(Estilos.colorBorder), "Areas Actuales"));
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Areas Actuales"));
 		
 		//Organizacion de layouts y paneles
 		panel2.setLayout(new GridBagLayout());
