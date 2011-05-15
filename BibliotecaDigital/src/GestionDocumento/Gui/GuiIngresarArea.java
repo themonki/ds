@@ -37,6 +37,7 @@ public class GuiIngresarArea extends JFrame {
 	JButton botonIngresarArea;
 	GuiCatalogarModificar guiCatalogarModi;
 
+	
 	JPanel panel, panel2, panel3, panel4, panel5;
 
 	public GuiIngresarArea() {
@@ -155,7 +156,7 @@ public class GuiIngresarArea extends JFrame {
 			String nombre = campoNombre.getText();
 			String descripcion = campoDescripcionArea.getText();
 			int padreSeleccionado = campoAreaPadre.getSelectedIndex();
-			String padre, contador = ""+campoAreaPadre.getItemCount();;
+			String padre, contador = ""+campoAreaPadre.getItemCount();;// este coso esta raro por que dependes del orden .
 			System.out.println(padreSeleccionado);
 			if(padreSeleccionado == 0){
 				padre = "";
