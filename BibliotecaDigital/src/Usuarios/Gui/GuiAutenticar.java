@@ -129,8 +129,8 @@ public class GuiAutenticar extends JPanel
 	private void iniciarLabels()
 	{
 	
-		nombreUsuario = new JLabel("Login  :");
-		contrasena = new JLabel("Contraseña  :");
+		nombreUsuario = new JLabel("  Login  :");
+		contrasena = new JLabel("  Contraseña  :");
 		
 		
 		contrasena.setFont(Estilos.fontLabels);

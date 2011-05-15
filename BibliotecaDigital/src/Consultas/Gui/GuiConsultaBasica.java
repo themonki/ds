@@ -6,12 +6,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 import Utilidades.Button;
+import Utilidades.Estilos;
 
 public class GuiConsultaBasica extends JPanel
 {
@@ -21,13 +24,14 @@ public class GuiConsultaBasica extends JPanel
 	private JTextField campoConsulta;
 	private JPanel panelBotonesConsulta;
 	private Button consultar;
-	private JButton limpiarCampoConsulta;
+	private Button limpiarCampoConsulta;
 	private Manejador manejador;
 	
 	public GuiConsultaBasica()
 	{
 		//Estilo ---------- fuentes letras
 		Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
+		
 		
 		//Manejador de eventos
 		manejador = new Manejador();
@@ -36,7 +40,10 @@ public class GuiConsultaBasica extends JPanel
 		//panelConsultaBasica = new JPanel(new FlowLayout(1,200,40));
 
 		etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
-		etiquetaConsulta.setFont(fontLabels);
+		etiquetaConsulta.setFont(Estilos.fontTitulo);
+		etiquetaConsulta.setForeground(Estilos.colorTitulo);
+		
+		
 		campoConsulta = new JTextField(30);
 		campoConsulta.setFont(fontLabels);
 		panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
@@ -44,7 +51,7 @@ public class GuiConsultaBasica extends JPanel
 		consultar = new Button("Consultar");
 
 		consultar.addActionListener(manejador);
-		limpiarCampoConsulta = new JButton("Limpiar Campo");
+		limpiarCampoConsulta = new Button("Limpiar Campo");
 		limpiarCampoConsulta.addActionListener(manejador);
 		
 		panelBotonesConsulta.add(consultar);
