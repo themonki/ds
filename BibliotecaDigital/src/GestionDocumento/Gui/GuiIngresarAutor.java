@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Utilidades.Estilos;
+
 import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorAutor;
 
@@ -44,8 +46,8 @@ public class GuiIngresarAutor extends JFrame {
 		JPanel panel2 = new JPanel(new GridBagLayout());
 		JPanel panel3 = new JPanel();
 		// --------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel2.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
 		// ---------------------------------------------------------
 		iniciarLabels();
 		// ---------------------------------------------------------
@@ -122,10 +124,7 @@ public class GuiIngresarAutor extends JFrame {
 	}
 
 	private void iniciarLabels() {
-		Font font1 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
 
-		Color colorletras = new Color(0, 60, 0);
 
 		indicacion = new JLabel("Registrar  Autor", JLabel.CENTER);
 		nombre = new JLabel("Nombre  :");
@@ -133,17 +132,17 @@ public class GuiIngresarAutor extends JFrame {
 		correoElectronico = new JLabel("Correo Electronico :");
 		acronimo = new JLabel("Acronimo :");
 
-		indicacion.setFont(font3);
-		apellido.setFont(font1);
-		nombre.setFont(font1);
-		acronimo.setFont(font1);
-		correoElectronico.setFont(font1);
+		indicacion.setFont(Estilos.fontSubtitulos);
+		apellido.setFont(Estilos.fontLabels);
+		nombre.setFont(Estilos.fontLabels);
+		acronimo.setFont(Estilos.fontLabels);
+		correoElectronico.setFont(Estilos.fontLabels);
 
-		indicacion.setForeground(colorletras);
-		apellido.setForeground(colorletras);
-		nombre.setForeground(colorletras);
-		acronimo.setForeground(colorletras);
-		correoElectronico.setForeground(colorletras);
+		indicacion.setForeground(Estilos.colorLabels);
+		apellido.setForeground(Estilos.colorLabels);
+		nombre.setForeground(Estilos.colorLabels);
+		acronimo.setForeground(Estilos.colorLabels);
+		correoElectronico.setForeground(Estilos.colorLabels);
 
 	}
 	

@@ -29,6 +29,7 @@ import javax.swing.border.TitledBorder;
 
 import Principal.Controlador.ControladorVentanaPrincipal;
 import Principal.Gui.GuiPrincipal;
+import Utilidades.Estilos;
 
 public class GuiAutenticar extends JPanel
 {
@@ -62,14 +63,13 @@ public class GuiAutenticar extends JPanel
 		
 		String title = "::Autentificar::";
 
-		Color colorTitulo = new Color(0,50,0);
-		Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
+		
 		// Linea y titulo del panel.
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.black), title);
-		borde.setTitleColor(colorTitulo);
-		borde.setTitleFont(fontTitulo);
+				.createLineBorder(Estilos.colorBorder), title);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		
 		
@@ -127,22 +127,17 @@ public class GuiAutenticar extends JPanel
 
 	private void iniciarLabels()
 	{
-		Font font1 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
-
-		Color colorletras = new Color(0, 60, 0);
-
-		
+	
 		nombreUsuario = new JLabel("Login  :");
 		contrasena = new JLabel("Contraseña  :");
 		
 		
-		contrasena.setFont(font1);
-		nombreUsuario.setFont(font1);
+		contrasena.setFont(Estilos.fontLabels);
+		nombreUsuario.setFont(Estilos.fontLabels);
 		
 		
-		contrasena.setForeground(colorletras);
-		nombreUsuario.setForeground(colorletras);
+		contrasena.setForeground(Estilos.colorLabels);
+		nombreUsuario.setForeground(Estilos.colorLabels);
 		
 	}
 	

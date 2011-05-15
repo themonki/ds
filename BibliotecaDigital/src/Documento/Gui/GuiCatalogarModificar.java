@@ -37,6 +37,8 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 
+import Utilidades.Estilos;
+
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -152,16 +154,12 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panelScrollPalabras.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
 		//scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		
-		
-		//-------------------------------fuentes letras-------------------------
-		Font font1 = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-		Font font2 = new Font("Book Antiqua",Font.BOLD, 15);
+
 		
 		//----------------------------------------------------
-		inicializarLabels(font1);
+		inicializarLabels(Estilos.fontLabels);
 		//--------------------------------------------------
-		inicializarComboBox(font2);	
+		inicializarComboBox(Estilos.fontSubtitulos);	
 		//------------------------------------------------------------
 		inicializarTexfield();
 		//--------------------------------------------------
@@ -180,8 +178,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 			    ((JSpinner.DateEditor) spinner.getEditor()).getTextField().setEditable(false);
 			    ((JSpinner.DateEditor) spinner2.getEditor()).getTextField().setEditable(false);
 
-			    spinner.setFont(font2);
-			    spinner2.setFont (font2);
+			    spinner.setFont(Estilos.fontSubtitulos);
+			    spinner2.setFont (Estilos.fontSubtitulos);
 			    
 			    panelFecha = new JPanel(new BorderLayout());
 			    panelFecha.add(spinner, BorderLayout.CENTER);
@@ -195,22 +193,21 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		
 	    //-----------------------------ponerBordeaPanel----------	
-		Color coloborde = Color.black;
-		panel5.setBorder(BorderFactory.createLineBorder(coloborde));
-		panel4.setBorder(BorderFactory.createLineBorder(coloborde));
-		panel2.setBorder(BorderFactory.createLineBorder(coloborde));
+		panel5.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel4.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel2.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
 		//panelConAutores.setBorder(BorderFactory.createLineBorder(Color.black));
 		//panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.black));	
 		//panelConAreas.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		panelConAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
-			    .createLineBorder(coloborde), "Autores Actuales"));
+			    .createLineBorder(Estilos.colorBorder), "Autores Actuales"));
 		
 		panelConpalabrasC.setBorder(BorderFactory.createTitledBorder(BorderFactory
-			    .createLineBorder(coloborde), "Palabras Actuales"));
+			    .createLineBorder(Estilos.colorBorder), "Palabras Actuales"));
 		
 		panelConAreas.setBorder(BorderFactory.createTitledBorder(BorderFactory
-			    .createLineBorder(coloborde), "Areas Actuales"));
+			    .createLineBorder(Estilos.colorBorder), "Areas Actuales"));
 		
 		//Organizacion de layouts y paneles
 		panel2.setLayout(new GridBagLayout());
@@ -554,7 +551,6 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    enlaceDoc = new JLabel("Path Documento");
 	    fechaCreacion= new JLabel("Fecha De Creacion");
  
-	    Color colorletras= new Color(10,10,10);
 	    fechaCreacion.setFont(font1);
 	    resolucion.setFont(font1); 
 	    softwareRecomendado.setFont(font1);
@@ -574,23 +570,23 @@ public class GuiCatalogarModificar extends JScrollPane{
 		enlaceDoc.setFont(font1);
 		
 
-		fechaCreacion.setForeground(colorletras);
-		resolucion.setForeground(colorletras);
-		softwareRecomendado.setForeground(colorletras);
-		palabrasClave.setForeground(colorletras);
-	    autor.setForeground(colorletras);
-	    descripcion.setForeground(colorletras);
-		tipoMaterial.setForeground(colorletras);
-		tituloPrincipal.setForeground(colorletras);
-		tituloSecundario.setForeground(colorletras);
-		idioma.setForeground(colorletras);
-		//traducido.setForeground(colorletras);
-		editorial.setForeground(colorletras);
-		derechosAutor.setForeground(colorletras);
-		areas.setForeground(colorletras);
-		fechaPublicacion.setForeground(colorletras);
-		formato.setForeground(colorletras);
-		enlaceDoc.setForeground(colorletras);
+		fechaCreacion.setForeground(Estilos.colorLabels);
+		resolucion.setForeground(Estilos.colorLabels);
+		softwareRecomendado.setForeground(Estilos.colorLabels);
+		palabrasClave.setForeground(Estilos.colorLabels);
+	    autor.setForeground(Estilos.colorLabels);
+	    descripcion.setForeground(Estilos.colorLabels);
+		tipoMaterial.setForeground(Estilos.colorLabels);
+		tituloPrincipal.setForeground(Estilos.colorLabels);
+		tituloSecundario.setForeground(Estilos.colorLabels);
+		idioma.setForeground(Estilos.colorLabels);
+		//traducido.setForeground(Estilos.colorLabels);
+		editorial.setForeground(Estilos.colorLabels);
+		derechosAutor.setForeground(Estilos.colorLabels);
+		areas.setForeground(Estilos.colorLabels);
+		fechaPublicacion.setForeground(Estilos.colorLabels);
+		formato.setForeground(Estilos.colorLabels);
+		enlaceDoc.setForeground(Estilos.colorLabels);
 	}
 
 	private void inicializarComboBox(Font font2) 

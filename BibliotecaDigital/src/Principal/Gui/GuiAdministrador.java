@@ -26,6 +26,7 @@ import Documento.Gui.GuiCatalogarModificar;
 import Usuarios.Gui.GuiConsultarUsuarios;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
+import Utilidades.Estilos;
 
 public class GuiAdministrador extends JFrame
 {
@@ -78,23 +79,14 @@ public class GuiAdministrador extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 		manejador = new Manejador();	
-		
-		//Estilos.
-		//-------------------------------fuentes letras-------------------------
-
-		Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-		//Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-		
-		//-------------------------------Color letras----------------------------
-		
+				
 		String tituloMuestra = "::Sistema Biblioteca Digital::";
-		Color colorTitulo = new Color(0,50,0);
-		
+
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.black), tituloMuestra);
-		borde.setTitleColor(colorTitulo);
-		borde.setTitleFont(fontTitulo);
+				.createLineBorder(Estilos.colorBorder), tituloMuestra);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
 		// se instancias paneles adicionales		
@@ -156,7 +148,7 @@ public class GuiAdministrador extends JFrame
 		panelOpcionesGenerales.add(catalogar);
 		panelOpcionesGenerales.add(logout);
 		
-		panelOpcionesGenerales.setBackground(new Color(250, 230,250));
+		//panelOpcionesGenerales.setBackground(new Color(250, 230,250));
 		JPanel panelconOpciones2= new JPanel(); //evita que los botones crescan si la ventana es redimensionada
 		panelconOpciones2.add(panelOpcionesGenerales);
 

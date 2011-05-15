@@ -25,6 +25,7 @@ import Consultas.Gui.GuiConsultaBasica;
 import Documento.Gui.GuiCatalogarModificar;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
+import Utilidades.Estilos;
 
 public class GuiCatalogador extends JFrame
 {
@@ -76,23 +77,16 @@ public class GuiCatalogador extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 		manejador = new Manejador();	
-		
-		//Estilos.
-		//-------------------------------fuentes letras-------------------------
 
-		Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-		//Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-		
-		//-------------------------------Color letras----------------------------
 		
 		String tituloMuestra = "::Sistema Biblioteca Digital::";
-		Color colorTitulo = new Color(0,50,0);
+
 		
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.black), tituloMuestra);
-		borde.setTitleColor(colorTitulo);
-		borde.setTitleFont(fontTitulo);
+				.createLineBorder(Estilos.colorBorder), tituloMuestra);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
 		// se instancias paneles adicionales
