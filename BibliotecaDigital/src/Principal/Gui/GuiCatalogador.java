@@ -145,7 +145,7 @@ public class GuiCatalogador extends JFrame
 		panelOpcionesGenerales.add(catalogar);
 		panelOpcionesGenerales.add(logout);
 		
-		panelOpcionesGenerales.setBackground(new Color(250, 230,250));
+		//panelOpcionesGenerales.setBackground(new Color(250, 230,250));
 		JPanel panelconOpciones2= new JPanel(); //evita que los botones crescan si la ventana es redimensionada
 		panelconOpciones2.add(panelOpcionesGenerales);
 		
