@@ -79,7 +79,7 @@ public class GuiPrincipal extends JFrame
 			
 			TitledBorder borde;
 			borde = BorderFactory.createTitledBorder(BorderFactory
-					.createLineBorder(Estilos.colorBorder), tituloMuestra);
+					.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), tituloMuestra);
 			borde.setTitleColor(Estilos.colorTitulo);
 			borde.setTitleFont(Estilos.fontTitulo);
 			borde.setTitleJustification(TitledBorder.CENTER);

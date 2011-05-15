@@ -46,8 +46,8 @@ public class GuiIngresarAutor extends JFrame {
 		JPanel panel2 = new JPanel(new GridBagLayout());
 		JPanel panel3 = new JPanel();
 		// --------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
-		panel.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		// ---------------------------------------------------------
 		iniciarLabels();
 		// ---------------------------------------------------------

@@ -54,9 +54,9 @@ public class GuiIngresarPalabraClave extends JFrame {
 		JPanel panel2 = new JPanel(new GridLayout(1, 1, 10, 10));
 		JPanel panel3 = new JPanel();
 		// ----------------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
-		panel5.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
-		panel.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		// ------------------------------------------------------------
 		iniciarLabels();
 		// ------------------------------------------
