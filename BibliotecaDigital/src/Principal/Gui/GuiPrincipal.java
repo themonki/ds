@@ -41,10 +41,10 @@ public class GuiPrincipal extends JFrame
 
 		// Opciones basicas para un usuario
 		private JPanel panelOpcionesGenerales;		
-		private JButton volver;
-		private JButton crearUsuario;	
-		private JButton ingresarSistema;
-		private JButton consultaAvanzada;
+		private Button volver;
+		private Button crearUsuario;	
+		private Button ingresarSistema;
+		private Button consultaAvanzada;
 		
 		private static JLabel estado;
 
@@ -125,19 +125,19 @@ public class GuiPrincipal extends JFrame
 
 			// Se instancian todos los elementos que pertenecen al panel de
 			//opciones
-			panelOpcionesGenerales = new JPanel(new GridLayout(8,1,10,20));
+			panelOpcionesGenerales = new JPanel(new GridLayout(8,1,2,5));
 
-			volver = new JButton("Inicio");
+			volver = new Button("Inicio");
 			volver.addActionListener(manejador);
-			crearUsuario = new JButton("Registrarse");
+			crearUsuario = new Button("Registrarse");
 			crearUsuario.addActionListener(manejador);			
-			ingresarSistema = new JButton("Ingresar");
+			ingresarSistema = new Button("Ingresar");
 			ingresarSistema.addActionListener(manejador);
-			consultaAvanzada = new JButton("Consulta Avanzada");
+			consultaAvanzada = new Button("Consulta Avanzada");
 			consultaAvanzada.addActionListener(manejador);			
 						
-
 			
+			volver.setBackground(Color.RED);
 			//crearUsuario.setPreferredSize(new Dimension(10, 10));
 			// Se agregan los elementos al panel de opciones del administrador.
 			panelOpcionesGenerales.add(volver);
@@ -293,17 +293,8 @@ public class GuiPrincipal extends JFrame
 
 			try
 			{				
-				NimRODTheme nt = new NimRODTheme();
-				nt.setPrimary1( new Color(10,10,230));
-				nt.setPrimary2( new Color(110,110,150));
-				nt.setPrimary3( new Color(0,0,230));
-				//nt.setPrimary(new Color(100,100,100));
-				//nt.setSecondary(new Color(230, 220,250));
-				nt.setSecondary1(new Color(0,0,100));
-				nt.setSecondary2(new Color(0, 100,0));
-				nt.setSecondary3(new Color(250,250,250));
-				nt.setWhite(new Color(250, 230,250));
-				
+				NimRODTheme nt = new NimRODTheme("recursos/NimRODThemeFile2.theme");
+			
 				
 	
 				NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
