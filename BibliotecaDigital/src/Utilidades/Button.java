@@ -24,7 +24,7 @@ public class Button extends JButton{
    
     
     public Button(String c) {
-    	Font fontTitulo = new Font("Book Antiqua",Font.BOLD, 13);
+    	Font fontTitulo = new Font("dejavu sans",Font.BOLD, 13);
 		setText(c);
         setOpaque(false);
         setContentAreaFilled(false);
