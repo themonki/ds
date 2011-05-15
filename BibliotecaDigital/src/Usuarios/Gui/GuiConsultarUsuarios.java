@@ -28,6 +28,7 @@ import javax.swing.event.ListSelectionListener;
 
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
+import Utilidades.Estilos;
 
 public class GuiConsultarUsuarios extends JScrollPane{
 	
@@ -43,17 +44,6 @@ public class GuiConsultarUsuarios extends JScrollPane{
 	JList resultadoLista;
 	DefaultListModel modeloLista;
 	Vector<Usuario> usuariosVector;
-	
-	//Estilos.
-	//-------------------------------fuentes letras-------------------------
-	Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-	Font fontSubtitulos = new Font("Book Antiqua",Font.BOLD, 15);
-	Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-	
-	//-------------------------------Color letras----------------------------
-	Color colorTitulo = new Color(0,50,0);
-	Color colorSubtitulo= new Color(0,50,10);
-	Color colorLabels= new Color(0,60,0);	
 	
 	public GuiConsultarUsuarios(){
 		iniComponents();
@@ -99,18 +89,18 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		
 		
 		panelResultado = new JPanel();
-		TitledBorder borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "::Resultados::");
-		borde.setTitleColor(colorSubtitulo);
-		borde.setTitleFont(fontSubtitulos);
+		TitledBorder borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Estilos.colorBorder), "::Resultados::");
+		borde.setTitleColor(Estilos.colorSubtitulo);
+		borde.setTitleFont(Estilos.fontSubtitulos);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		panelResultado.setBorder(borde);
 		
 		
 		
 		panelPrincipal = new JPanel();
-		TitledBorder bordePrincipal = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "::CONSULTAR USUARIOS::");
-		bordePrincipal.setTitleColor(colorSubtitulo);
-		bordePrincipal.setTitleFont(fontSubtitulos);
+		TitledBorder bordePrincipal = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Estilos.colorBorder), "::CONSULTAR USUARIOS::");
+		bordePrincipal.setTitleColor(Estilos.colorSubtitulo);
+		bordePrincipal.setTitleFont(Estilos.fontSubtitulos);
 		bordePrincipal.setTitleJustification(TitledBorder.LEFT);
 		panelPrincipal.setLayout(new BorderLayout());
 		panelPrincipal.setBorder(bordePrincipal);
@@ -123,8 +113,8 @@ public class GuiConsultarUsuarios extends JScrollPane{
 	}
 	private JLabel inicializarLabel(String titulo){
 		JLabel label = new JLabel(titulo, JLabel.LEFT);
-		label.setFont(fontLabels);
-		label.setForeground(colorLabels);
+		label.setFont(Estilos.fontLabels);
+		label.setForeground(Estilos.colorLabels);
 		return label;
 	}
 	

@@ -20,11 +20,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiAutenticar;
 import Usuarios.Gui.GuiRegistroModificar;
+import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
@@ -72,22 +75,13 @@ public class GuiPrincipal extends JFrame
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			manejador = new Manejador();	
 			
-			//Estilos.
-			//-------------------------------fuentes letras-------------------------
-	
-			Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-			//Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-			
-			//-------------------------------Color letras----------------------------
-			
 			String tituloMuestra = "::Sistema Biblioteca Digital::";
-			Color colorTitulo = new Color(0,50,0);
 			
 			TitledBorder borde;
 			borde = BorderFactory.createTitledBorder(BorderFactory
-					.createLineBorder(Color.black), tituloMuestra);
-			borde.setTitleColor(colorTitulo);
-			borde.setTitleFont(fontTitulo);
+					.createLineBorder(Estilos.colorBorder), tituloMuestra);
+			borde.setTitleColor(Estilos.colorTitulo);
+			borde.setTitleFont(Estilos.fontTitulo);
 			borde.setTitleJustification(TitledBorder.CENTER);
 			
 			// se instancias paneles adicionales
@@ -122,6 +116,7 @@ public class GuiPrincipal extends JFrame
 			barra.add(archivo);
 			barra.add(acercaDe);
 			setJMenuBar(barra);
+			
 
 			// Se instancian todos los elementos que pertenecen al panel de
 			//opciones
@@ -147,7 +142,8 @@ public class GuiPrincipal extends JFrame
 			
 			JPanel panelconOpciones2= new JPanel();
 			panelconOpciones2.add(panelOpcionesGenerales);
-			panelOpcionesGenerales.setBackground(new Color(250, 230,250));
+			
+			
 		
 
 			estado = new JLabel(estadoInicial);
@@ -294,13 +290,16 @@ public class GuiPrincipal extends JFrame
 			try
 			{				
 				NimRODTheme nt = new NimRODTheme("recursos/NimRODThemeFile2.theme");
+<<<<<<< HEAD
 			
 				
 	
+=======
+
+>>>>>>> 2a2f245c0aac548cdaf1f9923b0a4a56ef5e2235
 				NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
-				NimRODLookAndFeel.setCurrentTheme( nt);
+				NimRODLookAndFeel.setCurrentTheme(nt);
 				UIManager.setLookAndFeel( NimRODLF);
-				//UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
 			}
 			catch (Exception e){e.printStackTrace();}
 		

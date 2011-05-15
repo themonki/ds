@@ -24,6 +24,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Utilidades.Estilos;
+
 import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
@@ -59,9 +61,9 @@ public class GuiIngresarArea extends JFrame {
 		panel5 = new JPanel(new FlowLayout());
 		panel4 = new JPanel(new BorderLayout());
 		// --------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel5.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel2.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel5.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
 
 		// ---------------------------------------------
 		iniciarLabels();
@@ -123,25 +125,23 @@ public class GuiIngresarArea extends JFrame {
 	}
 
 	private void iniciarLabels() {
-		Font font1 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
-		Color colorletras = new Color(0, 60, 0);
+		
 
 		indicacion = new JLabel("Registrar  Area ", JLabel.CENTER);
 		nombre = new JLabel("Nombre Del Area :");
 		descripcionArea = new JLabel("Descripcion.", JLabel.CENTER);
 		areaPadre = new JLabel("Area Padre :");
 
-		indicacion.setFont(font1);
-		areaPadre.setFont(font1);
-		descripcionArea.setFont(font1);
-		nombre.setFont(font1);
+		indicacion.setFont(Estilos.fontLabels);
+		areaPadre.setFont(Estilos.fontLabels);
+		descripcionArea.setFont(Estilos.fontLabels);
+		nombre.setFont(Estilos.fontLabels);
 
-		indicacion.setFont(font3);
-		indicacion.setForeground(colorletras);
-		areaPadre.setForeground(colorletras);
-		descripcionArea.setForeground(colorletras);
-		nombre.setForeground(colorletras);
+		indicacion.setFont(Estilos.fontSubtitulos);
+		indicacion.setForeground(Estilos.colorLabels);
+		areaPadre.setForeground(Estilos.colorLabels);
+		descripcionArea.setForeground(Estilos.colorLabels);
+		nombre.setForeground(Estilos.colorLabels);
 	}
 	
 	private class ManejadorBoton implements ActionListener {

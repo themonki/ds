@@ -38,6 +38,7 @@ import GestionDocumento.Logica.AreaConocimiento;
 import Principal.Gui.GuiPrincipal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
+import Utilidades.Estilos;
 
 
 public class GuiRegistroModificar extends JScrollPane{
@@ -81,17 +82,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	String perfilArray[] = { "Administrador", "Catalogador", "Usuario Normal" };
 	String estadoArray[] = { "Activo", "Desactivo" };
 	Vector<String> areasInteresArray;
-	
-	//Estilos.
-	//-------------------------------fuentes letras-------------------------
-	Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-	Font fontSubtitulos = new Font("Book Antiqua",Font.BOLD, 15);
-	Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-	
-	//-------------------------------Color letras----------------------------
-	Color colorTitulo = new Color(0,50,0);
-	Color colorSubtitulo= new Color(0,50,10);
-	Color colorLabels= new Color(0,60,0);	
+		
 	
 	
 	//Constructor para registrar usuario.
@@ -121,9 +112,9 @@ public class GuiRegistroModificar extends JScrollPane{
 
 		// Linea y titulo del panel.
 		TitledBorder borde;
-		borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), title);
-		borde.setTitleColor(colorTitulo);
-		borde.setTitleFont(fontTitulo);
+		borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Estilos.colorBorder), title);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 
 		// Inicializar Labels que apareceran en cualquier modo
@@ -194,9 +185,9 @@ public class GuiRegistroModificar extends JScrollPane{
 		//Vista Panel Areas de Interes
 		panelAreasInteres = new JPanel();
 		TitledBorder bordeAreaInteres;
-		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"Áreas de interés");
-		bordeAreaInteres.setTitleColor(colorSubtitulo);
-		bordeAreaInteres.setTitleFont(fontSubtitulos);
+		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Estilos.colorBorder),"Áreas de interés");
+		bordeAreaInteres.setTitleColor(Estilos.colorSubtitulo);
+		bordeAreaInteres.setTitleFont(Estilos.fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
 		panelAreasInteres.setBorder(bordeAreaInteres);
 		panelAreasInteres.setSize(450, 100);
@@ -460,8 +451,8 @@ public class GuiRegistroModificar extends JScrollPane{
 		//Crear spinner para la fecha de nacimiento.
 		SpinnerModel modeloFecha = new SpinnerDateModel();
 		campoFechaNacimiento = new JSpinner(modeloFecha);
-	    campoFechaNacimiento.setFont(fontLabels);
-	    campoFechaNacimiento.setForeground(colorLabels);
+	    campoFechaNacimiento.setFont(Estilos.fontLabels);
+	    campoFechaNacimiento.setForeground(Estilos.colorLabels);
 		JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
 		campoFechaNacimiento.setEditor(spinnerFecha);
 	    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
@@ -565,8 +556,8 @@ public class GuiRegistroModificar extends JScrollPane{
 		Date fechaNacimientoUsuario = usuarioModificar.getFechaNacimiento();
 		SpinnerModel modeloFecha = new SpinnerDateModel(fechaNacimientoUsuario,null,null,Calendar.DAY_OF_YEAR);
 		campoFechaNacimiento = new JSpinner(modeloFecha);
-	    campoFechaNacimiento.setFont(fontLabels);
-	    campoFechaNacimiento.setForeground(colorLabels);
+	    campoFechaNacimiento.setFont(Estilos.fontLabels);
+	    campoFechaNacimiento.setForeground(Estilos.colorLabels);
 		JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
 		campoFechaNacimiento.setEditor(spinnerFecha);
 	    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
@@ -577,8 +568,8 @@ public class GuiRegistroModificar extends JScrollPane{
 	// estilo de letra y color predifinidos.
 	private JLabel inicializarLabel(String titulo) {
 		JLabel label = new JLabel(titulo, JLabel.LEFT);
-		label.setForeground(colorLabels);
-		label.setFont(fontLabels);
+		label.setForeground(Estilos.colorLabels);
+		label.setFont(Estilos.fontLabels);
 		return label;
 	}
 

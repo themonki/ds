@@ -22,6 +22,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Utilidades.Estilos;
+
 import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorPalabraClave;
 public class GuiIngresarPalabraClave extends JFrame {
@@ -52,9 +54,9 @@ public class GuiIngresarPalabraClave extends JFrame {
 		JPanel panel2 = new JPanel(new GridLayout(1, 1, 10, 10));
 		JPanel panel3 = new JPanel();
 		// ----------------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel5.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel2.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel5.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
 		// ------------------------------------------------------------
 		iniciarLabels();
 		// ------------------------------------------
@@ -103,21 +105,19 @@ public class GuiIngresarPalabraClave extends JFrame {
 	}
 
 	private void iniciarLabels() {
-		Font font1 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
-		Color colorletras = new Color(0, 60, 0);
+
 
 		indicacion = new JLabel("Registrar Palabra Clave ", JLabel.CENTER);
 		nombre = new JLabel("Palabra Clave: ");
 		descripcion = new JLabel("Descripcion.", JLabel.CENTER);
 
-		indicacion.setFont(font3);
-		descripcion.setFont(font1);
-		nombre.setFont(font1);
+		indicacion.setFont(Estilos.fontSubtitulos);
+		descripcion.setFont(Estilos.fontLabels);
+		nombre.setFont(Estilos.fontLabels);
 
-		indicacion.setForeground(colorletras);
-		descripcion.setForeground(colorletras);
-		nombre.setForeground(colorletras);
+		indicacion.setForeground(Estilos.colorLabels);
+		descripcion.setForeground(Estilos.colorLabels);
+		nombre.setForeground(Estilos.colorLabels);
 	}
 	
 	private class ManejadorBoton implements ActionListener {

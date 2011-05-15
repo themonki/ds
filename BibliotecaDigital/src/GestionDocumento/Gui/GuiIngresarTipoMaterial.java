@@ -22,6 +22,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Utilidades.Estilos;
+
 import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
 
@@ -52,9 +54,9 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		panel4 = new JPanel(new BorderLayout());
 		panel = new JPanel();
 		// ----------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel5.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel2.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel5.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
+		panel.setBorder(BorderFactory.createLineBorder(Estilos.colorBorder));
 		// ------------------------------------------------------------
 		iniciarLabels();
 		iniciarCampos();
@@ -90,21 +92,18 @@ public class GuiIngresarTipoMaterial extends JFrame {
 	}
 
 	private void iniciarLabels() {
-		Font font1 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
-		Color colorletras = new Color(0, 60, 0);
 
 		indicacion = new JLabel("Registrar Tipo de Material", JLabel.CENTER);
 		nombre = new JLabel("Nombre Del Tipo :");
 		descripcion = new JLabel("Descripcion.", JLabel.CENTER);
 
-		indicacion.setFont(font3);
-		descripcion.setFont(font1);
-		nombre.setFont(font1);
+		indicacion.setFont(Estilos.fontSubtitulos);
+		descripcion.setFont(Estilos.fontLabels);
+		nombre.setFont(Estilos.fontLabels);
 
-		indicacion.setForeground(colorletras);
-		descripcion.setForeground(colorletras);
-		nombre.setForeground(colorletras);
+		indicacion.setForeground(Estilos.colorLabels);
+		descripcion.setForeground(Estilos.colorLabels);
+		nombre.setForeground(Estilos.colorLabels);
 
 	}
 
