@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="recursos/postgresql-9.0-801.jdbc3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/camilo/Escritorio/Univalle2011/desarrollo/ds/BibliotecaDigital/recursos/nimrodlf.jar"/>
+	<classpathentry kind="lib" path="recursos/nimrodlf.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
