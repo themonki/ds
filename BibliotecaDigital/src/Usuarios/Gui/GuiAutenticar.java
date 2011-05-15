@@ -29,6 +29,7 @@ import javax.swing.border.TitledBorder;
 
 import Principal.Controlador.ControladorVentanaPrincipal;
 import Principal.Gui.GuiPrincipal;
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiAutenticar extends JPanel
@@ -38,7 +39,7 @@ public class GuiAutenticar extends JPanel
 	private JLabel nombreUsuario, contrasena;
 	private JTextField campoNombre;
 	private JPasswordField campoContrasena;
-	private JButton botonAutenticar;
+	private Button botonAutenticar;
 	private GuiPrincipal gp;
 	
 	public GuiAutenticar(GuiPrincipal gp)
@@ -120,7 +121,7 @@ public class GuiAutenticar extends JPanel
 		campoContrasena = new JPasswordField(20);
 		campoContrasena.addKeyListener(new ManejadorJPasswordField());
 		
-		botonAutenticar = new JButton("Ingresar al Sistema");
+		botonAutenticar = new Button("Ingresar al Sistema");
 		botonAutenticar.addActionListener(new ManejadorBoton());
 
 	}

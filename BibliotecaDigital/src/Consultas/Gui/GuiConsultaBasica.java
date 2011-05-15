@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Utilidades.Button;
+
 public class GuiConsultaBasica extends JPanel
 {
 
@@ -18,7 +20,7 @@ public class GuiConsultaBasica extends JPanel
 	private JLabel etiquetaConsulta;
 	private JTextField campoConsulta;
 	private JPanel panelBotonesConsulta;
-	private JButton consultar;
+	private Button consultar;
 	private JButton limpiarCampoConsulta;
 	private Manejador manejador;
 	
@@ -39,7 +41,7 @@ public class GuiConsultaBasica extends JPanel
 		campoConsulta.setFont(fontLabels);
 		panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
 		
-		consultar = new JButton("Consultar");
+		consultar = new Button("Consultar");
 
 		consultar.addActionListener(manejador);
 		limpiarCampoConsulta = new JButton("Limpiar Campo");

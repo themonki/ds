@@ -22,6 +22,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 import Documento.Gui.GuiCatalogarModificar;
@@ -33,7 +34,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 	JTextField campoNombre;
 
 	JTextArea campoDescripcion;
-	JButton botonIngresarTipo;
+	Button botonIngresarTipo;
 
 	JPanel panel, panel1, panel2, panel3, panel4, panel5;
 	
@@ -113,7 +114,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		campoNombre.addKeyListener(manejador);
 		campoDescripcion = new JTextArea(5, 20);
 		campoDescripcion.addKeyListener(manejador);
-		botonIngresarTipo = new JButton("Registrar Tipo Material");
+		botonIngresarTipo = new Button("Registrar Tipo Material");
 		botonIngresarTipo.addActionListener(new ManejadorBoton());
 
 	}

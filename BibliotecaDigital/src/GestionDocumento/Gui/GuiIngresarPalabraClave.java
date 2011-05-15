@@ -22,6 +22,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 import Documento.Gui.GuiCatalogarModificar;
@@ -31,7 +32,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 	JLabel nombre, descripcion, indicacion;
 	JTextField campoNombre;
 	JTextArea campoDescripcion;
-	JButton botonIngresarPalabra;
+	Button botonIngresarPalabra;
 
 	JPanel panel1, panel, panel2, panel3;
 	
@@ -99,7 +100,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 		campoNombre.addKeyListener(manejador);
 		campoDescripcion = new JTextArea(5, 20);
 		campoDescripcion.addKeyListener(manejador);
-		botonIngresarPalabra = new JButton("Registrar Palabra");
+		botonIngresarPalabra = new Button("Registrar Palabra");
 		botonIngresarPalabra.addActionListener(new ManejadorBoton());
 
 	}

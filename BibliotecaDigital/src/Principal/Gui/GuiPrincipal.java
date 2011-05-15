@@ -27,6 +27,7 @@ import javax.swing.border.TitledBorder;
 import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiAutenticar;
 import Usuarios.Gui.GuiRegistroModificar;
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
@@ -290,13 +291,6 @@ public class GuiPrincipal extends JFrame
 			try
 			{				
 				NimRODTheme nt = new NimRODTheme("recursos/NimRODThemeFile2.theme");
-<<<<<<< HEAD
-			
-				
-	
-=======
-
->>>>>>> 2a2f245c0aac548cdaf1f9923b0a4a56ef5e2235
 				NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
 				NimRODLookAndFeel.setCurrentTheme(nt);
 				UIManager.setLookAndFeel( NimRODLF);

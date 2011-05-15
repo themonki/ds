@@ -37,6 +37,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 import Documento.Controlador.ControladorDocumento;
@@ -77,7 +78,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	private JTextField campoEditorial,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc,
 	campoSoftware, campoResolucion;
 	
-	private JButton botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
+	private Button botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
 	SpinnerModel model,model2;
@@ -494,12 +495,12 @@ public class GuiCatalogarModificar extends JScrollPane{
 	}
 
 	private void inicializarButton() {
-		botonCatalogar= new JButton("   FINALIZAR   "); 
-	    nuevaArea= new JButton("Crear Area");
-	    nuevoTipo= new JButton("Crear Tipo");
-	    nuevoAutor = new JButton("Crear Autor");
-	    nuevaPalabra= new JButton("Crear Palabra");
-	    examinarDoc= new JButton ("Examinar...");
+		botonCatalogar= new Button("   FINALIZAR   "); 
+	    nuevaArea= new Button("Crear Area");
+	    nuevoTipo= new Button("Crear Tipo");
+	    nuevoAutor = new Button("Crear Autor");
+	    nuevaPalabra= new Button("Crear Palabra");
+	    examinarDoc= new Button ("Examinar...");
 	    
 	    botonCatalogar.addActionListener(new ManejadorBoton());
 	    examinarDoc.addActionListener(new ManejadorBoton(this));

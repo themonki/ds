@@ -25,6 +25,7 @@ import Consultas.Gui.GuiConsultaBasica;
 import Documento.Gui.GuiCatalogarModificar;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiCatalogador extends JFrame
@@ -42,11 +43,11 @@ public class GuiCatalogador extends JFrame
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
-	private JButton volver; //incio
-	private JButton modificarUsuario;	
-	private JButton consultaAvanzada;
-	private JButton logout;
-	private JButton catalogar;
+	private Button volver; //incio
+	private Button modificarUsuario;	
+	private Button consultaAvanzada;
+	private Button logout;
+	private Button catalogar;
 
 	private JLabel estado;
 
@@ -123,17 +124,17 @@ public class GuiCatalogador extends JFrame
 
 		// Se instancian todos los elementos que pertenecen al panel de
 		// opciones de catalogador
-		panelOpcionesGenerales = new JPanel(new GridLayout(8,1,10,20));
+		panelOpcionesGenerales = new JPanel(new GridLayout(8,1,2,5));
 
-		volver = new JButton("Inicio");
+		volver = new Button("Inicio");
 		volver.addActionListener(manejador);
-		modificarUsuario = new JButton("Modificar Datos");
+		modificarUsuario = new Button("Modificar Datos");
 		modificarUsuario.addActionListener(manejador);			
-		consultaAvanzada = new JButton("Consulta Avanzada");
+		consultaAvanzada = new Button("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
-		catalogar = new JButton("Catalogar Documento");
+		catalogar = new Button("Catalogar Documento");
 		catalogar.addActionListener(manejador);
-		logout = new JButton("Salir");
+		logout = new Button("Salir");
 		logout.addActionListener(manejador);
 					
 

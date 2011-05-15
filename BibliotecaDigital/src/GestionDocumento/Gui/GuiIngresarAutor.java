@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 import Documento.Gui.GuiCatalogarModificar;
@@ -29,7 +30,7 @@ public class GuiIngresarAutor extends JFrame {
 	JLabel nombre, apellido, indicacion, correoElectronico, acronimo;
 	JTextField campoNombre, campoApellido, campoCorreoElectronico,
 			campoAcronimo;
-	JButton botonIngresarAutor;
+	Button botonIngresarAutor;
 	
 	GuiCatalogarModificar 	guiCatalogarModi;
 
@@ -118,7 +119,7 @@ public class GuiIngresarAutor extends JFrame {
 		campoCorreoElectronico.addKeyListener(manejador);
 		campoAcronimo = new JTextField(12);
 		campoAcronimo.addKeyListener(manejador);
-		botonIngresarAutor = new JButton("Ingresar Autor");
+		botonIngresarAutor = new Button("Ingresar Autor");
 		botonIngresarAutor.addActionListener(new ManejadorBoton());
 
 	}

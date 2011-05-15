@@ -28,6 +28,7 @@ import javax.swing.event.ListSelectionListener;
 
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiConsultarUsuarios extends JScrollPane{
@@ -36,7 +37,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 	private JLabel login, nombre;
 	private JTextField campoLogin, campoNombre;
 	private JScrollPane scrolResultados, scrolUsuario;
-	private JButton consultar;
+	private Button consultar;
 	private JPanel panelResultado, panelOpciones, panelPrincipal;
 	private String estadoResultado = "";
 	
@@ -60,7 +61,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		campoNombre= new JTextField(15);
 		
 		//Inicializar Boton
-		consultar = new JButton("CONSULTAR");
+		consultar = new Button("CONSULTAR");
 		consultar.addActionListener(new ManejadorBoton());
 		
 		panelOpciones = new JPanel(new GridBagLayout());

@@ -38,6 +38,7 @@ import GestionDocumento.Logica.AreaConocimiento;
 import Principal.Gui.GuiPrincipal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 
@@ -53,7 +54,7 @@ public class GuiRegistroModificar extends JScrollPane{
 	private JComboBox campoPreguntaSecreta, campoGenero, campoPerfil, campoEstado, campoAreasInteres, campoVinculoUnivalle, campoNivelEscolaridad;
 	private JSpinner campoFechaNacimiento;
 	private JPanel panelAreasInteres, panelPrincipal, panelAdministrador, panelDatos, panelBotones; 
-	private JButton registrar, modificar;
+	private Button registrar, modificar;
 	private JScrollPane scrollAreaInteres;
 	
 	private Usuario usuarioModificar; //usuario para construir o modificar, y enviarlo a la base de datos.
@@ -332,9 +333,9 @@ public class GuiRegistroModificar extends JScrollPane{
 		//panelDatos.setBorder(borde);
 						
 		//Inicializar Botones segun modo.
-		registrar = new JButton("REGISTRAR");
+		registrar = new Button("REGISTRAR");
 		registrar.addActionListener(new ManejadorBoton());
-		modificar = new JButton("MODIFICAR");
+		modificar = new Button("MODIFICAR");
 		modificar.addActionListener(new ManejadorBoton());
 		 
 		

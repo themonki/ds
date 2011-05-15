@@ -24,6 +24,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 import Documento.Gui.GuiCatalogarModificar;
@@ -36,7 +37,7 @@ public class GuiIngresarArea extends JFrame {
 	JTextField campoNombre;
 	JComboBox campoAreaPadre;
 	JTextArea campoDescripcionArea;
-	JButton botonIngresarArea;
+	Button botonIngresarArea;
 	GuiCatalogarModificar guiCatalogarModi;
 
 	
@@ -111,7 +112,7 @@ public class GuiIngresarArea extends JFrame {
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoDescripcionArea.addKeyListener(manejador);
 		campoAreaPadre = new JComboBox();
-		botonIngresarArea = new JButton("Registrar Area");
+		botonIngresarArea = new Button("Registrar Area");
 		botonIngresarArea.addActionListener(new ManejadorBoton());
 		
 		ControladorAreaConocimiento conArea = new ControladorAreaConocimiento();

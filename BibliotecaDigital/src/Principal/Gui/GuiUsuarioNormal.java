@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
+import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiUsuarioNormal extends JFrame
@@ -38,10 +39,10 @@ public class GuiUsuarioNormal extends JFrame
 
 	// Opciones basicas para un usuario normal
 	private JPanel panelOpcionesGenerales;		
-	private JButton volver; //incio
-	private JButton modificarUsuario;	
-	private JButton consultaAvanzada;
-	private JButton logout;
+	private Button volver; //incio
+	private Button modificarUsuario;	
+	private Button consultaAvanzada;
+	private Button logout;
 	
 	private  JLabel estado;
 
@@ -115,15 +116,15 @@ public class GuiUsuarioNormal extends JFrame
 
 		// Se instancian todos los elementos que pertenecen al panel del
 		// usuario normal
-		panelOpcionesGenerales = new JPanel(new GridLayout(8,1,10,20));
-
-		volver = new JButton("Inicio");
+		panelOpcionesGenerales = new JPanel(new GridLayout(8,1,2,5));
+		
+		volver = new Button("Inicio");
 		volver.addActionListener(manejador);
-		modificarUsuario = new JButton("Modificar Datos");
+		modificarUsuario = new Button("Modificar Datos");
 		modificarUsuario.addActionListener(manejador);			
-		consultaAvanzada = new JButton("Consulta Avanzada");
+		consultaAvanzada = new Button("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
-		logout = new JButton("Salir");
+		logout = new Button("Salir");
 		logout.addActionListener(manejador);
 					
 
