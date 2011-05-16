@@ -6,12 +6,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import Documento.Logica.Documento;
 
 public class GuiVistaDocumento extends JScrollPane{
 	
@@ -23,7 +26,8 @@ public class GuiVistaDocumento extends JScrollPane{
 	campoFechaPublicacion, campoFechaCreacion;
 	JButton botonDescargar;
 	
-	GuiVistaDocumento(){
+	GuiVistaDocumento(Documento doc){
+		
 		super();
 		tituloPrincipal=new JLabel("Titulo Principal");
 		tituloSecundario=new JLabel("Titulo Secundario o Traduccion");
@@ -82,6 +86,7 @@ public class GuiVistaDocumento extends JScrollPane{
 		restriccionEtiquetas.gridy=posEtiquetas;		
 		panel.add(tituloPrincipal, restriccionEtiquetas);
 		panel.add(campoTituloPrincipal, restriccionCampo);
+		
 		posEtiquetas++;
 		restriccionEtiquetas.gridy=posEtiquetas;
 		restriccionCampo.gridy=posEtiquetas;
@@ -164,7 +169,8 @@ public class GuiVistaDocumento extends JScrollPane{
 	public static void main (String []args){
 		JFrame ventana = new JFrame();
 		Container a = ventana.getContentPane();
-		a.add(new GuiVistaDocumento());
+		
+		a.add(new GuiVistaDocumento(new Documento()));
 		ventana.setSize(600, 800);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);

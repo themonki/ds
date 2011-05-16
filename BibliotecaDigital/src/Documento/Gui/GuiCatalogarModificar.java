@@ -95,7 +95,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 	ControladorDocumento controladorDocumento;
 	//-------------Objetos de la base de datos
 	Documento doc;
+	private String loginModificador;
 	
+
 	public GuiCatalogarModificar(String loginIngreso) {
 		
 		//--------------INICIALIZAR CONTROLADORES--------------------------------
@@ -104,8 +106,39 @@ public class GuiCatalogarModificar extends JScrollPane{
 		controladorpalabrasClave = new ControladorPalabraClave();
 		controladorTipoMaterial = new ControladorTipoMaterial() ;
 		controladorDocumento= new ControladorDocumento();
-		loginCatalogador = loginIngreso;
+		this.loginCatalogador = loginIngreso;
 		initComponents();
+	
+	}
+
+	public GuiCatalogarModificar(String loginIngreso,Documento doc) {
+		
+		//--------------INICIALIZAR CONTROLADORES--------------------------------
+		controladorAreas = new ControladorAreaConocimiento();
+	    controladorAutor= new ControladorAutor();
+		controladorpalabrasClave = new ControladorPalabraClave();
+		controladorTipoMaterial = new ControladorTipoMaterial() ;
+		controladorDocumento= new ControladorDocumento();
+		this.loginModificador = loginIngreso;
+		this.doc=doc;
+		initComponents();
+		initDocumentInfo();
+	}
+
+	private void initDocumentInfo() {
+
+		campoTituloSecundario.setText(""+doc.getTitulo_secundario());    
+		campoTituloPpal.setText(""+doc.getTituloppal());   
+		campoEditorial.setText(""+doc.getEditorial());
+		campoDescripcion.setText(""+doc.getDescripcion());
+		campoResolucion.setText(""+doc.getResolucion()); 
+		campoSoftware.setText(""+doc.getSoftware_recomentado());
+		campoEnlaceDoc.setText(""+doc.getUrl());
+
+		// NO he mirado que pasa con los null por esos las comillas 
+		// aunque lso null se guarda como "" 
+		
+		
 	}
 
 	public void initComponents(){
@@ -189,11 +222,6 @@ public class GuiCatalogarModificar extends JScrollPane{
 			    panelFecha2 = new JPanel(new BorderLayout());
 			    panelFecha2.add(spinner2, BorderLayout.CENTER);
 			   
-			    
-
-	    
-		
-		
 	    //-----------------------------ponerBordeaPanel----------	
 		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel4.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
