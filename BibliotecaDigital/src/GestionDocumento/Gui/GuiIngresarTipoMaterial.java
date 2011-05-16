@@ -44,12 +44,12 @@ public class GuiIngresarTipoMaterial extends JFrame {
 	GuiCatalogarModificar guicatalogarModi;
 
 	public GuiIngresarTipoMaterial() {
-		super(":::Ingresar Tipo Material:::");
+		super("::Ingresar Tipo Material::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 	}
 	public GuiIngresarTipoMaterial(GuiCatalogarModificar guicatalogarModi) {
-		super(":::Ingresar Tipo Material:::");
+		super("::Ingresar Tipo Material::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		this.guicatalogarModi=guicatalogarModi;
 		initComponents();
@@ -112,7 +112,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 
 	private void iniciarLabels() {
 
-		nombre = new JLabel(" Nombre Del Tipo :");
+		nombre = new JLabel(" Nombre Del Tipo: ");
 		descripcion = new JLabel(" Descripcion.", JLabel.CENTER);
 
 		descripcion.setFont(Estilos.fontLabels);
