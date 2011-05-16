@@ -625,6 +625,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    campoAreas.addActionListener(new ManejadorComboBox());
 	    	    
 	}
+
 	private class ManejadorBoton implements ActionListener 
 	{
 		private GuiCatalogarModificar p;
@@ -635,11 +636,11 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		public void actionPerformed(ActionEvent event) 
 		{
-			if(event.getSource()==botonCatalogar){			
-				doc = new Documento();
+			if(event.getSource()==botonCatalogar){
+				doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSoftware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
 				doc.setTituloppal(campoTituloPpal.getText());
 				doc.setTitulo_secundario(campoTituloSecundario.getText());
-				doc.setIdioma((String) campoIdioma.getSelectedItem());
+				doc.setIdioma((String) campoIdioma.getSelectedItem());				
 				doc.setTipoMaterial((String)campoTipoMaterial.getSelectedItem());
 				doc.setEditorial(campoEditorial.getText());
 				doc.setFormato((String) campoFormato.getSelectedItem());
@@ -647,27 +648,27 @@ public class GuiCatalogarModificar extends JScrollPane{
 				doc.setDescripcion(campoDescripcion.getText());
 				doc.setResolucion(campoResolucion.getText());
 				doc.setDerechosDeAutor(campoDerechosAutor.getSelectedItem().toString());
-				//---------------------------------------
-				// tomar fechas de splinner
+				//--------------------------------------
+				//tomar fechas de splinner 
 				fecha=  editor.getModel().getDate();
-				SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-				String fes= sdf.format(fecha);
+				SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");  
+				String fes= sdf.format(fecha);			 
 				fecha2=  editor.getModel().getDate();
-				SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");  
 				String fes2= sdf2.format(fecha2);
 				doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
-				java.util.Date fechaactual = new Date();// fecha actual
-				SimpleDateFormat sdf3= new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date fechaactual = new Date();// fecha actual 
+				SimpleDateFormat sdf3= new SimpleDateFormat("yyyy-MM-dd");  
 				String fes3= sdf3.format(fechaactual);
 				doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
 				doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
 				doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
-				doc.setUrl(campoEnlaceDoc.getText());//se manda el enlace origen
+				doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
 				if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
-				{
+			 	{
 					JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");
-					limpiarCampos();
-				}				
+			 		limpiarCampos();
+			 	}			
 			}//if getsource
 			
 			if(event.getSource()==examinarDoc){
@@ -955,7 +956,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 	        areasActualVecr.removeAllElements();
 	        autoresActualVector.removeAllElements();
 	        AutorIdActualVector.removeAllElements();
-	        AreasIdActualVector.removeAllElements();	        
+	        AreasIdActualVector.removeAllElements();
+	        
 		}
 		
 }
