@@ -176,7 +176,7 @@ public class GuiCatalogador extends JFrame
 		//contenedor.add(new JPanel(), BorderLayout.WEST);
 	
 		setSize(785, 500);
-		//centrar en la pantalla
+		//centrar en la pantalla 
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 		
