@@ -36,6 +36,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
+import javax.swing.border.TitledBorder;
 
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -115,8 +116,13 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		//super.setTitle("Catalogar Documento");
 		//super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
-		setBorder(BorderFactory.createTitledBorder(BorderFactory
-			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Catalogar Documento"));
+		TitledBorder borde;
+		borde = BorderFactory.createTitledBorder(BorderFactory
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Catalogar Documento");
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleJustification(TitledBorder.LEFT);
+		setBorder(borde);
 		
 		
 		//indicacion = new JLabel("   Catalogar Documento");

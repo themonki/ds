@@ -117,6 +117,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
+		setBorder(borde);
 
 		// Inicializar Labels que apareceran en cualquier modo
 		
@@ -359,7 +360,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		panelPrincipal.add(panelDatos,BorderLayout.NORTH);
 		panelPrincipal.add(scrollAreaInteres,BorderLayout.CENTER);
 		panelPrincipal.add(panelBotones,BorderLayout.SOUTH);
-		panelPrincipal.setBorder(borde);
+		//panelPrincipal.setBorder(borde);
 		
 		this.getViewport().add(panelPrincipal);
 		

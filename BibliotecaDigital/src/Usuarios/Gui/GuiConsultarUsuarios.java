@@ -103,8 +103,9 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		bordePrincipal.setTitleColor(Estilos.colorSubtitulo);
 		bordePrincipal.setTitleFont(Estilos.fontSubtitulos);
 		bordePrincipal.setTitleJustification(TitledBorder.LEFT);
+		setBorder(bordePrincipal);
 		panelPrincipal.setLayout(new BorderLayout());
-		panelPrincipal.setBorder(bordePrincipal);
+		//panelPrincipal.setBorder(bordePrincipal);
 		
 		
 		panelPrincipal.add(panelOpciones, BorderLayout.NORTH);
