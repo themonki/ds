@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,10 +38,12 @@ public class GuiIngresarAutor extends JFrame {
 
 	public GuiIngresarAutor() {
 		super(":::Ingresar Autor:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 	}
 	public GuiIngresarAutor(GuiCatalogarModificar 	guiCatalogarModi ) {
 		super(":::Ingresar Autor:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		this.guiCatalogarModi= guiCatalogarModi;
 	}

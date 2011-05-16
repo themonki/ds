@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -44,10 +45,12 @@ public class GuiIngresarTipoMaterial extends JFrame {
 
 	public GuiIngresarTipoMaterial() {
 		super(":::Ingresar Tipo Material:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 	}
 	public GuiIngresarTipoMaterial(GuiCatalogarModificar guicatalogarModi) {
 		super(":::Ingresar Tipo Material:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		this.guicatalogarModi=guicatalogarModi;
 		initComponents();
 	}

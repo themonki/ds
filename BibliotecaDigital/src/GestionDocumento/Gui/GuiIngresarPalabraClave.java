@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,11 +43,13 @@ public class GuiIngresarPalabraClave extends JFrame {
 
 	public GuiIngresarPalabraClave() {
 		super(":::Ingresar Palabra Clave:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 	}
 	
 	public GuiIngresarPalabraClave(GuiCatalogarModificar guicatalogarModi) {
 		super(":::Ingresar Palabra Clave:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		this.guicatalogarModi=guicatalogarModi;
 	}

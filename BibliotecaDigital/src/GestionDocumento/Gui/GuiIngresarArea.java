@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -47,11 +48,13 @@ public class GuiIngresarArea extends JFrame {
 
 	public GuiIngresarArea() {
 		super(":::Ingresar Area:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		
 	}
 	public GuiIngresarArea(GuiCatalogarModificar guiCatalogarModi) {
 		super(":::Ingresar Area:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		this.guiCatalogarModi=guiCatalogarModi;
 		
