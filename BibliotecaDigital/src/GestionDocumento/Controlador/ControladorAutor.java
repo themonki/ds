@@ -15,6 +15,12 @@ public class ControladorAutor {
 
 	public int insertarAutor(String nombre, String apellido, String acronimo,
 			String correoElectronico) {
+		
+		nombre.toLowerCase();
+		apellido.toLowerCase();
+		acronimo.toLowerCase();
+		correoElectronico.toLowerCase();
+		
 		Autor autor = new Autor(nombre, apellido, acronimo, correoElectronico,
 				"");
 		DaoAutor daoAutor = new DaoAutor();
@@ -25,6 +31,7 @@ public class ControladorAutor {
 	}
 
 	public Autor obtenerAutor(String acronimo) {
+		acronimo.toLowerCase();
 		DaoAutor daoAutor = new DaoAutor();
 		Autor autor = daoAutor.consultarAutor(acronimo);
 		daoAutor = null;

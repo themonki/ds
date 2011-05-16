@@ -16,6 +16,8 @@ public class ControladorUsuario {
 			String nivel, String vinculo, String pregunta, String respuesta,
 			String genero, String registro, String nacimiento, String tipo,
 			boolean estado) {
+		
+		
 		Usuario u = new Usuario();
 
 		u.setLogin(login);
@@ -47,6 +49,13 @@ public class ControladorUsuario {
 	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo un objeto usuario
 	public int insertarUsuario(Usuario u)
 	{
+		u.setLogin(u.getLogin().toLowerCase());
+		u.setNombre1(u.getNombre1().toLowerCase());
+		u.setNombre2(u.getNombre2().toLowerCase());
+		u.setApellido1(u.getApellido1().toLowerCase());
+		u.setApellido2(u.getApellido2().toLowerCase());
+		u.setEmail(u.getEmail().toLowerCase());
+		
 		DaoUsuario daoUs = new DaoUsuario();
 		int value = 0;
 		if(verificarDatosInsertar(u)){
@@ -193,6 +202,8 @@ public class ControladorUsuario {
 			String nivel, String vinculo, String pregunta, String respuesta,
 			String genero, String registro, String nacimiento, String tipo,
 			boolean estado) {
+		
+		
 		Usuario u = new Usuario();
 
 		u.setLogin(login);
@@ -222,6 +233,14 @@ public class ControladorUsuario {
 	}
 	//modifica los datos en la tabla Usuario recibiendo un objeto Usuario
 	public int modificarUsuario(Usuario u) {
+		
+		u.setLogin(u.getLogin().toLowerCase());
+		u.setNombre1(u.getNombre1().toLowerCase());
+		u.setNombre2(u.getNombre2().toLowerCase());
+		u.setApellido1(u.getApellido1().toLowerCase());
+		u.setApellido2(u.getApellido2().toLowerCase());
+		u.setEmail(u.getEmail().toLowerCase());
+
 		DaoUsuario daoUs = new DaoUsuario();
 		int value = 0;
 		if(verificarDatosModificar(u)){
@@ -281,6 +300,10 @@ public class ControladorUsuario {
 	/*metodo que retorna un vector con todos los usuarios que concidan con alguno de los atributos*/
 	public Vector<Usuario> consultarUsuarios(Vector<String> atributo, Vector<String> valor)
 	{
+		for (int i=0;i<valor.size();i++){
+			valor.elementAt(i).toLowerCase();
+		}
+		
 		DaoUsuario daoUsuario = new DaoUsuario();
 		Vector<Usuario> usuarios = daoUsuario.consultarUsuarios(atributo,valor);
 		daoUsuario = null;
@@ -290,6 +313,7 @@ public class ControladorUsuario {
 	/*metodo que retorma un usuario que concida con el login*/
 	public Usuario consultarUsuario(String login)
 	 {
+		login.toLowerCase();
 	  DaoUsuario daoUsuario = new DaoUsuario();
 	  Usuario usuario = daoUsuario.consultarUsuario(login);
 	  daoUsuario = null;
