@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import Utilidades.FachadaBD;
 

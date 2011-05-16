@@ -2,9 +2,7 @@ package GestionDocumento.Controlador;
 
 import java.util.Vector;
 
-import GestionDocumento.Dao.DaoAreaConocimiento;
 import GestionDocumento.Dao.DaoPalabraClave;
-import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.PalabraClave;
 
 ;

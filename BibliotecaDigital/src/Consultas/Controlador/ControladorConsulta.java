@@ -1,8 +1,10 @@
 package Consultas.Controlador;
 
-import Documento.Logica.*;
-import Documento.Controlador.*;
-import GestionDocumento.Controlador.*;
+import Documento.Controlador.ControladorDocumento;
+import Documento.Logica.Documento;
+import GestionDocumento.Controlador.ControladorAreaConocimiento;
+import GestionDocumento.Controlador.ControladorAutor;
+import GestionDocumento.Controlador.ControladorPalabraClave;
 
 public class ControladorConsulta {
 //metodo que llama a otros controladores para obtener todos los datos de un documento dado su llave
