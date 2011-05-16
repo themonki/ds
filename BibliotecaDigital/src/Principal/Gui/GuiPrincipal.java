@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -75,7 +77,7 @@ public class GuiPrincipal extends JFrame
 		{
 			
 			super("::: Sistema de Biblioteca Digital :::");	
-			setIconImage(new ImageIcon("recursos/library.png").getImage());
+			setIconImage(new ImageIcon("recursos/bd.png").getImage());
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			manejador = new Manejador();	
 			
@@ -124,8 +126,8 @@ public class GuiPrincipal extends JFrame
 
 			// Se instancian todos los elementos que pertenecen al panel de
 			//opciones
-			panelOpcionesGenerales = new JPanel(new GridLayout(8,1,2,5));
-
+			panelOpcionesGenerales = new JPanel(new GridBagLayout());
+			//GridLayout(8,1,2,5)
 			volver = new Button("Inicio");
 			volver.setIcon(new ImageIcon("recursos/iconos/home.png"));
 			volver.addActionListener(manejador);
@@ -139,13 +141,22 @@ public class GuiPrincipal extends JFrame
 			consultaAvanzada.addActionListener(manejador);			
 						
 			
-			volver.setBackground(Color.RED);
+			
 			//crearUsuario.setPreferredSize(new Dimension(10, 10));
 			// Se agregan los elementos al panel de opciones del administrador.
-			panelOpcionesGenerales.add(volver);
-			panelOpcionesGenerales.add(crearUsuario);
-			panelOpcionesGenerales.add(consultaAvanzada);
-			panelOpcionesGenerales.add(ingresarSistema);			
+			GridBagConstraints restricciones = new GridBagConstraints();
+			restricciones.fill = GridBagConstraints.HORIZONTAL;
+			restricciones.gridx=1;
+			restricciones.gridy=1;
+			panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/LOGO3D.png")),restricciones);
+			restricciones.gridy=2;
+			panelOpcionesGenerales.add(volver, restricciones);
+			restricciones.gridy=3;
+			panelOpcionesGenerales.add(crearUsuario, restricciones);
+			restricciones.gridy=4;
+			panelOpcionesGenerales.add(consultaAvanzada, restricciones);
+			restricciones.gridy=5;
+			panelOpcionesGenerales.add(ingresarSistema, restricciones);			
 			
 			JPanel panelconOpciones2= new JPanel();
 			panelconOpciones2.add(panelOpcionesGenerales);

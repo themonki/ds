@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,7 +70,7 @@ public class GuiUsuarioNormal extends JFrame
 	public GuiUsuarioNormal(Usuario usuario)
 	{
 		super("::: Sistema de Biblioteca Digital :::");	
-		setIconImage(new ImageIcon("recursos/library.png").getImage());
+		setIconImage(new ImageIcon("recursos/bd.png").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 
@@ -118,7 +120,8 @@ public class GuiUsuarioNormal extends JFrame
 
 		// Se instancian todos los elementos que pertenecen al panel del
 		// usuario normal
-		panelOpcionesGenerales = new JPanel(new GridLayout(8,1,2,5));
+		panelOpcionesGenerales = new JPanel(new GridBagLayout());
+		
 		
 		volver = new Button("Inicio");
 		volver.setIcon(new ImageIcon("recursos/iconos/home.png"));
@@ -134,10 +137,19 @@ public class GuiUsuarioNormal extends JFrame
 					
 
 		// Se agregan los elementos al panel de opciones del usuario normal.
-		panelOpcionesGenerales.add(volver);
-		panelOpcionesGenerales.add(modificarUsuario);
-		panelOpcionesGenerales.add(consultaAvanzada);
-		panelOpcionesGenerales.add(logout);
+		GridBagConstraints restricciones = new GridBagConstraints();
+		restricciones.fill = GridBagConstraints.HORIZONTAL;
+		restricciones.gridx=1;
+		restricciones.gridy=1;
+		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/LOGO3D.png")),restricciones);
+		restricciones.gridy=2;
+		panelOpcionesGenerales.add(volver, restricciones);
+		restricciones.gridy=3;
+		panelOpcionesGenerales.add(modificarUsuario, restricciones);
+		restricciones.gridy=4;
+		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
+		restricciones.gridy=5;
+		panelOpcionesGenerales.add(logout, restricciones);
 		
 		//panelOpcionesGenerales.setBackground(new Color(250, 230 , 250));
 		JPanel panelconOpciones2= new JPanel(); //evita que los botones crescan si la ventana es redimensionada
