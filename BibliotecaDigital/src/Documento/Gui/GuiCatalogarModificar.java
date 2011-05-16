@@ -4,7 +4,6 @@ package Documento.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -23,7 +22,6 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -38,9 +36,6 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 import javax.swing.border.TitledBorder;
 
-import Utilidades.Button;
-import Utilidades.Estilos;
-
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -51,6 +46,8 @@ import GestionDocumento.Gui.GuiIngresarArea;
 import GestionDocumento.Gui.GuiIngresarAutor;
 import GestionDocumento.Gui.GuiIngresarPalabraClave;
 import GestionDocumento.Gui.GuiIngresarTipoMaterial;
+import Utilidades.Button;
+import Utilidades.Estilos;
 
 
 
@@ -535,7 +532,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    examinarDoc= new Button ("Examinar...");
 	    
 	    botonCatalogar.addActionListener(new ManejadorBoton());
-	    examinarDoc.addActionListener(new ManejadorBoton(this));
+	    examinarDoc.addActionListener(new ManejadorBoton());
 	    nuevaArea.addActionListener(new ManejadorBoton());
 	    nuevoTipo.addActionListener(new ManejadorBoton());
 	    nuevoAutor.addActionListener(new ManejadorBoton());
@@ -654,12 +651,6 @@ public class GuiCatalogarModificar extends JScrollPane{
 
 	private class ManejadorBoton implements ActionListener 
 	{
-		private GuiCatalogarModificar p;
-		public ManejadorBoton(GuiCatalogarModificar p){
-			this.p = p;			
-		}
-		public ManejadorBoton(){}
-		
 		public void actionPerformed(ActionEvent event) 
 		{
 			if(event.getSource()==botonCatalogar){

@@ -86,6 +86,11 @@ public class ControladorAreaConocimiento
 		return vectorTodasAreas;
 
 	}
+//metodo que devuelve las areas de conocimiento de un documento dado su llave
+	public Vector <AreaConocimiento> obtenerAreasDocumento(String id_documento){
+		DaoAreaConocimiento daoArea = new DaoAreaConocimiento();
+		return daoArea.consultarAreasDocumento(id_documento);
+	}
 
 	/* main para prueba OK */
 	/*
