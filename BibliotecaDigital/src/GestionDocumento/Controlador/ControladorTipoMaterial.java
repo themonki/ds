@@ -11,6 +11,10 @@ import GestionDocumento.Logica.TipoMaterial;
 public class ControladorTipoMaterial {
 
 	public int insertarTipoMaterial(String nombre, String descripcion) {
+		
+		nombre.toLowerCase();
+		descripcion.toLowerCase();
+		
 		TipoMaterial tipoMaterial = new TipoMaterial(nombre, descripcion);
 		DaoTipoMaterial daoTipoMaterial = new DaoTipoMaterial();
 		int numFilas = daoTipoMaterial.guardarTipoMaterial(tipoMaterial);
@@ -20,6 +24,7 @@ public class ControladorTipoMaterial {
 	}
 
 	public TipoMaterial obtenerTipoMaterial(String nombre) {
+		nombre.toLowerCase();
 		DaoTipoMaterial daoTipoMaterial = new DaoTipoMaterial();
 		TipoMaterial tipoMaterial = daoTipoMaterial.consultarTipoMaterial(nombre);
 		daoTipoMaterial = null;

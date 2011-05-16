@@ -10,6 +10,10 @@ import GestionDocumento.Logica.PalabraClave;
 public class ControladorPalabraClave {
 
 	public int insertarPalabraClave(String nombre, String descripcion) {
+		
+		nombre.toLowerCase();
+		descripcion.toLowerCase();
+		
 		PalabraClave palabraClave = new PalabraClave(nombre, descripcion);
 		DaoPalabraClave daoPalabraClave = new DaoPalabraClave();
 		int numFilas = daoPalabraClave.guardarPalabraClave(palabraClave);
@@ -19,6 +23,7 @@ public class ControladorPalabraClave {
 	}
 
 	public PalabraClave obtenerPalabraClave(String nombre) {
+		nombre.toLowerCase();
 		DaoPalabraClave daoPalabraClave = new DaoPalabraClave();
 		PalabraClave palabraClave = daoPalabraClave
 				.consultarPalabraClave(nombre);

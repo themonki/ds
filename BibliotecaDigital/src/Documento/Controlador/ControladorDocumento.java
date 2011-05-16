@@ -25,6 +25,11 @@ public class ControladorDocumento {
 			String editorial, String formato, String titulo_principal,
 			String titulo_secundario, String link, String creacion,
 			String publicacion, String catalogacion, String login) {
+		
+		
+		//se supone que login ya debe llegar con lowercase, y no hace falta en id, creacion, publicacion ni
+		//catalogacion, y no se puede en link.
+		
 		Documento d = new Documento();
 		int value;
 		d.setId_doc(id);
@@ -55,6 +60,24 @@ public class ControladorDocumento {
 	}
 
 	public int insertarDocumento(Documento d) {
+		
+		d.setIdioma(d.getIdioma().toLowerCase());
+		d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
+		d.setDescripcion(d.getDescripcion().toLowerCase());
+		d.setSoftware_recomentado(d.getSoftware_recomentado().toLowerCase());
+		d.setResolucion(d.getResolucion().toLowerCase());
+		d.setEditorial(d.getEditorial().toLowerCase());
+		d.setFormato(d.getFormato().toLowerCase());
+		d.setTituloppal(d.getTituloppal().toLowerCase());
+		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
+		
+		if(d.getResolucion().equals("")){
+			d.setResolucion("sin resolucion");
+		}
+		
+		if(d.getTitulo_secundario().equals("")){
+			d.setTitulo_secundario("sin titulo secundario");
+		}
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value = daoDoc.guardarDocumento(d);
 
@@ -67,9 +90,12 @@ public class ControladorDocumento {
 			String descripcion, String software, String resolucion,
 			String editorial, String formato, String titulo_principal,
 			String titulo_secundario, String link, String creacion,
-			String publicacion, String catalogacion, String login) {
+			String publicacion, String catalogacion, String login) {		
+		
+		
 		Documento d = new Documento();
 
+		
 		d.setId_doc(id);
 		d.setIdioma(idioma);
 		d.setDerechosDeAutor(derechos);
@@ -99,6 +125,17 @@ public class ControladorDocumento {
 	// /////////
 
 	public int modificarDocumento(Documento d) {
+		
+		d.setIdioma(d.getIdioma().toLowerCase());
+		d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
+		d.setDescripcion(d.getDescripcion().toLowerCase());
+		d.setSoftware_recomentado(d.getSoftware_recomentado().toLowerCase());
+		d.setResolucion(d.getResolucion().toLowerCase());
+		d.setEditorial(d.getEditorial().toLowerCase());
+		d.setFormato(d.getFormato().toLowerCase());
+		d.setTituloppal(d.getTituloppal().toLowerCase());
+		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
+		
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value = daoDoc.modificarDocumento(d);
 		System.out.println("Se modifico el documento");
@@ -142,6 +179,7 @@ public class ControladorDocumento {
 		value = daoDoc.guardarDocumentoPalabrasClave(d.getId_doc(), palabras_ids);
 		return value;
 	}
+	
 	public int insertarDocumentoPalabrasClave(Vector<String> palabras_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
@@ -163,6 +201,7 @@ public class ControladorDocumento {
 		value = daoDoc.guardarDocumentoAutores(d.getId_doc(), autores_ids);
 		return value;
 	}
+	
 	public int insertarDocumentoAutores(Vector<String> autores_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
