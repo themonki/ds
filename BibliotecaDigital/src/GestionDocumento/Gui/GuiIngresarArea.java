@@ -103,14 +103,11 @@ public class GuiIngresarArea extends JFrame {
 		panel4.add(descripcionArea, BorderLayout.NORTH);
 		panel4.add(panel5, BorderLayout.CENTER);
 		panel4.add(panel, BorderLayout.SOUTH);
-	
-		setLayout(new GridBagLayout());
-
-	
+		
 		panelPrincipal.add(panel3, BorderLayout.CENTER);
 		panelPrincipal.add(panel4, BorderLayout.SOUTH);
 		add(panelPrincipal);
-		setSize(640, 340);
+		setSize(820, 340);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -158,47 +155,43 @@ public class GuiIngresarArea extends JFrame {
 	}
 	
 	private class ManejadorBoton implements ActionListener {
-		
+
 		public void actionPerformed(ActionEvent e) {
-			
+
 			AreaConocimiento area = new AreaConocimiento();
-			
-			if(validarDatos()){
-			
-			ControladorAreaConocimiento controlador = new ControladorAreaConocimiento();
-			String nombre = campoNombre.getText();
-			String descripcion = campoDescripcionArea.getText();
-			int padreSeleccionado = campoAreaPadre.getSelectedIndex();
-			String padre, contador = ""+campoAreaPadre.getItemCount();;// este coso esta raro por que dependes del orden .
-			System.out.println(padreSeleccionado);
-			if(padreSeleccionado == 0){
-				padre = "";
+
+			if (validarDatos()) {
+
+				ControladorAreaConocimiento controlador = new ControladorAreaConocimiento();
+				String nombre = campoNombre.getText();
+				String descripcion = campoDescripcionArea.getText();
+				int padreSeleccionado = campoAreaPadre.getSelectedIndex();
+				String padre, contador = "" + campoAreaPadre.getItemCount();
+				;// este coso esta raro por que dependes del orden .
+				System.out.println(padreSeleccionado);
+				if (padreSeleccionado == 0) {
+					padre = "";
+				} else {
+					padre = "" + padreSeleccionado;
 				}
-			else{
-				padre= ""+padreSeleccionado;
-			}
-			
 
-			if(controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre)>=1)
-			{
-			guiCatalogarModi.vectoresParaComboBox();
-			guiCatalogarModi.actualizarAreas();
-			JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
+				if (controlador.insertarAreaConocimiento(contador, nombre,
+						descripcion, padre) >= 1) {
+					guiCatalogarModi.vectoresParaComboBox();
+					guiCatalogarModi.actualizarAreas();
+					JOptionPane.showMessageDialog(null,
+							"Se ingreso el Area de Conocimiento correctamente");
+					dispose();
 
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"El Area de Conocimiento ya existe", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				}
 			}
 
-			
-			dispose();
-				guiCatalogarModi.vectoresParaComboBox();
-				guiCatalogarModi.actualizarAreas();
-				JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
-				dispose();
-			}else{
-				JOptionPane.showMessageDialog(null, "El Area de Conocimiento ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
-			}	
-			
-			}
-		}		
+		}
+	}
 	
 	
 	private class ManejadorJTextField implements KeyListener{

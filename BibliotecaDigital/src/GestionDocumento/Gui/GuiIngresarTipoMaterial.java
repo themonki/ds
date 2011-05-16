@@ -101,7 +101,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		panelPrincipal.add(panel3, BorderLayout.CENTER);
 		panelPrincipal.add(panel4, BorderLayout.SOUTH);
 		add(panelPrincipal);
-		setSize(400, 300);
+		setSize(430, 300);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//centrar en la pantalla

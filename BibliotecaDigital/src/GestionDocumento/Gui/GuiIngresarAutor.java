@@ -116,8 +116,8 @@ public class GuiIngresarAutor extends JFrame {
 		panelPrincipal.add(panel, BorderLayout.SOUTH);
 
 		add(panelPrincipal);
-		setSize(490, 280);
-		//setResizable(false);
+		setSize(500, 280);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
