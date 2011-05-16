@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.sql.Date;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import Documento.Dao.DaoDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
@@ -104,13 +106,14 @@ public class ControladorDocumento {
 		return value;
 	}
 
-	// ////
+//**********INSERTAR LAS AREAS, AUTORES Y PALABRASCLAVE*************************************************
+//INSERTANDO AREAS CONOCIMIENTO
 	public int insertarDocumentoAreas(Documento d) {
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector <AreaConocimiento> vac = d.getAreas();
 		Vector <String> area_ids = new Vector<String>();
 		int value, cantidad = vac.size();
-		if(cantidad<1){return -1;}
+		if(cantidad<1){return -1;}//sino ahi nada no se inserta
 		for(int i =0; i < cantidad; i++ ){
 			
 			area_ids.add(vac.get(i).getIdArea());
@@ -118,22 +121,20 @@ public class ControladorDocumento {
 		value = daoDoc.guardarDocumentoAreas(d.getId_doc(), area_ids);
 		return value;
 	}
-	// /////
-	
 	public int insertarDocumentoAreas(Vector<String> area_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
-		int value=-1;
-		if(area_ids.size()<1){return -1;}
+		int value;
+		if(area_ids.size()<1){return -1;}//sino ahi nada no se inserta
 		value = daoDoc.guardarDocumentoAreas(id_doc, area_ids);		
 		return value;
 	}
-	
+//INSERTANDO PALABRAS CLAVE	
 	public int insertarDocumentoPalabrasClave(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector <PalabraClave> vac = d.getPalabrasClave();
 		Vector <String> palabras_ids = new Vector<String>();
 		int value, cantidad = vac.size();
-		if(cantidad<1){return -1;}
+		if(cantidad<1){return -1;}//sino ahi nada no se inserta
 		for(int i =0; i < cantidad; i++ ){
 			
 			palabras_ids.add(vac.get(i).getNombre());
@@ -144,16 +145,17 @@ public class ControladorDocumento {
 	public int insertarDocumentoPalabrasClave(Vector<String> palabras_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
-		if(palabras_ids.size()<1){return -1;}
+		if(palabras_ids.size()<1){return -1;}//sino ahi nada no se inserta
 		value = daoDoc.guardarDocumentoPalabrasClave(id_doc, palabras_ids);
 		return value;
 	}
+//INSERTANDO AUTORES	
 	public int insertarDocumentoAutores(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector <Autor> vac = d.getAutores();
 		Vector <String> autores_ids = new Vector<String>();
 		int value, cantidad = vac.size();
-		if(cantidad<1){return -1;}
+		if(cantidad<1){return -1;}//sino ahi nada no se inserta
 		for(int i =0; i < cantidad; i++ ){
 			
 			autores_ids.add(vac.get(i).getId());
@@ -164,40 +166,65 @@ public class ControladorDocumento {
 	public int insertarDocumentoAutores(Vector<String> autores_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
-		if(autores_ids.size()<1){return -1;}
+		if(autores_ids.size()<1){return -1;}//sino ahi nada no se inserta
 		value = daoDoc.guardarDocumentoAutores(id_doc, autores_ids);
 		return value;
 	}
-	
+//*****************************************************************************************************	
 	public int catalogarDocumento(Documento d){
-		
-		int value=this.insertarDocumento(d);
-		if(value<1){return -1;};
-		this.insertarDocumentoAreas(d);
-		this.insertarDocumentoPalabrasClave(d);
-		this.insertarDocumentoAutores(d);
-		
-		
-		return 1;
+		if(verificarInsertarDocumento(d)){
+			int value=this.insertarDocumento(d);
+			if(value<1){return -1;};
+			this.insertarDocumentoAreas(d);
+			this.insertarDocumentoPalabrasClave(d);
+			this.insertarDocumentoAutores(d);
+			return 1;			
+		}else return -1;
 	}
 	
-	public int catalogarDocumento(Documento d, Vector<String> areas_ids, 
+	public int catalogarDocumento(Documento d, Vector<String> areas_ids,
 			Vector<String> autores_ids, Vector<String> palabras_ids ){
-		DaoDocumento daoDoc = new DaoDocumento();		
+		Vector <AreaConocimiento> vac= new Vector <AreaConocimiento>();
+		Vector <Autor> va = new Vector <Autor>();
+		Vector <PalabraClave> vpc =new Vector <PalabraClave>();
+		for(int i = 0; i < areas_ids.size(); i++){
+			AreaConocimiento ac = new AreaConocimiento();
+			ac.setIdArea(areas_ids.get(i));
+			vac.add(ac);
+		}
+		for(int i = 0; i < autores_ids.size(); i++){
+			Autor a = new Autor();
+			a.setId(autores_ids.get(i));
+			va.add(a);
+		}
+		for(int i = 0; i < palabras_ids.size(); i++){
+			PalabraClave pc = new PalabraClave();
+			pc.setNombre(palabras_ids.get(i));
+			vpc.add(pc);
+		}
+		d.setAutores(va);
+		d.setAreas(vac);
+		d.setPalabrasClave(vpc);
+		
+		return this.catalogarDocumento(d);
+		
+		/*DaoDocumento daoDoc = new DaoDocumento();		
 		int value = this.insertarDocumento(d);
 		if(value<1){return -1;}
 		String id_doc = daoDoc.obtenerLoginDocumento();//se obtiene el logindel documento q se acbo de catalogar
 		this.insertarDocumentoAreas(areas_ids, id_doc);
 		this.insertarDocumentoPalabrasClave(palabras_ids, id_doc);
 		this.insertarDocumentoAutores(autores_ids, id_doc);
-		return 1;
+		return 1;/**/
+		
 	}
-	//el path completo del archivo
+
+//el path relativo del archivo,si el archivo ya existe en el repositorio (mismo nombre) no se vuelve 
+//a copiar devolviendo la misma direccion
 	public String copiarDocumento(String url){
-		String dir_exe = System.getProperty("user.dir");
-		File src = new File(url), carp_dest=  new File(dir_exe+"/repositorio/");
-		String nombre = src.getName();
-		File dst= new File(dir_exe+"/repositorio/"+nombre);
+		File src = new File(url), carp_dest=  new File("repositorio/");
+		File dst= new File(carp_dest.getName()+"/"+src.getName());
+		if(dst.exists()) {System.out.println("existe");return dst.getPath();} // si ya existe en el repositorio no se puede catalogar
 		InputStream in;
 		OutputStream out;
 		carp_dest.mkdir();
@@ -219,8 +246,50 @@ public class ControladorDocumento {
 			System.out.println(e.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("ESTE");
 			System.out.println(e.toString());
 		}
 		return "";
-	}	 
+	}
+	
+	public boolean verificarInsertarDocumento(Documento d){
+		boolean estado =true;
+		String mensaje="";
+		if(d.getTituloppal().equals("")){
+			mensaje+="*Debe proporcionar un Titulo Principal al documento\n";
+			estado=false;
+		}
+		if(d.getDescripcion().equals("")){
+			mensaje+="*Debe proporcionar una descripcion o resumen del Documento\n";
+			estado=false;
+		}		
+		if(d.getAreas().size()==0){
+			mensaje+="*Debe proporcionar por lo menos un Area de Conocimiento\n";
+			estado=false;
+		}
+		if(d.getAutores().size()==0){
+			mensaje+="*Debe proporcionar por lo menos un Autor\n";
+			estado=false;
+		}
+		//lo ultimo en comprobar
+		if (d.getUrl().equals("")){
+			mensaje+="*Debe proporcionar una ruta para guardar el Documento\n";
+			estado=false;
+		}else{
+			if(estado){//si todo lo demas esta bien entonces puede copiar al repositorio 
+				d.setUrl(this.copiarDocumento(d.getUrl()));//copia el link al repositorio sino existe ya
+				if(this.comprobarEnlace(d)){//se compureba en la bd si existe el link del documento
+					mensaje+="*Parece que este documento ya fue catalogado, por favor compruebelo\n" +
+							"relalizando una consulta o cambie el nombre del documento a catalogar";
+					estado=false;
+				}
+			}
+		}
+		if(!estado){JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);}	
+		return estado;
+	}	
+	public boolean comprobarEnlace(Documento d){
+		DaoDocumento daoDoc = new DaoDocumento();
+		return daoDoc.comprobarURL(d.getUrl());
+	}
 }

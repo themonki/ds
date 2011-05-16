@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import java.awt.event.KeyListener;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -23,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -33,7 +36,7 @@ import GestionDocumento.Logica.AreaConocimiento;
 
 public class GuiIngresarArea extends JFrame {
 
-	JLabel nombre, descripcionArea, areaPadre, indicacion;
+	JLabel nombre, descripcionArea, areaPadre;
 	JTextField campoNombre;
 	JComboBox campoAreaPadre;
 	JTextArea campoDescripcionArea;
@@ -41,15 +44,17 @@ public class GuiIngresarArea extends JFrame {
 	GuiCatalogarModificar guiCatalogarModi;
 
 	
-	JPanel panel, panel2, panel3, panel4, panel5;
+	JPanel panel, panel2, panel3, panel4, panel5, panelPrincipal;
 
 	public GuiIngresarArea() {
-		super("Ingresar Area");
+		super(":::Ingresar Area:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		
 	}
 	public GuiIngresarArea(GuiCatalogarModificar guiCatalogarModi) {
-		super("Ingresar Area");
+		super(":::Ingresar Area:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		this.guiCatalogarModi=guiCatalogarModi;
 		
@@ -66,6 +71,14 @@ public class GuiIngresarArea extends JFrame {
 		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 
+		panelPrincipal = new JPanel(new BorderLayout());
+		TitledBorder borde;
+		borde = BorderFactory.createTitledBorder(BorderFactory
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Registrar  Area::");
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleJustification(TitledBorder.CENTER);
+		panelPrincipal.setBorder(borde);
 		// ---------------------------------------------
 		iniciarLabels();
 		// ---------------------------------------------
@@ -90,13 +103,17 @@ public class GuiIngresarArea extends JFrame {
 		panel4.add(descripcionArea, BorderLayout.NORTH);
 		panel4.add(panel5, BorderLayout.CENTER);
 		panel4.add(panel, BorderLayout.SOUTH);
-		
-		setLayout(new BorderLayout());
-		add(indicacion, BorderLayout.NORTH);
-		add(panel3, BorderLayout.CENTER);
-		add(panel4, BorderLayout.SOUTH);
-		setSize(820, 320);
+	
+		setLayout(new GridBagLayout());
+
+	
+		panelPrincipal.add(panel3, BorderLayout.CENTER);
+		panelPrincipal.add(panel4, BorderLayout.SOUTH);
+		add(panelPrincipal);
+		setSize(640, 340);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
@@ -126,20 +143,15 @@ public class GuiIngresarArea extends JFrame {
 	}
 
 	private void iniciarLabels() {
-		
 
-		indicacion = new JLabel("Registrar  Area ", JLabel.CENTER);
-		nombre = new JLabel("Nombre Del Area :");
+		nombre = new JLabel("  Nombre Del Area :");
 		descripcionArea = new JLabel("Descripcion.", JLabel.CENTER);
-		areaPadre = new JLabel("Area Padre :");
+		areaPadre = new JLabel("  Area Padre :");
 
-		indicacion.setFont(Estilos.fontLabels);
 		areaPadre.setFont(Estilos.fontLabels);
 		descripcionArea.setFont(Estilos.fontLabels);
 		nombre.setFont(Estilos.fontLabels);
 
-		indicacion.setFont(Estilos.fontSubtitulos);
-		indicacion.setForeground(Estilos.colorLabels);
 		areaPadre.setForeground(Estilos.colorLabels);
 		descripcionArea.setForeground(Estilos.colorLabels);
 		nombre.setForeground(Estilos.colorLabels);

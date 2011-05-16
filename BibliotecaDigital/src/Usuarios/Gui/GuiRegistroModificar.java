@@ -334,9 +334,9 @@ public class GuiRegistroModificar extends JScrollPane{
 		//panelDatos.setBorder(borde);
 						
 		//Inicializar Botones segun modo.
-		registrar = new Button("REGISTRAR");
+		registrar = new Button("Registrar");
 		registrar.addActionListener(new ManejadorBoton());
-		modificar = new Button("MODIFICAR");
+		modificar = new Button("Modificar");
 		modificar.addActionListener(new ManejadorBoton());
 		 
 		

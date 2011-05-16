@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -30,20 +33,24 @@ import GestionDocumento.Controlador.ControladorTipoMaterial;
 
 public class GuiIngresarTipoMaterial extends JFrame {
 
-	JLabel nombre, descripcion, indicacion;
+	JLabel nombre, descripcion;
 	JTextField campoNombre;
 
 	JTextArea campoDescripcion;
 	Button botonIngresarTipo;
 
-	JPanel panel, panel1, panel2, panel3, panel4, panel5;
+	JPanel panel, panel1, panel2, panel3, panel4, panel5, panelPrincipal;
 	
 	GuiCatalogarModificar guicatalogarModi;
 
 	public GuiIngresarTipoMaterial() {
+		super(":::Ingresar Tipo Material:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 	}
 	public GuiIngresarTipoMaterial(GuiCatalogarModificar guicatalogarModi) {
+		super(":::Ingresar Tipo Material:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		this.guicatalogarModi=guicatalogarModi;
 		initComponents();
 	}
@@ -54,6 +61,16 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		panel5 = new JPanel(new FlowLayout());
 		panel4 = new JPanel(new BorderLayout());
 		panel = new JPanel();
+		panelPrincipal = new JPanel(new BorderLayout());
+		
+		TitledBorder borde;
+		borde = BorderFactory.createTitledBorder(BorderFactory
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Registrar Tipo de Material::");
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleJustification(TitledBorder.CENTER);
+		panelPrincipal.setBorder(borde);
+		
 		// ----------------------------------------------------------
 		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
@@ -80,11 +97,12 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		panel4.add(panel5, BorderLayout.CENTER);
 		panel4.add(panel, BorderLayout.SOUTH);
 
-		setLayout(new BorderLayout());
-		add(indicacion, BorderLayout.NORTH);
-		add(panel3, BorderLayout.CENTER);
-		add(panel4, BorderLayout.SOUTH);
+		setLayout(new GridBagLayout());
+		panelPrincipal.add(panel3, BorderLayout.CENTER);
+		panelPrincipal.add(panel4, BorderLayout.SOUTH);
+		add(panelPrincipal);
 		setSize(400, 300);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -94,15 +112,12 @@ public class GuiIngresarTipoMaterial extends JFrame {
 
 	private void iniciarLabels() {
 
-		indicacion = new JLabel("Registrar Tipo de Material", JLabel.CENTER);
-		nombre = new JLabel("Nombre Del Tipo :");
-		descripcion = new JLabel("Descripcion.", JLabel.CENTER);
+		nombre = new JLabel(" Nombre Del Tipo :");
+		descripcion = new JLabel(" Descripcion.", JLabel.CENTER);
 
-		indicacion.setFont(Estilos.fontSubtitulos);
 		descripcion.setFont(Estilos.fontLabels);
 		nombre.setFont(Estilos.fontLabels);
 
-		indicacion.setForeground(Estilos.colorLabels);
 		descripcion.setForeground(Estilos.colorLabels);
 		nombre.setForeground(Estilos.colorLabels);
 

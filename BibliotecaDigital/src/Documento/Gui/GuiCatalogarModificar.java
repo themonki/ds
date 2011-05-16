@@ -56,15 +56,11 @@ import GestionDocumento.Gui.GuiIngresarTipoMaterial;
 
 public class GuiCatalogarModificar extends JScrollPane{
 	
-	private GuiIngresarArea ingresarAreaNueva;
-	private GuiIngresarPalabraClave ingresarPalabraNueva;
-	private GuiIngresarAutor ingresarAutorNuevo;
-	private GuiIngresarTipoMaterial ingresarTipoNuevo;
 	
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
-	private JPanel panel,panelFecha,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
+	private JPanel panel,panelFecha,panel2,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
@@ -143,7 +139,6 @@ public class GuiCatalogarModificar extends JScrollPane{
 		//--------------------------------------
 		panel= new JPanel();
 		panel2= new JPanel();
-		panel3= new JPanel();
 		panel4= new JPanel();
 		panel5= new JPanel();
 		panelConAutores= new JPanel();
@@ -218,7 +213,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		//Organizacion de layouts y paneles
 		panel2.setLayout(new GridBagLayout());
-		panel3.setLayout(new FlowLayout());
+
 		panel4.setLayout(new BorderLayout());
 		panel8.setLayout(new GridLayout(1,3));
 		
@@ -381,8 +376,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		//panel2.add(campoEnlaceDoc,restriccionCampo);
 		//panel2.add(examinarDoc, restriccionBotones);
 		
-		
-		panel3.add(panel2);
+
 		
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -409,9 +403,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panel8.setPreferredSize( new Dimension(100, 100));
 		
 		JPanel panel22= new JPanel();
-		panel22.setLayout(new BorderLayout());
+		panel22.setLayout(new BorderLayout(10,10));
 		panel22.add(panel8,BorderLayout.CENTER);
-		panel22.add(panel3,BorderLayout.NORTH);		
+		panel22.add(panel2,BorderLayout.NORTH);		
 		panel22.add(panel4,BorderLayout.SOUTH);
 		this.setViewportView(panel22);
 		
@@ -501,11 +495,15 @@ public class GuiCatalogarModificar extends JScrollPane{
 	}
 
 	private void inicializarButton() {
-		botonCatalogar= new Button("   FINALIZAR   "); 
+		botonCatalogar= new Button("   Finalizar  "); 
 	    nuevaArea= new Button("Crear Area");
+	    nuevaArea.setIcon(new ImageIcon("recursos/iconos/add.png"));
 	    nuevoTipo= new Button("Crear Tipo");
+	    nuevoTipo.setIcon(new ImageIcon("recursos/iconos/add.png"));
 	    nuevoAutor = new Button("Crear Autor");
+	    nuevoAutor.setIcon(new ImageIcon("recursos/iconos/add.png"));
 	    nuevaPalabra= new Button("Crear Palabra");
+	    nuevaPalabra.setIcon(new ImageIcon("recursos/iconos/add.png"));
 	    examinarDoc= new Button ("Examinar...");
 	    
 	    botonCatalogar.addActionListener(new ManejadorBoton());
@@ -625,97 +623,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    campoAreas.addActionListener(new ManejadorComboBox());
 	    	    
 	}
-/*
-	public static void main (String args []){
-		
-		try
-		{			
-			/*NimRODTheme nt = new NimRODTheme();
-			nt.setPrimary1( new Color(10,10,230));
-			nt.setPrimary2( new Color(0,110,150));
-			nt.setPrimary3( new Color(0,0,230));
-			//nt.setPrimary(new Color(100,100,100));
-			//nt.setSecondary(new Color(230, 220,250));
-			nt.setSecondary1(new Color(1,0,100));
-			nt.setSecondary2(new Color(0, 100,0));
-			nt.setSecondary3(new Color(150,20,10));
-			nt.setWhite(new Color(20, 230,250));
-			nt.setBlack(new Color(250,230,250));
-			
-			
-			NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
-			NimRODLF.setCurrentTheme( nt);
-			UIManager.setLookAndFeel( NimRODLF);
-			//LookAndFeel n = new NimRODLookAndFeel( );
-			
-			//UIManager.setLookAndFeel(); 
 
-			
-			
-		}
-		catch (Exception e){e.printStackTrace();}
-		JFrame ventana= new JFrame() ;
-
-	
-		//JScrollPane scroll= new JScrollPane();
-
-		int ancho = 1000, alto = 600;
-		
-		//centrar en la pantalla
-		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        ventana.setLocation((screenSize.width)/2-ancho/2,(screenSize.height)/2-alto/2);
-		//
-        //JScrollPane scroll= new JScrollPane();
-
-        GuiCatalogarModificar ventana2;
-		ventana2 = new GuiCatalogarModificar("444");
-		ventana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		//scroll.setViewportView(ventana2);
-		//scroll.setSize(100,100);
-		//scroll.setVisible(true);
-		ventana.add(ventana2);
-		ventana.setSize(400,400);
-		ventana.setVisible(true);
-
-	
-	}
-<<<<<<< HEAD
-
-	private boolean validacionDeDatos() 
-	{
-=======
-*/
-	private boolean validacionDeDatos() {
-
-		String mensaje="";
-		boolean estado = true;
-		
-		if(campoTituloPpal.getText().equals("")){
-			mensaje+="Debe proporcionar un Titulo Principal al documento\n";
-			estado=false;
-		}
-		if(campoDescripcion.getText().equals("")){
-			mensaje+="Debe proporcionar una descripcion o resumen del Documento\n";
-			estado=false;
-		}
-		if (campoEnlaceDoc.getText().equals("")){
-			
-			mensaje+="Debe proporcionar una ruta para guardar el Documento\n";
-			estado=false;			
-		}
-		if(AreasIdActualVector.size()==0){
-			mensaje+="Debe proporcionar por lo menos un Area de Conocimiento\n";
-			estado=false;
-		}
-		if(AutorIdActualVector.size()==0){
-			mensaje+="Debe proporcionar por lo menos un Autor\n";
-			estado=false;
-		}		
-		if(!estado){JOptionPane.showMessageDialog(null, mensaje);}
-		return estado;
-		
-	}
-	
 	private class ManejadorBoton implements ActionListener 
 	{
 		private GuiCatalogarModificar p;
@@ -727,56 +635,38 @@ public class GuiCatalogarModificar extends JScrollPane{
 		public void actionPerformed(ActionEvent event) 
 		{
 			if(event.getSource()==botonCatalogar){
-			if(validacionDeDatos())
-			{		
-			
-			doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSoftware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
-			doc.setTituloppal(campoTituloPpal.getText());
-			doc.setTitulo_secundario(campoTituloSecundario.getText());
-			doc.setIdioma((String) campoIdioma.getSelectedItem());
-			//doc.set
-			doc.setTipoMaterial((String)campoTipoMaterial.getSelectedItem());
-			doc.setEditorial(campoEditorial.getText());
-			doc.setFormato((String) campoFormato.getSelectedItem());
-			doc.setSoftware_recomentado(campoSoftware.getText());
-			doc.setDescripcion(campoDescripcion.getText());
-			doc.setResolucion(campoResolucion.getText());
-			doc.setDerechosDeAutor(campoDerechosAutor.getSelectedItem().toString());
-			//---------------------------------------
-			 // tomar fechas de splinner 
-			fecha=  editor.getModel().getDate();
-			 SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");  
-			 String fes= sdf.format(fecha);
-			 
-			 fecha2=  editor.getModel().getDate();
-			 SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");  
-			 String fes2= sdf2.format(fecha2);
-			   
-			 doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
-			
-			 java.util.Date fechaactual = new Date();// fecha actual 
-			 SimpleDateFormat sdf3= new SimpleDateFormat("yyyy-MM-dd");  
-			 String fes3= sdf3.format(fechaactual);
-			 
-			 
-			 doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
-			 
-			 doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
-			 
-			 doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
-			 doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
-			 
-			 if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
+				doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSoftware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
+				doc.setTituloppal(campoTituloPpal.getText());
+				doc.setTitulo_secundario(campoTituloSecundario.getText());
+				doc.setIdioma((String) campoIdioma.getSelectedItem());				
+				doc.setTipoMaterial((String)campoTipoMaterial.getSelectedItem());
+				doc.setEditorial(campoEditorial.getText());
+				doc.setFormato((String) campoFormato.getSelectedItem());
+				doc.setSoftware_recomentado(campoSoftware.getText());
+				doc.setDescripcion(campoDescripcion.getText());
+				doc.setResolucion(campoResolucion.getText());
+				doc.setDerechosDeAutor(campoDerechosAutor.getSelectedItem().toString());
+				//--------------------------------------
+				//tomar fechas de splinner 
+				fecha=  editor.getModel().getDate();
+				SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");  
+				String fes= sdf.format(fecha);			 
+				fecha2=  editor.getModel().getDate();
+				SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");  
+				String fes2= sdf2.format(fecha2);
+				doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
+				java.util.Date fechaactual = new Date();// fecha actual 
+				SimpleDateFormat sdf3= new SimpleDateFormat("yyyy-MM-dd");  
+				String fes3= sdf3.format(fechaactual);
+				doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
+				doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
+				doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
+				doc.setUrl(campoEnlaceDoc.getText());//se envia el url de origen
+				if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
 			 	{
-			 		JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");
+					JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");
 			 		limpiarCampos();
-			 	}
-			 	else{
-			 		JOptionPane.showMessageDialog(null, "Parece que este documento ya fue catalogado\nCambie el nombre del archivo o asegurese de que\nno esta catalogando un mismo documento","ERROR", JOptionPane.WARNING_MESSAGE);
-			 	}
-			}
-			else System.out.println("no valido ");			
-			
+			 	}			
 			}//if getsource
 			
 			if(event.getSource()==examinarDoc){
@@ -807,11 +697,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 				
 			}
 	}
-			
-
-	}
-	
-	 
+	} 
 	private class ManejadorComboBox implements ActionListener {
 
 		

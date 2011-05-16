@@ -5,11 +5,15 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -19,6 +23,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -73,6 +78,7 @@ public class GuiPrincipal extends JFrame
 		{
 			
 			super("::: Sistema de Biblioteca Digital :::");	
+			setIconImage(new ImageIcon("recursos/bd.png").getImage());
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			manejador = new Manejador();	
 			
@@ -121,25 +127,40 @@ public class GuiPrincipal extends JFrame
 
 			// Se instancian todos los elementos que pertenecen al panel de
 			//opciones
-			panelOpcionesGenerales = new JPanel(new GridLayout(8,1,2,5));
-
+			panelOpcionesGenerales = new JPanel(new GridBagLayout());
+			//GridLayout(8,1,2,5)
 			volver = new Button("Inicio");
+			volver.setIcon(new ImageIcon("recursos/iconos/home.png"));
 			volver.addActionListener(manejador);
 			crearUsuario = new Button("Registrarse");
+			crearUsuario.setIcon(new ImageIcon("recursos/iconos/add_user.png"));
 			crearUsuario.addActionListener(manejador);			
 			ingresarSistema = new Button("Ingresar");
+			ingresarSistema.setIcon(new ImageIcon("recursos/iconos/user.png"));
 			ingresarSistema.addActionListener(manejador);
 			consultaAvanzada = new Button("Consulta Avanzada");
 			consultaAvanzada.addActionListener(manejador);			
 						
 			
-			volver.setBackground(Color.RED);
+			
 			//crearUsuario.setPreferredSize(new Dimension(10, 10));
 			// Se agregan los elementos al panel de opciones del administrador.
-			panelOpcionesGenerales.add(volver);
-			panelOpcionesGenerales.add(crearUsuario);
-			panelOpcionesGenerales.add(consultaAvanzada);
-			panelOpcionesGenerales.add(ingresarSistema);			
+			GridBagConstraints restricciones = new GridBagConstraints();
+			restricciones.gridy=1;
+			restricciones.fill = GridBagConstraints.HORIZONTAL;
+			
+			panelOpcionesGenerales.add(volver, restricciones);
+			restricciones.gridy=2;
+			panelOpcionesGenerales.add(crearUsuario, restricciones);
+			restricciones.gridy=3;
+			panelOpcionesGenerales.add(consultaAvanzada, restricciones);
+			restricciones.gridy=4;
+			panelOpcionesGenerales.add(ingresarSistema, restricciones);			
+			
+			restricciones.gridy=5;
+			restricciones.insets= new Insets(150, 0, 0, 0);
+			panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/LOGO3D.png")),restricciones);
+			
 			
 			JPanel panelconOpciones2= new JPanel();
 			panelconOpciones2.add(panelOpcionesGenerales);
