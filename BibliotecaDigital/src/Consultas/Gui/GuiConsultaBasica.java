@@ -1,16 +1,21 @@
 package Consultas.Gui;
 
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import Utilidades.Button;
@@ -49,6 +54,8 @@ public class GuiConsultaBasica extends JPanel
 		panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
 		
 		consultar = new Button("Consultar");
+		consultar.setIcon(new ImageIcon("recursos/iconos/search.png"));
+		consultar.setHorizontalTextPosition(SwingConstants.LEFT);
 
 		consultar.addActionListener(manejador);
 		limpiarCampoConsulta = new Button("Limpiar Campo");

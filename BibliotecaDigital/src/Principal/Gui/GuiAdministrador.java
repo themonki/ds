@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -129,16 +130,21 @@ public class GuiAdministrador extends JFrame
 		panelOpcionesGenerales = new JPanel(new GridLayout(8,1,2,5));
 
 		volver = new Button("Inicio");
+		volver.setIcon(new ImageIcon("recursos/iconos/home.png"));
 		volver.addActionListener(manejador);
 		modificarUsuario = new Button("Modificar Usuarios");
+		modificarUsuario.setIcon(new ImageIcon("recursos/iconos/edit_user.png"));
 		modificarUsuario.addActionListener(manejador);	
 		modificarMiUsuario = new Button("Modificar Datos");
+		modificarMiUsuario.setIcon(new ImageIcon("recursos/iconos/my_account.png"));
 		modificarMiUsuario.addActionListener(manejador);
 		consultaAvanzada = new Button("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
 		catalogar = new Button("Catalogar");
+		catalogar.setIcon(new ImageIcon("recursos/iconos/add_document.png"));
 		catalogar.addActionListener(manejador);
 		logout = new Button("Salir");
+		logout.setIcon(new ImageIcon("recursos/iconos/logout.png"));
 		logout.addActionListener(manejador);
 		
 		// Se agregan los elementos al panel de opciones del administrador.

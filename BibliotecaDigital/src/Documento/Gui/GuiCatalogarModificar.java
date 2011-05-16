@@ -56,15 +56,11 @@ import GestionDocumento.Gui.GuiIngresarTipoMaterial;
 
 public class GuiCatalogarModificar extends JScrollPane{
 	
-	private GuiIngresarArea ingresarAreaNueva;
-	private GuiIngresarPalabraClave ingresarPalabraNueva;
-	private GuiIngresarAutor ingresarAutorNuevo;
-	private GuiIngresarTipoMaterial ingresarTipoNuevo;
 	
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
-	private JPanel panel,panelFecha,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
+	private JPanel panel,panelFecha,panel2,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
 	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
@@ -143,7 +139,6 @@ public class GuiCatalogarModificar extends JScrollPane{
 		//--------------------------------------
 		panel= new JPanel();
 		panel2= new JPanel();
-		panel3= new JPanel();
 		panel4= new JPanel();
 		panel5= new JPanel();
 		panelConAutores= new JPanel();
@@ -218,7 +213,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 		//Organizacion de layouts y paneles
 		panel2.setLayout(new GridBagLayout());
-		panel3.setLayout(new FlowLayout());
+
 		panel4.setLayout(new BorderLayout());
 		panel8.setLayout(new GridLayout(1,3));
 		
@@ -381,8 +376,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		//panel2.add(campoEnlaceDoc,restriccionCampo);
 		//panel2.add(examinarDoc, restriccionBotones);
 		
-		
-		panel3.add(panel2);
+
 		
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -409,9 +403,9 @@ public class GuiCatalogarModificar extends JScrollPane{
 		panel8.setPreferredSize( new Dimension(100, 100));
 		
 		JPanel panel22= new JPanel();
-		panel22.setLayout(new BorderLayout());
+		panel22.setLayout(new BorderLayout(10,10));
 		panel22.add(panel8,BorderLayout.CENTER);
-		panel22.add(panel3,BorderLayout.NORTH);		
+		panel22.add(panel2,BorderLayout.NORTH);		
 		panel22.add(panel4,BorderLayout.SOUTH);
 		this.setViewportView(panel22);
 		
@@ -501,11 +495,15 @@ public class GuiCatalogarModificar extends JScrollPane{
 	}
 
 	private void inicializarButton() {
-		botonCatalogar= new Button("   FINALIZAR   "); 
+		botonCatalogar= new Button("   Finalizar  "); 
 	    nuevaArea= new Button("Crear Area");
+	    nuevaArea.setIcon(new ImageIcon("recursos/iconos/add.png"));
 	    nuevoTipo= new Button("Crear Tipo");
+	    nuevoTipo.setIcon(new ImageIcon("recursos/iconos/add.png"));
 	    nuevoAutor = new Button("Crear Autor");
+	    nuevoAutor.setIcon(new ImageIcon("recursos/iconos/add.png"));
 	    nuevaPalabra= new Button("Crear Palabra");
+	    nuevaPalabra.setIcon(new ImageIcon("recursos/iconos/add.png"));
 	    examinarDoc= new Button ("Examinar...");
 	    
 	    botonCatalogar.addActionListener(new ManejadorBoton());

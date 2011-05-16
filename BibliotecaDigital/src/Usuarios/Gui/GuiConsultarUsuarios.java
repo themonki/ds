@@ -61,7 +61,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		campoNombre= new JTextField(15);
 		
 		//Inicializar Boton
-		consultar = new Button("CONSULTAR");
+		consultar = new Button("Consultar");
 		consultar.addActionListener(new ManejadorBoton());
 		
 		panelOpciones = new JPanel(new GridBagLayout());
@@ -99,9 +99,9 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		
 		
 		panelPrincipal = new JPanel();
-		TitledBorder bordePrincipal = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::CONSULTAR USUARIOS::");
-		bordePrincipal.setTitleColor(Estilos.colorSubtitulo);
-		bordePrincipal.setTitleFont(Estilos.fontSubtitulos);
+		TitledBorder bordePrincipal = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Consultar Usuarios::");
+		bordePrincipal.setTitleColor(Estilos.colorTitulo);
+		bordePrincipal.setTitleFont(Estilos.fontTitulo);
 		bordePrincipal.setTitleJustification(TitledBorder.LEFT);
 		setBorder(bordePrincipal);
 		panelPrincipal.setLayout(new BorderLayout());

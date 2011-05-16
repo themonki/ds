@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -27,7 +28,7 @@ import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorAutor;
 
 public class GuiIngresarAutor extends JFrame {
-	JLabel nombre, apellido, indicacion, correoElectronico, acronimo;
+	JLabel nombre, apellido, correoElectronico, acronimo;
 	JTextField campoNombre, campoApellido, campoCorreoElectronico,
 			campoAcronimo;
 	Button botonIngresarAutor;
@@ -35,9 +36,11 @@ public class GuiIngresarAutor extends JFrame {
 	GuiCatalogarModificar 	guiCatalogarModi;
 
 	public GuiIngresarAutor() {
+		super(":::Ingresar Autor:::");
 		initComponents();
 	}
 	public GuiIngresarAutor(GuiCatalogarModificar 	guiCatalogarModi ) {
+		super(":::Ingresar Autor:::");
 		initComponents();
 		this.guiCatalogarModi= guiCatalogarModi;
 	}
@@ -46,6 +49,16 @@ public class GuiIngresarAutor extends JFrame {
 		JPanel panel = new JPanel();
 		JPanel panel2 = new JPanel(new GridBagLayout());
 		JPanel panel3 = new JPanel();
+		JPanel panelPrincipal = new JPanel(new BorderLayout());
+
+		TitledBorder borde;
+		borde = BorderFactory.createTitledBorder(BorderFactory
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Registrar  Autor::");
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleJustification(TitledBorder.CENTER);
+		panelPrincipal.setBorder(borde);
+		
 		// --------------------------------------------------------
 		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
@@ -95,12 +108,13 @@ public class GuiIngresarAutor extends JFrame {
 
 		panel.add(botonIngresarAutor);
 
-		setLayout(new BorderLayout());
-		add(panel3, BorderLayout.CENTER);
-		add(indicacion, BorderLayout.NORTH);
-		add(panel, BorderLayout.SOUTH);
+		setLayout(new GridBagLayout());
+		panelPrincipal.add(panel3, BorderLayout.CENTER);
+		panelPrincipal.add(panel, BorderLayout.SOUTH);
 
+		add(panelPrincipal);
 		setSize(490, 280);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -126,20 +140,16 @@ public class GuiIngresarAutor extends JFrame {
 
 	private void iniciarLabels() {
 
-
-		indicacion = new JLabel("Registrar  Autor", JLabel.CENTER);
 		nombre = new JLabel("Nombre  :");
 		apellido = new JLabel("Apellido :");
 		correoElectronico = new JLabel("Correo Electronico :");
 		acronimo = new JLabel("Acronimo :");
 
-		indicacion.setFont(Estilos.fontSubtitulos);
 		apellido.setFont(Estilos.fontLabels);
 		nombre.setFont(Estilos.fontLabels);
 		acronimo.setFont(Estilos.fontLabels);
 		correoElectronico.setFont(Estilos.fontLabels);
 
-		indicacion.setForeground(Estilos.colorLabels);
 		apellido.setForeground(Estilos.colorLabels);
 		nombre.setForeground(Estilos.colorLabels);
 		acronimo.setForeground(Estilos.colorLabels);

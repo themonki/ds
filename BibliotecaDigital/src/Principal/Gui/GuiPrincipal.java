@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -73,6 +75,7 @@ public class GuiPrincipal extends JFrame
 		{
 			
 			super("::: Sistema de Biblioteca Digital :::");	
+			setIconImage(new ImageIcon("recursos/library.png").getImage());
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			manejador = new Manejador();	
 			
@@ -124,10 +127,13 @@ public class GuiPrincipal extends JFrame
 			panelOpcionesGenerales = new JPanel(new GridLayout(8,1,2,5));
 
 			volver = new Button("Inicio");
+			volver.setIcon(new ImageIcon("recursos/iconos/home.png"));
 			volver.addActionListener(manejador);
 			crearUsuario = new Button("Registrarse");
+			crearUsuario.setIcon(new ImageIcon("recursos/iconos/add_user.png"));
 			crearUsuario.addActionListener(manejador);			
 			ingresarSistema = new Button("Ingresar");
+			ingresarSistema.setIcon(new ImageIcon("recursos/iconos/user.png"));
 			ingresarSistema.addActionListener(manejador);
 			consultaAvanzada = new Button("Consulta Avanzada");
 			consultaAvanzada.addActionListener(manejador);			
