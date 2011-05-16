@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import Documento.Logica.Documento;
-import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.FachadaBD;
 
 public class DaoDocumento {
@@ -261,12 +260,9 @@ public String obtenerLoginDocumento(){
 	String login="0";
 	String consulta_sql = "SELECT MAX(d.id_documento) FROM Documento d";
 	ResultSet resultado;
-	Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
-
 	try{
 		Connection conn = fachada.conectar();
 		Statement sentencia = conn.createStatement();
-
 		resultado = sentencia.executeQuery(consulta_sql);
 		while (resultado.next()) {
 			login = resultado.getString(1);			
@@ -282,6 +278,30 @@ public String obtenerLoginDocumento(){
 
 	return login;
 	
+}
+
+public boolean comprobarURL(String url){	
+	boolean estado = false;
+	String consulta_sql = "SELECT d.id_documento, d.link FROM Documento d " +
+			"WHERE link='"+url+"';";
+	ResultSet resultado;
+	try{
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();
+		resultado = sentencia.executeQuery(consulta_sql);
+		while (resultado.next()) {
+			estado = true;
+		}		
+		conn.close();
+		return estado;
+	} catch (SQLException e) {
+		System.out.println(e);
+		
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+	
+	return false;
 }
 
 }
