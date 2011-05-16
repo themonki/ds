@@ -272,9 +272,9 @@ public class ControladorDocumento {
 			estado=false;
 		}
 		//lo ultimo en comprobar
-		if (d.getUrl().equals("")){			
+		if (d.getUrl().equals("")){
 			mensaje+="*Debe proporcionar una ruta para guardar el Documento\n";
-			estado=false;			
+			estado=false;
 		}else{
 			if(estado){//si todo lo demas esta bien entonces puede copiar al repositorio 
 				d.setUrl(this.copiarDocumento(d.getUrl()));//copia el link al repositorio sino existe ya
@@ -285,7 +285,7 @@ public class ControladorDocumento {
 				}
 			}
 		}
-		if(!estado){JOptionPane.showMessageDialog(null, mensaje);}	
+		if(!estado){JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);}	
 		return estado;
 	}	
 	public boolean comprobarEnlace(Documento d){

@@ -663,7 +663,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 				doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
 				doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
 				doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
-				doc.setUrl(controladorDocumento.copiarDocumento(campoEnlaceDoc.getText()));//metodo de controlador que obtenga un enlace
+				doc.setUrl(campoEnlaceDoc.getText());//se envia el url de origen
 				if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
 			 	{
 					JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");
@@ -699,11 +699,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 				
 			}
 	}
-			
-
-	}
-	
-	 
+	} 
 	private class ManejadorComboBox implements ActionListener {
 
 		
