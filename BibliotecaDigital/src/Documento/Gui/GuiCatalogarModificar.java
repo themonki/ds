@@ -57,44 +57,45 @@ public class GuiCatalogarModificar extends JScrollPane{
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
-	private JPanel panel,panelFecha,panel2,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
+	protected JPanel panel,panelFecha,panel2,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 	
-	private JLabel tipoMaterial,tituloPrincipal,idioma,autor,
+	protected JLabel tipoMaterial,tituloPrincipal,idioma,autor,
 	tituloSecundario,/*traducido,*/editorial,derechosAutor,descripcion,
 	palabrasClave,fechaPublicacion,areas, enlaceDoc, resolucion,softwareRecomendado, formato,fechaCreacion;
 	
-	private JTextArea campoDescripcion;
+	protected JTextArea campoDescripcion;
 
-	private JComboBox campoPalabras,campoAutor,campoTipoMaterial,
+	protected JComboBox campoPalabras,campoAutor,campoTipoMaterial,
 	/*campoTraducido,*/campoIdioma,campoDerechosAutor,campoAreas, campoFormato;
 	  
-	private JTextField campoEditorial,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc,
+	protected JTextField campoEditorial,campoTituloSecundario,campoTituloPpal, campoEnlaceDoc,
 	campoSoftware, campoResolucion;
 	
-	private Button botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
+	protected Button botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
 	//faltan las fechas /////////****************///
   // en caccoo falta campo editorial
-	SpinnerModel model,model2;
-	Date fecha,fecha2;
-	JSpinner spinner,spinner2;
-	JSpinner.DateEditor editor,editor2; 
+	protected SpinnerModel model,model2;
+	protected Date fecha,fecha2;
+	protected JSpinner spinner,spinner2;
+	protected JSpinner.DateEditor editor,editor2; 
 	
-	private Vector<String> palabrasClaveVec,areasVector,autoresVector,       
+	protected  Vector<String> palabrasClaveVec,areasVector,autoresVector,       
 	palabActualVec,areasActualVecr,autoresActualVector,AutorIdVector,AutorIdActualVector,AreasIdVector,AreasIdActualVector,
 	tipoMaterialVec,formatosVector;
 	
 	//----------------CONTROLADORES--------------------------------
-	ControladorAreaConocimiento controladorAreas ;
-	ControladorAutor controladorAutor;
-	ControladorPalabraClave controladorpalabrasClave;
-	ControladorTipoMaterial controladorTipoMaterial;
-	ControladorDocumento controladorDocumento;
+	protected ControladorAreaConocimiento controladorAreas ;
+	protected ControladorAutor controladorAutor;
+	protected ControladorPalabraClave controladorpalabrasClave;
+	protected ControladorTipoMaterial controladorTipoMaterial;
+	protected ControladorDocumento controladorDocumento;
 	//-------------Objetos de la base de datos
-	Documento doc;
-	private String loginModificador;
+	protected Documento doc;
 	
 
+	public GuiCatalogarModificar() {
+	}
 	public GuiCatalogarModificar(String loginIngreso) {
 		
 		//--------------INICIALIZAR CONTROLADORES--------------------------------
@@ -108,37 +109,11 @@ public class GuiCatalogarModificar extends JScrollPane{
 	
 	}
 
-	public GuiCatalogarModificar(String loginIngreso,Documento doc) {
-		
-		//--------------INICIALIZAR CONTROLADORES--------------------------------
-		controladorAreas = new ControladorAreaConocimiento();
-	    controladorAutor= new ControladorAutor();
-		controladorpalabrasClave = new ControladorPalabraClave();
-		controladorTipoMaterial = new ControladorTipoMaterial() ;
-		controladorDocumento= new ControladorDocumento();
-		this.loginModificador = loginIngreso;
-		this.doc=doc;
-		initComponents();
-		initDocumentInfo();
-	}
+	
 
-	private void initDocumentInfo() {
 
-		campoTituloSecundario.setText(""+doc.getTitulo_secundario());    
-		campoTituloPpal.setText(""+doc.getTituloppal());   
-		campoEditorial.setText(""+doc.getEditorial());
-		campoDescripcion.setText(""+doc.getDescripcion());
-		campoResolucion.setText(""+doc.getResolucion()); 
-		campoSoftware.setText(""+doc.getSoftware_recomentado());
-		campoEnlaceDoc.setText(""+doc.getUrl());
 
-		// NO he mirado que pasa con los null por esos las comillas 
-		// aunque lso null se guarda como "" 
-		
-		
-	}
-
-	public void initComponents(){
+	protected void initComponents(){
 		
 		//super.setTitle("Catalogar Documento");
 		//super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
@@ -302,7 +277,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		restriccionCampo.gridwidth=1;
 		restriccionBotones.gridy=5;
 		restriccionBotones.anchor= GridBagConstraints.EAST;
-		restriccionBotones.gridx=1;
+		restriccionBotones.gridx=2;
 		restriccionBotones.ipadx=10;
 		
 		panel2.add(tipoMaterial,restriccionEtiquetas);
@@ -323,7 +298,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		restriccionCampo.gridwidth=1;
 		restriccionBotones.gridy=7;
 		restriccionBotones.ipadx=7;
-		restriccionBotones.gridx=1;
+		restriccionBotones.gridx=2;
 		
 		
 		panel2.add(palabrasClave,restriccionEtiquetas);
@@ -440,27 +415,27 @@ public class GuiCatalogarModificar extends JScrollPane{
 		//------------------------------------------
 		setSize(900,900);
 		setVisible(true);
-		setSize(600,800 );
+		setSize(500,500 );
 		//-------------------------------------------
 	
 		
 	}
-	private void nuevaArea() {
+	protected void nuevaArea() {
 		GuiIngresarArea guiArea=	new GuiIngresarArea(this);
 		guiArea.setVisible(true);
 		//guiArea.setAlwaysOnTop(true);			
 	}
-	private void nuevoTipoMaterial() {
+	protected void nuevoTipoMaterial() {
 		GuiIngresarTipoMaterial guiMaterial = new GuiIngresarTipoMaterial(this);
 		guiMaterial.setVisible(true);
 		//guiMaterial.setAlwaysOnTop(true);		
 	}	
-	private void nuevaAutor() {
+	protected void nuevaAutor() {
 		GuiIngresarAutor guiAutor= new GuiIngresarAutor(this);
 		guiAutor.setVisible(true);
 		//guiAutor.setAlwaysOnTop(true);		
 	}	
-	private void nuevaPalabra() 
+	protected void nuevaPalabra() 
 	{
 		GuiIngresarPalabraClave guiPalabra = new GuiIngresarPalabraClave(this);
 		guiPalabra.setVisible(true );
@@ -509,7 +484,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		campoTipoMaterial.addItem(tipoMaterialVec.get(tipoMaterialVec.size()-1));
 	}
 
-	private void inicializarFormatos() {
+	protected void inicializarFormatos() {
 		formatosVector= new Vector<String>();
 		formatosVector.add("jpg");
 		formatosVector.add("pdf");
@@ -519,7 +494,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 	}
 
-	private void inicializarButton() {
+	protected void inicializarButton() {
 		botonCatalogar= new Button("   Finalizar  "); 
 	    nuevaArea= new Button("Crear Area");
 	    nuevaArea.setIcon(new ImageIcon("recursos/iconos/add.png"));
@@ -539,7 +514,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    nuevaPalabra.addActionListener(new ManejadorBoton());
 	}
 
-	private void inicializarTexfield() {
+	protected void inicializarTexfield() {
 		campoTituloSecundario= new JTextField();    
 		campoTituloPpal = new JTextField();   
 		campoEditorial= new JTextField();
@@ -560,7 +535,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		
 	}
 
-	private void inicializarLabels(Font font1) 
+	protected void inicializarLabels(Font font1) 
 	{
 		
 		tipoMaterial= new JLabel(" Tipo De Material:  ",JLabel.LEFT);
@@ -619,7 +594,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 		enlaceDoc.setForeground(Estilos.colorLabels);
 	}
 
-	private void inicializarComboBox(Font font2) 
+	protected void inicializarComboBox(Font font2) 
 	{
 		campoAreas= new JComboBox(areasVector);
 	    campoDescripcion= new JTextArea();
@@ -649,7 +624,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	    	    
 	}
 
-	private class ManejadorBoton implements ActionListener 
+	protected class ManejadorBoton implements ActionListener 
 	{
 		public void actionPerformed(ActionEvent event) 
 		{
@@ -717,7 +692,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			}
 	}
 	} 
-	private class ManejadorComboBox implements ActionListener {
+	protected class ManejadorComboBox implements ActionListener {
 
 		
 		public void actionPerformed(ActionEvent event) {
@@ -777,7 +752,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 			}
 		}
 		
-		private class eventoMouse implements MouseListener {
+	protected class eventoMouse implements MouseListener {
 
 			int panel=0;//usado para saber de que panel es la palabra autor area o palabraclave
 			
@@ -850,7 +825,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 
 		
 		}
-		private class ManejadorJTextField implements KeyListener{
+	protected class ManejadorJTextField implements KeyListener{
 
 			@Override
 			public void keyPressed(KeyEvent e) {
