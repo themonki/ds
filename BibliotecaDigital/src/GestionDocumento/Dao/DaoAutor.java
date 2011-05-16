@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import Utilidades.FachadaBD;
 
@@ -133,6 +134,38 @@ public class DaoAutor {
 		}
 		return autores;
 
+	}
+	
+//metodo que devuelve los autores de un documento dado su id_documento
+	public Vector <Autor> consultarAutoresDocumento(String id_documento) {
+		Vector <Autor> va = new Vector<Autor>();
+		String sqlSelect;
+		sqlSelect = "SELECT * FROM autor a NATURAL JOIN " +
+				"escribe_autor_documento da WHERE da.id_documento='"
+				+ id_documento + "'";
+		try {
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet tabla = sentencia.executeQuery(sqlSelect);
+
+			while (tabla.next()) {
+				Autor autor = new Autor();
+				autor.setId(""+tabla.getInt("id_autor"));
+				System.out.println(autor.getId());
+				autor.setNombre(tabla.getString("nombre"));
+				autor.setCorreo(tabla.getString("email"));
+				autor.setApellido(tabla.getString("apellido"));
+				autor.setAcronimo(tabla.getString("acronimo"));
+				va.add(autor);
+			}
+			this.fachada.cerrarConexion(conn);
+
+		} catch (SQLException se) {
+			System.out.println(se.toString());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return va;
 	}
 
 

@@ -2,7 +2,9 @@ package GestionDocumento.Controlador;
 
 import java.util.Vector;
 
+import GestionDocumento.Dao.DaoAreaConocimiento;
 import GestionDocumento.Dao.DaoPalabraClave;
+import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.PalabraClave;
 
 ;
@@ -56,7 +58,11 @@ public class ControladorPalabraClave {
 		return nombres;
 
 	}
-
+//metodo que devuelve las palabras clave de un documento dado su llave
+	public Vector <PalabraClave> obtenerAreasDocumento(String id_documento){
+		DaoPalabraClave daoPC = new DaoPalabraClave();
+		return daoPC.consultarPalabrasClaveDocumento(id_documento);
+	}
 	/*
 	 * public static void main(String args[]) { ControladorPalabraClave
 	 * controladorPalabraClave = new ControladorPalabraClave();

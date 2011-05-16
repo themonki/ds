@@ -331,4 +331,10 @@ public class ControladorDocumento {
 		DaoDocumento daoDoc = new DaoDocumento();
 		return daoDoc.comprobarURL(d.getUrl());
 	}
+//metodo que retorna el documento con la llave id_documento, sin areas, autor y palabras	
+	public Documento obtenerDocumento(String id_documento){
+		DaoDocumento daoDoc = new DaoDocumento();
+		Documento d = daoDoc.consultarDatosDocumento(id_documento);
+		return d;
+	}
 }
