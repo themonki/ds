@@ -218,6 +218,9 @@ public class ControladorDocumento {
 		if(verificarInsertarDocumento(d)){
 			int value=this.insertarDocumento(d);
 			if(value<1){return -1;};
+			DaoDocumento daoDoc = new DaoDocumento();
+			String id_doc = daoDoc.obtenerLoginDocumento();
+			d.setId_doc(id_doc);
 			this.insertarDocumentoAreas(d);
 			this.insertarDocumentoPalabrasClave(d);
 			this.insertarDocumentoAutores(d);
