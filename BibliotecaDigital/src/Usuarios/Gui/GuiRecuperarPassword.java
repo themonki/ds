@@ -28,6 +28,8 @@ import javax.swing.border.TitledBorder;
 import Principal.Gui.GuiPrincipal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
+import Utilidades.Button;
+
 
 public class GuiRecuperarPassword extends JPanel {
 
@@ -61,10 +63,10 @@ public class GuiRecuperarPassword extends JPanel {
 
 	JPanel panelGeneral;
 
-	private JButton botonIngresar;
-	private JButton botonRegresar;
-	private JButton botonCambiarPassword;
-	private JButton botonGuardar;
+	private Button botonIngresar;
+	private Button botonRegresar;
+	private Button botonCambiarPassword;
+	private Button botonGuardar;
 	private GuiPrincipal gp;
 
 	public GuiRecuperarPassword(GuiPrincipal gp) {
@@ -189,14 +191,14 @@ public class GuiRecuperarPassword extends JPanel {
 
 		ManejadorBoton manejador = new ManejadorBoton();
 
-		botonIngresar = new JButton("Ingresar al Sistema");
+		botonIngresar = new Button("Ingresar al Sistema");
 		botonIngresar.addActionListener(manejador);
-		botonCambiarPassword = new JButton("Cambiar Contraseña");
+		botonCambiarPassword = new Button("Cambiar Contraseña");
 
 		botonCambiarPassword.addActionListener(manejador);
-		botonGuardar = new JButton("Guardar");
+		botonGuardar = new Button("Guardar");
 		botonGuardar.addActionListener(manejador);
-		botonRegresar = new JButton("Regresar");
+		botonRegresar = new Button("Regresar");
 		botonRegresar.addActionListener(manejador);
 
 	}
