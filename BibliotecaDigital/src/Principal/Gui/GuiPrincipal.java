@@ -144,18 +144,19 @@ public class GuiPrincipal extends JFrame
 			GridBagConstraints restricciones = new GridBagConstraints();
 			restricciones.gridy=1;
 			restricciones.fill = GridBagConstraints.HORIZONTAL;
-			
+			restricciones.insets= new Insets(0, 0, 20, 0);
+			panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.gif")),restricciones);
+			restricciones.insets= new Insets(0, 0, 0, 0);
+			restricciones.gridy++;
 			panelOpcionesGenerales.add(volver, restricciones);
-			restricciones.gridy=2;
+			restricciones.gridy++;
 			panelOpcionesGenerales.add(crearUsuario, restricciones);
-			restricciones.gridy=3;
+			restricciones.gridy++;
 			panelOpcionesGenerales.add(consultaAvanzada, restricciones);
-			restricciones.gridy=4;
+			restricciones.gridy++;
 			panelOpcionesGenerales.add(ingresarSistema, restricciones);			
 			
-			restricciones.gridy=5;
-			restricciones.insets= new Insets(150, 0, 0, 0);
-			panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/LOGO3D.png")),restricciones);
+		
 			
 			
 			JPanel panelconOpciones2= new JPanel();

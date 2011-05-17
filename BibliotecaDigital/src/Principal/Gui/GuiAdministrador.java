@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -151,8 +152,12 @@ public class GuiAdministrador extends JFrame
 		restricciones.fill = GridBagConstraints.HORIZONTAL;
 		restricciones.gridx=1;
 		restricciones.gridy=1;
-		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/LOGO3D.png")),restricciones);
-		restricciones.gridy=2;
+		restricciones.insets= new Insets(0, 0, 20, 0);
+		
+		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.gif")),restricciones);
+		restricciones.insets= new Insets(0, 0, 0, 0);
+		restricciones.gridy++;
+		
 		panelOpcionesGenerales.add(volver, restricciones);
 		restricciones.gridy=3;
 		panelOpcionesGenerales.add(modificarUsuario, restricciones);
@@ -177,7 +182,7 @@ public class GuiAdministrador extends JFrame
 		//contenedor.add(new JPanel(), BorderLayout.EAST);
 		//contenedor.add(new JPanel(), BorderLayout.WEST);
 	
-		setSize(785, 500); 
+		setSize(800, 500); 
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
