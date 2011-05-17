@@ -63,13 +63,13 @@ public class ControladorDocumento {
 
 	public int insertarDocumento(Documento d) {
 		
-		d.setIdioma(d.getIdioma().toLowerCase());
-		d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
+		//d.setIdioma(d.getIdioma().toLowerCase());
+		//d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
 		d.setDescripcion(d.getDescripcion().toLowerCase());
 		d.setSoftware_recomentado(d.getSoftware_recomentado().toLowerCase());
 		d.setResolucion(d.getResolucion().toLowerCase());
 		d.setEditorial(d.getEditorial().toLowerCase());
-		d.setFormato(d.getFormato().toLowerCase());
+		//d.setFormato(d.getFormato().toLowerCase());
 		d.setTituloppal(d.getTituloppal().toLowerCase());
 		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
 		d.setTipoMaterial(d.getTipoMaterial().toLowerCase());
@@ -129,13 +129,13 @@ public class ControladorDocumento {
 
 	public int modificarDocumento(Documento d) {
 		//se pasan a minuscula
-		d.setIdioma(d.getIdioma().toLowerCase());
-		d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
+		//d.setIdioma(d.getIdioma().toLowerCase());
+		//d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
 		d.setDescripcion(d.getDescripcion().toLowerCase());
 		d.setSoftware_recomentado(d.getSoftware_recomentado().toLowerCase());
 		d.setResolucion(d.getResolucion().toLowerCase());
 		d.setEditorial(d.getEditorial().toLowerCase());
-		d.setFormato(d.getFormato().toLowerCase());
+		//d.setFormato(d.getFormato().toLowerCase());
 		d.setTituloppal(d.getTituloppal().toLowerCase());
 		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
 		d.setTipoMaterial(d.getTipoMaterial().toLowerCase());

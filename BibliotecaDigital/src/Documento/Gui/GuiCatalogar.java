@@ -190,7 +190,7 @@ public class GuiCatalogar extends JScrollPane{
 
 		spinner.setFont(Estilos.fontSubtitulos);
 		spinner2.setFont (Estilos.fontSubtitulos);
-
+//		spinner = new JSpinner();		spinner2 = new JSpinner();
 		panelFecha = new JPanel(new BorderLayout());
 		panelFecha.add(spinner, BorderLayout.CENTER);
 
