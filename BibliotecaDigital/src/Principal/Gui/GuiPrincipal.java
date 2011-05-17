@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiAutenticar;
+import Usuarios.Gui.GuiRecuperarPassword;
 import Usuarios.Gui.GuiRegistroModificar;
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -66,6 +67,7 @@ public class GuiPrincipal extends JFrame
 		private static GuiRegistroModificar panelRegistro;
 		private static GuiAutenticar panelAutentificar;
 		private GuiConsultaBasica panelConsultaBasica;
+		private static GuiRecuperarPassword cambiar;
 		
 		public GuiPrincipal()
 		{
@@ -88,6 +90,7 @@ public class GuiPrincipal extends JFrame
 			panelRegistro = new GuiRegistroModificar();
 			panelConsultaBasica = new GuiConsultaBasica();
 			panelAutentificar = new GuiAutenticar(this);
+			cambiar = new GuiRecuperarPassword(this);
 			
 			//se obtiene el contenedor de la gui principal
 			contenedor = getContentPane();
@@ -325,7 +328,26 @@ public class GuiPrincipal extends JFrame
 			estado.setText(estadoIngrensando);
 			
 			
+			
 		}
+		public static void insertarPanelCambiar()
+		{
+			
+			contenedor.remove(panelAutentificar);
+			contenedor.add(cambiar, BorderLayout.CENTER);
+			estado.setText("Cambiando Password");
+			
+			
+			
+		}
+
+		public static void cambiarPanelIngresarRemover() {
+			contenedor.remove(cambiar);
+			
+			contenedor.add(panelAutentificar, BorderLayout.CENTER);
+			estado.setText(estadoIngrensando);
+		}
+		
 		
 		
 		
