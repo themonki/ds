@@ -34,12 +34,14 @@ import Utilidades.Estilos;
 
 public class GuiAutenticar extends JPanel
 {
+	private JPanel panel = this;
 
 	private static final long serialVersionUID = 1L;
 	private JLabel nombreUsuario, contrasena;
 	private JTextField campoNombre;
 	private JPasswordField campoContrasena;
 	private Button botonAutenticar;
+	private Button botonCambiarPassword;
 	private GuiPrincipal gp;
 	
 	public GuiAutenticar(GuiPrincipal gp)
@@ -102,10 +104,10 @@ public class GuiAutenticar extends JPanel
 		panelDatos.add(panelDatosInterno);
 
 		panelBoton.add(botonAutenticar);
+		panelBoton.add(botonCambiarPassword);
 
 		JPanel borde22 = new JPanel();
 		borde22.setLayout(new BorderLayout());
-		borde22.add(panelDatos, BorderLayout.CENTER);
 		borde22.add(panelDatos, BorderLayout.CENTER);
 		borde22.add(panelBoton, BorderLayout.SOUTH);
 		borde22.setBorder(borde);
@@ -123,6 +125,8 @@ public class GuiAutenticar extends JPanel
 		
 		botonAutenticar = new Button("Ingresar al Sistema");
 		botonAutenticar.addActionListener(new ManejadorBoton());
+		botonCambiarPassword = new Button("Olvide Contraseña");
+		botonCambiarPassword.addActionListener(new ManejadorBoton());
 
 	}
 
@@ -170,6 +174,11 @@ public class GuiAutenticar extends JPanel
 					}
 				}
 				
+				
+			}else if(evento.getSource() == botonCambiarPassword)
+			{
+				GuiPrincipal.insertarPanelCambiar();
+				gp.repaint();
 				
 			}			
 		}	
