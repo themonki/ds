@@ -207,21 +207,10 @@ public class GuiModificarDoc  extends GuiCatalogar
 			//SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
 			//String fes3 = sdf3.format(fechaactual);
 			doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
-			//doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
-			System.out.println(doc.getId_doc());
-			// doc.setCatalogadorLogin(loginCatalogador);// el login del
-			// catalogador
-			// doc.setUrl(campoEnlaceDoc.getText());//se envia el url de origen
-			// if(controladorDocumento.modificarDatosDocumento(doc,
-			// AreasIdActualVector, AutorIdActualVector,palabActualVec )>=1)
-			// {
-			// JOptionPane.showMessageDialog(null,
-			// "El documento fue catalogado correctamente");
-			// limpiarCampos();
 			if (controladorDocumento.modificarDatosDocumento(doc,
 					AreasIdActualVector, AutorIdActualVector, palabActualVec) >= 1) {
 				JOptionPane.showMessageDialog(null,
-						"El documento fue catalogado correctamente");
+						"El documento fue modificado correctamente");
 			}
 
 		}

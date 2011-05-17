@@ -314,3 +314,14 @@ INSERT INTO Usuario VALUES('clrl','clrl','cristian','leoanrdo','rios','lopez','d
 --INSERT INTO Documento VALUES(DEFAULT, 'español', 'si', 'documento', 'adobe', '200','ninguno', 'pdf', 'Libro', 'librito', 'enlace no disponible', '1111-01-01', '2222-02-02', 'libro', 'admin', '3333-03-03');
 --INSERT INTO Documento VALUES(DEFAULT,'ingles','si','paraiso','writer','150','mas alla','doc','en el paraiso','lo mismo','sin enlace','2000-01-15','2002-02-20','articulo','clrl','2010-06-07');
 INSERT INTO Documento VALUES(DEFAULT,'ingles','si','libro de redes','adobe','0','pearson','pdf','computing networking aproach top-down','','repositorio/Computer Networking - A Top-down Approach Featuring the Internet, 3rd Ed [by Kurose, Ross].pdf', '2006-05-14','2006-05-14','libro','clrl','2010-06-07');
+
+--insertando areas del documento
+INSERT INTO pertenece_documento_area_conocimiento VALUES ('49', '10000');
+
+--insertando autores del documento
+INSERT INTO escribe_autor_documento VALUES ('10000', '10000');
+INSERT INTO escribe_autor_documento VALUES ('10001', '10000');
+
+--insertando palabras clave del documento
+INSERT INTO tiene_documento_palabra_clave VALUES ('red', '10000');
+
