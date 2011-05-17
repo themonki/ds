@@ -72,6 +72,7 @@ public class ControladorDocumento {
 		d.setFormato(d.getFormato().toLowerCase());
 		d.setTituloppal(d.getTituloppal().toLowerCase());
 		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
+		d.setTipoMaterial(d.getTipoMaterial().toLowerCase());
 		
 		if(d.getResolucion().equals("")){
 			d.setResolucion("sin resolucion");
@@ -137,6 +138,7 @@ public class ControladorDocumento {
 		d.setFormato(d.getFormato().toLowerCase());
 		d.setTituloppal(d.getTituloppal().toLowerCase());
 		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
+		d.setTipoMaterial(d.getTipoMaterial().toLowerCase());
 		
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value = daoDoc.modificarDocumento(d);
