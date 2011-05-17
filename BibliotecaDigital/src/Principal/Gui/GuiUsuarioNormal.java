@@ -140,7 +140,7 @@ public class GuiUsuarioNormal extends JFrame
 		restricciones.gridy=1;
 		restricciones.insets= new Insets(0, 0, 20, 0);
 		
-		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/LOGO3D.png")),restricciones);
+		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.gif")),restricciones);
 		restricciones.insets= new Insets(0, 0, 0, 0);
 		restricciones.gridy++;
 		

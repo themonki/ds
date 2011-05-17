@@ -16,10 +16,8 @@ public class ControladorConsulta {
 		Documento d = conDoc.obtenerDocumento(id_documento);
 		d.setAreas(conArea.obtenerAreasDocumento(id_documento));
 		d.setAutores(conAutor.obtenerAutoresDocumento(id_documento));
-		d.setPalabrasClave(conPalabra.obtenerAreasDocumento(id_documento));
+		d.setPalabrasClave(conPalabra.obtenerPalabrasClaveDocumento(id_documento));
 		
 		return d;
 	}
-	
-
 }

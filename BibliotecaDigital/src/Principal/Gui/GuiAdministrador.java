@@ -154,7 +154,7 @@ public class GuiAdministrador extends JFrame
 		restricciones.gridy=1;
 		restricciones.insets= new Insets(0, 0, 20, 0);
 		
-		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/LOGO3D.png")),restricciones);
+		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.gif")),restricciones);
 		restricciones.insets= new Insets(0, 0, 0, 0);
 		restricciones.gridy++;
 		
@@ -182,7 +182,7 @@ public class GuiAdministrador extends JFrame
 		//contenedor.add(new JPanel(), BorderLayout.EAST);
 		//contenedor.add(new JPanel(), BorderLayout.WEST);
 	
-		setSize(785, 500); 
+		setSize(800, 500); 
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
