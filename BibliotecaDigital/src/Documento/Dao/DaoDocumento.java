@@ -341,6 +341,73 @@ public boolean comprobarURL(String url){
 		}
 		return d;
 	}
+//*******ACTUALIZAR
+	public int actualizarDocumentoAreas(String id_documento, Vector<String> ids_areas){
+		this.eliminarDocumentoAreas(id_documento);
+		return this.guardarDocumentoAreas(id_documento, ids_areas);
+	}
+	public int actualizarDocumentoPalabrasClave(String id_documento, Vector<String> ids_palabras){
+		this.eliminarDocumentoPalabrasClave(id_documento);
+		return this.guardarDocumentoPalabrasClave(id_documento, ids_palabras);
+	}
+	public int actualizarDocumentoAutores(String id_documento, Vector<String> ids_autores){
+		this.eliminarDocumentoAutores(id_documento);
+		return this.guardarDocumentoAutores(id_documento, ids_autores);
+	}
+	
+	public int eliminarDocumentoAutores(String id_documento){
+		String sql_eliminar;
+		int numFilas;
+		sql_eliminar = "DELETE FROM escribe_autor_documento WHERE id_documento = '"+id_documento+"';";
+		
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			numFilas = sentencia.executeUpdate(sql_eliminar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	public int eliminarDocumentoPalabrasClave(String id_documento){
+		String sql_eliminar;
+		int numFilas;
+		sql_eliminar = "DELETE FROM tiene_documento_palabra_clave WHERE id_documento = '"+id_documento+"';";
+		
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			numFilas = sentencia.executeUpdate(sql_eliminar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	public int eliminarDocumentoAreas(String id_documento){
+		String sql_eliminar;
+		int numFilas;
+		sql_eliminar = "DELETE FROM pertenece_documento_area_conocimiento WHERE id_documento = '"+id_documento+"';";
 
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			numFilas = sentencia.executeUpdate(sql_eliminar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
 }
 

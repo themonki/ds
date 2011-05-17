@@ -127,7 +127,7 @@ public class ControladorDocumento {
 	// /////////
 
 	public int modificarDocumento(Documento d) {
-		
+		//se pasan a minuscula
 		d.setIdioma(d.getIdioma().toLowerCase());
 		d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
 		d.setDescripcion(d.getDescripcion().toLowerCase());
@@ -369,20 +369,77 @@ public class ControladorDocumento {
 		return "";
 	}
 	
-	public static void main(String []arg){
-		
-		ControladorDocumento c = new ControladorDocumento();
-		JFileChooser manager = new JFileChooser();
-		manager.setDialogTitle("Seleccionar documento a catalogar");
-		manager.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		manager.setAcceptAllFileFilterUsed(false);
-		 int returnVal = manager.showSaveDialog(new JFrame());
-		 if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
-				File file = manager.getSelectedFile();
-				String url = file.getAbsolutePath();
-				String fuente = "repositorio/Computer Networking - A Top-down Approach Featuring the Internet, 3rd Ed [by Kurose, Ross].pdf";
-				c.descargarDocumento(fuente, url);					
-		 }
-		 
+//*********************************************MODIFICAR
+	
+	public int modificarDocumentoAreas(Documento d){
+		DaoDocumento daoDoc = new DaoDocumento();
+		Vector<String> ids_areas = new Vector<String>();
+		Vector<AreaConocimiento> vac  =d.getAreas();
+		for(int i = 0; i< vac.size();i++){
+			ids_areas.add(vac.get(i).getIdArea());
+		}
+		return daoDoc.actualizarDocumentoAreas(d.getId_doc(), ids_areas);
 	}
+	public int modificarDocumentoPalabrasClave(Documento d){
+		DaoDocumento daoDoc = new DaoDocumento();
+		Vector<String> ids_palabras = new Vector<String>();
+		Vector<PalabraClave> vpc  =d.getPalabrasClave();
+		for(int i = 0; i< vpc.size();i++){
+			ids_palabras.add(vpc.get(i).getNombre());
+		}
+		return daoDoc.actualizarDocumentoPalabrasClave(d.getId_doc(), ids_palabras);
+	}
+	public int modificarDocumentoAutores(Documento d){
+		DaoDocumento daoDoc = new DaoDocumento();
+		Vector<String> ids_autores = new Vector<String>();
+		Vector<Autor> va  =d.getAutores();
+		for(int i = 0; i< va.size();i++){
+			ids_autores.add(va.get(i).getId());
+		}
+		return daoDoc.actualizarDocumentoAutores(d.getId_doc(), ids_autores);
+	}
+	
+	
+	public int modificarDatosDocumento(Documento d){
+		if(verificarModificarDocumento(d)){
+			int value=this.modificarDocumento(d);
+			if(value<1){return -1;};
+			this.modificarDocumentoAreas(d);
+			this.modificarDocumentoPalabrasClave(d);
+			this.modificarDocumentoAutores(d);
+			return 1;			
+		}else return -1;
+	}
+	public int modificarDatosDocumento(Documento d, Vector<String> areas_ids,
+			Vector<String> autores_ids, Vector<String> palabras_ids ){
+		
+		Vector <AreaConocimiento> vac= new Vector <AreaConocimiento>();
+		Vector <Autor> va = new Vector <Autor>();
+		Vector <PalabraClave> vpc =new Vector <PalabraClave>();
+		for(int i = 0; i < areas_ids.size(); i++){
+			AreaConocimiento ac = new AreaConocimiento();
+			ac.setIdArea(areas_ids.get(i));
+			vac.add(ac);
+		}
+		for(int i = 0; i < autores_ids.size(); i++){
+			Autor a = new Autor();
+			a.setId(autores_ids.get(i));
+			va.add(a);
+		}
+		for(int i = 0; i < palabras_ids.size(); i++){
+			PalabraClave pc = new PalabraClave();
+			pc.setNombre(palabras_ids.get(i));
+			vpc.add(pc);
+		}
+		d.setAutores(va);
+		d.setAreas(vac);
+		d.setPalabrasClave(vpc);
+		
+		return this.modificarDatosDocumento(d);
+	}
+	
+	public boolean verificarModificarDocumento(Documento d){
+		return true;
+	}
+
 }
