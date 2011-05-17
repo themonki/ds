@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,7 +39,7 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 {
 
 	private String loginModificador;
-
+	private Button botonModificar;
 
 	public GuiModificarDoc() 
 	{
@@ -70,13 +71,12 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 		borde.setTitleJustification(TitledBorder.LEFT);
 		setBorder(borde);
 		
+		botonModificar= new Button("Modificar");
+		setBotonCatalogar(botonModificar);
+		this.botonModificar.addActionListener(new ManejadorBotonModificar());
 		
-		
-		this.botonCatalogar.setText("Modificar");
-		this.botonCatalogar.addActionListener(new ManejadorBotonModificar());
-
 		this.examinarDoc.setEnabled(false);
-		
+		this.panel2.remove(this.examinarDoc);
 		
 		initDocumentInfo();
 	}
@@ -169,9 +169,10 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 		catch (Exception e){e.printStackTrace();}
 
 		JFrame  a = new JFrame();
-
+		ControladorDocumento da = new ControladorDocumento();
+		
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		a.add(new GuiModificarDoc(new String(),new Documento()));
+		a.add(new GuiModificarDoc("admin",da.obtenerDocumento("10000")));
 
 
 		a.setSize(500,500);
@@ -180,51 +181,52 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 	}
 	
 
-	protected class ManejadorBotonModificar implements ActionListener 
-	{
-		public void actionPerformed(ActionEvent event) 
-		{
-			
-				doc = new Documento();//null, campoIdioma.getSelectedItem(), campoDerechosAutor.getSelectedItem(), campoDescripcion.getText(), campoSoftware.getText(), campoResolucion.getText(), campoEditorial.getText(), campoFormato.getSelectedItem(), campoTituloPpal.getText(), campoTituloSecundario.getText(), null, , fechaPublicacion, fechaCatalogacion, loginCatalogador, campoTipoMaterial.getSelectedItem(), AutorIdActualVector,  AreasIdActualVector,palabActualVec);
-				doc.setTituloppal(campoTituloPpal.getText());
-				doc.setTitulo_secundario(campoTituloSecundario.getText());
-				doc.setIdioma((String) campoIdioma.getSelectedItem());				
-				doc.setTipoMaterial((String)campoTipoMaterial.getSelectedItem());
-				doc.setEditorial(campoEditorial.getText());
-				doc.setFormato((String) campoFormato.getSelectedItem());
-				doc.setSoftware_recomentado(campoSoftware.getText());
-				doc.setDescripcion(campoDescripcion.getText());
-				doc.setResolucion(campoResolucion.getText());
-				doc.setDerechosDeAutor(campoDerechosAutor.getSelectedItem().toString());
-				//--------------------------------------
-				//tomar fechas de splinner 
-				fecha=  editor.getModel().getDate();
-				SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");  
-				String fes= sdf.format(fecha);			 
-				fecha2=  editor.getModel().getDate();
-				SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");  
-				String fes2= sdf2.format(fecha2);
-				doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
-				java.util.Date fechaactual = new Date();// fecha actual 
-				SimpleDateFormat sdf3= new SimpleDateFormat("yyyy-MM-dd");  
-				String fes3= sdf3.format(fechaactual);
-				doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
-				doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
-				
-				//doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
-				//doc.setUrl(campoEnlaceDoc.getText());//se envia el url de origen
-				//if(controladorDocumento.modificarDatosDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
-				//{
-					//JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");
-					limpiarCampos();
-				//}			
-			
+	protected class ManejadorBotonModificar implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			doc.setTituloppal(campoTituloPpal.getText());
+			doc.setTitulo_secundario(campoTituloSecundario.getText());
+			doc.setIdioma((String) campoIdioma.getSelectedItem());
+			doc.setTipoMaterial((String) campoTipoMaterial.getSelectedItem());
+			doc.setEditorial(campoEditorial.getText());
+			doc.setFormato((String) campoFormato.getSelectedItem());
+			doc.setSoftware_recomentado(campoSoftware.getText());
+			doc.setDescripcion(campoDescripcion.getText());
+			doc.setResolucion(campoResolucion.getText());
+			doc.setDerechosDeAutor(campoDerechosAutor.getSelectedItem()
+					.toString());
+			// --------------------------------------
+			// tomar fechas de splinner
+			fecha = editor.getModel().getDate();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String fes = sdf.format(fecha);
+			fecha2 = editor.getModel().getDate();
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+			String fes2 = sdf2.format(fecha2);
+			doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
+			///java.util.Date fechaactual = new Date();// fecha actual
+			//SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
+			//String fes3 = sdf3.format(fechaactual);
+			doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
+			//doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
+			System.out.println(doc.getId_doc());
+			// doc.setCatalogadorLogin(loginCatalogador);// el login del
+			// catalogador
+			// doc.setUrl(campoEnlaceDoc.getText());//se envia el url de origen
+			// if(controladorDocumento.modificarDatosDocumento(doc,
+			// AreasIdActualVector, AutorIdActualVector,palabActualVec )>=1)
+			// {
+			// JOptionPane.showMessageDialog(null,
+			// "El documento fue catalogado correctamente");
+			// limpiarCampos();
+			if (controladorDocumento.modificarDatosDocumento(doc,
+					AreasIdActualVector, AutorIdActualVector, palabActualVec) >= 1) {
+				JOptionPane.showMessageDialog(null,
+						"El documento fue catalogado correctamente");
+			}
 
-			
-		
-	
 		}
-		} 
+	}
+	
 	
 
 

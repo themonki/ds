@@ -110,7 +110,8 @@ public class GuiCatalogarModificar extends JScrollPane{
 	}
 
 
-
+	public void setBotonCatalogar(Button b){ panel.remove(this.botonCatalogar);botonCatalogar = null;
+	botonCatalogar = b; panel.add(botonCatalogar);}
 
 
 	protected void initComponents(){

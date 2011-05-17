@@ -287,7 +287,6 @@ public class ControladorDocumento {
 			System.out.println(e.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("ESTE");
 			System.out.println(e.toString());
 		}
 		return "";
@@ -439,7 +438,27 @@ public class ControladorDocumento {
 	}
 	
 	public boolean verificarModificarDocumento(Documento d){
-		return true;
+		boolean estado =true;
+		String mensaje="";
+		if(d.getTituloppal().equals("")){
+			mensaje+="*Debe proporcionar un Titulo Principal al documento\n";
+			estado=false;
+		}
+		if(d.getDescripcion().equals("")){
+			mensaje+="*Debe proporcionar una descripcion o resumen del Documento\n";
+			estado=false;
+		}		
+		if(d.getAreas().size()==0){
+			mensaje+="*Debe proporcionar por lo menos un Area de Conocimiento\n";
+			estado=false;
+		}
+		if(d.getAutores().size()==0){
+			mensaje+="*Debe proporcionar por lo menos un Autor\n";
+			estado=false;
+		}
+
+		if(!estado){JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);}	
+		return estado;
 	}
 
 }
