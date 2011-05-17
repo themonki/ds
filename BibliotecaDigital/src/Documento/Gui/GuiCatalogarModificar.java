@@ -665,12 +665,13 @@ public class GuiCatalogarModificar extends JScrollPane{
 			
 			if(event.getSource()==examinarDoc){
 				JFileChooser manager = new JFileChooser();
+				manager.setDialogTitle("Seleccionar documento a catalogar");
+				manager.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				 int returnVal = manager.showSaveDialog(new JFrame());
 				 if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
 						File file = manager.getSelectedFile();
 						String url = file.getAbsolutePath();						
-						campoEnlaceDoc.setText(url);
-						
+						campoEnlaceDoc.setText(url);						
 				 }						
 			}
 			if(event.getSource()==nuevaArea){				

@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.sql.Date;
 import java.util.Vector;
 
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import Documento.Dao.DaoDocumento;
@@ -336,5 +338,51 @@ public class ControladorDocumento {
 		DaoDocumento daoDoc = new DaoDocumento();
 		Documento d = daoDoc.consultarDatosDocumento(id_documento);
 		return d;
+	}
+	
+	public String descargarDocumento(String urlFuente, String urlDestino){
+		File src = new File(urlFuente);
+		File dst= new File(urlDestino+"/"+src.getName());//es una carpeta
+		InputStream in;
+		OutputStream out;		
+		try {
+			in = new FileInputStream(src);
+			out = new FileOutputStream(dst);
+			
+			 byte[] buf = new byte[1024]; 
+		        int len; 
+		        while ((len = in.read(buf)) > 0) { 
+		            out.write(buf, 0, len); 
+		        } 
+		        in.close(); 
+		        out.close();
+		        return dst.getAbsolutePath();
+		
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ESTE");
+			System.out.println(e.toString());
+		}
+		return "";
+	}
+	
+	public static void main(String []arg){
+		
+		ControladorDocumento c = new ControladorDocumento();
+		JFileChooser manager = new JFileChooser();
+		manager.setDialogTitle("Seleccionar documento a catalogar");
+		manager.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		manager.setAcceptAllFileFilterUsed(false);
+		 int returnVal = manager.showSaveDialog(new JFrame());
+		 if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
+				File file = manager.getSelectedFile();
+				String url = file.getAbsolutePath();
+				String fuente = "repositorio/Computer Networking - A Top-down Approach Featuring the Internet, 3rd Ed [by Kurose, Ross].pdf";
+				c.descargarDocumento(fuente, url);					
+		 }
+		 
 	}
 }
