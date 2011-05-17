@@ -68,6 +68,7 @@ public class GuiRecuperarPassword extends JPanel
 	
 	
 	private JButton botonIngresar;
+	private JButton botonRegresar;
 	private JButton botonCambiarPassword;
 	private JButton botonGuardar;
 	private GuiPrincipal gp;
@@ -151,6 +152,7 @@ public class GuiRecuperarPassword extends JPanel
 		
 
 		panelBotonSolicitud.add(botonIngresar);
+		panelBotonSolicitud.add(botonRegresar);
 		panelBotonCambiar.add(botonCambiarPassword);
 		panelBotonGuardar.add(botonGuardar);
 		panelConsultarLogin = new JPanel();
@@ -210,6 +212,8 @@ public class GuiRecuperarPassword extends JPanel
 		botonCambiarPassword.addActionListener(manejador);
 		botonGuardar = new JButton("Guardar");
 		botonGuardar.addActionListener(manejador);
+		botonRegresar = new JButton("Regresar");
+		botonRegresar.addActionListener(manejador);
 
 	}
 
@@ -315,7 +319,16 @@ public class GuiRecuperarPassword extends JPanel
 				}
 				
 				
-			}			
+			}else if(evento.getSource() == botonRegresar)
+			{
+				
+					GuiPrincipal.cambiarPanelIngresarRemover();
+					gp.repaint();
+					
+			
+				
+				
+			}				
 		}	
 	}
 	
@@ -347,7 +360,7 @@ public class GuiRecuperarPassword extends JPanel
 		panelConsultarLogin.setVisible(true);
 		panelBotonSolicitud.setVisible(true);
 	
-		campoNombre.setText("");
+		campoNombre.setText(""); 
 		campoDescripcionPregunta.setText("");
 		campoRespuestaPregunta.setText("");
 		
@@ -358,19 +371,6 @@ public class GuiRecuperarPassword extends JPanel
 		panelBotonGuardar.setVisible(false);
 		
 	}
-	/*public static void main(String args[])
-	{
-		
-		GuiRecuperarPassword a = new GuiRecuperarPassword();
-		
-		JFrame jf = new JFrame();
-		jf.add(a);
-		jf.setVisible(true);
-		jf.setSize(600,600);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 
-		
-	}*/
 
 }
