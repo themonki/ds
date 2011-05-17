@@ -22,7 +22,7 @@ import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
 
 import Documento.Controlador.ControladorDocumento;
-import Documento.Gui.GuiCatalogarModificar.eventoMouse;
+import Documento.Gui.GuiCatalogar.eventoMouse;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Controlador.ControladorAutor;
@@ -35,7 +35,7 @@ import Principal.Gui.GuiPrincipal;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
-public class GuiModificarDoc  extends GuiCatalogarModificar
+public class GuiModificarDoc  extends GuiCatalogar
 {
 
 	private String loginModificador;

@@ -22,7 +22,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import Documento.Gui.GuiCatalogarModificar;
+import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.Button;
@@ -35,7 +35,7 @@ public class GuiIngresarArea extends JFrame {
 	JComboBox campoAreaPadre;
 	JTextArea campoDescripcionArea;
 	Button botonIngresarArea;
-	GuiCatalogarModificar guiCatalogarModi;
+	GuiCatalogar guiCatalogarModi;
 
 	
 	JPanel panel, panel2, panel3, panel4, panel5, panelPrincipal;
@@ -46,7 +46,7 @@ public class GuiIngresarArea extends JFrame {
 		initComponents();
 		
 	}
-	public GuiIngresarArea(GuiCatalogarModificar guiCatalogarModi) {
+	public GuiIngresarArea(GuiCatalogar guiCatalogarModi) {
 		super(":::Ingresar Area:::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();

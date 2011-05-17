@@ -21,7 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import Documento.Gui.GuiCatalogarModificar;
+import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -36,14 +36,14 @@ public class GuiIngresarTipoMaterial extends JFrame {
 
 	JPanel panel, panel1, panel2, panel3, panel4, panel5, panelPrincipal;
 	
-	GuiCatalogarModificar guicatalogarModi;
+	GuiCatalogar guicatalogarModi;
 
 	public GuiIngresarTipoMaterial() {
 		super("::Ingresar Tipo Material::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 	}
-	public GuiIngresarTipoMaterial(GuiCatalogarModificar guicatalogarModi) {
+	public GuiIngresarTipoMaterial(GuiCatalogar guicatalogarModi) {
 		super("::Ingresar Tipo Material::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		this.guicatalogarModi=guicatalogarModi;

@@ -21,7 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import Documento.Gui.GuiCatalogarModificar;
+import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorPalabraClave;
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -34,7 +34,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 
 	JPanel panel1, panel, panel2, panel3;
 	
-	GuiCatalogarModificar guicatalogarModi ;
+	GuiCatalogar guicatalogarModi ;
 
 	public GuiIngresarPalabraClave() {
 		super(":::Ingresar Palabra Clave:::");
@@ -42,7 +42,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 		initComponents();
 	}
 	
-	public GuiIngresarPalabraClave(GuiCatalogarModificar guicatalogarModi) {
+	public GuiIngresarPalabraClave(GuiCatalogar guicatalogarModi) {
 		super(":::Ingresar Palabra Clave:::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();

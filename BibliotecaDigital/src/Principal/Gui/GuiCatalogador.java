@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaBasica;
-import Documento.Gui.GuiCatalogarModificar;
+import Documento.Gui.GuiCatalogar;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
 import Utilidades.Button;
@@ -65,7 +65,7 @@ public class GuiCatalogador extends JFrame
 
 	// otros paneles
 	private GuiRegistroModificar panelModificacion;
-	private GuiCatalogarModificar panelCatalogarModificar;
+	private GuiCatalogar panelCatalogarModificar;
 	private GuiConsultaBasica panelConsultaBasica;
 	
 	private Usuario usuario;
@@ -93,7 +93,7 @@ public class GuiCatalogador extends JFrame
 		
 		// se instancias paneles adicionales
 		panelModificacion = new GuiRegistroModificar(usuario,1);
-		panelCatalogarModificar = new GuiCatalogarModificar(usuario.getLogin());
+		panelCatalogarModificar = new GuiCatalogar(usuario.getLogin());
 		panelConsultaBasica = new GuiConsultaBasica();
 	
 		contenedor = getContentPane();
