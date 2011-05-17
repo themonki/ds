@@ -107,6 +107,33 @@ public class DaoPalabraClave {
 		}
 		return palabras;
 	}
+	//metodo que devuelve los autores de un documento dado su id_documento
+	public Vector <PalabraClave> consultarPalabrasClaveDocumento(String id_documento) {
+		Vector <PalabraClave> vpc = new Vector<PalabraClave>();
+		String sqlSelect;
+		sqlSelect = "SELECT * FROM palabra_clave pc NATURAL JOIN " +
+				"tiene_documento_palabra_clave dpc WHERE dpc.id_documento='"
+				+ id_documento + "'";
+		try {
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet tabla = sentencia.executeQuery(sqlSelect);
+
+			while (tabla.next()) {
+				PalabraClave pc = new PalabraClave();
+				pc.setNombre(tabla.getString("nombre"));
+				pc.setDescripcion(tabla.getString("descripcion"));
+				vpc.add(pc);
+			}
+			this.fachada.cerrarConexion(conn);
+
+		} catch (SQLException se) {
+			System.out.println(se.toString());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return vpc;
+	}
 
 	/* main para prueba OK */
 	/*

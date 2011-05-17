@@ -299,10 +299,48 @@ public boolean comprobarURL(String url){
 		
 	} catch (Exception e) {
 		System.out.println(e);
-	}
-	
+	}	
 	return false;
 }
+//metodo que retorna los datos de un documento de acuerdo a su login, no devuelve areas, palabras y autores
+	public Documento consultarDatosDocumento(String id_documento) {
+		String consulta_sql = "SELECT * " + 
+							"FROM documento " +
+							"WHERE id_documento = '"+id_documento+"';";
+		ResultSet resultado;
+		Documento d = new Documento();
+		System.out.println(consulta_sql);
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			resultado = sentencia.executeQuery(consulta_sql);
+			if (resultado.next()) {//debe devolver uno solo
+				d.setDerechosDeAutor(resultado.getString("derechos_autor"));
+				d.setCatalogadorLogin(resultado.getString("login_catalogador"));
+				d.setDescripcion(resultado.getString("descripcion"));
+				d.setEditorial(resultado.getString("editorial"));
+				d.setFecha_creacion(java.sql.Date.valueOf(resultado.getString("fecha_creacion")));
+				d.setFecha_publicacion(java.sql.Date.valueOf(resultado.getString("fecha_publicacion")));
+				d.setFechaDeCatalogacion(java.sql.Date.valueOf(resultado.getString("fecha_catalogacion")));
+				d.setFormato(resultado.getString("formato"));
+				d.setId_doc(resultado.getString("id_documento"));
+				d.setIdioma(resultado.getString("idioma"));
+				d.setResolucion(resultado.getString("resolucion"));
+				d.setSoftware_recomentado(resultado.getString("software_recomendado"));
+				d.setTipoMaterial(resultado.getString("tipo_nombre"));
+				d.setTitulo_secundario(resultado.getString("titulo_secundario"));
+				d.setTituloppal(resultado.getString("titulo_principal"));
+				d.setUrl(resultado.getString("link"));
+			}
+			conn.close();
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return d;
+	}
 
 }
 

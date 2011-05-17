@@ -67,6 +67,11 @@ public class ControladorAutor {
 		return vectorTodosAutores;
 
 	}
+//metodo que devuelve los autores de un documento dado su llave
+	public Vector <Autor> obtenerAutoresDocumento(String id_documento){
+		DaoAutor daoAutor = new DaoAutor();
+		return daoAutor.consultarAutoresDocumento(id_documento);
+	}
 
 	/* main para prueba OK */
 	/*

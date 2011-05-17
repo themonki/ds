@@ -162,6 +162,36 @@ public class DaoAreaConocimiento {
 		}
 		return -1;
 	}
+//metodo que devuelve las areas de conocimiento de un documento dado su id_documento
+	public Vector <AreaConocimiento> consultarAreasDocumento(String id_documento) {
+		Vector <AreaConocimiento> vac = new Vector<AreaConocimiento>();
+		String sqlSelect;
+		sqlSelect = "SELECT * FROM area_conocimiento ac NATURAL JOIN " +
+				"pertenece_documento_area_conocimiento dac WHERE dac.id_documento='"
+				+ id_documento + "'";
+		try {
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet tabla = sentencia.executeQuery(sqlSelect);
+
+			while (tabla.next()) {
+				AreaConocimiento area = new AreaConocimiento();
+				area.setIdArea(tabla.getString("id_area"));
+				area.setNombre(tabla.getString("nombre"));
+				area.setDescripcion(tabla.getString("descripcion"));
+				area.setAreaPadre(tabla.getString("area_padre"));
+				vac.add(area);
+			}
+			this.fachada.cerrarConexion(conn);
+
+		} catch (SQLException se) {
+			System.out.println(se.toString());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return vac;
+	}
 
 	/* main para prueba OK */
 	/*

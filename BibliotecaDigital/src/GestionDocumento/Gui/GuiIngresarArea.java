@@ -1,11 +1,8 @@
 package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +12,6 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,15 +20,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
-import Utilidades.Button;
-import Utilidades.Estilos;
 
 import Documento.Gui.GuiCatalogarModificar;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
+import Utilidades.Button;
+import Utilidades.Estilos;
 
 public class GuiIngresarArea extends JFrame {
 
@@ -107,7 +101,7 @@ public class GuiIngresarArea extends JFrame {
 		panelPrincipal.add(panel3, BorderLayout.CENTER);
 		panelPrincipal.add(panel4, BorderLayout.SOUTH);
 		add(panelPrincipal);
-		setSize(820, 340);
+		setSize(610, 340);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -157,8 +151,6 @@ public class GuiIngresarArea extends JFrame {
 	private class ManejadorBoton implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-
-			AreaConocimiento area = new AreaConocimiento();
 
 			if (validarDatos()) {
 

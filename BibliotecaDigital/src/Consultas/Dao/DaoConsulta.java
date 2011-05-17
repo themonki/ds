@@ -5,9 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import Utilidades.*;
-import Documento.Logica.*;
-import GestionDocumento.Logica.*;
+import Documento.Logica.Documento;
+import Utilidades.FachadaBD;
 
 public class DaoConsulta {
 	
@@ -43,6 +42,4 @@ public class DaoConsulta {
 			}
 		return vdoc;
 	}
-	
-
 }

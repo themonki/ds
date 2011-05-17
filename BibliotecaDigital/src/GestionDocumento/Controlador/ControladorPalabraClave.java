@@ -56,7 +56,11 @@ public class ControladorPalabraClave {
 		return nombres;
 
 	}
-
+//metodo que devuelve las palabras clave de un documento dado su llave
+	public Vector <PalabraClave> obtenerAreasDocumento(String id_documento){
+		DaoPalabraClave daoPC = new DaoPalabraClave();
+		return daoPC.consultarPalabrasClaveDocumento(id_documento);
+	}
 	/*
 	 * public static void main(String args[]) { ControladorPalabraClave
 	 * controladorPalabraClave = new ControladorPalabraClave();
