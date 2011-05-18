@@ -16,10 +16,14 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import Utilidades.Estilos;
 
 import Consultas.Logica.Consulta;
+import Consultas.Controlador.*;
+import Documento.Logica.Documento;
 
 public class GuiResultadoConsulta extends JScrollPane{
 	
@@ -35,8 +39,17 @@ public class GuiResultadoConsulta extends JScrollPane{
 	
 	public GuiResultadoConsulta(){}
 	
-	public GuiResultadoConsulta(Vector<Consulta> vectorConsulta){
+	public GuiResultadoConsulta(Vector<Consulta> vectorConsulta, int cantidadResultados){
 		
+		cantidadMostrar=cantidadResultados;
+		this.vectorConsulta = vectorConsulta;
+		cantidadTotalResultados=vectorConsulta.size();
+		posicionResultado=0;
+		iniComponents();		
+	}
+	
+	private void iniComponents(){
+		//***/
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Resultado Consultas");
@@ -44,40 +57,48 @@ public class GuiResultadoConsulta extends JScrollPane{
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		setBorder(borde);
-		
+		//******/
 		JPanel panel = new JPanel();
 		JPanel panel2 = new JPanel();
 		panel.setLayout(new BorderLayout());
-		listaResultado = new JList();
-		//listaResultado.setPreferredSize(new Dimension(245,200));
-		modeloLista = new DefaultListModel();
-		this.vectorConsulta = vectorConsulta;
-		cantidadTotalResultados=vectorConsulta.size();
-		posicionResultado=0;
+
+		initBotones();
+		initLista();
+		
+		JScrollPane scrollResultado = new JScrollPane(listaResultado);
+		scrollResultado.setSize(new Dimension(245,200));
+		panel.add(scrollResultado, BorderLayout.CENTER);
+		panel2.add(botonRegresar);
+		panel2.add(botonAtras);
+		panel2.add(botonSiguiente);
+		panel.add(panel2, BorderLayout.SOUTH);
+		
+		this.setViewportView(panel);		
+		//------------------------------------------
+		setSize(900,900);
+		setVisible(true);
+		
+	}
+	
+	private void initBotones(){
+		
 		botonRegresar = new JButton("Regresar");
 		botonSiguiente = new JButton("Siguiente");
 		botonAtras = new JButton("Atras");
 		botonRegresar.addActionListener(new ManejadorBoton());
 		botonSiguiente.addActionListener(new ManejadorBoton());
+		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setVisible(false);
 		botonAtras.addActionListener(new ManejadorBoton());
 		botonAtras.setVisible(false);
-		cantidadMostrar=15;
+		
+	}
+	
+	private void initLista(){
+		listaResultado = new JList();
+		listaResultado.addListSelectionListener(new ManejadorLista());		
+		//listaResultado.setPreferredSize(new Dimension(245,200));
+		modeloLista = new DefaultListModel();
 		agregarResultadoSiguiente(cantidadMostrar);
-		JScrollPane scrollResultado = new JScrollPane(listaResultado);
-		scrollResultado.setSize(new Dimension(245,200));
-		panel.add(scrollResultado, BorderLayout.NORTH);
-		panel2.add(botonRegresar);
-		panel2.add(botonAtras);
-		panel2.add(botonSiguiente);
-		panel.add(panel2, BorderLayout.SOUTH);
-		this.setViewportView(panel);
-		
-		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		
-		//------------------------------------------
-		setSize(900,900);
-		setVisible(true);
 	}
 	
 	public void agregarResultadoSiguiente(int cantidad){
@@ -86,14 +107,10 @@ public class GuiResultadoConsulta extends JScrollPane{
 			if(i>=cantidadTotalResultados){
 				break;
 			}
-			Consulta consulta = vectorConsulta.elementAt(i);
-			String mostrarDatos = consulta.getTituloDocuemto() + "\n Autor(es): "+
-									consulta.getNombreAutorDocumento();
-			modeloLista.addElement(mostrarDatos);
+			modeloLista.addElement(vectorConsulta.elementAt(i));
 		}
 		listaResultado.setModel(modeloLista);
 		posicionResultado=posicionFinal;
-		System.out.println(posicionResultado);
 	}
 	
 	public void agregarResultadoAtras(int cantidad){
@@ -102,14 +119,10 @@ public class GuiResultadoConsulta extends JScrollPane{
 			if(i>=cantidadTotalResultados){
 				break;
 			}
-			Consulta consulta = vectorConsulta.elementAt(i);
-			String mostrarDatos = consulta.getTituloDocuemto() + "\n Autor(es): "+
-									consulta.getNombreAutorDocumento();
-			modeloLista.addElement(mostrarDatos);
+			modeloLista.addElement(vectorConsulta.elementAt(i));
 		}
 		listaResultado.setModel(modeloLista);
 		posicionResultado=posicionResultado-cantidad;
-		System.out.println(posicionResultado);
 	}
 	
 	private class ManejadorBoton implements ActionListener {
@@ -140,6 +153,29 @@ public class GuiResultadoConsulta extends JScrollPane{
 		
 		
 	}
+
+	private class ManejadorLista implements ListSelectionListener {
+
+		int flag = 0;
+		public void valueChanged(ListSelectionEvent e) {
+			if (flag == 0) {
+				int documentoElegido = listaResultado.getSelectedIndex();
+				if (documentoElegido >= 0) {
+					ControladorConsulta conConsulta = new ControladorConsulta();
+					Consulta documentoConsultar = (Consulta) modeloLista
+							.getElementAt(documentoElegido);
+					// Documento d =
+					// conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());//devuelve
+					// el documento
+				}
+				flag = 1;
+			} else {
+				flag = 0;
+			}
+		}
+
+	}
+
 	
 	public static void main(String []args){
 		JFrame m = new JFrame();
@@ -154,7 +190,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 		Consulta co3 = new Consulta("3","doc3","autor, autor");
 		for(int i = 0 ; i <3; i++)
 			v.add(co3);
-		c.add(new GuiResultadoConsulta(v));
+		c.add(new GuiResultadoConsulta(v, 10));
 		m.setSize(700, 600);
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		m.setVisible(true);
