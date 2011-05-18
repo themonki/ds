@@ -19,4 +19,8 @@ public class Consulta {
 	public void setIdDocumento(String value) {idDocumento=value;}
 	public void setTituloDocuemto(String value) {tituloDocuemto=value;}
 	public void setNombreAutorDocumento(String value) {nombreAutorDocumento=value;}
+	public String toString(){
+		String mostrarDatos = tituloDocuemto + "\n Autor(es): "+nombreAutorDocumento;
+		return mostrarDatos;
+	}
 }

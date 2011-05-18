@@ -290,8 +290,10 @@ public class ControladorUsuario {
 		int value=0;
 		//se quitan todas las areas que hagan referencia a ese login
 		value += daoUs.quitarUsuarioAreas(u.getLogin());
+		
 		//inserta las areas a las que ahora hace referencia
-		value = daoUs.insertarUsuarioAreas(u.getLogin(), areasNuevas);
+		if(u.getAreas().size()>=1)
+			value += daoUs.insertarUsuarioAreas(u.getLogin(), areasNuevas);
 				
 		return value;
 	}
@@ -324,7 +326,7 @@ public class ControladorUsuario {
 	public int modificarDatosUsuario(Usuario u){
 		int value =0;
 		value = this.modificarUsuario(u);
-		if((value != 0) && (u.getAreas().size()>=1))
+		if(value != 0)
 			value +=this.modificarUsuarioArea(u);
 		return value;
 	}
