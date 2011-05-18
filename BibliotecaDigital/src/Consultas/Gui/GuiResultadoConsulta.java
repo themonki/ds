@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -58,19 +61,25 @@ public class GuiResultadoConsulta extends JScrollPane{
 		borde.setTitleJustification(TitledBorder.LEFT);
 		setBorder(borde);
 		//******/
-		JPanel panel = new JPanel();
-		JPanel panel2 = new JPanel();
-		panel.setLayout(new BorderLayout());
-
+		
 		initBotones();
 		initLista();
 		
 		JScrollPane scrollResultado = new JScrollPane(listaResultado);
 		scrollResultado.setSize(new Dimension(245,200));
+		
+		JPanel panel2 = new JPanel(new GridBagLayout());
+		GridBagConstraints restriccionBotones= new GridBagConstraints();
+		restriccionBotones.insets = new Insets(5,40,5,5);
+		
+		panel2.add(botonRegresar, restriccionBotones);
+		panel2.add(botonAtras, restriccionBotones);
+		panel2.add(botonSiguiente,restriccionBotones);
+		
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
 		panel.add(scrollResultado, BorderLayout.CENTER);
-		panel2.add(botonRegresar);
-		panel2.add(botonAtras);
-		panel2.add(botonSiguiente);
 		panel.add(panel2, BorderLayout.SOUTH);
 		
 		this.setViewportView(panel);		
