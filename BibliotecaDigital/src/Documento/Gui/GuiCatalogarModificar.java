@@ -57,7 +57,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 	private GuiIngresarAutor ingresarAutorNuevo;
 	private GuiIngresarTipoMaterial ingresarTipoNuevo;
 	
-	String idiomasDisponibles [] = {"Ingles", "EspaÃ±ol","Frances", "Aleman", "Portuges"};
+	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
 	private JPanel panel,panelFecha,panel2,panel3,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
@@ -676,11 +676,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 
 	
 	}
-<<<<<<< HEAD
 
-	private boolean validacionDeDatos() 
-	{
-=======
 */
 	private boolean validacionDeDatos() {
 
