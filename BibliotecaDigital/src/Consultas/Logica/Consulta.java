@@ -6,8 +6,8 @@ public class Consulta {
 	String tituloDocuemto ;
 	String nombreAutorDocumento;
 	
-	Consulta(){}
-	Consulta(String id_doc, String titulo, String nombreAutor){
+	public Consulta(){}
+	public Consulta(String id_doc, String titulo, String nombreAutor){
 		idDocumento = id_doc;
 		tituloDocuemto = titulo;
 		nombreAutorDocumento=nombreAutor;
