@@ -607,6 +607,7 @@ public class GuiRegistroModificar extends JScrollPane{
 		campoGenero.setSelectedIndex(0);
 		//campoAreasInteres.setSelectedIndex(0);
 		panelAreasInteres.removeAll();
+		areaConocimientoVector.removeAllElements();
 	}
 	
 	
