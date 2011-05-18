@@ -6,29 +6,64 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+import javax.swing.text.AbstractDocument.BranchElement;
+
+import Utilidades.Estilos;
 
 import Documento.Logica.Documento;
 
 public class GuiVistaDocumento extends JScrollPane{
 	
-	JLabel tituloPrincipal, tituloSecundario, idioma, editorial, derechosAutor, descripcion,
-	resolucion, formato, softwareRecomendado, fechaPublicacion, fechaCreacion;
+	private static final long serialVersionUID = 1L;
+
+	// Etiquetas con los datos correspondientes al documento.
+	JLabel tituloPrincipal;
+	JLabel tituloSecundario;
+	JLabel idioma;
+	JLabel editorial;
+	JLabel derechosAutor;
+	JLabel descripcion;
+	JLabel resolucion;
+	JLabel formato;
+	JLabel softwareRecomendado;
+	JLabel fechaPublicacion;
+	JLabel fechaCreacion;
 	
-	JTextField campoTituloPrincipal, campoTituloSecundario, campoIdioma, campoEditorial,
-	campoDerechosAutor, campoDescripcion, campoResolucion, campoFormato, campoSoftwareRecomendado,
-	campoFechaPublicacion, campoFechaCreacion;
+	// Campos para el contenido de cada uno de los datos correspondientes al documento.
+	JTextField campoTituloPrincipal;
+	JTextField campoTituloSecundario;
+	JTextField campoIdioma;
+	JTextField campoEditorial;
+	JTextField campoDerechosAutor; 
+	JTextField campoDescripcion;
+	JTextField campoResolucion;
+	JTextField campoFormato;
+	JTextField campoSoftwareRecomendado;
+	JTextField campoFechaPublicacion;
+	JTextField campoFechaCreacion;
+	
+	//Boton que permite descargar en caso de ser un usuario normal, administrador o catalogador.
 	JButton botonDescargar;
 	
 	GuiVistaDocumento(Documento doc){
 		
 		super();
+		TitledBorder borde;
+		borde = BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Descripcion Documento::");
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleJustification(TitledBorder.LEFT);
+		setBorder(borde);
+		
 		tituloPrincipal=new JLabel("Titulo Principal");
 		tituloSecundario=new JLabel("Titulo Secundario o Traduccion");
 		idioma=new JLabel("Idioma");
@@ -153,7 +188,7 @@ public class GuiVistaDocumento extends JScrollPane{
 		
 		//panel.add(descargar);
 		JPanel panel2 = new JPanel(new BorderLayout());
-		panel2.add(panel);
+		panel2.add(panel,BorderLayout.NORTH);
 		//add(panel);
 		this.setViewportView(panel2);
 		
