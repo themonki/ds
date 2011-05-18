@@ -1,10 +1,8 @@
 package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +11,7 @@ import java.awt.event.KeyListener;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,30 +20,35 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
-import Documento.Gui.GuiCatalogarModificar;
+import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
+import Utilidades.Button;
+import Utilidades.Estilos;
 
 public class GuiIngresarArea extends JFrame {
 
-	JLabel nombre, descripcionArea, areaPadre, indicacion;
+	JLabel nombre, descripcionArea, areaPadre;
 	JTextField campoNombre;
 	JComboBox campoAreaPadre;
 	JTextArea campoDescripcionArea;
-	JButton botonIngresarArea;
-	GuiCatalogarModificar guiCatalogarModi;
+	Button botonIngresarArea;
+	GuiCatalogar guiCatalogarModi;
 
-	JPanel panel, panel2, panel3, panel4, panel5;
+	
+	JPanel panel, panel2, panel3, panel4, panel5, panelPrincipal;
 
 	public GuiIngresarArea() {
-		super("Ingresar Area");
+		super(":::Ingresar Area:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		
 	}
-	public GuiIngresarArea(GuiCatalogarModificar guiCatalogarModi) {
-		super("Ingresar Area");
+	public GuiIngresarArea(GuiCatalogar guiCatalogarModi) {
+		super(":::Ingresar Area:::");
+		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		this.guiCatalogarModi=guiCatalogarModi;
 		
@@ -58,10 +61,18 @@ public class GuiIngresarArea extends JFrame {
 		panel5 = new JPanel(new FlowLayout());
 		panel4 = new JPanel(new BorderLayout());
 		// --------------------------------------------------------
-		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel5.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 
+		panelPrincipal = new JPanel(new BorderLayout());
+		TitledBorder borde;
+		borde = BorderFactory.createTitledBorder(BorderFactory
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Registrar  Area::");
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
+		borde.setTitleJustification(TitledBorder.CENTER);
+		panelPrincipal.setBorder(borde);
 		// ---------------------------------------------
 		iniciarLabels();
 		// ---------------------------------------------
@@ -87,12 +98,13 @@ public class GuiIngresarArea extends JFrame {
 		panel4.add(panel5, BorderLayout.CENTER);
 		panel4.add(panel, BorderLayout.SOUTH);
 		
-		setLayout(new BorderLayout());
-		add(indicacion, BorderLayout.NORTH);
-		add(panel3, BorderLayout.CENTER);
-		add(panel4, BorderLayout.SOUTH);
-		setSize(820, 320);
+		panelPrincipal.add(panel3, BorderLayout.CENTER);
+		panelPrincipal.add(panel4, BorderLayout.SOUTH);
+		add(panelPrincipal);
+		setSize(610, 340);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
@@ -108,7 +120,7 @@ public class GuiIngresarArea extends JFrame {
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoDescripcionArea.addKeyListener(manejador);
 		campoAreaPadre = new JComboBox();
-		botonIngresarArea = new JButton("Registrar Area");
+		botonIngresarArea = new Button("Registrar Area");
 		botonIngresarArea.addActionListener(new ManejadorBoton());
 		
 		ControladorAreaConocimiento conArea = new ControladorAreaConocimiento();
@@ -122,69 +134,56 @@ public class GuiIngresarArea extends JFrame {
 	}
 
 	private void iniciarLabels() {
-		Font font1 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
-		Color colorletras = new Color(0, 60, 0);
 
-		indicacion = new JLabel("Registrar  Area ", JLabel.CENTER);
-		nombre = new JLabel("Nombre Del Area :");
+		nombre = new JLabel("  Nombre Del Area :");
 		descripcionArea = new JLabel("Descripcion.", JLabel.CENTER);
-		areaPadre = new JLabel("Area Padre :");
+		areaPadre = new JLabel("  Area Padre :");
 
-		indicacion.setFont(font1);
-		areaPadre.setFont(font1);
-		descripcionArea.setFont(font1);
-		nombre.setFont(font1);
+		areaPadre.setFont(Estilos.fontLabels);
+		descripcionArea.setFont(Estilos.fontLabels);
+		nombre.setFont(Estilos.fontLabels);
 
-		indicacion.setFont(font3);
-		indicacion.setForeground(colorletras);
-		areaPadre.setForeground(colorletras);
-		descripcionArea.setForeground(colorletras);
-		nombre.setForeground(colorletras);
+		areaPadre.setForeground(Estilos.colorLabels);
+		descripcionArea.setForeground(Estilos.colorLabels);
+		nombre.setForeground(Estilos.colorLabels);
 	}
 	
 	private class ManejadorBoton implements ActionListener {
-		
+
 		public void actionPerformed(ActionEvent e) {
-			
-			AreaConocimiento area = new AreaConocimiento();
-			
-			if(validarDatos()){
-			
-			ControladorAreaConocimiento controlador = new ControladorAreaConocimiento();
-			String nombre = campoNombre.getText();
-			String descripcion = campoDescripcionArea.getText();
-			int padreSeleccionado = campoAreaPadre.getSelectedIndex();
-			String padre, contador = ""+campoAreaPadre.getItemCount();;
-			System.out.println(padreSeleccionado);
-			if(padreSeleccionado == 0){
-				padre = "";
+
+			if (validarDatos()) {
+
+				ControladorAreaConocimiento controlador = new ControladorAreaConocimiento();
+				String nombre = campoNombre.getText();
+				String descripcion = campoDescripcionArea.getText();
+				int padreSeleccionado = campoAreaPadre.getSelectedIndex();
+				String padre, contador = "" + campoAreaPadre.getItemCount();
+				;// este coso esta raro por que dependes del orden .
+				System.out.println(padreSeleccionado);
+				if (padreSeleccionado == 0) {
+					padre = "";
+				} else {
+					padre = "" + padreSeleccionado;
 				}
-			else{
-				padre= ""+padreSeleccionado;
-			}
-			
 
-			if(controlador.insertarAreaConocimiento(contador, nombre, descripcion, padre)>=1)
-			{
-			guiCatalogarModi.vectoresParaComboBox();
-			guiCatalogarModi.actualizarAreas();
-			JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
+				if (controlador.insertarAreaConocimiento(contador, nombre,
+						descripcion, padre) >= 1) {
+					guiCatalogarModi.vectoresParaComboBox();
+					guiCatalogarModi.actualizarAreas();
+					JOptionPane.showMessageDialog(null,
+							"Se ingreso el Area de Conocimiento correctamente");
+					dispose();
 
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"El Area de Conocimiento ya existe", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				}
 			}
 
-			
-			dispose();
-				guiCatalogarModi.vectoresParaComboBox();
-				guiCatalogarModi.actualizarAreas();
-				JOptionPane.showMessageDialog(null, "Se ingreso el Area de Conocimiento correctamente");			
-				dispose();
-			}else{
-				JOptionPane.showMessageDialog(null, "El Area de Conocimiento ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
-			}	
-			
-			}
-		}		
+		}
+	}
 	
 	
 	private class ManejadorJTextField implements KeyListener{

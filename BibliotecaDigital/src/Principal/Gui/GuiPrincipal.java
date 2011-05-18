@@ -1,16 +1,16 @@
 package Principal.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,7 +24,10 @@ import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiAutenticar;
+import Usuarios.Gui.GuiRecuperarPassword;
 import Usuarios.Gui.GuiRegistroModificar;
+import Utilidades.Button;
+import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
@@ -41,10 +44,10 @@ public class GuiPrincipal extends JFrame
 
 		// Opciones basicas para un usuario
 		private JPanel panelOpcionesGenerales;		
-		private JButton volver;
-		private JButton crearUsuario;	
-		private JButton ingresarSistema;
-		private JButton consultaAvanzada;
+		private Button volver;
+		private Button crearUsuario;	
+		private Button ingresarSistema;
+		private Button consultaAvanzada;
 		
 		private static JLabel estado;
 
@@ -64,36 +67,30 @@ public class GuiPrincipal extends JFrame
 		private static GuiRegistroModificar panelRegistro;
 		private static GuiAutenticar panelAutentificar;
 		private GuiConsultaBasica panelConsultaBasica;
+		private static GuiRecuperarPassword cambiar;
 		
 		public GuiPrincipal()
 		{
 			
 			super("::: Sistema de Biblioteca Digital :::");	
+			setIconImage(new ImageIcon("recursos/bd.png").getImage());
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			manejador = new Manejador();	
 			
-			//Estilos.
-			//-------------------------------fuentes letras-------------------------
-	
-			Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-			//Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-			
-			//-------------------------------Color letras----------------------------
-			
 			String tituloMuestra = "::Sistema Biblioteca Digital::";
-			Color colorTitulo = new Color(0,50,0);
 			
 			TitledBorder borde;
 			borde = BorderFactory.createTitledBorder(BorderFactory
-					.createLineBorder(Color.black), tituloMuestra);
-			borde.setTitleColor(colorTitulo);
-			borde.setTitleFont(fontTitulo);
+					.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), tituloMuestra);
+			borde.setTitleColor(Estilos.colorTitulo);
+			borde.setTitleFont(Estilos.fontTitulo);
 			borde.setTitleJustification(TitledBorder.CENTER);
 			
 			// se instancias paneles adicionales
 			panelRegistro = new GuiRegistroModificar();
 			panelConsultaBasica = new GuiConsultaBasica();
 			panelAutentificar = new GuiAutenticar(this);
+			cambiar = new GuiRecuperarPassword(this);
 			
 			//se obtiene el contenedor de la gui principal
 			contenedor = getContentPane();
@@ -122,32 +119,50 @@ public class GuiPrincipal extends JFrame
 			barra.add(archivo);
 			barra.add(acercaDe);
 			setJMenuBar(barra);
+			
 
 			// Se instancian todos los elementos que pertenecen al panel de
 			//opciones
-			panelOpcionesGenerales = new JPanel(new GridLayout(8,1,10,20));
-
-			volver = new JButton("Inicio");
+			panelOpcionesGenerales = new JPanel(new GridBagLayout());
+			//GridLayout(8,1,2,5)
+			volver = new Button("Inicio");
+			volver.setIcon(new ImageIcon("recursos/iconos/home.png"));
 			volver.addActionListener(manejador);
-			crearUsuario = new JButton("Registrarse");
+			crearUsuario = new Button("Registrarse");
+			crearUsuario.setIcon(new ImageIcon("recursos/iconos/add_user.png"));
 			crearUsuario.addActionListener(manejador);			
-			ingresarSistema = new JButton("Ingresar");
+			ingresarSistema = new Button("Ingresar");
+			ingresarSistema.setIcon(new ImageIcon("recursos/iconos/user.png"));
 			ingresarSistema.addActionListener(manejador);
-			consultaAvanzada = new JButton("Consulta Avanzada");
+			consultaAvanzada = new Button("Consulta Avanzada");
 			consultaAvanzada.addActionListener(manejador);			
 						
-
+			
 			
 			//crearUsuario.setPreferredSize(new Dimension(10, 10));
 			// Se agregan los elementos al panel de opciones del administrador.
-			panelOpcionesGenerales.add(volver);
-			panelOpcionesGenerales.add(crearUsuario);
-			panelOpcionesGenerales.add(consultaAvanzada);
-			panelOpcionesGenerales.add(ingresarSistema);			
+			GridBagConstraints restricciones = new GridBagConstraints();
+			restricciones.gridy=1;
+			restricciones.fill = GridBagConstraints.HORIZONTAL;
+			restricciones.insets= new Insets(0, 0, 20, 0);
+			panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.gif")),restricciones);
+			restricciones.insets= new Insets(0, 0, 0, 0);
+			restricciones.gridy++;
+			panelOpcionesGenerales.add(volver, restricciones);
+			restricciones.gridy++;
+			panelOpcionesGenerales.add(crearUsuario, restricciones);
+			restricciones.gridy++;
+			panelOpcionesGenerales.add(consultaAvanzada, restricciones);
+			restricciones.gridy++;
+			panelOpcionesGenerales.add(ingresarSistema, restricciones);			
+			
+		
+			
 			
 			JPanel panelconOpciones2= new JPanel();
 			panelconOpciones2.add(panelOpcionesGenerales);
-			panelOpcionesGenerales.setBackground(new Color(250, 230,250));
+			
+			
 		
 
 			estado = new JLabel(estadoInicial);
@@ -156,12 +171,12 @@ public class GuiPrincipal extends JFrame
 			contenedor.add(estado, BorderLayout.SOUTH);
 			contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 			
-		
+			setSize(785, 500);
 			//centrar en la pantalla
 			Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-			this.setLocation((screenSize.width)/2-700/2,(screenSize.height)/2-500/2);
+			this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 			
-			setSize(700, 500);
+			
 			setVisible(true);
 
 		}
@@ -293,23 +308,10 @@ public class GuiPrincipal extends JFrame
 
 			try
 			{				
-				NimRODTheme nt = new NimRODTheme();
-				nt.setPrimary1( new Color(10,10,230));
-				nt.setPrimary2( new Color(110,110,150));
-				nt.setPrimary3( new Color(0,0,230));
-				//nt.setPrimary(new Color(100,100,100));
-				//nt.setSecondary(new Color(230, 220,250));
-				nt.setSecondary1(new Color(0,0,100));
-				nt.setSecondary2(new Color(0, 100,0));
-				nt.setSecondary3(new Color(250,250,250));
-				nt.setWhite(new Color(250, 230,250));
-				
-				
-	
+				NimRODTheme nt = new NimRODTheme("recursos/NimRODThemeFile2.theme");
 				NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
-				NimRODLookAndFeel.setCurrentTheme( nt);
+				NimRODLookAndFeel.setCurrentTheme(nt);
 				UIManager.setLookAndFeel( NimRODLF);
-				//UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
 			}
 			catch (Exception e){e.printStackTrace();}
 		
@@ -327,7 +329,26 @@ public class GuiPrincipal extends JFrame
 			estado.setText(estadoIngrensando);
 			
 			
+			
 		}
+		public static void insertarPanelCambiar()
+		{
+			
+			contenedor.remove(panelAutentificar);
+			contenedor.add(cambiar, BorderLayout.CENTER);
+			estado.setText("Cambiando Password");
+			
+			
+			
+		}
+
+		public static void cambiarPanelIngresarRemover() {
+			contenedor.remove(cambiar);
+			
+			contenedor.add(panelAutentificar, BorderLayout.CENTER);
+			estado.setText(estadoIngrensando);
+		}
+		
 		
 		
 		

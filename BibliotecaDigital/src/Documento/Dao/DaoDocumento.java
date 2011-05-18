@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import Documento.Logica.Documento;
-import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.FachadaBD;
 
 public class DaoDocumento {
@@ -261,12 +260,9 @@ public String obtenerLoginDocumento(){
 	String login="0";
 	String consulta_sql = "SELECT MAX(d.id_documento) FROM Documento d";
 	ResultSet resultado;
-	Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
-
 	try{
 		Connection conn = fachada.conectar();
 		Statement sentencia = conn.createStatement();
-
 		resultado = sentencia.executeQuery(consulta_sql);
 		while (resultado.next()) {
 			login = resultado.getString(1);			
@@ -284,5 +280,134 @@ public String obtenerLoginDocumento(){
 	
 }
 
+public boolean comprobarURL(String url){	
+	boolean estado = false;
+	String consulta_sql = "SELECT d.id_documento, d.link FROM Documento d " +
+			"WHERE link='"+url+"';";
+	ResultSet resultado;
+	try{
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();
+		resultado = sentencia.executeQuery(consulta_sql);
+		while (resultado.next()) {
+			estado = true;
+		}		
+		conn.close();
+		return estado;
+	} catch (SQLException e) {
+		System.out.println(e);
+		
+	} catch (Exception e) {
+		System.out.println(e);
+	}	
+	return false;
+}
+//metodo que retorna los datos de un documento de acuerdo a su login, no devuelve areas, palabras y autores
+	public Documento consultarDatosDocumento(String id_documento) {
+		String consulta_sql = "SELECT * " + 
+							"FROM documento " +
+							"WHERE id_documento = '"+id_documento+"';";
+		ResultSet resultado;
+		Documento d = new Documento();
+		System.out.println(consulta_sql);
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			resultado = sentencia.executeQuery(consulta_sql);
+			if (resultado.next()) {//debe devolver uno solo
+				d.setDerechosDeAutor(resultado.getString("derechos_autor"));
+				d.setCatalogadorLogin(resultado.getString("login_catalogador"));
+				d.setDescripcion(resultado.getString("descripcion"));
+				d.setEditorial(resultado.getString("editorial"));
+				d.setFecha_creacion(java.sql.Date.valueOf(resultado.getString("fecha_creacion")));
+				d.setFecha_publicacion(java.sql.Date.valueOf(resultado.getString("fecha_publicacion")));
+				d.setFechaDeCatalogacion(java.sql.Date.valueOf(resultado.getString("fecha_catalogacion")));
+				d.setFormato(resultado.getString("formato"));
+				d.setId_doc(resultado.getString("id_documento"));
+				d.setIdioma(resultado.getString("idioma"));
+				d.setResolucion(resultado.getString("resolucion"));
+				d.setSoftware_recomentado(resultado.getString("software_recomendado"));
+				d.setTipoMaterial(resultado.getString("tipo_nombre"));
+				d.setTitulo_secundario(resultado.getString("titulo_secundario"));
+				d.setTituloppal(resultado.getString("titulo_principal"));
+				d.setUrl(resultado.getString("link"));
+			}
+			conn.close();
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return d;
+	}
+//*******ACTUALIZAR
+	public int actualizarDocumentoAreas(String id_documento, Vector<String> ids_areas){
+		this.eliminarDocumentoAreas(id_documento);
+		return this.guardarDocumentoAreas(id_documento, ids_areas);
+	}
+	public int actualizarDocumentoPalabrasClave(String id_documento, Vector<String> ids_palabras){
+		this.eliminarDocumentoPalabrasClave(id_documento);
+		return this.guardarDocumentoPalabrasClave(id_documento, ids_palabras);
+	}
+	public int actualizarDocumentoAutores(String id_documento, Vector<String> ids_autores){
+		this.eliminarDocumentoAutores(id_documento);
+		return this.guardarDocumentoAutores(id_documento, ids_autores);
+	}
+	
+	public int eliminarDocumentoAutores(String id_documento){
+		String sql_eliminar;
+		int numFilas;
+		sql_eliminar = "DELETE FROM escribe_autor_documento WHERE id_documento = '"+id_documento+"';";
+		
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			numFilas = sentencia.executeUpdate(sql_eliminar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	public int eliminarDocumentoPalabrasClave(String id_documento){
+		String sql_eliminar;
+		int numFilas;
+		sql_eliminar = "DELETE FROM tiene_documento_palabra_clave WHERE id_documento = '"+id_documento+"';";
+		
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			numFilas = sentencia.executeUpdate(sql_eliminar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	public int eliminarDocumentoAreas(String id_documento){
+		String sql_eliminar;
+		int numFilas;
+		sql_eliminar = "DELETE FROM pertenece_documento_area_conocimiento WHERE id_documento = '"+id_documento+"';";
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			numFilas = sentencia.executeUpdate(sql_eliminar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
 }
 

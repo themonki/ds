@@ -5,11 +5,15 @@ import java.util.Vector;
 import GestionDocumento.Dao.DaoPalabraClave;
 import GestionDocumento.Logica.PalabraClave;
 
-;
+
 
 public class ControladorPalabraClave {
 
 	public int insertarPalabraClave(String nombre, String descripcion) {
+		
+		nombre.toLowerCase();
+		descripcion.toLowerCase();
+		
 		PalabraClave palabraClave = new PalabraClave(nombre, descripcion);
 		DaoPalabraClave daoPalabraClave = new DaoPalabraClave();
 		int numFilas = daoPalabraClave.guardarPalabraClave(palabraClave);
@@ -19,6 +23,7 @@ public class ControladorPalabraClave {
 	}
 
 	public PalabraClave obtenerPalabraClave(String nombre) {
+		nombre.toLowerCase();
 		DaoPalabraClave daoPalabraClave = new DaoPalabraClave();
 		PalabraClave palabraClave = daoPalabraClave
 				.consultarPalabraClave(nombre);
@@ -51,7 +56,11 @@ public class ControladorPalabraClave {
 		return nombres;
 
 	}
-
+//metodo que devuelve las palabras clave de un documento dado su llave
+	public Vector <PalabraClave> obtenerPalabrasClaveDocumento(String id_documento){
+		DaoPalabraClave daoPC = new DaoPalabraClave();
+		return daoPC.consultarPalabrasClaveDocumento(id_documento);
+	}
 	/*
 	 * public static void main(String args[]) { ControladorPalabraClave
 	 * controladorPalabraClave = new ControladorPalabraClave();

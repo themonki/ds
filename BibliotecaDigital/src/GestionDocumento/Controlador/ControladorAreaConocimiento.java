@@ -19,6 +19,9 @@ public class ControladorAreaConocimiento
 	public int insertarAreaConocimiento(String id, String nombre,
 			String descripcion, String areaPadre)
 	{
+		nombre.toLowerCase();
+		descripcion.toLowerCase();
+		
 		AreaConocimiento area = new AreaConocimiento(id, nombre, descripcion,areaPadre);
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
 		int numFilas = daoAreaConocimiento.guardarAreaConocimiento(area);
@@ -43,6 +46,7 @@ public class ControladorAreaConocimiento
 	}
 
 	public int actualizarArea(String idArea, String atributo, String valor) {
+		valor.toLowerCase();
 		DaoAreaConocimiento daoAreaConocimiento = new DaoAreaConocimiento();
 		int numFilas = daoAreaConocimiento.modificarArea(idArea, atributo,
 				valor);
@@ -81,6 +85,11 @@ public class ControladorAreaConocimiento
 
 		return vectorTodasAreas;
 
+	}
+//metodo que devuelve las areas de conocimiento de un documento dado su llave
+	public Vector <AreaConocimiento> obtenerAreasDocumento(String id_documento){
+		DaoAreaConocimiento daoArea = new DaoAreaConocimiento();
+		return daoArea.consultarAreasDocumento(id_documento);
 	}
 
 	/* main para prueba OK */

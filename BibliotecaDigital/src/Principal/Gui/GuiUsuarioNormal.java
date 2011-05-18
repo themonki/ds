@@ -1,16 +1,16 @@
 package Principal.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +24,8 @@ import javax.swing.border.TitledBorder;
 import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
+import Utilidades.Button;
+import Utilidades.Estilos;
 
 public class GuiUsuarioNormal extends JFrame
 {
@@ -37,10 +39,10 @@ public class GuiUsuarioNormal extends JFrame
 
 	// Opciones basicas para un usuario normal
 	private JPanel panelOpcionesGenerales;		
-	private JButton volver; //incio
-	private JButton modificarUsuario;	
-	private JButton consultaAvanzada;
-	private JButton logout;
+	private Button volver; //incio
+	private Button modificarUsuario;	
+	private Button consultaAvanzada;
+	private Button logout;
 	
 	private  JLabel estado;
 
@@ -65,27 +67,20 @@ public class GuiUsuarioNormal extends JFrame
 	public GuiUsuarioNormal(Usuario usuario)
 	{
 		super("::: Sistema de Biblioteca Digital :::");	
+		setIconImage(new ImageIcon("recursos/bd.png").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 
 		manejador = new Manejador();	
-		
-		//Estilos.
-		//-------------------------------fuentes letras-------------------------
-
-		Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-		//Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-		
-		//-------------------------------Color letras----------------------------
-		
+	
 		String tituloMuestra = "::Sistema Biblioteca Digital::";
-		Color colorTitulo = new Color(0,50,0);
+
 		
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.black), tituloMuestra);
-		borde.setTitleColor(colorTitulo);
-		borde.setTitleFont(fontTitulo);
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), tituloMuestra);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.CENTER);
 		
 		// se instancias paneles adicionales
@@ -122,25 +117,42 @@ public class GuiUsuarioNormal extends JFrame
 
 		// Se instancian todos los elementos que pertenecen al panel del
 		// usuario normal
-		panelOpcionesGenerales = new JPanel(new GridLayout(8,1,10,20));
-
-		volver = new JButton("Inicio");
+		panelOpcionesGenerales = new JPanel(new GridBagLayout());
+		
+		
+		volver = new Button("Inicio");
+		volver.setIcon(new ImageIcon("recursos/iconos/home.png"));
 		volver.addActionListener(manejador);
-		modificarUsuario = new JButton("Modificar Datos");
+		modificarUsuario = new Button("Modificar Datos");
+		modificarUsuario.setIcon(new ImageIcon("recursos/iconos/my_account.png"));
 		modificarUsuario.addActionListener(manejador);			
-		consultaAvanzada = new JButton("Consulta Avanzada");
+		consultaAvanzada = new Button("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
-		logout = new JButton("Salir");
+		logout = new Button("Salir");
+		logout.setIcon(new ImageIcon("recursos/iconos/logout.png"));
 		logout.addActionListener(manejador);
 					
 
 		// Se agregan los elementos al panel de opciones del usuario normal.
-		panelOpcionesGenerales.add(volver);
-		panelOpcionesGenerales.add(modificarUsuario);
-		panelOpcionesGenerales.add(consultaAvanzada);
-		panelOpcionesGenerales.add(logout);
+		GridBagConstraints restricciones = new GridBagConstraints();
+		restricciones.fill = GridBagConstraints.HORIZONTAL;
+		restricciones.gridx=1;
+		restricciones.gridy=1;
+		restricciones.insets= new Insets(0, 0, 20, 0);
 		
-		panelOpcionesGenerales.setBackground(new Color(250, 230 , 250));
+		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.gif")),restricciones);
+		restricciones.insets= new Insets(0, 0, 0, 0);
+		restricciones.gridy++;
+		
+		panelOpcionesGenerales.add(volver, restricciones);
+		restricciones.gridy=3;
+		panelOpcionesGenerales.add(modificarUsuario, restricciones);
+		restricciones.gridy=4;
+		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
+		restricciones.gridy=5;
+		panelOpcionesGenerales.add(logout, restricciones);
+		
+		//panelOpcionesGenerales.setBackground(new Color(250, 230 , 250));
 		JPanel panelconOpciones2= new JPanel(); //evita que los botones crescan si la ventana es redimensionada
 		panelconOpciones2.add(panelOpcionesGenerales);
 		
@@ -152,11 +164,11 @@ public class GuiUsuarioNormal extends JFrame
 		//contenedor.add(new JPanel(), BorderLayout.EAST);
 		//contenedor.add(new JPanel(), BorderLayout.WEST);
 	
+		setSize(800, 500);
 		//centrar en la pantalla
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation((screenSize.width)/2-700/2,(screenSize.height)/2-500/2);
+		this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 		
-		setSize(700, 500);
 		setVisible(true);
 
 	}

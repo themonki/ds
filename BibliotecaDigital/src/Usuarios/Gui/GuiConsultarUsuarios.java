@@ -1,9 +1,7 @@
 package Usuarios.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -13,21 +11,20 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
+import Utilidades.Button;
+import Utilidades.Estilos;
 
 public class GuiConsultarUsuarios extends JScrollPane{
 	
@@ -35,7 +32,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 	private JLabel login, nombre;
 	private JTextField campoLogin, campoNombre;
 	private JScrollPane scrolResultados, scrolUsuario;
-	private JButton consultar;
+	private Button consultar;
 	private JPanel panelResultado, panelOpciones, panelPrincipal;
 	private String estadoResultado = "";
 	
@@ -43,17 +40,6 @@ public class GuiConsultarUsuarios extends JScrollPane{
 	JList resultadoLista;
 	DefaultListModel modeloLista;
 	Vector<Usuario> usuariosVector;
-	
-	//Estilos.
-	//-------------------------------fuentes letras-------------------------
-	Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-	Font fontSubtitulos = new Font("Book Antiqua",Font.BOLD, 15);
-	Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
-	
-	//-------------------------------Color letras----------------------------
-	Color colorTitulo = new Color(0,50,0);
-	Color colorSubtitulo= new Color(0,50,10);
-	Color colorLabels= new Color(0,60,0);	
 	
 	public GuiConsultarUsuarios(){
 		iniComponents();
@@ -70,7 +56,7 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		campoNombre= new JTextField(15);
 		
 		//Inicializar Boton
-		consultar = new JButton("CONSULTAR");
+		consultar = new Button("Consultar");
 		consultar.addActionListener(new ManejadorBoton());
 		
 		panelOpciones = new JPanel(new GridBagLayout());
@@ -99,21 +85,22 @@ public class GuiConsultarUsuarios extends JScrollPane{
 		
 		
 		panelResultado = new JPanel();
-		TitledBorder borde = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "::Resultados::");
-		borde.setTitleColor(colorSubtitulo);
-		borde.setTitleFont(fontSubtitulos);
+		TitledBorder borde = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Resultados::");
+		borde.setTitleColor(Estilos.colorSubtitulo);
+		borde.setTitleFont(Estilos.fontSubtitulos);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		panelResultado.setBorder(borde);
 		
 		
 		
 		panelPrincipal = new JPanel();
-		TitledBorder bordePrincipal = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "::CONSULTAR USUARIOS::");
-		bordePrincipal.setTitleColor(colorSubtitulo);
-		bordePrincipal.setTitleFont(fontSubtitulos);
+		TitledBorder bordePrincipal = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Consultar Usuarios::");
+		bordePrincipal.setTitleColor(Estilos.colorTitulo);
+		bordePrincipal.setTitleFont(Estilos.fontTitulo);
 		bordePrincipal.setTitleJustification(TitledBorder.LEFT);
+		setBorder(bordePrincipal);
 		panelPrincipal.setLayout(new BorderLayout());
-		panelPrincipal.setBorder(bordePrincipal);
+		//panelPrincipal.setBorder(bordePrincipal);
 		
 		
 		panelPrincipal.add(panelOpciones, BorderLayout.NORTH);
@@ -123,8 +110,8 @@ public class GuiConsultarUsuarios extends JScrollPane{
 	}
 	private JLabel inicializarLabel(String titulo){
 		JLabel label = new JLabel(titulo, JLabel.LEFT);
-		label.setFont(fontLabels);
-		label.setForeground(colorLabels);
+		label.setFont(Estilos.fontLabels);
+		label.setForeground(Estilos.colorLabels);
 		return label;
 	}
 	

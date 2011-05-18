@@ -9,8 +9,6 @@
 package Usuarios.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,7 +18,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -29,15 +26,19 @@ import javax.swing.border.TitledBorder;
 
 import Principal.Controlador.ControladorVentanaPrincipal;
 import Principal.Gui.GuiPrincipal;
+import Utilidades.Button;
+import Utilidades.Estilos;
 
 public class GuiAutenticar extends JPanel
 {
+	private JPanel panel = this;
 
 	private static final long serialVersionUID = 1L;
 	private JLabel nombreUsuario, contrasena;
 	private JTextField campoNombre;
 	private JPasswordField campoContrasena;
-	private JButton botonAutenticar;
+	private Button botonAutenticar;
+	private Button botonCambiarPassword;
 	private GuiPrincipal gp;
 	
 	public GuiAutenticar(GuiPrincipal gp)
@@ -52,7 +53,7 @@ public class GuiAutenticar extends JPanel
 		JPanel panelDatosInterno = new JPanel(new GridBagLayout());
 		JPanel panelDatos = new JPanel();
 		// --------------------------------------------------------
-		panelDatosInterno.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelDatosInterno.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		//panelBoton.setBorder(BorderFactory.createLineBorder(Color.black));
 		// ---------------------------------------------------------
 		iniciarLabels();
@@ -62,14 +63,13 @@ public class GuiAutenticar extends JPanel
 		
 		String title = "::Autentificar::";
 
-		Color colorTitulo = new Color(0,50,0);
-		Font fontTitulo = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 25);
+		
 		// Linea y titulo del panel.
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.black), title);
-		borde.setTitleColor(colorTitulo);
-		borde.setTitleFont(fontTitulo);
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), title);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		
 		
@@ -101,10 +101,10 @@ public class GuiAutenticar extends JPanel
 		panelDatos.add(panelDatosInterno);
 
 		panelBoton.add(botonAutenticar);
+		panelBoton.add(botonCambiarPassword);
 
 		JPanel borde22 = new JPanel();
 		borde22.setLayout(new BorderLayout());
-		borde22.add(panelDatos, BorderLayout.CENTER);
 		borde22.add(panelDatos, BorderLayout.CENTER);
 		borde22.add(panelBoton, BorderLayout.SOUTH);
 		borde22.setBorder(borde);
@@ -120,29 +120,26 @@ public class GuiAutenticar extends JPanel
 		campoContrasena = new JPasswordField(20);
 		campoContrasena.addKeyListener(new ManejadorJPasswordField());
 		
-		botonAutenticar = new JButton("Ingresar al Sistema");
+		botonAutenticar = new Button("Ingresar al Sistema");
 		botonAutenticar.addActionListener(new ManejadorBoton());
+		botonCambiarPassword = new Button("Olvide Contraseña");
+		botonCambiarPassword.addActionListener(new ManejadorBoton());
 
 	}
 
 	private void iniciarLabels()
 	{
-		Font font1 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
-
-		Color colorletras = new Color(0, 60, 0);
-
-		
-		nombreUsuario = new JLabel("Login  :");
-		contrasena = new JLabel("Contraseña  :");
+	
+		nombreUsuario = new JLabel("  Login  :");
+		contrasena = new JLabel("  Contraseña  :");
 		
 		
-		contrasena.setFont(font1);
-		nombreUsuario.setFont(font1);
+		contrasena.setFont(Estilos.fontLabels);
+		nombreUsuario.setFont(Estilos.fontLabels);
 		
 		
-		contrasena.setForeground(colorletras);
-		nombreUsuario.setForeground(colorletras);
+		contrasena.setForeground(Estilos.colorLabels);
+		nombreUsuario.setForeground(Estilos.colorLabels);
 		
 	}
 	
@@ -174,6 +171,11 @@ public class GuiAutenticar extends JPanel
 					}
 				}
 				
+				
+			}else if(evento.getSource() == botonCambiarPassword)
+			{
+				GuiPrincipal.insertarPanelCambiar();
+				gp.repaint();
 				
 			}			
 		}	
