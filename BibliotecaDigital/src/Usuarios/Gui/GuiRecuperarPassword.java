@@ -285,7 +285,10 @@ public class GuiRecuperarPassword extends JPanel {
 						.getPassword());
 				System.out.println(password);
 				if (password.equals(verificacionPassword)) {
-					usuario.setContrasena(password);
+					
+					if(!password.equals("")){				
+					
+						usuario.setContrasena(password);
 					controladorUsuario.modificarUsuario(usuario);
 					JOptionPane
 							.showMessageDialog(null,
@@ -294,6 +297,13 @@ public class GuiRecuperarPassword extends JPanel {
 					GuiPrincipal.cambiarPanelIngresarRemover();
 					gp.repaint();
 					restaurar();
+					}else
+					{
+						JOptionPane
+						.showMessageDialog(null,
+								"Los campos no pueden estar vacios por favor intente nuevamente");
+
+					}
 
 				} else {
 					JOptionPane
