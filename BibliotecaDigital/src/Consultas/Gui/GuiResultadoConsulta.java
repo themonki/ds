@@ -54,6 +54,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 		panel.setLayout(new BorderLayout());
 		listaResultado = new JList();
 		listaResultado.addListSelectionListener(new ManejadorLista());
+		
 		//listaResultado.setPreferredSize(new Dimension(245,200));
 		modeloLista = new DefaultListModel();
 		this.vectorConsulta = vectorConsulta;
@@ -138,22 +139,30 @@ public class GuiResultadoConsulta extends JScrollPane{
 		
 		
 	}
-	private class ManejadorLista implements ListSelectionListener{
 
-		@Override
-		public void valueChanged(ListSelectionEvent e)
-		{	
-			int documentoElegido = listaResultado.getSelectedIndex();
-			if(documentoElegido>=0){
-				ControladorConsulta conConsulta = new ControladorConsulta();
-				Consulta documentoConsultar =(Consulta) modeloLista.getElementAt(documentoElegido);				
-				//Documento d = conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());//devuelve el documento
-				System.out.println(documentoConsultar.getIdDocumento());
-				System.out.println("rancio");
+	private class ManejadorLista implements ListSelectionListener {
+
+		int flag = 0;
+		public void valueChanged(ListSelectionEvent e) {
+			if (flag == 0) {
+				System.out.println("entre");
+				int documentoElegido = listaResultado.getSelectedIndex();
+				if (documentoElegido >= 0) {
+					ControladorConsulta conConsulta = new ControladorConsulta();
+					Consulta documentoConsultar = (Consulta) modeloLista
+							.getElementAt(documentoElegido);
+					// Documento d =
+					// conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());//devuelve
+					// el documento
+					System.out.println(documentoConsultar.getIdDocumento());
+					System.out.println("rancio");
+				}
+				flag = 1;
+			} else {
+				flag = 0;
 			}
-			
 		}
-		
+
 	}
 
 	

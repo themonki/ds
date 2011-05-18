@@ -213,9 +213,10 @@ public class GuiConsultarUsuarios extends JScrollPane{
 	
 	private class ManejadorLista implements ListSelectionListener{
 
-		@Override
+		int flag = 0;
 		public void valueChanged(ListSelectionEvent e)
 		{
+			if(flag==0){
 			int usuarioElegido = resultadoLista.getSelectedIndex();
 			if(usuarioElegido>=0)
 			{
@@ -228,6 +229,8 @@ public class GuiConsultarUsuarios extends JScrollPane{
 				panelPrincipal.add(scrolUsuario, BorderLayout.CENTER);
 				panelPrincipal.updateUI();
 			}
+			flag=1;
+			}else {flag=0;}
 		}
 		
 	}
