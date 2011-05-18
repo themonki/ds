@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import Consultas.Logica.Consulta;
 import Documento.Logica.Documento;
 import Utilidades.FachadaBD;
 
@@ -12,17 +13,17 @@ public class DaoConsulta {
 	
 	FachadaBD fachada;
 	
-	DaoConsulta(){
+	public DaoConsulta(){
 		fachada = new FachadaBD();
 	}
 	
 	
 	//metodo de consulta general
-	public Vector<Documento> consultaGeneral(String parametro){
+	public Vector<Consulta> consultaGeneral(Vector<String> parametro){
 		
-		Vector<Documento> vdoc = new Vector<Documento>();
+		Vector<Consulta> vCon = new Vector<Consulta>();
 		
-		String consulta_sql = "SELECT " +
+		/*String consulta_sql = "SELECT " +
 				"FROM " +
 				"WHERE ;";
 		ResultSet resultado;		
@@ -39,7 +40,7 @@ public class DaoConsulta {
 				System.out.println(e);
 			} catch (Exception e) {
 				System.out.println(e);					
-			}
-		return vdoc;
+			}*/
+		return vCon;
 	}
 }

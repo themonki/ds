@@ -5,13 +5,17 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Consultas.Controlador.ControladorConsulta;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
@@ -21,9 +25,9 @@ public class GuiConsultaBasica extends JPanel
 	private static final long serialVersionUID = 1L;
 	private JLabel etiquetaConsulta;
 	private JTextField campoConsulta;
-	private JPanel panelBotonesConsulta;
+	private JPanel panelCampoConsulta;
 	private Button consultar;
-	private Button limpiarCampoConsulta;
+	private JCheckBox busquedaCompleta;
 	private Manejador manejador;
 	
 	public GuiConsultaBasica()
@@ -42,33 +46,53 @@ public class GuiConsultaBasica extends JPanel
 		etiquetaConsulta.setFont(Estilos.fontTitulo);
 		etiquetaConsulta.setForeground(Estilos.colorTitulo);
 		
-		
 		campoConsulta = new JTextField(30);
 		campoConsulta.setFont(fontLabels);
-		panelBotonesConsulta = new JPanel(new GridLayout(1, 2, 5, 5));
+		
+		busquedaCompleta = new JCheckBox("Realizar búsqueda con coincidencia exacta");
+		busquedaCompleta.addItemListener(manejador);
+		
+		panelCampoConsulta = new JPanel(new GridLayout(2,1,5,5));
+		panelCampoConsulta.add(campoConsulta);
+		panelCampoConsulta.add(busquedaCompleta);
 		
 		consultar = new Button("Consultar");
 		consultar.setIcon(new ImageIcon("recursos/iconos/search.png"));
 		consultar.setHorizontalTextPosition(SwingConstants.LEFT);
-
 		consultar.addActionListener(manejador);
-		limpiarCampoConsulta = new Button("Limpiar Campo");
-		limpiarCampoConsulta.addActionListener(manejador);
 		
-		panelBotonesConsulta.add(consultar);
-		panelBotonesConsulta.add(limpiarCampoConsulta);
 		this.add(etiquetaConsulta);
-		this.add(campoConsulta);
-		this.add(panelBotonesConsulta);
+		this.add(panelCampoConsulta);
+		this.add(consultar);
 	}
 	
-	private class Manejador implements ActionListener
+	private class Manejador implements ActionListener, ItemListener
 	{
+		private boolean seleccionBusquedaCompeta = false;
 		@Override
-		public void actionPerformed(ActionEvent e)
+		public void actionPerformed(ActionEvent evento)
 		{
-			// TODO Auto-generated method stub
+			if(evento.getSource() == consultar)
+			{
+				//no estoy seguro de instanciar el controlador aqui
+				ControladorConsulta controlador = new ControladorConsulta();
+				//mira que se hace con loque retorna
+				controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);
+			}
 			
+		}
+		
+		public void itemStateChanged(ItemEvent evento)
+		{
+			
+			if(evento.getStateChange() == ItemEvent.SELECTED)
+			{
+				seleccionBusquedaCompeta = true;
+			}
+			else if(evento.getStateChange() == ItemEvent.DESELECTED)
+			{
+				seleccionBusquedaCompeta = false;
+			}
 		}
 	}
 }

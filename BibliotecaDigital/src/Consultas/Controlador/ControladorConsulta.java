@@ -1,12 +1,18 @@
 package Consultas.Controlador;
 
+import java.util.StringTokenizer;
+import java.util.Vector;
+
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Controlador.ControladorAutor;
 import GestionDocumento.Controlador.ControladorPalabraClave;
+import Consultas.Dao.DaoConsulta;
+import Consultas.Logica.Consulta;
 
-public class ControladorConsulta {
+public class ControladorConsulta
+{
 //metodo que llama a otros controladores para obtener todos los datos de un documento dado su llave
 	public Documento obtenerDatosDocumento(String id_documento){
 		ControladorDocumento conDoc = new ControladorDocumento();
@@ -19,5 +25,28 @@ public class ControladorConsulta {
 		d.setPalabrasClave(conPalabra.obtenerPalabrasClaveDocumento(id_documento));
 		
 		return d;
+	}
+	
+	public Vector<Consulta> consultaGeneral(String palabra, boolean modo)
+	{
+		Vector<String> palabras = new Vector<String>();
+		StringTokenizer tk = new StringTokenizer(palabra," ");
+		
+		if(modo)
+		{
+			palabras.add(palabra);
+		}
+		else
+		{
+			while(tk.hasMoreTokens())
+			{
+				palabras.add(tk.nextToken());
+			}
+		}
+		
+		DaoConsulta consulta = new DaoConsulta();
+		Vector<Consulta> resultado = consulta.consultaGeneral(palabras);
+		
+		return resultado;
 	}
 }
