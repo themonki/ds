@@ -39,8 +39,17 @@ public class GuiResultadoConsulta extends JScrollPane{
 	
 	public GuiResultadoConsulta(){}
 	
-	public GuiResultadoConsulta(Vector<Consulta> vectorConsulta){
+	public GuiResultadoConsulta(Vector<Consulta> vectorConsulta, int cantidadResultados){
 		
+		cantidadMostrar=cantidadResultados;
+		this.vectorConsulta = vectorConsulta;
+		cantidadTotalResultados=vectorConsulta.size();
+		posicionResultado=0;
+		iniComponents();		
+	}
+	
+	private void iniComponents(){
+		//***/
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Resultado Consultas");
@@ -48,43 +57,48 @@ public class GuiResultadoConsulta extends JScrollPane{
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		setBorder(borde);
-		
+		//******/
 		JPanel panel = new JPanel();
 		JPanel panel2 = new JPanel();
 		panel.setLayout(new BorderLayout());
-		listaResultado = new JList();
-		listaResultado.addListSelectionListener(new ManejadorLista());
+
+		initBotones();
+		initLista();
 		
-		//listaResultado.setPreferredSize(new Dimension(245,200));
-		modeloLista = new DefaultListModel();
-		this.vectorConsulta = vectorConsulta;
-		cantidadTotalResultados=vectorConsulta.size();
-		posicionResultado=0;
-		botonRegresar = new JButton("Regresar");
-		botonSiguiente = new JButton("Siguiente");
-		botonAtras = new JButton("Atras");
-		botonRegresar.addActionListener(new ManejadorBoton());
-		botonSiguiente.addActionListener(new ManejadorBoton());
-		botonAtras.addActionListener(new ManejadorBoton());
-		botonAtras.setVisible(false);
-		cantidadMostrar=15;
-		agregarResultadoSiguiente(cantidadMostrar);
 		JScrollPane scrollResultado = new JScrollPane(listaResultado);
 		scrollResultado.setSize(new Dimension(245,200));
-		panel.add(scrollResultado, BorderLayout.NORTH);
+		panel.add(scrollResultado, BorderLayout.CENTER);
 		panel2.add(botonRegresar);
 		panel2.add(botonAtras);
 		panel2.add(botonSiguiente);
 		panel.add(panel2, BorderLayout.SOUTH);
 		
-		this.setViewportView(panel);
-		
-		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		
+		this.setViewportView(panel);		
 		//------------------------------------------
 		setSize(900,900);
 		setVisible(true);
+		
+	}
+	
+	private void initBotones(){
+		
+		botonRegresar = new JButton("Regresar");
+		botonSiguiente = new JButton("Siguiente");
+		botonAtras = new JButton("Atras");
+		botonRegresar.addActionListener(new ManejadorBoton());
+		botonSiguiente.addActionListener(new ManejadorBoton());
+		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setVisible(false);
+		botonAtras.addActionListener(new ManejadorBoton());
+		botonAtras.setVisible(false);
+		
+	}
+	
+	private void initLista(){
+		listaResultado = new JList();
+		listaResultado.addListSelectionListener(new ManejadorLista());		
+		//listaResultado.setPreferredSize(new Dimension(245,200));
+		modeloLista = new DefaultListModel();
+		agregarResultadoSiguiente(cantidadMostrar);
 	}
 	
 	public void agregarResultadoSiguiente(int cantidad){
@@ -145,7 +159,6 @@ public class GuiResultadoConsulta extends JScrollPane{
 		int flag = 0;
 		public void valueChanged(ListSelectionEvent e) {
 			if (flag == 0) {
-				System.out.println("entre");
 				int documentoElegido = listaResultado.getSelectedIndex();
 				if (documentoElegido >= 0) {
 					ControladorConsulta conConsulta = new ControladorConsulta();
@@ -154,8 +167,6 @@ public class GuiResultadoConsulta extends JScrollPane{
 					// Documento d =
 					// conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());//devuelve
 					// el documento
-					System.out.println(documentoConsultar.getIdDocumento());
-					System.out.println("rancio");
 				}
 				flag = 1;
 			} else {
@@ -179,7 +190,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 		Consulta co3 = new Consulta("3","doc3","autor, autor");
 		for(int i = 0 ; i <3; i++)
 			v.add(co3);
-		c.add(new GuiResultadoConsulta(v));
+		c.add(new GuiResultadoConsulta(v, 10));
 		m.setSize(700, 600);
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		m.setVisible(true);
