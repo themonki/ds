@@ -1,29 +1,38 @@
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import Consultas.Controlador.ControladorConsulta;
 import Consultas.Logica.Consulta;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
-public class GuiConsultaBasica extends JPanel
+public class GuiConsultaBasica extends JScrollPane
 {
 
 	private static final long serialVersionUID = 1L;
@@ -43,18 +52,14 @@ public class GuiConsultaBasica extends JPanel
 	public static GuiVistaDocumento vistaDocumento;
 	
 	public GuiConsultaBasica()
-	{
-		//Estilo ---------- fuentes letras
-		Font fontLabels = new Font("Book Antiqua",Font.BOLD+ Font.ITALIC, 17);
-		
+	{		
 		panel = new JPanel(new BorderLayout());
 		//Manejador de eventos
 		manejador = new Manejador();
-		panelConsulta = new JPanel(new BorderLayout());
+		panelConsulta = new JPanel(new GridBagLayout());
 		panelResultado = new JPanel(new FlowLayout());
 		
-		this.setLayout(new FlowLayout(1,150,40));
-		panelConsulta.setLayout(new BorderLayout());
+		//this.setLayout(new FlowLayout(1,150,40));
 		//panelConsultaBasica = new JPanel(new FlowLayout(1,200,40));
 
 		etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
@@ -62,7 +67,7 @@ public class GuiConsultaBasica extends JPanel
 		etiquetaConsulta.setForeground(Estilos.colorTitulo);
 		
 		campoConsulta = new JTextField(30);
-		campoConsulta.setFont(fontLabels);
+		campoConsulta.setFont(Estilos.fontLabels);
 		
 		busquedaCompleta = new JCheckBox("Realizar b�squeda con coincidencia exacta");
 		busquedaCompleta.addItemListener(manejador);
@@ -76,13 +81,21 @@ public class GuiConsultaBasica extends JPanel
 		consultar.setHorizontalTextPosition(SwingConstants.LEFT);
 		consultar.addActionListener(manejador);
 		
-		panelConsulta.add(etiquetaConsulta, BorderLayout.NORTH);
-		panelConsulta.add(panelCampoConsulta,BorderLayout.CENTER);
-		panelConsulta.add(consultar,BorderLayout.SOUTH);
+		GridBagConstraints restricciones = new GridBagConstraints();
+		restricciones.gridx=1;
+		restricciones.gridy=1;
+		panelConsulta.add(etiquetaConsulta, restricciones);
+		restricciones.gridy=2;
+		panelConsulta.add(panelCampoConsulta, restricciones);
+		restricciones.gridy=3;
+		panelConsulta.add(consultar, restricciones);
 		panel.add(panelConsulta, BorderLayout.NORTH);
 		
+		//add(panel);
 		
-		this.add(panel);
+		this.setViewportView(panel);
+		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		
 	}
 	

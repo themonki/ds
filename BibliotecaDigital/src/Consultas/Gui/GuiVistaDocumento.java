@@ -3,6 +3,7 @@ package Consultas.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -225,16 +226,18 @@ public class GuiVistaDocumento extends JScrollPane {
 
 		panel2.add(panel, BorderLayout.NORTH);
 		panel2.add(panelAccionesDocumento, BorderLayout.CENTER);
-		panel2.setBorder(borde);
+		//panel2.setBorder(borde);
+		setBorder(borde);
 		// add(panel);
 		this.setViewportView(panel2);
 
-		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
+		//setPreferredSize(new Dimension(500, 600));
 		// ------------------------------------------
-		setSize(300, 300);
-		setVisible(true);
+		/*setSize(300, 300);
+		setVisible(true);*/
 	}
 
 	private void iniciarLabels() {

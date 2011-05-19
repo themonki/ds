@@ -88,8 +88,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 		
 		this.setViewportView(panel);		
 		//------------------------------------------
-		setSize(900,900);
-		setVisible(true);
+		/*setSize(900,900);
+		setVisible(true);*/
 		
 	}
 	
