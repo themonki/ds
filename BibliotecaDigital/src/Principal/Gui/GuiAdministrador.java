@@ -72,6 +72,7 @@ public class GuiAdministrador extends JFrame
 	private GuiCatalogar panelCatalogar;
 	
 	private Usuario usuario;
+	public static String LOGIN;
 	
 	
 	public GuiAdministrador(Usuario usuario){
@@ -80,6 +81,7 @@ public class GuiAdministrador extends JFrame
 		setIconImage(new ImageIcon("recursos/bd.png").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
+		LOGIN = usuario.getLogin();
 		manejador = new Manejador();	
 				
 		String tituloMuestra = "::Sistema Biblioteca Digital::";

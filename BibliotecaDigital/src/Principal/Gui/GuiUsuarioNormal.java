@@ -58,6 +58,7 @@ public class GuiUsuarioNormal extends JFrame
 	private JMenuItem informacion;
 	private JMenuBar barra;
 	private Usuario usuario;
+	public static String LOGIN;
 
 	// Otor paneles a usar
 	private static GuiRegistroModificar panelModificacion;
@@ -70,6 +71,7 @@ public class GuiUsuarioNormal extends JFrame
 		setIconImage(new ImageIcon("recursos/bd.png").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
+		LOGIN = usuario.getLogin();
 
 		manejador = new Manejador();	
 	

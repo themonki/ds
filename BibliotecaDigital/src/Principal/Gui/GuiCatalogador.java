@@ -69,6 +69,7 @@ public class GuiCatalogador extends JFrame
 	private GuiConsultaBasica panelConsultaBasica;
 	
 	private Usuario usuario;
+	public static String LOGIN;
 	
 	
 	public GuiCatalogador(Usuario usuario)
@@ -78,6 +79,7 @@ public class GuiCatalogador extends JFrame
 		setIconImage(new ImageIcon("recursos/bd.png").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
+		LOGIN = usuario.getLogin();
 		manejador = new Manejador();	
 
 		
