@@ -31,7 +31,7 @@ public class ControladorConsulta
 	}
 	
 	public Vector<Consulta> consultaGeneral(String palabra, boolean modo)
-	{
+	{	
 		Vector<String> palabras = new Vector<String>();
 		StringTokenizer tk = new StringTokenizer(palabra," ");
 		

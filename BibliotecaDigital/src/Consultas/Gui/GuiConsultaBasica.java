@@ -131,20 +131,33 @@ public class GuiConsultaBasica extends JScrollPane
 				//no estoy seguro de instanciar el controlador aqui
 				ControladorConsulta controlador = new ControladorConsulta();
 				//mira que se hace con loque retorna
-				Vector<Consulta> vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);
-			
-				if(vector.size() >0){
 				
-					resultadoConsulta = new GuiResultadoConsulta(vector,10);
-					panel.add(resultadoConsulta, BorderLayout.CENTER);
-					panel.updateUI();
-					
-					
-					
-				}else
-				{
-					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
+				Vector<Consulta> vector = new Vector<Consulta>();
+				
+				if(!campoConsulta.getText().equals("")){
+					vector = null;
+					vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);					
+				}else{
+					JOptionPane.showMessageDialog(null, "Por favor ingrese parametros para la busqueda",
+							"No ahi parametros", JOptionPane.ERROR_MESSAGE);
 				}
+				
+				if(resultadoConsulta!=null){
+					panel.remove(resultadoConsulta);
+				}else{
+					resultadoConsulta=null;
+					}
+				resultadoConsulta = new GuiResultadoConsulta(vector,10);
+				panel.add(resultadoConsulta, BorderLayout.CENTER);
+				panel.updateUI();
+				if(vector.size() <=0 && !campoConsulta.getText().equals("")){
+					
+					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
+					
+				}	
+					
+					
+				
 				
 				System.out.println(GuiConsultaBasica.TIPOUSUARIO);
 			}
