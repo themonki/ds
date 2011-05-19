@@ -174,9 +174,12 @@ public class GuiResultadoConsulta extends JScrollPane{
 					Consulta documentoConsultar = (Consulta) modeloLista
 							.getElementAt(documentoElegido);
 					conConsulta.insertarConsultaDocumentoUsuario("","");
-					// Documento d =
-					// conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());//devuelve
-					// el documento
+					Documento d =
+					conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());
+				
+					GuiVistaDocumento gv = new GuiVistaDocumento(d);
+					
+					
 				}
 				flag = 1;
 			} else {

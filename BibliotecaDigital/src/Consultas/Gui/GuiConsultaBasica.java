@@ -32,6 +32,8 @@ public class GuiConsultaBasica extends JPanel
 	// Nos permite saber el tipo del usuario que realiza la consulta por defecto es cero.
 	public static int TIPOUSUARIO;
 	
+	JPanel panel;
+	
 	public GuiConsultaBasica()
 	{
 		//Estilo ---------- fuentes letras
@@ -40,6 +42,7 @@ public class GuiConsultaBasica extends JPanel
 		
 		//Manejador de eventos
 		manejador = new Manejador();
+		panel = new JPanel(new FlowLayout(1,200,40));
 		
 		this.setLayout(new FlowLayout(1,200,40));
 		//panelConsultaBasica = new JPanel(new FlowLayout(1,200,40));
@@ -68,6 +71,12 @@ public class GuiConsultaBasica extends JPanel
 		this.add(consultar);
 	}
 	
+	void incluirGuiResultado(GuiResultadoConsulta gr)
+	{
+		panel.add(gr);
+		this.add(panel);
+		this.updateUI();
+	}
 	private class Manejador implements ActionListener, ItemListener
 	{
 		private boolean seleccionBusquedaCompeta = false;
@@ -79,8 +88,10 @@ public class GuiConsultaBasica extends JPanel
 				//no estoy seguro de instanciar el controlador aqui
 				ControladorConsulta controlador = new ControladorConsulta();
 				//mira que se hace con loque retorna
-				controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);
+				
 			
+				GuiResultadoConsulta resultadoConsulta = new GuiResultadoConsulta(controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta),10);
+				incluirGuiResultado(resultadoConsulta);
 				System.out.println(GuiConsultaBasica.TIPOUSUARIO);
 			}
 			

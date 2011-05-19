@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+import Consultas.Controlador.ControladorConsulta;
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
@@ -133,7 +134,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		posEtiquetas++;
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
-/*
+
 		panel.add(autores,restriccionEtiquetas);
 		panel.add(panelAutores, restriccionCampo);
 
@@ -155,7 +156,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		posEtiquetas++;
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
-		*/
+		
 		panel.add(tituloSecundario, restriccionEtiquetas);
 		panel.add(campoTituloSecundario, restriccionCampo);
 		posEtiquetas++;
@@ -256,8 +257,8 @@ public class GuiVistaDocumento extends JScrollPane {
 		}// Faltan iconos para los otros formatos aun no veo algunos bonitos.
 	
 		
-		System.out.println(documento.getAreas().get(0).getDescripcion());
-		/*
+		System.out.println(documento.getAreas().get(0).getNombre());
+		
 		panelAreas = new JPanel();
 		
 		Vector<AreaConocimiento> areasDocumento = documento.getAreas();
@@ -266,7 +267,8 @@ public class GuiVistaDocumento extends JScrollPane {
 			JLabel aux = new JLabel(areasDocumento.get(i).getNombre());
 			aux.addMouseListener(manejador);
 			aux.setForeground(Color.BLUE);
-			areas.add(aux);
+			aux.addMouseListener(manejador);
+			panelAreas.add(aux);
 			
 			
 		}
@@ -279,7 +281,8 @@ public class GuiVistaDocumento extends JScrollPane {
 			JLabel aux = new JLabel(autoresDocumento.get(i).getApellido());
 			aux.addMouseListener(manejador);
 			aux.setForeground(Color.BLUE);
-			autores.add(aux);
+			aux.addMouseListener(manejador);
+			panelAutores.add(aux);
 			
 		}
 		panelPalabrasClave = new JPanel();
@@ -289,12 +292,13 @@ public class GuiVistaDocumento extends JScrollPane {
 			JLabel aux = new JLabel(palabrasClaveDocumento.get(i).getNombre());
 			aux.addMouseListener(manejador);
 			aux.setForeground(Color.BLUE);
-			palabrasClave.add(aux);
+			aux.addMouseListener(manejador);
+			panelPalabrasClave.add(aux);
 			
 			
 		}
 		
-		*/
+		
 		// etiquetas
 		tituloPrincipal = new JLabel("Titulo Principal");
 		tituloSecundario = new JLabel("Titulo Secundario o Traduccion");
@@ -392,7 +396,7 @@ public class GuiVistaDocumento extends JScrollPane {
 				
 				
 				
-			}if(evento.getSource() == etiquetaEditarDocumento)
+			}else if(evento.getSource() == etiquetaEditarDocumento)
 			{
 			
 					
@@ -400,11 +404,17 @@ public class GuiVistaDocumento extends JScrollPane {
 					
 				
 				
+					
 				
+				
+				
+			}else if (evento.getSource() == etiquetaDescargar)
+			{
 				
 				
 				
 			}
+			
 			
 			
 		}
@@ -455,8 +465,8 @@ public class GuiVistaDocumento extends JScrollPane {
 				"marianito", "Articulo",
 				new Vector<Autor>(), new Vector<AreaConocimiento>(),
 				new Vector<PalabraClave>());
-		ControladorDocumento cd = new ControladorDocumento();
-		Documento doc2 = cd.obtenerDocumento("10000");
+		ControladorConsulta cd = new ControladorConsulta();
+		Documento doc2 = cd.obtenerDatosDocumento("10000");
 		
 		a.add(new GuiVistaDocumento(doc2));
 		ventana.setSize(450, 450);
