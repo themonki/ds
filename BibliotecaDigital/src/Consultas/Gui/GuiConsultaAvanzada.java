@@ -2,8 +2,13 @@ package Consultas.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -23,14 +28,15 @@ import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
+import com.sun.org.apache.regexp.internal.RESyntaxException;
 
 public class GuiConsultaAvanzada extends JPanel
 {
 	
-	JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacion,formatoArchivo;
-	JTextField campoPalabraClave,campoTitulo, campoAutor;
+	JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacionAntes, fechaPublicacionDespues,formatoArchivo;
+	JTextField campoPalabraClave,campoTitulo, campoAutor,campoFechaPublicacionAntes, campoFechaPublicacionDespues;
 	JComboBox campoAreas, campoParametrosTitulo, campoParametrosAutor, campoParametrosPalabraClave, 
-	campoIdioma,campoFormArchivo,campoFechaPublicacion;
+	campoIdioma,campoFormArchivo;
 	
 	JButton botonConsultaAvanzada;
 	
@@ -42,26 +48,73 @@ public class GuiConsultaAvanzada extends JPanel
 	GuiConsultaAvanzada(){
 		initComponents();
 		
-		principal = new JPanel(new FlowLayout());
+		principal = new JPanel(new GridBagLayout());
+		GridBagConstraints restriccionesEtiqueta = configurar(0, 0, new Insets(2,2,2,0));
+		GridBagConstraints restriccionesBoton = configurar(0, 0, new Insets(2,0,2,0));
+
 		
-		principal.add(titulo);
-		principal.add(campoTitulo);
-		principal.add(autor);
-		principal.add(campoAutor);
-		principal.add(palabraClave);
-		principal.add(campoPalabraClave);
-		principal.add(area);
-		principal.add(campoAreas);
-		principal.add(idioma);
-		principal.add(campoIdioma);
-		principal.add(fechaPublicacion);
-		principal.add(campoFechaPublicacion);
-		principal.add(formatoArchivo);
-		principal.add(campoFormArchivo);
-		principal.add(botonConsultaAvanzada);
+		principal.add(titulo, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=1;
+		restriccionesEtiqueta.gridwidth=3;
+		principal.add(campoTitulo, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=0;
+		restriccionesEtiqueta.gridy++;
+		//restriccionesEtiqueta.gridwidth=1;
+		principal.add(autor, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=1;
+		restriccionesEtiqueta.gridwidth=3;
+		principal.add(campoAutor, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=0;
+		restriccionesEtiqueta.gridy++;
+		restriccionesEtiqueta.gridwidth=1;
+		principal.add(palabraClave, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=1;
+		restriccionesEtiqueta.gridwidth=3;
+		principal.add(campoPalabraClave, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=0;
+		restriccionesEtiqueta.gridy++;
+		//restriccionesEtiqueta.gridwidth=1;
+		principal.add(area, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=1;
+		restriccionesEtiqueta.gridwidth=3;
+		principal.add(campoAreas, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=0;
+		restriccionesEtiqueta.gridy++;
+		//restriccionesEtiqueta.weightx=1.0;
+		principal.add(idioma, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=1;
+		restriccionesEtiqueta.gridwidth=3;
+		principal.add(campoIdioma, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=0;
+		restriccionesEtiqueta.gridy++;
+		principal.add(formatoArchivo, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=2;
+		restriccionesEtiqueta.gridwidth=3;
+		principal.add(campoFormArchivo, restriccionesEtiqueta);	
+		restriccionesEtiqueta.gridx=0;
+		restriccionesEtiqueta.gridy++;
+		//restriccionesEtiqueta.gridwidth=1;
+		principal.add(fechaPublicacionAntes, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=2;
+		restriccionesEtiqueta.gridwidth=2;
+		principal.add(campoFechaPublicacionAntes, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=0;
+		restriccionesEtiqueta.gridy++;
+		//restriccionesEtiqueta.gridwidth=1;
+		principal.add(fechaPublicacionDespues, restriccionesEtiqueta);
+		restriccionesEtiqueta.gridx=2;
+		restriccionesEtiqueta.gridwidth=2;
+		principal.add(campoFechaPublicacionDespues, restriccionesEtiqueta);
+		
+		
+		
+		restriccionesBoton.gridy=restriccionesEtiqueta.gridy+1;
+		restriccionesBoton.insets= new Insets(4,2,2,2);
+		restriccionesBoton.anchor = GridBagConstraints.WEST;
+		principal.add(botonConsultaAvanzada, restriccionesBoton);
 		//principal.add();
 		
-		setLayout(new BorderLayout());
+		//setLayout(new BorderLayout());
 		add(principal);
 	}
 	
@@ -74,6 +127,7 @@ public class GuiConsultaAvanzada extends JPanel
 	    botonConsultaAvanzada.setIcon(new ImageIcon("recursos/iconos/search.png"));
 		botonConsultaAvanzada.setHorizontalTextPosition(SwingConstants.LEFT);
 		
+		
 	}
 	
 	private void inicializarLabels() {
@@ -82,7 +136,8 @@ public class GuiConsultaAvanzada extends JPanel
 		titulo = inicializarLabel("Titulo: ");
 		autor = inicializarLabel("Autor: ");
 		idioma = inicializarLabel("Idioma: ");
-		fechaPublicacion = inicializarLabel("Fecha de publicación: ");
+		fechaPublicacionAntes = inicializarLabel("Fecha de publicación antes de: ");
+		fechaPublicacionDespues = inicializarLabel("Fecha de publicación después de: ");
 		formatoArchivo = inicializarLabel("Formato de archivo: ");
 		
 	}
@@ -98,6 +153,9 @@ public class GuiConsultaAvanzada extends JPanel
 		campoPalabraClave = new JTextField(30); 
 		campoTitulo = new JTextField(30);
 		campoAutor = new JTextField(30);
+		campoFechaPublicacionAntes = new JTextField(10);
+		campoFechaPublicacionDespues = new JTextField(10);
+
 	}
 
 	private void inicializarComboBox() {
@@ -105,7 +163,6 @@ public class GuiConsultaAvanzada extends JPanel
 		
 		String idiomaArray[] = {"Todos","Ingles", "Español","Frances", "Aleman", "Portuges"};
 		String formatoArchivoArray[] = {"Todos", "jpg", "pdf", "doc", "odt", "otro"};
-		String fechaPublicacionArray[] = {"Cualquiera", "Último mes", "Hace 6 meses", "Hace 2 años", "Hace 5 años"};
 		String parametrosArray[] = {"Con todas las palabras", "Con algunas de estas palabras", "Sin estas palabras"};
 		
 		Vector<String> areas; 
@@ -117,7 +174,7 @@ public class GuiConsultaAvanzada extends JPanel
 		Vector<AreaConocimiento> areasConocimiento;
 		areasConocimiento =  controladorAreas.obtenerAreas();
 		
-		for(int i=0; i< areasConocimiento.size(); i++){
+		for(int i=1; i< areasConocimiento.size(); i++){
 			areas.addElement(areasConocimiento.elementAt(i).getNombre());
 		}
 
@@ -128,8 +185,6 @@ public class GuiConsultaAvanzada extends JPanel
 		campoIdioma.setSelectedIndex(0);
 		campoFormArchivo = new JComboBox(formatoArchivoArray);
 		campoFormArchivo.setSelectedIndex(0);
-		campoFechaPublicacion = new JComboBox(fechaPublicacionArray);
-		campoFechaPublicacion.setSelectedIndex(0);
 		campoParametrosTitulo = new JComboBox(parametrosArray);
 		campoParametrosTitulo.setSelectedIndex(0);
 		campoParametrosAutor = new JComboBox(parametrosArray);
@@ -138,7 +193,29 @@ public class GuiConsultaAvanzada extends JPanel
 		campoParametrosPalabraClave.setSelectedIndex(0);
 		
 	}
+	
+	private GridBagConstraints configurar(int x, int y, Insets insets){
+		
+		GridBagConstraints configuracion = new GridBagConstraints();
+		configuracion.gridx=x;
+		configuracion.gridy=y;
+		configuracion.insets= insets;
+		configuracion.anchor= GridBagConstraints.WEST;
+		return configuracion;
+	}
 
+	private class ManejadorBoton implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == botonConsultaAvanzada){
+				
+			}
+			
+		}
+		
+	}
+	
 	public static void main(String args[]) {
 
 		try
@@ -167,7 +244,7 @@ public class GuiConsultaAvanzada extends JPanel
 		JFrame a = new JFrame();
 		a.add(aD);
 		a.setVisible(true);
-		a.setSize(370,400);
+		a.setSize(550,360);
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
