@@ -28,6 +28,7 @@ import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
+import Principal.Gui.GuiPrincipal;
 import Utilidades.Estilos;
 
 public class GuiVistaDocumento extends JScrollPane {
@@ -380,12 +381,18 @@ public class GuiVistaDocumento extends JScrollPane {
 				if(tipoUsuario == 0)
 				{
 					
-					int opcion = JOptionPane.showConfirmDialog(null," Lo sentimos para desargar el documento debe registarse desea registrarse");
+					int opcion = JOptionPane.showConfirmDialog(null," Lo sentimos para desargar el documento debe registarse ¿Desea hacerlo?");
 			
 					if(opcion == 0)
 					{
-						JOptionPane.showMessageDialog(null,"Cambiar al panel de registro de usuario (aun no esta )");
+						//JOptionPane.showMessageDialog(null,"Cambiar al panel de registro de usuario (aun no esta )");
 						
+						GuiPrincipal.cambiarPanelRegistro();
+						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+						{
+					
+							GuiConsultaBasica.restaurarTodo();
+						}
 					}else
 					{
 						JOptionPane.showMessageDialog(null,"No hacer nada");
@@ -448,7 +455,7 @@ public class GuiVistaDocumento extends JScrollPane {
 				
 				if (etiquetaAConsultar.getParent() == panelAreas) {
 					if (flag == 0) {
-						JOptionPane.showMessageDialog(null, "Consultar areas: "+etiquetaAConsultar.getText());
+					//	JOptionPane.showMessageDialog(null, "Consultar areas: "+etiquetaAConsultar.getText());
 
 						consultar(etiquetaAConsultar.getText());	
 						
@@ -458,8 +465,8 @@ public class GuiVistaDocumento extends JScrollPane {
 					}
 				} else if (etiquetaAConsultar.getParent() == panelAutores) {
 					if (flag == 0) {
-						JOptionPane
-								.showMessageDialog(null, "Consultar autores: "+etiquetaAConsultar.getText());
+					//	JOptionPane
+						//		.showMessageDialog(null, "Consultar autores: "+etiquetaAConsultar.getText());
 
 					
 						consultar(etiquetaAConsultar.getText());	
@@ -470,8 +477,8 @@ public class GuiVistaDocumento extends JScrollPane {
 					}
 				} else if (etiquetaAConsultar.getParent() == panelPalabrasClave) {
 					if (flag == 0) {
-						JOptionPane.showMessageDialog(null,
-								"Consultar palabras clave: "+etiquetaAConsultar.getText());
+						//JOptionPane.showMessageDialog(null,
+						//		"Consultar palabras clave: "+etiquetaAConsultar.getText());
 						
 						consultar(etiquetaAConsultar.getText());	
 

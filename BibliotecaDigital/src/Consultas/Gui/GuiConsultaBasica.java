@@ -140,6 +140,18 @@ public class GuiConsultaBasica extends JScrollPane
 		panel.remove(vistaDocumento);
 		panel.updateUI();
 	}
+	public static void restaurarTodo()
+	{
+	
+		
+		panel.remove(vistaDocumento);
+		campoConsulta.setText("");
+		panel.add(panelConsulta, BorderLayout.NORTH);		
+		resultadoConsulta = new GuiResultadoConsulta();
+		panel.add(resultadoConsulta, BorderLayout.SOUTH );
+		panel.remove(vistaDocumento);
+		panel.updateUI();
+	}
 	
 	private class Manejador implements ActionListener, ItemListener
 	{
@@ -154,10 +166,12 @@ public class GuiConsultaBasica extends JScrollPane
 				//mira que se hace con loque retorna
 				
 				Vector<Consulta> vector = new Vector<Consulta>();
+				GuiResultadoConsulta.TIPOCONSULTA = 1;
 				
 				if(!campoConsulta.getText().equals("")){
 					vector = null;
-					vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);					
+					vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);	
+				
 				}else{
 					JOptionPane.showMessageDialog(null, "Por favor ingrese parametros para la busqueda",
 							"No ahi parametros", JOptionPane.ERROR_MESSAGE);
@@ -171,7 +185,7 @@ public class GuiConsultaBasica extends JScrollPane
 				int cantidad = Integer.parseInt((String) campoCantidadResultados.getSelectedItem());
 				resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
 				
-				GuiResultadoConsulta.TIPOCONSULTA = 1;
+				
 				
 				panel.add(resultadoConsulta, BorderLayout.CENTER);
 				panel.updateUI();
