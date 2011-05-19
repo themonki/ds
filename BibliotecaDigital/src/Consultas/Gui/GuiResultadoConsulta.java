@@ -96,9 +96,9 @@ public class GuiResultadoConsulta extends JScrollPane{
 		botonAtras = new JButton("Atras");
 		botonRegresar.addActionListener(new ManejadorBoton());
 		botonSiguiente.addActionListener(new ManejadorBoton());
-		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setVisible(false);
+		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setEnabled(false);
 		botonAtras.addActionListener(new ManejadorBoton());
-		botonAtras.setVisible(false);
+		botonAtras.setEnabled(false);
 		
 	}
 	
@@ -145,18 +145,18 @@ public class GuiResultadoConsulta extends JScrollPane{
 				modeloLista.removeAllElements();
 				agregarResultadoSiguiente(cantidadMostrar);
 				if(posicionResultado>cantidadTotalResultados){
-					botonSiguiente.setVisible(false);
+					botonSiguiente.setEnabled(false);
 				}
-				botonAtras.setVisible(true);
+				botonAtras.setEnabled(true);
 				
 			}
 			if(e.getSource()==botonAtras){
 				modeloLista.removeAllElements();
 				agregarResultadoAtras(cantidadMostrar);
 				if(posicionResultado==cantidadMostrar){
-					botonAtras.setVisible(false);
+					botonAtras.setEnabled(false);
 				}
-				botonSiguiente.setVisible(true);
+				botonSiguiente.setEnabled(true);
 			}
 		}
 		
@@ -173,6 +173,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 					ControladorConsulta conConsulta = new ControladorConsulta();
 					Consulta documentoConsultar = (Consulta) modeloLista
 							.getElementAt(documentoElegido);
+					conConsulta.insertarConsultaDocumentoUsuario("","");
 					// Documento d =
 					// conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());//devuelve
 					// el documento
@@ -202,7 +203,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 		Consulta co3 = new Consulta("3","doc3",va);
 		for(int i = 0 ; i <3; i++)
 			v.add(co3);
-		c.add(new GuiResultadoConsulta(v, 10));
+		c.add(new GuiResultadoConsulta(v, 13));
 		m.setSize(700, 600);
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		m.setVisible(true);

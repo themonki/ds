@@ -1,5 +1,8 @@
 package Consultas.Controlador;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -49,4 +52,23 @@ public class ControladorConsulta
 		
 		return resultado;
 	}
+	
+	//metodo que actualiza la tabla consulta en el momento de que selecciona un resultado (pasa a vistaDocumento)
+	public void insertarConsultaDocumentoUsuario(String id_documento, String login){
+		java.util.Date fecha = new java.util.Date();
+		SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
+		String fechaString = formatoFecha.format(fecha); // la fecha en que se consulto
+		
+		Calendar calendario = Calendar.getInstance();
+		int hora, min, seg;
+		hora = calendario.get(Calendar.HOUR_OF_DAY);
+		min = calendario.get(Calendar.MINUTE);
+		seg = calendario.get(Calendar.SECOND);
+		String horaConsulta = hora +":"+min+":"+seg; //la hora en que se consulto
+		System.out.println(fechaString);
+		System.out.println(horaConsulta);
+		
+		
+	}
+	
 }
