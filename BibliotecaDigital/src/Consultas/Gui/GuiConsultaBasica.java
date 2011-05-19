@@ -38,7 +38,7 @@ public class GuiConsultaBasica extends JScrollPane
 
 	private static final long serialVersionUID = 1L;
 	private JLabel etiquetaConsulta;
-	private static  JTextField campoConsulta;
+	public static  JTextField campoConsulta;
 	private JPanel panelCampoConsulta;
 	private Button consultar;
 	private JCheckBox busquedaCompleta;

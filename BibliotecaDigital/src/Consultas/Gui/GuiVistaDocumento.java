@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import Consultas.Controlador.ControladorConsulta;
+import Consultas.Logica.Consulta;
 import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
@@ -427,11 +428,13 @@ public class GuiVistaDocumento extends JScrollPane {
 			}else {
 
 				JLabel etiquetaAConsultar = (JLabel) evento.getSource();
-
+				
 				if (etiquetaAConsultar.getParent() == panelAreas) {
 					if (flag == 0) {
 						JOptionPane.showMessageDialog(null, "Consultar areas: "+etiquetaAConsultar.getText());
 
+						consultar(etiquetaAConsultar.getText());	
+						
 						flag = 1;
 					} else {
 						flag = 0;
@@ -441,6 +444,9 @@ public class GuiVistaDocumento extends JScrollPane {
 						JOptionPane
 								.showMessageDialog(null, "Consultar autores: "+etiquetaAConsultar.getText());
 
+					
+						consultar(etiquetaAConsultar.getText());	
+						
 						flag = 1;
 					} else {
 						flag = 0;
@@ -449,6 +455,8 @@ public class GuiVistaDocumento extends JScrollPane {
 					if (flag == 0) {
 						JOptionPane.showMessageDialog(null,
 								"Consultar palabras clave: "+etiquetaAConsultar.getText());
+						
+						consultar(etiquetaAConsultar.getText());	
 
 						flag = 1;
 					} else {
@@ -491,6 +499,39 @@ public class GuiVistaDocumento extends JScrollPane {
 	}
 	
 
+	
+	private static void consultar(String parametro)
+	{
+		ControladorConsulta controlador = new ControladorConsulta();
+		//mira que se hace con loque retorna
+		boolean seleccionBusquedaCompeta = true;
+		
+		Vector<Consulta> vector = new Vector<Consulta>();
+		
+		if(!parametro.equals("")){
+			vector = null;
+			vector = controlador.consultaGeneral(parametro, seleccionBusquedaCompeta);					
+		}else{
+			JOptionPane.showMessageDialog(null, "Por favor ingrese parametros para la busqueda",
+					"No ahi parametros", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
+		int cantidad = 10;
+		System.out.println(vector);
+		GuiConsultaBasica.resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
+		GuiConsultaBasica.campoConsulta.setText(parametro);
+		GuiResultadoConsulta.TIPOCONSULTA = 1;
+		GuiConsultaBasica.restaurar();
+		GuiConsultaBasica.panel.add(GuiConsultaBasica.resultadoConsulta, BorderLayout.CENTER);
+		GuiConsultaBasica.panel.updateUI();
+		if(vector.size() <=0 && !parametro.equals("")){
+			
+			JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
+			
+		}	
+		
+	}
 	public static void main(String[] args) {
 		
 	
