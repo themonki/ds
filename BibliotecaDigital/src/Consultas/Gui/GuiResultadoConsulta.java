@@ -177,7 +177,12 @@ public class GuiResultadoConsulta extends JScrollPane{
 					Documento d =
 					conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());
 				
-					GuiVistaDocumento gv = new GuiVistaDocumento(d);
+					
+					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
+					GuiConsultaBasica.ponerDescripcion();
+					
+
+					
 					
 					
 				}
@@ -189,7 +194,12 @@ public class GuiResultadoConsulta extends JScrollPane{
 
 	}
 
-	
+	public static void  regresar(){
+		
+		
+		
+		
+	}
 	public static void main(String []args){
 		JFrame m = new JFrame();
 		Container c = m.getContentPane();

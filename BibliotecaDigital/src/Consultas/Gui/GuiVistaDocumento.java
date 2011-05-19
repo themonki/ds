@@ -53,6 +53,8 @@ public class GuiVistaDocumento extends JScrollPane {
 	JLabel palabrasClave;
 	JLabel areas;
 	
+	JLabel volver;
+	
 	
 
 	// Campos para el contenido de cada uno de los datos correspondientes al
@@ -93,8 +95,7 @@ public class GuiVistaDocumento extends JScrollPane {
 
 		super();
 		documento = doc;
-		//tipoUsuario= GuiConsultaBasica.TIPOUSUARIO;
-		tipoUsuario = 3;
+		tipoUsuario= GuiConsultaBasica.TIPOUSUARIO;
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder,
@@ -123,6 +124,7 @@ public class GuiVistaDocumento extends JScrollPane {
 
 		iniciarLabels();
 
+		panel.add(volver,restriccionEtiquetas);
 		panel.add(icono, restriccionCampo);
 
 		posEtiquetas++;
@@ -316,6 +318,9 @@ public class GuiVistaDocumento extends JScrollPane {
 		autores = new JLabel("Autor(es)");
 		palabrasClave = new JLabel("Palabras clave");
 		
+		volver = new JLabel("Volver");
+		volver.addMouseListener(manejador);
+		
 		// Donde se mostraran los resultados.
 		campoTituloPrincipal = new JLabel();
 		campoTituloPrincipal.setText(documento.getTituloppal());
@@ -408,8 +413,9 @@ public class GuiVistaDocumento extends JScrollPane {
 				
 				
 				
-			}else if (evento.getSource() == etiquetaDescargar)
+			}else if (evento.getSource() == volver)
 			{
+				GuiConsultaBasica.restaurar();
 				
 				
 				
