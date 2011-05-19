@@ -83,6 +83,7 @@ public class GuiVistaDocumento extends JScrollPane {
 	
 	// De acuerdo al usuario que halla intentado consultar podremos saber si puede descargar editar un documento.
 	int tipoUsuario ;
+	int flag;
 
 	GuiVistaDocumento(Documento doc) {
 
@@ -97,6 +98,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 
+		flag =0;
 		panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints restriccionEtiquetas = new GridBagConstraints();
@@ -415,6 +417,38 @@ public class GuiVistaDocumento extends JScrollPane {
 				
 				
 				
+			}else {
+
+				JLabel etiquetaAConsultar = (JLabel) evento.getSource();
+
+				if (etiquetaAConsultar.getParent() == panelAreas) {
+					if (flag == 0) {
+						JOptionPane.showMessageDialog(null, "Consultar areas: "+etiquetaAConsultar.getText());
+
+						flag = 1;
+					} else {
+						flag = 0;
+					}
+				} else if (etiquetaAConsultar.getParent() == panelAutores) {
+					if (flag == 0) {
+						JOptionPane
+								.showMessageDialog(null, "Consultar autores: "+etiquetaAConsultar.getText());
+
+						flag = 1;
+					} else {
+						flag = 0;
+					}
+				} else if (etiquetaAConsultar.getParent() == panelPalabrasClave) {
+					if (flag == 0) {
+						JOptionPane.showMessageDialog(null,
+								"Consultar palabras clave: "+etiquetaAConsultar.getText());
+
+						flag = 1;
+					} else {
+						flag = 0;
+					}
+				}
+
 			}
 			
 			
