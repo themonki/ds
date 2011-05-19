@@ -159,6 +159,9 @@ public class GuiConsultaBasica extends JScrollPane
 					}
 				int cantidad = Integer.parseInt((String) campoCantidadResultados.getSelectedItem());
 				resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
+				
+				GuiResultadoConsulta.TIPOCONSULTA = 1;
+				
 				panel.add(resultadoConsulta, BorderLayout.CENTER);
 				panel.updateUI();
 				if(vector.size() <=0 && !campoConsulta.getText().equals("")){

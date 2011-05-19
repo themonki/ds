@@ -43,6 +43,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	int posicionResultado;
 	int cantidadTotalResultados;
 	int cantidadMostrar;
+	public static int TIPOCONSULTA;
 	
 	public GuiResultadoConsulta(){}
 	
