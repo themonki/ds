@@ -3,19 +3,13 @@ package Consultas.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -24,9 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
-
 import Consultas.Controlador.ControladorConsulta;
-import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
@@ -241,7 +233,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		// ------------------------------------------
-		setSize(450, 250);
+		setSize(300, 300);
 		setVisible(true);
 	}
 
@@ -320,6 +312,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		volver = new JLabel("Volver");
 		volver.addMouseListener(manejador);
+		volver.setForeground(Color.BLUE);
 		
 		// Donde se mostraran los resultados.
 		campoTituloPrincipal = new JLabel();

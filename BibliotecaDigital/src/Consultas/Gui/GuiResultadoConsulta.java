@@ -30,6 +30,10 @@ import Documento.Logica.Documento;
 
 public class GuiResultadoConsulta extends JScrollPane{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Resultados
 	JList listaResultado;
 	DefaultListModel modeloLista;

@@ -8,15 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Consultas.Controlador.ControladorConsulta;
+import Consultas.Logica.Consulta;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
@@ -99,6 +102,7 @@ public class GuiConsultaBasica extends JPanel
 		panel.remove(vistaDocumento);
 		campoConsulta.setText("");
 		panel.add(panelConsulta, BorderLayout.NORTH);
+		resultadoConsulta = new GuiResultadoConsulta();
 		panel.remove(vistaDocumento);
 		panel.updateUI();
 	}
@@ -114,11 +118,21 @@ public class GuiConsultaBasica extends JPanel
 				//no estoy seguro de instanciar el controlador aqui
 				ControladorConsulta controlador = new ControladorConsulta();
 				//mira que se hace con loque retorna
-				
+				Vector<Consulta> vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);
 			
-				resultadoConsulta = new GuiResultadoConsulta(controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta),10);
-				panel.add(resultadoConsulta, BorderLayout.CENTER);
-				panel.updateUI();
+				if(vector.size() >0){
+				
+					resultadoConsulta = new GuiResultadoConsulta(vector,10);
+					panel.add(resultadoConsulta, BorderLayout.CENTER);
+					panel.updateUI();
+					
+					
+					
+				}else
+				{
+					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
+				}
+				
 				System.out.println(GuiConsultaBasica.TIPOUSUARIO);
 			}
 			
