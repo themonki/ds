@@ -39,7 +39,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	DefaultListModel modeloLista;
 	Vector<Consulta> vectorConsulta;
 	
-	JButton botonRegresar, botonSiguiente, botonAtras;
+	JButton botonSiguiente, botonAtras;
 	int posicionResultado;
 	int cantidadTotalResultados;
 	int cantidadMostrar;
@@ -76,7 +76,6 @@ public class GuiResultadoConsulta extends JScrollPane{
 		GridBagConstraints restriccionBotones= new GridBagConstraints();
 		restriccionBotones.insets = new Insets(5,40,5,5);
 		
-		panel2.add(botonRegresar, restriccionBotones);
 		panel2.add(botonAtras, restriccionBotones);
 		panel2.add(botonSiguiente,restriccionBotones);
 		
@@ -95,10 +94,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 	
 	private void initBotones(){
 		
-		botonRegresar = new JButton("Regresar");
 		botonSiguiente = new JButton("Siguiente");
 		botonAtras = new JButton("Atras");
-		botonRegresar.addActionListener(new ManejadorBoton());
 		botonSiguiente.addActionListener(new ManejadorBoton());
 		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setEnabled(false);
 		botonAtras.addActionListener(new ManejadorBoton());
@@ -142,9 +139,6 @@ public class GuiResultadoConsulta extends JScrollPane{
 
 		
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()==botonRegresar){
-				
-			}
 			if(e.getSource()==botonSiguiente){
 				modeloLista.removeAllElements();
 				agregarResultadoSiguiente(cantidadMostrar);
@@ -185,26 +179,22 @@ public class GuiResultadoConsulta extends JScrollPane{
 					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
 					
-
-					
-					
-					
 				}
 				flag = 1;
 			} else {
 				flag = 0;
+				//listaResultado.clearSelection();
 			}
+			listaResultado.clearSelection();
+			System.out.println("222 " + listaResultado.getSelectedIndex());
 		}
 
 	}
 
-	public static void  regresar(){
-		
-		
-		
-		
+	public static void volverRestaurarSeleccionado(){
+		//this.listaResultado.setSelectedIndex(-1);
 	}
-	public static void main(String []args){
+	/*public static void main(String []args){
 		JFrame m = new JFrame();
 		Container c = m.getContentPane();
 		Vector <String> va=new  Vector <String>();
@@ -234,5 +224,5 @@ public class GuiResultadoConsulta extends JScrollPane{
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		m.setVisible(true);
 	}
-
+/**/
 }

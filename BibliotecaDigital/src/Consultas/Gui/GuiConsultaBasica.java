@@ -19,6 +19,7 @@ import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -41,6 +42,8 @@ public class GuiConsultaBasica extends JScrollPane
 	private JPanel panelCampoConsulta;
 	private Button consultar;
 	private JCheckBox busquedaCompleta;
+	private JComboBox campoCantidadResultados;
+	private String cantidades[] = {"5","10","15","20", "25"};
 	private Manejador manejador;
 	// Nos permite saber el tipo del usuario que realiza la consulta por defecto es cero.
 	public static int TIPOUSUARIO;
@@ -72,9 +75,12 @@ public class GuiConsultaBasica extends JScrollPane
 		busquedaCompleta = new JCheckBox("Realizar b�squeda con coincidencia exacta");
 		busquedaCompleta.addItemListener(manejador);
 		
+		campoCantidadResultados = new JComboBox(cantidades);
+		
 		panelCampoConsulta = new JPanel(new GridLayout(2,1,5,5));
 		panelCampoConsulta.add(campoConsulta);
 		panelCampoConsulta.add(busquedaCompleta);
+		panelCampoConsulta.add(campoCantidadResultados);
 		
 		consultar = new Button("Consultar");
 		consultar.setIcon(new ImageIcon("recursos/iconos/search.png"));
@@ -113,9 +119,11 @@ public class GuiConsultaBasica extends JScrollPane
 	
 		
 		panel.remove(vistaDocumento);
-		campoConsulta.setText("");
+		//campoConsulta.setText("");
 		panel.add(panelConsulta, BorderLayout.NORTH);
-		resultadoConsulta = new GuiResultadoConsulta();
+		panel.add(resultadoConsulta, BorderLayout.SOUTH );
+		
+		//resultadoConsulta = new GuiResultadoConsulta();
 		panel.remove(vistaDocumento);
 		panel.updateUI();
 	}
