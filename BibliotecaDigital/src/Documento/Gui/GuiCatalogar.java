@@ -673,8 +673,8 @@ public class GuiCatalogar extends JScrollPane{
 				int returnVal = manager.showSaveDialog(new JFrame());
 				if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
 					File file = manager.getSelectedFile();
-					String url = file.getAbsolutePath();						
-					campoEnlaceDoc.setText(url);						
+					String url = file.getAbsolutePath();
+					campoEnlaceDoc.setText(url);
 				}						
 			}
 			if(event.getSource()==nuevaArea){				

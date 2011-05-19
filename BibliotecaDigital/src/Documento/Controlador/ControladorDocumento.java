@@ -347,6 +347,21 @@ public class ControladorDocumento {
 	public String descargarDocumento(String urlFuente, String urlDestino){
 		File src = new File(urlFuente);
 		File dst= new File(urlDestino+"/"+src.getName());//es una carpeta
+		File nuevoDst = new File(urlDestino+"/"+src.getName());
+		int contador = 2;
+		while(true){
+			if(nuevoDst!=null && nuevoDst.exists()){
+				//nuevoDst = new File(urlDestino+"/"+src.getName());
+				String nuevoNombre = obtenerNombre(dst,"("+contador+")");
+				nuevoDst = new File(urlDestino+"/"+nuevoNombre);
+				contador++;
+			}else {
+				dst=null;
+				dst=new File(nuevoDst.getPath());;
+				nuevoDst=null;
+				break;
+			}		
+		}
 		InputStream in;
 		OutputStream out;		
 		try {
@@ -371,6 +386,20 @@ public class ControladorDocumento {
 			System.out.println(e.toString());
 		}
 		return "";
+	}
+	
+	protected String obtenerNombre(File archivo, String agregar){
+		String name = archivo.getName();
+		int longitud = name.length();
+		for(int i = longitud-1; i > 0; i--){
+			if(name.charAt(i)=='.'){;
+				String nombre2 = name.substring(0, i);
+				nombre2+= agregar + name.substring(i);
+				return nombre2;
+			}
+		}
+		System.out.println("No encuentra la extension");
+		return null;
 	}
 	
 //*********************************************MODIFICAR
