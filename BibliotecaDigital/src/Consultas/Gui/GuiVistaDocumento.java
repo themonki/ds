@@ -3,12 +3,17 @@ package Consultas.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -20,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
@@ -42,6 +48,11 @@ public class GuiVistaDocumento extends JScrollPane {
 	JLabel softwareRecomendado;
 	JLabel fechaPublicacion;
 	JLabel fechaCreacion;
+	JLabel autores;
+	JLabel palabrasClave;
+	JLabel areas;
+	
+	
 
 	// Campos para el contenido de cada uno de los datos correspondientes al
 	// documento.
@@ -56,6 +67,9 @@ public class GuiVistaDocumento extends JScrollPane {
 	JLabel campoSoftwareRecomendado;
 	JLabel campoFechaPublicacion;
 	JLabel campoFechaCreacion;
+	JPanel panelAreas;
+	JPanel panelPalabrasClave;
+	JPanel panelAutores;
 
 	// Panel general que contiene todos los elementos
 	JPanel panel;
@@ -119,7 +133,29 @@ public class GuiVistaDocumento extends JScrollPane {
 		posEtiquetas++;
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
+/*
+		panel.add(autores,restriccionEtiquetas);
+		panel.add(panelAutores, restriccionCampo);
 
+		posEtiquetas++;
+		restriccionEtiquetas.gridy = posEtiquetas;
+		restriccionCampo.gridy = posEtiquetas;
+		
+		
+		
+		panel.add(areas, restriccionEtiquetas);
+		panel.add(panelAreas, restriccionCampo);
+
+		posEtiquetas++;
+		restriccionEtiquetas.gridy = posEtiquetas;
+		restriccionCampo.gridy = posEtiquetas;
+		
+		panel.add(palabrasClave, restriccionEtiquetas);
+		panel.add(panelPalabrasClave, restriccionCampo);
+		posEtiquetas++;
+		restriccionEtiquetas.gridy = posEtiquetas;
+		restriccionCampo.gridy = posEtiquetas;
+		*/
 		panel.add(tituloSecundario, restriccionEtiquetas);
 		panel.add(campoTituloSecundario, restriccionCampo);
 		posEtiquetas++;
@@ -144,12 +180,14 @@ public class GuiVistaDocumento extends JScrollPane {
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 
-		panel.add(resolucion, restriccionEtiquetas);
-		panel.add(campoResolucion, restriccionCampo);
-		posEtiquetas++;
-		restriccionEtiquetas.gridy = posEtiquetas;
-		restriccionCampo.gridy = posEtiquetas;
-
+		if(documento.getFormato().equals("jpg")){
+	
+			panel.add(resolucion, restriccionEtiquetas);		
+			panel.add(campoResolucion, restriccionCampo);		
+			posEtiquetas++;			
+			restriccionEtiquetas.gridy = posEtiquetas;		
+			restriccionCampo.gridy = posEtiquetas;
+		}
 		panel.add(formato, restriccionEtiquetas);
 		panel.add(campoFormato, restriccionCampo);
 		posEtiquetas++;
@@ -180,7 +218,10 @@ public class GuiVistaDocumento extends JScrollPane {
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 
-		// panel.add(descargar);
+	
+	
+		
+		
 		JPanel panel2 = new JPanel(new BorderLayout());
 		panelAccionesDocumento = new JPanel();
 
@@ -203,6 +244,7 @@ public class GuiVistaDocumento extends JScrollPane {
 
 	private void iniciarLabels() {
 		icono = new JLabel();
+		ManejadorEtiquetas manejador = new ManejadorEtiquetas();
 		if(documento.getFormato().equals("pdf"))
 		{
 	
@@ -214,7 +256,45 @@ public class GuiVistaDocumento extends JScrollPane {
 		}// Faltan iconos para los otros formatos aun no veo algunos bonitos.
 	
 		
+		System.out.println(documento.getAreas().get(0).getDescripcion());
+		/*
+		panelAreas = new JPanel();
 		
+		Vector<AreaConocimiento> areasDocumento = documento.getAreas();
+		for(int i=0;i< areasDocumento.size();i++)
+		{
+			JLabel aux = new JLabel(areasDocumento.get(i).getNombre());
+			aux.addMouseListener(manejador);
+			aux.setForeground(Color.BLUE);
+			areas.add(aux);
+			
+			
+		}
+		
+		panelAutores = new JPanel();
+		Vector<Autor> autoresDocumento = documento.getAutores();
+		for(int i=0;i< autoresDocumento.size();i++)
+		{
+			
+			JLabel aux = new JLabel(autoresDocumento.get(i).getApellido());
+			aux.addMouseListener(manejador);
+			aux.setForeground(Color.BLUE);
+			autores.add(aux);
+			
+		}
+		panelPalabrasClave = new JPanel();
+		Vector<PalabraClave> palabrasClaveDocumento= documento.getPalabrasClave();
+		for(int i=0;i< palabrasClaveDocumento.size();i++)
+		{
+			JLabel aux = new JLabel(palabrasClaveDocumento.get(i).getNombre());
+			aux.addMouseListener(manejador);
+			aux.setForeground(Color.BLUE);
+			palabrasClave.add(aux);
+			
+			
+		}
+		
+		*/
 		// etiquetas
 		tituloPrincipal = new JLabel("Titulo Principal");
 		tituloSecundario = new JLabel("Titulo Secundario o Traduccion");
@@ -228,6 +308,10 @@ public class GuiVistaDocumento extends JScrollPane {
 		fechaPublicacion = new JLabel("Fecha de Publicacion");
 		fechaCreacion = new JLabel("Fecha de Catalogación");
 
+		areas = new JLabel("Areas de conocimiento");
+		autores = new JLabel("Autor(es)");
+		palabrasClave = new JLabel("Palabras clave");
+		
 		// Donde se mostraran los resultados.
 		campoTituloPrincipal = new JLabel();
 		campoTituloPrincipal.setText(documento.getTituloppal());
@@ -255,7 +339,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		campoFechaCreacion.setText(""+documento.getFecha_creacion());
 
 		// Etiquetas funcionales de acuerdo al tipo de usuario;
-		ManejadorEtiquetas manejador = new ManejadorEtiquetas();
+	
 		etiquetaDescargar = new JLabel("Descargar");
 		etiquetaDescargar.addMouseListener(manejador);
 		etiquetaEditarDocumento = new JLabel("Editar Documento");
@@ -327,14 +411,16 @@ public class GuiVistaDocumento extends JScrollPane {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+		
+		
+			
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
 			// TODO Auto-generated method stub
 
+			
 		}
 
 		@Override
@@ -350,20 +436,29 @@ public class GuiVistaDocumento extends JScrollPane {
 		}
 
 	}
+	
 
 	public static void main(String[] args) {
+		
+	
+		
+	
+		
 		JFrame ventana = new JFrame();
 		Container a = ventana.getContentPane();
 
 		Documento doc = new Documento("112", "Ingles", "Ni idea",
 				"Aplicacion de la teoria de grafos en la busqueda del camino mas corto entre dos host" ,"Adobe Reader", "1024*800",
-				"No tiene" ,"doc","Enrutamiento de paquetes",
+				"No tiene" ,"pdf","Enrutamiento de paquetes",
 				"Routers basicos", "aca.pdf", new Date(555555550),
 				 new Date(1121540), new Date(1555555550),
 				"marianito", "Articulo",
 				new Vector<Autor>(), new Vector<AreaConocimiento>(),
 				new Vector<PalabraClave>());
-		a.add(new GuiVistaDocumento(doc));
+		ControladorDocumento cd = new ControladorDocumento();
+		Documento doc2 = cd.obtenerDocumento("10000");
+		
+		a.add(new GuiVistaDocumento(doc2));
 		ventana.setSize(450, 450);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
