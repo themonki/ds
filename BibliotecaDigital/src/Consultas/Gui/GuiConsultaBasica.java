@@ -43,7 +43,7 @@ public class GuiConsultaBasica extends JScrollPane
 	private Button consultar;
 	private JCheckBox busquedaCompleta;
 	private JComboBox campoCantidadResultados;
-	private String cantidades[] = {"5","10","15","20", "25"};
+	private String cantidades[] = {"5","10","15","20", "25", "1"};
 	private Manejador manejador;
 	// Nos permite saber el tipo del usuario que realiza la consulta por defecto es cero.
 	public static int TIPOUSUARIO;
@@ -72,15 +72,17 @@ public class GuiConsultaBasica extends JScrollPane
 		campoConsulta = new JTextField(30);
 		campoConsulta.setFont(Estilos.fontLabels);
 		
-		busquedaCompleta = new JCheckBox("Realizar b�squeda con coincidencia exacta");
+		busquedaCompleta = new JCheckBox("Realizar búsqueda con coincidencia exacta");
 		busquedaCompleta.addItemListener(manejador);
 		
 		campoCantidadResultados = new JComboBox(cantidades);
 		
 		panelCampoConsulta = new JPanel(new GridLayout(2,1,5,5));
 		panelCampoConsulta.add(campoConsulta);
-		panelCampoConsulta.add(busquedaCompleta);
-		panelCampoConsulta.add(campoCantidadResultados);
+		JPanel campoOpciones = new JPanel(new BorderLayout());
+		campoOpciones.add(busquedaCompleta, BorderLayout.WEST);
+		campoOpciones.add(campoCantidadResultados, BorderLayout.EAST);
+		panelCampoConsulta.add(campoOpciones);
 		
 		consultar = new Button("Consultar");
 		consultar.setIcon(new ImageIcon("recursos/iconos/search.png"));
@@ -155,7 +157,8 @@ public class GuiConsultaBasica extends JScrollPane
 				}else{
 					resultadoConsulta=null;
 					}
-				resultadoConsulta = new GuiResultadoConsulta(vector,10);
+				int cantidad = Integer.parseInt((String) campoCantidadResultados.getSelectedItem());
+				resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
 				panel.add(resultadoConsulta, BorderLayout.CENTER);
 				panel.updateUI();
 				if(vector.size() <=0 && !campoConsulta.getText().equals("")){
