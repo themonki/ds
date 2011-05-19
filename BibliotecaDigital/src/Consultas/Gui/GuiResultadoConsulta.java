@@ -176,7 +176,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 					conConsulta.insertarConsultaDocumentoUsuario("","");
 					Documento d =
 					conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());
-				
+					
 					
 					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
@@ -188,7 +188,6 @@ public class GuiResultadoConsulta extends JScrollPane{
 				//listaResultado.clearSelection();
 			}
 			listaResultado.clearSelection();
-			System.out.println("222 " + listaResultado.getSelectedIndex());
 		}
 
 	}
