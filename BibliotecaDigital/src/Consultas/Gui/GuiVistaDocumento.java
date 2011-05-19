@@ -72,13 +72,14 @@ public class GuiVistaDocumento extends JScrollPane {
 	Documento documento;
 	
 	// De acuerdo al usuario que halla intentado consultar podremos saber si puede descargar editar un documento.
-	int tipoUsuario = GuiConsultaBasica.TIPOUSUARIO;
+	int tipoUsuario ;
 
 	GuiVistaDocumento(Documento doc) {
 
 		super();
 		documento = doc;
-		tipoUsuario= 1;
+		//tipoUsuario= GuiConsultaBasica.TIPOUSUARIO;
+		tipoUsuario = 3;
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder,
@@ -209,8 +210,11 @@ public class GuiVistaDocumento extends JScrollPane {
 		}else if(documento.getFormato().equals("doc"))
 		{
 			
-			icono.setIcon(new ImageIcon("recursos/iconos/Doc.png"));
-		}
+			icono.setIcon(new ImageIcon("recursos/iconos/DOC.png"));
+		}// Faltan iconos para los otros formatos aun no veo algunos bonitos.
+	
+		
+		
 		// etiquetas
 		tituloPrincipal = new JLabel("Titulo Principal");
 		tituloSecundario = new JLabel("Titulo Secundario o Traduccion");
@@ -260,7 +264,11 @@ public class GuiVistaDocumento extends JScrollPane {
 		etiquetaDescargar.setIcon(new ImageIcon("recursos/iconos/add.png"));
 		etiquetaEditarDocumento
 				.setIcon(new ImageIcon("recursos/iconos/add.png"));
-		etiquetaEditarDocumento.setVisible(false);
+		// Se oculta la opcion de editar documento para usuarios no registrados y para usuarios normales.
+		if(tipoUsuario == 1 || tipoUsuario == 0){
+		
+			etiquetaEditarDocumento.setVisible(false);
+		}
 		etiquetaDescargar.setForeground(Color.BLUE);
 		etiquetaEditarDocumento.setForeground(Color.BLUE);
 
@@ -281,7 +289,7 @@ public class GuiVistaDocumento extends JScrollPane {
 			
 					if(opcion == 0)
 					{
-						JOptionPane.showMessageDialog(null,"Cambiar al panel de registro de usuario (por ahora ni idea como jaja)");
+						JOptionPane.showMessageDialog(null,"Cambiar al panel de registro de usuario (aun no esta )");
 						
 					}else
 					{
@@ -295,6 +303,18 @@ public class GuiVistaDocumento extends JScrollPane {
 					JOptionPane.showMessageDialog(null,"Empezando a descargar archivo");
 					
 				}
+				
+				
+				
+				
+				
+			}if(evento.getSource() == etiquetaEditarDocumento)
+			{
+			
+					
+					JOptionPane.showMessageDialog(null,"Cambiar al panel de modificar documento(aun esto no esta)");
+					
+				
 				
 				
 				
@@ -337,7 +357,7 @@ public class GuiVistaDocumento extends JScrollPane {
 
 		Documento doc = new Documento("112", "Ingles", "Ni idea",
 				"Aplicacion de la teoria de grafos en la busqueda del camino mas corto entre dos host" ,"Adobe Reader", "1024*800",
-				"No tiene" ,"Pdf","Enrutamiento de paquetes",
+				"No tiene" ,"doc","Enrutamiento de paquetes",
 				"Routers basicos", "aca.pdf", new Date(555555550),
 				 new Date(1121540), new Date(1555555550),
 				"marianito", "Articulo",
