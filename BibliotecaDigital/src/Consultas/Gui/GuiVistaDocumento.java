@@ -413,10 +413,17 @@ public class GuiVistaDocumento extends JScrollPane {
 				
 			}else if (evento.getSource() == volver)
 			{
-				GuiConsultaBasica.restaurar();
+				if(GuiResultadoConsulta.TIPOCONSULTA == 1){
+				
+			
+					GuiConsultaBasica.restaurar();
 				
 				
-				
+				}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+				{
+					// Falta implementarlo
+					//GuiConsultaAvanzada.restaurar();
+				}
 			}else {
 
 				JLabel etiquetaAConsultar = (JLabel) evento.getSource();

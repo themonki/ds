@@ -43,6 +43,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	int posicionResultado;
 	int cantidadTotalResultados;
 	int cantidadMostrar;
+	public static int TIPOCONSULTA;
 	
 	public GuiResultadoConsulta(){}
 	
@@ -140,13 +141,14 @@ public class GuiResultadoConsulta extends JScrollPane{
 		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==botonSiguiente){
-				modeloLista.removeAllElements();
-				agregarResultadoSiguiente(cantidadMostrar);
-				if(posicionResultado>cantidadTotalResultados){
+				if(posicionResultado<cantidadTotalResultados){
+					modeloLista.removeAllElements();
+					agregarResultadoSiguiente(cantidadMostrar);
+					}
+				if(posicionResultado>=cantidadTotalResultados){
 					botonSiguiente.setEnabled(false);
 				}
 				botonAtras.setEnabled(true);
-				
 			}
 			if(e.getSource()==botonAtras){
 				modeloLista.removeAllElements();
