@@ -1,26 +1,32 @@
 package Consultas.Logica;
 
+import java.util.Vector;
+
 public class Consulta {
 
 	String idDocumento;
 	String tituloDocuemto ;
-	String nombreAutorDocumento;
+	Vector <String> nombresAutoresDocumento;
 	
 	public Consulta(){}
-	public Consulta(String id_doc, String titulo, String nombreAutor){
+	public Consulta(String id_doc, String titulo, Vector <String> nombreAutor){
 		idDocumento = id_doc;
 		tituloDocuemto = titulo;
-		nombreAutorDocumento=nombreAutor;
+		nombresAutoresDocumento=nombreAutor;
 	}
 
 	public String getIdDocumento(){return idDocumento;}
 	public String getTituloDocuemto(){return tituloDocuemto;}
-	public String getNombreAutorDocumento(){return nombreAutorDocumento;}
+	public Vector <String> getNombresAutoresDocumento(){return nombresAutoresDocumento;}
 	public void setIdDocumento(String value) {idDocumento=value;}
 	public void setTituloDocuemto(String value) {tituloDocuemto=value;}
-	public void setNombreAutorDocumento(String value) {nombreAutorDocumento=value;}
+	public void setNombresAutoresDocumento(Vector <String> value) {nombresAutoresDocumento=value;}
 	public String toString(){
-		String mostrarDatos = tituloDocuemto + "\n Autor(es): "+nombreAutorDocumento;
+		String mostrarDatos = tituloDocuemto + "\n Autor(es): ";
+		int cantidad = nombresAutoresDocumento.size();
+		for(int i = 0; i < cantidad-1;i++)
+			mostrarDatos+=nombresAutoresDocumento.get(i)+", ";
+		mostrarDatos+=nombresAutoresDocumento.get(cantidad-1);
 		return mostrarDatos;
 	}
 }

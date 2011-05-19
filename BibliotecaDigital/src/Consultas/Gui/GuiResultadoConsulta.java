@@ -189,14 +189,17 @@ public class GuiResultadoConsulta extends JScrollPane{
 	public static void main(String []args){
 		JFrame m = new JFrame();
 		Container c = m.getContentPane();
-		Consulta co = new Consulta("1","doc","autor");
+		Vector <String> va=new  Vector <String>();
+		va.add("autor");
+		va.add("autor2");
+		Consulta co = new Consulta("1","doc",va);
 		Vector<Consulta> v =new Vector<Consulta>();
 		for(int i = 0 ; i <10; i++)
 			v.add(co);
-		Consulta co2 = new Consulta("2","doc2","autor2");
+		Consulta co2 = new Consulta("2","doc2",va);
 		for(int i = 0 ; i <10; i++)
 			v.add(co2);
-		Consulta co3 = new Consulta("3","doc3","autor, autor");
+		Consulta co3 = new Consulta("3","doc3",va);
 		for(int i = 0 ; i <3; i++)
 			v.add(co3);
 		c.add(new GuiResultadoConsulta(v, 10));
