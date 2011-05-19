@@ -37,7 +37,7 @@ public class GuiConsultaBasica extends JScrollPane
 {
 
 	private static final long serialVersionUID = 1L;
-	private JLabel etiquetaConsulta;
+	private JLabel etiquetaConsulta, etiquetaCantidadResultado;
 	public static  JTextField campoConsulta;
 	private JPanel panelCampoConsulta;
 	private Button consultar;
@@ -68,6 +68,7 @@ public class GuiConsultaBasica extends JScrollPane
 		etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
 		etiquetaConsulta.setFont(Estilos.fontTitulo);
 		etiquetaConsulta.setForeground(Estilos.colorTitulo);
+		etiquetaCantidadResultado= new JLabel("Resultados por pagina: ");
 		
 		campoConsulta = new JTextField(30);
 		campoConsulta.setFont(Estilos.fontLabels);
@@ -77,12 +78,23 @@ public class GuiConsultaBasica extends JScrollPane
 		
 		campoCantidadResultados = new JComboBox(cantidades);
 		
-		panelCampoConsulta = new JPanel(new GridLayout(2,1,5,5));
-		panelCampoConsulta.add(campoConsulta);
-		JPanel campoOpciones = new JPanel(new BorderLayout());
-		campoOpciones.add(busquedaCompleta, BorderLayout.WEST);
-		campoOpciones.add(campoCantidadResultados, BorderLayout.EAST);
-		panelCampoConsulta.add(campoOpciones);
+		
+		
+/////////////
+		panelCampoConsulta = new JPanel(new GridBagLayout());
+		GridBagConstraints restriccion = new GridBagConstraints();
+		
+		JPanel panelCantidadResultados = new JPanel(new FlowLayout());
+		panelCantidadResultados.add(etiquetaCantidadResultado);
+		panelCantidadResultados.add(campoCantidadResultados);
+		
+		restriccion.gridy=0;
+		restriccion.anchor=GridBagConstraints.WEST;
+		panelCampoConsulta.add(campoConsulta, restriccion);
+		restriccion.gridy=1;
+		panelCampoConsulta.add(busquedaCompleta, restriccion);
+		restriccion.gridy=2;
+		panelCampoConsulta.add(panelCantidadResultados, restriccion);
 		
 		consultar = new Button("Consultar");
 		consultar.setIcon(new ImageIcon("recursos/iconos/search.png"));
@@ -98,7 +110,6 @@ public class GuiConsultaBasica extends JScrollPane
 		restricciones.gridy=3;
 		panelConsulta.add(consultar, restricciones);
 		panel.add(panelConsulta, BorderLayout.NORTH);
-		
 		//add(panel);
 		
 		this.setViewportView(panel);
