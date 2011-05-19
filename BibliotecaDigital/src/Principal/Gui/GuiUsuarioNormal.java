@@ -86,6 +86,7 @@ public class GuiUsuarioNormal extends JFrame
 		// se instancias paneles adicionales
 		panelModificacion = new GuiRegistroModificar(usuario,1);
 		panelConsultaBasica = new GuiConsultaBasica();
+		GuiConsultaBasica.TIPOUSUARIO = 1;
 	
 		
 		contenedor = getContentPane();

@@ -89,6 +89,7 @@ public class GuiPrincipal extends JFrame
 			// se instancias paneles adicionales
 			panelRegistro = new GuiRegistroModificar();
 			panelConsultaBasica = new GuiConsultaBasica();
+			GuiConsultaBasica.TIPOUSUARIO = 0;
 			panelAutentificar = new GuiAutenticar(this);
 			cambiar = new GuiRecuperarPassword(this);
 			

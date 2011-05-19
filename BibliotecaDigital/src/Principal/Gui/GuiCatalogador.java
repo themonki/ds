@@ -96,6 +96,10 @@ public class GuiCatalogador extends JFrame
 		panelCatalogarModificar = new GuiCatalogar(usuario.getLogin());
 		panelConsultaBasica = new GuiConsultaBasica();
 	
+		GuiConsultaBasica.TIPOUSUARIO = 2;
+		
+		
+		
 		contenedor = getContentPane();
 		contenedor.setLayout(new BorderLayout(20,20));
 		((JComponent) contenedor).setBorder(borde);

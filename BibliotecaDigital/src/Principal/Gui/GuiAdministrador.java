@@ -94,6 +94,7 @@ public class GuiAdministrador extends JFrame
 		// se instancias paneles adicionales		
 		panelConsultarUsuarios = new GuiConsultarUsuarios();
 		panelConsultaBasica = new GuiConsultaBasica();
+		GuiConsultaBasica.TIPOUSUARIO = 3;
 		panelCatalogar = new GuiCatalogar(usuario.getLogin());
 		panelModificacion = new GuiRegistroModificar(this.usuario,1);
 	

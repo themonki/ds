@@ -29,6 +29,8 @@ public class GuiConsultaBasica extends JPanel
 	private Button consultar;
 	private JCheckBox busquedaCompleta;
 	private Manejador manejador;
+	// Nos permite saber el tipo del usuario que realiza la consulta por defecto es cero.
+	public static int TIPOUSUARIO;
 	
 	public GuiConsultaBasica()
 	{
@@ -49,7 +51,7 @@ public class GuiConsultaBasica extends JPanel
 		campoConsulta = new JTextField(30);
 		campoConsulta.setFont(fontLabels);
 		
-		busquedaCompleta = new JCheckBox("Realizar búsqueda con coincidencia exacta");
+		busquedaCompleta = new JCheckBox("Realizar bï¿½squeda con coincidencia exacta");
 		busquedaCompleta.addItemListener(manejador);
 		
 		panelCampoConsulta = new JPanel(new GridLayout(2,1,5,5));
@@ -78,6 +80,8 @@ public class GuiConsultaBasica extends JPanel
 				ControladorConsulta controlador = new ControladorConsulta();
 				//mira que se hace con loque retorna
 				controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);
+			
+				System.out.println(GuiConsultaBasica.TIPOUSUARIO);
 			}
 			
 		}

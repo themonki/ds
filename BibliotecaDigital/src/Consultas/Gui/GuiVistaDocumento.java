@@ -8,6 +8,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
+import java.util.Vector;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,6 +21,9 @@ import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
 import Documento.Logica.Documento;
+import GestionDocumento.Logica.AreaConocimiento;
+import GestionDocumento.Logica.Autor;
+import GestionDocumento.Logica.PalabraClave;
 import Utilidades.Estilos;
 
 public class GuiVistaDocumento extends JScrollPane {
@@ -64,11 +70,15 @@ public class GuiVistaDocumento extends JScrollPane {
 	JPanel panelAccionesDocumento;
 	
 	Documento documento;
+	
+	// De acuerdo al usuario que halla intentado consultar podremos saber si puede descargar editar un documento.
+	int tipoUsuario = GuiConsultaBasica.TIPOUSUARIO;
 
 	GuiVistaDocumento(Documento doc) {
 
 		super();
 		documento = doc;
+		tipoUsuario= 1;
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder,
@@ -192,7 +202,15 @@ public class GuiVistaDocumento extends JScrollPane {
 
 	private void iniciarLabels() {
 		icono = new JLabel();
-		icono.setIcon(new ImageIcon("recursos/iconos/Pdf.gif"));
+		if(documento.getFormato().equals("pdf"))
+		{
+	
+			icono.setIcon(new ImageIcon("recursos/iconos/Pdf.png"));
+		}else if(documento.getFormato().equals("doc"))
+		{
+			
+			icono.setIcon(new ImageIcon("recursos/iconos/Doc.png"));
+		}
 		// etiquetas
 		tituloPrincipal = new JLabel("Titulo Principal");
 		tituloSecundario = new JLabel("Titulo Secundario o Traduccion");
@@ -251,10 +269,40 @@ public class GuiVistaDocumento extends JScrollPane {
 	public class ManejadorEtiquetas implements MouseListener {
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
-			JOptionPane.showMessageDialog(null,
-					"Empezando a descargar el documento");
-			etiquetaEditarDocumento.setVisible(true);
+		public void mouseClicked(MouseEvent evento) {
+			
+			if(evento.getSource() == etiquetaDescargar)
+			{
+				
+				if(tipoUsuario == 0)
+				{
+					
+					int opcion = JOptionPane.showConfirmDialog(null," Lo sentimos para desargar el documento debe registarse desea registrarse");
+			
+					if(opcion == 0)
+					{
+						JOptionPane.showMessageDialog(null,"Cambiar al panel de registro de usuario (por ahora ni idea como jaja)");
+						
+					}else
+					{
+						JOptionPane.showMessageDialog(null,"No hacer nada");
+					}
+					//System.out.print(""+opcion);
+				}else if(tipoUsuario == 1 || tipoUsuario == 2 ||tipoUsuario == 3 )
+				{
+					
+					
+					JOptionPane.showMessageDialog(null,"Empezando a descargar archivo");
+					
+				}
+				
+				
+				
+				
+				
+			}
+			
+			
 		}
 
 		@Override
@@ -287,7 +335,15 @@ public class GuiVistaDocumento extends JScrollPane {
 		JFrame ventana = new JFrame();
 		Container a = ventana.getContentPane();
 
-		a.add(new GuiVistaDocumento(new Documento()));
+		Documento doc = new Documento("112", "Ingles", "Ni idea",
+				"Aplicacion de la teoria de grafos en la busqueda del camino mas corto entre dos host" ,"Adobe Reader", "1024*800",
+				"No tiene" ,"Pdf","Enrutamiento de paquetes",
+				"Routers basicos", "aca.pdf", new Date(555555550),
+				 new Date(1121540), new Date(1555555550),
+				"marianito", "Articulo",
+				new Vector<Autor>(), new Vector<AreaConocimiento>(),
+				new Vector<PalabraClave>());
+		a.add(new GuiVistaDocumento(doc));
 		ventana.setSize(450, 450);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
