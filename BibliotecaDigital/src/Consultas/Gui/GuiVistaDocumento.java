@@ -9,10 +9,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.sql.Date;
 import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import Consultas.Controlador.ControladorConsulta;
 import Consultas.Logica.Consulta;
+import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
@@ -390,9 +393,23 @@ public class GuiVistaDocumento extends JScrollPane {
 					//System.out.print(""+opcion);
 				}else if(tipoUsuario == 1 || tipoUsuario == 2 ||tipoUsuario == 3 )
 				{
+					String urlDestino, urlFuente=documento.getUrl();
+					JFileChooser manager = new JFileChooser();
+					manager.setDialogTitle("Seleccionar destino");
+					manager.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+					int returnVal = manager.showSaveDialog(new JFrame());
+					if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
+						File file = manager.getSelectedFile();
+						urlDestino = file.getAbsolutePath();
+						
+						ControladorDocumento conDoc = new ControladorDocumento();
+						conDoc.descargarDocumento(urlFuente, urlDestino);
+						
+					}
+					
+					//JOptionPane.showMessageDialog(null,"Empezando a descargar archivo");
 					
 					
-					JOptionPane.showMessageDialog(null,"Empezando a descargar archivo");
 					
 				}
 				
