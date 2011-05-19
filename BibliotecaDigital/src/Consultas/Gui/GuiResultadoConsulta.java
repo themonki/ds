@@ -16,12 +16,16 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import Principal.Gui.GuiAdministrador;
+import Principal.Gui.GuiCatalogador;
+import Principal.Gui.GuiUsuarioNormal;
 import Utilidades.Estilos;
 
 import Consultas.Logica.Consulta;
@@ -176,6 +180,23 @@ public class GuiResultadoConsulta extends JScrollPane{
 					conConsulta.insertarConsultaDocumentoUsuario("","");
 					Documento d =
 					conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());
+					
+					int tu = GuiConsultaBasica.TIPOUSUARIO;
+					System.out.println(tu);
+					if(tu == 0)
+					{
+						JOptionPane.showMessageDialog(null,"Mandar a tabla consuta docuemnto id y anonimo");
+					}else if(tu == 1)
+					{
+						JOptionPane.showMessageDialog(null,"Mandar a tabla consuta docuemnto id y login "+GuiUsuarioNormal.LOGIN);
+					}else if(tu == 2)
+					{
+						JOptionPane.showMessageDialog(null,"Mandar a tabla consuta docuemnto id y login "+GuiCatalogador.LOGIN);
+					}else if(tu == 3)
+					{
+						JOptionPane.showMessageDialog(null,"Mandar a tabla consuta docuemnto id y login "+GuiAdministrador.LOGIN);
+					}
+					
 					
 					
 					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
