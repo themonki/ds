@@ -96,9 +96,9 @@ public class GuiResultadoConsulta extends JScrollPane{
 		botonAtras = new JButton("Atras");
 		botonRegresar.addActionListener(new ManejadorBoton());
 		botonSiguiente.addActionListener(new ManejadorBoton());
-		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setVisible(false);
+		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setEnabled(false);
 		botonAtras.addActionListener(new ManejadorBoton());
-		botonAtras.setVisible(false);
+		botonAtras.setEnabled(false);
 		
 	}
 	
@@ -124,7 +124,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	
 	public void agregarResultadoAtras(int cantidad){
 		int posicionInicial = posicionResultado-cantidad*2; 		
-		for(int i = posicionInicial; i < posicionResultado-10; i++ ){
+		for(int i = posicionInicial; i < posicionResultado-cantidad; i++ ){
 			if(i>=cantidadTotalResultados){
 				break;
 			}
@@ -145,18 +145,18 @@ public class GuiResultadoConsulta extends JScrollPane{
 				modeloLista.removeAllElements();
 				agregarResultadoSiguiente(cantidadMostrar);
 				if(posicionResultado>cantidadTotalResultados){
-					botonSiguiente.setVisible(false);
+					botonSiguiente.setEnabled(false);
 				}
-				botonAtras.setVisible(true);
+				botonAtras.setEnabled(true);
 				
 			}
 			if(e.getSource()==botonAtras){
 				modeloLista.removeAllElements();
 				agregarResultadoAtras(cantidadMostrar);
 				if(posicionResultado==cantidadMostrar){
-					botonAtras.setVisible(false);
+					botonAtras.setEnabled(false);
 				}
-				botonSiguiente.setVisible(true);
+				botonSiguiente.setEnabled(true);
 			}
 		}
 		
@@ -173,6 +173,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 					ControladorConsulta conConsulta = new ControladorConsulta();
 					Consulta documentoConsultar = (Consulta) modeloLista
 							.getElementAt(documentoElegido);
+					conConsulta.insertarConsultaDocumentoUsuario("","");
 					// Documento d =
 					// conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());//devuelve
 					// el documento
@@ -192,17 +193,26 @@ public class GuiResultadoConsulta extends JScrollPane{
 		Vector <String> va=new  Vector <String>();
 		va.add("autor");
 		va.add("autor2");
-		Consulta co = new Consulta("1","doc",va);
+		
 		Vector<Consulta> v =new Vector<Consulta>();
-		for(int i = 0 ; i <10; i++)
+		for(int i = 0 ; i <10; i++){
+			Consulta co = new Consulta("1","doc "+i,va);
 			v.add(co);
-		Consulta co2 = new Consulta("2","doc2",va);
-		for(int i = 0 ; i <10; i++)
+		}
+			
+		
+		for(int i = 0 ; i <13; i++){
+			Consulta co2 = new Consulta("2","doc2 "+i,va);
 			v.add(co2);
-		Consulta co3 = new Consulta("3","doc3",va);
-		for(int i = 0 ; i <3; i++)
+		}
+			
+		
+		for(int i = 0 ; i <3; i++){
+			Consulta co3 = new Consulta("3","doc3 "+i,va);
 			v.add(co3);
-		c.add(new GuiResultadoConsulta(v, 10));
+		}
+			
+		c.add(new GuiResultadoConsulta(v, 4));
 		m.setSize(700, 600);
 		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		m.setVisible(true);
