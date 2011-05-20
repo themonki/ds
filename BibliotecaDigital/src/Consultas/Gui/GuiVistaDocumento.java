@@ -3,6 +3,7 @@ package Consultas.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -340,6 +341,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		palabrasClave = new JLabel("Palabras clave");
 		
 		volver = new JLabel("Volver");
+		volver.setIcon(new ImageIcon("recursos/iconos/volver.png"));
 		volver.addMouseListener(manejador);
 		volver.setForeground(Color.BLUE);
 		
@@ -529,7 +531,8 @@ public class GuiVistaDocumento extends JScrollPane {
 		@Override
 		public void mouseEntered(MouseEvent e) {
 		
-		
+			 JLabel a =   (JLabel) e.getSource();
+			 a.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			
 		}
 
