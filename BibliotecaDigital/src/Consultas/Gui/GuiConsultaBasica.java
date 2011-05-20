@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -72,6 +74,7 @@ public class GuiConsultaBasica extends JScrollPane
 		
 		campoConsulta = new JTextField(30);
 		campoConsulta.setFont(Estilos.fontLabels);
+		campoConsulta.addKeyListener(manejador);
 		
 		busquedaCompleta = new JCheckBox("Realizar búsqueda con coincidencia exacta");
 		busquedaCompleta.addItemListener(manejador);
@@ -153,7 +156,7 @@ public class GuiConsultaBasica extends JScrollPane
 		panel.updateUI();
 	}
 	
-	private class Manejador implements ActionListener, ItemListener
+	private class Manejador implements ActionListener, ItemListener, KeyListener
 	{
 		private boolean seleccionBusquedaCompeta = false;
 		@Override
@@ -211,6 +214,21 @@ public class GuiConsultaBasica extends JScrollPane
 			{
 				seleccionBusquedaCompeta = false;
 			}
+		}
+
+		
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode() == KeyEvent.VK_ENTER)
+				consultar.doClick();	
+		}
+
+		public void keyReleased(KeyEvent e) {
+			
+		}
+
+		
+		public void keyTyped(KeyEvent e) {
+			
 		}
 	}
 }

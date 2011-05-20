@@ -509,12 +509,14 @@ public class GuiCatalogar extends JScrollPane{
 		nuevaPalabra.setIcon(new ImageIcon("recursos/iconos/add.png"));
 		examinarDoc= new Button ("Examinar...");
 
-		botonCatalogar.addActionListener(new ManejadorBoton());
-		examinarDoc.addActionListener(new ManejadorBoton());
-		nuevaArea.addActionListener(new ManejadorBoton());
-		nuevoTipo.addActionListener(new ManejadorBoton());
-		nuevoAutor.addActionListener(new ManejadorBoton());
-		nuevaPalabra.addActionListener(new ManejadorBoton());
+		ManejadorBoton manejador = new ManejadorBoton();
+		
+		botonCatalogar.addActionListener(manejador);
+		examinarDoc.addActionListener(manejador);
+		nuevaArea.addActionListener(manejador);
+		nuevoTipo.addActionListener(manejador);
+		nuevoAutor.addActionListener(manejador);
+		nuevaPalabra.addActionListener(manejador);
 	}
 
 	protected void inicializarTexfield() {
@@ -529,12 +531,13 @@ public class GuiCatalogar extends JScrollPane{
 
 		// manejadores para el tamaño de los campos 
 
-		campoDescripcion.addKeyListener(new ManejadorJTextField());
-		campoSoftware.addKeyListener(new ManejadorJTextField());
-		campoEditorial.addKeyListener(new ManejadorJTextField());
-		campoTituloPpal.addKeyListener(new ManejadorJTextField());
-		campoTituloSecundario.addKeyListener(new ManejadorJTextField());
-		campoResolucion.addKeyListener(new ManejadorJTextField());
+		ManejadorJTextField manejador = new ManejadorJTextField();
+		campoDescripcion.addKeyListener(manejador);
+		campoSoftware.addKeyListener(manejador);
+		campoEditorial.addKeyListener(manejador);
+		campoTituloPpal.addKeyListener(manejador);
+		campoTituloSecundario.addKeyListener(manejador);
+		campoResolucion.addKeyListener(manejador);
 
 	}
 
@@ -621,9 +624,11 @@ public class GuiCatalogar extends JScrollPane{
 		campoAutor.setFont(font2);
 		campoPalabras.setFont(font2);
 		//---------------------------------------------------------
-		campoAutor.addActionListener(new ManejadorComboBox());
-		campoPalabras.addActionListener(new ManejadorComboBox());    
-		campoAreas.addActionListener(new ManejadorComboBox());
+		
+		ManejadorComboBox manejador = new ManejadorComboBox();
+		campoAutor.addActionListener(manejador);
+		campoPalabras.addActionListener(manejador);    
+		campoAreas.addActionListener(manejador);
 
 	}
 

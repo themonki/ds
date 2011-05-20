@@ -21,6 +21,9 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import Consultas.Controlador.ControladorConsulta;
+import Consultas.Gui.GuiConsultaBasica;
+import Consultas.Gui.GuiVistaDocumento;
+import Consultas.Logica.Consulta;
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -30,6 +33,8 @@ import GestionDocumento.Controlador.ControladorTipoMaterial;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
+import Principal.Gui.GuiAdministrador;
+import Principal.Gui.GuiCatalogador;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
@@ -257,6 +262,25 @@ public class GuiModificarDoc  extends GuiCatalogar
 					AreasIdActualVector, AutorIdActualVector, palabActualVec) >= 1) {
 				JOptionPane.showMessageDialog(null,
 						"El documento fue modificado correctamente");
+				
+				
+				ControladorConsulta conConsulta = new ControladorConsulta();
+				
+				Documento d  = conConsulta.obtenerDatosDocumento(doc.getId_doc());
+				GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
+				GuiConsultaBasica.ponerDescripcion();
+				if(GuiConsultaBasica.TIPOUSUARIO == 2)
+				{
+					GuiCatalogador.cambiarPanelVista();
+				}
+				if(GuiConsultaBasica.TIPOUSUARIO == 3)
+				{
+				
+					GuiAdministrador.cambiarPanelVista();
+				}
+			
+			
+			
 			}
 
 		}

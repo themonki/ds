@@ -3,6 +3,7 @@ package Principal.Gui;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,6 +20,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaBasica;
@@ -118,6 +120,7 @@ public class GuiAdministrador extends JFrame
 		salir = new JMenuItem("Salir");
 		salir.setMnemonic('S');
 		salir.addActionListener(manejador);
+		salir.setAccelerator(KeyStroke.getKeyStroke('S', Event.CTRL_MASK));
 
 		informacion = new JMenuItem("Ayuda");
 		informacion.setMnemonic('y');
@@ -433,6 +436,16 @@ public class GuiAdministrador extends JFrame
 		contenedor.remove(panelConsultaBasica);
 		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
 		estado.setText("Modificando Documento");
+		contenedor.repaint();
+		
+	}
+	public static void cambiarPanelVista()
+	{
+		
+		
+		contenedor.remove(panelModificarDoc);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText("Inicio");
 		contenedor.repaint();
 		
 	}
