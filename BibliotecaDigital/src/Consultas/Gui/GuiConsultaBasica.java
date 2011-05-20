@@ -43,7 +43,7 @@ public class GuiConsultaBasica extends JScrollPane
 	private Button consultar;
 	private JCheckBox busquedaCompleta;
 	private JComboBox campoCantidadResultados;
-	private String cantidades[] = {"5","10","15","20", "25", "1"};
+	private String cantidades[] = {"5","10","15","20", "25"};
 	private Manejador manejador;
 	// Nos permite saber el tipo del usuario que realiza la consulta por defecto es cero.
 	public static int TIPOUSUARIO;
