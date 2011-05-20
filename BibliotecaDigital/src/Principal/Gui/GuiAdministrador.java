@@ -439,6 +439,15 @@ public class GuiAdministrador extends JFrame
 		contenedor.repaint();
 		
 	}
+	public static void cambiarPanelEditarDocumentoAvanzado()
+	{
+		
+		contenedor.remove(panelConsultaAvanzada);
+		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
+		estado.setText("Modificando Documento");
+		contenedor.repaint();
+		
+	}
 	public static void cambiarPanelVista()
 	{
 		
@@ -446,6 +455,16 @@ public class GuiAdministrador extends JFrame
 		contenedor.remove(panelModificarDoc);
 		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 		estado.setText("Inicio");
+		contenedor.repaint();
+		
+	}
+	public static void cambiarPanelVistaAvanzado()
+	{
+		
+		
+		contenedor.remove(panelModificarDoc);
+		contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
+		estado.setText("ConsultaAvanzada");
 		contenedor.repaint();
 		
 	}

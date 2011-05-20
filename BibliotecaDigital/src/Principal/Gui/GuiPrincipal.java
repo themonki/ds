@@ -350,6 +350,17 @@ public class GuiPrincipal extends JFrame
 			
 			
 		}
+		public static void cambiarPanelRegistroAvanzado()
+		{
+			
+			contenedor.remove(panelConsultaAvanzada);
+			contenedor.add(panelRegistro, BorderLayout.CENTER);
+			estado.setText(estadoRegistro);
+			contenedor.repaint();
+			
+			
+			
+		}
 		public static void insertarPanelCambiar()
 		{
 			

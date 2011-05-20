@@ -202,7 +202,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 						GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);					
 						GuiConsultaBasica.ponerDescripcion();
 						
-					}else if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
 					{
 						GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(d);					
 						GuiConsultaAvanzada.ponerDescripcion();

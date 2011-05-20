@@ -389,8 +389,8 @@ public class GuiConsultaAvanzada extends JScrollPane
 				resultadoConsulta = new GuiResultadoConsulta(consulta,cantidad);
 				
 				
-				JOptionPane.showMessageDialog(null, ""+consulta.size());
-				panel.add(resultadoConsulta, BorderLayout.SOUTH);
+				//JOptionPane.showMessageDialog(null, ""+consulta.size());
+				panel.add(resultadoConsulta, BorderLayout.CENTER);
 				panel.updateUI();
 				if(consulta.size() <=0){
 					
@@ -507,7 +507,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		panel.remove(vistaDocumento);
 		//campoConsulta.setText("");
 		panel.add(principal, BorderLayout.NORTH);
-		panel.add(resultadoConsulta, BorderLayout.SOUTH );
+		panel.add(resultadoConsulta, BorderLayout.CENTER );
 		
 		//resultadoConsulta = new GuiResultadoConsulta();
 		panel.remove(vistaDocumento);

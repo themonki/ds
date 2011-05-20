@@ -408,15 +408,16 @@ public class GuiVistaDocumento extends JScrollPane {
 					{
 						//JOptionPane.showMessageDialog(null,"Cambiar al panel de registro de usuario (aun no esta )");
 						
-						GuiPrincipal.cambiarPanelRegistro();
+						
 						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
 						{
 					
+							GuiPrincipal.cambiarPanelRegistro();
 							GuiConsultaBasica.restaurarTodo();
 						}
-						if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
 						{
-					
+							GuiPrincipal.cambiarPanelRegistroAvanzado();
 							GuiConsultaAvanzada.restaurarTodo();
 						}
 					}else
@@ -456,15 +457,34 @@ public class GuiVistaDocumento extends JScrollPane {
 				if(GuiConsultaBasica.TIPOUSUARIO == 2)
 				{
 					GuiCatalogador.panelModificarDoc = new GuiModificarDoc(GuiCatalogador.LOGIN, documento);
-					GuiCatalogador.cambiarPanelEditarDocumento();
-					GuiConsultaBasica.restaurarTodo();
+					
+					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					{
+						GuiCatalogador.cambiarPanelEditarDocumento();
+						GuiConsultaBasica.restaurarTodo();
+					}
+					else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+					{
+				
+						GuiCatalogador.cambiarPanelEditarDocumentoAvanzado();
+						GuiConsultaAvanzada.restaurarTodo();
+					}
 					
 					
 				}else if(GuiConsultaBasica.TIPOUSUARIO == 3)
 				{
 					GuiAdministrador.panelModificarDoc = new GuiModificarDoc(GuiAdministrador.LOGIN, documento);
-					GuiAdministrador.cambiarPanelEditarDocumento();
-					GuiConsultaBasica.restaurarTodo();
+					
+					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					{
+						GuiAdministrador.cambiarPanelEditarDocumento();
+						GuiConsultaBasica.restaurarTodo();
+					}
+					else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+					{
+						GuiAdministrador.cambiarPanelEditarDocumentoAvanzado();
+						GuiConsultaAvanzada.restaurarTodo();
+					}
 				}
 					
 				
@@ -485,8 +505,8 @@ public class GuiVistaDocumento extends JScrollPane {
 				
 				}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
 				{
-					// Falta implementarlo
-					//GuiConsultaAvanzada.restaurar();
+					
+					GuiConsultaAvanzada.restaurar();
 				}
 			}else {
 

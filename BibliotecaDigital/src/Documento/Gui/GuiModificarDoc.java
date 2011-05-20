@@ -21,7 +21,9 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import Consultas.Controlador.ControladorConsulta;
+import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
+import Consultas.Gui.GuiResultadoConsulta;
 import Consultas.Gui.GuiVistaDocumento;
 import Consultas.Logica.Consulta;
 import Documento.Controlador.ControladorDocumento;
@@ -223,16 +225,35 @@ public class GuiModificarDoc  extends GuiCatalogar
 				ControladorConsulta conConsulta = new ControladorConsulta();
 				
 				Documento d  = conConsulta.obtenerDatosDocumento(doc.getId_doc());
-				GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
-				GuiConsultaBasica.ponerDescripcion();
-				if(GuiConsultaBasica.TIPOUSUARIO == 2)
+				
+				
+				if(GuiResultadoConsulta.TIPOCONSULTA == 1)
 				{
-					GuiCatalogador.cambiarPanelVista();
+					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
+					GuiConsultaBasica.ponerDescripcion();
+					
+					if(GuiConsultaBasica.TIPOUSUARIO == 2)
+					{
+						GuiCatalogador.cambiarPanelVista();
+					}
+					if(GuiConsultaBasica.TIPOUSUARIO == 3)
+					{				
+						GuiAdministrador.cambiarPanelVista();
+					}	
+				}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+				{
+					GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(d);
+					GuiConsultaAvanzada.ponerDescripcion();
+					if(GuiConsultaBasica.TIPOUSUARIO == 2)
+					{
+						GuiCatalogador.cambiarPanelVistaAvanzado();
+					}
+					if(GuiConsultaBasica.TIPOUSUARIO == 3)
+					{				
+						GuiAdministrador.cambiarPanelVistaAvanzado();
+					}
 				}
-				if(GuiConsultaBasica.TIPOUSUARIO == 3)
-				{				
-					GuiAdministrador.cambiarPanelVista();
-				}	
+				
 			}
 		}
 	}
