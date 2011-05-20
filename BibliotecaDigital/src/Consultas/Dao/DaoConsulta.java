@@ -185,26 +185,43 @@ public class DaoConsulta {
 			{
 				if(at.contains("titulo"))
 				{
+					boolean esOR = (atributos.elementAt(i)!=atributos.lastElement()) && 
+					(atributos.elementAt(i+1).contains("titulo"));
 					if(at.contains("sin"))
 					{
-						consultaDocumentoSql += "(documento.titulo_principla not like '%" +
+						consultaDocumentoSql += "(documento.titulo_principal not like '%" +
 						valores.elementAt(i) + "%' OR" +
 						"documento.titulo_secundario not like '%" +
 						valores.elementAt(i)+ "%'" ;
+						if(esOR)
+						{
+							consultaDocumentoSql += "OR";
+						}
 						
-					}
-					if((atributos.elementAt(i)!=atributos.lastElement()) && (atributos.elementAt(i+1).contains("titulo")))
+					} else if(at.contains("algunas"))
 					{
-						consultaDocumentoSql += "OR";
+						consultaDocumentoSql += "(documento.titulo_principal like '%" +
+						valores.elementAt(i) + "%' OR" +
+						"documento.titulo_secundario like '%" +
+						valores.elementAt(i)+ "%'" ;
+						if(esOR)
+						{
+							consultaDocumentoSql += "OR";
+						}
+					}else
+					{
+						consultaDocumentoSql += "(documento.titulo_principal = '" +
+						valores.elementAt(i) + "' OR " +
+						"documeno.titulo_secundario = '" +
+						valores.elementAt(i) + "')";
 					}
 					
-					consultaDocumentoSql += "(documento.titulo_principal = '" +
-							valores.elementAt(i) + "' OR " +
-							"documeno.titulo_secundario = '" +
-							valores.elementAt(i) + "') AND";
-				}else
+					
+					
+					
+
+				}else if (true)
 				{
-					consultaDocumentoSql += at + " = " + valores.elementAt(i) + "AND";
 				}
 			}
 		}
