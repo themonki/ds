@@ -256,12 +256,17 @@ public class GuiVistaDocumento extends JScrollPane {
 		if(documento.getFormato().equals("pdf"))
 		{
 	
-			icono.setIcon(new ImageIcon("recursos/iconos/Pdf.png"));
+			icono.setIcon(new ImageIcon("recursos/iconos/pdf.png"));
 		}else if(documento.getFormato().equals("doc"))
 		{
 			
-			icono.setIcon(new ImageIcon("recursos/iconos/DOC.png"));
-		}// Faltan iconos para los otros formatos aun no veo algunos bonitos.
+			icono.setIcon(new ImageIcon("recursos/iconos/doc.png"));
+		}else if(documento.getFormato().equals("jpg"))
+		{
+			
+			icono.setIcon(new ImageIcon("recursos/iconos/jpg.png"));
+		}
+		// Faltan iconos para los otros formatos aun no veo algunos bonitos.
 	
 		
 		System.out.println(documento.getAreas().get(0).getNombre());
