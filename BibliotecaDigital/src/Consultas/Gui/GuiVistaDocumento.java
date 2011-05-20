@@ -265,9 +265,12 @@ public class GuiVistaDocumento extends JScrollPane {
 		{
 			
 			icono.setIcon(new ImageIcon("recursos/iconos/jpg.png"));
+		}else if(documento.getFormato().equals("odt"))
+		{
+			
+			icono.setIcon(new ImageIcon("recursos/iconos/odt.png"));
 		}
-		// Faltan iconos para los otros formatos aun no veo algunos bonitos.
-	
+		
 		
 		System.out.println(documento.getAreas().get(0).getNombre());
 		
