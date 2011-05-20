@@ -171,11 +171,14 @@ public class DaoConsulta {
 	{
 		Vector<Consulta>  consultas = new Vector<Consulta>();
 		
-		String consultaSql, consultaDocumentoSql, consultaPalabraSql, consultaAreaSql, consultaAutorSql;
+		String consultaSql, consultaDocumentoSql,
+		consultaDocumentoTituloSql, consultaDocumentoFechaSql, consultaDocumentoFormatoSql,
+		consultaPalabraSql, consultaAreaSql, consultaAutorSql;
 		
-		consultaDocumentoSql = "SELECT documento.id_documento, documento.titulo_principal " +
+		//consultaDocumentoSql = 
+		consultaDocumentoTituloSql=	"SELECT documento.id_documento, documento.titulo_principal " +
 				"FROM documento " +
-				"WHERE ";
+				"WHERE (";
 		
 		for(int i=0;i<atributos.size();i++)
 		{
@@ -189,28 +192,35 @@ public class DaoConsulta {
 					(atributos.elementAt(i+1).contains("titulo"));
 					if(at.contains("sin"))
 					{
-						consultaDocumentoSql += "(documento.titulo_principal not like '%" +
-						valores.elementAt(i) + "%' OR" +
+						consultaDocumentoTituloSql += "documento.titulo_principal not like '%" +
+						valores.elementAt(i) + "%' OR " +
 						"documento.titulo_secundario not like '%" +
 						valores.elementAt(i)+ "%'" ;
 						if(esOR)
 						{
-							consultaDocumentoSql += "OR";
+							consultaDocumentoTituloSql += " OR ";
+						}else
+						{
+							consultaDocumentoTituloSql +=")";
 						}
 						
 					} else if(at.contains("algunas"))
 					{
-						consultaDocumentoSql += "(documento.titulo_principal like '%" +
-						valores.elementAt(i) + "%' OR" +
+						consultaDocumentoTituloSql += "(documento.titulo_principal like '%" +
+						valores.elementAt(i) + "%' OR " +
 						"documento.titulo_secundario like '%" +
 						valores.elementAt(i)+ "%'" ;
 						if(esOR)
 						{
-							consultaDocumentoSql += "OR";
+							consultaDocumentoTituloSql += " OR ";
+						}else
+						{
+							consultaDocumentoTituloSql +=")";
 						}
+						
 					}else
 					{
-						consultaDocumentoSql += "(documento.titulo_principal = '" +
+						consultaDocumentoTituloSql += "(documento.titulo_principal = '" +
 						valores.elementAt(i) + "' OR " +
 						"documeno.titulo_secundario = '" +
 						valores.elementAt(i) + "')";
@@ -226,7 +236,7 @@ public class DaoConsulta {
 			}
 		}
 		
-		System.out.println(consultaDocumentoSql);
+		System.out.println(consultaDocumentoTituloSql);
 		return consultas;
 		
 	}
