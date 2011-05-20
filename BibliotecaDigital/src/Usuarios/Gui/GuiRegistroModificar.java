@@ -378,7 +378,6 @@ public class GuiRegistroModificar extends JScrollPane{
 			
 			for(int i=0; i<areasInteresUsuarioViejas.size();i++){
 				String nombreArea = areasInteresUsuarioViejas.elementAt(i).getNombre();
-				//System.out.println("Nombre Area: " + nombreArea);
 				areaConocimientoVector.add(nombreArea);
 				JLabel nuevaArea= new JLabel();
 				nuevaArea.setText(nombreArea);				
@@ -388,9 +387,6 @@ public class GuiRegistroModificar extends JScrollPane{
 				
 			}
 			
-			/*for(int i=0;i<areaConocimientoVector.size();i++){
-				System.out.println("Areas que tenia el usuario: " + areaConocimientoVector.elementAt(i));
-			}*/
 		}
 		//Para el modo modificar por parte de un usuario administrador
 		//se debe tener, ya visualizado en el panel de areas las areas que tiene
@@ -399,7 +395,6 @@ public class GuiRegistroModificar extends JScrollPane{
 			
 			for(int i=0; i<areasInteresUsuarioViejas.size();i++){
 				String nombreArea = areasInteresUsuarioViejas.elementAt(i).getNombre();
-				//System.out.println("Nombre Area: " + nombreArea);
 				areaConocimientoVector.add(nombreArea);
 				JLabel nuevaArea= new JLabel();
 				nuevaArea.setText(nombreArea);						
@@ -634,8 +629,6 @@ public class GuiRegistroModificar extends JScrollPane{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()== registrar){
 				
-				System.out.println("Entra y va a ingresar usuario");
-				
 				String loginString, nombre1String, nombre2String, apellido1String, apellido2String,
 				       emailString, passwordString, verPasswordString, preguntaSecretaString, 
 				       respuestaSecretaString, nivelEscolaridadString, vinculoUnivalleString,
@@ -698,9 +691,6 @@ public class GuiRegistroModificar extends JScrollPane{
 				
 				ControladorUsuario controlador = new ControladorUsuario();
 				int registro = controlador.insertarDatosUsuario(usuarioModificar);
-				//controlador.insertarUsuario(usuarioModificar);
-				//controlador.insertarUsuarioAreas(areasInteresUsuario, usuarioModificar);
-				System.out.println("Ingresa usuario");
 				
 				//Se indica que ya se puede loguear.
 				if(registro != 0)
@@ -782,8 +772,6 @@ public class GuiRegistroModificar extends JScrollPane{
 
 					ControladorUsuario controlador = new ControladorUsuario();
 					int modificar = controlador.modificarDatosUsuario(usuarioModificar);
-					//controlador.modificarUsuario(usuarioModificar);
-					//controlador.modificarUsuarioArea(usuarioModificar);
 					if(modificar != 0){
 						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente sus datos");					
 						
@@ -804,7 +792,6 @@ public class GuiRegistroModificar extends JScrollPane{
 					usuarioModificar.setEstado(estadoBool);
 					ControladorUsuario controlador = new ControladorUsuario();
 					int modificar = controlador.modificarPerfilEstado(usuarioModificar);
-					//controlador.modificarUsuario(usuarioModificar);
 					if(modificar != 0){
 						JOptionPane.showMessageDialog(null, "Se modifico satisfactoriamente los datos del usuario: " + usuarioModificar.getLogin());
 				

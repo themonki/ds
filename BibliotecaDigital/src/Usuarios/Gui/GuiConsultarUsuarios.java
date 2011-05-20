@@ -152,7 +152,6 @@ public class GuiConsultarUsuarios extends JScrollPane{
 				
 				if(usuariosVector.size() != 0)
 				{	
-					System.out.print("hay usuarios");
 					modeloLista = null;
 					
 					if(resultadoLista==null){

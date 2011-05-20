@@ -60,27 +60,14 @@ public class DaoAutor {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
 			ResultSet tabla = sentencia.executeQuery(sqlSelect);
-			// Provisional probar resultados
-			//System.out.println("IdAutor-Nombre-Email-Apellido-Acronimo");
-
 			while (tabla.next()) {
-
 				autor.setId(tabla.getString(1));
 				autor.setNombre(tabla.getString(2));
 				autor.setCorreo(tabla.getString(3));
 				autor.setApellido(tabla.getString(4));
-
 				autor.setAcronimo(tabla.getString(5));
-/*				System.out.println("Id Autor: " + tabla.getString(1)
-						+ " Nombre: " + tabla.getString(2) + " Email:"
-						+ tabla.getString(3) + "Apellido: "
-						+ tabla.getString(4) + "Acronimo: "
-						+ tabla.getString(5));
-*/
 			}
 			fachada.cerrarConexion(conn);
-			System.out.println("Conexion cerrada");
-
 		}
 
 		catch (SQLException e) {
@@ -101,31 +88,17 @@ public class DaoAutor {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
 			ResultSet tabla = sentencia.executeQuery(sqlSelect);
-			// Provisional probar resultados
-			//System.out.println("IdAutor-Nombre-Email-Apellido-Acronimo");
 
 			while (tabla.next()) {
-
 				Autor autorAux = new Autor();
-
 				autorAux.setId(tabla.getString(1));
 				autorAux.setNombre(tabla.getString(2));
 				autorAux.setCorreo(tabla.getString(3));
 				autorAux.setApellido(tabla.getString(4));
 				autorAux.setAcronimo(tabla.getString(5));
-
 				autores.add(autorAux);
-/*
-				System.out.println("Id Autor: " + tabla.getString(1)
-						+ " Nombre: " + tabla.getString(2) + " Email:"
-						+ tabla.getString(3) + "Apellido: "
-						+ tabla.getString(4) + "Acronimo: "
-						+ tabla.getString(5));
-*/
 			}
 			fachada.cerrarConexion(conn);
-			System.out.println("Conexion cerrada");
-
 		} catch (SQLException e) {
 			System.out.println(e);
 		} catch (Exception e) {
@@ -150,7 +123,6 @@ public class DaoAutor {
 			while (tabla.next()) {
 				Autor autor = new Autor();
 				autor.setId(""+tabla.getInt("id_autor"));
-				System.out.println(autor.getId());
 				autor.setNombre(tabla.getString("nombre"));
 				autor.setCorreo(tabla.getString("email"));
 				autor.setApellido(tabla.getString("apellido"));
@@ -166,17 +138,4 @@ public class DaoAutor {
 		}
 		return va;
 	}
-
-
-	/* main para prueba OK
-	public static void main(String args[]) {
-		Autor a = new Autor("Yerminson", "Gonzalez", "yermigon",
-				"yermigon@gmail.com", "");
-		DaoAutor da = new DaoAutor();
-		System.out.println(da.guardarAutor(a));
-		da.consultarAutor("yermigon");
-		System.out.println(da.consultarAutores().size());
-
-	} */
-
 }

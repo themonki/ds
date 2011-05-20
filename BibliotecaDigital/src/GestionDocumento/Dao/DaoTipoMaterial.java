@@ -60,12 +60,7 @@ public class DaoTipoMaterial {
 
 				tipo.setNombre(tabla.getString("tipo_nombre"));
 				tipo.setDescripcion(tabla.getString("descripcion"));
-
-				/* probando 
-				System.out.println("Tipo Nombre: "
-						+ tabla.getString("tipo_nombre") + " Descripcion: "
-						+ tabla.getString("descripcion"));
-*/			}
+		}
 			this.fachada.cerrarConexion(conn);
 		
 
@@ -93,11 +88,6 @@ public class DaoTipoMaterial {
 
 				tipo.setNombre(tabla.getString("tipo_nombre"));
 				tipo.setDescripcion(tabla.getString("descripcion"));
-
-				/* probando 
-				System.out.println("Id area: " + tabla.getString("tipo_nombre")
-						+ " Descripcion: " + tabla.getString("descripcion"));
-/**/
 				tipos.add(tipo);
 			}
 			this.fachada.cerrarConexion(conn);
@@ -109,12 +99,4 @@ public class DaoTipoMaterial {
 		}
 		return tipos;
 	}
-
-	/* main para prueba OK */
-	/*
-	 * public static void main(String args[]) { TipoMaterial a = new
-	 * TipoMaterial("tesis","trabajo final"); DaoTipoMaterial da = new
-	 * DaoTipoMaterial(); //System.out.print(da.guardarTipoMaterial(a));
-	 * da.consultarTipoMaterial("tesis"); da.consultarTodosTipoMaterial(); }
-	 */
 }

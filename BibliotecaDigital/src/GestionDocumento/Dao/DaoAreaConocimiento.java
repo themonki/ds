@@ -37,7 +37,7 @@ public class DaoAreaConocimiento {
 		try {
 			Connection conn = this.fachada.conectar();
 			Statement sentencia = conn.createStatement();
-			int numFilas = sentencia.executeUpdate(sqlInsert);System.out.println(sqlInsert);
+			int numFilas = sentencia.executeUpdate(sqlInsert);
 			this.fachada.cerrarConexion(conn);
 			return numFilas;
 		} catch (SQLException se) {
@@ -64,18 +64,10 @@ public class DaoAreaConocimiento {
 			ResultSet tabla = sentencia.executeQuery(sqlSelect);
 
 			if (tabla.next()) {
-
 				area.setIdArea(tabla.getString("id_area"));
 				area.setNombre(tabla.getString("nombre"));
 				area.setDescripcion(tabla.getString("descripcion"));
 				area.setIdArea(tabla.getString("area_padre"));
-
-				/* probando 
-				System.out.println("Id area: " + tabla.getString("id_area")
-						+ " Nombre: " + tabla.getString("nombre")
-						+ " Descripcion: " + tabla.getString("descripcion")
-						+ " Area Padre: " + tabla.getString("area_padre"));
-*/
 			}
 			this.fachada.cerrarConexion(conn);
 
@@ -100,18 +92,10 @@ public class DaoAreaConocimiento {
 
 			while (tabla.next()) {
 				AreaConocimiento area = new AreaConocimiento();
-
 				area.setIdArea(tabla.getString("id_area"));
 				area.setNombre(tabla.getString("nombre"));
 				area.setDescripcion(tabla.getString("descripcion"));
 				area.setAreaPadre(tabla.getString("area_padre"));
-
-				/* probando 
-				System.out.println("Id area: " + tabla.getString("id_area")
-						+ " Nombre: " + tabla.getString("nombre")
-						+ " Descripcion: " + tabla.getString("descripcion")
-						+ " Drea Padre: " + tabla.getString("area_padre"));
-				 */
 				areas.add(area);
 			}
 			this.fachada.cerrarConexion(conn);
@@ -192,15 +176,4 @@ public class DaoAreaConocimiento {
 
 		return vac;
 	}
-
-	/* main para prueba OK */
-	/*
-	 * public static void main(String args[]) { AreaConocimiento a = new
-	 * AreaConocimiento("3","metodos numericos computacionales","","");
-	 * DaoAreaConocimiento da = new DaoAreaConocimiento();
-	 * System.out.println(da.guardarAreaConocimiento(a)); da.consultarArea("1");
-	 * da.consultarAreas(); da.modificarArea("1",
-	 * "nombre","computacion centrada"); da.eliminarArea("3"); }
-	 */
-
 }

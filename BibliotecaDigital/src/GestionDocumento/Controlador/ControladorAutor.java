@@ -44,9 +44,8 @@ public class ControladorAutor {
 		daoAutor = null;
 		return autores;
 	}
-
 	/*
-	 * METODO QUE NECESITA EL MANKO DE FELIPE
+
 	 */
 	public Vector<Vector<String>> obtenerTodosAutores() {
 
@@ -54,7 +53,6 @@ public class ControladorAutor {
 		Vector<Autor> vectorAutores;
 		Vector<String> nombres = new Vector<String>();
 		Vector<String> ids = new Vector<String>();
-
 		vectorAutores = obtenerAutores();
 		int cantidad = vectorAutores.size();
 		for (int i = 0; i < cantidad; i++) {
@@ -63,7 +61,6 @@ public class ControladorAutor {
 		}
 		vectorTodosAutores.add(nombres);
 		vectorTodosAutores.add(ids);
-
 		return vectorTodosAutores;
 
 	}
@@ -72,24 +69,4 @@ public class ControladorAutor {
 		DaoAutor daoAutor = new DaoAutor();
 		return daoAutor.consultarAutoresDocumento(id_documento);
 	}
-
-	/* main para prueba OK */
-	/*
-	 * public static void main(String args[]) { ControladorAutor
-	 * controladorAutor = new ControladorAutor();
-	 * 
-	 * System.out.println(controladorAutor.insertarAutor("Edgar", "Moncada",
-	 * "monki", "monkiloro@gmail.com"));
-	 * System.out.println(controladorAutor.insertarAutor("Yerminson",
-	 * "Gonzalez", "yermi", "yermiloro@gmail.com"));
-	 * 
-	 * Autor a1 = controladorAutor.obtenerAutor("monki"); Autor a2 =
-	 * controladorAutor.obtenerAutor("yermi");
-	 * 
-	 * System.out.println(a1.getNombre()); System.out.println(a2.getNombre());
-	 * 
-	 * System.out.println(controladorAutor.obtenerAutores().get(0).getNombre());
-	 * }
-	 */
-
 }
