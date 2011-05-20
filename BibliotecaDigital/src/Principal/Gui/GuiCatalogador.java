@@ -363,5 +363,15 @@ public class GuiCatalogador extends JFrame
 		contenedor.repaint();
 		
 	}
+	public static void cambiarPanelVista()
+	{
+		
+		
+		contenedor.remove(panelModificarDoc);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText("Inicio");
+		contenedor.repaint();
+		
+	}
 
 }

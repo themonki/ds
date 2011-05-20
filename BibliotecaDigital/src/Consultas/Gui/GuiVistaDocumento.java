@@ -93,7 +93,7 @@ public class GuiVistaDocumento extends JScrollPane {
 	int tipoUsuario ;
 	int flag;
 
-	GuiVistaDocumento(Documento doc) {
+	public GuiVistaDocumento(Documento doc) {
 
 		super();
 		documento = doc;
