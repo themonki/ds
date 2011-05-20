@@ -16,12 +16,16 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import Principal.Gui.GuiAdministrador;
+import Principal.Gui.GuiCatalogador;
+import Principal.Gui.GuiUsuarioNormal;
 import Utilidades.Estilos;
 
 import Consultas.Logica.Consulta;
@@ -87,9 +91,6 @@ public class GuiResultadoConsulta extends JScrollPane{
 		panel.add(panel2, BorderLayout.SOUTH);
 		
 		this.setViewportView(panel);		
-		//------------------------------------------
-		/*setSize(900,900);
-		setVisible(true);*/
 		
 	}
 	
@@ -172,11 +173,25 @@ public class GuiResultadoConsulta extends JScrollPane{
 				if (documentoElegido >= 0) {
 					ControladorConsulta conConsulta = new ControladorConsulta();
 					Consulta documentoConsultar = (Consulta) modeloLista
-							.getElementAt(documentoElegido);
-					conConsulta.insertarConsultaDocumentoUsuario("","");
+							.getElementAt(documentoElegido);					
 					Documento d =
 					conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());
-				
+					
+					int tu = GuiConsultaBasica.TIPOUSUARIO;
+					System.out.println(tu);
+					if(tu == 0)
+					{	
+						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), "anonimo");
+					}else if(tu == 1)
+					{	
+						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiUsuarioNormal.LOGIN);					
+					}else if(tu == 2)
+					{
+						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiCatalogador.LOGIN);						
+					}else if(tu == 3)
+					{
+						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiAdministrador.LOGIN);						
+					}
 					
 					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
@@ -185,46 +200,9 @@ public class GuiResultadoConsulta extends JScrollPane{
 				flag = 1;
 			} else {
 				flag = 0;
-				//listaResultado.clearSelection();
 			}
 			listaResultado.clearSelection();
-			System.out.println("222 " + listaResultado.getSelectedIndex());
 		}
 
 	}
-
-	public static void volverRestaurarSeleccionado(){
-		//this.listaResultado.setSelectedIndex(-1);
-	}
-	/*public static void main(String []args){
-		JFrame m = new JFrame();
-		Container c = m.getContentPane();
-		Vector <String> va=new  Vector <String>();
-		va.add("autor");
-		va.add("autor2");
-		
-		Vector<Consulta> v =new Vector<Consulta>();
-		for(int i = 0 ; i <10; i++){
-			Consulta co = new Consulta("1","doc "+i,va);
-			v.add(co);
-		}
-			
-		
-		for(int i = 0 ; i <13; i++){
-			Consulta co2 = new Consulta("2","doc2 "+i,va);
-			v.add(co2);
-		}
-			
-		
-		for(int i = 0 ; i <3; i++){
-			Consulta co3 = new Consulta("3","doc3 "+i,va);
-			v.add(co3);
-		}
-			
-		c.add(new GuiResultadoConsulta(v, 4));
-		m.setSize(700, 600);
-		m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		m.setVisible(true);
-	}
-/**/
 }

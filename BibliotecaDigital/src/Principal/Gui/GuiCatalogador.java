@@ -23,6 +23,7 @@ import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaBasica;
 import Documento.Gui.GuiCatalogar;
+import Documento.Gui.GuiModificarDoc;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
 import Utilidades.Button;
@@ -49,7 +50,7 @@ public class GuiCatalogador extends JFrame
 	private Button logout;
 	private Button catalogar;
 
-	private JLabel estado;
+	private static JLabel estado;
 
 	// Clase interna que permite administrar todos los eventos que genera la
 	// ventana y son escuchados.
@@ -58,7 +59,7 @@ public class GuiCatalogador extends JFrame
 	// Elementos de la barra de menu
 	private JMenu archivo;
 	private JMenu acercaDe;
-	private Container contenedor;
+	private static Container contenedor;
 	private JMenuItem salir;
 	private JMenuItem informacion;
 	private JMenuBar barra;
@@ -66,9 +67,11 @@ public class GuiCatalogador extends JFrame
 	// otros paneles
 	private GuiRegistroModificar panelModificacion;
 	private GuiCatalogar panelCatalogarModificar;
-	private GuiConsultaBasica panelConsultaBasica;
+	private static GuiConsultaBasica panelConsultaBasica;
+	public static GuiModificarDoc panelModificarDoc;
 	
 	private Usuario usuario;
+	public static String LOGIN;
 	
 	
 	public GuiCatalogador(Usuario usuario)
@@ -78,6 +81,7 @@ public class GuiCatalogador extends JFrame
 		setIconImage(new ImageIcon("recursos/bd.png").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
+		LOGIN = usuario.getLogin();
 		manejador = new Manejador();	
 
 		
@@ -321,6 +325,15 @@ public class GuiCatalogador extends JFrame
 		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 		estado.setText(estadoInicial);
 		repaint();
+		
+	}
+	public static void cambiarPanelEditarDocumento()
+	{
+		
+		contenedor.remove(panelConsultaBasica);
+		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
+		estado.setText("Modificando Documento");
+		contenedor.repaint();
 		
 	}
 

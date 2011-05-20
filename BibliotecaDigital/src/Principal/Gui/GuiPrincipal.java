@@ -38,7 +38,7 @@ public class GuiPrincipal extends JFrame
 	
 		// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 		private String estadoInicial = "Inicio";
-		private String estadoRegistro = "RegistrandoUsuario";
+		private static String estadoRegistro = "RegistrandoUsuario";
 		private static String estadoIngrensando = "Autentificando";
 		private String estadoConsultaAvanzada = "consultaAvanzada";
 
@@ -66,7 +66,7 @@ public class GuiPrincipal extends JFrame
 		// Paneles a usar		
 		private static GuiRegistroModificar panelRegistro;
 		private static GuiAutenticar panelAutentificar;
-		private GuiConsultaBasica panelConsultaBasica;
+		private static GuiConsultaBasica panelConsultaBasica;
 		private static GuiRecuperarPassword cambiar;
 		
 		public GuiPrincipal()
@@ -328,6 +328,17 @@ public class GuiPrincipal extends JFrame
 			contenedor.remove(panelRegistro);
 			contenedor.add(panelAutentificar, BorderLayout.CENTER);
 			estado.setText(estadoIngrensando);
+			
+			
+			
+		}
+		public static void cambiarPanelRegistro()
+		{
+			
+			contenedor.remove(panelConsultaBasica);
+			contenedor.add(panelRegistro, BorderLayout.CENTER);
+			estado.setText(estadoRegistro);
+			contenedor.repaint();
 			
 			
 			

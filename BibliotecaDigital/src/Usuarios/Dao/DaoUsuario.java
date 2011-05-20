@@ -201,7 +201,7 @@ public class DaoUsuario {
 		for(int i=0; i < atributo.size()-1;i++)
 			sqlSelect += atributo.elementAt(i) + " LIKE " + "'%" + valor.elementAt(i) + "%'" + " AND ";
 		sqlSelect += atributo.lastElement() + " LIKE " + "'%" + valor.lastElement() + "%'";
-		
+		sqlSelect += "AND login != 'anonimo';";
 		try {
 			Connection conn = this.fachada.conectar();
 			Statement sentencia = conn.createStatement();

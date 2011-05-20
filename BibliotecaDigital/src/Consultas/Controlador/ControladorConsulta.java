@@ -73,6 +73,8 @@ public class ControladorConsulta
 		String horaConsulta = hora +":"+min+":"+seg; //la hora en que se consulto
 		System.out.println(fechaString);
 		System.out.println(horaConsulta);
+		DaoConsulta daoConsulta = new DaoConsulta();
+		daoConsulta.guardarConsulta(id_documento, login, fechaString, horaConsulta);
 		
 		
 	}
