@@ -45,13 +45,13 @@ public class DaoConsulta {
 			consultaDocumentoSql += "d.titulo_secundario LIKE '%" + parametro.elementAt(i) + "%' OR ";
 		}
 		consultaDocumentoSql += "d.titulo_secundario LIKE '%" + parametro.lastElement() + "%'";
-		
+		//******************************************
 		consultaPalabraSql = "SELECT * FROM " +
 				"(SELECT d.id_documento, d.titulo_principal FROM Documento AS d) AS f " +
 				"NATURAL JOIN " +
 				"(SELECT t.id_documento FROM tiene_documento_palabra_clave AS t " +
 				"NATURAL JOIN " +
-				"(SELECT p.nombre FROM palabra_clave AS p WHERE " ;		
+				"(SELECT p.nombre FROM palabra_clave AS p WHERE " ;
 		
 		for(int i=0; i<parametro.size();i++)
 		{
@@ -126,7 +126,7 @@ public class DaoConsulta {
 				consulta.setNombresAutoresDocumento(consultarAutoresDocumento(resultado.getString("id_documento")));
 				consultas.add(consulta);
 			}
-			conn.close();			
+			conn.close();
 			} catch (SQLException e) {			
 				System.out.println(e);
 			} catch (Exception e) {
@@ -211,12 +211,12 @@ public class DaoConsulta {
 			{
 				if(at.contains("titulo"))
 				{
-					boolean esOR = (atributos.elementAt(i)!=atributos.lastElement()) && 
+					boolean esOR = (valores.elementAt(i)!=valores.lastElement()) && 
 					(atributos.elementAt(i+1).contains("titulo"));
 					if(at.contains("sin"))
 					{
-						consultaDocumentoTituloSql += "documento.titulo_principal NOT LIKE '%" +
-						valores.elementAt(i) + "%' OR " +
+						consultaDocumentoTituloSql += "documento.titulo_principal NOT LIKE '%" + //*******************************
+						valores.elementAt(i) + "%' AND " +
 						"documento.titulo_secundario NOT LIKE '%" +
 						valores.elementAt(i)+ "%'" ;
 						if(esOR)
@@ -224,7 +224,7 @@ public class DaoConsulta {
 							consultaDocumentoTituloSql += " OR ";
 						}
 					} else if(at.contains("algunas"))
-					{
+					{System.out.println(at);
 						consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
 						valores.elementAt(i) + "%' OR " +
 						"documento.titulo_secundario LIKE '%" +
@@ -235,10 +235,10 @@ public class DaoConsulta {
 						}
 					}else // es exacto
 					{
-						consultaDocumentoTituloSql += "documento.titulo_principal = '" +
-						valores.elementAt(i) + "' OR " +
-						"documeno.titulo_secundario = '" +
-						valores.elementAt(i) + "'";
+						consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
+						valores.elementAt(i) + "%' OR " +
+						"documento.titulo_secundario LIKE '%" +
+						valores.elementAt(i) + "%'";
 					}
 				}else if (at.contains("idioma"))
 				{
@@ -266,7 +266,7 @@ public class DaoConsulta {
 				}//fin documento
 			} else if(at.contains("palabra"))
 			{
-				boolean esOR = (atributos.elementAt(i)!=atributos.lastElement()) && 
+				boolean esOR = (valores.elementAt(i)!=valores.lastElement()) && 
 				(atributos.elementAt(i+1).contains("palabra"));
 				if(at.contains("sin"))
 				{
@@ -304,12 +304,12 @@ public class DaoConsulta {
 				if(at.contains("sin"))
 				{
 					consultaAutorSql += "a.nombre NOT LIKE '%" +
-					valores.elementAt(i) + "%' OR " +
+					valores.elementAt(i) + "%' AND " +
 					"a.apellido NOT LIKE '%" +
 					valores.elementAt(i)+ "%'" ;
 					if(esOR)
 					{
-						consultaAutorSql += " OR ";
+						consultaAutorSql += " AND ";
 					}
 				} else if(at.contains("algunas"))
 				{
@@ -322,7 +322,7 @@ public class DaoConsulta {
 						consultaAutorSql += " OR ";
 					}
 				}else
-				{
+				{//solo puede conicidir con el nombre o con el apellido
 					consultaAutorSql += "a.nombre = '" +
 					valores.elementAt(i) + "' OR " +
 					"a.apellido = '" +
@@ -490,7 +490,8 @@ public class DaoConsulta {
 		//System.out.print(consultaSql);
 		
 		ResultSet resultado;		
-
+		System.out.println("***************************\n\n");
+		System.out.println(consultaSql);
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();			
