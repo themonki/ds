@@ -41,7 +41,7 @@ public class GuiAdministrador extends JFrame
 	private String estadoConsultarUsuario ="ConsultarUsuario";
 	private String estadoConsultaAvanzada = "ConsultaAvanzada";
 	private String estadoCatalogar = "Catalogar";
-	private String estadoModificandoDoc = "ModificandoDocumento";
+	private String estadoModificandoDoc = "Modificando Documento";
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
