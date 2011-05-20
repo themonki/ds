@@ -20,6 +20,7 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import Consultas.Controlador.ControladorConsulta;
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -154,14 +155,13 @@ public class GuiModificarDoc  extends GuiCatalogar
 
 	private void initPalabrasActuales() {
 		
-		Vector<PalabraClave> vectorResult = this.controladorpalabrasClave.obtenerPalabrasClaveDocumento(doc.getId_doc());
-
-		for (int i=0;i< vectorResult.size();i++)
-		{
-			PalabraClave palabraClave =vectorResult.get(i);
-			palabActualVec.add(palabraClave.getNombre());			
-			JLabel etiqueta = new JLabel(palabraClave.getNombre());
-			etiqueta.addMouseListener(new eventoMouse(1));
+		Vector<PalabraClave> vpc = doc.getPalabrasClave();
+		
+		for(int i =0; i < vpc.size();i++){
+			PalabraClave palabra = vpc.get(i);
+			palabActualVec.add(palabra.getNombre());
+			JLabel etiqueta = new JLabel(vpc.get(i).getNombre());
+			etiqueta.addMouseListener(new eventoMouse(2));
 			panelConpalabrasC.add(etiqueta);
 		}
 		
@@ -172,11 +172,11 @@ public class GuiModificarDoc  extends GuiCatalogar
 	private void initAutoresActuales() {
 		
 
-		Vector<Autor> vectorResult = this.controladorAutor.obtenerAutoresDocumento(doc.getId_doc());
+		Vector<Autor> va = doc.getAutores();
 
-		for (int i=0;i< vectorResult.size();i++)
+		for (int i=0;i< va.size();i++)
 		{
-			Autor autor =vectorResult.get(i);
+			Autor autor =va.get(i);
 			autoresActualVector.add(autor.getNombre());	
 			AutorIdActualVector.add(autor.getId());
 			JLabel etiqueta = new JLabel(autor.getNombre());
@@ -189,16 +189,16 @@ public class GuiModificarDoc  extends GuiCatalogar
 	}
 
 	private void initAreasActuales() {
-		Vector<AreaConocimiento> vectorResult = this.controladorAreas.obtenerAreasDocumento(doc.getId_doc());
+		Vector<AreaConocimiento> vac = doc.getAreas();
 
-		for (int i=0;i< vectorResult.size();i++)
+		for (int i=0;i< vac.size();i++)
 		{
-			AreaConocimiento area =vectorResult.get(i);
+			AreaConocimiento area =vac.get(i);
 			areasActualVecr.add(area.getNombre());	
 			AreasIdActualVector.add(area.getIdArea());
 			
 			JLabel etiqueta = new JLabel(area.getNombre());
-			etiqueta.addMouseListener(new eventoMouse(1));		
+			etiqueta.addMouseListener(new eventoMouse(3));		
 			
 			panelConAreas.add(etiqueta);
 		}
@@ -218,10 +218,10 @@ public class GuiModificarDoc  extends GuiCatalogar
 		catch (Exception e){e.printStackTrace();}
 
 		JFrame  a = new JFrame();
-		ControladorDocumento da = new ControladorDocumento();
+		ControladorConsulta da = new ControladorConsulta();
 		
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		a.add(new GuiModificarDoc("admin",da.obtenerDocumento("10000")));
+		a.add(new GuiModificarDoc("admin",da.obtenerDatosDocumento("10000")));
 
 
 		a.setSize(500,500);
@@ -261,8 +261,6 @@ public class GuiModificarDoc  extends GuiCatalogar
 
 		}
 	}
-	
-	
 
 
 }
