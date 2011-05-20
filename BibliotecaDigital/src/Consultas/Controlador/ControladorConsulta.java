@@ -78,7 +78,7 @@ public class ControladorConsulta
 					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-						atributoConsulta.add("palabra_clave.nombre.sin");
+						atributoConsulta.add("palabra.nombre.sin");
 						valorConsulta.add(tk.nextToken());
 					}
 					
@@ -87,13 +87,13 @@ public class ControladorConsulta
 					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-						atributoConsulta.add("palabra_clave.nombre.algunas");
+						atributoConsulta.add("palabra.nombre.algunas");
 						valorConsulta.add(tk.nextToken());
 					}
 					
 				}else if(opPalabra == 3)
 				{
-					atributoConsulta.add("palabra_clave.nombre.exacto");
+					atributoConsulta.add("palabra.nombre.exacto");
 					valorConsulta.add(valor.elementAt(i));
 				}
 				
@@ -133,7 +133,7 @@ public class ControladorConsulta
 					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-						atributoConsulta.add("documento.titulo_principal.sin");
+						atributoConsulta.add("documento.titulo.sin");
 						valorConsulta.add(tk.nextToken());
 					}
 					
@@ -144,13 +144,13 @@ public class ControladorConsulta
 					{
 						String v = tk.nextToken();
 						
-						atributoConsulta.add("documento.titulo_principal.algunas");
+						atributoConsulta.add("documento.titulo.algunas");
 						valorConsulta.add(v);
 					}
 					
 				}else if(opTitulo == 3)
 				{
-					atributoConsulta.add("documento.titulo_principal.exacto");
+					atributoConsulta.add("documento.titulo.exacto");
 					valorConsulta.add(valor.elementAt(i));
 				}
 			}else if(elemento.equals("fecha_antes"))
@@ -182,7 +182,7 @@ public class ControladorConsulta
 			{
 				if(!valor.elementAt(i).equals("Todos"))
 				{
-					atributoConsulta.add("area_conocimiento.nombre");
+					atributoConsulta.add("area.nombre");
 					valorConsulta.add(valor.elementAt(i));
 				}
 			}

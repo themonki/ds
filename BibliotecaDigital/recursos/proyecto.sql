@@ -305,7 +305,7 @@ INSERT INTO TipoMAterial VALUES('taterial de clase','diapositivas, talleres, eje
 --insertando usuarios
 INSERT INTO usuario VALUES('anonimo', 'anonimo', 'anonimo', 'anonimo', 'anonimo', 'univalle', 'anonimo@correo', 'Profesional/Universidad', 'Ciudad natal de la abuela', 'respuesta', 'Estudiante de pregrado' ,'M', '2011-05-08', '2011-05-08', '0', 'f');
 INSERT INTO Usuario VALUES('admin', 'digital', 'biblioteca', 'digital', 'eisc', 'univalle', 'bibliotecaeisc@correo.univalle.co', 'Profesional/Universidad', 'Ciudad natal de la abuela', 'respuesta', 'Estudiante de pregrado' ,'M', '2011-05-08', '2011-05-08', '1', 't');
-INSERT INTO Usuario VALUES('clrl','clrl','cristian','leoanrdo','rios','lopez','dragonblanco452@gmail.com','Tecnología','Ciudad natal de la abuela','respuesta','Estudiante de pregrado','M','1989-06-09','2011-05-08','2','t');
+INSERT INTO Usuario VALUES('clrl','clrl','cristian','leonardo','rios','lopez','dragonblanco452@gmail.com','Tecnología','Ciudad natal de la abuela','respuesta','Estudiante de pregrado','M','1989-06-09','2011-05-08','2','t');
 
 --insertando interesa_usuario_area_conocimiento
 --INSERT INTO interesa_usuario_area_conocimiento VALUES('admin','3');
