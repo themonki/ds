@@ -434,12 +434,14 @@ public class GuiVistaDocumento extends JScrollPane {
 				{
 					GuiCatalogador.panelModificarDoc = new GuiModificarDoc(GuiCatalogador.LOGIN, documento);
 					GuiCatalogador.cambiarPanelEditarDocumento();
+					GuiConsultaBasica.restaurarTodo();
 					
 					
 				}else if(GuiConsultaBasica.TIPOUSUARIO == 3)
 				{
 					GuiAdministrador.panelModificarDoc = new GuiModificarDoc(GuiAdministrador.LOGIN, documento);
 					GuiAdministrador.cambiarPanelEditarDocumento();
+					GuiConsultaBasica.restaurarTodo();
 				}
 					
 				
