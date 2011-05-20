@@ -175,27 +175,19 @@ public class DaoConsulta {
 		consultaDocumentoTituloSql, consultaDocumentoFechaSql, consultaDocumentoFormatoSql, consultaDocumentoIdiomaSql,
 		consultaPalabraSql, consultaAreaSql, consultaAutorSql, consultaPalabraTempSql;
 		
-		String consultaDocumentoNula = "SELECT documento.id_documento, documento.titulo_principal " +
-		"FROM documento " +
-		"WHERE ";
 		String consultaPalabraNula = "SELECT nombre FROM palabra_clave WHERE ";
 		
 		consultaPalabraTempSql = "SELECT nombre FROM palabra_clave WHERE ";
 		consultaPalabraSql = "SELECT d.id_documento, d.titulo_principal "+
 		"FROM (SELECT documento.id_documento, documento.titulo_principal FROM documento)as d NATURAL JOIN"; 
 		
-		consultaDocumentoTituloSql=	"SELECT documento.id_documento, documento.titulo_principal " +
-				"FROM documento " +
-				"WHERE ";
-		consultaDocumentoFechaSql=	"SELECT documento.id_documento, documento.titulo_principal " +
-				"FROM documento " +
-				"WHERE ";
-		consultaDocumentoFormatoSql=	"SELECT documento.id_documento, documento.titulo_principal " +
-				"FROM documento " +
-				"WHERE ";
-		consultaDocumentoIdiomaSql=	"SELECT documento.id_documento, documento.titulo_principal " +
-				"FROM documento " +
-				"WHERE ";		
+		consultaDocumentoSql =  "SELECT d.id_documento, d.titulo_principal "+
+		"FROM documento " +
+		"WHERE ";
+		consultaDocumentoTituloSql=	"" ;
+		consultaDocumentoFechaSql=	"";
+		consultaDocumentoFormatoSql=	"";
+		consultaDocumentoIdiomaSql=	"";		
 		
 		consultaAreaSql = "SELECT * FROM " +
 		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS f " +
@@ -366,24 +358,65 @@ public class DaoConsulta {
 		}
 		
 		//construir consultaDocumentoSql
-		boolean tituloSql = consultaDocumentoTituloSql.equals(consultaDocumentoNula);
-		boolean fechaSql = consultaDocumentoFechaSql.equals(consultaDocumentoNula);
-		boolean formatoSql = consultaDocumentoFormatoSql.equals(consultaDocumentoNula);
-		boolean idiomaSql = consultaDocumentoIdiomaSql.equals(consultaDocumentoNula);
+		boolean tituloSql = consultaDocumentoTituloSql.equals("");
+		boolean fechaSql = consultaDocumentoFechaSql.equals("");
+		boolean formatoSql = consultaDocumentoFormatoSql.equals("");
+		boolean idiomaSql = consultaDocumentoIdiomaSql.equals("");
 		
-		if(tituloSql==fechaSql==formatoSql==idiomaSql)
+		boolean primera= true;
+		
+		String temptitulo="", tempfecha="", tempformato="", tempidioma="";
+		if(tituloSql && fechaSql && formatoSql && idiomaSql)
 		{
 			consultaDocumentoSql = "SELECT documento.id_documento, documento.titulo_principal "+
 			"FROM documento";
-		} else
+		}else
 		{
-			consultaDocumentoSql = "SELECT * "+
-			"FROM (" + (tituloSql? "":consultaDocumentoTituloSql)+
-			(fechaSql? "":(" INTERSECT "+consultaDocumentoFechaSql))+
-			(formatoSql? "":(" INTERSECT "+consultaDocumentoFormatoSql))+
-			(idiomaSql? "":(" INTERSECT " +consultaDocumentoIdiomaSql))+
-			") AS d";
+			if(!tituloSql)
+			{
+				temptitulo = "(" + consultaDocumentoTituloSql + ")";
+				primera= false;
+			}
+			if(!fechaSql)
+			{
+				if(primera)
+				{
+					tempfecha = "(" + consultaDocumentoFechaSql + ")";
+					primera=false;
+				}else
+				{
+					tempfecha = " AND " + "(" + consultaDocumentoFechaSql + ")";
+				}
+			}
+			if(!formatoSql)
+			{
+				if(primera)
+				{
+					tempformato = "(" + consultaDocumentoFormatoSql + ")";
+					primera=false;
+				}else
+				{
+					tempformato = " AND " + "(" + consultaDocumentoFormatoSql + ")";
+				}
+			}
+			if(!idiomaSql)
+			{
+				if(primera)
+				{
+					tempidioma = "(" + consultaDocumentoIdiomaSql + ")";
+				}else
+				{
+					tempidioma = " AND " + "(" + consultaDocumentoIdiomaSql + ")";
+				}
+			}
+			
+			consultaDocumentoSql += temptitulo + tempfecha + tempformato + tempidioma;
+			
 		}
+		
+
+		
+		
 		
 		//construir consultaPalabraSql
 		
