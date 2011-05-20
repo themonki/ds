@@ -33,6 +33,7 @@ public class ControladorConsulta
 	public Vector<Consulta> consultaGeneral(String palabra, boolean modo)
 	{	
 		Vector<String> palabras = new Vector<String>();
+		palabra=palabra.toLowerCase();
 		StringTokenizer tk = new StringTokenizer(palabra," ");
 		
 		if(modo)
@@ -55,6 +56,12 @@ public class ControladorConsulta
 	
 	public Vector<Consulta> consultaAvanzada(Vector<String> atributo, Vector<String> valor, int opTitulo, int opPalabra, int opAutor)
 	{
+		//for para tolowercase para valores
+		for(int i=0; i<valor.size();i++)
+		{
+			valor.setElementAt(valor.elementAt(i).toLowerCase(), i);
+		}
+		
 		Vector<String> atributoConsulta = new Vector<String>();
 		Vector<String> valorConsulta = new Vector<String>();
 		
@@ -68,23 +75,25 @@ public class ControladorConsulta
 			{
 				if(opPalabra == 1)
 				{
-					/*StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-					}*/
+						atributoConsulta.add("palabra_clave.nombre.sin");
+						valorConsulta.add(tk.nextToken());
+					}
 					
 				}else if(opPalabra == 2)
 				{
 					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-						atributoConsulta.add("palabra_clave.nombre");
+						atributoConsulta.add("palabra_clave.nombre.algunas");
 						valorConsulta.add(tk.nextToken());
 					}
 					
 				}else if(opPalabra == 3)
 				{
-					atributoConsulta.add("palabra_clave.nombre");
+					atributoConsulta.add("palabra_clave.nombre.exacto");
 					valorConsulta.add(valor.elementAt(i));
 				}
 				
@@ -92,10 +101,12 @@ public class ControladorConsulta
 			{
 				if(opAutor == 1)
 				{
-					/*StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-					}*/
+						atributoConsulta.add("autor.nombre.sin");
+						valorConsulta.add(tk.nextToken());
+					}
 					
 				}else if(opAutor == 2)
 				{
@@ -104,28 +115,27 @@ public class ControladorConsulta
 					{
 						String v = tk.nextToken();
 						
-						atributoConsulta.add("autor.nombre");
+						atributoConsulta.add("autor.nombre.algunas");
 						valorConsulta.add(v);
-						//atributoConsulta.add("autor.apellido");
-						//valorConsulta.add(v);
+						
 					}
 					
 				}else if(opPalabra == 3)
 				{
-					atributoConsulta.add("autor.nombre");
+					atributoConsulta.add("autor.nombre.exacto");
 					valorConsulta.add(valor.elementAt(i));
-					//atributoConsulta.add("autor.apellido");
-					//valorConsulta.add(valor.elementAt(i));
 				}
 				
 			}else if(elemento.equals("titulo"))
 			{
 				if(opTitulo == 1)
 				{
-					/*StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-					}*/
+						atributoConsulta.add("documento.titulo_principal.sin");
+						valorConsulta.add(tk.nextToken());
+					}
 					
 				}else if(opTitulo == 2)
 				{
@@ -134,24 +144,24 @@ public class ControladorConsulta
 					{
 						String v = tk.nextToken();
 						
-						atributoConsulta.add("documento.titulo_principal");
+						atributoConsulta.add("documento.titulo_principal.algunas");
 						valorConsulta.add(v);
-						//atributoConsulta.add("documento.titulo_secundario");
-						//valorConsulta.add(v);
 					}
 					
 				}else if(opTitulo == 3)
 				{
-					atributoConsulta.add("documento.titulo_principal");
+					atributoConsulta.add("documento.titulo_principal.exacto");
 					valorConsulta.add(valor.elementAt(i));
-					//atributoConsulta.add("documento.titulo_secundario");
-					//valorConsulta.add(valor.elementAt(i));
 				}
 			}else if(elemento.equals("fecha_antes"))
 			{
+				atributoConsulta.add("documento.fecha.antes");
+				valorConsulta.add(valor.elementAt(i)+"-01-01");
 				
 			}else if(elemento.equals("fecha_despues"))
 			{
+				atributoConsulta.add("documento.fecha.despues");
+				valorConsulta.add(valor.elementAt(i)+"-01-01");
 			}
 			else if(elemento.equals("idioma"))
 			{
