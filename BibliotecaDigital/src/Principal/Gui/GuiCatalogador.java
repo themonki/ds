@@ -41,6 +41,7 @@ public class GuiCatalogador extends JFrame
 	private String estadoModificacion = "ModificandoUsuario";
 	private String estadoConsultaAvanzada = "ConsultaAvanzada";	
 	private String estadoCatalogando = "CatalogandoDocumento";
+	private String estadoModificandoDoc = "ModificandoDocumento";
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
