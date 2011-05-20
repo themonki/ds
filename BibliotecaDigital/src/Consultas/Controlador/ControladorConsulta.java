@@ -120,7 +120,7 @@ public class ControladorConsulta
 						
 					}
 					
-				}else if(opPalabra == 3)
+				}else if(opAutor == 3)
 				{
 					atributoConsulta.add("autor.nombre.exacto");
 					valorConsulta.add(valor.elementAt(i));

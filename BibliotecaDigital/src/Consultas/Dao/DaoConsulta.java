@@ -173,12 +173,29 @@ public class DaoConsulta {
 		
 		String consultaSql, consultaDocumentoSql,
 		consultaDocumentoTituloSql, consultaDocumentoFechaSql, consultaDocumentoFormatoSql, consultaDocumentoIdiomaSql,
-		consultaPalabraSql, consultaAreaSql, consultaAutorSql;
+		consultaPalabraSql, consultaAreaSql, consultaAutorSql, consultaPalabraTempSql;
 		
-
+		String consultaDocumentoNula = "SELECT documento.id_documento, documento.titulo_principal " +
+		"FROM documento " +
+		"WHERE ";
+		String consultaPalabraNula = "SELECT nombre FROM palabra_clave WHERE ";
+		
+		consultaPalabraTempSql = "SELECT nombre FROM palabra_clave WHERE ";
+		consultaPalabraSql = "SELECT d.id_documento, d.titulo_principal "+
+		"FROM (SELECT documento.id_documento, documento.titulo_principal FROM documento)as d NATURAL JOIN"; 
+		
 		consultaDocumentoTituloSql=	"SELECT documento.id_documento, documento.titulo_principal " +
 				"FROM documento " +
 				"WHERE ";
+		consultaDocumentoFechaSql=	"SELECT documento.id_documento, documento.titulo_principal " +
+				"FROM documento " +
+				"WHERE ";
+		consultaDocumentoFormatoSql=	"SELECT documento.id_documento, documento.titulo_principal " +
+				"FROM documento " +
+				"WHERE ";
+		consultaDocumentoIdiomaSql=	"SELECT documento.id_documento, documento.titulo_principal " +
+				"FROM documento " +
+				"WHERE ";		
 		
 		consultaAreaSql = "SELECT * FROM " +
 		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS f " +
@@ -202,7 +219,7 @@ public class DaoConsulta {
 			{
 				if(at.contains("titulo"))
 				{
-					boolean esOR = (atributos.size()!=i+1) && 
+					boolean esOR = (atributos.elementAt(i)!=atributos.lastElement()) && 
 					(atributos.elementAt(i+1).contains("titulo"));
 					if(at.contains("sin"))
 					{
@@ -224,22 +241,63 @@ public class DaoConsulta {
 						{
 							consultaDocumentoTituloSql += " OR ";
 						}
-					}else
+					}else // es exacto
 					{
 						consultaDocumentoTituloSql += "documento.titulo_principal = '" +
 						valores.elementAt(i) + "' OR " +
 						"documeno.titulo_secundario = '" +
 						valores.elementAt(i) + "'";
 					}
-					
-					
-					
-					
-
-				}else if (true)
+				}else if (at.contains("idioma"))
 				{
+					consultaDocumentoIdiomaSql+= "documento.idioma = '"+
+					valores.elementAt(i) + "'";					
+				}else if (at.contains("formato"))
+				{
+					consultaDocumentoFormatoSql+= "documento.formato = '"+
+					valores.elementAt(i) + "'";
+				}else //contiene fecha
+				{
+					if(at.contains("antes"))
+					{
+						consultaDocumentoFechaSql += "documento.fecha_publicacion < '"+
+						valores.elementAt(i)+"'";
+						if(atributos.lastElement()!= at && atributos.elementAt(i+1).contains("despues")){
+							consultaDocumentoFechaSql += " AND "; 
+						}
+					}else { // es despues
+						{
+							consultaDocumentoFechaSql += "documento.fecha_publicacion > '"+
+							valores.elementAt(i)+"'";
+						}
+					}
 				}
-			}//fin documento
+			} else if(at.contains("palabra"))
+			{
+				boolean esOR = (atributos.elementAt(i)!=atributos.lastElement()) && 
+				(atributos.elementAt(i+1).contains("palabra"));
+				if(at.contains("sin"))
+				{
+					consultaPalabraTempSql += "palabra.nombre NOT LIKE '%" +
+					valores.elementAt(i) + "%'";
+					if(esOR)
+					{
+						consultaDocumentoTituloSql += " OR ";
+					}
+				} else if(at.contains("algunas"))
+				{
+					consultaPalabraTempSql += "palabra.nombre LIKE '%" +
+					valores.elementAt(i) + "%'";
+					if(esOR)
+					{
+						consultaPalabraTempSql += " OR ";
+					}
+				}else // es exacto
+				{
+					consultaPalabraTempSql += "palabra.nombre = '" +
+					valores.elementAt(i) + "'";
+				}
+			}
 			else if(at.contains("area"))
 			{
 				consultaAreaSql += "a.nombre = '" + valores.elementAt(i) + "'";
@@ -300,6 +358,45 @@ public class DaoConsulta {
 		{
 			consultaAutorSql += ") AS c) AS y";
 		}
+		
+		//construir consultaDocumentoSql
+		boolean tituloSql = consultaDocumentoTituloSql.equals(consultaDocumentoNula);
+		boolean fechaSql = consultaDocumentoFechaSql.equals(consultaDocumentoNula);
+		boolean formatoSql = consultaDocumentoFormatoSql.equals(consultaDocumentoNula);
+		boolean idiomaSql = consultaDocumentoIdiomaSql.equals(consultaDocumentoNula);
+		
+		if(tituloSql==fechaSql==formatoSql==idiomaSql)
+		{
+			consultaDocumentoSql = "SELECT documento.id_documento, documento.titulo_principal "+
+			"FROM documento";
+		} else
+		{
+			consultaDocumentoSql = "SELECT * "+
+			"FROM (" + (tituloSql? "":consultaDocumentoTituloSql)+
+			(fechaSql? "":(" INTERSECT "+consultaDocumentoFechaSql))+
+			(formatoSql? "":(" INTERSECT "+consultaDocumentoFormatoSql))+
+			(idiomaSql? "":(" INTERSECT " +consultaDocumentoIdiomaSql))+
+			") AS d";
+		}
+		
+		//construir consultaPalabraSql
+		
+		boolean nombreSql = consultaPalabraTempSql.equals(consultaPalabraNula);
+		
+		if(!nombreSql)
+		{
+			consultaPalabraSql += "("+consultaPalabraTempSql+") AS p";
+		}else
+		{
+			consultaPalabraSql="";
+		}
+			
+		
+		
+		
+		//System.out.println(consultaDocumentoSql);
+		//System.out.println(consultaPalabraSql);
+		
 		
 		//System.out.println(consultaDocumentoTituloSql);
 		//System.out.println(consultaAreaSql);
