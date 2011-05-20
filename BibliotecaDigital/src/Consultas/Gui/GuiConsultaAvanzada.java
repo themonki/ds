@@ -335,6 +335,13 @@ public class GuiConsultaAvanzada extends JPanel
 					valoresConsulta.add(fechaPublicacionDespues);
 				}
 				
+				atributosConsulta.add("formato");
+				valoresConsulta.add(formatoArchivo);
+				atributosConsulta.add("idioma");
+				valoresConsulta.add(idioma);
+				atributosConsulta.add("area");
+				valoresConsulta.add(area);
+				
 				ControladorConsulta controlador = new ControladorConsulta();
 				Vector<Consulta> consulta = controlador.consultaAvanzada(atributosConsulta, valoresConsulta, opcionTitulo, opcionAutor, opcionPalabra);
 			
