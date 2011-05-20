@@ -24,10 +24,13 @@ import javax.swing.border.TitledBorder;
 import Consultas.Controlador.ControladorConsulta;
 import Consultas.Logica.Consulta;
 import Documento.Controlador.ControladorDocumento;
+import Documento.Gui.GuiModificarDoc;
 import Documento.Logica.Documento;
 import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
+import Principal.Gui.GuiAdministrador;
+import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiPrincipal;
 import Utilidades.Estilos;
 
@@ -427,9 +430,20 @@ public class GuiVistaDocumento extends JScrollPane {
 			}else if(evento.getSource() == etiquetaEditarDocumento)
 			{
 			
+				if(GuiConsultaBasica.TIPOUSUARIO == 2)
+				{
+					GuiCatalogador.panelModificarDoc = new GuiModificarDoc(GuiCatalogador.LOGIN, documento);
+					GuiCatalogador.cambiarPanelEditarDocumento();
 					
-					JOptionPane.showMessageDialog(null,"Cambiar al panel de modificar documento(aun esto no esta)");
 					
+				}else if(GuiConsultaBasica.TIPOUSUARIO == 3)
+				{
+					GuiAdministrador.panelModificarDoc = new GuiModificarDoc(GuiAdministrador.LOGIN, documento);
+					GuiAdministrador.cambiarPanelEditarDocumento();
+				}
+					
+				
+				
 				
 				
 					
