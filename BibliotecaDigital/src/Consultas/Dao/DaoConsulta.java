@@ -271,7 +271,7 @@ public class DaoConsulta {
 							valores.elementAt(i)+"'";
 						}
 					}
-				}
+				}//fin documento
 			} else if(at.contains("palabra"))
 			{
 				boolean esOR = (atributos.elementAt(i)!=atributos.lastElement()) && 
@@ -297,7 +297,7 @@ public class DaoConsulta {
 					consultaPalabraTempSql += "palabra.nombre = '" +
 					valores.elementAt(i) + "'";
 				}
-			}
+			}// fin palabra_clave
 			else if(at.contains("area"))
 			{
 				consultaAreaSql += "a.nombre = '" + valores.elementAt(i) + "'";
@@ -336,7 +336,7 @@ public class DaoConsulta {
 					"a.apellido = '" +
 					valores.elementAt(i)+ "'" ;
 				}
-			}
+			}//fin autor
 		}
 		
 		if(!consultaAreaSql.equals("SELECT * FROM " +
@@ -347,6 +347,9 @@ public class DaoConsulta {
 		"(SELECT a.id_area FROM area_conocimiento AS a WHERE "))
 		{
 			consultaAreaSql += ") AS x) AS y";
+		}else
+		{
+			consultaAreaSql = "";
 		}
 		
 		if(!consultaAutorSql.equals("SELECT * FROM " +
@@ -357,6 +360,9 @@ public class DaoConsulta {
 		"(SELECT a.id_autor FROM autor AS a WHERE "))
 		{
 			consultaAutorSql += ") AS c) AS y";
+		}else
+		{
+			consultaAutorSql = "";
 		}
 		
 		//construir consultaDocumentoSql
@@ -396,8 +402,6 @@ public class DaoConsulta {
 		
 		//System.out.println(consultaDocumentoSql);
 		//System.out.println(consultaPalabraSql);
-		
-		
 		//System.out.println(consultaDocumentoTituloSql);
 		//System.out.println(consultaAreaSql);
 		//System.out.println(consultaAutorSql);
