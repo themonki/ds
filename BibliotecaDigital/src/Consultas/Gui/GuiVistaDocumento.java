@@ -269,6 +269,9 @@ public class GuiVistaDocumento extends JScrollPane {
 		{
 			
 			icono.setIcon(new ImageIcon("recursos/iconos/odt.png"));
+		}else
+		{
+			icono.setIcon(new ImageIcon("recursos/iconos/file.png"));
 		}
 		
 		
@@ -368,9 +371,9 @@ public class GuiVistaDocumento extends JScrollPane {
 		etiquetaEditarDocumento = new JLabel("Editar Documento");
 		etiquetaEditarDocumento.addMouseListener(manejador);
 
-		etiquetaDescargar.setIcon(new ImageIcon("recursos/iconos/add.png"));
+		etiquetaDescargar.setIcon(new ImageIcon("recursos/iconos/downloadfile.png"));
 		etiquetaEditarDocumento
-				.setIcon(new ImageIcon("recursos/iconos/add.png"));
+				.setIcon(new ImageIcon("recursos/iconos/editar.png"));
 		// Se oculta la opcion de editar documento para usuarios no registrados y para usuarios normales.
 		if(tipoUsuario == 1 || tipoUsuario == 0){
 		
