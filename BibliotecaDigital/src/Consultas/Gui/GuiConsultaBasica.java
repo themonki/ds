@@ -76,7 +76,7 @@ public class GuiConsultaBasica extends JScrollPane
 		campoConsulta.setFont(Estilos.fontLabels);
 		campoConsulta.addKeyListener(manejador);
 		
-		busquedaCompleta = new JCheckBox("Realizar búsqueda con coincidencia exacta");
+		busquedaCompleta = new JCheckBox("Realizar bï¿½squeda con coincidencia exacta");
 		busquedaCompleta.addItemListener(manejador);
 		
 		campoCantidadResultados = new JComboBox(cantidades);
@@ -133,7 +133,7 @@ public class GuiConsultaBasica extends JScrollPane
 		panel.remove(vistaDocumento);
 		//campoConsulta.setText("");
 		panel.add(panelConsulta, BorderLayout.NORTH);
-		panel.add(resultadoConsulta, BorderLayout.SOUTH );
+		panel.add(resultadoConsulta, BorderLayout.CENTER );
 		
 		//resultadoConsulta = new GuiResultadoConsulta();
 		panel.remove(vistaDocumento);
