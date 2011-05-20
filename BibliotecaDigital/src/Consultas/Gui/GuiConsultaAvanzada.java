@@ -291,7 +291,7 @@ public class GuiConsultaAvanzada extends JPanel
 
 	private class Manejador implements ActionListener, ItemListener
 	{
-		String formatoArchivo = "Todos", area = "Todos", idioma = "Todos", titulo, autor, palabraClave, fechaPublicacionAntes, fechaPublicacionDespues;
+		String formatoArchivo = "Todos", area = "Todas", idioma = "Todos", titulo, autor, palabraClave, fechaPublicacionAntes, fechaPublicacionDespues;
 		int opcionTitulo = 2, opcionPalabra = 2, opcionAutor = 2;
 				
 		@Override
@@ -344,11 +344,12 @@ public class GuiConsultaAvanzada extends JPanel
 				valoresConsulta.add(area);
 				
 				ControladorConsulta controlador = new ControladorConsulta();
-				Vector<Consulta> consulta = controlador.consultaAvanzada(atributosConsulta, valoresConsulta, opcionTitulo, opcionAutor, opcionPalabra);
+				Vector<Consulta> consulta = controlador.consultaAvanzada(atributosConsulta, valoresConsulta, opcionTitulo, opcionPalabra, opcionAutor);
 			
 			}else if(fuente == campoAreas)
 			{
 				area = (String)campoAreas.getSelectedItem();
+				System.out.println("seleccionado area " + area);
 				
 			}else if(fuente == campoIdioma)
 			{

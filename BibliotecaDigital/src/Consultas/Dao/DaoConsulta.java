@@ -172,13 +172,27 @@ public class DaoConsulta {
 		Vector<Consulta>  consultas = new Vector<Consulta>();
 		
 		String consultaSql, consultaDocumentoSql,
-		consultaDocumentoTituloSql, consultaDocumentoFechaSql, consultaDocumentoFormatoSql,
+		consultaDocumentoTituloSql, consultaDocumentoFechaSql, consultaDocumentoFormatoSql, consultaDocumentoIdiomaSql,
 		consultaPalabraSql, consultaAreaSql, consultaAutorSql;
 		
-		//consultaDocumentoSql = 
+
 		consultaDocumentoTituloSql=	"SELECT documento.id_documento, documento.titulo_principal " +
 				"FROM documento " +
 				"WHERE ";
+		
+		consultaAreaSql = "SELECT * FROM " +
+		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS f " +
+		"NATURAL JOIN " + 
+		"(SELECT p.id_documento FROM pertenece_documento_area_conocimiento AS p " +
+		"NATURAL JOIN " +
+		"(SELECT a.id_area FROM area_conocimiento AS a WHERE ";
+		
+		consultaAutorSql = "SELECT * FROM " +
+		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS x " +
+		"NATURAL JOIN " + 
+		"(SELECT e.id_documento FROM escribe_autor_documento AS e " + 
+		"NATURAL JOIN " + 
+		"(SELECT a.id_autor FROM autor AS a WHERE ";
 		
 		for(int i=0;i<atributos.size();i++)
 		{
@@ -188,7 +202,7 @@ public class DaoConsulta {
 			{
 				if(at.contains("titulo"))
 				{
-					boolean esOR = (atributos.elementAt(i)!=atributos.lastElement()) && 
+					boolean esOR = (atributos.size()!=i+1) && 
 					(atributos.elementAt(i+1).contains("titulo"));
 					if(at.contains("sin"))
 					{
@@ -225,10 +239,71 @@ public class DaoConsulta {
 				}else if (true)
 				{
 				}
+			}//fin documento
+			else if(at.contains("area"))
+			{
+				consultaAreaSql += "a.nombre = '" + valores.elementAt(i) + "'";
+			}
+			else if(at.contains("autor"))
+			{
+				boolean esOR = ((atributos.size()!=i+1) && 
+				atributos.elementAt(i+1).contains("autor"));
+				
+				System.out.println("es or autor " + esOR);
+					
+				if(at.contains("sin"))
+				{
+					consultaAutorSql += "a.nombre NOT LIKE '%" +
+					valores.elementAt(i) + "%' OR " +
+					"a.apellido NOT LIKE '%" +
+					valores.elementAt(i)+ "%'" ;
+					if(esOR)
+					{
+						consultaAutorSql += " OR ";
+					}
+				} else if(at.contains("algunas"))
+				{
+					consultaAutorSql += "a.nombre LIKE '%" +
+					valores.elementAt(i) + "%' OR " +
+					"a.apellido LIKE '%" +
+					valores.elementAt(i)+ "%'" ;
+					if(esOR)
+					{
+						consultaAutorSql += " OR ";
+					}
+				}else
+				{
+					consultaAutorSql += "a.nombre = '" +
+					valores.elementAt(i) + "' OR " +
+					"a.apellido = '" +
+					valores.elementAt(i)+ "'" ;
+				}
 			}
 		}
 		
-		System.out.println(consultaDocumentoTituloSql);
+		if(!consultaAreaSql.equals("SELECT * FROM " +
+		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS f " +
+		"NATURAL JOIN " + 
+		"(SELECT p.id_documento FROM pertenece_documento_area_conocimiento AS p " +
+		"NATURAL JOIN " +
+		"(SELECT a.id_area FROM area_conocimiento AS a WHERE "))
+		{
+			consultaAreaSql += ") AS x) AS y";
+		}
+		
+		if(!consultaAutorSql.equals("SELECT * FROM " +
+		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS x " +
+		"NATURAL JOIN " + 
+		"(SELECT e.id_documento FROM escribe_autor_documento AS e " + 
+		"NATURAL JOIN " + 
+		"(SELECT a.id_autor FROM autor AS a WHERE "))
+		{
+			consultaAutorSql += ") AS c) AS y";
+		}
+		
+		//System.out.println(consultaDocumentoTituloSql);
+		//System.out.println(consultaAreaSql);
+		//System.out.println(consultaAutorSql);
 		return consultas;
 		
 	}

@@ -165,7 +165,7 @@ public class ControladorConsulta
 			}
 			else if(elemento.equals("idioma"))
 			{
-				if(!valor.elementAt(i).equals("Todos"))
+				if(!valor.elementAt(i).equals("todos"))
 				{
 					atributoConsulta.add("documento.idioma");
 					valorConsulta.add(valor.elementAt(i));
@@ -173,14 +173,14 @@ public class ControladorConsulta
 			}
 			else if(elemento.equals("formato"))
 			{
-				if(!valor.elementAt(i).equals("Todos"))
+				if(!valor.elementAt(i).equals("todos"))
 				{
 					atributoConsulta.add("documento.formato");
 					valorConsulta.add(valor.elementAt(i));
 				}
 			}else if(elemento.equals("area"))
 			{
-				if(!valor.elementAt(i).equals("Todos"))
+				if(!valor.elementAt(i).equals("todas"))
 				{
 					atributoConsulta.add("area.nombre");
 					valorConsulta.add(valor.elementAt(i));
