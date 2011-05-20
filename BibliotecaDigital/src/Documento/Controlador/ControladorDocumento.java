@@ -285,7 +285,7 @@ public class ControladorDocumento {
 		        } 
 		        in.close(); 
 		        out.close();
-		        return dst.getAbsolutePath();
+		        return dst.getPath();
 		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -314,6 +314,10 @@ public class ControladorDocumento {
 		}
 		if(d.getAutores().size()==0){
 			mensaje+="*Debe proporcionar por lo menos un Autor\n";
+			estado=false;
+		}
+		if(!comprobarFormato(d.getFormato(), d.getUrl())){
+			mensaje+="*El formato "+d.getFormato()+" no coincide con la extencion del archivo\n";
 			estado=false;
 		}
 		//lo ultimo en comprobar
@@ -392,7 +396,7 @@ public class ControladorDocumento {
 		String name = archivo.getName();
 		int longitud = name.length();
 		for(int i = longitud-1; i > 0; i--){
-			if(name.charAt(i)=='.'){;
+			if(name.charAt(i)=='.'){
 				String nombre2 = name.substring(0, i);
 				nombre2+= agregar + name.substring(i);
 				return nombre2;
@@ -493,6 +497,40 @@ public class ControladorDocumento {
 
 		if(!estado){JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);}	
 		return estado;
+	}
+	
+	public boolean comprobarFormato(String formato, String nombre){
+		String name="";
+		int longitud = nombre.length();
+		for(int i = longitud-1; i > 0; i--){
+			if(nombre.charAt(i)=='.'){;
+				name = nombre.substring(i+1);
+				break;
+			}
+		}
+		name.toLowerCase();
+		if(formato.equals("otro")){
+			if(!name.equals("doc")&&!name.equals("docx")&&!name.equals("jpg")
+					&&!name.equals("jepg")&&!name.equals("odt")&&!name.equals("pdf")){
+				return true;
+			}
+		}
+		
+		if(formato.equals("jpg")){
+			if(name.equals(formato)||name.equals("jpeg")){
+				return true;
+			}
+		}
+		if(formato.equals("doc")){
+			if(name.equals(formato)||name.equals("docx")){
+				return true;
+			}
+		}
+		if(name.equals(formato)){
+			return true;
+		}
+		
+		return false;
 	}
 
 }
