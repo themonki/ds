@@ -167,6 +167,40 @@ public class DaoConsulta {
 		return autores;
 	}
 	
+	public Vector<Consulta> consultaAvanzada(Vector<String> atributos, Vector<String> valores)
+	{
+		Vector<Consulta>  consultas = new Vector<Consulta>();
+		
+		String consultaSql, consultaDocumentoSql, consultaPalabraSql, consultaAreaSql, consultaAutorSql;
+		
+		consultaDocumentoSql = "SELECT documento.id_documento, documento.titulo_principal " +
+				"FROM documento " +
+				"WHERE ";
+		
+		for(int i=0;i<atributos.size();i++)
+		{
+			String at = atributos.elementAt(i);
+			
+			if(at.contains("documento"))
+			{
+				if(at.contains("titulo"))
+				{
+					consultaDocumentoSql += "(documento.titulo_principal = '" +
+							valores.elementAt(i) + "' OR " +
+							"documeno.titulo_secundario = '" +
+							valores.elementAt(i) + "') AND";
+				}else
+				{
+					consultaDocumentoSql += at + " = " + valores.elementAt(i) + "AND";
+				}
+			}
+		}
+		
+		System.out.println(consultaDocumentoSql);
+		return consultas;
+		
+	}
+	
 	public int guardarConsulta(String id_documento, String login, String fecha, String hora)
 	{
 		String sql_guardar;

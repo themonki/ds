@@ -53,8 +53,137 @@ public class ControladorConsulta
 		return resultado;
 	}
 	
-	public Vector<Consulta> consultaAvanzada(Vector<String> atributo, Vector<String> valor)
+	public Vector<Consulta> consultaAvanzada(Vector<String> atributo, Vector<String> valor, int opTitulo, int opPalabra, int opAutor)
 	{
+		Vector<String> atributoConsulta = new Vector<String>();
+		Vector<String> valorConsulta = new Vector<String>();
+		
+		/*opcion 1:sin 2:cualquiera 3:exacta*/
+		
+		for(int i=0; i<atributo.size();i++)
+		{
+			String elemento = atributo.elementAt(i);
+			
+			if(elemento.equals("palabra"))
+			{
+				if(opPalabra == 1)
+				{
+					/*StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					while(tk.hasMoreElements())
+					{
+					}*/
+					
+				}else if(opPalabra == 2)
+				{
+					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					while(tk.hasMoreElements())
+					{
+						atributoConsulta.add("palabra_clave.nombre");
+						valorConsulta.add(tk.nextToken());
+					}
+					
+				}else if(opPalabra == 3)
+				{
+					atributoConsulta.add("palabra_clave.nombre");
+					valorConsulta.add(valor.elementAt(i));
+				}
+				
+			}else if(elemento.equals("autor"))
+			{
+				if(opAutor == 1)
+				{
+					/*StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					while(tk.hasMoreElements())
+					{
+					}*/
+					
+				}else if(opAutor == 2)
+				{
+					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					while(tk.hasMoreElements())
+					{
+						String v = tk.nextToken();
+						
+						atributoConsulta.add("autor.nombre");
+						valorConsulta.add(v);
+						//atributoConsulta.add("autor.apellido");
+						//valorConsulta.add(v);
+					}
+					
+				}else if(opPalabra == 3)
+				{
+					atributoConsulta.add("autor.nombre");
+					valorConsulta.add(valor.elementAt(i));
+					//atributoConsulta.add("autor.apellido");
+					//valorConsulta.add(valor.elementAt(i));
+				}
+				
+			}else if(elemento.equals("titulo"))
+			{
+				if(opTitulo == 1)
+				{
+					/*StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					while(tk.hasMoreElements())
+					{
+					}*/
+					
+				}else if(opTitulo == 2)
+				{
+					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
+					while(tk.hasMoreElements())
+					{
+						String v = tk.nextToken();
+						
+						atributoConsulta.add("documento.titulo_principal");
+						valorConsulta.add(v);
+						//atributoConsulta.add("documento.titulo_secundario");
+						//valorConsulta.add(v);
+					}
+					
+				}else if(opTitulo == 3)
+				{
+					atributoConsulta.add("documento.titulo_principal");
+					valorConsulta.add(valor.elementAt(i));
+					//atributoConsulta.add("documento.titulo_secundario");
+					//valorConsulta.add(valor.elementAt(i));
+				}
+			}else if(elemento.equals("fecha_antes"))
+			{
+				
+			}else if(elemento.equals("fecha_despues"))
+			{
+			}
+			else if(elemento.equals("idioma"))
+			{
+				if(!valor.elementAt(i).equals("Todos"))
+				{
+					atributoConsulta.add("documento.idioma");
+					valorConsulta.add(valor.elementAt(i));
+				}
+			}
+			else if(elemento.equals("formato"))
+			{
+				if(!valor.elementAt(i).equals("Todos"))
+				{
+					atributoConsulta.add("documento.formato");
+					valorConsulta.add(valor.elementAt(i));
+				}
+			}else if(elemento.equals("area"))
+			{
+				if(!valor.elementAt(i).equals("Todos"))
+				{
+					atributoConsulta.add("area_conocimiento.nombre");
+					valorConsulta.add(valor.elementAt(i));
+				}
+			}
+		}
+		
+		System.out.println(atributo);
+		System.out.println(valor);
+		System.out.println(atributoConsulta);
+		System.out.println(valorConsulta);
+		DaoConsulta daoConsulta = new DaoConsulta();
+		daoConsulta.consultaAvanzada(atributoConsulta, valorConsulta);
 		Vector<Consulta> v= new Vector<Consulta>();
 		return v;
 	}
