@@ -53,6 +53,12 @@ public class ControladorConsulta
 		return resultado;
 	}
 	
+	public Vector<Consulta> consultaAvanzada(Vector<String> atributo, Vector<String> valor)
+	{
+		Vector<Consulta> v= new Vector<Consulta>();
+		return v;
+	}
+	
 	//metodo que actualiza la tabla consulta en el momento de que selecciona un resultado (pasa a vistaDocumento)
 	public void insertarConsultaDocumentoUsuario(String id_documento, String login){
 		java.util.Date fecha = new java.util.Date();
@@ -70,5 +76,6 @@ public class ControladorConsulta
 		
 		
 	}
+	
 	
 }

@@ -149,10 +149,7 @@ public class GuiConsultaBasica extends JScrollPane
 		{
 			if(evento.getSource() == consultar)
 			{
-				//no estoy seguro de instanciar el controlador aqui
-				ControladorConsulta controlador = new ControladorConsulta();
-				//mira que se hace con loque retorna
-				
+				ControladorConsulta controlador = new ControladorConsulta();				
 				Vector<Consulta> vector = new Vector<Consulta>();
 				
 				if(!campoConsulta.getText().equals("")){
@@ -160,7 +157,7 @@ public class GuiConsultaBasica extends JScrollPane
 					vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);					
 				}else{
 					JOptionPane.showMessageDialog(null, "Por favor ingrese parametros para la busqueda",
-							"No ahi parametros", JOptionPane.ERROR_MESSAGE);
+							"No hay parametros", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				if(resultadoConsulta!=null){
