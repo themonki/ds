@@ -23,6 +23,7 @@ import javax.swing.border.TitledBorder;
 import Consultas.Controlador.ControladorConsulta;
 import Consultas.Gui.GuiConsultaBasica;
 import Consultas.Gui.GuiVistaDocumento;
+import Consultas.Logica.Consulta;
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -262,7 +263,11 @@ public class GuiModificarDoc  extends GuiCatalogar
 				JOptionPane.showMessageDialog(null,
 						"El documento fue modificado correctamente");
 				
-				GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(doc);
+				
+				ControladorConsulta conConsulta = new ControladorConsulta();
+				
+				Documento d  = conConsulta.obtenerDatosDocumento(doc.getId_doc());
+				GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
 				GuiConsultaBasica.ponerDescripcion();
 				if(GuiConsultaBasica.TIPOUSUARIO == 2)
 				{
