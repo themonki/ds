@@ -377,6 +377,16 @@ public class GuiPrincipal extends JFrame
 			
 			contenedor.add(panelAutentificar, BorderLayout.CENTER);
 			estado.setText(estadoIngrensando);
+		}	
+		public static void cambiarAvanzadaInicio()
+		{
+			
+			
+			contenedor.remove(panelConsultaAvanzada);
+			contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+			estado.setText("Inicio");
+			contenedor.repaint();
+			
 		}
 		
 		

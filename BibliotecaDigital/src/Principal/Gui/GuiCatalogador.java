@@ -396,5 +396,15 @@ public class GuiCatalogador extends JFrame
 		contenedor.repaint();
 		
 	}
+	public static void cambiarAvanzadaInicio()
+	{
+		
+		
+		contenedor.remove(panelConsultaAvanzada);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText("Inicio");
+		contenedor.repaint();
+		
+	}
 
 }

@@ -34,6 +34,7 @@ import GestionDocumento.Logica.PalabraClave;
 import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiPrincipal;
+import Principal.Gui.GuiUsuarioNormal;
 import Utilidades.Estilos;
 
 public class GuiVistaDocumento extends JScrollPane {
@@ -516,7 +517,13 @@ public class GuiVistaDocumento extends JScrollPane {
 					if (flag == 0) {
 					//	JOptionPane.showMessageDialog(null, "Consultar areas: "+etiquetaAConsultar.getText());
 
-						consultar(etiquetaAConsultar.getText());	
+						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+						{
+							consultar(etiquetaAConsultar.getText());	
+						}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						{
+							consultarAvanzado(etiquetaAConsultar.getText());	
+						}
 						
 						flag = 1;
 					} else {
@@ -528,7 +535,13 @@ public class GuiVistaDocumento extends JScrollPane {
 						//		.showMessageDialog(null, "Consultar autores: "+etiquetaAConsultar.getText());
 
 					
-						consultar(etiquetaAConsultar.getText());	
+						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+						{
+							consultar(etiquetaAConsultar.getText());	
+						}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						{
+							consultarAvanzado(etiquetaAConsultar.getText());	
+						}
 						
 						flag = 1;
 					} else {
@@ -539,7 +552,13 @@ public class GuiVistaDocumento extends JScrollPane {
 						//JOptionPane.showMessageDialog(null,
 						//		"Consultar palabras clave: "+etiquetaAConsultar.getText());
 						
-						consultar(etiquetaAConsultar.getText());	
+						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+						{
+							consultar(etiquetaAConsultar.getText());	
+						}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						{
+							consultarAvanzado(etiquetaAConsultar.getText());	
+						}	
 
 						flag = 1;
 					} else {
@@ -607,7 +626,55 @@ public class GuiVistaDocumento extends JScrollPane {
 		GuiConsultaBasica.campoConsulta.setText(parametro);
 		GuiResultadoConsulta.TIPOCONSULTA = 1;
 		GuiConsultaBasica.restaurar();
+		//GuiConsultaBasica.panel.add(GuiConsultaBasica.resultadoConsulta, BorderLayout.CENTER);
+		GuiConsultaBasica.panel.updateUI();
+		if(vector.size() <=0 && !parametro.equals("")){
+			
+			JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
+			
+		}	
+		
+	}
+	
+	private static void consultarAvanzado(String parametro)
+	{
+		ControladorConsulta controlador = new ControladorConsulta();
+		//mira que se hace con loque retorna
+		boolean seleccionBusquedaCompeta = true;
+		
+		Vector<Consulta> vector = new Vector<Consulta>();
+		
+		if(!parametro.equals("")){
+			vector = null;
+			vector = controlador.consultaGeneral(parametro, seleccionBusquedaCompeta);					
+		}else{
+			JOptionPane.showMessageDialog(null, "Por favor ingrese parametros para la busqueda",
+					"No ahi parametros", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
+		int cantidad = 10;
+		System.out.println(vector);
+		GuiConsultaBasica.resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
+		GuiConsultaBasica.campoConsulta.setText(parametro);
+		GuiResultadoConsulta.TIPOCONSULTA = 1;
 		GuiConsultaBasica.panel.add(GuiConsultaBasica.resultadoConsulta, BorderLayout.CENTER);
+		GuiConsultaAvanzada.restaurarTodo();
+		
+		if(GuiConsultaAvanzada.TIPOUSUARIO == 0)
+		{
+			GuiPrincipal.cambiarAvanzadaInicio();
+		}
+		else if(GuiConsultaAvanzada.TIPOUSUARIO == 1)
+		{
+			GuiUsuarioNormal.cambiarAvanzadaInicio();
+		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 2)
+		{
+			GuiCatalogador.cambiarAvanzadaInicio();
+		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 3)
+		{
+			GuiAdministrador.cambiarAvanzadaInicio();
+		}
 		GuiConsultaBasica.panel.updateUI();
 		if(vector.size() <=0 && !parametro.equals("")){
 			

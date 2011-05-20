@@ -47,7 +47,7 @@ public class GuiUsuarioNormal extends JFrame
 	private Button consultaAvanzada;
 	private Button logout;
 	
-	private  JLabel estado;
+	private static  JLabel estado;
 
 	// Clase interna que permite administrar todos los eventos que genera la
 	// ventana y son escuchados.
@@ -56,7 +56,7 @@ public class GuiUsuarioNormal extends JFrame
 	// Elementos de la barra de menu
 	private JMenu archivo;
 	private JMenu acercaDe;
-	private  Container contenedor;
+	private static  Container contenedor;
 	private JMenuItem salir;
 	private JMenuItem informacion;
 	private JMenuBar barra;
@@ -263,6 +263,16 @@ public class GuiUsuarioNormal extends JFrame
 		estado.setText(estadoInicial);
 		repaint();
 		
+		
+	}
+	public static void cambiarAvanzadaInicio()
+	{
+		
+		
+		contenedor.remove(panelConsultaAvanzada);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText("Inicio");
+		contenedor.repaint();
 		
 	}
 }
