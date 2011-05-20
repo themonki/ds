@@ -151,7 +151,6 @@ public class GuiIngresarTipoMaterial extends JFrame {
 	
 	private class ManejadorJTextField implements KeyListener{
 
-		@Override
 		public void keyPressed(KeyEvent e) {
 			
 			if( campoNombre == e.getSource()){
@@ -174,25 +173,13 @@ public class GuiIngresarTipoMaterial extends JFrame {
 						campoDescripcion.setText(campoDescripcion.getText().substring(0,199));
 					}
 				}					
-			}
-			
-			
-
-		
-			
-				
+			}				
 		}
 
-		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyReleased(KeyEvent e) {			
 		}
 
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyTyped(KeyEvent e) {			
 		}
 	}
 	

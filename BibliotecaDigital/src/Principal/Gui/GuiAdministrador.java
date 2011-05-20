@@ -188,8 +188,6 @@ public class GuiAdministrador extends JFrame
 		contenedor.add(panelconOpciones2, BorderLayout.WEST);
 		contenedor.add(estado, BorderLayout.SOUTH);
 		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		//contenedor.add(new JPanel(), BorderLayout.EAST);
-		//contenedor.add(new JPanel(), BorderLayout.WEST);
 	
 		setSize(800, 500); 
 		//centrar en la pantalla
@@ -209,7 +207,6 @@ public class GuiAdministrador extends JFrame
 			if (evento.getSource() == modificarUsuario)
 			{
 				
-				//panelConsultarUsuarios = new GuiConsultarUsuarios();
 				
 				if (estado.getText().equals(estadoInicial)){
 				
@@ -338,7 +335,6 @@ public class GuiAdministrador extends JFrame
 			}
 			else if(evento.getSource()==modificarMiUsuario)
 			{
-				//panelModificacion = new GuiRegistroModificar(usuario,1);
 			
 				if (estado.getText().equals(estadoConsultaAvanzada))
 				{

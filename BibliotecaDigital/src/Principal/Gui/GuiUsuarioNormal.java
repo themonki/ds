@@ -167,8 +167,6 @@ public class GuiUsuarioNormal extends JFrame
 		contenedor.add(panelconOpciones2, BorderLayout.WEST);
 		contenedor.add(estado, BorderLayout.SOUTH);
 		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		//contenedor.add(new JPanel(), BorderLayout.EAST);
-		//contenedor.add(new JPanel(), BorderLayout.WEST);
 	
 		setSize(800, 500);
 		//centrar en la pantalla
@@ -254,8 +252,6 @@ public class GuiUsuarioNormal extends JFrame
 			}
 		}
 	}
-
-
 	
 	public void cambiarPanelInicio()
 	{
@@ -266,19 +262,4 @@ public class GuiUsuarioNormal extends JFrame
 		
 		
 	}
-	
-	/*public static void cambiarPanelInicial()
-	{
-		contenedor.remove(panelModificacion);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText(estadoInicial);
-	
-		
-	}*/
-
-
-
-
-
-
 }

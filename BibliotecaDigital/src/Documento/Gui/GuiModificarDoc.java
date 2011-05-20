@@ -48,11 +48,7 @@ public class GuiModificarDoc  extends GuiCatalogar
 	private Button botonModificar;
 	private JLabel campoFechaCatalogacion, fechaCatalogacion;
 
-	public GuiModificarDoc() 
-	{
-
-
-	}
+	public GuiModificarDoc() {}
 
 	public GuiModificarDoc (String loginIngreso,Documento doc) 
 	{
@@ -102,10 +98,6 @@ public class GuiModificarDoc  extends GuiCatalogar
 		initAreasActuales();
 		initAutoresActuales();
 		initPalabrasActuales();
-		
-		
-		// NO he mirado que pasa con los null por esos las comillas 
-		// aunque lso null se guarda como "" 
 	}
 	
 	private void initLabels(Font font1){
@@ -160,10 +152,8 @@ public class GuiModificarDoc  extends GuiCatalogar
 	    this.panelFecha2.add(this.spinner2, BorderLayout.CENTER);
 	}
 
-	private void initPalabrasActuales() {
-		
-		Vector<PalabraClave> vpc = doc.getPalabrasClave();
-		
+	private void initPalabrasActuales() {		
+		Vector<PalabraClave> vpc = doc.getPalabrasClave();		
 		for(int i =0; i < vpc.size();i++){
 			PalabraClave palabra = vpc.get(i);
 			palabActualVec.add(palabra.getNombre());
@@ -171,71 +161,37 @@ public class GuiModificarDoc  extends GuiCatalogar
 			etiqueta.addMouseListener(new eventoMouse(2));
 			panelConpalabrasC.add(etiqueta);
 		}
-		
 		panelConpalabrasC.updateUI();
 		
 	}
 
 	private void initAutoresActuales() {
-		
-
 		Vector<Autor> va = doc.getAutores();
-
 		for (int i=0;i< va.size();i++)
 		{
 			Autor autor =va.get(i);
-			autoresActualVector.add(autor.getNombre());	
+			autoresActualVector.add(autor.getNombre());
 			AutorIdActualVector.add(autor.getId());
 			JLabel etiqueta = new JLabel(autor.getNombre());
-			etiqueta.addMouseListener(new eventoMouse(1));		
-			
+			etiqueta.addMouseListener(new eventoMouse(1));
 			panelConAutores.add(etiqueta);
-		}
-		
+		}		
 		panelConAreas.updateUI();
 	}
 
 	private void initAreasActuales() {
 		Vector<AreaConocimiento> vac = doc.getAreas();
-
 		for (int i=0;i< vac.size();i++)
 		{
 			AreaConocimiento area =vac.get(i);
 			areasActualVecr.add(area.getNombre());	
-			AreasIdActualVector.add(area.getIdArea());
-			
+			AreasIdActualVector.add(area.getIdArea());			
 			JLabel etiqueta = new JLabel(area.getNombre());
 			etiqueta.addMouseListener(new eventoMouse(3));		
-			
 			panelConAreas.add(etiqueta);
-		}
-		
+			}		
 		panelConAreas.updateUI();
 	}
-
-	public static void main(String args[]) {
-
-		try
-		{				
-			NimRODTheme nt = new NimRODTheme("recursos/NimRODThemeFile2.theme");
-			NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
-			NimRODLookAndFeel.setCurrentTheme(nt);
-			UIManager.setLookAndFeel( NimRODLF);
-		}
-		catch (Exception e){e.printStackTrace();}
-
-		JFrame  a = new JFrame();
-		ControladorConsulta da = new ControladorConsulta();
-		
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		a.add(new GuiModificarDoc("admin",da.obtenerDatosDocumento("10000")));
-
-
-		a.setSize(500,500);
-		a.setVisible(true);
-
-	}
-	
 
 	protected class ManejadorBotonModificar implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
@@ -264,8 +220,6 @@ public class GuiModificarDoc  extends GuiCatalogar
 					AreasIdActualVector, AutorIdActualVector, palabActualVec) >= 1) {
 				JOptionPane.showMessageDialog(null,
 						"El documento fue modificado correctamente");
-				
-				
 				ControladorConsulta conConsulta = new ControladorConsulta();
 				
 				Documento d  = conConsulta.obtenerDatosDocumento(doc.getId_doc());
@@ -276,17 +230,10 @@ public class GuiModificarDoc  extends GuiCatalogar
 					GuiCatalogador.cambiarPanelVista();
 				}
 				if(GuiConsultaBasica.TIPOUSUARIO == 3)
-				{
-				
+				{				
 					GuiAdministrador.cambiarPanelVista();
-				}
-			
-			
-			
+				}	
 			}
-
 		}
 	}
-
-
 }

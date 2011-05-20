@@ -63,7 +63,6 @@ public class ControladorAreaConocimiento
 	}
 
 	/*
-	 * METODO QUE NECESITA EL MANKO DE FELIPE
 	 */
 	public Vector<Vector<String>> obtenerTodasAreas() {
 
@@ -71,18 +70,14 @@ public class ControladorAreaConocimiento
 		Vector<AreaConocimiento> vectorAreas;
 		Vector<String> nombres = new Vector<String>();
 		Vector<String> ids = new Vector<String>();
-
 		vectorAreas = obtenerAreas();
 		int cantidad = vectorAreas.size();
-		for (int i = 0; i < cantidad; i++) {// empieza en uno porque no se
-											// necesita super
+		for (int i = 0; i < cantidad; i++) {
 			nombres.add(vectorAreas.get(i).getNombre());
 			ids.add(vectorAreas.get(i).getIdArea());
 		}
-
 		vectorTodasAreas.add(nombres);
 		vectorTodasAreas.add(ids);
-
 		return vectorTodasAreas;
 
 	}
@@ -91,26 +86,5 @@ public class ControladorAreaConocimiento
 		DaoAreaConocimiento daoArea = new DaoAreaConocimiento();
 		return daoArea.consultarAreasDocumento(id_documento);
 	}
-
-	/* main para prueba OK */
-	/*
-	 * public static void main(String args[]) { ControladorAreaConocimiento
-	 * controladorAreaConocimiento = new ControladorAreaConocimiento();
-	 * 
-	 * 
-	 * System.out.println(controladorAreaConocimiento.insertarAreaConocimiento("1"
-	 * , "Bases Datos",
-	 * "Mineria de datos descubrimiento de conocimiento a partir de bases de datos"
-	 * , "0"));
-	 * 
-	 * AreaConocimiento a1 = controladorAreaConocimiento.obtenerArea("1");
-	 * 
-	 * 
-	 * System.out.println(a1.getNombre());
-	 * 
-	 * 
-	 * System.out.println(controladorAreaConocimiento.obtenerAreas().get(0).
-	 * getDescripcion()); }
-	 */
 
 }

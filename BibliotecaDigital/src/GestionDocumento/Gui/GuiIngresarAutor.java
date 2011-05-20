@@ -225,22 +225,11 @@ public class GuiIngresarAutor extends JFrame {
 				}					
 			}
 			
-
-		
-			
-				
 		}
 
-		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
 		}
-
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyTyped(KeyEvent e) {			
 		}
 	}
 	
@@ -270,7 +259,4 @@ public class GuiIngresarAutor extends JFrame {
 	
 		return respuesta;
 	}
-
-	
-
 }

@@ -11,8 +11,6 @@ import java.sql.DriverManager;
 public class FachadaBD {
 	String url, usuario, password;
 	Connection conexion;
-	//Statement instruccion;
-	//ResultSet tabla;
 
 	public FachadaBD() {
 		url = "jdbc:postgresql://localhost:5432/proyecto";
@@ -24,7 +22,7 @@ public class FachadaBD {
 		try {
 			// Se carga el driver
 			Class.forName("org.postgresql.Driver");
-			System.out.println("Driver Cargado");
+			//System.out.println("Driver Cargado");
 		} catch (Exception e) {
 			System.out.println("No se pudo cargar el driver.");
 		}
@@ -32,7 +30,7 @@ public class FachadaBD {
 		try {
 			// Crear el objeto de conexion a la base de datos
 			conexion = DriverManager.getConnection(url, usuario, password);
-			System.out.println("Conexion Abierta");
+			//System.out.println("Conexion Abierta");
 			return conexion;
 
 		} catch (Exception e) {
@@ -45,7 +43,7 @@ public class FachadaBD {
 	public void cerrarConexion(Connection c) {
 		try {
 			c.close();
-			System.out.println("Cerrada la conexion a la base de datos");
+			//System.out.println("Cerrada la conexion a la base de datos");
 		} catch (Exception e) {
 			System.out.println("No se pudo cerrar la BD");
 		}

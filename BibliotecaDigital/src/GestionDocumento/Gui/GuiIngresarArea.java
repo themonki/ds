@@ -188,7 +188,6 @@ public class GuiIngresarArea extends JFrame {
 	
 	private class ManejadorJTextField implements KeyListener{
 
-		@Override
 		public void keyPressed(KeyEvent e) {
 			
 			if( campoNombre == e.getSource()){
@@ -212,17 +211,11 @@ public class GuiIngresarArea extends JFrame {
 					}
 				}					
 			}}
-
 	
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyReleased(KeyEvent e) {			
 		}
 
-		
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyTyped(KeyEvent e) {			
 		}
 	}	
 	
@@ -253,6 +246,4 @@ public class GuiIngresarArea extends JFrame {
 	
 		return respuesta;
 	}
-	
-
 }

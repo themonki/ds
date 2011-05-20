@@ -116,8 +116,6 @@ public class GuiCatalogar extends JScrollPane{
 
 	protected void initComponents(){
 
-		//super.setTitle("Catalogar Documento");
-		//super.setIconImage(new ImageIcon("LOGO1.png").getImage() );
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Catalogar Documento");
@@ -125,11 +123,6 @@ public class GuiCatalogar extends JScrollPane{
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		setBorder(borde);
-
-
-		//indicacion = new JLabel("   Catalogar Documento");
-
-
 
 		//----------------------------------------
 		vectoresParaComboBox();
@@ -161,9 +154,6 @@ public class GuiCatalogar extends JScrollPane{
 		panelScrollAutores.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		panelScrollPalabras.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-		//scroll2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-
 		//----------------------------------------------------
 		inicializarLabels(Estilos.fontLabels);
 		//--------------------------------------------------
@@ -173,16 +163,14 @@ public class GuiCatalogar extends JScrollPane{
 		//--------------------------------------------------
 		inicializarButton();
 
-		///fechaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	    
+		///fecha	    
 		model = new SpinnerDateModel();
 		model2= new SpinnerDateModel();
 		spinner = new JSpinner(model);
 		spinner2= new JSpinner(model2);
 		editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
 		editor2 = new JSpinner.DateEditor(spinner2, "yyyy-MM-dd");
-
-		
-		
+	
 		spinner.setEditor(editor);
 		spinner2.setEditor(editor2);
 		((JSpinner.DateEditor) spinner.getEditor()).getTextField().setEditable(false);
@@ -190,7 +178,6 @@ public class GuiCatalogar extends JScrollPane{
 
 		spinner.setFont(Estilos.fontSubtitulos);
 		spinner2.setFont (Estilos.fontSubtitulos);
-//		spinner = new JSpinner();		spinner2 = new JSpinner();
 		panelFecha = new JPanel(new BorderLayout());
 		panelFecha.add(spinner, BorderLayout.CENTER);
 
@@ -201,9 +188,6 @@ public class GuiCatalogar extends JScrollPane{
 		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel4.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
-		//panelConAutores.setBorder(BorderFactory.createLineBorder(Color.black));
-		//panelConpalabrasC.setBorder(BorderFactory.createLineBorder(Color.black));	
-		//panelConAreas.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		panelConAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Autores Actuales"));
@@ -326,13 +310,10 @@ public class GuiCatalogar extends JScrollPane{
 		panel2.add(campoAreas,restriccionCampo);
 		panel2.add(nuevaArea,restriccionBotones);
 
-
-
 		restriccionEtiquetas.gridy=10;
 		restriccionCampo.gridy=10;
 		panel2.add(formato,restriccionEtiquetas);	
 		panel2.add(campoFormato,restriccionCampo);	
-
 
 		restriccionEtiquetas.gridy=11;
 		restriccionCampo.gridy=11;
@@ -354,15 +335,12 @@ public class GuiCatalogar extends JScrollPane{
 		panel2.add(fechaPublicacion,restriccionEtiquetas);
 		panel2.add(panelFecha2,restriccionCampo);
 
-
-
 		restriccionEtiquetas.gridy=14;
 		restriccionCampo.gridy=14;
 		restriccionCampo.ipadx=5;
 		restriccionBotones.gridy=14;
 		restriccionBotones.ipadx=14;
 		restriccionBotones.gridx=2;
-
 
 		panel2.add(enlaceDoc,restriccionEtiquetas);	
 		panel2.add(campoEnlaceDoc,restriccionCampo);
@@ -373,13 +351,6 @@ public class GuiCatalogar extends JScrollPane{
 
 		panel2.add(resolucion,restriccionEtiquetas);
 		panel2.add(campoResolucion,restriccionCampo);
-
-
-
-		//panel2.add(campoEnlaceDoc,restriccionCampo);
-		//panel2.add(examinarDoc, restriccionBotones);
-
-
 
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -392,12 +363,9 @@ public class GuiCatalogar extends JScrollPane{
 		panel4.add(panel5,BorderLayout.CENTER);
 		panel4.add(panel,BorderLayout.SOUTH);
 
-
-
 		panelScrollAutores.setViewportView(panelConAutores);
 		panelScrollPalabras.setViewportView(panelConAreas);
 		panelScrollAreas.setViewportView(panelConpalabrasC);
-
 
 		panel8.add(panelScrollAutores);
 		panel8.add(panelScrollPalabras);
@@ -416,12 +384,8 @@ public class GuiCatalogar extends JScrollPane{
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		//------------------------------------------
-		setSize(900,900);
 		setVisible(true);
-		setSize(500,500 );
 		//-------------------------------------------
-
-
 	}
 	protected void nuevaArea() {
 		GuiIngresarArea guiArea=	new GuiIngresarArea(this);
@@ -431,28 +395,21 @@ public class GuiCatalogar extends JScrollPane{
 	protected void nuevoTipoMaterial() {
 		GuiIngresarTipoMaterial guiMaterial = new GuiIngresarTipoMaterial(this);
 		guiMaterial.setVisible(true);
-		//guiMaterial.setAlwaysOnTop(true);		
 	}	
 	protected void nuevaAutor() {
 		GuiIngresarAutor guiAutor= new GuiIngresarAutor(this);
 		guiAutor.setVisible(true);
-		//guiAutor.setAlwaysOnTop(true);		
 	}	
 	protected void nuevaPalabra() 
 	{
 		GuiIngresarPalabraClave guiPalabra = new GuiIngresarPalabraClave(this);
 		guiPalabra.setVisible(true );
-		//guiPalabra.setAlwaysOnTop(true);		
 	}	
-
-
-
 	public void vectoresParaComboBox() {
 		//---------------vectores para los ComboBox------------------
 		areasVector= new Vector<String>();
 		autoresVector= new Vector<String>();
 		palabrasClaveVec= new Vector<String>();
-
 
 		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
 		areasVector =contenedorIdNombreArea.get(0);
@@ -494,7 +451,6 @@ public class GuiCatalogar extends JScrollPane{
 		formatosVector.add("doc");
 		formatosVector.add("odt");
 		formatosVector.add("otro");
-
 	}
 
 	protected void inicializarButton() {
@@ -538,12 +494,10 @@ public class GuiCatalogar extends JScrollPane{
 		campoTituloPpal.addKeyListener(manejador);
 		campoTituloSecundario.addKeyListener(manejador);
 		campoResolucion.addKeyListener(manejador);
-
 	}
 
 	protected void inicializarLabels(Font font1) 
 	{
-
 		tipoMaterial= new JLabel(" Tipo De Material:  ",JLabel.LEFT);
 		tituloPrincipal= new JLabel(" Titulo Principal:  *",JLabel.LEFT);
 		idioma= new JLabel(" Idioma:  *",JLabel.LEFT);
@@ -579,7 +533,6 @@ public class GuiCatalogar extends JScrollPane{
 		fechaPublicacion.setFont(font1);
 		formato.setFont(font1);
 		enlaceDoc.setFont(font1);
-
 
 		fechaCreacion.setForeground(Estilos.colorLabels);
 		resolucion.setForeground(Estilos.colorLabels);
@@ -623,13 +576,11 @@ public class GuiCatalogar extends JScrollPane{
 		campoAreas.setFont(font2);
 		campoAutor.setFont(font2);
 		campoPalabras.setFont(font2);
-		//---------------------------------------------------------
-		
+		//---------------------------------------------------------		
 		ManejadorComboBox manejador = new ManejadorComboBox();
 		campoAutor.addActionListener(manejador);
 		campoPalabras.addActionListener(manejador);    
 		campoAreas.addActionListener(manejador);
-
 	}
 
 	protected class ManejadorBoton implements ActionListener 
@@ -683,35 +634,27 @@ public class GuiCatalogar extends JScrollPane{
 				}						
 			}
 			if(event.getSource()==nuevaArea){				
-
 				nuevaArea();
-
 			}
 			if(event.getSource()==nuevoTipo){
 				nuevoTipoMaterial();
-
 			}
 			if(event.getSource()==nuevoAutor){
 				nuevaAutor();
 			}
 			if(event.getSource()==nuevaPalabra){
 				nuevaPalabra();
-
-
 			}
 		}
 	} 
 	protected class ManejadorComboBox implements ActionListener {
 
-
 		public void actionPerformed(ActionEvent event) {
-
 
 			JLabel etiqueta= new JLabel();
 
 			if (event.getSource()==campoAutor)
 			{
-
 				if (autoresActualVector.indexOf(campoAutor.getSelectedItem())==-1)
 				{
 					autoresActualVector.add((String) campoAutor.getSelectedItem());		
@@ -725,12 +668,9 @@ public class GuiCatalogar extends JScrollPane{
 					panelConAutores.updateUI();
 
 				}
-
 			};
 			if (event.getSource()== campoPalabras)
-
 			{	
-
 				if (palabActualVec.indexOf(campoPalabras.getSelectedItem())==-1)
 				{
 					palabActualVec.add((String) campoPalabras.getSelectedItem());		
@@ -739,15 +679,12 @@ public class GuiCatalogar extends JScrollPane{
 					panelConpalabrasC.add(etiqueta);			
 					panelConpalabrasC.updateUI();
 				}
-
-
 			}
 
 			if (event.getSource()==campoAreas)
 			{
 				if (areasActualVecr.indexOf(campoAreas.getSelectedItem())==-1)
 				{
-
 					areasActualVecr.add((String) campoAreas.getSelectedItem());			
 					AreasIdActualVector.add((String) AreasIdVector.get( campoAreas.getSelectedIndex()));
 					etiqueta.setText(""+campoAreas.getSelectedItem());				
@@ -755,9 +692,7 @@ public class GuiCatalogar extends JScrollPane{
 					panelConAreas.add(etiqueta);			
 					panelConAreas.updateUI();
 				}
-
-
-			};
+			}
 		}
 	}
 
@@ -766,85 +701,61 @@ public class GuiCatalogar extends JScrollPane{
 		int panel=0;//usado para saber de que panel es la palabra autor area o palabraclave
 
 		eventoMouse (int i ){panel = i;};
-		public void mouseClicked(MouseEvent arg0) {
-
+		public void mouseClicked(MouseEvent e) {
 
 			if (panel== 1)
 			{
-
-				JLabel refe=(JLabel) arg0.getSource();	
-
+				JLabel refe=(JLabel) e.getSource();	
 
 				int index = autoresActualVector.indexOf(refe.getText());
-
 				autoresActualVector.remove(index);
 				AutorIdActualVector.remove(index);
-
-
 				panelConAutores.remove(refe);									
 				panelConAutores.updateUI();				
 			}
-
 			if (panel == 2 )
 			{
-
-				JLabel refe=(JLabel) arg0.getSource();
+				JLabel refe=(JLabel) e.getSource();
 
 				palabActualVec.removeElement(refe.getText());														
 				panelConpalabrasC.remove(refe);					
 				panelConpalabrasC.updateUI();
-
 			}
-
 			if (panel == 3){
-				JLabel refe=(JLabel) arg0.getSource();
-
+				JLabel refe=(JLabel) e.getSource();
 				int index = areasActualVecr.indexOf(refe.getText());
-
 				areasActualVecr.remove(index);
 				AreasIdActualVector.remove(index);
-
 				panelConAreas.remove(refe);					
 				panelConAreas.updateUI();
 			}
 		}
 
-		@Override
-		public void mouseEntered(MouseEvent arg0) {
+		public void mouseEntered(MouseEvent e) {
 
-			JLabel refe=(JLabel) arg0.getSource();
+			JLabel refe=(JLabel) e.getSource();
 			refe.setForeground(Color.red);
 			refe.setIcon(new ImageIcon("recursos/CRUZ.gif"));
 			refe.updateUI();
-
-
 		}
 
-		@Override
-		public void mouseExited(MouseEvent arg0) {
+		public void mouseExited(MouseEvent e) {
 
-			JLabel refe=(JLabel) arg0.getSource();
+			JLabel refe=(JLabel) e.getSource();
 			refe.setForeground(Color.black);
-			refe.setIcon(new ImageIcon(""));				
-
+			refe.setIcon(new ImageIcon(""));
 		} 
 
-		public void mousePressed(MouseEvent arg0) {}
-		public void mouseReleased(MouseEvent arg0){}
-
-
+		public void mousePressed(MouseEvent e) {}
+		public void mouseReleased(MouseEvent e){}
 	}
 	protected class ManejadorJTextField implements KeyListener{
 
-		@Override
 		public void keyPressed(KeyEvent e) {
-
-
 
 			if(e.getSource()== campoTituloPpal || e.getSource()== campoTituloSecundario){
 				if(new String(campoTituloPpal.getText()).length()>49)
 				{
-
 					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoTituloPpal.setText(new String(campoTituloPpal.getText()).substring(0,49));
@@ -852,7 +763,6 @@ public class GuiCatalogar extends JScrollPane{
 				}
 				if(new String(campoTituloSecundario.getText()).length()>49)
 				{
-
 					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoTituloSecundario.setText(new String(campoTituloSecundario.getText()).substring(0,49));
@@ -864,68 +774,49 @@ public class GuiCatalogar extends JScrollPane{
 			{
 				if(new String(campoEditorial.getText()).length()>29)
 				{
-
 					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoEditorial.setText(new String(campoEditorial.getText()).substring(0,29));
-
 					}
-
 				}		
 			}
 			if(e.getSource()== campoSoftware)
 			{
 				if(new String(campoSoftware.getText()).length()>19)
 				{
-
 					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoSoftware.setText(new String(campoSoftware.getText()).substring(0,19));
-
 					}
-
 				}		
 			}
 			if(e.getSource()== campoDescripcion)
 			{
 				if(new String(campoDescripcion.getText()).length()>199)
 				{
-
 					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoDescripcion.setText(new String(campoDescripcion.getText()).substring(0,199));
-
 					}
-
 				}		
 			}
 			if(e.getSource()== campoResolucion)
 			{
 				if(new String(campoResolucion.getText()).length()>14)
 				{
-
 					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
 						getToolkit().beep();//sonido
 						campoResolucion.setText(new String(campoResolucion.getText()).substring(0,14));
-
 					}
-
 				}		
 			}
 		}
 
-
 		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-
 		}
-
 
 		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-
 		}
-
 	}
 
 	public void limpiarCampos(){
@@ -954,10 +845,5 @@ public class GuiCatalogar extends JScrollPane{
 		autoresActualVector.removeAllElements();
 		AutorIdActualVector.removeAllElements();
 		AreasIdActualVector.removeAllElements();
-
 	}
-
 }
-
-
-
