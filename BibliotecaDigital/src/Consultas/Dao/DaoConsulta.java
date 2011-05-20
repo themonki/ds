@@ -178,7 +178,7 @@ public class DaoConsulta {
 		//consultaDocumentoSql = 
 		consultaDocumentoTituloSql=	"SELECT documento.id_documento, documento.titulo_principal " +
 				"FROM documento " +
-				"WHERE (";
+				"WHERE ";
 		
 		for(int i=0;i<atributos.size();i++)
 		{
@@ -192,38 +192,30 @@ public class DaoConsulta {
 					(atributos.elementAt(i+1).contains("titulo"));
 					if(at.contains("sin"))
 					{
-						consultaDocumentoTituloSql += "documento.titulo_principal not like '%" +
+						consultaDocumentoTituloSql += "documento.titulo_principal NOT LIKE '%" +
 						valores.elementAt(i) + "%' OR " +
-						"documento.titulo_secundario not like '%" +
+						"documento.titulo_secundario NOT LIKE '%" +
 						valores.elementAt(i)+ "%'" ;
 						if(esOR)
 						{
 							consultaDocumentoTituloSql += " OR ";
-						}else
-						{
-							consultaDocumentoTituloSql +=")";
 						}
-						
 					} else if(at.contains("algunas"))
 					{
-						consultaDocumentoTituloSql += "(documento.titulo_principal like '%" +
+						consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
 						valores.elementAt(i) + "%' OR " +
-						"documento.titulo_secundario like '%" +
+						"documento.titulo_secundario LIKE '%" +
 						valores.elementAt(i)+ "%'" ;
 						if(esOR)
 						{
 							consultaDocumentoTituloSql += " OR ";
-						}else
-						{
-							consultaDocumentoTituloSql +=")";
 						}
-						
 					}else
 					{
-						consultaDocumentoTituloSql += "(documento.titulo_principal = '" +
+						consultaDocumentoTituloSql += "documento.titulo_principal = '" +
 						valores.elementAt(i) + "' OR " +
 						"documeno.titulo_secundario = '" +
-						valores.elementAt(i) + "')";
+						valores.elementAt(i) + "'";
 					}
 					
 					
