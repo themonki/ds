@@ -80,6 +80,8 @@ public class GuiModificarDoc  extends GuiCatalogar
 		setBotonCatalogar(botonModificar);
 		this.botonModificar.addActionListener(new ManejadorBotonModificar());		
 		this.panel2.remove(this.examinarDoc);
+		this.panel2.remove(this.formato);
+		this.panel2.remove(this.campoFormato);
 		initDocumentInfo();
 	}
 
