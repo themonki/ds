@@ -41,6 +41,7 @@ public class GuiAdministrador extends JFrame
 	private String estadoConsultarUsuario ="ConsultarUsuario";
 	private String estadoConsultaAvanzada = "ConsultaAvanzada";
 	private String estadoCatalogar = "Catalogar";
+	private String estadoModificandoDoc = "ModificandoDocumento";
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
@@ -236,6 +237,12 @@ public class GuiAdministrador extends JFrame
 					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
 					estado.setText(estadoConsultarUsuario);
 					repaint();
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
+					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					estado.setText(estadoConsultarUsuario);
+					repaint();
 				}
 
 				
@@ -266,6 +273,12 @@ public class GuiAdministrador extends JFrame
 				}else if(estado.getText().equals(estadoCatalogar))
 				{
 					contenedor.remove(panelCatalogar);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoInicial);
+					repaint();
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
 					repaint();
@@ -309,6 +322,14 @@ public class GuiAdministrador extends JFrame
 					repaint();
 					
 					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
+					contenedor.add(panelConsultaBasica);
+					estado.setText(estadoConsultaAvanzada);
+					repaint();
+					
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 								
 			}
@@ -342,6 +363,12 @@ public class GuiAdministrador extends JFrame
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
 					repaint();
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
+					repaint();
 				}
 				
 				
@@ -371,6 +398,12 @@ public class GuiAdministrador extends JFrame
 				}else if(estado.getText().equals(estadoModificacion))
 				{
 					contenedor.remove(panelModificacion);
+					contenedor.add(panelCatalogar);
+					estado.setText(estadoCatalogar);
+					repaint();
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
 					contenedor.add(panelCatalogar);
 					estado.setText(estadoCatalogar);
 					repaint();

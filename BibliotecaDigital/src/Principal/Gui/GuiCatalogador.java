@@ -227,6 +227,12 @@ public class GuiCatalogador extends JFrame
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
 					repaint();
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
+					repaint();
 				}
 
 			}else if(evento.getSource() == volver)
@@ -249,6 +255,12 @@ public class GuiCatalogador extends JFrame
 				}else if(estado.getText().equals(estadoCatalogando))
 				{
 					contenedor.remove(panelCatalogarModificar);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoInicial);
+					repaint();
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
 					repaint();
@@ -284,6 +296,14 @@ public class GuiCatalogador extends JFrame
 					repaint();
 					
 					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoConsultaAvanzada);
+					repaint();
+					
+					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 			}
 			else if(evento.getSource() == catalogar)
@@ -305,6 +325,12 @@ public class GuiCatalogador extends JFrame
 				}else if(estado.getText().equals(estadoModificacion))
 				{
 					contenedor.remove(panelModificacion);
+					contenedor.add(panelCatalogarModificar);
+					estado.setText(estadoCatalogando);
+					repaint();
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
 					contenedor.add(panelCatalogarModificar);
 					estado.setText(estadoCatalogando);
 					repaint();
