@@ -26,8 +26,7 @@ public class ControladorDocumento {
 			String descripcion, String software, String resolucion,
 			String editorial, String formato, String titulo_principal,
 			String titulo_secundario, String link, String creacion,
-			String publicacion, String catalogacion, String login) {
-		
+			String publicacion, String catalogacion, String login) {		
 		
 		//se supone que login ya debe llegar con lowercase, y no hace falta en id, creacion, publicacion ni
 		//catalogacion, y no se puede en link.
@@ -52,17 +51,13 @@ public class ControladorDocumento {
 		Date F_catalogacion = Date.valueOf(catalogacion);// formato yyyy-mm-dd
 		d.setFechaDeCatalogacion(F_catalogacion);
 		d.setCatalogadorLogin(login);
-
 		value = insertarDocumento(d);
-
 		// por seguridad
 		d = null;
 		return value;
-
 	}
 
-	public int insertarDocumento(Documento d) {
-		
+	public int insertarDocumento(Documento d) {		
 		//d.setIdioma(d.getIdioma().toLowerCase());
 		//d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
 		d.setDescripcion(d.getDescripcion().toLowerCase());
@@ -94,11 +89,8 @@ public class ControladorDocumento {
 			String editorial, String formato, String titulo_principal,
 			String titulo_secundario, String link, String creacion,
 			String publicacion, String catalogacion, String login) {		
-		
-		
-		Documento d = new Documento();
-
-		
+				
+		Documento d = new Documento();		
 		d.setId_doc(id);
 		d.setIdioma(idioma);
 		d.setDerechosDeAutor(derechos);
@@ -119,14 +111,11 @@ public class ControladorDocumento {
 		d.setCatalogadorLogin(login);
 
 		int value = modificarDocumento(d);
-
 		// por seguridad
 		d = null;
 		return value;
 	}
-
 	// /////////
-
 	public int modificarDocumento(Documento d) {
 		//se pasan a minuscula
 		//d.setIdioma(d.getIdioma().toLowerCase());
@@ -252,8 +241,7 @@ public class ControladorDocumento {
 		d.setAreas(vac);
 		d.setPalabrasClave(vpc);
 		
-		return this.catalogarDocumento(d);
-		
+		return this.catalogarDocumento(d);		
 		/*DaoDocumento daoDoc = new DaoDocumento();		
 		int value = this.insertarDocumento(d);
 		if(value<1){return -1;}
@@ -270,7 +258,7 @@ public class ControladorDocumento {
 	public String copiarDocumento(String url){
 		File src = new File(url), carp_dest=  new File("repositorio/");
 		File dst= new File(carp_dest.getName()+"/"+src.getName());
-		if(dst.exists()) {System.out.println("existe");return dst.getPath();} // si ya existe en el repositorio no se puede catalogar
+		if(dst.exists()) {return dst.getPath();} // si ya existe en el repositorio no se puede catalogar
 		InputStream in;
 		OutputStream out;
 		carp_dest.mkdir();
@@ -288,10 +276,8 @@ public class ControladorDocumento {
 		        return dst.getPath();
 		
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.toString());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.toString());
 		}
 		return "";
@@ -382,11 +368,8 @@ public class ControladorDocumento {
 		        return dst.getAbsolutePath();
 		
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.toString());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("ESTE");
 			System.out.println(e.toString());
 		}
 		return "";

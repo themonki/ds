@@ -80,7 +80,6 @@ public class DaoDocumento {
 			System.out.println(e);
 		}
 		return -1;
-
 	}
 
 	/*
@@ -98,7 +97,6 @@ public class DaoDocumento {
 						.getFechaDeCatalogacion().toString(), d
 						.getCatalogadorLogin(), d.getTipoMaterial());
 		return value;
-
 	}
 
 	/*
@@ -139,7 +137,6 @@ public class DaoDocumento {
 			System.out.println(e);
 		}
 		return -1;
-
 	}
 
 	/*
@@ -157,22 +154,22 @@ public class DaoDocumento {
 						.getFechaDeCatalogacion().toString(), d
 						.getCatalogadorLogin(), d.getTipoMaterial());
 		return value;
-
 	}
-	
-	public int guardarDocumentoAreas(String id_doc, Vector <String> ids_area){		
-		
+
+	public int guardarDocumentoAreas(String id_doc, Vector<String> ids_area) {
+
 		String sql_guardar;
 		int numFilas, cantidad = ids_area.size();
 		sql_guardar = "INSERT INTO Pertenece_Documento_Area_Conocimiento VALUES ";
-		if(cantidad==0){
+		if (cantidad == 0) {
 			return 0;
 		}
-		for(int i = 0; i < cantidad; i++){			
-			if(i==cantidad-1){
-				sql_guardar+="('"+ ids_area.get(i) + "', '"+id_doc +"' )";
-			}else {
-				sql_guardar+="('"+ ids_area.get(i) + "', '"+id_doc +"' ),";
+		for (int i = 0; i < cantidad; i++) {
+			if (i == cantidad - 1) {
+				sql_guardar += "('" + ids_area.get(i) + "', '" + id_doc + "' )";
+			} else {
+				sql_guardar += "('" + ids_area.get(i) + "', '" + id_doc
+						+ "' ),";
 			}
 		}
 		sql_guardar += ";";
@@ -184,27 +181,31 @@ public class DaoDocumento {
 			conn.close();
 			return numFilas;
 		} catch (SQLException e) {
-			System.out.println(e);			
+			System.out.println(e);
 		} catch (Exception e) {
-			System.out.println(e);			
+			System.out.println(e);
 		}
 		return -1;
 	}
-public int guardarDocumentoPalabrasClave(String id_doc, Vector <String> ids_palabras){		
-		
+
+	public int guardarDocumentoPalabrasClave(String id_doc,
+			Vector<String> ids_palabras) {
+
 		String sql_guardar;
 		int numFilas, cantidad = ids_palabras.size();
 		sql_guardar = "INSERT INTO Tiene_Documento_Palabra_Clave VALUES ";
-		
-		if(cantidad==0){
+
+		if (cantidad == 0) {
 			return 0;
 		}
-		
-		for(int i = 0; i < cantidad; i++){			
-			if(i==cantidad-1){
-				sql_guardar+="('"+ ids_palabras.get(i) + "', '"+id_doc +"' )";
-			}else {
-				sql_guardar+="('"+ ids_palabras.get(i) + "', '"+id_doc +"' ),";
+
+		for (int i = 0; i < cantidad; i++) {
+			if (i == cantidad - 1) {
+				sql_guardar += "('" + ids_palabras.get(i) + "', '" + id_doc
+						+ "' )";
+			} else {
+				sql_guardar += "('" + ids_palabras.get(i) + "', '" + id_doc
+						+ "' ),";
 			}
 		}
 		sql_guardar += ";";
@@ -217,123 +218,131 @@ public int guardarDocumentoPalabrasClave(String id_doc, Vector <String> ids_pala
 			conn.close();
 			return numFilas;
 		} catch (SQLException e) {
-			System.out.println(e);			
+			System.out.println(e);
 		} catch (Exception e) {
-			System.out.println(e);			
+			System.out.println(e);
 		}
 		return -1;
 	}
 
-public int guardarDocumentoAutores(String id_doc, Vector <String> ids_autores){		
-	
-	String sql_guardar;
-	int numFilas, cantidad = ids_autores.size();
-	sql_guardar = "INSERT INTO Escribe_Autor_Documento VALUES ";
-	if(cantidad==0){
-		return 0;
-	}
-	for(int i = 0; i < cantidad; i++){			
-		if(i==cantidad-1){
-			sql_guardar+="('"+ ids_autores.get(i) + "', '"+id_doc +"' )";
-		}else {
-			sql_guardar+="('"+ ids_autores.get(i) + "', '"+id_doc +"' ),";
+	public int guardarDocumentoAutores(String id_doc, Vector<String> ids_autores) {
+
+		String sql_guardar;
+		int numFilas, cantidad = ids_autores.size();
+		sql_guardar = "INSERT INTO Escribe_Autor_Documento VALUES ";
+		if (cantidad == 0) {
+			return 0;
 		}
-	}
-	sql_guardar += ";";
-
-	try {
-		Connection conn = fachada.conectar();
-		Statement sentencia = conn.createStatement();
-
-		numFilas = sentencia.executeUpdate(sql_guardar);
-		conn.close();
-		return numFilas;
-	} catch (SQLException e) {
-		System.out.println(e);
-	} catch (Exception e) {
-		System.out.println(e);
-	}
-	return -1;
-}
-
-public String obtenerLoginDocumento(){
-	String login="0";
-	String consulta_sql = "SELECT MAX(d.id_documento) FROM Documento d";
-	ResultSet resultado;
-	try{
-		Connection conn = fachada.conectar();
-		Statement sentencia = conn.createStatement();
-		resultado = sentencia.executeQuery(consulta_sql);
-		while (resultado.next()) {
-			login = resultado.getString(1);			
+		for (int i = 0; i < cantidad; i++) {
+			if (i == cantidad - 1) {
+				sql_guardar += "('" + ids_autores.get(i) + "', '" + id_doc
+						+ "' )";
+			} else {
+				sql_guardar += "('" + ids_autores.get(i) + "', '" + id_doc
+						+ "' ),";
 			}
-		conn.close();
+		}
+		sql_guardar += ";";
 
-	} catch (SQLException e) {
-		System.out.println(e);
-		
-	} catch (Exception e) {
-		System.out.println(e);
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+
+			numFilas = sentencia.executeUpdate(sql_guardar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
 	}
 
-	return login;
-	
-}
-
-public boolean comprobarURL(String url){	
-	boolean estado = false;
-	String consulta_sql = "SELECT d.id_documento, d.link FROM Documento d " +
-			"WHERE link='"+url+"';";
-	ResultSet resultado;
-	try{
-		Connection conn = fachada.conectar();
-		Statement sentencia = conn.createStatement();
-		resultado = sentencia.executeQuery(consulta_sql);
-		while (resultado.next()) {
-			estado = true;
-		}		
-		conn.close();
-		return estado;
-	} catch (SQLException e) {
-		System.out.println(e);
-		
-	} catch (Exception e) {
-		System.out.println(e);
-	}	
-	return false;
-}
-//metodo que retorna los datos de un documento de acuerdo a su login, no devuelve areas, palabras y autores
-	public Documento consultarDatosDocumento(String id_documento) {
-		String consulta_sql = "SELECT * " + 
-							"FROM documento " +
-							"WHERE id_documento = '"+id_documento+"';";
+	public String obtenerLoginDocumento() {
+		String login = "0";
+		String consulta_sql = "SELECT MAX(d.id_documento) FROM Documento d";
 		ResultSet resultado;
-		Documento d = new Documento();
-		System.out.println(consulta_sql);
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
 			resultado = sentencia.executeQuery(consulta_sql);
-			if (resultado.next()) {//debe devolver uno solo
+			while (resultado.next()) {
+				login = resultado.getString(1);
+			}
+			conn.close();
+
+		} catch (SQLException e) {
+			System.out.println(e);
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return login;
+
+	}
+
+	public boolean comprobarURL(String url) {
+		boolean estado = false;
+		String consulta_sql = "SELECT d.id_documento, d.link FROM Documento d "
+				+ "WHERE link='" + url + "';";
+		ResultSet resultado;
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			resultado = sentencia.executeQuery(consulta_sql);
+			while (resultado.next()) {
+				estado = true;
+			}
+			conn.close();
+			return estado;
+		} catch (SQLException e) {
+			System.out.println(e);
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+
+	// metodo que retorna los datos de un documento de acuerdo a su login, no
+	// devuelve areas, palabras y autores
+	public Documento consultarDatosDocumento(String id_documento) {
+		String consulta_sql = "SELECT * " + "FROM documento "
+				+ "WHERE id_documento = '" + id_documento + "';";
+		ResultSet resultado;
+		Documento d = new Documento();
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			resultado = sentencia.executeQuery(consulta_sql);
+			if (resultado.next()) {// debe devolver uno solo
 				d.setDerechosDeAutor(resultado.getString("derechos_autor"));
 				d.setCatalogadorLogin(resultado.getString("login_catalogador"));
 				d.setDescripcion(resultado.getString("descripcion"));
 				d.setEditorial(resultado.getString("editorial"));
-				d.setFecha_creacion(java.sql.Date.valueOf(resultado.getString("fecha_creacion")));
-				d.setFecha_publicacion(java.sql.Date.valueOf(resultado.getString("fecha_publicacion")));
-				d.setFechaDeCatalogacion(java.sql.Date.valueOf(resultado.getString("fecha_catalogacion")));
+				d.setFecha_creacion(java.sql.Date.valueOf(resultado
+						.getString("fecha_creacion")));
+				d.setFecha_publicacion(java.sql.Date.valueOf(resultado
+						.getString("fecha_publicacion")));
+				d.setFechaDeCatalogacion(java.sql.Date.valueOf(resultado
+						.getString("fecha_catalogacion")));
 				d.setFormato(resultado.getString("formato"));
 				d.setId_doc(resultado.getString("id_documento"));
 				d.setIdioma(resultado.getString("idioma"));
 				d.setResolucion(resultado.getString("resolucion"));
-				d.setSoftware_recomentado(resultado.getString("software_recomendado"));
+				d.setSoftware_recomentado(resultado
+						.getString("software_recomendado"));
 				d.setTipoMaterial(resultado.getString("tipo_nombre"));
-				d.setTitulo_secundario(resultado.getString("titulo_secundario"));
+				d
+						.setTitulo_secundario(resultado
+								.getString("titulo_secundario"));
 				d.setTituloppal(resultado.getString("titulo_principal"));
 				d.setUrl(resultado.getString("link"));
 			}
 			conn.close();
-			
+
 		} catch (SQLException e) {
 			System.out.println(e);
 		} catch (Exception e) {
@@ -341,25 +350,32 @@ public boolean comprobarURL(String url){
 		}
 		return d;
 	}
-//*******ACTUALIZAR
-	public int actualizarDocumentoAreas(String id_documento, Vector<String> ids_areas){
+
+	// *******ACTUALIZAR
+	public int actualizarDocumentoAreas(String id_documento,
+			Vector<String> ids_areas) {
 		this.eliminarDocumentoAreas(id_documento);
 		return this.guardarDocumentoAreas(id_documento, ids_areas);
 	}
-	public int actualizarDocumentoPalabrasClave(String id_documento, Vector<String> ids_palabras){
+
+	public int actualizarDocumentoPalabrasClave(String id_documento,
+			Vector<String> ids_palabras) {
 		this.eliminarDocumentoPalabrasClave(id_documento);
 		return this.guardarDocumentoPalabrasClave(id_documento, ids_palabras);
 	}
-	public int actualizarDocumentoAutores(String id_documento, Vector<String> ids_autores){
+
+	public int actualizarDocumentoAutores(String id_documento,
+			Vector<String> ids_autores) {
 		this.eliminarDocumentoAutores(id_documento);
 		return this.guardarDocumentoAutores(id_documento, ids_autores);
 	}
-	
-	public int eliminarDocumentoAutores(String id_documento){
+
+	public int eliminarDocumentoAutores(String id_documento) {
 		String sql_eliminar;
 		int numFilas;
-		sql_eliminar = "DELETE FROM escribe_autor_documento WHERE id_documento = '"+id_documento+"';";
-		
+		sql_eliminar = "DELETE FROM escribe_autor_documento WHERE id_documento = '"
+				+ id_documento + "';";
+
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -373,11 +389,13 @@ public boolean comprobarURL(String url){
 		}
 		return -1;
 	}
-	public int eliminarDocumentoPalabrasClave(String id_documento){
+
+	public int eliminarDocumentoPalabrasClave(String id_documento) {
 		String sql_eliminar;
 		int numFilas;
-		sql_eliminar = "DELETE FROM tiene_documento_palabra_clave WHERE id_documento = '"+id_documento+"';";
-		
+		sql_eliminar = "DELETE FROM tiene_documento_palabra_clave WHERE id_documento = '"
+				+ id_documento + "';";
+
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -391,10 +409,12 @@ public boolean comprobarURL(String url){
 		}
 		return -1;
 	}
-	public int eliminarDocumentoAreas(String id_documento){
+
+	public int eliminarDocumentoAreas(String id_documento) {
 		String sql_eliminar;
 		int numFilas;
-		sql_eliminar = "DELETE FROM pertenece_documento_area_conocimiento WHERE id_documento = '"+id_documento+"';";
+		sql_eliminar = "DELETE FROM pertenece_documento_area_conocimiento WHERE id_documento = '"
+				+ id_documento + "';";
 
 		try {
 			Connection conn = fachada.conectar();
@@ -410,4 +430,3 @@ public boolean comprobarURL(String url){
 		return -1;
 	}
 }
-
