@@ -27,6 +27,7 @@ import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiUsuarioNormal;
 import Utilidades.Estilos;
+import Utilidades.Button;
 
 import Consultas.Logica.Consulta;
 import Consultas.Controlador.*;
@@ -43,7 +44,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	DefaultListModel modeloLista;
 	Vector<Consulta> vectorConsulta;
 	
-	JButton botonSiguiente, botonAtras;
+	Button botonSiguiente, botonAtras;
 	int posicionResultado;
 	int cantidadTotalResultados;
 	int cantidadMostrar;
@@ -96,8 +97,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 	
 	private void initBotones(){
 		
-		botonSiguiente = new JButton("Siguiente");
-		botonAtras = new JButton("Atras");
+		botonSiguiente = new Button("Siguiente");
+		botonAtras = new Button("Atras");
 		botonSiguiente.addActionListener(new ManejadorBoton());
 		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setEnabled(false);
 		botonAtras.addActionListener(new ManejadorBoton());
