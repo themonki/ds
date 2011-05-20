@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -41,7 +42,11 @@ public class GuiConsultaAvanzada extends JScrollPane
 {
 	
 	private JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacionAntes, fechaPublicacionDespues,formatoArchivo,etiquetaCantidadResultado;
-	private JTextField campoPalabraClave,campoTitulo, campoAutor,campoFechaPublicacionAntes, campoFechaPublicacionDespues;
+	private static JTextField campoPalabraClave;
+	private static JTextField campoTitulo;
+	private static JTextField campoAutor;
+	private static JTextField campoFechaPublicacionAntes;
+	private static JTextField campoFechaPublicacionDespues;
 	private JComboBox campoAreas, campoIdioma,campoFormArchivo;
 	private JRadioButton cualquieraTitulo, sinTitulo, exactaTitulo, cualquieraAutor, sinAutor, exactaAutor,
 	cualquieraPalabra, sinPalabra, exactaPalabra;
@@ -56,7 +61,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 	public static GuiResultadoConsulta resultadoConsulta;
 	public static GuiVistaDocumento vistaDocumento;
 	
-	private JPanel principal;
+	private static JPanel principal;
 	
 	private Vector<String> valoresConsulta;
 	private Vector<String> atributosConsulta;
@@ -65,6 +70,9 @@ public class GuiConsultaAvanzada extends JScrollPane
 	String idiomaArray[] = {"Todos","Ingles", "Español","Francés", "Aleman", "Portuges"};
 	String formatoArchivoArray[] = {"Todos", "jpg", "pdf", "doc", "odt", "otro"};
 	Vector<String> areas; 
+	
+	public static JPanel  panel;
+
 	
 	public GuiConsultaAvanzada()
 	{
@@ -168,9 +176,10 @@ public class GuiConsultaAvanzada extends JScrollPane
 		restriccionesBoton.anchor = GridBagConstraints.CENTER;
 		principal.add(botonConsultaAvanzada, restriccionesBoton);
 		//principal.add();
-		
+		panel = new JPanel(new BorderLayout());
+		panel.add(principal, BorderLayout.NORTH);
 		//setLayout(new BorderLayout());
-		this.setViewportView(principal);
+		this.setViewportView(panel);
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 	}
@@ -364,6 +373,35 @@ public class GuiConsultaAvanzada extends JScrollPane
 				ControladorConsulta controlador = new ControladorConsulta();
 				Vector<Consulta> consulta = controlador.consultaAvanzada(atributosConsulta, valoresConsulta, opcionTitulo, opcionPalabra, opcionAutor);
 			
+				System.out.println(consulta);
+				GuiResultadoConsulta.TIPOCONSULTA = 2;
+				
+				
+				
+				if(resultadoConsulta!=null){
+					panel.remove(resultadoConsulta);
+					
+					
+				}else{
+					resultadoConsulta=null;
+					}
+				int cantidad = Integer.parseInt((String) campoCantidadResultados.getSelectedItem());
+				resultadoConsulta = new GuiResultadoConsulta(consulta,cantidad);
+				
+				
+				JOptionPane.showMessageDialog(null, ""+consulta.size());
+				panel.add(resultadoConsulta, BorderLayout.SOUTH);
+				panel.updateUI();
+				if(consulta.size() <=0){
+					
+					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
+					
+				}	
+				System.out.println(GuiConsultaBasica.TIPOUSUARIO);
+				
+				
+				
+				
 			}else if(fuente == campoAreas)
 			{
 				area = (String)campoAreas.getSelectedItem();
@@ -453,4 +491,49 @@ public class GuiConsultaAvanzada extends JScrollPane
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+	
+	
+	
+	
+	public static void ponerDescripcion()
+	{
+		panel.remove(resultadoConsulta);
+		panel.remove(principal);
+		panel.add(vistaDocumento, BorderLayout.CENTER);
+		panel.updateUI();
+	}
+	public static void restaurar()
+	{
+		panel.remove(vistaDocumento);
+		//campoConsulta.setText("");
+		panel.add(principal, BorderLayout.NORTH);
+		panel.add(resultadoConsulta, BorderLayout.SOUTH );
+		
+		//resultadoConsulta = new GuiResultadoConsulta();
+		panel.remove(vistaDocumento);
+		panel.updateUI();
+	}
+	public static void restaurarTodo()
+	{
+		
+		panel.remove(vistaDocumento);
+		campoPalabraClave.setText("");
+		campoTitulo.setText("");
+		campoAutor.setText("");
+		campoFechaPublicacionDespues.setText("");
+		campoFechaPublicacionAntes.setText("");
+		panel.add(principal, BorderLayout.NORTH);		
+		resultadoConsulta = new GuiResultadoConsulta();
+		panel.add(resultadoConsulta, BorderLayout.SOUTH );
+		panel.remove(vistaDocumento);
+		panel.updateUI();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

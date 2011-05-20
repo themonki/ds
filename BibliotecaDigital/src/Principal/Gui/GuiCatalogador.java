@@ -107,6 +107,7 @@ public class GuiCatalogador extends JFrame
 		panelConsultaAvanzada = new GuiConsultaAvanzada();
 	
 		GuiConsultaBasica.TIPOUSUARIO = 2;
+		GuiConsultaAvanzada.TIPOUSUARIO = 2;
 		
 		
 		

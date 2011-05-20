@@ -414,9 +414,14 @@ public class GuiVistaDocumento extends JScrollPane {
 					
 							GuiConsultaBasica.restaurarTodo();
 						}
+						if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						{
+					
+							GuiConsultaAvanzada.restaurarTodo();
+						}
 					}else
 					{
-						JOptionPane.showMessageDialog(null,"No hacer nada");
+						//JOptionPane.showMessageDialog(null,"No hacer nada");
 					}
 					//System.out.print(""+opcion);
 				}else if(tipoUsuario == 1 || tipoUsuario == 2 ||tipoUsuario == 3 )

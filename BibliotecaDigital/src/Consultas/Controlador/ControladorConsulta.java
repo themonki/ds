@@ -193,8 +193,9 @@ public class ControladorConsulta
 		System.out.println(atributoConsulta);
 		System.out.println(valorConsulta);
 		DaoConsulta daoConsulta = new DaoConsulta();
-		daoConsulta.consultaAvanzada(atributoConsulta, valorConsulta);
+		//No estaban asigando lo de dao a vector xD. Corregido
 		Vector<Consulta> v= new Vector<Consulta>();
+		v = daoConsulta.consultaAvanzada(atributoConsulta, valorConsulta);
 		return v;
 	}
 	

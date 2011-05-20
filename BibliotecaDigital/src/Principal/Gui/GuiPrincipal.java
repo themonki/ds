@@ -95,6 +95,7 @@ public class GuiPrincipal extends JFrame
 			panelConsultaBasica = new GuiConsultaBasica();
 			panelConsultaAvanzada = new GuiConsultaAvanzada();
 			GuiConsultaBasica.TIPOUSUARIO = 0;
+			GuiConsultaAvanzada.TIPOUSUARIO = 0;
 			panelAutentificar = new GuiAutenticar(this);
 			cambiar = new GuiRecuperarPassword(this);
 			

@@ -196,9 +196,18 @@ public class GuiResultadoConsulta extends JScrollPane{
 					{
 						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiAdministrador.LOGIN);						
 					}
+					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					{
 					
-					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
-					GuiConsultaBasica.ponerDescripcion();
+						GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);					
+						GuiConsultaBasica.ponerDescripcion();
+						
+					}else if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					{
+						GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(d);					
+						GuiConsultaAvanzada.ponerDescripcion();
+							
+					}
 					
 				}
 				flag = 1;
