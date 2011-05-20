@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
 
+import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
@@ -65,6 +66,7 @@ public class GuiUsuarioNormal extends JFrame
 	// Otor paneles a usar
 	private static GuiRegistroModificar panelModificacion;
 	private static GuiConsultaBasica panelConsultaBasica;
+	private static GuiConsultaAvanzada panelConsultaAvanzada;
 	
 	
 	public GuiUsuarioNormal(Usuario usuario)
@@ -90,6 +92,7 @@ public class GuiUsuarioNormal extends JFrame
 		// se instancias paneles adicionales
 		panelModificacion = new GuiRegistroModificar(usuario,1);
 		panelConsultaBasica = new GuiConsultaBasica();
+		panelConsultaAvanzada = new GuiConsultaAvanzada();
 		GuiConsultaBasica.TIPOUSUARIO = 1;
 	
 		
@@ -195,7 +198,7 @@ public class GuiUsuarioNormal extends JFrame
 				}else if(estado.getText().equals(estadoConsultaAvanzada))
 				{		
 					
-					contenedor.remove(panelConsultaBasica);
+					contenedor.remove(panelConsultaAvanzada);
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
 					repaint();
@@ -214,7 +217,7 @@ public class GuiUsuarioNormal extends JFrame
 				}
 				else if(estado.getText().equals(estadoConsultaAvanzada))
 				{
-					contenedor.remove(panelConsultaBasica);
+					contenedor.remove(panelConsultaAvanzada);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
 					repaint();
@@ -229,19 +232,19 @@ public class GuiUsuarioNormal extends JFrame
 				{
 				
 					contenedor.remove(panelModificacion);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
 					estado.setText(estadoConsultaAvanzada);
 					repaint();
-					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}else if(estado.getText().equals(estadoInicial))
 				{
 					
 					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
 					estado.setText(estadoConsultaAvanzada);
 					repaint();
 					
-					JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 			}
 			else if(evento.getSource() == logout)

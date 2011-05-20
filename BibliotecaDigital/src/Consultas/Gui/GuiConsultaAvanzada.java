@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -36,10 +37,10 @@ import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
 import com.sun.org.apache.regexp.internal.RESyntaxException;
 
-public class GuiConsultaAvanzada extends JPanel
+public class GuiConsultaAvanzada extends JScrollPane
 {
 	
-	private JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacionAntes, fechaPublicacionDespues,formatoArchivo;
+	private JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacionAntes, fechaPublicacionDespues,formatoArchivo,etiquetaCantidadResultado;
 	private JTextField campoPalabraClave,campoTitulo, campoAutor,campoFechaPublicacionAntes, campoFechaPublicacionDespues;
 	private JComboBox campoAreas, campoIdioma,campoFormArchivo;
 	private JRadioButton cualquieraTitulo, sinTitulo, exactaTitulo, cualquieraAutor, sinAutor, exactaAutor,
@@ -47,6 +48,13 @@ public class GuiConsultaAvanzada extends JPanel
 	private ButtonGroup grupoTitulo, grupoAutor, grupoPalabra;
 	private JButton botonConsultaAvanzada;
 	private Manejador manejador;
+	
+	public static int TIPOUSUARIO;
+	
+	private JComboBox campoCantidadResultados;
+	private String cantidades[] = {"5","10","15","20", "25"};
+	public static GuiResultadoConsulta resultadoConsulta;
+	public static GuiVistaDocumento vistaDocumento;
 	
 	private JPanel principal;
 	
@@ -58,7 +66,7 @@ public class GuiConsultaAvanzada extends JPanel
 	String formatoArchivoArray[] = {"Todos", "jpg", "pdf", "doc", "odt", "otro"};
 	Vector<String> areas; 
 	
-	GuiConsultaAvanzada()
+	public GuiConsultaAvanzada()
 	{
 		manejador = new Manejador();
 		initComponents();
@@ -66,6 +74,10 @@ public class GuiConsultaAvanzada extends JPanel
 		principal = new JPanel(new GridBagLayout());
 		GridBagConstraints restriccionesEtiqueta = configurar(0, 0, new Insets(2,2,2,0));
 		GridBagConstraints restriccionesBoton = configurar(0, 0, new Insets(2,0,2,0));
+		
+		JPanel panelCantidadResultados = new JPanel(new FlowLayout());
+		panelCantidadResultados.add(etiquetaCantidadResultado);
+		panelCantidadResultados.add(campoCantidadResultados);
 
 		
 		principal.add(titulo, restriccionesEtiqueta);
@@ -158,7 +170,9 @@ public class GuiConsultaAvanzada extends JPanel
 		//principal.add();
 		
 		//setLayout(new BorderLayout());
-		add(principal);
+		this.setViewportView(principal);
+		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 	}
 	
 	private void initComponents()
@@ -185,6 +199,8 @@ public class GuiConsultaAvanzada extends JPanel
 		fechaPublicacionAntes = inicializarLabel("Fecha de publicación antes del año: ");
 		fechaPublicacionDespues = inicializarLabel("Fecha de publicación después del año: ");
 		formatoArchivo = inicializarLabel("Formato de archivo: ");
+		
+		etiquetaCantidadResultado= inicializarLabel("Resultados por pagina: ");
 		
 	}
 	
@@ -236,6 +252,8 @@ public class GuiConsultaAvanzada extends JPanel
 		//campoParametrosAutor.setSelectedIndex(0);
 		//campoParametrosPalabraClave = new JComboBox(parametrosArray);
 		//campoParametrosPalabraClave.setSelectedIndex(0);
+		
+		campoCantidadResultados = new JComboBox(cantidades);
 		
 	}
 	

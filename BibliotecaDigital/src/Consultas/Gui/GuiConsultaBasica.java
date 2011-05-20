@@ -76,7 +76,7 @@ public class GuiConsultaBasica extends JScrollPane
 		campoConsulta.setFont(Estilos.fontLabels);
 		campoConsulta.addKeyListener(manejador);
 		
-		busquedaCompleta = new JCheckBox("Realizar bÃºsqueda con coincidencia exacta");
+		busquedaCompleta = new JCheckBox("Realizar búsqueda con coincidencia exacta");
 		busquedaCompleta.addItemListener(manejador);
 		
 		campoCantidadResultados = new JComboBox(cantidades);
@@ -123,8 +123,6 @@ public class GuiConsultaBasica extends JScrollPane
 	
 	public static void ponerDescripcion()
 	{
-	
-		
 		panel.remove(resultadoConsulta);
 		panel.remove(panelConsulta);
 		panel.add(vistaDocumento, BorderLayout.CENTER);
@@ -132,8 +130,6 @@ public class GuiConsultaBasica extends JScrollPane
 	}
 	public static void restaurar()
 	{
-	
-		
 		panel.remove(vistaDocumento);
 		//campoConsulta.setText("");
 		panel.add(panelConsulta, BorderLayout.NORTH);
@@ -145,8 +141,6 @@ public class GuiConsultaBasica extends JScrollPane
 	}
 	public static void restaurarTodo()
 	{
-	
-		
 		panel.remove(vistaDocumento);
 		campoConsulta.setText("");
 		panel.add(panelConsulta, BorderLayout.NORTH);		
@@ -158,7 +152,7 @@ public class GuiConsultaBasica extends JScrollPane
 	
 	private class Manejador implements ActionListener, ItemListener, KeyListener
 	{
-		private boolean seleccionBusquedaCompeta = false;
+		private boolean seleccionBusquedaCompleta = false;
 		@Override
 		public void actionPerformed(ActionEvent evento)
 		{
@@ -170,7 +164,7 @@ public class GuiConsultaBasica extends JScrollPane
 				
 				if(!campoConsulta.getText().equals("")){
 					vector = null;
-					vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompeta);	
+					vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompleta);	
 				
 				}else{
 					JOptionPane.showMessageDialog(null, "Por favor ingrese parametros para la busqueda",
@@ -194,10 +188,6 @@ public class GuiConsultaBasica extends JScrollPane
 					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
 					
 				}	
-					
-					
-				
-				
 				System.out.println(GuiConsultaBasica.TIPOUSUARIO);
 			}
 			
@@ -208,11 +198,11 @@ public class GuiConsultaBasica extends JScrollPane
 			
 			if(evento.getStateChange() == ItemEvent.SELECTED)
 			{
-				seleccionBusquedaCompeta = true;
+				seleccionBusquedaCompleta = true;
 			}
 			else if(evento.getStateChange() == ItemEvent.DESELECTED)
 			{
-				seleccionBusquedaCompeta = false;
+				seleccionBusquedaCompleta = false;
 			}
 		}
 

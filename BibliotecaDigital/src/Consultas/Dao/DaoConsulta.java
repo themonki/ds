@@ -181,7 +181,7 @@ public class DaoConsulta {
 		consultaPalabraSql = "SELECT d.id_documento, d.titulo_principal "+
 		"FROM (SELECT documento.id_documento, documento.titulo_principal FROM documento)as d NATURAL JOIN"; 
 		
-		consultaDocumentoSql =  "SELECT d.id_documento, d.titulo_principal "+
+		consultaDocumentoSql =  "SELECT documento.id_documento, documento.titulo_principal "+
 		"FROM documento " +
 		"WHERE ";
 		consultaDocumentoTituloSql=	"" ;
@@ -270,7 +270,7 @@ public class DaoConsulta {
 				(atributos.elementAt(i+1).contains("palabra"));
 				if(at.contains("sin"))
 				{
-					consultaPalabraTempSql += "palabra.nombre NOT LIKE '%" +
+					consultaPalabraTempSql += "palabra_clave.nombre NOT LIKE '%" +
 					valores.elementAt(i) + "%'";
 					if(esOR)
 					{
@@ -278,7 +278,7 @@ public class DaoConsulta {
 					}
 				} else if(at.contains("algunas"))
 				{
-					consultaPalabraTempSql += "palabra.nombre LIKE '%" +
+					consultaPalabraTempSql += "palabra_clave.nombre LIKE '%" +
 					valores.elementAt(i) + "%'";
 					if(esOR)
 					{
@@ -286,7 +286,7 @@ public class DaoConsulta {
 					}
 				}else // es exacto
 				{
-					consultaPalabraTempSql += "palabra.nombre = '" +
+					consultaPalabraTempSql += "palabra_clave.nombre = '" +
 					valores.elementAt(i) + "'";
 				}
 			}// fin palabra_clave
@@ -430,14 +430,87 @@ public class DaoConsulta {
 			consultaPalabraSql="";
 		}
 			
-		
-		
-		
 		//System.out.println(consultaDocumentoSql);
 		//System.out.println(consultaPalabraSql);
 		//System.out.println(consultaDocumentoTituloSql);
 		//System.out.println(consultaAreaSql);
 		//System.out.println(consultaAutorSql);
+		
+		consultaSql = "";
+		
+		if(!consultaAreaSql.equals(""))
+		{
+			if(!consultaPalabraSql.equals(""))
+			{
+				if(!consultaAutorSql.equals(""))
+				{
+					consultaSql += "((" + consultaAreaSql + ")" + " INTERSECT " +
+					"(" + consultaPalabraSql + "))" + " INTERSECT " + 
+					"(" + consultaAutorSql + ")";
+				}else
+				{
+					consultaSql += "(" + consultaAreaSql + ")" + " INTERSECT " +
+					"(" + consultaPalabraSql + ")";
+				}
+			
+			}else if(!consultaAutorSql.equals(""))
+			{
+				consultaSql += "(" + consultaAreaSql + ")" + " INTERSECT " +
+				"(" + consultaAutorSql + ")";
+			}else
+			{
+				consultaSql += consultaAreaSql;
+			}
+		
+		}else if(!consultaPalabraSql.equals(""))
+		{
+			if(!consultaAutorSql.equals(""))
+			{
+				consultaSql += "(" + consultaPalabraSql + ")" + " INTERSECT " +
+				"(" + consultaAutorSql + ")";
+			
+			}else
+			{
+				consultaSql += consultaPalabraSql;
+			}
+		}else if(!consultaAutorSql.equals(""))
+		{
+			consultaSql += consultaAutorSql;
+		}
+		
+		if(consultaSql.equals(""))
+		{
+			consultaSql = consultaDocumentoSql;
+		}else
+		{
+			consultaSql = "SELECT * FROM (" + consultaSql + 
+			" INTERSECT " + consultaDocumentoSql + ") AS x";
+		}
+		
+		//System.out.print(consultaSql);
+		
+		ResultSet resultado;		
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			resultado = sentencia.executeQuery(consultaSql);
+			while (resultado.next())
+			{
+				Consulta consulta = new Consulta();
+				
+				consulta.setIdDocumento(resultado.getString("id_documento"));
+				consulta.setTituloDocuemto(resultado.getString("titulo_principal"));
+				consulta.setNombresAutoresDocumento(consultarAutoresDocumento(resultado.getString("id_documento")));
+				consultas.add(consulta);
+			}
+			conn.close();			
+			} catch (SQLException e) {			
+				System.out.println(e);
+			} catch (Exception e) {
+				System.out.println(e);					
+			}
+			System.out.println(consultas);
 		return consultas;
 		
 	}
