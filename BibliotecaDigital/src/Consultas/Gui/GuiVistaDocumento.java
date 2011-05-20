@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -229,10 +230,14 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		
 		JPanel panel2 = new JPanel(new BorderLayout());
-		panelAccionesDocumento = new JPanel();
+		panelAccionesDocumento = new JPanel(new FlowLayout(50,200,50));
 
 		panelAccionesDocumento.add(etiquetaDescargar);
+	
 		panelAccionesDocumento.add(etiquetaEditarDocumento);
+		posEtiquetas++;
+		restriccionEtiquetas.gridy = posEtiquetas;
+		restriccionCampo.gridy = posEtiquetas;
 
 		panel2.add(panel, BorderLayout.NORTH);
 		panel2.add(panelAccionesDocumento, BorderLayout.CENTER);
