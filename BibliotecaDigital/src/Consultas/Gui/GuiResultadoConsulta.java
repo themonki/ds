@@ -48,7 +48,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	int cantidadTotalResultados;
 	int cantidadMostrar;
 	public static int TIPOCONSULTA;
-	
+	int flag = 0;
 	public GuiResultadoConsulta(){}
 	
 	public GuiResultadoConsulta(Vector<Consulta> vectorConsulta, int cantidadResultados){
@@ -150,6 +150,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 					botonSiguiente.setEnabled(false);
 				}
 				botonAtras.setEnabled(true);
+				flag = 0;
 			}
 			if(e.getSource()==botonAtras){
 				modeloLista.removeAllElements();
@@ -158,6 +159,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 					botonAtras.setEnabled(false);
 				}
 				botonSiguiente.setEnabled(true);
+				flag = 0;
 			}
 		}
 		
@@ -166,8 +168,9 @@ public class GuiResultadoConsulta extends JScrollPane{
 
 	private class ManejadorLista implements ListSelectionListener {
 
-		int flag = 0;
+		
 		public void valueChanged(ListSelectionEvent e) {
+			System.out.println("**********  "+flag);
 			if (flag == 0) {
 				int documentoElegido = listaResultado.getSelectedIndex();
 				if (documentoElegido >= 0) {
