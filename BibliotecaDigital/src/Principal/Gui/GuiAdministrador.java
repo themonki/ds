@@ -23,6 +23,7 @@ import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaBasica;
 import Documento.Gui.GuiCatalogar;
+import Documento.Gui.GuiModificarDoc;
 import Usuarios.Gui.GuiConsultarUsuarios;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
@@ -51,7 +52,7 @@ public class GuiAdministrador extends JFrame
 	private Button logout;
 
 	
-	private JLabel estado;
+	private static JLabel estado;
 
 	// Clase interna que permite administrar todos los eventos que genera la
 	// ventana y son escuchados.
@@ -60,7 +61,7 @@ public class GuiAdministrador extends JFrame
 	// Elementos de la barra de menu
 	private JMenu archivo;
 	private JMenu acercaDe;
-	private Container contenedor;
+	private static Container contenedor;
 	private JMenuItem salir;
 	private JMenuItem informacion;
 	private JMenuBar barra;
@@ -68,7 +69,8 @@ public class GuiAdministrador extends JFrame
 	// otros paneles
 	private GuiRegistroModificar panelModificacion;
 	private GuiConsultarUsuarios panelConsultarUsuarios;
-	private GuiConsultaBasica panelConsultaBasica;
+	private static GuiConsultaBasica panelConsultaBasica;
+	public static GuiModificarDoc panelModificarDoc;
 	private GuiCatalogar panelCatalogar;
 	
 	private Usuario usuario;
@@ -391,6 +393,14 @@ public class GuiAdministrador extends JFrame
 		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 		estado.setText(estadoInicial);
 		repaint();
+		
+	}public static void cambiarPanelEditarDocumento()
+	{
+		
+		contenedor.remove(panelConsultaBasica);
+		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
+		estado.setText("Modificando Documento");
+		contenedor.repaint();
 		
 	}
 
