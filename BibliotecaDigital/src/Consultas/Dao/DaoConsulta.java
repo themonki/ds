@@ -185,6 +185,19 @@ public class DaoConsulta {
 			{
 				if(at.contains("titulo"))
 				{
+					if(at.contains("sin"))
+					{
+						consultaDocumentoSql += "(documento.titulo_principla not like '%" +
+						valores.elementAt(i) + "%' OR" +
+						"documento.titulo_secundario not like '%" +
+						valores.elementAt(i)+ "%'" ;
+						
+					}
+					if((atributos.elementAt(i)!=atributos.lastElement()) && (atributos.elementAt(i+1).contains("titulo")))
+					{
+						consultaDocumentoSql += "OR";
+					}
+					
 					consultaDocumentoSql += "(documento.titulo_principal = '" +
 							valores.elementAt(i) + "' OR " +
 							"documeno.titulo_secundario = '" +
