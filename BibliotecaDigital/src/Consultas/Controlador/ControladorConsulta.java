@@ -53,7 +53,7 @@ public class ControladorConsulta
 		return resultado;
 	}
 	
-	public Vector<Consulta> consultaAvanzada(Vector<String> atributo, Vector<String> valor)
+	public Vector<Consulta> consultaAvanzada(Vector<String> atributo, Vector<String> valor, int opTitulo, int opAplabra, int opAutor)
 	{
 		Vector<Consulta> v= new Vector<Consulta>();
 		return v;

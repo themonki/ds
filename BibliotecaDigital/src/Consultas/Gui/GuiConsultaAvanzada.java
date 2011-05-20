@@ -25,6 +25,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import Consultas.Controlador.ControladorConsulta;
+import Consultas.Logica.Consulta;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.Button;
@@ -39,23 +41,27 @@ public class GuiConsultaAvanzada extends JPanel
 	
 	private JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacionAntes, fechaPublicacionDespues,formatoArchivo;
 	private JTextField campoPalabraClave,campoTitulo, campoAutor,campoFechaPublicacionAntes, campoFechaPublicacionDespues;
-	private JComboBox campoAreas, campoParametrosTitulo, campoParametrosAutor, campoParametrosPalabraClave, 
-	campoIdioma,campoFormArchivo;
-	private JRadioButton cualquieraTitulo, inicioTitulo, exactaTitulo, cualquieraAutor, inicioAutor, exactaAutor,
-	cualquieraPalabra, inicioPalabra, exactaPalabra;
+	private JComboBox campoAreas, campoIdioma,campoFormArchivo;
+	private JRadioButton cualquieraTitulo, sinTitulo, exactaTitulo, cualquieraAutor, sinAutor, exactaAutor,
+	cualquieraPalabra, sinPalabra, exactaPalabra;
 	private ButtonGroup grupoTitulo, grupoAutor, grupoPalabra;
 	private JButton botonConsultaAvanzada;
 	private Manejador manejador;
 	
-	JPanel principal;
+	private JPanel principal;
 	
-	Vector<String> valoresConsulta;
-	Vector<String> atributosConsulta;
+	private Vector<String> valoresConsulta;
+	private Vector<String> atributosConsulta;
+	
+	//vector y arrays para inicializar los combo box
+	String idiomaArray[] = {"Todos","Ingles", "Español","Francés", "Aleman", "Portuges"};
+	String formatoArchivoArray[] = {"Todos", "jpg", "pdf", "doc", "odt", "otro"};
+	Vector<String> areas; 
 	
 	GuiConsultaAvanzada()
 	{
-		initComponents();
 		manejador = new Manejador();
+		initComponents();
 		
 		principal = new JPanel(new GridBagLayout());
 		GridBagConstraints restriccionesEtiqueta = configurar(0, 0, new Insets(2,2,2,0));
@@ -68,7 +74,7 @@ public class GuiConsultaAvanzada extends JPanel
 		principal.add(campoTitulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
-		principal.add(inicioTitulo, restriccionesEtiqueta);
+		principal.add(sinTitulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
 		principal.add(cualquieraTitulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=3;
@@ -83,7 +89,7 @@ public class GuiConsultaAvanzada extends JPanel
 		principal.add(campoAutor, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
-		principal.add(inicioAutor, restriccionesEtiqueta);
+		principal.add(sinAutor, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
 		principal.add(cualquieraAutor, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=3;
@@ -98,7 +104,7 @@ public class GuiConsultaAvanzada extends JPanel
 		principal.add(campoPalabraClave, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
-		principal.add(inicioPalabra, restriccionesEtiqueta);
+		principal.add(sinPalabra, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
 		principal.add(cualquieraPalabra, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=3;
@@ -201,14 +207,6 @@ public class GuiConsultaAvanzada extends JPanel
 
 	private void inicializarComboBox() 
 	{
-		//vector y arrays para inicializar los combo box
-		
-		String idiomaArray[] = {"Todos","Ingles", "Español","Francés", "Aleman", "Portuges"};
-		String formatoArchivoArray[] = {"Todos", "jpg", "pdf", "doc", "odt", "otro"};
-		//String parametrosArray[] = {"Con todas las palabras", "Con algunas de estas palabras", "Sin estas palabras"};
-		
-		Vector<String> areas; 
-		
 		areas = new Vector<String>();
 		areas.addElement("Todas");
 		
@@ -224,10 +222,13 @@ public class GuiConsultaAvanzada extends JPanel
 		campoAreas = new JComboBox(areas);
 		campoAreas.setSelectedIndex(0);
 		campoAreas.setMaximumRowCount(5);
+		campoAreas.addActionListener(manejador);
 		campoIdioma = new JComboBox(idiomaArray);
 		campoIdioma.setSelectedIndex(0);
+		campoIdioma.addActionListener(manejador);
 		campoFormArchivo = new JComboBox(formatoArchivoArray);
 		campoFormArchivo.setSelectedIndex(0);
+		campoFormArchivo.addActionListener(manejador);
 		//campoParametrosTitulo = new JComboBox(parametrosArray);
 		//campoParametrosTitulo.setSelectedIndex(0);
 		//campoParametrosAutor = new JComboBox(parametrosArray);
@@ -239,40 +240,40 @@ public class GuiConsultaAvanzada extends JPanel
 	
 	private void inicializarRadioButtons()
 	{
-		cualquieraTitulo = new JRadioButton("En cualquiera");
+		cualquieraTitulo = new JRadioButton("Con estas palabras", true);
 		cualquieraTitulo.addItemListener(manejador);
-		inicioTitulo = new JRadioButton("Al inicio", true);
-		inicioTitulo.addItemListener(manejador);
+		sinTitulo = new JRadioButton("Sin estas palabras");
+		sinTitulo.addItemListener(manejador);
 		exactaTitulo = new JRadioButton("Concidencia exacta");
 		exactaTitulo.addItemListener(manejador);
 		
-		cualquieraAutor = new JRadioButton("En cualquiera");
+		cualquieraAutor = new JRadioButton("Con estas palabras", true);
 		cualquieraAutor.addItemListener(manejador);
-		inicioAutor = new JRadioButton("Al inicio", true);
-		inicioAutor.addItemListener(manejador);
+		sinAutor = new JRadioButton("Sin estas palabras");
+		sinAutor.addItemListener(manejador);
 		exactaAutor = new JRadioButton("Concidencia exacta");
 		exactaAutor.addItemListener(manejador);
 		
-		cualquieraPalabra = new JRadioButton("En cualquiera");
+		cualquieraPalabra = new JRadioButton("Con estas palabras", true);
 		cualquieraPalabra.addItemListener(manejador);
-		inicioPalabra = new JRadioButton("Al inicio", true);
-		inicioPalabra.addItemListener(manejador);
+		sinPalabra = new JRadioButton("Sin estas palabras");
+		sinPalabra.addItemListener(manejador);
 		exactaPalabra = new JRadioButton("Concidencia exacta");
 		exactaPalabra.addItemListener(manejador);
 		
 		grupoTitulo = new ButtonGroup();
 		grupoTitulo.add(cualquieraTitulo);
-		grupoTitulo.add(inicioTitulo);
+		grupoTitulo.add(sinTitulo);
 		grupoTitulo.add(exactaTitulo);
 		
 		grupoAutor = new ButtonGroup();
 		grupoAutor.add(cualquieraAutor);
-		grupoAutor.add(inicioAutor);
+		grupoAutor.add(sinAutor);
 		grupoAutor.add(exactaAutor);
 		
 		grupoPalabra = new ButtonGroup();
 		grupoPalabra.add(cualquieraPalabra);
-		grupoPalabra.add(inicioPalabra);
+		grupoPalabra.add(sinPalabra);
 		grupoPalabra.add(exactaPalabra);
 	}
 	
@@ -289,21 +290,65 @@ public class GuiConsultaAvanzada extends JPanel
 
 	private class Manejador implements ActionListener, ItemListener
 	{
-		String formatoArchivo, area, idioma, titulo, autor, palabraClave, fechaPublicacionAntes, fechaPublicacionDespues;
-		int opcionTitulo, opcionPalabra, opcionAutor;
-		
-		
+		String formatoArchivo = "Todos", area = "Todos", idioma = "Todos", titulo, autor, palabraClave, fechaPublicacionAntes, fechaPublicacionDespues;
+		int opcionTitulo = 2, opcionPalabra = 2, opcionAutor = 2;
+				
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			if(e.getSource() == botonConsultaAvanzada)
+			Object fuente = e.getSource();
+			
+			if(fuente == botonConsultaAvanzada)
 			{
+				atributosConsulta = new Vector<String>();
+				valoresConsulta = new Vector<String>();
+				
 				palabraClave = campoPalabraClave.getText();
 				titulo = campoTitulo.getText();
-				palabraClave = campoPalabraClave.getText();
+				autor = campoAutor.getText();
 				fechaPublicacionAntes = campoFechaPublicacionAntes.getText();
 				fechaPublicacionDespues = campoFechaPublicacionDespues.getText();
-				System.out.print("botooooooooooo");
+				
+				if(!palabraClave.equals(""))
+				{
+					atributosConsulta.add("palabra");
+					valoresConsulta.add(palabraClave);
+				}
+				if(!autor.equals(""))
+				{
+					atributosConsulta.add("autor");
+					valoresConsulta.add(autor);
+				}
+				if(!titulo.equals(""))
+				{
+					atributosConsulta.add("titulo");
+					valoresConsulta.add(titulo);
+				}
+				if(!fechaPublicacionAntes.equals(""))
+				{
+					atributosConsulta.add("fecha_antes");
+					valoresConsulta.add(fechaPublicacionAntes);
+				}
+				if(!fechaPublicacionDespues.equals(""))
+				{
+					atributosConsulta.add("fecha_despues");
+					valoresConsulta.add(fechaPublicacionDespues);
+				}
+				
+				ControladorConsulta controlador = new ControladorConsulta();
+				Vector<Consulta> consulta = controlador.consultaAvanzada(atributosConsulta, valoresConsulta, opcionTitulo, opcionAutor, opcionPalabra);
+			
+			}else if(fuente == campoAreas)
+			{
+				area = (String)campoAreas.getSelectedItem();
+				
+			}else if(fuente == campoIdioma)
+			{
+				idioma = (String)campoIdioma.getSelectedItem();
+				
+			}else if(fuente == campoFormArchivo)
+			{
+				formatoArchivo = (String)campoFormArchivo.getSelectedItem();
 			}
 			
 		}
@@ -311,39 +356,39 @@ public class GuiConsultaAvanzada extends JPanel
 		public void itemStateChanged(ItemEvent e)
 		{
 			Object fuente = e.getSource();
-			System.out.println(e.paramString());
-			System.out.println("holaaaaaaaaaaaaa");
-	
-			if(fuente == cualquieraTitulo)
-			{
-				opcionTitulo = 2;
-			}else if(fuente == exactaTitulo)
-			{
-				opcionTitulo = 3;
-			}else if(fuente == inicioTitulo)
-			{
-				opcionTitulo = 1;
-			}else if(fuente == cualquieraAutor)
-			{
-				opcionAutor = 2;
-			}else if(fuente == exactaAutor)
-			{
-				opcionAutor = 3;
-			}else if(fuente == inicioAutor)
-			{
-				opcionAutor = 1;
-			}else if(fuente == cualquieraPalabra)
-			{
-				opcionPalabra = 2;
-			}else if(fuente == exactaPalabra)
-			{
-				opcionPalabra = 3;
-			}else if(fuente == inicioPalabra)
-			{
-				opcionPalabra = 1;
-				System.out.println(opcionPalabra);
-			}
 			
+			if(e.getStateChange() == ItemEvent.SELECTED)
+			{
+				if(fuente == cualquieraTitulo)
+				{
+					opcionTitulo = 2;
+					
+				}else if(fuente == exactaTitulo)
+				{
+					opcionTitulo = 3;
+				}else if(fuente == sinTitulo)
+				{
+					opcionTitulo = 1;
+				}else if(fuente == cualquieraAutor)
+				{
+					opcionAutor = 2;
+				}else if(fuente == exactaAutor)
+				{
+					opcionAutor = 3;
+				}else if(fuente == sinAutor)
+				{
+					opcionAutor = 1;
+				}else if(fuente == cualquieraPalabra)
+				{
+					opcionPalabra = 2;
+				}else if(fuente == exactaPalabra)
+				{
+					opcionPalabra = 3;
+				}else if(fuente == sinPalabra)
+				{
+					opcionPalabra = 1;
+				}
+			}
 		}
 		
 	}
