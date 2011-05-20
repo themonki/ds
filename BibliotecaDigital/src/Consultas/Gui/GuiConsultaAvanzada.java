@@ -152,7 +152,8 @@ public class GuiConsultaAvanzada extends JPanel
 		
 		restriccionesBoton.gridy=restriccionesEtiqueta.gridy+1;
 		restriccionesBoton.insets= new Insets(4,2,2,2);
-		restriccionesBoton.anchor = GridBagConstraints.WEST;
+		restriccionesBoton.gridwidth= 4;
+		restriccionesBoton.anchor = GridBagConstraints.CENTER;
 		principal.add(botonConsultaAvanzada, restriccionesBoton);
 		//principal.add();
 		
@@ -181,8 +182,8 @@ public class GuiConsultaAvanzada extends JPanel
 		titulo = inicializarLabel("Titulo: ");
 		autor = inicializarLabel("Autor: ");
 		idioma = inicializarLabel("Idioma: ");
-		fechaPublicacionAntes = inicializarLabel("Fecha de publicación antes de: ");
-		fechaPublicacionDespues = inicializarLabel("Fecha de publicación después de: ");
+		fechaPublicacionAntes = inicializarLabel("Fecha de publicación antes del año: ");
+		fechaPublicacionDespues = inicializarLabel("Fecha de publicación después del año: ");
 		formatoArchivo = inicializarLabel("Formato de archivo: ");
 		
 	}
