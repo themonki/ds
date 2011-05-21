@@ -542,6 +542,7 @@ public class DaoConsulta {
 				}
 		return consultaAutorSql;
 	}
+
 	
 	public int guardarConsulta(String id_documento, String login, String fecha, String hora)
 	{

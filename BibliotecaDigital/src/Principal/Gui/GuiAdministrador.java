@@ -85,7 +85,7 @@ public class GuiAdministrador extends JFrame
 	public GuiAdministrador(Usuario usuario){
 		
 		super("::: Sistema de Biblioteca Digital :::");	
-		setIconImage(new ImageIcon("recursos/bd.png").getImage());
+		setIconImage(new ImageIcon("recursos/bd.gif").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 		LOGIN = usuario.getLogin();
@@ -167,7 +167,7 @@ public class GuiAdministrador extends JFrame
 		restricciones.gridy=1;
 		restricciones.insets= new Insets(0, 0, 20, 0);
 		
-		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.gif")),restricciones);
+		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.png")),restricciones);
 		restricciones.insets= new Insets(0, 0, 0, 0);
 		restricciones.gridy++;
 		

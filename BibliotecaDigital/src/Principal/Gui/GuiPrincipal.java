@@ -77,7 +77,7 @@ public class GuiPrincipal extends JFrame
 		{
 			
 			super("::: Sistema de Biblioteca Digital :::");	
-			setIconImage(new ImageIcon("recursos/bd.png").getImage());
+			setIconImage(new ImageIcon("recursos/bd.gif").getImage());
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			manejador = new Manejador();	
 			
@@ -153,7 +153,7 @@ public class GuiPrincipal extends JFrame
 			restricciones.gridy=1;
 			restricciones.fill = GridBagConstraints.HORIZONTAL;
 			restricciones.insets= new Insets(0, 0, 20, 0);
-			panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.gif")),restricciones);
+			panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.png")),restricciones);
 			restricciones.insets= new Insets(0, 0, 0, 0);
 			restricciones.gridy++;
 			panelOpcionesGenerales.add(volver, restricciones);
