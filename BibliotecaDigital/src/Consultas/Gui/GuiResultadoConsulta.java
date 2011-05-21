@@ -38,12 +38,12 @@ public class GuiResultadoConsulta extends JScrollPane{
 	
 	//Resultados
 	JList listaResultado;
-	Vector<Consulta> vectorConsulta;
-	
+	Vector<Consulta> vectorConsulta;	
 	Button botonSiguiente, botonAtras;
 	int posicionResultado, cantidadTotalResultados, cantidadMostrar;
 	public static int TIPOCONSULTA;
 	RenderLista rl;//formato de la lista
+	TitledBorder borde;
 	
 	public GuiResultadoConsulta(){}
 	
@@ -58,11 +58,10 @@ public class GuiResultadoConsulta extends JScrollPane{
 	
 	private void iniComponents(){
 		//***/
-		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Resultado Consultas");
-		borde.setTitleColor(Estilos.colorTitulo);
-		borde.setTitleFont(Estilos.fontTitulo);
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "");
+		borde.setTitleColor(Estilos.colorSubtitulo);
+		borde.setTitleFont(Estilos.fontSubtitulos);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		setBorder(borde);
 		//******/
@@ -114,9 +113,11 @@ public class GuiResultadoConsulta extends JScrollPane{
 	public void agregarResultadoSiguiente(int cantidad){
 		int posicionFinal = posicionResultado+cantidad;
 		rl.limpiarElementos();
+		int i;
 		Vector<Consulta> mostrar = new Vector<Consulta> ();
-		for(int i = posicionResultado; i < posicionFinal; i++ ){
+		for(i = posicionResultado; i < posicionFinal; i++ ){
 			if(i>=cantidadTotalResultados){
+				i=cantidadTotalResultados;
 				break;
 			}
 			mostrar.add(vectorConsulta.elementAt(i));
@@ -124,7 +125,10 @@ public class GuiResultadoConsulta extends JScrollPane{
 		rl.agregarElementos(mostrar);
 		listaResultado.setListData(mostrar);
 		listaResultado.setCellRenderer(rl);
+		borde.setTitle("Mostrando desde "+ (posicionResultado+1)+
+				" hasta "+ i +" de "+cantidadTotalResultados+ " resultados");
 		posicionResultado=posicionFinal;
+		this.updateUI();
 	}
 	
 	public void agregarResultadoAtras(int cantidad){
@@ -132,15 +136,16 @@ public class GuiResultadoConsulta extends JScrollPane{
 		rl.limpiarElementos();
 		Vector<Consulta> mostrar = new Vector<Consulta> ();
 		for(int i = posicionInicial; i < posicionResultado-cantidad; i++ ){
-			if(i>=cantidadTotalResultados){
-				break;
-			}
 			mostrar.add(vectorConsulta.elementAt(i));
 		}
 		rl.agregarElementos(mostrar);
 		listaResultado.setListData(mostrar);
 		listaResultado.setCellRenderer(rl);
 		posicionResultado=posicionResultado-cantidad;
+		borde.setTitle("");
+		this.updateUI();
+		borde.setTitle("Mostrando desde "+ (posicionInicial+1)+" hasta "+ posicionResultado +
+				" de "+cantidadTotalResultados+ " resultados");
 	}
 	
 	private class ManejadorBoton implements ActionListener {
