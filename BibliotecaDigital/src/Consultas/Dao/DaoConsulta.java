@@ -175,9 +175,9 @@ public class DaoConsulta {
 		consultaDocumentoTituloSql, consultaDocumentoFechaSql, consultaDocumentoFormatoSql, consultaDocumentoIdiomaSql,
 		consultaPalabraSql, consultaAreaSql, consultaAutorSql, consultaPalabraTempSql;
 		
-		String consultaPalabraNula = "SELECT nombre FROM palabra_clave WHERE ";
+		String consultaPalabraNula = "SELECT DISTINCT id_documento FROM tiene_documento_palabra_clave WHERE ";
 		
-		consultaPalabraTempSql = "SELECT nombre FROM palabra_clave WHERE ";
+		consultaPalabraTempSql = "SELECT DISTINCT id_documento FROM tiene_documento_palabra_clave WHERE ";
 		consultaPalabraSql = "SELECT d.id_documento, d.titulo_principal "+
 		"FROM (SELECT documento.id_documento, documento.titulo_principal FROM documento)as d NATURAL JOIN"; 
 		
@@ -221,7 +221,7 @@ public class DaoConsulta {
 						valores.elementAt(i)+ "%'" ;
 						if(esOR)
 						{
-							consultaDocumentoTituloSql += " OR ";
+							consultaDocumentoTituloSql += " AND ";
 						}
 					} else if(at.contains("algunas"))
 					{System.out.println(at);
@@ -270,15 +270,15 @@ public class DaoConsulta {
 				(atributos.elementAt(i+1).contains("palabra"));
 				if(at.contains("sin"))
 				{
-					consultaPalabraTempSql += "palabra_clave.nombre NOT LIKE '%" +
+					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre NOT LIKE '%" +
 					valores.elementAt(i) + "%'";
 					if(esOR)
 					{
-						consultaDocumentoTituloSql += " OR ";
+						consultaPalabraTempSql += " AND ";
 					}
 				} else if(at.contains("algunas"))
 				{
-					consultaPalabraTempSql += "palabra_clave.nombre LIKE '%" +
+					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre LIKE '%" +
 					valores.elementAt(i) + "%'";
 					if(esOR)
 					{
@@ -286,7 +286,7 @@ public class DaoConsulta {
 					}
 				}else // es exacto
 				{
-					consultaPalabraTempSql += "palabra_clave.nombre = '" +
+					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre = '" +
 					valores.elementAt(i) + "'";
 				}
 			}// fin palabra_clave
