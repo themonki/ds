@@ -22,11 +22,12 @@ public class Consulta {
 	public void setTituloDocuemto(String value) {tituloDocuemto=value;}
 	public void setNombresAutoresDocumento(Vector <String> value) {nombresAutoresDocumento=value;}
 	public String toString(){
-		String mostrarDatos = tituloDocuemto + "\n Autor(es): ";
+		String mostrarDatos = "<html>"+tituloDocuemto + "<br>Autor(es): ";
 		int cantidad = nombresAutoresDocumento.size();
 		for(int i = 0; i < cantidad-1;i++)
 			mostrarDatos+=nombresAutoresDocumento.get(i)+", ";
 		mostrarDatos+=nombresAutoresDocumento.get(cantidad-1);
+		mostrarDatos+="</html>";
 		return mostrarDatos;
 	}
 }

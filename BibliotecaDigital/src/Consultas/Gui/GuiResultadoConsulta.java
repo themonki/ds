@@ -1,24 +1,32 @@
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
+import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -50,6 +58,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 	int cantidadMostrar;
 	public static int TIPOCONSULTA;
 	int flag = 0;
+	RenderLista rl;
+	
 	public GuiResultadoConsulta(){}
 	
 	public GuiResultadoConsulta(Vector<Consulta> vectorConsulta, int cantidadResultados){
@@ -57,7 +67,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 		cantidadMostrar=cantidadResultados;
 		this.vectorConsulta = vectorConsulta;
 		cantidadTotalResultados=vectorConsulta.size();
-		posicionResultado=0;
+		posicionResultado=0;		
 		iniComponents();		
 	}
 	
@@ -108,33 +118,54 @@ public class GuiResultadoConsulta extends JScrollPane{
 	
 	private void initLista(){
 		listaResultado = new JList();
-		listaResultado.addListSelectionListener(new ManejadorLista());		
+		listaResultado.setFixedCellHeight(40);
+		listaResultado.setMaximumSize(new Dimension(100, 100));
+		rl=new RenderLista();
+		//listaResultado.setListData(vectorConsulta);
+		//rl=new RenderLista(vectorConsulta);
+		//listaResultado.setCellRenderer(rl);
+		//listaResultado.addListSelectionListener(new ManejadorLista());		
 		//listaResultado.setPreferredSize(new Dimension(245,200));
-		modeloLista = new DefaultListModel();
+		//modeloLista = new DefaultListModel();
 		agregarResultadoSiguiente(cantidadMostrar);
 	}
 	
 	public void agregarResultadoSiguiente(int cantidad){
-		int posicionFinal = posicionResultado+cantidad; 
+		int posicionFinal = posicionResultado+cantidad;
+		rl.limpiarElementos();
+		Vector<Consulta> mostrar = new Vector<Consulta> ();
 		for(int i = posicionResultado; i < posicionFinal; i++ ){
 			if(i>=cantidadTotalResultados){
 				break;
 			}
-			modeloLista.addElement(vectorConsulta.elementAt(i));
+			//modeloLista.addElement(vectorConsulta.elementAt(i));
+			//rl.agregarElementos(vectorConsulta.elementAt(i));
+			mostrar.add(vectorConsulta.elementAt(i));
 		}
-		listaResultado.setModel(modeloLista);
+		//listaResultado.setModel(modeloLista);
+		rl.agregarElementos(mostrar);
+		listaResultado.setListData(mostrar);
+		listaResultado.setCellRenderer(rl);
 		posicionResultado=posicionFinal;
 	}
 	
 	public void agregarResultadoAtras(int cantidad){
-		int posicionInicial = posicionResultado-cantidad*2; 		
+		int posicionInicial = posicionResultado-cantidad*2; 
+		rl.limpiarElementos();
+		Vector<Consulta> mostrar = new Vector<Consulta> ();
 		for(int i = posicionInicial; i < posicionResultado-cantidad; i++ ){
 			if(i>=cantidadTotalResultados){
 				break;
 			}
-			modeloLista.addElement(vectorConsulta.elementAt(i));
+			System.out.println("cuantas veces");
+			//rl.agregarElementos(vectorConsulta.elementAt(i));
+			//modeloLista.addElement(vectorConsulta.elementAt(i));
+			mostrar.add(vectorConsulta.elementAt(i));
 		}
-		listaResultado.setModel(modeloLista);
+		//listaResultado.setModel(modeloLista);
+		rl.agregarElementos(mostrar);
+		listaResultado.setListData(mostrar);
+		listaResultado.setCellRenderer(rl);
 		posicionResultado=posicionResultado-cantidad;
 	}
 	
@@ -144,7 +175,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==botonSiguiente){
 				if(posicionResultado<cantidadTotalResultados){
-					modeloLista.removeAllElements();
+					
+					//modeloLista.removeAllElements();
 					agregarResultadoSiguiente(cantidadMostrar);
 					}
 				if(posicionResultado>=cantidadTotalResultados){
@@ -154,7 +186,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 				flag = 0;
 			}
 			if(e.getSource()==botonAtras){
-				modeloLista.removeAllElements();
+				//modeloLista.removeAllElements();
 				agregarResultadoAtras(cantidadMostrar);
 				if(posicionResultado==cantidadMostrar){
 					botonAtras.setEnabled(false);
@@ -218,4 +250,118 @@ public class GuiResultadoConsulta extends JScrollPane{
 		}
 
 	}
+	
+	
+	private class RenderLista extends JLabel implements ListCellRenderer {
+
+		Hashtable<Object, ImageIcon> elementos;
+		ImageIcon icono = new ImageIcon("recursos/book.gif");
+
+		public Component getListCellRendererComponent(JList list, Object value,
+				int index, boolean isSelected, boolean cellHasFocus) {
+
+			if (elementos.get(value) != null) {
+				setIcon(icono);
+				setText("" + value);
+				this.updateUI();
+				if (isSelected) {
+					this.setFont(new Font("Verdana", Font.BOLD, 16));
+				}else {
+					setIcon(elementos.get(value));
+					setFont(null);
+					this.updateUI();
+				}
+			}
+			return this;
+		}
+
+		public RenderLista() {
+			elementos = new Hashtable<Object, ImageIcon>();
+		}
+
+		public RenderLista(Vector<Consulta> vc) {
+			elementos = new Hashtable<Object, ImageIcon>();
+			for (int i = 0; i < vc.size(); i++) {
+				elementos.put(vc.get(i), new ImageIcon());
+			}
+			
+		}
+
+		public void agregarElementos(Vector<Consulta> vc) {
+			for (int i = 0; i < vc.size(); i++) {
+				elementos.put(vc.get(i), new ImageIcon());
+			}
+		}
+
+		public void limpiarElementos() {
+			elementos.clear();
+		}
+		
+
+	}
+	
+	private class ManejadorSeleccion implements MouseListener {
+		ImageIcon icono = new ImageIcon("recursos/book.gif");
+		public void mouseClicked(MouseEvent arg0) {
+			int documentoElegido = listaResultado.getSelectedIndex();
+			if (documentoElegido >= 0) {
+				ControladorConsulta conConsulta = new ControladorConsulta();
+				Consulta documentoConsultar = (Consulta) modeloLista
+						.getElementAt(documentoElegido);					
+				Documento d =
+				conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());
+				
+				int tu = GuiConsultaBasica.TIPOUSUARIO;
+				System.out.println(tu);
+				if(tu == 0)
+				{	
+					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), "anonimo");
+				}else if(tu == 1)
+				{	
+					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiUsuarioNormal.LOGIN);					
+				}else if(tu == 2)
+				{
+					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiCatalogador.LOGIN);						
+				}else if(tu == 3)
+				{
+					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiAdministrador.LOGIN);						
+				}
+				if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+				{
+				
+					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);					
+					GuiConsultaBasica.ponerDescripcion();
+					
+				}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+				{
+					GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(d);					
+					GuiConsultaAvanzada.ponerDescripcion();
+						
+				}
+				
+			}
+			listaResultado.clearSelection();
+		}
+
+		public void mouseEntered(MouseEvent arg0) {
+			rl.setIcon(icono);
+			rl.setFont(new Font("Verdana", Font.BOLD, 16));
+			rl.updateUI();
+		}
+
+		public void mouseExited(MouseEvent arg0) {
+			rl.setIcon(new ImageIcon());
+			setFont(null);
+			rl.updateUI();
+		}
+
+		public void mousePressed(MouseEvent arg0) {
+			
+		}
+
+		public void mouseReleased(MouseEvent arg0) {
+			
+		}
+	}
+	
 }
