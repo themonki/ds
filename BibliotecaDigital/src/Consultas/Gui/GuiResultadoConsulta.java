@@ -2,9 +2,7 @@ package Consultas.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,23 +11,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Vector;
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
@@ -43,22 +36,14 @@ import Documento.Logica.Documento;
 
 public class GuiResultadoConsulta extends JScrollPane{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	//Resultados
 	JList listaResultado;
-	DefaultListModel modeloLista;
 	Vector<Consulta> vectorConsulta;
 	
 	Button botonSiguiente, botonAtras;
-	int posicionResultado;
-	int cantidadTotalResultados;
-	int cantidadMostrar;
+	int posicionResultado, cantidadTotalResultados, cantidadMostrar;
 	public static int TIPOCONSULTA;
-	int flag = 0;
-	RenderLista rl;
+	RenderLista rl;//formato de la lista
 	
 	public GuiResultadoConsulta(){}
 	
@@ -121,12 +106,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 		listaResultado.setFixedCellHeight(40);
 		listaResultado.setMaximumSize(new Dimension(100, 100));
 		rl=new RenderLista();
-		//listaResultado.setListData(vectorConsulta);
-		//rl=new RenderLista(vectorConsulta);
-		//listaResultado.setCellRenderer(rl);
-		//listaResultado.addListSelectionListener(new ManejadorLista());		
-		//listaResultado.setPreferredSize(new Dimension(245,200));
-		//modeloLista = new DefaultListModel();
+		listaResultado.addMouseListener(rl);
+		listaResultado.addMouseMotionListener(rl);
 		agregarResultadoSiguiente(cantidadMostrar);
 	}
 	
@@ -138,11 +119,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 			if(i>=cantidadTotalResultados){
 				break;
 			}
-			//modeloLista.addElement(vectorConsulta.elementAt(i));
-			//rl.agregarElementos(vectorConsulta.elementAt(i));
 			mostrar.add(vectorConsulta.elementAt(i));
 		}
-		//listaResultado.setModel(modeloLista);
 		rl.agregarElementos(mostrar);
 		listaResultado.setListData(mostrar);
 		listaResultado.setCellRenderer(rl);
@@ -157,12 +135,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 			if(i>=cantidadTotalResultados){
 				break;
 			}
-			System.out.println("cuantas veces");
-			//rl.agregarElementos(vectorConsulta.elementAt(i));
-			//modeloLista.addElement(vectorConsulta.elementAt(i));
 			mostrar.add(vectorConsulta.elementAt(i));
 		}
-		//listaResultado.setModel(modeloLista);
 		rl.agregarElementos(mostrar);
 		listaResultado.setListData(mostrar);
 		listaResultado.setCellRenderer(rl);
@@ -175,91 +149,33 @@ public class GuiResultadoConsulta extends JScrollPane{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==botonSiguiente){
 				if(posicionResultado<cantidadTotalResultados){
-					
-					//modeloLista.removeAllElements();
 					agregarResultadoSiguiente(cantidadMostrar);
 					}
 				if(posicionResultado>=cantidadTotalResultados){
 					botonSiguiente.setEnabled(false);
 				}
 				botonAtras.setEnabled(true);
-				flag = 0;
 			}
 			if(e.getSource()==botonAtras){
-				//modeloLista.removeAllElements();
 				agregarResultadoAtras(cantidadMostrar);
 				if(posicionResultado==cantidadMostrar){
 					botonAtras.setEnabled(false);
 				}
 				botonSiguiente.setEnabled(true);
-				flag = 0;
 			}
 		}
 		
 		
 	}
-
-	private class ManejadorLista implements ListSelectionListener {
-
-		
-		public void valueChanged(ListSelectionEvent e) {
-			System.out.println("**********  "+flag);
-			if (flag == 0) {
-				int documentoElegido = listaResultado.getSelectedIndex();
-				if (documentoElegido >= 0) {
-					ControladorConsulta conConsulta = new ControladorConsulta();
-					Consulta documentoConsultar = (Consulta) modeloLista
-							.getElementAt(documentoElegido);					
-					Documento d =
-					conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());
-					
-					int tu = GuiConsultaBasica.TIPOUSUARIO;
-					System.out.println(tu);
-					if(tu == 0)
-					{	
-						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), "anonimo");
-					}else if(tu == 1)
-					{	
-						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiUsuarioNormal.LOGIN);					
-					}else if(tu == 2)
-					{
-						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiCatalogador.LOGIN);						
-					}else if(tu == 3)
-					{
-						conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiAdministrador.LOGIN);						
-					}
-					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
-					{
-					
-						GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);					
-						GuiConsultaBasica.ponerDescripcion();
-						
-					}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
-					{
-						GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(d);					
-						GuiConsultaAvanzada.ponerDescripcion();
-							
-					}
-					
-				}
-				flag = 1;
-			} else {
-				flag = 0;
-			}
-			listaResultado.clearSelection();
-		}
-
-	}
-	
-	
-	private class RenderLista extends JLabel implements ListCellRenderer {
+//clase que se encargara de como se mostraran ls elementos de la lista
+	private class RenderLista extends JLabel implements ListCellRenderer, MouseListener, MouseMotionListener{
 
 		Hashtable<Object, ImageIcon> elementos;
 		ImageIcon icono = new ImageIcon("recursos/book.gif");
 
 		public Component getListCellRendererComponent(JList list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {
-
+			
 			if (elementos.get(value) != null) {
 				setIcon(icono);
 				setText("" + value);
@@ -279,89 +195,77 @@ public class GuiResultadoConsulta extends JScrollPane{
 			elementos = new Hashtable<Object, ImageIcon>();
 		}
 
-		public RenderLista(Vector<Consulta> vc) {
-			elementos = new Hashtable<Object, ImageIcon>();
-			for (int i = 0; i < vc.size(); i++) {
-				elementos.put(vc.get(i), new ImageIcon());
-			}
-			
-		}
-
 		public void agregarElementos(Vector<Consulta> vc) {
 			for (int i = 0; i < vc.size(); i++) {
 				elementos.put(vc.get(i), new ImageIcon());
 			}
 		}
-
 		public void limpiarElementos() {
 			elementos.clear();
 		}
-		
-
-	}
-	
-	private class ManejadorSeleccion implements MouseListener {
-		ImageIcon icono = new ImageIcon("recursos/book.gif");
-		public void mouseClicked(MouseEvent arg0) {
+		//////////////////////////////7
+		public void mouseClicked(MouseEvent e) {
 			int documentoElegido = listaResultado.getSelectedIndex();
 			if (documentoElegido >= 0) {
 				ControladorConsulta conConsulta = new ControladorConsulta();
-				Consulta documentoConsultar = (Consulta) modeloLista
-						.getElementAt(documentoElegido);					
-				Documento d =
-				conConsulta.obtenerDatosDocumento(documentoConsultar.getIdDocumento());
-				
+				Consulta documentoConsultar = (Consulta) listaResultado
+						.getSelectedValue();
+				Documento d = conConsulta
+						.obtenerDatosDocumento(documentoConsultar
+								.getIdDocumento());
+
 				int tu = GuiConsultaBasica.TIPOUSUARIO;
 				System.out.println(tu);
-				if(tu == 0)
-				{	
-					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), "anonimo");
-				}else if(tu == 1)
-				{	
-					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiUsuarioNormal.LOGIN);					
-				}else if(tu == 2)
-				{
-					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiCatalogador.LOGIN);						
-				}else if(tu == 3)
-				{
-					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(), GuiAdministrador.LOGIN);						
+				if (tu == 0) {
+					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
+							"anonimo");
+				} else if (tu == 1) {
+					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
+							GuiUsuarioNormal.LOGIN);
+				} else if (tu == 2) {
+					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
+							GuiCatalogador.LOGIN);
+				} else if (tu == 3) {
+					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
+							GuiAdministrador.LOGIN);
 				}
-				if(GuiResultadoConsulta.TIPOCONSULTA == 1)
-				{
-				
-					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);					
+				if (GuiResultadoConsulta.TIPOCONSULTA == 1) {
+
+					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
-					
-				}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
-				{
-					GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(d);					
+
+				} else if (GuiResultadoConsulta.TIPOCONSULTA == 2) {
+					GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(
+							d);
 					GuiConsultaAvanzada.ponerDescripcion();
-						
+
 				}
-				
+
 			}
 			listaResultado.clearSelection();
 		}
 
-		public void mouseEntered(MouseEvent arg0) {
-			rl.setIcon(icono);
-			rl.setFont(new Font("Verdana", Font.BOLD, 16));
-			rl.updateUI();
+		public void mouseEntered(MouseEvent e) {
 		}
 
 		public void mouseExited(MouseEvent arg0) {
-			rl.setIcon(new ImageIcon());
-			setFont(null);
-			rl.updateUI();
+			listaResultado.clearSelection();
 		}
 
 		public void mousePressed(MouseEvent arg0) {
-			
 		}
 
 		public void mouseReleased(MouseEvent arg0) {
-			
 		}
+/////////////////////////////////7
+		public void mouseDragged(MouseEvent arg0) {
+		}
+
+		public void mouseMoved(MouseEvent e) {
+			int index = listaResultado.locationToIndex(e.getPoint());
+			listaResultado.setSelectedIndex(index);
+		}
+		
+
 	}
-	
 }
