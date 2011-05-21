@@ -166,275 +166,39 @@ public class DaoConsulta {
 		return autores;
 	}
 	
-	public Vector<Consulta> consultaAvanzada(Vector<String> atributos, Vector<String> valores)
+	public Vector<Consulta> consultaAvanzada(Vector<String> atributoDocumento, Vector<String> valorDocumento, String atributoPalabra, Vector<String> valorPalabra, String atributoAutor, Vector<String> valorAutor, String areaString)
 	{
 		Vector<Consulta>  consultas = new Vector<Consulta>();
 		
 		String consultaSql, consultaDocumentoSql,
-		consultaDocumentoTituloSql, consultaDocumentoFechaSql, consultaDocumentoFormatoSql, consultaDocumentoIdiomaSql,
-		consultaPalabraSql, consultaAreaSql, consultaAutorSql, consultaPalabraTempSql;
+		consultaPalabraSql, consultaAreaSql, consultaAutorSql;
 		
-		String consultaPalabraNula = "SELECT DISTINCT id_documento FROM tiene_documento_palabra_clave WHERE ";
-		
-		consultaPalabraTempSql = "SELECT DISTINCT id_documento FROM tiene_documento_palabra_clave WHERE ";
-		consultaPalabraSql = "SELECT d.id_documento, d.titulo_principal "+
-		"FROM (SELECT documento.id_documento, documento.titulo_principal FROM documento)as d NATURAL JOIN"; 
-		
-		consultaDocumentoSql =  "SELECT documento.id_documento, documento.titulo_principal "+
-		"FROM documento " +
-		"WHERE ";
-		consultaDocumentoTituloSql=	"" ;
-		consultaDocumentoFechaSql=	"";
-		consultaDocumentoFormatoSql=	"";
-		consultaDocumentoIdiomaSql=	"";		
-		
+		// para construir la consulta final
+		consultaDocumentoSql = consultaDocumento(atributoDocumento, valorDocumento);
+		consultaPalabraSql = consultaPalabra(atributoPalabra, valorPalabra);
+		consultaAutorSql = consultaAutor(atributoAutor, valorAutor);
+
 		consultaAreaSql = "SELECT * FROM " +
 		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS f " +
 		"NATURAL JOIN " + 
 		"(SELECT p.id_documento FROM pertenece_documento_area_conocimiento AS p " +
 		"NATURAL JOIN " +
 		"(SELECT a.id_area FROM area_conocimiento AS a WHERE ";
-		
-		consultaAutorSql = "SELECT * FROM " +
-		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS x " +
-		"NATURAL JOIN " + 
-		"(SELECT e.id_documento FROM escribe_autor_documento AS e " + 
-		"NATURAL JOIN " + 
-		"(SELECT a.id_autor FROM autor AS a WHERE ";
-		
-		for(int i=0;i<atributos.size();i++)
+
+		if(!areaString.equals(""))
 		{
-			String at = atributos.elementAt(i);
-			
-			if(at.contains("documento"))
-			{
-				if(at.contains("titulo"))
-				{
-					boolean esOR = (valores.elementAt(i)!=valores.lastElement()) && 
-					(atributos.elementAt(i+1).contains("titulo"));
-					if(at.contains("sin"))
-					{
-						consultaDocumentoTituloSql += "documento.titulo_principal NOT LIKE '%" + //*******************************
-						valores.elementAt(i) + "%' AND " +
-						"documento.titulo_secundario LIKE '%" +
-						valores.elementAt(i)+ "%'" ;
-						if(esOR)
-						{
-							consultaDocumentoTituloSql += " OR ";
-						}
-					} else if(at.contains("algunas"))
-					{System.out.println(at);
-						consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
-						valores.elementAt(i) + "%' OR " +
-						"documento.titulo_secundario LIKE '%" +
-						valores.elementAt(i)+ "%'" ;
-						if(esOR)
-						{
-							consultaDocumentoTituloSql += " OR ";
-						}
-					}else // es exacto
-					{
-						consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
-						valores.elementAt(i) + "%' OR " +
-						"documento.titulo_secundario LIKE '%" +
-						valores.elementAt(i) + "%'";
-					}
-				}else if (at.contains("idioma"))
-				{
-					consultaDocumentoIdiomaSql+= "documento.idioma = '"+
-					valores.elementAt(i) + "'";					
-				}else if (at.contains("formato"))
-				{
-					consultaDocumentoFormatoSql+= "documento.formato = '"+
-					valores.elementAt(i) + "'";
-				}else //contiene fecha
-				{
-					if(at.contains("antes"))
-					{
-						consultaDocumentoFechaSql += "documento.fecha_publicacion < '"+
-						valores.elementAt(i)+"'";
-						if(atributos.lastElement()!= at && atributos.elementAt(i+1).contains("despues")){
-							consultaDocumentoFechaSql += " AND "; 
-						}
-					}else { // es despues
-						{
-							consultaDocumentoFechaSql += "documento.fecha_publicacion > '"+
-							valores.elementAt(i)+"'";
-						}
-					}
-				}//fin documento
-			} else if(at.contains("palabra"))
-			{
-				boolean esOR = (valores.elementAt(i)!=valores.lastElement()) && 
-				(atributos.elementAt(i+1).contains("palabra"));
-				if(at.contains("sin"))
-				{
-					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre LIKE '%" +
-					valores.elementAt(i) + "%'";
-					if(esOR)
-					{
-						consultaPalabraTempSql += " OR ";
-					}
-				} else if(at.contains("algunas"))
-				{
-					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre NOT LIKE '%" +
-					valores.elementAt(i) + "%'";
-					if(esOR)
-					{
-						consultaPalabraTempSql += " OR ";
-					}
-				}else // es exacto
-				{
-					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre = '" +
-					valores.elementAt(i) + "'";
-				}
-			}// fin palabra_clave
-			else if(at.contains("area"))
-			{
-				consultaAreaSql += "a.nombre = '" + valores.elementAt(i) + "'";
-			}
-			else if(at.contains("autor"))
-			{
-				boolean esOR = ((atributos.size()!=i+1) && 
-				atributos.elementAt(i+1).contains("autor"));
-				
-				System.out.println("es or autor " + esOR);
-					
-				if(at.contains("sin"))
-				{
-					consultaAutorSql += "a.nombre NOT LIKE '%" +
-					valores.elementAt(i) + "%' AND " +
-					"a.apellido NOT LIKE '%" +
-					valores.elementAt(i)+ "%'" ;
-					if(esOR)
-					{
-						consultaAutorSql += " AND ";
-					}
-				} else if(at.contains("algunas"))
-				{
-					consultaAutorSql += "a.nombre LIKE '%" +
-					valores.elementAt(i) + "%' OR " +
-					"a.apellido LIKE '%" +
-					valores.elementAt(i)+ "%'" ;
-					if(esOR)
-					{
-						consultaAutorSql += " OR ";
-					}
-				}else
-				{//solo puede conicidir con el nombre o con el apellido
-					consultaAutorSql += "a.nombre = '" +
-					valores.elementAt(i) + "' OR " +
-					"a.apellido = '" +
-					valores.elementAt(i)+ "'" ;
-				}
-			}//fin autor
-		}
-		
-		if(!consultaAreaSql.equals("SELECT * FROM " +
-		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS f " +
-		"NATURAL JOIN " + 
-		"(SELECT p.id_documento FROM pertenece_documento_area_conocimiento AS p " +
-		"NATURAL JOIN " +
-		"(SELECT a.id_area FROM area_conocimiento AS a WHERE "))
-		{
+			consultaAreaSql += "a.nombre = '" + areaString + "'";
 			consultaAreaSql += ") AS x) AS y";
 		}else
 		{
 			consultaAreaSql = "";
 		}
-		
-		if(!consultaAutorSql.equals("SELECT * FROM " +
-		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS x " +
-		"NATURAL JOIN " + 
-		"(SELECT e.id_documento FROM escribe_autor_documento AS e " + 
-		"NATURAL JOIN " + 
-		"(SELECT a.id_autor FROM autor AS a WHERE "))
-		{
-			consultaAutorSql += ") AS c) AS y";
-		}else
-		{
-			consultaAutorSql = "";
-		}
-		
-		//construir consultaDocumentoSql
-		boolean tituloSql = consultaDocumentoTituloSql.equals("");
-		boolean fechaSql = consultaDocumentoFechaSql.equals("");
-		boolean formatoSql = consultaDocumentoFormatoSql.equals("");
-		boolean idiomaSql = consultaDocumentoIdiomaSql.equals("");
-		
-		boolean primera= true;
-		
-		String temptitulo="", tempfecha="", tempformato="", tempidioma="";
-		if(tituloSql && fechaSql && formatoSql && idiomaSql)
-		{
-			consultaDocumentoSql = "SELECT documento.id_documento, documento.titulo_principal "+
-			"FROM documento";
-		}else
-		{
-			if(!tituloSql)
-			{
-				temptitulo = "(" + consultaDocumentoTituloSql + ")";
-				primera= false;
-			}
-			if(!fechaSql)
-			{
-				if(primera)
-				{
-					tempfecha = "(" + consultaDocumentoFechaSql + ")";
-					primera=false;
-				}else
-				{
-					tempfecha = " AND " + "(" + consultaDocumentoFechaSql + ")";
-				}
-			}
-			if(!formatoSql)
-			{
-				if(primera)
-				{
-					tempformato = "(" + consultaDocumentoFormatoSql + ")";
-					primera=false;
-				}else
-				{
-					tempformato = " AND " + "(" + consultaDocumentoFormatoSql + ")";
-				}
-			}
-			if(!idiomaSql)
-			{
-				if(primera)
-				{
-					tempidioma = "(" + consultaDocumentoIdiomaSql + ")";
-				}else
-				{
-					tempidioma = " AND " + "(" + consultaDocumentoIdiomaSql + ")";
-				}
-			}
-			
-			consultaDocumentoSql += temptitulo + tempfecha + tempformato + tempidioma;
-			
-		}
-		
-
-		
-		
-		
-		//construir consultaPalabraSql
-		
-		boolean nombreSql = consultaPalabraTempSql.equals(consultaPalabraNula);
-		
-		if(!nombreSql)
-		{
-			consultaPalabraSql += "(SELECT id_documento FROM documento EXCEPT "
-				+consultaPalabraTempSql+") AS p";
-		}else
-		{
-			consultaPalabraSql="";
-		}
-			
-		//System.out.println(consultaDocumentoSql);
-		//System.out.println(consultaPalabraSql);
+	
+		System.out.println(consultaDocumentoSql);
+		System.out.println(consultaPalabraSql);
 		//System.out.println(consultaDocumentoTituloSql);
-		//System.out.println(consultaAreaSql);
-		//System.out.println(consultaAutorSql);
+		System.out.println(consultaAreaSql);
+		System.out.println(consultaAutorSql);
 		
 		consultaSql = "";
 		
@@ -514,6 +278,269 @@ public class DaoConsulta {
 			System.out.println(consultas);
 		return consultas;
 		
+	}
+	
+	private String consultaDocumento(Vector<String> atributoDocumento, Vector<String> valorDocumento)
+	{
+		String consultaDocumentoSql, consultaDocumentoTituloSql, 
+		consultaDocumentoFechaSql, consultaDocumentoFormatoSql, consultaDocumentoIdiomaSql;
+		consultaDocumentoSql =  "SELECT documento.id_documento, documento.titulo_principal "+
+		"FROM documento " +
+		"WHERE ";
+		consultaDocumentoTituloSql=	"" ;
+		consultaDocumentoFechaSql=	"";
+		consultaDocumentoFormatoSql=	"";
+		consultaDocumentoIdiomaSql=	"";
+		
+		int sizeVector = atributoDocumento.size();
+		
+		for(int i=0; i<sizeVector; i++)
+		{
+			String at = atributoDocumento.elementAt(i);
+			if(at.contains("titulo"))
+			{
+				boolean esOR = (i!= sizeVector-1) && 
+				(atributoDocumento.elementAt(i+1).contains("titulo"));
+				
+				if(at.contains("sin"))
+				{
+					consultaDocumentoTituloSql += "documento.titulo_principal NOT LIKE '%" + //*******************************
+					valorDocumento.elementAt(i) + "%' AND " +
+					"documento.titulo_secundario LIKE '%" +
+					valorDocumento.elementAt(i)+ "%'" ;
+					if(esOR)
+					{
+						consultaDocumentoTituloSql += " OR ";
+					}
+				} else if(at.contains("algunas"))
+				{System.out.println(at);
+					consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
+					valorDocumento.elementAt(i) + "%' OR " +
+					"documento.titulo_secundario LIKE '%" +
+					valorDocumento.elementAt(i)+ "%'" ;
+					if(esOR)
+					{
+						consultaDocumentoTituloSql += " OR ";
+					}
+				}else // es exacto
+				{
+					consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
+					valorDocumento.elementAt(i) + "%' OR " +
+					"documento.titulo_secundario LIKE '%" +
+					valorDocumento.elementAt(i) + "%'";
+				}
+			}else if (at.contains("idioma"))
+			{
+				consultaDocumentoIdiomaSql+= "documento.idioma = '"+
+				valorDocumento.elementAt(i) + "'";					
+			}else if (at.contains("formato"))
+			{
+				consultaDocumentoFormatoSql+= "documento.formato = '"+
+				valorDocumento.elementAt(i) + "'";
+			}else //contiene fecha
+			{
+				if(at.contains("antes"))
+				{
+					consultaDocumentoFechaSql += "documento.fecha_publicacion < '"+
+					valorDocumento.elementAt(i)+"'";
+					if((i != sizeVector-1) && atributoDocumento.elementAt(i+1).contains("despues")){
+						consultaDocumentoFechaSql += " AND "; 
+					}
+				}else { // es despues
+					{
+						consultaDocumentoFechaSql += "documento.fecha_publicacion > '"+
+						valorDocumento.elementAt(i)+"'";
+					}
+				}
+			}//fin documento
+		}
+		
+		//construir consultaDocumentoSql
+		boolean tituloSql = consultaDocumentoTituloSql.equals("");
+		boolean fechaSql = consultaDocumentoFechaSql.equals("");
+		boolean formatoSql = consultaDocumentoFormatoSql.equals("");
+		boolean idiomaSql = consultaDocumentoIdiomaSql.equals("");
+		
+		boolean primera= true;
+		
+		String temptitulo="", tempfecha="", tempformato="", tempidioma="";
+		if(tituloSql && fechaSql && formatoSql && idiomaSql)
+		{
+			consultaDocumentoSql = "SELECT documento.id_documento, documento.titulo_principal "+
+			"FROM documento";
+		}else
+		{
+			if(!tituloSql)
+			{
+				temptitulo = "(" + consultaDocumentoTituloSql + ")";
+				primera= false;
+			}
+			if(!fechaSql)
+			{
+				if(primera)
+				{
+					tempfecha = "(" + consultaDocumentoFechaSql + ")";
+					primera=false;
+				}else
+				{
+					tempfecha = " AND " + "(" + consultaDocumentoFechaSql + ")";
+				}
+			}
+			if(!formatoSql)
+			{
+				if(primera)
+				{
+					tempformato = "(" + consultaDocumentoFormatoSql + ")";
+					primera=false;
+				}else
+				{
+					tempformato = " AND " + "(" + consultaDocumentoFormatoSql + ")";
+				}
+			}
+			if(!idiomaSql)
+			{
+				if(primera)
+				{
+					tempidioma = "(" + consultaDocumentoIdiomaSql + ")";
+				}else
+				{
+					tempidioma = " AND " + "(" + consultaDocumentoIdiomaSql + ")";
+				}
+			}
+			
+			consultaDocumentoSql += temptitulo + tempfecha + tempformato + tempidioma;
+			
+		}
+		
+		return consultaDocumentoSql;
+
+
+	}
+	
+	private String consultaPalabra(String atributoPalabra, Vector<String> valorPalabra)
+	{
+		String	consultaPalabraSql, consultaPalabraTempSql;
+		
+		String consultaPalabraNula = "SELECT DISTINCT id_documento FROM tiene_documento_palabra_clave WHERE ";
+		
+		consultaPalabraTempSql = "SELECT DISTINCT id_documento FROM tiene_documento_palabra_clave WHERE ";
+		consultaPalabraSql = "SELECT d.id_documento, d.titulo_principal "+
+		"FROM (SELECT documento.id_documento, documento.titulo_principal FROM documento)as d NATURAL JOIN"; 
+		
+		int sizeVector = valorPalabra.size();
+		
+		if(atributoPalabra.equals("sin"))
+		{
+			for(int i=0; i< sizeVector;i++)
+			{
+				boolean esOR = i != sizeVector -1 ;
+				consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre LIKE '%" +
+				valorPalabra.elementAt(i) + "%'";
+				if(esOR)
+				{
+					consultaPalabraTempSql += " OR ";
+				}
+			}
+		} else if (atributoPalabra.equals("algunas"))
+		{
+			for(int i=0; i< sizeVector;i++)
+			{
+				boolean esOR = i != sizeVector - 1;
+				consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre NOT LIKE '%" +
+				valorPalabra.elementAt(i) + "%'";
+				if(esOR)
+				{
+					consultaPalabraTempSql += " OR ";
+				}
+			}
+		}else
+		{
+			consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre = '" +
+			valorPalabra.elementAt(0) + "'";
+		}
+		
+		
+		boolean nombreSql = consultaPalabraTempSql.equals(consultaPalabraNula);
+		
+		if(!nombreSql)
+		{
+			consultaPalabraSql += "(SELECT id_documento FROM documento EXCEPT "
+				+consultaPalabraTempSql+") AS p";
+		}else
+		{
+			consultaPalabraSql="";
+		}
+		
+		return consultaPalabraSql;
+
+	}
+	
+	private String consultaAutor(String atributoAutor, Vector<String> valorAutor)
+	{
+		String consultaAutorSql;
+		
+		consultaAutorSql = "SELECT * FROM " +
+		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS x " +
+		"NATURAL JOIN " + 
+		"(SELECT e.id_documento FROM escribe_autor_documento AS e " + 
+		"NATURAL JOIN " + 
+		"(SELECT a.id_autor FROM autor AS a WHERE ";
+
+		int sizeVector = valorAutor.size();
+
+		if(atributoAutor.equals("sin"))
+		{
+			for(int i=0; i<sizeVector; i++)
+			{
+				boolean esOR = sizeVector!=i+1;
+
+				consultaAutorSql += "a.nombre NOT LIKE '%" +
+				valorAutor.elementAt(i) + "%' AND " +
+				"a.apellido NOT LIKE '%" +
+				valorAutor.elementAt(i)+ "%'" ;
+				if(esOR)
+				{
+					consultaAutorSql += " AND ";
+				}
+			}
+
+		} else if(atributoAutor.equals("algunas"))
+		{
+			for(int i=0; i<sizeVector; i++)
+			{
+				boolean esOR = sizeVector!=i+1;
+				
+				consultaAutorSql += "a.nombre LIKE '%" +
+				valorAutor.elementAt(i) + "%' OR " +
+				"a.apellido LIKE '%" +
+				valorAutor.elementAt(i)+ "%'" ;
+				if(esOR)
+				{
+					consultaAutorSql += " OR ";
+				}
+			}
+
+		}else
+		{//solo puede conicidir con el nombre o con el apellido
+			consultaAutorSql += "a.nombre = '" +
+			valorAutor.elementAt(0) + "' OR " +
+			"a.apellido = '" +
+			valorAutor.elementAt(0)+ "'" ;
+		}
+
+		if(!consultaAutorSql.equals("SELECT * FROM " +
+				"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS x " +
+				"NATURAL JOIN " + 
+				"(SELECT e.id_documento FROM escribe_autor_documento AS e " + 
+				"NATURAL JOIN " + 
+				"(SELECT a.id_autor FROM autor AS a WHERE "))
+				{
+					consultaAutorSql += ") AS c) AS y";
+				}else
+				{
+					consultaAutorSql = "";
+				}
+		return consultaAutorSql;
 	}
 	
 	public int guardarConsulta(String id_documento, String login, String fecha, String hora)
