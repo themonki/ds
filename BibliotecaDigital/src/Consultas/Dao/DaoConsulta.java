@@ -17,7 +17,6 @@ public class DaoConsulta {
 		fachada = new FachadaBD();
 	}
 	
-	
 	//metodo de consulta general
 	public Vector<Consulta> consultaGeneral(Vector<String> parametro)
 	{
@@ -217,11 +216,11 @@ public class DaoConsulta {
 					{
 						consultaDocumentoTituloSql += "documento.titulo_principal NOT LIKE '%" + //*******************************
 						valores.elementAt(i) + "%' AND " +
-						"documento.titulo_secundario NOT LIKE '%" +
+						"documento.titulo_secundario LIKE '%" +
 						valores.elementAt(i)+ "%'" ;
 						if(esOR)
 						{
-							consultaDocumentoTituloSql += " AND ";
+							consultaDocumentoTituloSql += " OR ";
 						}
 					} else if(at.contains("algunas"))
 					{System.out.println(at);
@@ -270,15 +269,15 @@ public class DaoConsulta {
 				(atributos.elementAt(i+1).contains("palabra"));
 				if(at.contains("sin"))
 				{
-					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre NOT LIKE '%" +
+					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre LIKE '%" +
 					valores.elementAt(i) + "%'";
 					if(esOR)
 					{
-						consultaPalabraTempSql += " AND ";
+						consultaPalabraTempSql += " OR ";
 					}
 				} else if(at.contains("algunas"))
 				{
-					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre LIKE '%" +
+					consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre NOT LIKE '%" +
 					valores.elementAt(i) + "%'";
 					if(esOR)
 					{
@@ -424,7 +423,8 @@ public class DaoConsulta {
 		
 		if(!nombreSql)
 		{
-			consultaPalabraSql += "("+consultaPalabraTempSql+") AS p";
+			consultaPalabraSql += "(SELECT id_documento FROM documento EXCEPT "
+				+consultaPalabraTempSql+") AS p";
 		}else
 		{
 			consultaPalabraSql="";
