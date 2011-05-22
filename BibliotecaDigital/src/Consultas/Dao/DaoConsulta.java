@@ -213,56 +213,49 @@ public class DaoConsulta {
 		{
 			consultaSql="SELECT documento.id_documento, documento.titulo_principal "+
 			"FROM documento";
-		} else
+		} 
+		else
 		{
-			if(!consultaAreaSql.equals(""))
-			{
-				if(!consultaPalabraSql.equals(""))
-				{
-					if(!consultaAutorSql.equals(""))
-					{
-						consultaSql += "((" + consultaAreaSql + ")" + " INTERSECT " +
-						"(" + consultaPalabraSql + "))" + " INTERSECT " + 
-						"(" + consultaAutorSql + ")";
-					}else
-					{
-						consultaSql += "(" + consultaAreaSql + ")" + " INTERSECT " +
-						"(" + consultaPalabraSql + ")";
-					}
-				
-				}else if(!consultaAutorSql.equals(""))
-				{
-					consultaSql += "(" + consultaAreaSql + ")" + " INTERSECT " +
-					"(" + consultaAutorSql + ")";
-				}else
-				{
-					consultaSql += consultaAreaSql;
-				}
+			Vector<Boolean> cuales= new Vector<Boolean>();
+			cuales.add(!documento);
+			cuales.add(!palabra);
+			cuales.add(!autor);
+			cuales.add(!area);
 			
-			}else if(!consultaPalabraSql.equals(""))
+			Vector<String> consultasSql = new Vector<String>();
+			consultasSql.add(consultaDocumentoSql);
+			consultasSql.add(consultaPalabraSql);
+			consultasSql.add(consultaAutorSql);
+			consultasSql.add(consultaAreaSql);
+			
+			int cuantas = (!documento? 1:0) + (!palabra? 1:0) + (!autor? 1:0) + (!area? 1:0);
+			
+			if(cuantas == 1)
 			{
-				if(!consultaAutorSql.equals(""))
-				{
-					consultaSql += "(" + consultaPalabraSql + ")" + " INTERSECT " +
-					"(" + consultaAutorSql + ")";
-				
-				}else
-				{
-					consultaSql += consultaPalabraSql;
-				}
-			}else if(!consultaAutorSql.equals(""))
+				consultaSql= consultasSql.elementAt(cuales.indexOf(true));
+			} else if(cuantas == 2)
 			{
-				consultaSql += consultaAutorSql;
+				int primeraOcurrencia = cuales.indexOf(true);
+				consultaSql= "((" + consultasSql.elementAt(primeraOcurrencia)+ ")" +
+				" INTERSECT " + "(" + consultasSql.elementAt(cuales.indexOf(true, primeraOcurrencia)) + "))"; 
+			} else if(cuantas == 3)
+			{
+				int primeraOcurrencia = cuales.indexOf(true);
+				consultaSql= "((" + consultasSql.elementAt(primeraOcurrencia) + ")" +
+				" INTERSECT " + "(" + consultasSql.elementAt(cuales.indexOf(true, primeraOcurrencia)) + "))"+
+				" INTERSECT " + "(" + consultasSql.elementAt(cuales.lastIndexOf(true, primeraOcurrencia)) + ")";
+			} else 
+			{
+				consultaSql = "((" + consultaDocumentoSql + ")" + " INTERSECT " +
+				"(" + consultaPalabraSql + "))" + " INTERSECT "+
+				"((" + consultaAutorSql + ")" + " INTERSECT " +
+				"(" + consultaAreaSql + "))";
 			}
+			
+
+			consultaSql = "SELECT * FROM ("+ consultaSql + ") AS y";
 		}
 		
-		
-		
-		/*else
-		{
-			consultaSql = "SELECT * FROM (" + consultaSql + 
-			" INTERSECT " + consultaDocumentoSql + ") AS x";
-		}*/
 		
 		//System.out.print(consultaSql);
 		

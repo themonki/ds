@@ -59,7 +59,11 @@ public class ControladorConsulta
 		//for para tolowercase para valores
 		for(int i=0; i<valor.size();i++)
 		{
-			valor.setElementAt(valor.elementAt(i).toLowerCase(), i);
+			if(!atributo.elementAt(i).equals("idioma")) //No se que pasa con el lowerCase de idioma .. por eso se hace esta comparacion.
+			{
+				valor.setElementAt(valor.elementAt(i).toLowerCase(), i);
+			}
+			
 		}
 		
 		Vector<String> valorPalabra = new Vector<String>();
@@ -152,21 +156,21 @@ public class ControladorConsulta
 			{
 				atributoDocumento.setElementAt(1, 2);
 				valorDocumento.add(valor.elementAt(i)+"-12-31");
-			}
-			else if(elemento.equals("idioma"))
+			}else if(elemento.equals("idioma"))
 			{
-				if(!valor.elementAt(i).equals("todos"))
+				if(!valor.elementAt(i).equals("Todos")) //se compara con mayuscula por el lowerCase que se dejo de hacer
 				{
 					atributoDocumento.setElementAt(1, 3);
 					valorDocumento.add(valor.elementAt(i));
+					System.out.println("indice: " + i + " valor: " + valor.elementAt(i)+ " atributo en indice3: " + atributoDocumento.elementAt(3));
 				}
-			}
-			else if(elemento.equals("formato"))
+			}else if(elemento.equals("formato"))
 			{
 				if(!valor.elementAt(i).equals("todos"))
 				{
 					atributoDocumento.setElementAt(1, 4);
 					valorDocumento.add(valor.elementAt(i));
+					System.out.println("indice: " + i + " valor: " + valor.elementAt(i)+ " atributo en indice4: " + atributoDocumento.elementAt(4));
 				}
 			}else if(elemento.equals("area"))
 			{

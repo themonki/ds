@@ -67,7 +67,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 	private Vector<String> atributosConsulta;
 	
 	//vector y arrays para inicializar los combo box
-	String idiomaArray[] = {"Todos","Ingles", "Español","Francés", "Aleman", "Portuges"};
+	String idiomaArray[] = {"Todos","Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String formatoArchivoArray[] = {"Todos", "jpg", "pdf", "doc", "odt", "otro"};
 	Vector<String> areas; 
 	
@@ -363,10 +363,10 @@ public class GuiConsultaAvanzada extends JScrollPane
 					valoresConsulta.add(fechaPublicacionDespues);
 				}
 				
-				atributosConsulta.add("formato");
-				valoresConsulta.add(formatoArchivo);
 				atributosConsulta.add("idioma");
 				valoresConsulta.add(idioma);
+				atributosConsulta.add("formato");
+				valoresConsulta.add(formatoArchivo);
 				atributosConsulta.add("area");
 				valoresConsulta.add(area);
 				
