@@ -335,7 +335,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		formato = new JLabel("Formato");
 		softwareRecomendado = new JLabel("Software Recomendado para Editar");
 		fechaPublicacion = new JLabel("Fecha de Publicacion");
-		fechaCreacion = new JLabel("Fecha de Catalogación");
+		fechaCreacion = new JLabel("Fecha de Creación");
 
 		areas = new JLabel("Areas de conocimiento");
 		autores = new JLabel("Autor(es)");

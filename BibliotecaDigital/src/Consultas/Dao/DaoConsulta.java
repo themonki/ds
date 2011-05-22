@@ -166,7 +166,7 @@ public class DaoConsulta {
 		return autores;
 	}
 	
-	public Vector<Consulta> consultaAvanzada(Vector<String> atributoDocumento, Vector<String> valorDocumento, String atributoPalabra, Vector<String> valorPalabra, String atributoAutor, Vector<String> valorAutor, String areaString)
+	public Vector<Consulta> consultaAvanzada(int opTitulo, Vector<Integer> atributoDocumento, Vector<String> valorDocumento, int opPalabra, Vector<String> valorPalabra, int opAutor, Vector<String> valorAutor, String areaString)
 	{
 		Vector<Consulta>  consultas = new Vector<Consulta>();
 		
@@ -174,9 +174,9 @@ public class DaoConsulta {
 		consultaPalabraSql, consultaAreaSql, consultaAutorSql;
 		
 		// para construir la consulta final
-		consultaDocumentoSql = consultaDocumento(atributoDocumento, valorDocumento);
-		consultaPalabraSql = consultaPalabra(atributoPalabra, valorPalabra);
-		consultaAutorSql = consultaAutor(atributoAutor, valorAutor);
+		consultaDocumentoSql = consultaDocumento(opTitulo, atributoDocumento, valorDocumento);
+		consultaPalabraSql = consultaPalabra(opPalabra, valorPalabra);
+		consultaAutorSql = consultaAutor(opAutor, valorAutor);
 
 		consultaAreaSql = "SELECT * FROM " +
 		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS f " +
@@ -200,56 +200,69 @@ public class DaoConsulta {
 		System.out.println(consultaAreaSql);
 		System.out.println(consultaAutorSql);
 		
+		
+		//Construir consulta final.
 		consultaSql = "";
 		
-		if(!consultaAreaSql.equals(""))
+		boolean area= consultaAreaSql.equals(""),
+				palabra= consultaPalabraSql.equals(""),
+				documento= consultaDocumentoSql.equals(""),
+				autor= consultaAutorSql.equals("");
+		
+		if(area && palabra && documento && autor)
 		{
-			if(!consultaPalabraSql.equals(""))
+			consultaSql="SELECT documento.id_documento, documento.titulo_principal "+
+			"FROM documento";
+		} else
+		{
+			if(!consultaAreaSql.equals(""))
 			{
-				if(!consultaAutorSql.equals(""))
+				if(!consultaPalabraSql.equals(""))
 				{
-					consultaSql += "((" + consultaAreaSql + ")" + " INTERSECT " +
-					"(" + consultaPalabraSql + "))" + " INTERSECT " + 
+					if(!consultaAutorSql.equals(""))
+					{
+						consultaSql += "((" + consultaAreaSql + ")" + " INTERSECT " +
+						"(" + consultaPalabraSql + "))" + " INTERSECT " + 
+						"(" + consultaAutorSql + ")";
+					}else
+					{
+						consultaSql += "(" + consultaAreaSql + ")" + " INTERSECT " +
+						"(" + consultaPalabraSql + ")";
+					}
+				
+				}else if(!consultaAutorSql.equals(""))
+				{
+					consultaSql += "(" + consultaAreaSql + ")" + " INTERSECT " +
 					"(" + consultaAutorSql + ")";
 				}else
 				{
-					consultaSql += "(" + consultaAreaSql + ")" + " INTERSECT " +
-					"(" + consultaPalabraSql + ")";
+					consultaSql += consultaAreaSql;
 				}
 			
+			}else if(!consultaPalabraSql.equals(""))
+			{
+				if(!consultaAutorSql.equals(""))
+				{
+					consultaSql += "(" + consultaPalabraSql + ")" + " INTERSECT " +
+					"(" + consultaAutorSql + ")";
+				
+				}else
+				{
+					consultaSql += consultaPalabraSql;
+				}
 			}else if(!consultaAutorSql.equals(""))
 			{
-				consultaSql += "(" + consultaAreaSql + ")" + " INTERSECT " +
-				"(" + consultaAutorSql + ")";
-			}else
-			{
-				consultaSql += consultaAreaSql;
+				consultaSql += consultaAutorSql;
 			}
-		
-		}else if(!consultaPalabraSql.equals(""))
-		{
-			if(!consultaAutorSql.equals(""))
-			{
-				consultaSql += "(" + consultaPalabraSql + ")" + " INTERSECT " +
-				"(" + consultaAutorSql + ")";
-			
-			}else
-			{
-				consultaSql += consultaPalabraSql;
-			}
-		}else if(!consultaAutorSql.equals(""))
-		{
-			consultaSql += consultaAutorSql;
 		}
 		
-		if(consultaSql.equals(""))
-		{
-			consultaSql = consultaDocumentoSql;
-		}else
+		
+		
+		/*else
 		{
 			consultaSql = "SELECT * FROM (" + consultaSql + 
 			" INTERSECT " + consultaDocumentoSql + ") AS x";
-		}
+		}*/
 		
 		//System.out.print(consultaSql);
 		
@@ -280,7 +293,7 @@ public class DaoConsulta {
 		
 	}
 	
-	private String consultaDocumento(Vector<String> atributoDocumento, Vector<String> valorDocumento)
+	private String consultaDocumento(int opTitulo, Vector<Integer> atributoDocumento, Vector<String> valorDocumento)
 	{
 		String consultaDocumentoSql, consultaDocumentoTituloSql, 
 		consultaDocumentoFechaSql, consultaDocumentoFormatoSql, consultaDocumentoIdiomaSql;
@@ -292,68 +305,77 @@ public class DaoConsulta {
 		consultaDocumentoFormatoSql=	"";
 		consultaDocumentoIdiomaSql=	"";
 		
-		int sizeVector = atributoDocumento.size();
-		
-		for(int i=0; i<sizeVector; i++)
+		int sizeTitulo = atributoDocumento.elementAt(0);
+		int elementosIngresados = sizeTitulo;
+		if(opTitulo==1)
 		{
-			String at = atributoDocumento.elementAt(i);
-			if(at.contains("titulo"))
+			for(int i=0;i<sizeTitulo; i++)
 			{
-				boolean esOR = (i!= sizeVector-1) && 
-				(atributoDocumento.elementAt(i+1).contains("titulo"));
-				
-				if(at.contains("sin"))
+				boolean esOR = (i!= sizeTitulo-1);
+
+				consultaDocumentoTituloSql += "documento.titulo_principal NOT LIKE '%" + //*******************************
+				valorDocumento.elementAt(i) + "%' AND " +
+				"documento.titulo_secundario NOT LIKE '%" +
+				valorDocumento.elementAt(i)+ "%'" ;
+				if(esOR)
 				{
-					consultaDocumentoTituloSql += "documento.titulo_principal NOT LIKE '%" + //*******************************
-					valorDocumento.elementAt(i) + "%' AND " +
-					"documento.titulo_secundario LIKE '%" +
-					valorDocumento.elementAt(i)+ "%'" ;
-					if(esOR)
-					{
-						consultaDocumentoTituloSql += " OR ";
-					}
-				} else if(at.contains("algunas"))
-				{System.out.println(at);
-					consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
-					valorDocumento.elementAt(i) + "%' OR " +
-					"documento.titulo_secundario LIKE '%" +
-					valorDocumento.elementAt(i)+ "%'" ;
-					if(esOR)
-					{
-						consultaDocumentoTituloSql += " OR ";
-					}
-				}else // es exacto
+					consultaDocumentoTituloSql += " OR ";
+				}	 
+			}
+		}else if(opTitulo == 2)
+		{
+			for(int i=0;i<sizeTitulo; i++)
+			{
+				boolean esOR = (i!= sizeTitulo-1);
+				consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
+				valorDocumento.elementAt(i) + "%' OR " +
+				"documento.titulo_secundario LIKE '%" +
+				valorDocumento.elementAt(i)+ "%'" ;
+				if(esOR)
 				{
-					consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
-					valorDocumento.elementAt(i) + "%' OR " +
-					"documento.titulo_secundario LIKE '%" +
-					valorDocumento.elementAt(i) + "%'";
+					consultaDocumentoTituloSql += " OR ";
 				}
-			}else if (at.contains("idioma"))
-			{
-				consultaDocumentoIdiomaSql+= "documento.idioma = '"+
-				valorDocumento.elementAt(i) + "'";					
-			}else if (at.contains("formato"))
-			{
-				consultaDocumentoFormatoSql+= "documento.formato = '"+
-				valorDocumento.elementAt(i) + "'";
-			}else //contiene fecha
-			{
-				if(at.contains("antes"))
-				{
-					consultaDocumentoFechaSql += "documento.fecha_publicacion < '"+
-					valorDocumento.elementAt(i)+"'";
-					if((i != sizeVector-1) && atributoDocumento.elementAt(i+1).contains("despues")){
-						consultaDocumentoFechaSql += " AND "; 
-					}
-				}else { // es despues
-					{
-						consultaDocumentoFechaSql += "documento.fecha_publicacion > '"+
-						valorDocumento.elementAt(i)+"'";
-					}
-				}
-			}//fin documento
+
+			}
+		}else
+		{
+			consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
+			valorDocumento.elementAt(0) + "%' OR " +
+			"documento.titulo_secundario LIKE '%" +
+			valorDocumento.elementAt(0) + "%'";
 		}
+
+		if(atributoDocumento.elementAt(1)!=0)
+		{
+			consultaDocumentoFechaSql += "documento.fecha_publicacion < '"+
+			valorDocumento.elementAt(elementosIngresados)+"'";
+			elementosIngresados++; //sumo porque acabe de ingresar un elemento al vector.
+			if(atributoDocumento.elementAt(2)==1){
+				consultaDocumentoFechaSql += " AND "; 
+			}
+		}
+		
+		if(atributoDocumento.elementAt(2) == 1)
+		{
+			consultaDocumentoFechaSql += "documento.fecha_publicacion > '"+
+			valorDocumento.elementAt(elementosIngresados)+"'";
+			elementosIngresados++;
+		}
+		
+		if(atributoDocumento.elementAt(3) == 1)
+		{
+			consultaDocumentoIdiomaSql+= "documento.idioma = '"+
+			valorDocumento.elementAt(elementosIngresados) + "'";	
+			elementosIngresados++;
+		}
+		
+		if(atributoDocumento.elementAt(4) == 1)
+		{
+			consultaDocumentoFormatoSql+= "documento.formato = '"+
+			valorDocumento.elementAt(elementosIngresados) + "'";
+		}
+	
+
 		
 		//construir consultaDocumentoSql
 		boolean tituloSql = consultaDocumentoTituloSql.equals("");
@@ -366,8 +388,7 @@ public class DaoConsulta {
 		String temptitulo="", tempfecha="", tempformato="", tempidioma="";
 		if(tituloSql && fechaSql && formatoSql && idiomaSql)
 		{
-			consultaDocumentoSql = "SELECT documento.id_documento, documento.titulo_principal "+
-			"FROM documento";
+			consultaDocumentoSql = "";
 		}else
 		{
 			if(!tituloSql)
@@ -417,7 +438,7 @@ public class DaoConsulta {
 
 	}
 	
-	private String consultaPalabra(String atributoPalabra, Vector<String> valorPalabra)
+	private String consultaPalabra(int opPalabra, Vector<String> valorPalabra)
 	{
 		String	consultaPalabraSql, consultaPalabraTempSql;
 		
@@ -429,7 +450,7 @@ public class DaoConsulta {
 		
 		int sizeVector = valorPalabra.size();
 		
-		if(atributoPalabra.equals("sin"))
+		if(opPalabra == 1)
 		{
 			for(int i=0; i< sizeVector;i++)
 			{
@@ -441,12 +462,12 @@ public class DaoConsulta {
 					consultaPalabraTempSql += " OR ";
 				}
 			}
-		} else if (atributoPalabra.equals("algunas"))
+		} else if (opPalabra == 2)
 		{
 			for(int i=0; i< sizeVector;i++)
 			{
 				boolean esOR = i != sizeVector - 1;
-				consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre NOT LIKE '%" +
+				consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre LIKE '%" +
 				valorPalabra.elementAt(i) + "%'";
 				if(esOR)
 				{
@@ -464,8 +485,16 @@ public class DaoConsulta {
 		
 		if(!nombreSql)
 		{
-			consultaPalabraSql += "(SELECT id_documento FROM documento EXCEPT "
-				+consultaPalabraTempSql+") AS p";
+			if(opPalabra == 1)
+			{
+				consultaPalabraSql += "(SELECT id_documento FROM documento EXCEPT "
+					+consultaPalabraTempSql+") AS p";
+			}else
+			{
+				consultaPalabraSql += "("
+					+consultaPalabraTempSql+") AS p";
+			}
+			
 		}else
 		{
 			consultaPalabraSql="";
@@ -475,75 +504,80 @@ public class DaoConsulta {
 
 	}
 	
-	private String consultaAutor(String atributoAutor, Vector<String> valorAutor)
+	private String consultaAutor(int opAutor, Vector<String> valorAutor)
 	{
-		String consultaAutorSql;
+		String consultaAutorSql, consultaAutorTemp;
+		
+		consultaAutorTemp = "SELECT e.id_documento FROM escribe_autor_documento AS e " + 
+		"NATURAL JOIN (SELECT a.id_autor FROM autor AS a WHERE ";
 		
 		consultaAutorSql = "SELECT * FROM " +
 		"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS x " +
-		"NATURAL JOIN " + 
-		"(SELECT e.id_documento FROM escribe_autor_documento AS e " + 
-		"NATURAL JOIN " + 
-		"(SELECT a.id_autor FROM autor AS a WHERE ";
+		"NATURAL JOIN ";
+		
 
 		int sizeVector = valorAutor.size();
 
-		if(atributoAutor.equals("sin"))
+		if(opAutor == 1)
 		{
 			for(int i=0; i<sizeVector; i++)
 			{
 				boolean esOR = sizeVector!=i+1;
 
-				consultaAutorSql += "a.nombre NOT LIKE '%" +
-				valorAutor.elementAt(i) + "%' AND " +
-				"a.apellido NOT LIKE '%" +
-				valorAutor.elementAt(i)+ "%'" ;
-				if(esOR)
-				{
-					consultaAutorSql += " AND ";
-				}
-			}
-
-		} else if(atributoAutor.equals("algunas"))
-		{
-			for(int i=0; i<sizeVector; i++)
-			{
-				boolean esOR = sizeVector!=i+1;
-				
-				consultaAutorSql += "a.nombre LIKE '%" +
+				consultaAutorTemp += "a.nombre LIKE '%" +
 				valorAutor.elementAt(i) + "%' OR " +
 				"a.apellido LIKE '%" +
 				valorAutor.elementAt(i)+ "%'" ;
 				if(esOR)
 				{
-					consultaAutorSql += " OR ";
+					consultaAutorTemp += " OR ";
+				}
+			}
+
+		} else if(opAutor == 2)
+		{
+			for(int i=0; i<sizeVector; i++)
+			{
+				boolean esOR = sizeVector!=i+1;
+				
+				consultaAutorTemp += "a.nombre LIKE '%" +
+				valorAutor.elementAt(i) + "%' OR " +
+				"a.apellido LIKE '%" +
+				valorAutor.elementAt(i)+ "%'" ;
+				if(esOR)
+				{
+					consultaAutorTemp += " OR ";
 				}
 			}
 
 		}else
 		{//solo puede conicidir con el nombre o con el apellido
-			consultaAutorSql += "a.nombre = '" +
+			consultaAutorTemp += "a.nombre = '" +
 			valorAutor.elementAt(0) + "' OR " +
 			"a.apellido = '" +
 			valorAutor.elementAt(0)+ "'" ;
 		}
 
-		if(!consultaAutorSql.equals("SELECT * FROM " +
-				"(SELECT d.id_documento, d.titulo_principal FROM documento AS d) AS x " +
-				"NATURAL JOIN " + 
-				"(SELECT e.id_documento FROM escribe_autor_documento AS e " + 
-				"NATURAL JOIN " + 
-				"(SELECT a.id_autor FROM autor AS a WHERE "))
+		if(sizeVector != 0)
 				{
-					consultaAutorSql += ") AS c) AS y";
+					if(opAutor==1)
+					{
+						consultaAutorSql += "(SELECT au.id_documento FROM escribe_autor_documento AS au EXCEPT " + consultaAutorTemp + ") AS c) AS y";
+					} else
+					{
+						consultaAutorSql += "(" + consultaAutorTemp + ") AS c) AS y";
+					}
+					
 				}else
 				{
 					consultaAutorSql = "";
 				}
+		
+		//System.out.println("Consulta autor: " + consultaAutorSql);
+		
 		return consultaAutorSql;
 	}
 
-	
 	public int guardarConsulta(String id_documento, String login, String fecha, String hora)
 	{
 		String sql_guardar;

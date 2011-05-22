@@ -604,15 +604,17 @@ public class GuiCatalogar extends JScrollPane{
 				fecha=  editor.getModel().getDate();
 				SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");  
 				String fes= sdf.format(fecha);			 
-				fecha2=  editor.getModel().getDate();
+				fecha2=  editor2.getModel().getDate();
 				SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");  
 				String fes2= sdf2.format(fecha2);
-				doc.setFecha_publicacion(java.sql.Date.valueOf(fes));
+				doc.setFecha_publicacion(java.sql.Date.valueOf(fes2));
+				
 				java.util.Date fechaactual = new Date();// fecha actual 
 				SimpleDateFormat sdf3= new SimpleDateFormat("yyyy-MM-dd");  
-				String fes3= sdf3.format(fechaactual);
-				doc.setFecha_creacion(java.sql.Date.valueOf(fes2));
-				doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
+				String fesActual= sdf3.format(fechaactual);
+				
+				doc.setFecha_creacion(java.sql.Date.valueOf(fes));
+				doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fesActual));
 				doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 				doc.setUrl(campoEnlaceDoc.getText());//se envia el url de origen
 				if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)

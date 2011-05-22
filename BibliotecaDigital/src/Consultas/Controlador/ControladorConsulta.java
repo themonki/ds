@@ -62,15 +62,34 @@ public class ControladorConsulta
 			valor.setElementAt(valor.elementAt(i).toLowerCase(), i);
 		}
 		
-		String atributoPalabra="";
 		Vector<String> valorPalabra = new Vector<String>();
-		String atributoAutor="";
 		Vector<String> valorAutor = new Vector<String>();
-		Vector<String> atributoDocumento = new Vector<String>();
+		
+		//Este vector, es un vector de enteros que representa la cantidad de valores de un atributo de la tabla
+		//documento, el vector por convencion va a tener este orden.
+		//Contenido del vector:
+		/* CantTitulo
+		 * CantFechaAntes
+		 * CantFechaDespues
+		 * CantIdioma
+		 * CantFormato
+		 * */	
+		Vector<Integer> atributoDocumento = new Vector<Integer>(5);
+		
+		//Se inicializa a cero por si no se envio dicho atributo.
+		for(int i=0; i<5; i++)
+		{
+			atributoDocumento.insertElementAt(0, i);
+		}
+		
+		
+		
 		Vector<String> valorDocumento = new Vector<String>();
 		String areaString=""; 
 		
 		/*opcion 1:sin 2:cualquiera 3:exacta*/
+		
+		int titulos=0;
 		
 		for(int i=0; i<atributo.size();i++)
 		{
@@ -78,37 +97,24 @@ public class ControladorConsulta
 			
 			if(elemento.equals("palabra"))
 			{
-				if(opPalabra == 1)
+				if(opPalabra == 1 || opPalabra == 2)
 				{
-					atributoPalabra= "sin";
 					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-						
 						valorPalabra.add(tk.nextToken());
 					}
-					
-				}else if(opPalabra == 2)
-				{
-					atributoPalabra="algunas";
-					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
-					while(tk.hasMoreElements())
-					{
-						
-						valorPalabra.add(tk.nextToken());
-					}
-					
+
 				}else if(opPalabra == 3)
 				{
-					atributoPalabra="exacto";
+					
 					valorPalabra.add(valor.elementAt(i));
 				}
 				
 			}else if(elemento.equals("autor"))
 			{
-				if(opAutor == 1)
+				if(opAutor == 1 || opAutor == 2)
 				{
-					atributoAutor="sin";
 					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
@@ -116,65 +122,42 @@ public class ControladorConsulta
 						valorAutor.add(tk.nextToken());
 					}
 					
-				}else if(opAutor == 2)
-				{
-					atributoAutor="algunas";
-					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
-					while(tk.hasMoreElements())
-					{
-						String v = tk.nextToken();
-						valorAutor.add(v);
-						
-					}
-					
 				}else if(opAutor == 3)
 				{
-					atributoAutor="exacto";
 					valorAutor.add(valor.elementAt(i));
 				}
 				
 			}else if(elemento.equals("titulo"))
 			{
-				if(opTitulo == 1)
+				if(opTitulo == 1 || opTitulo == 2)
 				{
 					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
 					while(tk.hasMoreElements())
 					{
-						atributoDocumento.add("titulo.sin");
 						valorDocumento.add(tk.nextToken());
-					}
-					
-				}else if(opTitulo == 2)
-				{
-					StringTokenizer tk = new StringTokenizer(valor.elementAt(i), " ");
-					while(tk.hasMoreElements())
-					{
-						String v = tk.nextToken();
-						
-						atributoDocumento.add("titulo.algunas");
-						valorDocumento.add(v);
+						titulos++;
 					}
 					
 				}else if(opTitulo == 3)
 				{
-					atributoDocumento.add("titulo.exacto");
 					valorDocumento.add(valor.elementAt(i));
+					titulos++;
 				}
 			}else if(elemento.equals("fecha_antes"))
 			{
-				atributoDocumento.add("fecha.antes");
+				atributoDocumento.setElementAt(1, 1);
 				valorDocumento.add(valor.elementAt(i)+"-01-01");
 				
 			}else if(elemento.equals("fecha_despues"))
 			{
-				atributoDocumento.add("documento.fecha.despues");
-				valorDocumento.add(valor.elementAt(i)+"-01-01");
+				atributoDocumento.setElementAt(1, 2);
+				valorDocumento.add(valor.elementAt(i)+"-12-31");
 			}
 			else if(elemento.equals("idioma"))
 			{
 				if(!valor.elementAt(i).equals("todos"))
 				{
-					atributoDocumento.add("idioma");
+					atributoDocumento.setElementAt(1, 3);
 					valorDocumento.add(valor.elementAt(i));
 				}
 			}
@@ -182,7 +165,7 @@ public class ControladorConsulta
 			{
 				if(!valor.elementAt(i).equals("todos"))
 				{
-					atributoDocumento.add("formato");
+					atributoDocumento.setElementAt(1, 4);
 					valorDocumento.add(valor.elementAt(i));
 				}
 			}else if(elemento.equals("area"))
@@ -194,19 +177,27 @@ public class ControladorConsulta
 			}
 		}
 		
+		
+		//Inserto CantTitulo, para identificar la cantidad de palabras.
+		atributoDocumento.setElementAt(titulos, 0);
+		
+		
+		//lo que me envio la guiConsultaAvanzada
 		System.out.println(atributo);
 		System.out.println(valor);
+		
+		//Lo que se construyo en controlador para enviar al dao.
 		System.out.println(atributoDocumento);
 		System.out.println(valorDocumento);
-		System.out.println(atributoPalabra);
 		System.out.println(valorPalabra);
-		System.out.println(atributoAutor);
 		System.out.println(valorAutor);
 		System.out.println(areaString);
+		
+		
 		DaoConsulta daoConsulta = new DaoConsulta();
 		//No estaban asigando lo de dao a vector xD. Corregido
 		Vector<Consulta> v= new Vector<Consulta>();
-		v = daoConsulta.consultaAvanzada(atributoDocumento, valorDocumento, atributoPalabra, valorPalabra, atributoAutor, valorAutor, areaString);
+		v = daoConsulta.consultaAvanzada(opTitulo, atributoDocumento, valorDocumento, opPalabra, valorPalabra, opAutor, valorAutor, areaString);
 		return v;
 	}
 	
