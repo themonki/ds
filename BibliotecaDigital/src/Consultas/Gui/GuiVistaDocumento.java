@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -115,18 +116,20 @@ public class GuiVistaDocumento extends JScrollPane {
 		GridBagConstraints restriccionEtiquetas = new GridBagConstraints();
 		GridBagConstraints restriccionCampo = new GridBagConstraints();
 
-		restriccionEtiquetas.insets = new Insets(10, 10, 0, 0);// espacios entre
-																// componentes
+		restriccionEtiquetas.insets = new Insets(1, 50, 10, 50);// espacios entre
+		restriccionEtiquetas.gridy=0;
+		restriccionEtiquetas.gridx=0;
 		restriccionEtiquetas.anchor = GridBagConstraints.WEST;// alinear a la
 																// izquierda
+		restriccionCampo.anchor = GridBagConstraints.WEST;// alinear a la
+		
+		
 		int posEtiquetas = 0;
 
 		restriccionCampo.ipadx = 50;
-		restriccionCampo.weightx = 10;
-		restriccionCampo.gridwidth = 2;
 		restriccionCampo.gridx = 1;
 		restriccionCampo.gridy = 0;
-		restriccionCampo.insets = new Insets(1, 50, 1, 0);
+		restriccionCampo.insets = new Insets(1, 50, 10, 50);
 
 		iniciarLabels();
 
@@ -143,14 +146,13 @@ public class GuiVistaDocumento extends JScrollPane {
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 
+
 		panel.add(autores,restriccionEtiquetas);
 		panel.add(panelAutores, restriccionCampo);
 
 		posEtiquetas++;
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
-		
-		
 		
 		panel.add(areas, restriccionEtiquetas);
 		panel.add(panelAreas, restriccionCampo);
@@ -284,7 +286,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		System.out.println(documento.getAreas().get(0).getNombre());
 		
-		panelAreas = new JPanel();
+		panelAreas = new JPanel(new GridLayout());
 		
 		Vector<AreaConocimiento> areasDocumento = documento.getAreas();
 		for(int i=0;i< areasDocumento.size();i++)
@@ -298,7 +300,7 @@ public class GuiVistaDocumento extends JScrollPane {
 			
 		}
 		
-		panelAutores = new JPanel();
+		panelAutores = new JPanel(new GridLayout());
 		Vector<Autor> autoresDocumento = documento.getAutores();
 		for(int i=0;i< autoresDocumento.size();i++)
 		{
@@ -307,10 +309,11 @@ public class GuiVistaDocumento extends JScrollPane {
 			aux.addMouseListener(manejador);
 			aux.setForeground(Color.BLUE);
 			aux.addMouseListener(manejador);
+			aux.setAlignmentY(JLabel.WEST);
 			panelAutores.add(aux);
 			
 		}
-		panelPalabrasClave = new JPanel();
+		panelPalabrasClave = new JPanel(new GridLayout());
 		Vector<PalabraClave> palabrasClaveDocumento= documento.getPalabrasClave();
 		for(int i=0;i< palabrasClaveDocumento.size();i++)
 		{
