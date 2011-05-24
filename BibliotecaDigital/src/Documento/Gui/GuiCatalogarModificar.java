@@ -659,6 +659,7 @@ public class GuiCatalogarModificar extends JScrollPane{
 				doc.setFechaDeCatalogacion(java.sql.Date.valueOf(fes3));
 				doc.setCatalogadorLogin(loginCatalogador);// el login del catalogador
 				doc.setUrl(campoEnlaceDoc.getText());//se envia el url de origen
+				
 				if(controladorDocumento.catalogarDocumento(doc, AreasIdActualVector, AutorIdActualVector,palabActualVec  )>=1)
 				{
 					JOptionPane.showMessageDialog(null, "El documento fue catalogado correctamente");

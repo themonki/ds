@@ -41,11 +41,7 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 	private String loginModificador;
 	private Button botonModificar;
 
-	public GuiModificarDoc() 
-	{
-
-
-	}
+	public GuiModificarDoc(){}
 
 	public GuiModificarDoc (String loginIngreso,Documento doc) 
 	{
@@ -59,10 +55,10 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 
 		this.loginModificador = loginIngreso;
 		this.doc=doc;
-	
+
 		initComponents();
-		
-		
+
+
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Modificar Documento");
@@ -70,14 +66,14 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		setBorder(borde);
-		
+
 		botonModificar= new Button("Modificar");
 		setBotonCatalogar(botonModificar);
 		this.botonModificar.addActionListener(new ManejadorBotonModificar());
-		
+
 		this.examinarDoc.setEnabled(false);
 		this.panel2.remove(this.examinarDoc);
-		
+
 		initDocumentInfo();
 	}
 
@@ -91,20 +87,20 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 		campoResolucion.setText(""+doc.getResolucion()); 
 		campoSoftware.setText(""+doc.getSoftware_recomentado());
 		campoEnlaceDoc.setText(""+doc.getUrl());
-		
-		
+
+
 
 		initAreasActuales();
 		initAutoresActuales();
 		initPalabrasActuales();
-		
-		
+
+
 		// NO he mirado que pasa con los null por esos las comillas 
 		// aunque lso null se guarda como "" 
 	}
 
 	private void initPalabrasActuales() {
-		
+
 		Vector<PalabraClave> vectorResult = this.controladorpalabrasClave.obtenerPalabrasClaveDocumento(doc.getId_doc());
 
 		for (int i=0;i< vectorResult.size();i++)
@@ -115,13 +111,13 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 			etiqueta.addMouseListener(new eventoMouse(1));
 			panelConpalabrasC.add(etiqueta);
 		}
-		
+
 		panelConpalabrasC.updateUI();
-		
+
 	}
 
 	private void initAutoresActuales() {
-		
+
 
 		Vector<Autor> vectorResult = this.controladorAutor.obtenerAutoresDocumento(doc.getId_doc());
 
@@ -132,11 +128,11 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 			AutorIdActualVector.add(autor.getId());
 			JLabel etiqueta = new JLabel(autor.getNombre());
 			etiqueta.addMouseListener(new eventoMouse(1));		
-			
+
 			panelConAutores.add(etiqueta);
 		}
-		
-		panelConAreas.updateUI();
+
+		panelConAutores.updateUI();
 	}
 
 	private void initAreasActuales() {
@@ -147,13 +143,13 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 			AreaConocimiento area =vectorResult.get(i);
 			areasActualVecr.add(area.getNombre());	
 			AreasIdActualVector.add(area.getIdArea());
-			
+
 			JLabel etiqueta = new JLabel(area.getNombre());
 			etiqueta.addMouseListener(new eventoMouse(1));		
-			
+
 			panelConAreas.add(etiqueta);
 		}
-		
+
 		panelConAreas.updateUI();
 	}
 
@@ -170,7 +166,7 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 
 		JFrame  a = new JFrame();
 		ControladorDocumento da = new ControladorDocumento();
-		
+
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		a.add(new GuiModificarDoc("admin",da.obtenerDocumento("10000")));
 
@@ -179,7 +175,7 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 		a.setVisible(true);
 
 	}
-	
+
 
 	protected class ManejadorBotonModificar implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
@@ -221,13 +217,13 @@ public class GuiModificarDoc  extends GuiCatalogarModificar
 			if (controladorDocumento.modificarDatosDocumento(doc,
 					AreasIdActualVector, AutorIdActualVector, palabActualVec) >= 1) {
 				JOptionPane.showMessageDialog(null,
-						"El documento fue catalogado correctamente");
+				"El documento fue Modficado correctamente");
 			}
 
 		}
 	}
-	
-	
+
+
 
 
 }
