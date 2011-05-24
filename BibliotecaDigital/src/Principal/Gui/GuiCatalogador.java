@@ -76,6 +76,15 @@ public class GuiCatalogador extends JFrame
 	public static GuiModificarDoc panelModificarDoc;
 	
 	private Usuario usuario;
+
+
+	private JLabel cuenta;
+
+
+	private JLabel busqueda;
+
+
+	private JLabel documento;
 	public static String LOGIN;
 	
 	
@@ -157,7 +166,10 @@ public class GuiCatalogador extends JFrame
 		logout = new Button("Salir");
 		logout.setIcon(new ImageIcon("recursos/iconos/logout.png"));
 		logout.addActionListener(manejador);
-					
+		
+		cuenta= new JLabel("Cuenta",JLabel.CENTER);
+		busqueda= new JLabel("Busqueda",JLabel.CENTER);
+		documento = new JLabel("Documento",JLabel.CENTER);			
 
 		// Se agregan los elementos al panel de opciones del catalogador.
 		GridBagConstraints restricciones = new GridBagConstraints();
@@ -170,18 +182,22 @@ public class GuiCatalogador extends JFrame
 		restricciones.insets= new Insets(0, 0, 0, 0);
 		restricciones.gridy++;
 		
+		panelOpcionesGenerales.add(busqueda, restricciones);
+		restricciones.gridy++;
 		panelOpcionesGenerales.add(volver, restricciones);
 		restricciones.gridy++;
 		
 		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
 		restricciones.gridy++;
 		
-		panelOpcionesGenerales.add(modificarUsuario, restricciones);
+		panelOpcionesGenerales.add(documento, restricciones);
+		restricciones.gridy++;
+		panelOpcionesGenerales.add(catalogar, restricciones);
 		restricciones.gridy++;
 		
-
-		
-		panelOpcionesGenerales.add(catalogar, restricciones);
+		panelOpcionesGenerales.add(cuenta, restricciones);
+		restricciones.gridy++;
+		panelOpcionesGenerales.add(modificarUsuario, restricciones);
 		restricciones.gridy++;
 		
 		panelOpcionesGenerales.add(logout, restricciones);

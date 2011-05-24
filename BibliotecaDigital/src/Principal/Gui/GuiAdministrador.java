@@ -79,6 +79,14 @@ public class GuiAdministrador extends JFrame
 	private GuiCatalogar panelCatalogar;
 	
 	private Usuario usuario;
+
+	private JLabel cuenta;
+
+	private JLabel busqueda;
+
+	private JLabel documento;
+
+	private JLabel usuarios;
 	public static String LOGIN;
 	
 	
@@ -160,6 +168,11 @@ public class GuiAdministrador extends JFrame
 		logout.setIcon(new ImageIcon("recursos/iconos/logout.png"));
 		logout.addActionListener(manejador);
 		
+
+		cuenta= new JLabel("Cuenta",JLabel.CENTER);
+		busqueda= new JLabel("Busqueda",JLabel.CENTER);
+		documento = new JLabel("Documento",JLabel.CENTER);	
+		usuarios= new JLabel("Usuarios",JLabel.CENTER);
 		// Se agregan los elementos al panel de opciones del administrador.
 		GridBagConstraints restricciones = new GridBagConstraints();
 		restricciones.fill = GridBagConstraints.HORIZONTAL;
@@ -170,17 +183,27 @@ public class GuiAdministrador extends JFrame
 		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.png")),restricciones);
 		restricciones.insets= new Insets(0, 0, 0, 0);
 		restricciones.gridy++;
-		
+		panelOpcionesGenerales.add(busqueda, restricciones);
+		restricciones.gridy++;
 		panelOpcionesGenerales.add(volver, restricciones);
-		restricciones.gridy=3;
+		restricciones.gridy++;
 		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
-		restricciones.gridy=4;
+		restricciones.gridy++;
+		panelOpcionesGenerales.add(usuarios, restricciones);
+		restricciones.gridy++;
 		panelOpcionesGenerales.add(modificarUsuario, restricciones);
-		restricciones.gridy=5;
-		panelOpcionesGenerales.add(modificarMiUsuario, restricciones);
-		restricciones.gridy=6;		
+		restricciones.gridy++;		
+		panelOpcionesGenerales.add(documento, restricciones);
+		restricciones.gridy++;		
 		panelOpcionesGenerales.add(catalogar, restricciones);
-		restricciones.gridy=7;
+		restricciones.gridy++;
+				
+		panelOpcionesGenerales.add(cuenta, restricciones);
+		restricciones.gridy++;
+		
+		panelOpcionesGenerales.add(modificarMiUsuario, restricciones);
+		
+		restricciones.gridy++;
 		panelOpcionesGenerales.add(logout, restricciones);
 		
 		//panelOpcionesGenerales.setBackground(new Color(250, 230,250));
