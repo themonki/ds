@@ -27,8 +27,11 @@ public class Consulta {
 			+ "</u> </font>"
 			+"<br>Autor(es): ";
 		int cantidad = nombresAutoresDocumento.size();
+<<<<<<< HEAD
 		if (cantidad !=0)
 		{
+=======
+>>>>>>> ba63384d74223a5a1fc71745ff7e3c9c6584b2e2
 		for(int i = 0; i < cantidad-1;i++)
 			mostrarDatos+=nombresAutoresDocumento.get(i)+", ";
 		mostrarDatos+=nombresAutoresDocumento.get(cantidad-1);
