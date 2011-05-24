@@ -1,0 +1,147 @@
+drop table  usuarios;
+drop table documento_digital;
+drop table area_conocimiento;
+drop table autor ;
+drop table palabraClave ;
+drop table autor e sdoc ;
+drop table Areas interes;
+drop table areasPerteneceDoc ;
+drop table descargas ;
+drop table consulta ;
+drop table modificaDoc ;
+
+CREATE TABLE usuarios (
+login varchar (20),
+genero char(1),
+perfil char(1) default '0',
+contrasena varchar(25) NOT NULL,
+apellido1 varchar(15) NOT NULL,
+apellido2 varchar(15),
+nomb1 varchar (18) NOT NULL,
+nomb2 varchar (18),
+FechaNacimiento DATE,
+pregunta_secreta varchar (100)  NOT NULL,
+fechaIngreso DATE,
+respuesta_secreta varchar(100)  NOT NULL,
+email varchar(30) NOT NULL,
+nivelEscolar varchar (30),
+vinculo  varchar (30) ,
+estado boolean,
+PRIMARY KEY (login)
+);
+CREATE TABLE tipoMaterial(
+tipo varchar (8),
+mat_descripcion varchar (40) ,
+PRIMARY KEY (tipo)
+);
+
+CREATE TABLE documento_digital(
+id_doc varchar (10),
+titulo_secundario varchar (30),
+tipo varchar (8),
+fechaDeCatalogacion DATE NOT NULL,
+tituloppal varchar (30) NOT  NULL,
+derechosDeAutor varchar (40)NOT NULL,
+editorial varchar (20) DEFAULT 'sin editorial',
+idioma varchar (10) NOT NULL,
+tamano int NOT NULL,
+url varchar (30) NOT NULL,
+software varchar (10) ,
+resolucion varchar (10),
+formato varchar (10) NOT NULL,
+resumen varchar (100) NOT NULL, 
+catalogadorLogin  varchar (20),
+FOREIGN KEY (catalogadorLogin) REFERENCES usuarios (login) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (tipo) REFERENCES tipoMaterial (tipo) ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (id_doc )
+);
+
+
+CREATE TABLE area_conocimiento(
+area_nombre varchar (20)  NOT NULL,
+id_area varchar (10) ,
+area_descripcion varchar (100) NOT NULL,
+id_areasuperior varchar (10) ,
+FOREIGN KEY (id_areasuperior) REFERENCES area_conocimiento (id_area) ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (id_area )
+);
+
+CREATE TABLE autor (
+identificador varchar (4),
+au_apellido1 varchar (9),
+au_nombre1 varchar (8) NOT NULL,
+correo varchar (20),
+acronimo varchar(8),
+au_apellido2 varchar (8),
+au_nombre2 varchar (9),
+PRIMARY KEY (identificador )
+);
+
+CREATE TABLE palabraClave (
+pc_nombre varchar (8),
+pc_descripcion varchar (100) NOT NULL,
+PRIMARY KEY (pc_nombre)
+);
+
+
+CREATE TABLE palabrasclavesDoc(
+pc_nombre varchar (10),
+id_doc varchar(10),
+FOREIGN KEY (pc_nombre ) REFERENCES palabraClave  (pc_nombre ) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (id_doc ) REFERENCES documento_digital (id_doc ) ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (pc_nombre,id_doc )
+);
+
+CREATE TABLE autoresdoc (
+id_doc varchar(10) ,
+identificador varchar(4),
+FOREIGN KEY (identificador ) REFERENCES autor (identificador ) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (id_doc ) REFERENCES documento_digital (id_doc ) ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (id_doc,identificador)
+);
+
+
+CREATE TABLE Areasinteres (
+id_area varchar (4),
+login varchar (14),
+FOREIGN KEY (login ) REFERENCES usuarios (login) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (id_area) REFERENCES  area_conocimiento (id_area) ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (id_area,login)); 
+
+CREATE TABLE areasPerteneceDoc(
+id_area varchar (4),
+id_doc varchar (10),
+FOREIGN KEY (id_doc) REFERENCES documento_digital (id_doc) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (id_area) REFERENCES  area_conocimiento (id_area) ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (id_area,id_doc)); 
+
+CREATE TABLE descargas(
+des_fecha DATE ,
+des_hora TIME,
+login varchar (14),
+id_doc varchar (4),
+FOREIGN KEY (id_doc) REFERENCES documento_digital (id_doc) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (login) REFERENCES  usuarios (login)ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (des_fecha , des_hora, login , id_doc)
+
+);
+
+CREATE TABLE consulta(
+fecha DATE,
+hora DATE,
+login varchar (14),
+id_doc varchar (4),
+FOREIGN KEY (id_doc) REFERENCES documento_digital (id_doc) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (login) REFERENCES  usuarios (login)ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (fecha , hora, login , id_doc)
+
+);
+CREATE TABLE modificaDoc(
+fecha DATE,
+hora TIME,
+login varchar (14),
+id_doc varchar (4),
+FOREIGN KEY (id_doc) REFERENCES documento_digital (id_doc) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (login) REFERENCES  usuarios (login)ON DELETE RESTRICT ON UPDATE CASCADE,
+PRIMARY KEY (fecha , hora, login , id_doc)
+);
