@@ -173,11 +173,13 @@ public class GuiCatalogador extends JFrame
 		panelOpcionesGenerales.add(volver, restricciones);
 		restricciones.gridy++;
 		
+		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
+		restricciones.gridy++;
+		
 		panelOpcionesGenerales.add(modificarUsuario, restricciones);
 		restricciones.gridy++;
 		
-		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
-		restricciones.gridy++;
+
 		
 		panelOpcionesGenerales.add(catalogar, restricciones);
 		restricciones.gridy++;

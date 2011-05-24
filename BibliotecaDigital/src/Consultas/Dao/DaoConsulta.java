@@ -312,7 +312,7 @@ public class DaoConsulta {
 				valorDocumento.elementAt(i)+ "%'" ;
 				if(esOR)
 				{
-					consultaDocumentoTituloSql += " OR ";
+					consultaDocumentoTituloSql += " AND ";
 				}	 
 			}
 		}else if(opTitulo == 2)

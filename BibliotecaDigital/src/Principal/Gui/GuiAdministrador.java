@@ -173,12 +173,12 @@ public class GuiAdministrador extends JFrame
 		
 		panelOpcionesGenerales.add(volver, restricciones);
 		restricciones.gridy=3;
-		panelOpcionesGenerales.add(modificarUsuario, restricciones);
-		restricciones.gridy=4;
-		panelOpcionesGenerales.add(modificarMiUsuario, restricciones);
-		restricciones.gridy=5;
 		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
-		restricciones.gridy=6;
+		restricciones.gridy=4;
+		panelOpcionesGenerales.add(modificarUsuario, restricciones);
+		restricciones.gridy=5;
+		panelOpcionesGenerales.add(modificarMiUsuario, restricciones);
+		restricciones.gridy=6;		
 		panelOpcionesGenerales.add(catalogar, restricciones);
 		restricciones.gridy=7;
 		panelOpcionesGenerales.add(logout, restricciones);

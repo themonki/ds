@@ -11,12 +11,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Vector;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.text.MaskFormatter;
 
 import Consultas.Controlador.ControladorConsulta;
 import Consultas.Logica.Consulta;
@@ -179,7 +185,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		panel = new JPanel(new BorderLayout());
 		panel.add(principal, BorderLayout.NORTH);
 		//setLayout(new BorderLayout());
-		this.setViewportView(panel);
+		this.getViewport().add(panel);
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 	}
@@ -227,7 +233,12 @@ public class GuiConsultaAvanzada extends JScrollPane
 		campoTitulo = new JTextField(30);
 		campoAutor = new JTextField(30);
 		campoFechaPublicacionAntes = new JTextField(10);
+		campoFechaPublicacionAntes.addKeyListener(manejador);
+		campoFechaPublicacionAntes.setToolTipText("Año de cuatro digitos.");
 		campoFechaPublicacionDespues = new JTextField(10);
+		campoFechaPublicacionDespues.addKeyListener(manejador);
+		campoFechaPublicacionDespues.setToolTipText("Año de cuatro digitos.");
+		
 
 	}
 
@@ -312,11 +323,13 @@ public class GuiConsultaAvanzada extends JScrollPane
 		configuracion.gridx=x;
 		configuracion.gridy=y;
 		configuracion.insets= insets;
-		configuracion.anchor= GridBagConstraints.WEST;
+		configuracion.weightx=1.0;
+		configuracion.weighty=1.0;
+		configuracion.anchor= GridBagConstraints.NORTHWEST;
 		return configuracion;
 	}
 
-	private class Manejador implements ActionListener, ItemListener
+	private class Manejador implements ActionListener, ItemListener, KeyListener
 	{
 		String formatoArchivo = "Todos", area = "Todas", idioma = "Todos", titulo, autor, palabraClave, fechaPublicacionAntes, fechaPublicacionDespues;
 		int opcionTitulo = 2, opcionPalabra = 2, opcionAutor = 2;
@@ -414,7 +427,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 			}else if(fuente == campoFormArchivo)
 			{
 				formatoArchivo = (String)campoFormArchivo.getSelectedItem();
-			}
+			} 
 			
 		}
 		@Override
@@ -454,6 +467,33 @@ public class GuiConsultaAvanzada extends JScrollPane
 					opcionPalabra = 1;
 				}
 			}
+		}
+		@Override
+		public void keyPressed(KeyEvent e) {
+			JTextField campoFecha = (JTextField) e.getSource();
+			if(campoFecha.getText().length()>3)
+			{
+				if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+					getToolkit().beep();//sonido
+					campoFecha.setText(campoFecha.getText().substring(0,3));
+				}
+			}			
+		}
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void keyTyped(KeyEvent e) {
+			
+			char caracter = e.getKeyChar();
+	        if(!(Character.isDigit(caracter)) && 
+	        		(caracter != KeyEvent.VK_BACK_SPACE)){
+	            e.consume();
+	            
+	        }
+			
 		}
 		
 	}

@@ -155,10 +155,11 @@ public class GuiUsuarioNormal extends JFrame
 		
 		panelOpcionesGenerales.add(volver, restricciones);
 		restricciones.gridy=3;
-		panelOpcionesGenerales.add(modificarUsuario, restricciones);
-		restricciones.gridy=4;
 		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
+		restricciones.gridy=4;
+		panelOpcionesGenerales.add(modificarUsuario, restricciones);
 		restricciones.gridy=5;
+
 		panelOpcionesGenerales.add(logout, restricciones);
 		
 		//panelOpcionesGenerales.setBackground(new Color(250, 230 , 250));

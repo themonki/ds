@@ -159,10 +159,10 @@ public class GuiPrincipal extends JFrame
 			restricciones.gridy++;
 			panelOpcionesGenerales.add(volver, restricciones);
 			restricciones.gridy++;
-			panelOpcionesGenerales.add(crearUsuario, restricciones);
-			restricciones.gridy++;
 			panelOpcionesGenerales.add(consultaAvanzada, restricciones);
 			restricciones.gridy++;
+			panelOpcionesGenerales.add(crearUsuario, restricciones);
+			restricciones.gridy++;			
 			panelOpcionesGenerales.add(ingresarSistema, restricciones);			
 			
 		
