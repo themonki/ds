@@ -32,5 +32,6 @@ public class Consulta {
 		mostrarDatos+=nombresAutoresDocumento.get(cantidad-1);
 		mostrarDatos+="</html>";
 		return mostrarDatos;
+		
 	}
 }
