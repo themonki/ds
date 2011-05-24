@@ -1,9 +1,9 @@
 /*
- * Nombre autor: Cristian R�os
+ * Nombre autor: Cristian Ríos
  * Responsabilidad: crear la interfaz que permite a un usuario ingresar al sistema.
  * Nombre Archivo: GuiAutenticar.java
- * Fecha creaci�n: Mayo 05 2011
- * Fecha Ultima modificaci�n: Mayo 05 2011 
+ * Fecha creación: Mayo 05 2011
+ * Fecha Ultima modificación: Mayo 05 2011 
  * */
 
 package Usuarios.Gui;

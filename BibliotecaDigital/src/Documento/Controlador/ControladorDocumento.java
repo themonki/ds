@@ -26,8 +26,7 @@ public class ControladorDocumento {
 			String descripcion, String software, String resolucion,
 			String editorial, String formato, String titulo_principal,
 			String titulo_secundario, String link, String creacion,
-			String publicacion, String catalogacion, String login) {
-		
+			String publicacion, String catalogacion, String login) {		
 		
 		//se supone que login ya debe llegar con lowercase, y no hace falta en id, creacion, publicacion ni
 		//catalogacion, y no se puede en link.
@@ -52,24 +51,20 @@ public class ControladorDocumento {
 		Date F_catalogacion = Date.valueOf(catalogacion);// formato yyyy-mm-dd
 		d.setFechaDeCatalogacion(F_catalogacion);
 		d.setCatalogadorLogin(login);
-
 		value = insertarDocumento(d);
-
 		// por seguridad
 		d = null;
 		return value;
-
 	}
 
-	public int insertarDocumento(Documento d) {
-		
-		d.setIdioma(d.getIdioma().toLowerCase());
-		d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
+	public int insertarDocumento(Documento d) {		
+		//d.setIdioma(d.getIdioma().toLowerCase());
+		//d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
 		d.setDescripcion(d.getDescripcion().toLowerCase());
 		d.setSoftware_recomentado(d.getSoftware_recomentado().toLowerCase());
 		d.setResolucion(d.getResolucion().toLowerCase());
 		d.setEditorial(d.getEditorial().toLowerCase());
-		d.setFormato(d.getFormato().toLowerCase());
+		//d.setFormato(d.getFormato().toLowerCase());
 		d.setTituloppal(d.getTituloppal().toLowerCase());
 		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
 		d.setTipoMaterial(d.getTipoMaterial().toLowerCase());
@@ -94,11 +89,8 @@ public class ControladorDocumento {
 			String editorial, String formato, String titulo_principal,
 			String titulo_secundario, String link, String creacion,
 			String publicacion, String catalogacion, String login) {		
-		
-		
-		Documento d = new Documento();
-
-		
+				
+		Documento d = new Documento();		
 		d.setId_doc(id);
 		d.setIdioma(idioma);
 		d.setDerechosDeAutor(derechos);
@@ -119,23 +111,20 @@ public class ControladorDocumento {
 		d.setCatalogadorLogin(login);
 
 		int value = modificarDocumento(d);
-
 		// por seguridad
 		d = null;
 		return value;
 	}
-
 	// /////////
-
 	public int modificarDocumento(Documento d) {
 		//se pasan a minuscula
-		d.setIdioma(d.getIdioma().toLowerCase());
-		d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
+		//d.setIdioma(d.getIdioma().toLowerCase());
+		//d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
 		d.setDescripcion(d.getDescripcion().toLowerCase());
 		d.setSoftware_recomentado(d.getSoftware_recomentado().toLowerCase());
 		d.setResolucion(d.getResolucion().toLowerCase());
 		d.setEditorial(d.getEditorial().toLowerCase());
-		d.setFormato(d.getFormato().toLowerCase());
+		//d.setFormato(d.getFormato().toLowerCase());
 		d.setTituloppal(d.getTituloppal().toLowerCase());
 		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
 		d.setTipoMaterial(d.getTipoMaterial().toLowerCase());
@@ -218,6 +207,9 @@ public class ControladorDocumento {
 		if(verificarInsertarDocumento(d)){
 			int value=this.insertarDocumento(d);
 			if(value<1){return -1;};
+			DaoDocumento daoDoc = new DaoDocumento();
+			String id_doc = daoDoc.obtenerLoginDocumento();
+			d.setId_doc(id_doc);
 			this.insertarDocumentoAreas(d);
 			this.insertarDocumentoPalabrasClave(d);
 			this.insertarDocumentoAutores(d);
@@ -249,8 +241,7 @@ public class ControladorDocumento {
 		d.setAreas(vac);
 		d.setPalabrasClave(vpc);
 		
-		return this.catalogarDocumento(d);
-		
+		return this.catalogarDocumento(d);		
 		/*DaoDocumento daoDoc = new DaoDocumento();		
 		int value = this.insertarDocumento(d);
 		if(value<1){return -1;}
@@ -267,7 +258,7 @@ public class ControladorDocumento {
 	public String copiarDocumento(String url){
 		File src = new File(url), carp_dest=  new File("repositorio/");
 		File dst= new File(carp_dest.getName()+"/"+src.getName());
-		if(dst.exists()) {System.out.println("existe");return dst.getPath();} // si ya existe en el repositorio no se puede catalogar
+		if(dst.exists()) {return dst.getPath();} // si ya existe en el repositorio no se puede catalogar
 		InputStream in;
 		OutputStream out;
 		carp_dest.mkdir();
@@ -282,13 +273,11 @@ public class ControladorDocumento {
 		        } 
 		        in.close(); 
 		        out.close();
-		        return dst.getAbsolutePath();
+		        return dst.getPath();
 		
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.toString());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.toString());
 		}
 		return "";
@@ -311,6 +300,10 @@ public class ControladorDocumento {
 		}
 		if(d.getAutores().size()==0){
 			mensaje+="*Debe proporcionar por lo menos un Autor\n";
+			estado=false;
+		}
+		if(!comprobarFormato(d.getFormato(), d.getUrl())){
+			mensaje+="*El formato "+d.getFormato()+" no coincide con la extencion del archivo\n";
 			estado=false;
 		}
 		//lo ultimo en comprobar
@@ -344,6 +337,21 @@ public class ControladorDocumento {
 	public String descargarDocumento(String urlFuente, String urlDestino){
 		File src = new File(urlFuente);
 		File dst= new File(urlDestino+"/"+src.getName());//es una carpeta
+		File nuevoDst = new File(urlDestino+"/"+src.getName());
+		int contador = 2;
+		while(true){
+			if(nuevoDst!=null && nuevoDst.exists()){
+				//nuevoDst = new File(urlDestino+"/"+src.getName());
+				String nuevoNombre = obtenerNombre(dst,"("+contador+")");
+				nuevoDst = new File(urlDestino+"/"+nuevoNombre);
+				contador++;
+			}else {
+				dst=null;
+				dst=new File(nuevoDst.getPath());;
+				nuevoDst=null;
+				break;
+			}		
+		}
 		InputStream in;
 		OutputStream out;		
 		try {
@@ -360,14 +368,25 @@ public class ControladorDocumento {
 		        return dst.getAbsolutePath();
 		
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.toString());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("ESTE");
 			System.out.println(e.toString());
 		}
 		return "";
+	}
+	
+	protected String obtenerNombre(File archivo, String agregar){
+		String name = archivo.getName();
+		int longitud = name.length();
+		for(int i = longitud-1; i > 0; i--){
+			if(name.charAt(i)=='.'){
+				String nombre2 = name.substring(0, i);
+				nombre2+= agregar + name.substring(i);
+				return nombre2;
+			}
+		}
+		System.out.println("No encuentra la extension");
+		return null;
 	}
 	
 //*********************************************MODIFICAR
@@ -461,6 +480,40 @@ public class ControladorDocumento {
 
 		if(!estado){JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);}	
 		return estado;
+	}
+	
+	public boolean comprobarFormato(String formato, String nombre){
+		String name="";
+		int longitud = nombre.length();
+		for(int i = longitud-1; i > 0; i--){
+			if(nombre.charAt(i)=='.'){;
+				name = nombre.substring(i+1);
+				break;
+			}
+		}
+		name.toLowerCase();
+		if(formato.equals("otro")){
+			if(!name.equals("doc")&&!name.equals("docx")&&!name.equals("jpg")
+					&&!name.equals("jepg")&&!name.equals("odt")&&!name.equals("pdf")){
+				return true;
+			}
+		}
+		
+		if(formato.equals("jpg")){
+			if(name.equals(formato)||name.equals("jpeg")){
+				return true;
+			}
+		}
+		if(formato.equals("doc")){
+			if(name.equals(formato)||name.equals("docx")){
+				return true;
+			}
+		}
+		if(name.equals(formato)){
+			return true;
+		}
+		
+		return false;
 	}
 
 }

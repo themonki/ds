@@ -262,7 +262,6 @@ public class GuiRecuperarPassword extends JPanel {
 			} else if (evento.getSource() == botonCambiarPassword) {
 				String respuestaDada = campoRespuestaPregunta.getText();
 				String respuestaCorrecta = usuario.getRespuestaSecreta();
-				System.out.println("ENTRE AYUDA");
 				
 				if (respuestaDada.equals(respuestaCorrecta)) {
 					panelPreguntaSecreta.setVisible(false);
@@ -283,17 +282,25 @@ public class GuiRecuperarPassword extends JPanel {
 				String password = new String(campoPassword.getPassword());
 				String verificacionPassword = new String(campoVerificarPassword
 						.getPassword());
-				System.out.println(password);
 				if (password.equals(verificacionPassword)) {
-					usuario.setContrasena(password);
+					
+					if(!password.equals("")){				
+					
+						usuario.setContrasena(password);
 					controladorUsuario.modificarUsuario(usuario);
 					JOptionPane
 							.showMessageDialog(null,
 									"Se cambio correctamente la contraseña ahora puede ingresar");
-					System.out.println("cambiando panel");
 					GuiPrincipal.cambiarPanelIngresarRemover();
 					gp.repaint();
 					restaurar();
+					}else
+					{
+						JOptionPane
+						.showMessageDialog(null,
+								"Los campos no pueden estar vacios por favor intente nuevamente");
+
+					}
 
 				} else {
 					JOptionPane

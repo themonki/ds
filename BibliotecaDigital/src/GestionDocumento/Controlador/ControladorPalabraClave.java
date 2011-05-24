@@ -38,21 +38,18 @@ public class ControladorPalabraClave {
 		daoPalabraClave = null;
 		return palabrasClave;
 	}
-
 	/*
-	 * METODO QUE NECESITA EL MANKO DE FELIPE
+
 	 */
 	public Vector<String> obtenerTodasPalabrasClave() {
 
 		Vector<PalabraClave> vectorPalabras;
 		Vector<String> nombres = new Vector<String>();
-
 		vectorPalabras = obtenerPalabrasClave();
 		int cantidad = vectorPalabras.size();
 		for (int i = 0; i < cantidad; i++) {
 			nombres.add(vectorPalabras.get(i).getNombre());
 		}
-
 		return nombres;
 
 	}
@@ -61,23 +58,4 @@ public class ControladorPalabraClave {
 		DaoPalabraClave daoPC = new DaoPalabraClave();
 		return daoPC.consultarPalabrasClaveDocumento(id_documento);
 	}
-	/*
-	 * public static void main(String args[]) { ControladorPalabraClave
-	 * controladorPalabraClave = new ControladorPalabraClave();
-	 * 
-	 * 
-	 * System.out.println(controladorPalabraClave.insertarPalabraClave("bases datos"
-	 * , "mineria de datos"));
-	 * 
-	 * 
-	 * PalabraClave p1 =
-	 * controladorPalabraClave.obtenerPalabraClave("bases datos");
-	 * 
-	 * 
-	 * System.out.println(p1.getNombre());
-	 * 
-	 * 
-	 * System.out.println(controladorPalabraClave.obtenerPalabrasClave()); }
-	 */
-
 }

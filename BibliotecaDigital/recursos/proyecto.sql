@@ -289,28 +289,40 @@ INSERT INTO Autor (nombre, apellido, acronimo, email) VALUES('james f','kurose',
 INSERT INTO Autor (nombre, apellido, acronimo, email) VALUES('keith w','ross','kwr','kwr@correo.com');
 	
 --insertando palabras clave
-INSERT INTO Palabra_Clave (nombre, descripcion) VALUES('red','todo lo que tenga que ver con redes de computadoras');
+INSERT INTO Palabra_Clave VALUES('red','todo lo que tenga que ver con redes de computadoras');
 INSERT INTO Palabra_Clave VALUES('programacion','programacion de computadores');
 INSERT INTO Palabra_Clave VALUES('grafos','referente a teoria de grafos');
 
 --insertando tipos de material
-INSERT INTO TipoMaterial VALUES('Libro','documento extenso creado por un especifico tema');
-INSERT INTO TipoMAterial VALUES('Articulo','documento pequeno creado por un especifico tema');
-INSERT INTO TipoMAterial VALUES('Memoria','Biografia');
-INSERT INTO TipoMAterial VALUES('Trabajo de Grado','trabajo presentado para el grado por estudiantes de pregrado de ultimos semestres');
-INSERT INTO TipoMAterial VALUES('Tesis de Maestria','trabajo presentado para el grado por estudiantes de maestria de ultimos semestres');
-INSERT INTO TipoMAterial VALUES('Tesis de Doctorado','trabajo presentado para el grado por estudiantes de doctorado de ultimos semestres');
-INSERT INTO TipoMAterial VALUES('Material de Clase','diapositivas, talleres, ejercicios y documentos del profesor');
+INSERT INTO TipoMaterial VALUES('libro','documento extenso creado por un especifico tema');
+INSERT INTO TipoMAterial VALUES('articulo','documento pequeno creado por un especifico tema');
+INSERT INTO TipoMAterial VALUES('memoria','biografia');
+INSERT INTO TipoMAterial VALUES('trabajo de grado','trabajo presentado para el grado por estudiantes de pregrado de ultimos semestres');
+INSERT INTO TipoMAterial VALUES('tesis de maestria','trabajo presentado para el grado por estudiantes de maestria de ultimos semestres');
+INSERT INTO TipoMAterial VALUES('tesis de doctorado','trabajo presentado para el grado por estudiantes de doctorado de ultimos semestres');
+INSERT INTO TipoMAterial VALUES('taterial de clase','diapositivas, talleres, ejercicios y documentos del profesor');
 
 --insertando usuarios
-INSERT INTO Usuario VALUES('admin', 'digital', 'Biblioteca', 'Digital', 'Eisc', 'Univalle', 'bibliotecaeisc@correo.univalle.co', '', '', '', '' ,'', '2011-05-08', '2011-05-08', '1', 't');
-INSERT INTO Usuario VALUES('clrl','clrl','cristian','leoanrdo','rios','lopez','dragonblanco452@gmail.com','tecnico','pregunta','respuesta','estudiante','m','1989-06-09','2011-05-08','2','t');
+INSERT INTO usuario VALUES('anonimo', 'anonimo', 'anonimo', 'anonimo', 'anonimo', 'univalle', 'anonimo@correo', 'Profesional/Universidad', 'Ciudad natal de la abuela', 'respuesta', 'Estudiante de pregrado' ,'M', '2011-05-08', '2011-05-08', '0', 'f');
+INSERT INTO Usuario VALUES('admin', 'digital', 'biblioteca', 'digital', 'eisc', 'univalle', 'bibliotecaeisc@correo.univalle.co', 'Profesional/Universidad', 'Ciudad natal de la abuela', 'respuesta', 'Estudiante de pregrado' ,'M', '2011-05-08', '2011-05-08', '1', 't');
+INSERT INTO Usuario VALUES('clrl','clrl','cristian','leonardo','rios','lopez','dragonblanco452@gmail.com','Tecnología','Ciudad natal de la abuela','respuesta','Estudiante de pregrado','M','1989-06-09','2011-05-08','2','t');
 
 --insertando interesa_usuario_area_conocimiento
 --INSERT INTO interesa_usuario_area_conocimiento VALUES('admin','3');
 --INSERT INTO interesa_usuario_area_conocimiento VALUES('admin','9');
 
 --insertando documentos
---INSERT INTO Documento VALUES(DEFAULT, 'español', 'si', 'documento', 'adobe', '200','ninguno', 'pdf', 'Libro', 'librito', 'enlace no disponible', '1111-01-01', '2222-02-02', 'Libro', 'admin', '3333-03-03');
---INSERT INTO Documento VALUES(DEFAULT,'ingles','si','paraiso','writer','150','mas alla','doc','en el paraiso','lo mismo','sin enlace','2000-01-15','2002-02-20','Articulo','clrl','2010-06-07');
-INSERT INTO Documento VALUES(DEFAULT,'ingles','si','libro de redes','adobe','0','pearson','pdf','computing networking aproach top-down','','/home/monki/proyecto/ds/BibliotecaDigital/repositorio/Computer Networking - A Top-down Approach Featuring the Internet, 3rd Ed [by Kurose, Ross].pdf', '2006-05-14','2006-05-14','Libro','clrl','2010-06-07');
+--INSERT INTO Documento VALUES(DEFAULT, 'español', 'si', 'documento', 'adobe', '200','ninguno', 'pdf', 'Libro', 'librito', 'enlace no disponible', '1111-01-01', '2222-02-02', 'libro', 'admin', '3333-03-03');
+--INSERT INTO Documento VALUES(DEFAULT,'ingles','si','paraiso','writer','150','mas alla','doc','en el paraiso','lo mismo','sin enlace','2000-01-15','2002-02-20','articulo','clrl','2010-06-07');
+INSERT INTO Documento VALUES(DEFAULT,'ingles','si','libro de redes','adobe','0','pearson','pdf','computing networking aproach top-down','','repositorio/Computer Networking - A Top-down Approach Featuring the Internet, 3rd Ed [by Kurose, Ross].pdf', '2006-05-14','2006-05-14','libro','clrl','2010-06-07');
+
+--insertando areas del documento
+INSERT INTO pertenece_documento_area_conocimiento VALUES ('49', '10000');
+
+--insertando autores del documento
+INSERT INTO escribe_autor_documento VALUES ('10000', '10000');
+INSERT INTO escribe_autor_documento VALUES ('10001', '10000');
+
+--insertando palabras clave del documento
+INSERT INTO tiene_documento_palabra_clave VALUES ('red', '10000');
+

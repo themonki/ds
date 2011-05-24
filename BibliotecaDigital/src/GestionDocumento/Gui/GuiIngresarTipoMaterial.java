@@ -21,7 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import Documento.Gui.GuiCatalogarModificar;
+import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -36,14 +36,14 @@ public class GuiIngresarTipoMaterial extends JFrame {
 
 	JPanel panel, panel1, panel2, panel3, panel4, panel5, panelPrincipal;
 	
-	GuiCatalogarModificar guicatalogarModi;
+	GuiCatalogar guicatalogarModi;
 
 	public GuiIngresarTipoMaterial() {
 		super("::Ingresar Tipo Material::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 	}
-	public GuiIngresarTipoMaterial(GuiCatalogarModificar guicatalogarModi) {
+	public GuiIngresarTipoMaterial(GuiCatalogar guicatalogarModi) {
 		super("::Ingresar Tipo Material::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		this.guicatalogarModi=guicatalogarModi;
@@ -151,7 +151,6 @@ public class GuiIngresarTipoMaterial extends JFrame {
 	
 	private class ManejadorJTextField implements KeyListener{
 
-		@Override
 		public void keyPressed(KeyEvent e) {
 			
 			if( campoNombre == e.getSource()){
@@ -174,25 +173,13 @@ public class GuiIngresarTipoMaterial extends JFrame {
 						campoDescripcion.setText(campoDescripcion.getText().substring(0,199));
 					}
 				}					
-			}
-			
-			
-
-		
-			
-				
+			}				
 		}
 
-		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyReleased(KeyEvent e) {			
 		}
 
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyTyped(KeyEvent e) {			
 		}
 	}
 	

@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import Documento.Gui.GuiCatalogarModificar;
+import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorAutor;
 import Utilidades.Button;
 import Utilidades.Estilos;
@@ -30,14 +30,14 @@ public class GuiIngresarAutor extends JFrame {
 			campoAcronimo;
 	Button botonIngresarAutor;
 	
-	GuiCatalogarModificar 	guiCatalogarModi;
+	GuiCatalogar 	guiCatalogarModi;
 
 	public GuiIngresarAutor() {
 		super(":::Ingresar Autor:::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 	}
-	public GuiIngresarAutor(GuiCatalogarModificar 	guiCatalogarModi ) {
+	public GuiIngresarAutor(GuiCatalogar 	guiCatalogarModi ) {
 		super(":::Ingresar Autor:::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
@@ -225,22 +225,11 @@ public class GuiIngresarAutor extends JFrame {
 				}					
 			}
 			
-
-		
-			
-				
 		}
 
-		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
 		}
-
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyTyped(KeyEvent e) {			
 		}
 	}
 	
@@ -270,7 +259,4 @@ public class GuiIngresarAutor extends JFrame {
 	
 		return respuesta;
 	}
-
-	
-
 }

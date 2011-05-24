@@ -59,11 +59,6 @@ public class DaoPalabraClave {
 
 				pal.setNombre(tabla.getString("nombre"));
 				pal.setDescripcion(tabla.getString("descripcion"));
-
-				/* probando 
-				System.out.println("Nombre: " + tabla.getString("nombre")
-						+ " Descripcion: " + tabla.getString("descripcion"));
-*/
 			}
 			this.fachada.cerrarConexion(conn);
 
@@ -91,11 +86,6 @@ public class DaoPalabraClave {
 
 				palabra.setNombre(tabla.getString("nombre"));
 				palabra.setDescripcion(tabla.getString("descripcion"));
-
-				/* probando 
-				System.out.println("Nombre: " + tabla.getString("nombre")
-						+ " Descripcion: " + tabla.getString("descripcion"));
-*/
 				palabras.add(palabra);
 			}
 			this.fachada.cerrarConexion(conn);
@@ -134,13 +124,4 @@ public class DaoPalabraClave {
 		}
 		return vpc;
 	}
-
-	/* main para prueba OK */
-	/*
-	 * public static void main(String args[]) { PalabraClave a = new
-	 * PalabraClave("permutacion","de cuantas maneras"); DaoPalabraClave da =
-	 * new DaoPalabraClave(); System.out.println(da.guardarPalabraClave(a));
-	 * da.consultarPalabraClave("permutacion");
-	 * da.consultarPalabraClave("otra"); da.consultarPalabras(); }
-	 */
 }

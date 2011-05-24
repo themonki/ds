@@ -144,7 +144,6 @@ public class DaoUsuario {
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
-			System.out.println(sql_guardar);
 			numFilas = sentencia.executeUpdate(sql_guardar);
 			conn.close();
 			return numFilas;
@@ -167,7 +166,6 @@ public class DaoUsuario {
 				+ "WHERE login = '" + login + "';";
 		ResultSet resultado;
 		Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
-		//System.out.println(consulta_sql);
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -201,7 +199,7 @@ public class DaoUsuario {
 		for(int i=0; i < atributo.size()-1;i++)
 			sqlSelect += atributo.elementAt(i) + " LIKE " + "'%" + valor.elementAt(i) + "%'" + " AND ";
 		sqlSelect += atributo.lastElement() + " LIKE " + "'%" + valor.lastElement() + "%'";
-		
+		sqlSelect += "AND login != 'anonimo';";
 		try {
 			Connection conn = this.fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -227,25 +225,6 @@ public class DaoUsuario {
 				usuario.setFechaRegistro(tabla.getDate("fecha_registro"));
 				usuario.setTipo(tabla.getString("tipo"));
 				usuario.setEstado(tabla.getBoolean("estado"));
-				
-				/*probando*/
-				/*System.out.println("Fecha: " + tabla.getDate("fecha_nacimiento"));
-				System.out.println("Login: " + tabla.getString("login"));
-				System.out.println("Contrasena: " + tabla.getString("contrasena"));
-				System.out.println("Nombre1: " + tabla.getString("nombre1"));
-				System.out.println("Nombre2: " + tabla.getString("nombre2"));
-				System.out.println("Apellido1: " + tabla.getString("apellido1"));
-				System.out.println("Apellido2: " + tabla.getString("apellido2"));
-				System.out.println("Email: " + tabla.getString("email"));
-				System.out.println("Escolaridad: " + tabla.getString("nivel_escolaridad"));
-				System.out.println("Pregunta: " + tabla.getString("pregunta_secreta"));
-				System.out.println("Respuesta: " + tabla.getString("respuesta_secreta"));
-				System.out.println("Vinculo: " + tabla.getString("vinculo_univalle"));
-				System.out.println("Genero: " + tabla.getString("genero"));
-				System.out.println("Nacimiento: " + tabla.getDate("fecha_nacimiento"));
-				System.out.println("Registro: " + tabla.getDate("fecha_registro"));
-				System.out.println("Tipo: " + tabla.getString("tipo"));
-				System.out.println("Estado: " + tabla.getBoolean("estado"));*/
 				
 				usuario.setAreas(consultarUsuarioAreas(usuario.getLogin()));
 
@@ -294,25 +273,6 @@ public class DaoUsuario {
 	    usuario.setTipo(tabla.getString("tipo"));
 	    usuario.setEstado(tabla.getBoolean("estado"));
 	    
-	    /*probando*//*
-	    System.out.println("Fecha: " + tabla.getDate("fecha_nacimiento"));
-	    System.out.println("Login: " + tabla.getString("login"));
-	    System.out.println("Contrasena: " + tabla.getString("contrasena"));
-	    System.out.println("Nombre1: " + tabla.getString("nombre1"));
-	    System.out.println("Nombre2: " + tabla.getString("nombre2"));
-	    System.out.println("Apellido1: " + tabla.getString("apellido1"));
-	    System.out.println("Apellido2: " + tabla.getString("apellido2"));
-	    System.out.println("Email: " + tabla.getString("email"));
-	    System.out.println("Escolaridad: " + tabla.getString("nivel_escolaridad"));
-	    System.out.println("Pregunta: " + tabla.getString("pregunta_secreta"));
-	    System.out.println("Respuesta: " + tabla.getString("respuesta_secreta"));
-	    System.out.println("Vinculo: " + tabla.getString("vinculo_univalle"));
-	    System.out.println("Genero: " + tabla.getString("genero"));
-	    System.out.println("Nacimiento: " + tabla.getDate("fecha_nacimiento"));
-	    System.out.println("Registro: " + tabla.getDate("fecha_registro"));
-	    System.out.println("Tipo: " + tabla.getString("tipo"));
-	    System.out.println("Estado: " + tabla.getBoolean("estado"));
-	    */
 	    usuario.setAreas(consultarUsuarioAreas(usuario.getLogin()));
 
 	   }
@@ -329,8 +289,7 @@ public class DaoUsuario {
 //remueve todas las areas de un usuario
 	public int quitarUsuarioAreas(String login){		
 		String sql_borrar;
-		sql_borrar = "DELETE FROM Interesa_Usuario_Area_Conocimiento WHERE login = '"+login+"';";
-		System.out.println(sql_borrar);			
+		sql_borrar = "DELETE FROM Interesa_Usuario_Area_Conocimiento WHERE login = '"+login+"';";		
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();

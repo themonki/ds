@@ -39,7 +39,7 @@ public class ControladorTipoMaterial {
 	}
 
 	/*
-	 * METODO QUE NECESITA EL MANKO DE FELIPE
+
 	 */
 	public Vector<String> obtenerTodosTiposMateriales() {
 
