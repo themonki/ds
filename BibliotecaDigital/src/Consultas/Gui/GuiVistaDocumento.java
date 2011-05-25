@@ -533,11 +533,16 @@ public class GuiVistaDocumento extends JScrollPane {
 						urlDestino = file.getAbsolutePath();
 						
 						ControladorDocumento conDoc = new ControladorDocumento();
-						conDoc.descargarDocumento(urlFuente, urlDestino);
+						String descarga = conDoc.descargarDocumento(urlFuente, urlDestino);
+						System.out.println(descarga);
+						if(!descarga.equals(""))
+						{
+							JOptionPane.showMessageDialog(null,"Se descargo correctamente el archivo en la siguiente ubicacion: \n "+descarga);
+						}
 						
 					}
 					
-					//JOptionPane.showMessageDialog(null,"Empezando a descargar archivo");
+					
 					
 					
 					
