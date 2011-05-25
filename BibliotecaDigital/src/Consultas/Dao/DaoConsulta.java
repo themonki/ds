@@ -594,4 +594,28 @@ public class DaoConsulta {
 		}
 		return -1;
 	}
+	
+	public int guardarDescargaUsuarioDocumento(String id_documento, String login, String fecha, String hora)
+	{
+		String sql_guardar;
+		int numFilas;
+		sql_guardar = "INSERT INTO descarga_usuario_documento VALUES ('"+fecha+"', " +
+				"'"+hora+"', " +
+				"'"+login+"'," +
+				"'"+id_documento+"');";
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+
+			numFilas = sentencia.executeUpdate(sql_guardar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
 }
