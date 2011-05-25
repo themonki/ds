@@ -190,15 +190,16 @@ public class GuiUsuarioNormal extends JFrame
 			if (evento.getSource() == modificarUsuario)
 			{			
 				if (estado.getText().equals(estadoInicial))
-				{				
+				{			
+					GuiConsultaBasica.restaurarTodo();
 					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
 					repaint();
 					
 				}else if(estado.getText().equals(estadoConsultaAvanzada))
-				{		
-					
+				{	
+					GuiConsultaAvanzada.restaurarTodo();					
 					contenedor.remove(panelConsultaAvanzada);
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
@@ -218,6 +219,7 @@ public class GuiUsuarioNormal extends JFrame
 				}
 				else if(estado.getText().equals(estadoConsultaAvanzada))
 				{
+					GuiConsultaAvanzada.restaurarTodo();	
 					contenedor.remove(panelConsultaAvanzada);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
@@ -239,7 +241,7 @@ public class GuiUsuarioNormal extends JFrame
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}else if(estado.getText().equals(estadoInicial))
 				{
-					
+					GuiConsultaBasica.restaurarTodo();
 					contenedor.remove(panelConsultaBasica);
 					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
 					estado.setText(estadoConsultaAvanzada);
