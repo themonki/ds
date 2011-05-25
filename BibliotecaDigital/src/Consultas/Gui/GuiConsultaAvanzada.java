@@ -555,17 +555,19 @@ public class GuiConsultaAvanzada extends JScrollPane
 	}
 	public static void restaurarTodo()
 	{
+		if(!(vistaDocumento == null))		
+			panel.remove(vistaDocumento);
 		
-		panel.remove(vistaDocumento);
 		campoPalabraClave.setText("");
 		campoTitulo.setText("");
 		campoAutor.setText("");
 		campoFechaPublicacionDespues.setText("");
 		campoFechaPublicacionAntes.setText("");
 		panel.add(principal, BorderLayout.NORTH);		
-		resultadoConsulta = new GuiResultadoConsulta();
-		panel.add(resultadoConsulta, BorderLayout.SOUTH );
-		panel.remove(vistaDocumento);
+		
+		if(!(resultadoConsulta == null))
+					panel.remove(resultadoConsulta);
+		
 		panel.updateUI();
 	}
 	

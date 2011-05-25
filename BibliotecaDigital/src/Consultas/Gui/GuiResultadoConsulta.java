@@ -242,6 +242,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 				} else if (GuiResultadoConsulta.TIPOCONSULTA == 2) {
 					GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(
 							d);
+					
 					GuiConsultaAvanzada.ponerDescripcion();
 
 				}
@@ -262,7 +263,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 
 		public void mouseReleased(MouseEvent arg0) {
 		}
-/////////////////////////////////7
+//////////////////////////////////
 		public void mouseDragged(MouseEvent arg0) {
 		}
 
