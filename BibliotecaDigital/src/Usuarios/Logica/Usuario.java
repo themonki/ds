@@ -1,11 +1,12 @@
 package Usuarios.Logica;
 
-/*
+/**
+ * Una clase que permite representar un usuario de una biblioteca digital.
  * 
- * Nombre: Yerminson Gonzalez Munoz
- * Responsalidad: Clase que representa a un usuario.
- * 
- * */
+ * @version 1.0 24/04/2011
+ * @author Yerminson Gonzalez
+ */
+
 import java.sql.Date;
 import java.util.Vector;
 
@@ -13,7 +14,10 @@ import GestionDocumento.Logica.AreaConocimiento;
 
 public class Usuario {
 
-	// Constructor por defecto.
+	 /** 
+     * Constructor por defecto sin parametros.
+     */
+
 	public Usuario() {
 	}
 
@@ -35,7 +39,27 @@ public class Usuario {
 	boolean estado;
 	Vector<AreaConocimiento> areasInteres;
 
-	// Constructor.
+	  /** 
+     * Crea un Usuario a partir de sus atributos basicos.
+     * @param login Login de acceso del usuario.
+     * @param contrasena Clave que le permite el ingreso al sistema.
+     * @param nombre1 Primer nombre del usuario.
+     * @param nombre2 Segundo nombre del usuario.
+     * @param apellido1 Primer apellido del usuario.
+     * @param apellido2 Segundo apellido del usuario.
+     * @param email Correo electronico del usuario del usuario.
+     * @param nivelEscolaridad Nivel de estudios del usuario.
+     * @param vinculoConUnivalle Relacion con la Universidad del valle que tiene  el usuario.
+     * @param preguntaSecreta Pregunta que permitirar recuperar la clave del usuario.
+     * @param respuestaSecreta Respuesta a la pregunta secreta del usuario.
+     * @param genero Genero del usuario.
+     * @param fechaRegistro Fecha en la que se registro el usuario al sistema.
+     * @param fechaNacimiento Fecha en la que nacio el usuario
+     * @param tipo Valor que indica el tipo de usuario: Usuario Normal, Catalogador o Administrador.
+     * @param estado Indica si esta habilitado para el ingreso al sistema
+     * 
+     */
+
 	public Usuario(String login, String contrasena, String nombre1,
 			String nombre2, String apellido1, String apellido2, String email,
 			String nivelEscolaridad, String vinculoUnivalle,
@@ -62,6 +86,10 @@ public class Usuario {
 		this.areasInteres = areasInteres;
 	}
 
+	/**
+	 * Devuelve el Login del usuario
+	 * @return login 
+	 */
 	public String getLogin() {
 		return login;
 	}
