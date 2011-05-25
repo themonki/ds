@@ -17,6 +17,7 @@ import java.io.File;
 import java.sql.Date;
 import java.util.Vector;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -305,7 +306,10 @@ public class GuiVistaDocumento extends JScrollPane {
 			
 		}
 		
-		panelAutores = new JPanel(new GridLayout());
+		panelAutores = new JPanel();
+		
+		panelAutores.setLayout(new BoxLayout(panelAutores, BoxLayout.Y_AXIS));
+		
 		Vector<Autor> autoresDocumento = documento.getAutores();
 		for(int i=0;i< autoresDocumento.size();i++)
 		{
