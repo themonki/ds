@@ -1,6 +1,7 @@
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Cursor;
@@ -37,6 +38,8 @@ import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiPrincipal;
 import Principal.Gui.GuiUsuarioNormal;
 import Utilidades.Estilos;
+
+
 
 public class GuiVistaDocumento extends JScrollPane {
 
@@ -292,6 +295,8 @@ public class GuiVistaDocumento extends JScrollPane {
 		for(int i=0;i< areasDocumento.size();i++)
 		{
 			JLabel aux = new JLabel(areasDocumento.get(i).getNombre());
+			aux.setFont(Estilos.fontSubtitulos);
+			aux.setForeground(Estilos.colorSubtitulo);
 			aux.addMouseListener(manejador);
 			aux.setForeground(Color.BLUE);
 			aux.addMouseListener(manejador);
@@ -306,7 +311,10 @@ public class GuiVistaDocumento extends JScrollPane {
 		{
 			
 			JLabel aux = new JLabel(autoresDocumento.get(i).getApellido());
+			aux.setFont(Estilos.fontSubtitulos);
+			aux.setForeground(Estilos.colorSubtitulo);
 			aux.addMouseListener(manejador);
+			
 			aux.setForeground(Color.BLUE);
 			aux.addMouseListener(manejador);
 			aux.setAlignmentY(JLabel.WEST);
@@ -318,6 +326,8 @@ public class GuiVistaDocumento extends JScrollPane {
 		for(int i=0;i< palabrasClaveDocumento.size();i++)
 		{
 			JLabel aux = new JLabel(palabrasClaveDocumento.get(i).getNombre());
+			aux.setFont(Estilos.fontSubtitulos);
+			aux.setForeground(Estilos.colorSubtitulo);
 			aux.addMouseListener(manejador);
 			aux.setForeground(Color.BLUE);
 			aux.addMouseListener(manejador);
@@ -329,22 +339,66 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		// etiquetas
 		tituloPrincipal = new JLabel("Titulo Principal");
+		tituloPrincipal.setFont(Estilos.fontLabels);
+		tituloPrincipal.setForeground(Estilos.colorLabels);
+		
 		tituloSecundario = new JLabel("Titulo Secundario o Traduccion");
+		tituloSecundario.setFont(Estilos.fontLabels);
+		tituloSecundario.setForeground(Estilos.colorLabels);
+		
 		idioma = new JLabel("Idioma");
+		idioma.setFont(Estilos.fontLabels);
+		idioma.setForeground(Estilos.colorLabels);
+		
 		editorial = new JLabel("Editorial");
+		editorial.setFont(Estilos.fontLabels);
+		editorial.setForeground(Estilos.colorLabels);
+		
 		derechosAutor = new JLabel("Derechos de Autor");
+		derechosAutor.setFont(Estilos.fontLabels);
+		derechosAutor.setForeground(Estilos.colorLabels);
+		
 		descripcion = new JLabel("Descripcion");
+		descripcion.setFont(Estilos.fontLabels);
+		descripcion.setForeground(Estilos.colorLabels);
+		
 		resolucion = new JLabel("Resolucion");
+		resolucion.setFont(Estilos.fontLabels);
+		resolucion.setForeground(Estilos.colorLabels);
+		
 		formato = new JLabel("Formato");
+		formato.setFont(Estilos.fontLabels);
+		formato.setForeground(Estilos.colorLabels);
+		
 		softwareRecomendado = new JLabel("Software Recomendado para Editar");
+		softwareRecomendado.setFont(Estilos.fontLabels);
+		softwareRecomendado.setForeground(Estilos.colorLabels);
+		
 		fechaPublicacion = new JLabel("Fecha de Publicacion");
+		fechaPublicacion.setFont(Estilos.fontLabels);
+		fechaPublicacion.setForeground(Estilos.colorLabels);
+		
 		fechaCreacion = new JLabel("Fecha de Creación");
+		fechaCreacion.setFont(Estilos.fontLabels);
+		fechaCreacion.setForeground(Estilos.colorLabels);
 
 		areas = new JLabel("Areas de conocimiento");
+		areas.setFont(Estilos.fontLabels);
+		areas.setForeground(Estilos.colorLabels);
+		
 		autores = new JLabel("Autor(es)");
+		autores.setFont(Estilos.fontLabels);
+		autores.setForeground(Estilos.colorLabels);
+		
 		palabrasClave = new JLabel("Palabras clave");
+		palabrasClave.setFont(Estilos.fontLabels);
+		palabrasClave.setForeground(Estilos.colorLabels);
+		
 		
 		volver = new JLabel("Volver");
+		volver.setFont(Estilos.fontLabels);
+		volver.setForeground(Estilos.colorLabels);
+	
 		volver.setIcon(new ImageIcon("recursos/iconos/volver.png"));
 		volver.addMouseListener(manejador);
 		volver.setForeground(Color.BLUE);
@@ -352,34 +406,72 @@ public class GuiVistaDocumento extends JScrollPane {
 		// Donde se mostraran los resultados.
 		campoTituloPrincipal = new JLabel();
 		campoTituloPrincipal.setText(documento.getTituloppal());
+		campoTituloPrincipal.setFont(Estilos.fontSubtitulos);
+		campoTituloPrincipal.setForeground(Estilos.colorSubtitulo);
+		
 		campoTituloSecundario =new JLabel();
 		campoTituloSecundario.setText(documento.getTitulo_secundario());
+		campoTituloSecundario.setFont(Estilos.fontSubtitulos);
+		campoTituloSecundario.setForeground(Estilos.colorSubtitulo);
+		
 		campoIdioma = new JLabel();
 		campoIdioma.setText(documento.getIdioma());
+		campoIdioma.setFont(Estilos.fontSubtitulos);
+		campoIdioma.setForeground(Estilos.colorSubtitulo);
+		
 		
 		
 		campoEditorial = new JLabel();
 		campoEditorial.setText(documento.getEditorial());
+		campoEditorial.setFont(Estilos.fontSubtitulos);
+		campoEditorial.setForeground(Estilos.colorSubtitulo);
+		
+		
 		campoDerechosAutor = new JLabel();
 		campoDerechosAutor.setText(documento.getDerechosDeAutor());
+		campoDerechosAutor.setFont(Estilos.fontSubtitulos);
+		campoDerechosAutor.setForeground(Estilos.colorSubtitulo);
+		
 		campoDescripcion = new JLabel();
 		campoDescripcion.setText(documento.getDescripcion());
+		campoDescripcion.setFont(Estilos.fontSubtitulos);
+		campoDescripcion.setForeground(Estilos.colorSubtitulo);
+		
 		campoResolucion = new JLabel();
 		campoResolucion.setText(documento.getResolucion());
+		campoResolucion.setFont(Estilos.fontSubtitulos);
+		campoResolucion.setForeground(Estilos.colorSubtitulo);
+		
 		campoFormato = new JLabel();
 		campoFormato.setText(documento.getFormato());
+		campoFormato.setFont(Estilos.fontSubtitulos);
+		campoFormato.setForeground(Estilos.colorSubtitulo);
+		
 		campoSoftwareRecomendado = new JLabel();
 		campoSoftwareRecomendado.setText(documento.getSoftware_recomentado());
+		campoSoftwareRecomendado.setFont(Estilos.fontSubtitulos);
+		campoSoftwareRecomendado.setForeground(Estilos.colorSubtitulo);
+		
 		campoFechaPublicacion = new JLabel();
 		campoFechaPublicacion.setText(""+documento.getFecha_publicacion());
+		campoFechaPublicacion.setFont(Estilos.fontSubtitulos);
+		campoFechaPublicacion.setForeground(Estilos.colorSubtitulo);
+		
 		campoFechaCreacion = new JLabel();
 		campoFechaCreacion.setText(""+documento.getFecha_creacion());
+		campoFechaCreacion.setFont(Estilos.fontSubtitulos);
+		campoFechaCreacion.setForeground(Estilos.colorSubtitulo);
 
 		// Etiquetas funcionales de acuerdo al tipo de usuario;
 	
 		etiquetaDescargar = new JLabel("Descargar");
+		etiquetaDescargar.setFont(Estilos.fontLabels);
+		etiquetaDescargar.setForeground(Estilos.colorLabels);
+		
 		etiquetaDescargar.addMouseListener(manejador);
 		etiquetaEditarDocumento = new JLabel("Editar Documento");
+		etiquetaEditarDocumento.setFont(Estilos.fontLabels);
+		etiquetaEditarDocumento.setForeground(Estilos.colorLabels);
 		etiquetaEditarDocumento.addMouseListener(manejador);
 
 		etiquetaDescargar.setIcon(new ImageIcon("recursos/iconos/downloadfile.png"));
