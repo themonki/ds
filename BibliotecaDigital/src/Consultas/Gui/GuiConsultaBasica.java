@@ -107,10 +107,12 @@ public class GuiConsultaBasica extends JScrollPane
 		GridBagConstraints restricciones = new GridBagConstraints();
 		restricciones.gridx=1;
 		restricciones.gridy=1;
+		restricciones.insets= new Insets(20, 0,5, 0);
 		panelConsulta.add(etiquetaConsulta, restricciones);
 		restricciones.gridy=2;
 		panelConsulta.add(panelCampoConsulta, restricciones);
 		restricciones.gridy=3;
+		restricciones.insets= new Insets(0, 0,0, 0);	
 		panelConsulta.add(consultar, restricciones);
 		panel.add(panelConsulta, BorderLayout.NORTH);
 		//add(panel);
