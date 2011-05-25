@@ -1,23 +1,30 @@
 package Utilidades;
 
-/**
- * Autor: Yerminson Gonzalez Munoz
- * Responsabilidad: Realizar la debida conexion con la base de datos asi como cerrarla.
- * 
- */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Clase que permite realizar la debida conexion con la base de datos asi como cerrarla.
+ * @version 1.0
+ * @author Yerminson Gonzalez Munoz
+ */
 public class FachadaBD {
 	String url, usuario, password;
 	Connection conexion;
-
+	/**
+	 * Constructor de la clase fachada incia los parametros String para la conexion a la base
+	 * de datos por defecto: url, usuario y password
+	 * */
 	public FachadaBD() {
 		url = "jdbc:postgresql://localhost:5432/proyecto";
 		usuario = "yerdogm";
 		password = "yerdogm";
 	}
-
+	/**
+	 * Metodo que establece la conexion a la base de datos 
+	 * @return la conexion establecida con el servidor de postgres
+	 * */
 	public Connection conectar() {
 		try {
 			// Se carga el driver
@@ -39,7 +46,11 @@ public class FachadaBD {
 		}
 
 	}// end connectar
-
+	/**
+	 * Meotodo para cerrar una conexion
+	 * @param c La conexion a la base de datos
+	 * */
+	
 	public void cerrarConexion(Connection c) {
 		try {
 			c.close();

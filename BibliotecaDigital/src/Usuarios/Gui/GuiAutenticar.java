@@ -29,6 +29,11 @@ import Principal.Gui.GuiPrincipal;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * @author Cristian Leonardo Rios
+ *
+ */
+
 public class GuiAutenticar extends JPanel
 {
 	private JPanel panel = this;
@@ -41,11 +46,15 @@ public class GuiAutenticar extends JPanel
 	private Button botonCambiarPassword;
 	private GuiPrincipal gp;
 	
+	/**
+	 * @param gp
+	 */
 	public GuiAutenticar(GuiPrincipal gp)
 	{
 		this.gp = gp;
 		this.initComponents();
 	}
+	
 	
 	private void initComponents()
 	{
@@ -114,6 +123,7 @@ public class GuiAutenticar extends JPanel
 		this.setVisible(true);
 	}
 	
+	
 	private void iniciarCampos()
 	{
 		campoNombre = new JTextField(20);
@@ -143,8 +153,13 @@ public class GuiAutenticar extends JPanel
 		
 	}
 	
+	/**
+	 * @author Cristian Leonardo Rios
+	 *
+	 */
 	private class ManejadorBoton implements ActionListener
 	{
+
 		@Override
 		public void actionPerformed(ActionEvent evento)
 		{
@@ -181,6 +196,10 @@ public class GuiAutenticar extends JPanel
 		}	
 	}
 	
+	/**
+	 * @author Cristian Leonardo Rios
+	 *
+	 */
 	private class ManejadorJPasswordField implements KeyListener{
 
 		@Override

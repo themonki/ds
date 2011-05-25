@@ -58,7 +58,7 @@ public class Button extends JButton{
         if (!m.isEnabled()){
            c2=color1.brighter();
            c1=color2.brighter();
-           c3=color3.darker();
+           
         }
         if (m.isRollover()){
        	 

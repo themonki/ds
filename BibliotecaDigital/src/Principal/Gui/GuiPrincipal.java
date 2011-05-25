@@ -208,6 +208,8 @@ public class GuiPrincipal extends JFrame
 				{
 					if (estado.getText().equals(estadoInicial))
 					{
+						GuiConsultaBasica.restaurarTodo();
+					
 						contenedor.remove(panelConsultaBasica);
 						contenedor.add(panelRegistro, BorderLayout.CENTER);
 						estado.setText(estadoRegistro);
@@ -222,7 +224,7 @@ public class GuiPrincipal extends JFrame
 						
 					}else if(estado.getText().equals(estadoConsultaAvanzada))
 					{
-						
+						GuiConsultaAvanzada.restaurarTodo();
 						contenedor.remove(panelConsultaAvanzada);
 						contenedor.add(panelRegistro, BorderLayout.CENTER);
 						estado.setText(estadoRegistro);
@@ -248,7 +250,7 @@ public class GuiPrincipal extends JFrame
 						
 					}else if(estado.getText().equals(estadoConsultaAvanzada))
 					{
-						
+						GuiConsultaAvanzada.restaurarTodo();
 						contenedor.remove(panelConsultaAvanzada);
 						contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 						estado.setText(estadoInicial);
@@ -267,6 +269,7 @@ public class GuiPrincipal extends JFrame
 						repaint();
 					}else if(estado.getText().equals(estadoInicial))
 					{
+						GuiConsultaBasica.restaurarTodo();
 						
 						contenedor.remove(panelConsultaBasica);
 						contenedor.add(panelAutentificar, BorderLayout.CENTER);
@@ -275,7 +278,7 @@ public class GuiPrincipal extends JFrame
 						
 					}else if(estado.getText().equals(estadoConsultaAvanzada))
 					{
-						
+						GuiConsultaAvanzada.restaurarTodo();
 						contenedor.remove(panelConsultaAvanzada);
 						contenedor.add(panelAutentificar, BorderLayout.CENTER);
 						estado.setText(estadoIngrensando);
@@ -294,7 +297,7 @@ public class GuiPrincipal extends JFrame
 						//JOptionPane.showMessageDialog(null,"En construccion");
 					}else if(estado.getText().equals(estadoInicial))
 					{
-						
+						GuiConsultaBasica.restaurarTodo();					
 						contenedor.remove(panelConsultaBasica);
 						contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
 						estado.setText(estadoConsultaAvanzada);

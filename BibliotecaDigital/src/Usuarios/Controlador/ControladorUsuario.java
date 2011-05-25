@@ -9,8 +9,31 @@ import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Dao.DaoUsuario;
 import Usuarios.Logica.Usuario;
 
+/**
+ * @author yerminson
+ *
+ */
 public class ControladorUsuario {
 	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo atributo por atributo
+	/**
+	 * @param login
+	 * @param contrasena
+	 * @param nom1
+	 * @param nom2
+	 * @param apll1
+	 * @param apll2
+	 * @param email
+	 * @param nivel
+	 * @param vinculo
+	 * @param pregunta
+	 * @param respuesta
+	 * @param genero
+	 * @param registro
+	 * @param nacimiento
+	 * @param tipo
+	 * @param estado
+	 * @return
+	 */
 	public int insertarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
@@ -47,6 +70,10 @@ public class ControladorUsuario {
 
 	}
 	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo un objeto usuario
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int insertarUsuario(Usuario u)
 	{
 		u.setLogin(u.getLogin().toLowerCase());
@@ -66,6 +93,10 @@ public class ControladorUsuario {
 		return value;
 	}
 	
+	/**
+	 * @param u
+	 * @return
+	 */
 	private boolean verificarDatosInsertar(Usuario u)
 	{	
 		Vector<String> atributo = new Vector<String>();
@@ -148,6 +179,10 @@ public class ControladorUsuario {
 		return estado;
 	}
 	
+	/**
+	 * @param u
+	 * @return
+	 */
 	private boolean verificarDatosModificar(Usuario u)
 	{
 		String mensaje="";
@@ -197,6 +232,25 @@ public class ControladorUsuario {
 	}
 	
 	//modifica los datos en la tabla Usuario recibiendo atributo por atributo
+	/**
+	 * @param login
+	 * @param contrasena
+	 * @param nom1
+	 * @param nom2
+	 * @param apll1
+	 * @param apll2
+	 * @param email
+	 * @param nivel
+	 * @param vinculo
+	 * @param pregunta
+	 * @param respuesta
+	 * @param genero
+	 * @param registro
+	 * @param nacimiento
+	 * @param tipo
+	 * @param estado
+	 * @return
+	 */
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
@@ -232,6 +286,10 @@ public class ControladorUsuario {
 		return value;
 	}
 	//modifica los datos en la tabla Usuario recibiendo un objeto Usuario
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int modificarUsuario(Usuario u) {
 		
 		u.setLogin(u.getLogin().toLowerCase());
@@ -257,6 +315,10 @@ public class ControladorUsuario {
 	 * necesita un objeto usuario que tenga el login y un vector con areas que
 	 * contengan los ids de las areas respectivas
 	 */
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int insertarUsuarioAreas(Usuario u) {
 		Vector<AreaConocimiento> va = u.getAreas();
 		String login = u.getLogin();
@@ -270,6 +332,10 @@ public class ControladorUsuario {
 	/*
 	 * METODO PARA OBTENER LAS AREAS DE INTERES DE UN USUARIO
 	 */
+	/**
+	 * @param login
+	 * @return
+	 */
 	public Vector<AreaConocimiento> obtenerUsuarioAreas(String login) {
 		Vector<AreaConocimiento> areas;
 
@@ -281,6 +347,10 @@ public class ControladorUsuario {
 		return areas;
 	}
 	//metodo que va a agregar las nuevas areas y va a quitar las modificarUsuarioAreaotras seleccionadas
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int modificarUsuarioArea(Usuario u){
 		DaoUsuario daoUs = new DaoUsuario();
 		Vector <AreaConocimiento> areasNuevas = u.getAreas();
@@ -300,6 +370,11 @@ public class ControladorUsuario {
 	
 	/*a�adido cristian*/
 	/*metodo que retorna un vector con todos los usuarios que concidan con alguno de los atributos*/
+	/**
+	 * @param atributo
+	 * @param valor
+	 * @return
+	 */
 	public Vector<Usuario> consultarUsuarios(Vector<String> atributo, Vector<String> valor)
 	{
 		for (int i=0;i<valor.size();i++){
@@ -313,6 +388,10 @@ public class ControladorUsuario {
 	}
 	
 	/*metodo que retorma un usuario que concida con el login*/
+	/**
+	 * @param login
+	 * @return
+	 */
 	public Usuario consultarUsuario(String login)
 	 {
 		login.toLowerCase();
@@ -323,6 +402,10 @@ public class ControladorUsuario {
 	 }
 	
 	//metodo que sirve para actualizar todos los datos del usuario y sus areas, recibe un objeto usuario
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int modificarDatosUsuario(Usuario u){
 		int value =0;
 		value = this.modificarUsuario(u);
@@ -332,6 +415,10 @@ public class ControladorUsuario {
 	}
 	
 	//metodo que sirve para registar los datos del usuario y sus areas, recibe un objeto unusuario
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int insertarDatosUsuario(Usuario u){
 		int value =0;
 		value = this.insertarUsuario(u);
@@ -340,6 +427,10 @@ public class ControladorUsuario {
 		return value;
 	}
 	
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int modificarPerfilEstado(Usuario u){
 		int value =0;
 		DaoUsuario daoUs = new DaoUsuario(); 

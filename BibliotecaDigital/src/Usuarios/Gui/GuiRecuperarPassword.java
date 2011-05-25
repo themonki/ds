@@ -29,6 +29,7 @@ import Principal.Gui.GuiPrincipal;
 import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
 import Utilidades.Button;
+import Utilidades.Estilos;
 
 
 public class GuiRecuperarPassword extends JPanel {
@@ -99,9 +100,9 @@ public class GuiRecuperarPassword extends JPanel {
 		// Linea y titulo del panel.
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createLineBorder(Color.black), title);
-		borde.setTitleColor(colorTitulo);
-		borde.setTitleFont(fontTitulo);
+				.createLineBorder(Estilos.colorBorder), title);
+		borde.setTitleColor(Estilos.colorTitulo);
+		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 
 		GridBagConstraints restriccionCampo = new GridBagConstraints(), restriccionEtiquetas = new GridBagConstraints();
@@ -210,22 +211,22 @@ public class GuiRecuperarPassword extends JPanel {
 		Color colorletras = new Color(0, 60, 0);
 
 		nombreUsuario = new JLabel("Login  :");
-		nombreUsuario.setFont(font1);
-		nombreUsuario.setForeground(colorletras);
+		nombreUsuario.setFont(Estilos.fontLabels);
+		nombreUsuario.setForeground(Estilos.colorLabels);
 
 		preguntaSecreta = new JLabel("Pregunta Secreta: ");
-		preguntaSecreta.setFont(font1);
-		preguntaSecreta.setForeground(colorletras);
+		preguntaSecreta.setFont(Estilos.fontLabels);
+		preguntaSecreta.setForeground(Estilos.colorLabels);
 		respuestaPregunta = new JLabel("Respuesta: ");
-		respuestaPregunta.setFont(font1);
-		respuestaPregunta.setForeground(colorletras);
+		respuestaPregunta.setFont(Estilos.fontLabels);
+		respuestaPregunta.setForeground(Estilos.colorLabels);
 
 		password = new JLabel("Password: ");
-		password.setFont(font1);
-		password.setForeground(colorletras);
+		password.setFont(Estilos.fontLabels);
+		password.setForeground(Estilos.colorLabels);
 		verificarPassword = new JLabel("Verifique el Password: ");
-		verificarPassword.setFont(font1);
-		verificarPassword.setForeground(colorletras);
+		verificarPassword.setFont(Estilos.fontLabels);
+		verificarPassword.setForeground(Estilos.colorLabels);
 
 	}
 

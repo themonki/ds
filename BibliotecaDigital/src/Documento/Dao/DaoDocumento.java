@@ -14,17 +14,43 @@ import java.util.Vector;
 import Documento.Logica.Documento;
 import Utilidades.FachadaBD;
 
+/**
+ * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
+ * con los documentos
+ * @author 
+ * {@linkplain java.lang.Object Object}
+ */
 public class DaoDocumento {
 
 	FachadaBD fachada;
 
+	/**
+	 * Constructor por defecto que inicia la variable fachada
+	 */
 	public DaoDocumento() {
 		fachada = new FachadaBD();
 	}
 
-	/*
-	 * metodo que permite insertar en la base de datos en la tabla documento
+	
+	/**metodo que permite insertar en la base de datos en la tabla documento
 	 * recibiendo todos los datos individualmente
+	 * @param id
+	 * @param idioma
+	 * @param derechos
+	 * @param descripcion
+	 * @param software
+	 * @param resolucion
+	 * @param editorial
+	 * @param formato
+	 * @param titulo_principal
+	 * @param titulo_secundario
+	 * @param link
+	 * @param creacion
+	 * @param publicacion
+	 * @param catalogacion
+	 * @param login
+	 * @param tipo
+	 * @return devuelve 1 si se inserto el documento -1 de lo contrario
 	 */
 	public int guardarDocumento(String id, String idioma, String derechos,
 			String descripcion, String software, String resolucion,
@@ -82,9 +108,11 @@ public class DaoDocumento {
 		return -1;
 	}
 
-	/*
-	 * metodo que permite insertar en la base de datos en la tabla documento
+
+	/**metodo que permite insertar en la base de datos en la tabla documento
 	 * recibiendo un objeto de tipo documento
+	 * @param d - Documento
+	 * @return devuelve 1 si se inserto el documento -1 de lo contrario
 	 */
 	public int guardarDocumento(Documento d) {
 		int value = guardarDocumento(d.getId_doc(), d.getIdioma(), d
@@ -99,9 +127,27 @@ public class DaoDocumento {
 		return value;
 	}
 
-	/*
-	 * metodo que permite actualizar en la base de datos en la tabla documento
+
+	/**Metodo que permite actualizar en la base de datos en la tabla documento
 	 * recibiendo cada uno de los atributos de la relacion documento
+	 * @param id
+	 * @param idioma
+	 * @param derechos
+	 * @param descripcion
+	 * @param software
+	 * @param resolucion
+	 * @param editorial
+	 * @param formato
+	 * @param titulo_principal
+	 * @param titulo_secundario
+	 * @param link
+	 * @param creacion
+	 * @param publicacion
+	 * @param catalogacion
+	 * @param login
+	 * @param tipo
+	 * @return retorna un numero indicando cuantos valores fueron actualizados de 
+	 * lo contrario retorna -1
 	 */
 	public int modificarDocumento(String id, String idioma, String derechos,
 			String descripcion, String software, String resolucion,
@@ -143,6 +189,10 @@ public class DaoDocumento {
 	 * metodo que permite actualizar en la base de datos en la tabla documento
 	 * recibiendo un objeto de tipo documento
 	 */
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int modificarDocumento(Documento d) {
 		int value = modificarDocumento(d.getId_doc(), d.getIdioma(), d
 				.getDerechosDeAutor(), d.getDescripcion(), d
@@ -156,6 +206,11 @@ public class DaoDocumento {
 		return value;
 	}
 
+	/**
+	 * @param id_doc
+	 * @param ids_area
+	 * @return
+	 */
 	public int guardarDocumentoAreas(String id_doc, Vector<String> ids_area) {
 
 		String sql_guardar;
@@ -188,6 +243,11 @@ public class DaoDocumento {
 		return -1;
 	}
 
+	/**
+	 * @param id_doc
+	 * @param ids_palabras
+	 * @return
+	 */
 	public int guardarDocumentoPalabrasClave(String id_doc,
 			Vector<String> ids_palabras) {
 
@@ -225,6 +285,11 @@ public class DaoDocumento {
 		return -1;
 	}
 
+	/**
+	 * @param id_doc
+	 * @param ids_autores
+	 * @return
+	 */
 	public int guardarDocumentoAutores(String id_doc, Vector<String> ids_autores) {
 
 		String sql_guardar;
@@ -259,6 +324,9 @@ public class DaoDocumento {
 		return -1;
 	}
 
+	/**
+	 * @return
+	 */
 	public String obtenerLoginDocumento() {
 		String login = "0";
 		String consulta_sql = "SELECT MAX(d.id_documento) FROM Documento d";
@@ -283,6 +351,10 @@ public class DaoDocumento {
 
 	}
 
+	/**
+	 * @param url
+	 * @return
+	 */
 	public boolean comprobarURL(String url) {
 		boolean estado = false;
 		String consulta_sql = "SELECT d.id_documento, d.link FROM Documento d "
@@ -308,6 +380,10 @@ public class DaoDocumento {
 
 	// metodo que retorna los datos de un documento de acuerdo a su login, no
 	// devuelve areas, palabras y autores
+	/**
+	 * @param id_documento
+	 * @return
+	 */
 	public Documento consultarDatosDocumento(String id_documento) {
 		String consulta_sql = "SELECT * " + "FROM documento "
 				+ "WHERE id_documento = '" + id_documento + "';";
@@ -352,24 +428,43 @@ public class DaoDocumento {
 	}
 
 	// *******ACTUALIZAR
+	/**
+	 * @param id_documento
+	 * @param ids_areas
+	 * @return
+	 */
 	public int actualizarDocumentoAreas(String id_documento,
 			Vector<String> ids_areas) {
 		this.eliminarDocumentoAreas(id_documento);
 		return this.guardarDocumentoAreas(id_documento, ids_areas);
 	}
 
+	/**
+	 * @param id_documento
+	 * @param ids_palabras
+	 * @return
+	 */
 	public int actualizarDocumentoPalabrasClave(String id_documento,
 			Vector<String> ids_palabras) {
 		this.eliminarDocumentoPalabrasClave(id_documento);
 		return this.guardarDocumentoPalabrasClave(id_documento, ids_palabras);
 	}
 
+	/**
+	 * @param id_documento
+	 * @param ids_autores
+	 * @return
+	 */
 	public int actualizarDocumentoAutores(String id_documento,
 			Vector<String> ids_autores) {
 		this.eliminarDocumentoAutores(id_documento);
 		return this.guardarDocumentoAutores(id_documento, ids_autores);
 	}
 
+	/**
+	 * @param id_documento
+	 * @return
+	 */
 	public int eliminarDocumentoAutores(String id_documento) {
 		String sql_eliminar;
 		int numFilas;
@@ -390,6 +485,10 @@ public class DaoDocumento {
 		return -1;
 	}
 
+	/**
+	 * @param id_documento
+	 * @return
+	 */
 	public int eliminarDocumentoPalabrasClave(String id_documento) {
 		String sql_eliminar;
 		int numFilas;
@@ -410,6 +509,10 @@ public class DaoDocumento {
 		return -1;
 	}
 
+	/**
+	 * @param id_documento
+	 * @return
+	 */
 	public int eliminarDocumentoAreas(String id_documento) {
 		String sql_eliminar;
 		int numFilas;
