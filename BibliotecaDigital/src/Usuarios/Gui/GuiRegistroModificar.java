@@ -3,6 +3,7 @@ package Usuarios.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,6 +19,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -197,12 +199,14 @@ public class GuiRegistroModificar extends JScrollPane{
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
 		panelAreasInteres.setBorder(bordeAreaInteres);
 		panelAreasInteres.setSize(450, 100);
+		panelAreasInteres.setToolTipText("Aqui se muestran las areas de interes seleccionadas y que quedaran en tu usuario ");
+		panelAreasInteres.setLayout(new BoxLayout(panelAreasInteres, BoxLayout.Y_AXIS));
 		
 		//scroll para areas de interes, por si crece demasiado.
 		scrollAreaInteres = new JScrollPane(panelAreasInteres);
 		scrollAreaInteres.getViewport().add(panelAreasInteres);
 		scrollAreaInteres.setPreferredSize(new Dimension(450,100));
-		
+		//scrollAreaInteres.setMaximumSize(new Dimension(100, 100));
 		//Panel donde se incluira todo.
 		panelPrincipal = new JPanel();
 		

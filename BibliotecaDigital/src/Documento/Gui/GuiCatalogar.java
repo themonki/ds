@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -140,21 +141,21 @@ public class GuiCatalogar extends JScrollPane{
 		panel2= new JPanel();
 		panel4= new JPanel();
 		panel5= new JPanel();
-		panelConAutores= new JPanel();
-		panelConpalabrasC= new JPanel();
 		panel8= new JPanel();
-		panelConAreas= new JPanel();
-
+		// el boxlayout es para que las organice en fila 
+		
+		panelConAutores= new JPanel();
+		panelConAutores.setLayout(new BoxLayout(panelConAutores, BoxLayout.Y_AXIS));
+		panelConpalabrasC= new JPanel();//new BoxLayout(panelConpalabrasC, BoxLayout.Y_AXIS));
+		panelConpalabrasC.setLayout(new BoxLayout(panelConpalabrasC, BoxLayout.Y_AXIS));
+		panelConAreas=new JPanel();//new BoxLayout(panelConAreas, BoxLayout.Y_AXIS));
+		panelConAreas.setLayout(new BoxLayout(panelConAreas, BoxLayout.Y_AXIS));
 		panelScrollAreas= new JScrollPane();
 		panelScrollAutores= new JScrollPane();
 		panelScrollPalabras= new JScrollPane();
 
 
-		panelScrollAreas.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		panelScrollAutores.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		panelScrollPalabras.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
-		//----------------------------------------------------
+			//----------------------------------------------------
 		inicializarLabels(Estilos.fontLabels);
 		//--------------------------------------------------
 		inicializarComboBox(Estilos.fontSubtitulos);	
@@ -190,13 +191,13 @@ public class GuiCatalogar extends JScrollPane{
 		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 
 		panelConAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Autores Actuales"));
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Autores Documentos"));
 
 		panelConpalabrasC.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Palabras Actuales"));
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Palabras Documentos"));
 
 		panelConAreas.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Areas Actuales"));
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Areas Documentos"));
 
 		//Organizacion de layouts y paneles
 		panel2.setLayout(new GridBagLayout());
@@ -356,6 +357,7 @@ public class GuiCatalogar extends JScrollPane{
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
+		
 		panel5.add(scroll);
 		panel.add(botonCatalogar);
 

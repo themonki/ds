@@ -119,7 +119,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		GridBagConstraints restriccionEtiquetas = new GridBagConstraints();
 		GridBagConstraints restriccionCampo = new GridBagConstraints();
 
-		restriccionEtiquetas.insets = new Insets(1, 50, 10, 50);// espacios entre
+		restriccionEtiquetas.insets = new Insets(1, 20, 10, 50);// espacios entre
 		restriccionEtiquetas.gridy=0;
 		restriccionEtiquetas.gridx=0;
 		restriccionEtiquetas.anchor = GridBagConstraints.WEST;// alinear a la
