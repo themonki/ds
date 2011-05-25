@@ -12,6 +12,7 @@ import java.util.Vector;
 
 import GestionDocumento.Logica.AreaConocimiento;
 
+
 public class Usuario {
 
 	 /** 
@@ -87,146 +88,250 @@ public class Usuario {
 	}
 
 	/**
-	 * Devuelve el Login del usuario
-	 * @return login 
+	 * Metodo que permite obtener el login de usuario
+	 * @return el Login del usuario
 	 */
 	public String getLogin() {
 		return login;
 	}
 
+	
+	/**
+	 * @return
+	 */
 	public String getContrasena() {
 		return contrasena;
 	}
 
+	
+	/**
+	 * @return
+	 */
 	public String getNombre1() {
 		return nombre1;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getNombre2() {
 		return nombre2;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getApellido1() {
 		return apellido1;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getApellido2() {
 		return apellido2;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getNivelEscolaridad() {
 		return nivelEscolaridad;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getVinculoUnivalle() {
 		return vinculoUnivalle;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getPreguntaSecreta() {
 		return preguntaSecreta;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getRespuestaSecreta() {
 		return respuestaSecreta;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getGenero() {
 		return genero;
 	}
 
+	/**
+	 * @return
+	 */
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
 
+	/**
+	 * @return
+	 */
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean getEstado() {
 		return estado;
 	}
 
+	/**
+	 * @return
+	 */
 	public Vector<AreaConocimiento> getAreas() {
 		return areasInteres;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setLogin(String value)
 	{
 		login = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setContrasena(String value) {
 		contrasena = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setNombre1(String value) {
 		nombre1 = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setNombre2(String value) {
 		nombre2 = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setApellido1(String value) {
 		apellido1 = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setApellido2(String value) {
 		apellido2 = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setEmail(String value) {
 		email = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setNivelEscolaridad(String value) {
 		nivelEscolaridad = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setVinculoUnivalle(String value) {
 		vinculoUnivalle = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setPreguntaSecreta(String value) {
 		preguntaSecreta = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setRespuestaSecreta(String value) {
 		respuestaSecreta = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setGenero(String value) {
 		genero = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setFechaRegistro(Date value) {
 		fechaRegistro = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setFechaNacimiento(Date value) {
 		fechaNacimiento = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setTipo(String value) {
 		tipo = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setEstado(boolean value) {
 		estado = value;
 	}
 
+	/**
+	 * @param value
+	 */
 	public void setAreas(Vector<AreaConocimiento> value) {
 		areasInteres = value;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString(){
 		String usuario;
 		usuario = login + " " + nombre1;

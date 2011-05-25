@@ -16,14 +16,40 @@ import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Logica.Usuario;
 import Utilidades.FachadaBD;
 
+/**
+ * @author yerminson
+ *
+ */
 public class DaoUsuario {
 
 	FachadaBD fachada;
 
+	/**
+	 * Constructor por defecto
+	 */
 	public DaoUsuario() {
 		fachada = new FachadaBD();
 	}
 
+	/**
+	 * @param login
+	 * @param contrasena
+	 * @param nom1
+	 * @param nom2
+	 * @param apll1
+	 * @param apll2
+	 * @param email
+	 * @param nivel
+	 * @param vinculo
+	 * @param pregunta
+	 * @param respuesta
+	 * @param genero
+	 * @param registro
+	 * @param nacimiento
+	 * @param tipo
+	 * @param estado
+	 * @return
+	 */
 	public int guardarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
@@ -62,6 +88,10 @@ public class DaoUsuario {
 		return -1;
 	}
 
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int guardarUsuario(Usuario u) {
 		int value = guardarUsuario(u.getLogin(), u.getContrasena(), u
 				.getNombre1(), u.getNombre2(), u.getApellido1(), u
@@ -73,6 +103,25 @@ public class DaoUsuario {
 
 	}
 
+	/**
+	 * @param login
+	 * @param contrasena
+	 * @param nom1
+	 * @param nom2
+	 * @param apll1
+	 * @param apll2
+	 * @param email
+	 * @param nivel
+	 * @param vinculo
+	 * @param pregunta
+	 * @param respuesta
+	 * @param genero
+	 * @param registro
+	 * @param nacimiento
+	 * @param tipo
+	 * @param estado
+	 * @return
+	 */
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
 			String nivel, String vinculo, String pregunta, String respuesta,
@@ -116,6 +165,10 @@ public class DaoUsuario {
 
 	}
 
+	/**
+	 * @param u
+	 * @return
+	 */
 	public int modificarUsuario(Usuario u) {
 		int value = modificarUsuario(u.getLogin(), u.getContrasena(), u
 				.getNombre1(), u.getNombre2(), u.getApellido1(), u
@@ -127,6 +180,11 @@ public class DaoUsuario {
 
 	}
 
+	/**
+	 * @param login
+	 * @param va
+	 * @return
+	 */
 	public int insertarUsuarioAreas(String login, Vector<AreaConocimiento> va) {
 		int numFilas = 0, cantidad = va.size();
 		String sql_guardar = "INSERT INTO Interesa_Usuario_Area_Conocimiento (login, id_area)"
@@ -159,6 +217,10 @@ public class DaoUsuario {
 	/*
 	 * METODO QUE RETORNA TODAS LAS AREAS A LAS QUE ESTE RELACIONADO EL USUARIO
 	 */
+	/**
+	 * @param login
+	 * @return
+	 */
 	public Vector<AreaConocimiento> consultarUsuarioAreas(String login) {
 
 		String consulta_sql = "SELECT ac.id_area, ac.nombre FROM Area_Conocimiento ac "
@@ -189,7 +251,12 @@ public class DaoUsuario {
 
 	}
 	
-	/*a�adido por cristian, retorna un vector con todos los usuarios que coincidan en algun atributo*/
+	/*añadido por cristian, retorna un vector con todos los usuarios que coincidan en algun atributo*/
+	/**
+	 * @param atributo
+	 * @param valor
+	 * @return
+	 */
 	public Vector<Usuario> consultarUsuarios(Vector<String> atributo, Vector<String> valor)
 	{
 		Vector<Usuario> usuarios = new Vector<Usuario>();
@@ -241,6 +308,10 @@ public class DaoUsuario {
 	}
 	
 	/*retorna un usuario bscado por login*/
+	/**
+	 * @param login
+	 * @return
+	 */
 	public Usuario consultarUsuario(String login)
 	 {
 	  Usuario usuario = new Usuario();
@@ -287,6 +358,10 @@ public class DaoUsuario {
 	 }
 		
 //remueve todas las areas de un usuario
+	/**
+	 * @param login
+	 * @return
+	 */
 	public int quitarUsuarioAreas(String login){		
 		String sql_borrar;
 		sql_borrar = "DELETE FROM Interesa_Usuario_Area_Conocimiento WHERE login = '"+login+"';";		
@@ -305,6 +380,12 @@ public class DaoUsuario {
 	}
 	
 	//actualizar el perfil y el estado de un usuario
+	/**
+	 * @param login
+	 * @param tipo
+	 * @param estado
+	 * @return
+	 */
 	public int modificarPerfilEstado(String login, String tipo, String estado){
 		String sql_guardar;
 		int numFilas;
