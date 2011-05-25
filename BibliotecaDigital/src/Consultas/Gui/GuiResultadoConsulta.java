@@ -220,7 +220,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 								.getIdDocumento());
 
 				int tu = GuiConsultaBasica.TIPOUSUARIO;
-				System.out.println(tu);
+
 				if (tu == 0) {
 					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
 							"anonimo");

@@ -287,7 +287,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		}
 		
 		
-		System.out.println(documento.getAreas().get(0).getNombre());
+		
 		
 		panelAreas = new JPanel(new GridLayout());
 		
@@ -534,9 +534,23 @@ public class GuiVistaDocumento extends JScrollPane {
 						
 						ControladorDocumento conDoc = new ControladorDocumento();
 						String descarga = conDoc.descargarDocumento(urlFuente, urlDestino);
-						System.out.println(descarga);
+						
 						if(!descarga.equals(""))
 						{
+							int tu = GuiConsultaBasica.TIPOUSUARIO;
+							if (tu == 1) {
+								ControladorConsulta conCon = new ControladorConsulta();
+								conCon.insertarDescargaDocumento(documento.getId_doc(), GuiUsuarioNormal.LOGIN);
+							} else if (tu == 2) {
+								ControladorConsulta conCon = new ControladorConsulta();
+								conCon.insertarDescargaDocumento(documento.getId_doc(), GuiCatalogador.LOGIN);
+							} else if (tu == 3) {
+								ControladorConsulta conCon = new ControladorConsulta();
+								conCon.insertarDescargaDocumento(documento.getId_doc(), GuiAdministrador.LOGIN);
+							}else{
+								System.out.println("Error al insertar Descarga no se conoce el login");
+							}
+							
 							JOptionPane.showMessageDialog(null,"Se descargo correctamente el archivo en la siguiente ubicacion: \n "+descarga);
 						}
 						

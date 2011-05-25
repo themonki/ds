@@ -341,7 +341,6 @@ public class ControladorDocumento {
 		int contador = 2;
 		while(true){
 			if(nuevoDst!=null && nuevoDst.exists()){
-				//nuevoDst = new File(urlDestino+"/"+src.getName());
 				String nuevoNombre = obtenerNombre(dst,"("+contador+")");
 				nuevoDst = new File(urlDestino+"/"+nuevoNombre);
 				contador++;
