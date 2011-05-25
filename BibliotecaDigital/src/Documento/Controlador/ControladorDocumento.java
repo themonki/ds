@@ -20,8 +20,30 @@ import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
 
+/**
+ * @author 
+ *
+ */
 public class ControladorDocumento {
 
+	/**
+	 * @param id
+	 * @param idioma
+	 * @param derechos
+	 * @param descripcion
+	 * @param software
+	 * @param resolucion
+	 * @param editorial
+	 * @param formato
+	 * @param titulo_principal
+	 * @param titulo_secundario
+	 * @param link
+	 * @param creacion
+	 * @param publicacion
+	 * @param catalogacion
+	 * @param login
+	 * @return
+	 */
 	public int insertarDocumento(String id, String idioma, String derechos,
 			String descripcion, String software, String resolucion,
 			String editorial, String formato, String titulo_principal,
@@ -57,6 +79,10 @@ public class ControladorDocumento {
 		return value;
 	}
 
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int insertarDocumento(Documento d) {		
 		//d.setIdioma(d.getIdioma().toLowerCase());
 		//d.setDerechosDeAutor(d.getDerechosDeAutor().toLowerCase());
@@ -84,6 +110,24 @@ public class ControladorDocumento {
 		return value;
 	}
 
+	/**
+	 * @param id
+	 * @param idioma
+	 * @param derechos
+	 * @param descripcion
+	 * @param software
+	 * @param resolucion
+	 * @param editorial
+	 * @param formato
+	 * @param titulo_principal
+	 * @param titulo_secundario
+	 * @param link
+	 * @param creacion
+	 * @param publicacion
+	 * @param catalogacion
+	 * @param login
+	 * @return
+	 */
 	public int modificarDocumento(String id, String idioma, String derechos,
 			String descripcion, String software, String resolucion,
 			String editorial, String formato, String titulo_principal,
@@ -116,6 +160,10 @@ public class ControladorDocumento {
 		return value;
 	}
 	// /////////
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int modificarDocumento(Documento d) {
 		//se pasan a minuscula
 		//d.setIdioma(d.getIdioma().toLowerCase());
@@ -138,6 +186,10 @@ public class ControladorDocumento {
 
 //**********INSERTAR LAS AREAS, AUTORES Y PALABRASCLAVE*************************************************
 //INSERTANDO AREAS CONOCIMIENTO
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int insertarDocumentoAreas(Documento d) {
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector <AreaConocimiento> vac = d.getAreas();
@@ -151,6 +203,11 @@ public class ControladorDocumento {
 		value = daoDoc.guardarDocumentoAreas(d.getId_doc(), area_ids);
 		return value;
 	}
+	/**
+	 * @param area_ids
+	 * @param id_doc
+	 * @return
+	 */
 	public int insertarDocumentoAreas(Vector<String> area_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
@@ -159,6 +216,10 @@ public class ControladorDocumento {
 		return value;
 	}
 //INSERTANDO PALABRAS CLAVE	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int insertarDocumentoPalabrasClave(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector <PalabraClave> vac = d.getPalabrasClave();
@@ -173,6 +234,11 @@ public class ControladorDocumento {
 		return value;
 	}
 	
+	/**
+	 * @param palabras_ids
+	 * @param id_doc
+	 * @return
+	 */
 	public int insertarDocumentoPalabrasClave(Vector<String> palabras_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
@@ -181,6 +247,10 @@ public class ControladorDocumento {
 		return value;
 	}
 //INSERTANDO AUTORES	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int insertarDocumentoAutores(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector <Autor> vac = d.getAutores();
@@ -195,6 +265,11 @@ public class ControladorDocumento {
 		return value;
 	}
 	
+	/**
+	 * @param autores_ids
+	 * @param id_doc
+	 * @return
+	 */
 	public int insertarDocumentoAutores(Vector<String> autores_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value;
@@ -203,6 +278,10 @@ public class ControladorDocumento {
 		return value;
 	}
 //*****************************************************************************************************	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int catalogarDocumento(Documento d){
 		if(verificarInsertarDocumento(d)){
 			int value=this.insertarDocumento(d);
@@ -217,6 +296,13 @@ public class ControladorDocumento {
 		}else return -1;
 	}
 	
+	/**
+	 * @param d
+	 * @param areas_ids
+	 * @param autores_ids
+	 * @param palabras_ids
+	 * @return
+	 */
 	public int catalogarDocumento(Documento d, Vector<String> areas_ids,
 			Vector<String> autores_ids, Vector<String> palabras_ids ){
 		Vector <AreaConocimiento> vac= new Vector <AreaConocimiento>();
@@ -255,6 +341,10 @@ public class ControladorDocumento {
 
 //el path relativo del archivo,si el archivo ya existe en el repositorio (mismo nombre) no se vuelve 
 //a copiar devolviendo la misma direccion
+	/**
+	 * @param url
+	 * @return
+	 */
 	public String copiarDocumento(String url){
 		File src = new File(url), carp_dest=  new File("repositorio/");
 		File dst= new File(carp_dest.getName()+"/"+src.getName());
@@ -283,6 +373,10 @@ public class ControladorDocumento {
 		return "";
 	}
 	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public boolean verificarInsertarDocumento(Documento d){
 		boolean estado =true;
 		String mensaje="";
@@ -323,17 +417,30 @@ public class ControladorDocumento {
 		if(!estado){JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);}	
 		return estado;
 	}	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public boolean comprobarEnlace(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		return daoDoc.comprobarURL(d.getUrl());
 	}
 //metodo que retorna el documento con la llave id_documento, sin areas, autor y palabras	
+	/**
+	 * @param id_documento
+	 * @return
+	 */
 	public Documento obtenerDocumento(String id_documento){
 		DaoDocumento daoDoc = new DaoDocumento();
 		Documento d = daoDoc.consultarDatosDocumento(id_documento);
 		return d;
 	}
 	
+	/**
+	 * @param urlFuente
+	 * @param urlDestino
+	 * @return
+	 */
 	public String descargarDocumento(String urlFuente, String urlDestino){
 		File src = new File(urlFuente);
 		File dst= new File(urlDestino+"/"+src.getName());//es una carpeta
@@ -374,6 +481,11 @@ public class ControladorDocumento {
 		return "";
 	}
 	
+	/**
+	 * @param archivo
+	 * @param agregar
+	 * @return
+	 */
 	protected String obtenerNombre(File archivo, String agregar){
 		String name = archivo.getName();
 		int longitud = name.length();
@@ -390,6 +502,10 @@ public class ControladorDocumento {
 	
 //*********************************************MODIFICAR
 	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int modificarDocumentoAreas(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector<String> ids_areas = new Vector<String>();
@@ -399,6 +515,10 @@ public class ControladorDocumento {
 		}
 		return daoDoc.actualizarDocumentoAreas(d.getId_doc(), ids_areas);
 	}
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int modificarDocumentoPalabrasClave(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector<String> ids_palabras = new Vector<String>();
@@ -408,6 +528,10 @@ public class ControladorDocumento {
 		}
 		return daoDoc.actualizarDocumentoPalabrasClave(d.getId_doc(), ids_palabras);
 	}
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int modificarDocumentoAutores(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		Vector<String> ids_autores = new Vector<String>();
@@ -419,6 +543,10 @@ public class ControladorDocumento {
 	}
 	
 	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public int modificarDatosDocumento(Documento d){
 		if(verificarModificarDocumento(d)){
 			int value=this.modificarDocumento(d);
@@ -429,6 +557,13 @@ public class ControladorDocumento {
 			return 1;			
 		}else return -1;
 	}
+	/**
+	 * @param d
+	 * @param areas_ids
+	 * @param autores_ids
+	 * @param palabras_ids
+	 * @return
+	 */
 	public int modificarDatosDocumento(Documento d, Vector<String> areas_ids,
 			Vector<String> autores_ids, Vector<String> palabras_ids ){
 		
@@ -457,6 +592,10 @@ public class ControladorDocumento {
 		return this.modificarDatosDocumento(d);
 	}
 	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public boolean verificarModificarDocumento(Documento d){
 		boolean estado =true;
 		String mensaje="";
@@ -481,6 +620,11 @@ public class ControladorDocumento {
 		return estado;
 	}
 	
+	/**
+	 * @param formato
+	 * @param nombre
+	 * @return
+	 */
 	public boolean comprobarFormato(String formato, String nombre){
 		String name="";
 		int longitud = nombre.length();
