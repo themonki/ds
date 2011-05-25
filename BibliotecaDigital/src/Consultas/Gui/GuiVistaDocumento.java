@@ -291,15 +291,16 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		
 		panelAreas = new JPanel(new GridLayout());
+		panelAreas.setLayout(new BoxLayout(panelAreas, BoxLayout.Y_AXIS));
 		
 		Vector<AreaConocimiento> areasDocumento = documento.getAreas();
 		for(int i=0;i< areasDocumento.size();i++)
 		{
 			JLabel aux = new JLabel(areasDocumento.get(i).getNombre());
-			aux.setFont(Estilos.fontSubtitulos);
+			aux.setFont(Estilos.fontSubrayados);
 			aux.setForeground(Estilos.colorSubtitulo);
 			aux.addMouseListener(manejador);
-			aux.setForeground(Color.BLUE);
+			aux.setForeground(Color.blue);
 			aux.addMouseListener(manejador);
 			panelAreas.add(aux);
 			
@@ -325,7 +326,10 @@ public class GuiVistaDocumento extends JScrollPane {
 			panelAutores.add(aux);
 			
 		}
-		panelPalabrasClave = new JPanel(new GridLayout());
+		panelPalabrasClave = new JPanel();
+		
+		panelPalabrasClave.setLayout(new BoxLayout(panelPalabrasClave, BoxLayout.Y_AXIS));
+		
 		Vector<PalabraClave> palabrasClaveDocumento= documento.getPalabrasClave();
 		for(int i=0;i< palabrasClaveDocumento.size();i++)
 		{
@@ -342,66 +346,66 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		
 		// etiquetas
-		tituloPrincipal = new JLabel("Titulo Principal");
+		tituloPrincipal = new JLabel("Titulo Principal :");
 		tituloPrincipal.setFont(Estilos.fontLabels);
-		tituloPrincipal.setForeground(Estilos.colorLabels);
+		tituloPrincipal.setForeground(Estilos.colorLabels2);
 		
-		tituloSecundario = new JLabel("Titulo Secundario o Traduccion");
+		tituloSecundario = new JLabel("Titulo Secundario o Traduccion :");
 		tituloSecundario.setFont(Estilos.fontLabels);
-		tituloSecundario.setForeground(Estilos.colorLabels);
+		tituloSecundario.setForeground(Estilos.colorLabels2);
 		
-		idioma = new JLabel("Idioma");
+		idioma = new JLabel("Idioma :");
 		idioma.setFont(Estilos.fontLabels);
-		idioma.setForeground(Estilos.colorLabels);
+		idioma.setForeground(Estilos.colorLabels2);
 		
-		editorial = new JLabel("Editorial");
+		editorial = new JLabel("Editorial :");
 		editorial.setFont(Estilos.fontLabels);
-		editorial.setForeground(Estilos.colorLabels);
+		editorial.setForeground(Estilos.colorLabels2);
 		
-		derechosAutor = new JLabel("Derechos de Autor");
+		derechosAutor = new JLabel("Derechos de Autor :");
 		derechosAutor.setFont(Estilos.fontLabels);
-		derechosAutor.setForeground(Estilos.colorLabels);
+		derechosAutor.setForeground(Estilos.colorLabels2);
 		
-		descripcion = new JLabel("Descripcion");
+		descripcion = new JLabel("Descripcion :");
 		descripcion.setFont(Estilos.fontLabels);
-		descripcion.setForeground(Estilos.colorLabels);
+		descripcion.setForeground(Estilos.colorLabels2);
 		
-		resolucion = new JLabel("Resolucion");
+		resolucion = new JLabel("Resolucion :");
 		resolucion.setFont(Estilos.fontLabels);
-		resolucion.setForeground(Estilos.colorLabels);
+		resolucion.setForeground(Estilos.colorLabels2);
 		
-		formato = new JLabel("Formato");
+		formato = new JLabel("Formato :");
 		formato.setFont(Estilos.fontLabels);
-		formato.setForeground(Estilos.colorLabels);
+		formato.setForeground(Estilos.colorLabels2);
 		
-		softwareRecomendado = new JLabel("Software Recomendado para Editar");
+		softwareRecomendado = new JLabel("Software Recomendado para Editar :");
 		softwareRecomendado.setFont(Estilos.fontLabels);
-		softwareRecomendado.setForeground(Estilos.colorLabels);
+		softwareRecomendado.setForeground(Estilos.colorLabels2);
 		
-		fechaPublicacion = new JLabel("Fecha de Publicacion");
+		fechaPublicacion = new JLabel("Fecha de Publicacion :");
 		fechaPublicacion.setFont(Estilos.fontLabels);
-		fechaPublicacion.setForeground(Estilos.colorLabels);
+		fechaPublicacion.setForeground(Estilos.colorLabels2);
 		
-		fechaCreacion = new JLabel("Fecha de Creación");
+		fechaCreacion = new JLabel("Fecha de Creación :");
 		fechaCreacion.setFont(Estilos.fontLabels);
-		fechaCreacion.setForeground(Estilos.colorLabels);
+		fechaCreacion.setForeground(Estilos.colorLabels2);
 
-		areas = new JLabel("Areas de conocimiento");
+		areas = new JLabel("Areas de conocimiento :");
 		areas.setFont(Estilos.fontLabels);
-		areas.setForeground(Estilos.colorLabels);
+		areas.setForeground(Estilos.colorLabels2);
 		
-		autores = new JLabel("Autor(es)");
+		autores = new JLabel("Autor(es) :");
 		autores.setFont(Estilos.fontLabels);
-		autores.setForeground(Estilos.colorLabels);
+		autores.setForeground(Estilos.colorLabels2);
 		
-		palabrasClave = new JLabel("Palabras clave");
+		palabrasClave = new JLabel("Palabras clave :");
 		palabrasClave.setFont(Estilos.fontLabels);
-		palabrasClave.setForeground(Estilos.colorLabels);
+		palabrasClave.setForeground(Estilos.colorLabels2);
 		
 		
 		volver = new JLabel("Volver");
 		volver.setFont(Estilos.fontLabels);
-		volver.setForeground(Estilos.colorLabels);
+		volver.setForeground(Estilos.colorLabels2);
 	
 		volver.setIcon(new ImageIcon("recursos/iconos/volver.png"));
 		volver.addMouseListener(manejador);
@@ -411,60 +415,60 @@ public class GuiVistaDocumento extends JScrollPane {
 		campoTituloPrincipal = new JLabel();
 		campoTituloPrincipal.setText(documento.getTituloppal());
 		campoTituloPrincipal.setFont(Estilos.fontSubtitulos);
-		campoTituloPrincipal.setForeground(Estilos.colorSubtitulo);
+		//campoTituloPrincipal.setForeground(Color.black);
 		
 		campoTituloSecundario =new JLabel();
 		campoTituloSecundario.setText(documento.getTitulo_secundario());
 		campoTituloSecundario.setFont(Estilos.fontSubtitulos);
-		campoTituloSecundario.setForeground(Estilos.colorSubtitulo);
+		//campoTituloSecundario.setForeground(Estilos.colorSubtitulo);
 		
 		campoIdioma = new JLabel();
 		campoIdioma.setText(documento.getIdioma());
 		campoIdioma.setFont(Estilos.fontSubtitulos);
-		campoIdioma.setForeground(Estilos.colorSubtitulo);
+		//campoIdioma.setForeground(Estilos.colorSubtitulo);
 		
 		
 		
 		campoEditorial = new JLabel();
 		campoEditorial.setText(documento.getEditorial());
 		campoEditorial.setFont(Estilos.fontSubtitulos);
-		campoEditorial.setForeground(Estilos.colorSubtitulo);
+		//campoEditorial.setForeground(Estilos.colorSubtitulo);
 		
 		
 		campoDerechosAutor = new JLabel();
 		campoDerechosAutor.setText(documento.getDerechosDeAutor());
 		campoDerechosAutor.setFont(Estilos.fontSubtitulos);
-		campoDerechosAutor.setForeground(Estilos.colorSubtitulo);
+	//	campoDerechosAutor.setForeground(Estilos.colorSubtitulo);
 		
 		campoDescripcion = new JLabel();
 		campoDescripcion.setText(documento.getDescripcion());
 		campoDescripcion.setFont(Estilos.fontSubtitulos);
-		campoDescripcion.setForeground(Estilos.colorSubtitulo);
+		//campoDescripcion.setForeground(Estilos.colorSubtitulo);
 		
 		campoResolucion = new JLabel();
 		campoResolucion.setText(documento.getResolucion());
 		campoResolucion.setFont(Estilos.fontSubtitulos);
-		campoResolucion.setForeground(Estilos.colorSubtitulo);
+	//	campoResolucion.setForeground(Estilos.colorSubtitulo);
 		
 		campoFormato = new JLabel();
 		campoFormato.setText(documento.getFormato());
 		campoFormato.setFont(Estilos.fontSubtitulos);
-		campoFormato.setForeground(Estilos.colorSubtitulo);
+		//campoFormato.setForeground(Estilos.colorSubtitulo);
 		
 		campoSoftwareRecomendado = new JLabel();
 		campoSoftwareRecomendado.setText(documento.getSoftware_recomentado());
 		campoSoftwareRecomendado.setFont(Estilos.fontSubtitulos);
-		campoSoftwareRecomendado.setForeground(Estilos.colorSubtitulo);
+		//campoSoftwareRecomendado.setForeground(Estilos.colorSubtitulo);
 		
 		campoFechaPublicacion = new JLabel();
 		campoFechaPublicacion.setText(""+documento.getFecha_publicacion());
 		campoFechaPublicacion.setFont(Estilos.fontSubtitulos);
-		campoFechaPublicacion.setForeground(Estilos.colorSubtitulo);
+		//campoFechaPublicacion.setForeground(Estilos.colorSubtitulo);
 		
 		campoFechaCreacion = new JLabel();
 		campoFechaCreacion.setText(""+documento.getFecha_creacion());
 		campoFechaCreacion.setFont(Estilos.fontSubtitulos);
-		campoFechaCreacion.setForeground(Estilos.colorSubtitulo);
+		///campoFechaCreacion.setForeground(Estilos.colorSubtitulo);
 
 		// Etiquetas funcionales de acuerdo al tipo de usuario;
 	
