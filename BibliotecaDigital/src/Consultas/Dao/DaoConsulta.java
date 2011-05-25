@@ -237,13 +237,13 @@ public class DaoConsulta {
 			{
 				int primeraOcurrencia = cuales.indexOf(true);
 				consultaSql= "((" + consultasSql.elementAt(primeraOcurrencia)+ ")" +
-				" INTERSECT " + "(" + consultasSql.elementAt(cuales.indexOf(true, primeraOcurrencia)) + "))"; 
+				" INTERSECT " + "(" + consultasSql.elementAt(cuales.lastIndexOf(true)) + "))"; 
 			} else if(cuantas == 3)
 			{
 				int primeraOcurrencia = cuales.indexOf(true);
 				consultaSql= "((" + consultasSql.elementAt(primeraOcurrencia) + ")" +
-				" INTERSECT " + "(" + consultasSql.elementAt(cuales.indexOf(true, primeraOcurrencia)) + "))"+
-				" INTERSECT " + "(" + consultasSql.elementAt(cuales.lastIndexOf(true, primeraOcurrencia)) + ")";
+				" INTERSECT " + "(" + consultasSql.elementAt(cuales.indexOf(true, primeraOcurrencia + 1)) + "))"+
+				" INTERSECT " + "(" + consultasSql.elementAt(cuales.lastIndexOf(true)) + ")";
 			} else 
 			{
 				consultaSql = "((" + consultaDocumentoSql + ")" + " INTERSECT " +
