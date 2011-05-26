@@ -98,7 +98,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 		botonSiguiente = new Button("Siguiente");
 		botonAtras = new Button("Atras");
 		botonSiguiente.addActionListener(new ManejadorBoton());
-		if(cantidadMostrar>cantidadTotalResultados) botonSiguiente.setEnabled(false);
+		if(cantidadMostrar>=cantidadTotalResultados) botonSiguiente.setEnabled(false);
 		botonAtras.addActionListener(new ManejadorBoton());
 		botonAtras.setEnabled(false);
 		
