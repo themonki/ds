@@ -691,7 +691,7 @@ public class GuiRegistroModificar extends JScrollPane{
 						nombre2String, apellido1String, apellido2String, emailString,
 						nivelEscolaridadString, vinculoUnivalleString, preguntaSecretaString,
 						respuestaSecretaString, generoString, fechaRegistroDate,
-						fechaNacimientoDate, perfilString, estado, areasInteresUsuario);
+						fechaNacimientoDate, null ,perfilString, estado, areasInteresUsuario);
 				
 				ControladorUsuario controlador = new ControladorUsuario();
 				int registro = controlador.insertarDatosUsuario(usuarioModificar);
