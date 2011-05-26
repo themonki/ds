@@ -10,7 +10,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import GestionDocumento.Logica.AreaConocimiento;
@@ -33,22 +32,22 @@ public class DaoUsuario {
 	}
 
 	/**
-	 * @param login
-	 * @param contrasena
-	 * @param nom1
-	 * @param nom2
-	 * @param apll1
-	 * @param apll2
-	 * @param email
-	 * @param nivel
-	 * @param vinculo
-	 * @param pregunta
-	 * @param respuesta
-	 * @param genero
-	 * @param registro
-	 * @param nacimiento
-	 * @param tipo
-	 * @param estado
+	 * @param login - String con
+	 * @param contrasena - String con
+	 * @param nom1 - String con
+	 * @param nom2 - String con
+	 * @param apll1 - String con
+	 * @param apll2 - String con
+	 * @param email - String con
+	 * @param nivel - String con
+	 * @param vinculo - String con
+	 * @param pregunta - String con
+	 * @param respuesta - String con
+	 * @param genero - String con
+	 * @param registro - Date con
+	 * @param nacimiento - Date con
+	 * @param tipo - String con
+	 * @param estado - boolean con
 	 * @return
 	 */
 	public int guardarUsuario(String login, String contrasena, String nom1,
@@ -59,7 +58,10 @@ public class DaoUsuario {
 
 		String sql_guardar;
 		int numFilas;
-		sql_guardar = "INSERT INTO Usuario VALUES ('" + login + "', '"
+		sql_guardar = "INSERT INTO Usuario (login, contrasena, nombre1, nombre2, apellido1, " +
+				"apellido2, email, nivel_escolaridad, pregunta_secreta, respuesta_secreta, vinculo_univalle," +
+				"genero, fecha_nacimiento, fecha_registro, tipo, estado)" +
+				"VALUES ('" + login + "', '"
 				+ contrasena + "', '" + nom1 + "', '" + nom2 + "', '" + apll1
 				+ "', '" + apll2 + "', '" + email + "', '" + nivel + "', '"
 				+ pregunta + "', '" + respuesta + "', '" + vinculo + "', '"
