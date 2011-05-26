@@ -426,11 +426,12 @@ public class DaoUsuario {
 	 * @param fecha - String con la fecha de acceso al sistema
 	 * @return 1 si se efectuo la actualizacion -1 si no se efectuo correctamente
 	 * @author Edgar Andres Moncada
+	 * @author Yerminson Gonzalez
 	 */
 	public int actualizarFechaAcceso(String login, String fecha){
 		String sql_actualizar;
 		int numFilas;
-		sql_actualizar = "UPDATE Usuario SET fecha_ultimo_acceso = '"+fecha+"" +
+		sql_actualizar = "UPDATE Usuario SET fecha_ultimo_acceso = '"+fecha+"'" +
 				" WHERE login = '"+login+"'";
 
 		try {

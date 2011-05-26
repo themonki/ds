@@ -1,8 +1,11 @@
 package Principal.Controlador;
 
 
+import java.util.Vector;
+
 import javax.swing.JOptionPane;
 
+import Consultas.Logica.Consulta;
 import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiUsuarioNormal;
@@ -51,12 +54,14 @@ public class ControladorVentanaPrincipal {
 			{
 				GuiAdministrador guiAdministrador = new GuiAdministrador(usuario);
 				guiAdministrador.setNovededadesUsuario(controladorUsuario.consultaDocumentosInteresArea(usuario.getLogin()));
+				controladorUsuario.actualizarAccesoUsuario(usuario.getLogin());
 				//guiAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 			}else if(usuario.getTipo().equals("2"))
 			{
 				GuiCatalogador guiCatalogador = new GuiCatalogador(usuario);
 				guiCatalogador.setNovededadesUsuario(controladorUsuario.consultaDocumentosInteresArea(usuario.getLogin()));
+				controladorUsuario.actualizarAccesoUsuario(usuario.getLogin());
 				//guiCatalogador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 				
@@ -64,7 +69,10 @@ public class ControladorVentanaPrincipal {
 			{
 				
 				GuiUsuarioNormal guiUsuarioNormal = new GuiUsuarioNormal(usuario);
-				guiUsuarioNormal.setNovededadesUsuario(controladorUsuario.consultaDocumentosInteresArea(usuario.getLogin()));
+				Vector<Consulta> documentos = controladorUsuario.consultaDocumentosInteresArea(usuario.getLogin());
+				System.out.println(documentos);
+				guiUsuarioNormal.setNovededadesUsuario(documentos);
+				controladorUsuario.actualizarAccesoUsuario(usuario.getLogin());
 				//guiUsuarioNormal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 			
