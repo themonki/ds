@@ -11,7 +11,8 @@ import Usuarios.Dao.DaoUsuario;
 import Usuarios.Logica.Usuario;
 
 /**
- * @author yerminson
+ * Clase que se encargara de manejar los datos que se reciben y envian a las Guis que lo requieran 
+ * @author Yerminson
  *
  */
 public class ControladorUsuario {
@@ -35,6 +36,8 @@ public class ControladorUsuario {
 	 * @param estado - boolean con el estado (activo o inactivo) del usuario
 	 * @return retorna 1 si se insertaron los datos del usuario en la base de datos, 
 	 * -1 de ser lo contrario
+		u
+	 * @author 
 	 */
 	public int insertarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
@@ -65,8 +68,6 @@ public class ControladorUsuario {
 		u.setEstado(estado);
 
 		int value = insertarUsuario(u);
-
-		// por seguridad
 		u = null;
 		return value;
 
@@ -76,6 +77,7 @@ public class ControladorUsuario {
 	 * @param u - Usuario con todos los datos
 	 * @return retorna 1 si se insertaron los datos del usuario en la base de datos, 
 	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarUsuario(Usuario u)
 	{
@@ -90,15 +92,18 @@ public class ControladorUsuario {
 		int value = 0;
 		if(verificarDatosInsertar(u)){
 			value = daoUs.guardarUsuario(u);
-			System.out.println("Se inserto el usuario");
 			}
 		daoUs = null;
 		return value;
 	}
 	
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que permite verificar que se estan mandando los datos para registrar el usuario
+	 * correctamente
+	 * @param u - Usuario con los datos a verificar
+	 * @return true si cumple con todo, de lo contrario false y muestra un mensaje con los errores respectivos
+	 * @author Maria Andrea Cruz
+	 * @author Edgar Andres Moncada
 	 */
 	private boolean verificarDatosInsertar(Usuario u)
 	{	
@@ -113,36 +118,26 @@ public class ControladorUsuario {
 		{
 			mensaje+="Debe de proporcionar un Login\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar un Login.");
-			//return false;
 		}
 		if(u.getContrasena().equals(""))
 		{
 			mensaje+="Debe de proporcionar una contrasena\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una contrasena.");
-			//return false;
 		}
 		if(u.getNombre1().equals(""))
 		{	
 			mensaje+="Debe de proporcionar el primer nombre\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer nombre.");
-			//return false;
 		}
 		if(u.getApellido1().equals(""))
 		{
 			mensaje+="Debe de proporcionar el primer apellido\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer apellido.");
-			//return false;
 		}
 		if(u.getEmail().equals(""))
 		{
 			mensaje+="Debe de proporcionar un email\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
-			//return false;
 		}
 		if(!u.getEmail().contains("@")){
 			mensaje+="Por favor digite un correo valido. ej: usuario@mail.com\n";
@@ -152,16 +147,12 @@ public class ControladorUsuario {
 		{
 			mensaje+="Debe de proporcionar una respuesta a la pregunta secreta\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
-			//return false;
 		}
 		uRespuesta = du.consultarUsuario(u.getLogin());
 		if(uRespuesta.getLogin() != null)
 		{
 			mensaje+="El Login ya existe, por favor seleccione uno distinto\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "El Login ya existe, por favor seleccione uno distinto.");
-			//return false;
 		}
 		atributo.add("email");
 		valor.add(u.getEmail());
@@ -170,21 +161,23 @@ public class ControladorUsuario {
 		{	
 			mensaje+="El email ya existe, por favor seleccione uno distinto\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "El email ya existe, por favor seleccione uno distinto.");
-			//return false;
 		}
 		atributo = null;
 		valor = null;
 		du = null;
 		respuesta = null;
 		uRespuesta = null;
-		if(!estado) JOptionPane.showMessageDialog(null, mensaje);
+		if(!estado) JOptionPane.showMessageDialog(null, mensaje, "Error al Registrarse", JOptionPane.ERROR_MESSAGE);
 		return estado;
 	}
 	
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que permite verificar que se estan mandando los datos para modificar el usuario
+	 * correctamente
+	 * @param u - Usuario con los datos a verificar
+	 * @return true si cumple con todo, de lo contrario false y muestra un mensaje con los errores respectivos
+	 * @author Maria Andrea Cruz
+	 * @author Edgar Andres Moncada
 	 */
 	private boolean verificarDatosModificar(Usuario u)
 	{
@@ -195,29 +188,21 @@ public class ControladorUsuario {
 		{
 			mensaje+="Debe de proporcionar una contrasena\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una contrasena.");
-			//return false;
 		}
 		if(u.getNombre1().equals(""))
 		{	
 			mensaje+="Debe de proporcionar el primer nombre\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer nombre.");
-			//return false;
 		}
 		if(u.getApellido1().equals(""))
 		{
 			mensaje+="Debe de proporcionar el primer apellido\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar el primer apellido.");
-			//return false;
 		}
 		if(u.getEmail().equals(""))
 		{
 			mensaje+="Debe de proporcionar un email\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar un email.");
-			//return false;
 		}
 		if(!u.getEmail().contains("@")){
 			mensaje+="Por favor digite un correo valido. ej: usuario@mail.com\n";
@@ -227,10 +212,8 @@ public class ControladorUsuario {
 		{
 			mensaje+="Debe de proporcionar una respuesta a la pregunta secreta\n";
 			estado=false;
-			//JOptionPane.showMessageDialog(null, "Debe de proporcionar una respuesta a la pregunta secreta.");
-			//return false;
 		}
-		if(!estado) JOptionPane.showMessageDialog(null, mensaje);
+		if(!estado) JOptionPane.showMessageDialog(null, mensaje, "Error al Modificar", JOptionPane.ERROR_MESSAGE);
 		return estado;
 	}
 	
@@ -284,8 +267,6 @@ public class ControladorUsuario {
 		u.setEstado(estado);
 
 		int value = modificarUsuario(u);
-
-		// por seguridad
 		u = null;
 		return value;
 	}
@@ -294,6 +275,7 @@ public class ControladorUsuario {
 	 * @param u - Usuario con los datos a modificar
 	 * @return retorna 1 si se modificaron los datos del usuario en la base de datos, 
 	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarUsuario(Usuario u) {
 		
@@ -309,8 +291,7 @@ public class ControladorUsuario {
 		if(verificarDatosModificar(u)){
 			value = daoUs.modificarUsuario(u);
 			System.out.println("Se modifico el usuario");
-		}		
-
+		}
 		daoUs = null;
 		return value;
 	}
@@ -321,14 +302,14 @@ public class ControladorUsuario {
 	 * que contengan los ids de las areas respectivas
 	 * @param u - Usuario con la llave y areas de conocimiento
 	 * @return -1 sino se insertaron las areas de interes, de lo contrario retorna el numero de areas
-	 * de interes que se insertaron 
+	 * de interes que se insertaron
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarUsuarioAreas(Usuario u) {
 		Vector<AreaConocimiento> va = u.getAreas();
 		String login = u.getLogin();
 		DaoUsuario daoUs = new DaoUsuario();
 		int value = daoUs.insertarUsuarioAreas(login, va);
-		System.out.println("Se inserto las areas del usuario");
 		daoUs = null;
 		return value;
 	}
@@ -337,21 +318,21 @@ public class ControladorUsuario {
 	 * Metodo que devuelve todas las areas de interes de un usuario
 	 * @param login - String con la llave del usuario
 	 * @return Vector<AreaConocimiento> con las areas de conocimiento del usuario
+	 * @author Edgar Andres Moncada
 	 */
 	public Vector<AreaConocimiento> obtenerUsuarioAreas(String login) {
 		Vector<AreaConocimiento> areas;
-
 		DaoUsuario daoUs = new DaoUsuario();
 		areas = daoUs.consultarUsuarioAreas(login);
-		System.out.println("Se obtuvieron las areas del usuario");
 		daoUs = null;
-
 		return areas;
 	}
 	/**
-	 * Metodo que va a agregar las nuevas areas y va a quitar las modificarUsuarioAreaotras seleccionadas
-	 * @param u
-	 * @return
+	 * Metodo que actualiza las areas de interes del usuario
+	 * @param u - Usuario con las areas de interes y el login
+	 * @return 0 si el usuario ya no tiene areas de interes, de lo contrario retorna el numero
+	 * de las areas de interes del usuario
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarUsuarioArea(Usuario u){
 		DaoUsuario daoUs = new DaoUsuario();
@@ -361,7 +342,7 @@ public class ControladorUsuario {
 		 * */
 		int value=0;
 		//se quitan todas las areas que hagan referencia a ese login
-		value += daoUs.quitarUsuarioAreas(u.getLogin());
+		daoUs.quitarUsuarioAreas(u.getLogin());
 		
 		//inserta las areas a las que ahora hace referencia
 		if(u.getAreas().size()>=1)
@@ -370,12 +351,12 @@ public class ControladorUsuario {
 		return value;
 	}
 	
-	/*a�adido cristian*/
-	/*metodo que retorna un vector con todos los usuarios que concidan con alguno de los atributos*/
 	/**
-	 * @param atributo
-	 * @param valor
-	 * @return
+	 * Metodo que retorna un vector con todos los usuarios que concidan con alguno de los atributos
+	 * @param atributo - Vector<String> con
+	 * @param valor - Vector<String> con
+	 * @return Vector<Usuario> con los usuarios que coincidieron con el parametro de busqueda
+	 * @author Cristian Leonardo Rios
 	 */
 	public Vector<Usuario> consultarUsuarios(Vector<String> atributo, Vector<String> valor)
 	{
@@ -388,11 +369,11 @@ public class ControladorUsuario {
 		daoUsuario = null;
 		return usuarios;
 	}
-	
-	/*metodo que retorma un usuario que concida con el login*/
 	/**
-	 * @param login
-	 * @return
+	 * Metodo que retorma un usuario que concida con el login
+	 * @param login - String con la llave del usuario
+	 * @return el Usuario con sus datos que coincido con el login
+	 * @author Cristian Leonardo Rios
 	 */
 	public Usuario consultarUsuario(String login)
 	 {
@@ -402,11 +383,11 @@ public class ControladorUsuario {
 	  daoUsuario = null;
 	  return usuario;
 	 }
-	
-	//metodo que sirve para actualizar todos los datos del usuario y sus areas, recibe un objeto usuario
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que sirve para actualizar todos los datos del usuario y sus areas, recibe un objeto usuario
+	 * @param u - Usuario con todos los datos a modificar
+	 * @return int mayor que uno si se modificaron los datos del usuario correctamente
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarDatosUsuario(Usuario u){
 		int value =0;
@@ -415,11 +396,11 @@ public class ControladorUsuario {
 			value +=this.modificarUsuarioArea(u);
 		return value;
 	}
-	
-	//metodo que sirve para registar los datos del usuario y sus areas, recibe un objeto unusuario
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que sirve para registar los datos del usuario y sus areas, recibe un objeto un usuario
+	 * @param u - Usuario con todos los datos
+	 * @return int mayor que uno si se inserto correctamente
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarDatosUsuario(Usuario u){
 		int value =0;
@@ -430,8 +411,10 @@ public class ControladorUsuario {
 	}
 	
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que permite modificar el perfil y el estado del Usuario (realizado por el administrador)
+	 * @param u - Usuario con el nuevo perfil y estado
+	 * @return 1 si se modifico correctamente -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarPerfilEstado(Usuario u){
 		int value =0;
