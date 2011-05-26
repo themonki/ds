@@ -38,6 +38,7 @@ import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiPrincipal;
 import Principal.Gui.GuiUsuarioNormal;
+import Usuarios.Dao.DaoUsuario;
 import Utilidades.Estilos;
 
 
@@ -106,7 +107,14 @@ public class GuiVistaDocumento extends JScrollPane {
 
 		super();
 		documento = doc;
-		tipoUsuario= GuiConsultaBasica.TIPOUSUARIO;
+		if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+		{
+			tipoUsuario= GuiConsultaBasica.TIPOUSUARIO;
+		}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+		{
+			tipoUsuario= GuiConsultaAvanzada.TIPOUSUARIO;
+		}
+		
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder,
@@ -487,7 +495,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		etiquetaEditarDocumento
 				.setIcon(new ImageIcon("recursos/iconos/editar.png"));
 		// Se oculta la opcion de editar documento para usuarios no registrados y para usuarios normales.
-		if(tipoUsuario == 1 || tipoUsuario == 0){
+		if(tipoUsuario == 3 || tipoUsuario == 0){
 		
 			etiquetaEditarDocumento.setVisible(false);
 		}
@@ -595,7 +603,7 @@ public class GuiVistaDocumento extends JScrollPane {
 					}
 					
 					
-				}else if(GuiConsultaBasica.TIPOUSUARIO == 3)
+				}else if(GuiConsultaBasica.TIPOUSUARIO == 1)
 				{
 					GuiAdministrador.panelModificarDoc = new GuiModificarDoc(GuiAdministrador.LOGIN, documento);
 					
@@ -877,6 +885,9 @@ public class GuiVistaDocumento extends JScrollPane {
 		ventana.setSize(450, 450);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
+		
+		DaoUsuario daoUsuario = new DaoUsuario();
+		daoUsuario.consultaDocumentosInteresUsuario("monki");
 
 	}
 }

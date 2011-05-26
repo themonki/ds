@@ -135,7 +135,7 @@ public class DaoConsulta {
 		return consultas;
 	}
 	
-	Vector<String> consultarAutoresDocumento(String idDocumento)
+	public Vector<String> consultarAutoresDocumento(String idDocumento)
 	{
 		Vector<String> autores = new Vector<String>();
 		

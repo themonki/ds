@@ -3,9 +3,8 @@ package Usuarios.Controlador;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
-
 import javax.swing.JOptionPane;
-
+import Consultas.Logica.Consulta;
 import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Dao.DaoUsuario;
 import Usuarios.Logica.Usuario;
@@ -440,5 +439,23 @@ public class ControladorUsuario {
 		SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
 		String fechaString = formatoFecha.format(fecha); // la fecha en que accedio al sistema
 		return daoUs.actualizarFechaAcceso(login, fechaString);
+	}
+	
+	
+	/**
+	 * Metodo que recive el login de usuario y devuelve un vector de objetos consulta correspondientes
+	 * a los documentos catalogados recientemente que pueden ser de su interes. 
+	 * @param login
+	 * @return 
+	 */
+	public Vector<Consulta> consultaDocumentosInteresArea(String login)
+	{	
+		
+		login = login.toLowerCase();
+		
+		DaoUsuario consulta = new DaoUsuario();
+		Vector<Consulta> resultado = consulta.consultaDocumentosInteresUsuario(login);
+		
+		return resultado;
 	}
 }

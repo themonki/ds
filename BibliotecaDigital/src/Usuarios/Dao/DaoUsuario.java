@@ -12,11 +12,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import Consultas.Dao.DaoConsulta;
+import Consultas.Logica.Consulta;
 import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Logica.Usuario;
 import Utilidades.FachadaBD;
 
+
 /**
+ * Clase que se encargara de insertar, modificar y consultar en la tabla de usuarios y en las relaciones
+ * que tenga
  * @author yerminson
  *
  */
@@ -32,22 +37,22 @@ public class DaoUsuario {
 	}
 
 	/**
-	 * @param login - String con
-	 * @param contrasena - String con
-	 * @param nom1 - String con
-	 * @param nom2 - String con
-	 * @param apll1 - String con
-	 * @param apll2 - String con
-	 * @param email - String con
-	 * @param nivel - String con
-	 * @param vinculo - String con
-	 * @param pregunta - String con
-	 * @param respuesta - String con
-	 * @param genero - String con
-	 * @param registro - Date con
-	 * @param nacimiento - Date con
-	 * @param tipo - String con
-	 * @param estado - boolean con
+	 * @param login - String con la llave del Usuario
+	 * @param contrasena - String con la contraseña del Usuario
+	 * @param nom1 - String con el primer nombre del Usuario
+	 * @param nom2 - String con el segundo nombre del Usuario
+	 * @param apll1 - String con el primer apellido del Usuario
+	 * @param apll2 - String con el segundo apellido del Usuario
+	 * @param email - String con el email del Usuario
+	 * @param nivel - String con con el nivel de escolaridad del Usuario
+	 * @param vinculo - String con el vinculo con la universidad del Usuario
+	 * @param pregunta - String con la pregunta secreta del Usuario
+	 * @param respuesta - String con la respuesta a al pregunta secreta del Usuario
+	 * @param genero - String con el genero del Usuario
+	 * @param registro - Date con la fecha de registro del Usuario
+	 * @param nacimiento - Date con la fecha de nacimiento del Usuario
+	 * @param tipo - String con el tipo del Usuario
+	 * @param estado - boolean con el estado (activo o inactivo) del Usuario
 	 * @return
 	 */
 	public int guardarUsuario(String login, String contrasena, String nom1,
@@ -94,6 +99,7 @@ public class DaoUsuario {
 	/**
 	 * @param u
 	 * @return
+	 * @author 
 	 */
 	public int guardarUsuario(Usuario u) {
 		int value = guardarUsuario(u.getLogin(), u.getContrasena(), u
@@ -107,23 +113,24 @@ public class DaoUsuario {
 	}
 
 	/**
-	 * @param login
-	 * @param contrasena
-	 * @param nom1
-	 * @param nom2
-	 * @param apll1
-	 * @param apll2
-	 * @param email
-	 * @param nivel
-	 * @param vinculo
-	 * @param pregunta
-	 * @param respuesta
-	 * @param genero
-	 * @param registro
-	 * @param nacimiento
-	 * @param tipo
-	 * @param estado
+	 * @param login - String con la llave del Usuario
+	 * @param contrasena - String con la contraseña del Usuario
+	 * @param nom1 - String con el primer nombre del Usuario
+	 * @param nom2 - String con el segundo nombre del Usuario
+	 * @param apll1 - String con el primer apellido del Usuario
+	 * @param apll2 - String con el segundo apellido del Usuario
+	 * @param email - String con el email del Usuario
+	 * @param nivel - String con con el nivel de escolaridad del Usuario
+	 * @param vinculo - String con el vinculo con la universidad del Usuario
+	 * @param pregunta - String con la pregunta secreta del Usuario
+	 * @param respuesta - String con la respuesta a al pregunta secreta del Usuario
+	 * @param genero - String con el genero del Usuario
+	 * @param registro - Date con la fecha de registro del Usuario
+	 * @param nacimiento - Date con la fecha de nacimiento del Usuario
+	 * @param tipo - String con el tipo del Usuario
+	 * @param estado - boolean con el estado (activo o inactivo) del Usuario
 	 * @return
+	 * @author 
 	 */
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
@@ -293,6 +300,7 @@ public class DaoUsuario {
 				usuario.setGenero(tabla.getString("genero"));
 				usuario.setFechaNacimiento(tabla.getDate("fecha_nacimiento"));
 				usuario.setFechaRegistro(tabla.getDate("fecha_registro"));
+				usuario.setFechaUltimoAcceso(tabla.getDate("fecha_ultimo_acceso"));
 				usuario.setTipo(tabla.getString("tipo"));
 				usuario.setEstado(tabla.getBoolean("estado"));
 				
@@ -344,6 +352,7 @@ public class DaoUsuario {
 	    usuario.setGenero(tabla.getString("genero"));
 	    usuario.setFechaNacimiento(tabla.getDate("fecha_nacimiento"));
 	    usuario.setFechaRegistro(tabla.getDate("fecha_registro"));
+	    usuario.setFechaUltimoAcceso(tabla.getDate("fecha_ultimo_acceso"));
 	    usuario.setTipo(tabla.getString("tipo"));
 	    usuario.setEstado(tabla.getBoolean("estado"));
 	    
@@ -438,5 +447,64 @@ public class DaoUsuario {
 		}
 		return -1;
 	}
+	
+	
+	
+	
+	//metodo de consulta general
+	public Vector<Consulta> consultaDocumentosInteresUsuario(String parametro)
+	{
+		Vector<Consulta> consultas = new Vector<Consulta>();
+		String consultaFechaUltimoAcceso, consultaAreasInteresUsuario, consultaDocumentosAreaConocimientoUsuario, consultaCatalogadosDespuesUltimoAcceso;
+		
+		consultaFechaUltimoAcceso = "SELECT d.fecha_ultimo_acceso "+
+		"FROM Usuario AS d " +
+		"WHERE d.login = '"+parametro+"'";
+		
+	
+		consultaAreasInteresUsuario = "SELECT e.id_area "+
+		"FROM interesa_usuario_area_conocimiento AS e " +
+		"WHERE e.login = '"+parametro+"'";
+		
+		consultaDocumentosAreaConocimientoUsuario = "SELECT id_documento "+
+		"FROM pertenece_documento_area_conocimiento AS f NATURAL JOIN ("+consultaAreasInteresUsuario+") AS C ";
+		
+		consultaCatalogadosDespuesUltimoAcceso = "SELECT * "+
+		"FROM ("+consultaDocumentosAreaConocimientoUsuario+") as B NATURAL JOIN " +
+				"documento " +
+		"WHERE fecha_catalogacion > ("+consultaFechaUltimoAcceso+");";
+		
+		
+		
+		System.out.println(consultaCatalogadosDespuesUltimoAcceso);
+
+
+		
+		ResultSet resultado;		
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			resultado = sentencia.executeQuery(consultaCatalogadosDespuesUltimoAcceso);
+			DaoConsulta daoConsulta = new DaoConsulta();
+			while (resultado.next())
+			{
+				Consulta consulta = new Consulta();
+				
+				consulta.setIdDocumento(resultado.getString("id_documento"));
+				consulta.setTituloDocuemto(resultado.getString("titulo_principal"));
+				consulta.setNombresAutoresDocumento(daoConsulta.consultarAutoresDocumento(resultado.getString("id_documento")));
+				consultas.add(consulta);
+			}
+			conn.close();
+			} catch (SQLException e) {			
+				System.out.println(e);
+			} catch (Exception e) {
+				System.out.println(e);					
+			}
+			System.out.println(consultas);
+		return consultas;
+	}
+	
 	
 }
