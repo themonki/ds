@@ -1,4 +1,3 @@
-﻿
 /* Generating data for Database: proyecto  */
 
 
@@ -48,4 +47,3 @@ INSERT INTO "public"."autor"("id_autor","nombre","email","apellido","acronimo")
 VALUES(10028,'elkin octavio','tres3446-16@gmail.com','hurtado pérez','ymdk');
 INSERT INTO "public"."autor"("id_autor","nombre","email","apellido","acronimo") 
 VALUES(10029,'julio cesar  ','qbhaqui@uman.edu.jp','osorio laverde','nbsx');
-
