@@ -1,6 +1,7 @@
 package Usuarios.Controlador;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -14,25 +15,26 @@ import Usuarios.Logica.Usuario;
  *
  */
 public class ControladorUsuario {
-	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo atributo por atributo
 	/**
-	 * @param login
-	 * @param contrasena
-	 * @param nom1
-	 * @param nom2
-	 * @param apll1
-	 * @param apll2
-	 * @param email
-	 * @param nivel
-	 * @param vinculo
-	 * @param pregunta
-	 * @param respuesta
-	 * @param genero
-	 * @param registro
-	 * @param nacimiento
-	 * @param tipo
-	 * @param estado
-	 * @return
+	 * Metodo que inserta los datos de un usuario en la tabla usuario, recibiendo atributo por atributo
+	 * @param login - String con la llave del usuario
+	 * @param contrasena - String con la contraseña del usuario
+	 * @param nom1 - String con el primer nombre del usuario
+	 * @param nom2 - String con el segundo nombre del usuario
+	 * @param apll1 - String con el primer apellido del usuario 
+	 * @param apll2 - String con el segundo apellido del usuario
+	 * @param email - String con el email del usuario
+	 * @param nivel - String con el nivel de escolaridad del usuario
+	 * @param vinculo - String con el vinculo de la universidad del usuario
+	 * @param pregunta - String con la pregunta secreta del usuario
+	 * @param respuesta - String con la respuesta a la pregunta secreta del usuario
+	 * @param genero - String con el genero del usuario
+	 * @param registro - String con la fecha de registro del usuario
+	 * @param nacimiento - String con la fecha de nacimiento del usuario
+	 * @param tipo - String con el tipo de usuario
+	 * @param estado - boolean con el estado (activo o inactivo) del usuario
+	 * @return retorna 1 si se insertaron los datos del usuario en la base de datos, 
+	 * -1 de ser lo contrario
 	 */
 	public int insertarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
@@ -69,10 +71,11 @@ public class ControladorUsuario {
 		return value;
 
 	}
-	//metodo que inserta los datos de un usuario en la tabla usuario, recibiendo un objeto usuario
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que inserta los datos de un usuario en la tabla usuario, recibiendo un objeto usuario
+	 * @param u - Usuario con todos los datos
+	 * @return retorna 1 si se insertaron los datos del usuario en la base de datos, 
+	 * -1 de ser lo contrario
 	 */
 	public int insertarUsuario(Usuario u)
 	{
@@ -231,25 +234,26 @@ public class ControladorUsuario {
 		return estado;
 	}
 	
-	//modifica los datos en la tabla Usuario recibiendo atributo por atributo
 	/**
-	 * @param login
-	 * @param contrasena
-	 * @param nom1
-	 * @param nom2
-	 * @param apll1
-	 * @param apll2
-	 * @param email
-	 * @param nivel
-	 * @param vinculo
-	 * @param pregunta
-	 * @param respuesta
-	 * @param genero
-	 * @param registro
-	 * @param nacimiento
-	 * @param tipo
-	 * @param estado
-	 * @return
+	 * Metodo que modifica los datos en la tabla Usuario recibiendo atributo por atributo
+	 * @param login - String con la llave del usuario
+	 * @param contrasena - String con la contraseña del usuario
+	 * @param nom1 - String con el primer nombre del usuario
+	 * @param nom2 - String con el segundo nombre del usuario
+	 * @param apll1 - String con el primer apellido del usuario 
+	 * @param apll2 - String con el segundo apellido del usuario
+	 * @param email - String con el email del usuario
+	 * @param nivel - String con el nivel de escolaridad del usuario
+	 * @param vinculo - String con el vinculo de la universidad del usuario
+	 * @param pregunta - String con la pregunta secreta del usuario
+	 * @param respuesta - String con la respuesta a la pregunta secreta del usuario
+	 * @param genero - String con el genero del usuario
+	 * @param registro - String con la fecha de registro del usuario
+	 * @param nacimiento - String con la fecha de nacimiento del usuario
+	 * @param tipo - String con el tipo de usuario
+	 * @param estado - boolean con el estado (activo o inactivo) del usuario
+	 * @return retorna 1 si se modificaron los datos del usuario en la base de datos, 
+	 * -1 de ser lo contrario
 	 */
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
@@ -285,10 +289,11 @@ public class ControladorUsuario {
 		u = null;
 		return value;
 	}
-	//modifica los datos en la tabla Usuario recibiendo un objeto Usuario
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que modifica los datos en la tabla Usuario recibiendo un objeto Usuario
+	 * @param u - Usuario con los datos a modificar
+	 * @return retorna 1 si se modificaron los datos del usuario en la base de datos, 
+	 * -1 de ser lo contrario
 	 */
 	public int modificarUsuario(Usuario u) {
 		
@@ -310,14 +315,13 @@ public class ControladorUsuario {
 		return value;
 	}
 
-	/*
-	 * METODO QUE PERMITE INSERTAR LAS AREAS A LA QUE LE INTERESA EL USUARIO se
-	 * necesita un objeto usuario que tenga el login y un vector con areas que
-	 * contengan los ids de las areas respectivas
-	 */
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que permite insertar las areas a las que le interesa el usuario, se
+	 * necesita un objeto Usuario que tenga como minimo el login y el vector con areas de conocimiento
+	 * que contengan los ids de las areas respectivas
+	 * @param u - Usuario con la llave y areas de conocimiento
+	 * @return -1 sino se insertaron las areas de interes, de lo contrario retorna el numero de areas
+	 * de interes que se insertaron 
 	 */
 	public int insertarUsuarioAreas(Usuario u) {
 		Vector<AreaConocimiento> va = u.getAreas();
@@ -329,12 +333,10 @@ public class ControladorUsuario {
 		return value;
 	}
 
-	/*
-	 * METODO PARA OBTENER LAS AREAS DE INTERES DE UN USUARIO
-	 */
 	/**
-	 * @param login
-	 * @return
+	 * Metodo que devuelve todas las areas de interes de un usuario
+	 * @param login - String con la llave del usuario
+	 * @return Vector<AreaConocimiento> con las areas de conocimiento del usuario
 	 */
 	public Vector<AreaConocimiento> obtenerUsuarioAreas(String login) {
 		Vector<AreaConocimiento> areas;
@@ -346,8 +348,8 @@ public class ControladorUsuario {
 
 		return areas;
 	}
-	//metodo que va a agregar las nuevas areas y va a quitar las modificarUsuarioAreaotras seleccionadas
 	/**
+	 * Metodo que va a agregar las nuevas areas y va a quitar las modificarUsuarioAreaotras seleccionadas
 	 * @param u
 	 * @return
 	 */
@@ -440,5 +442,20 @@ public class ControladorUsuario {
 		}
 		value = daoUs.modificarPerfilEstado(u.getLogin(), u.getTipo(), estado );
 		return value;
-	} 
+	}
+	
+	/**
+	 * Metodo que permite que se envie el login del usuario para actualizar su ultimo acceso
+	 * al sistema
+	 * @param login - String con la llave del usuario
+	 * @return 1 si fue correcta la actualizacion y -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
+	 */
+	public int actualizarAccesoUsuario(String login){
+		DaoUsuario daoUs = new DaoUsuario();
+		java.util.Date fecha = new java.util.Date();
+		SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
+		String fechaString = formatoFecha.format(fecha); // la fecha en que accedio al sistema
+		return daoUs.actualizarFechaAcceso(login, fechaString);
+	}
 }
