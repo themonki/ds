@@ -44,7 +44,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	public static int TIPOCONSULTA;
 	RenderLista rl;//formato de la lista
 	TitledBorder borde;
-	boolean es_novedad;
+	
 	
 	public GuiResultadoConsulta(){}
 	
@@ -54,11 +54,11 @@ public class GuiResultadoConsulta extends JScrollPane{
 		this.vectorConsulta = vectorConsulta;
 		cantidadTotalResultados=vectorConsulta.size();
 		posicionResultado=0;
-		es_novedad = false;
+	
 		iniComponents();		
 	}
 	
-	public void setEs_novedad(boolean value){es_novedad=value;}
+
 	
 	private void iniComponents(){
 		//***/
@@ -245,15 +245,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
 							GuiAdministrador.LOGIN);
 				}
-				
-				if(es_novedad){
-					
-					/*
-					 * aca lo necesario para mostrar vista documento
-					 * */
-					
-					return;
-				}
+		
 				
 				if (GuiResultadoConsulta.TIPOCONSULTA == 1) {
 
@@ -265,6 +257,13 @@ public class GuiResultadoConsulta extends JScrollPane{
 							d);
 					
 					GuiConsultaAvanzada.ponerDescripcion();
+
+				} else if (GuiResultadoConsulta.TIPOCONSULTA == 3) {
+					
+					/*
+					 * Aca debe ir lo referente a la clase vista novedades.
+					 * 
+					 * */
 
 				}
 

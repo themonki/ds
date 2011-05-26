@@ -26,7 +26,9 @@ import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
+import Consultas.Gui.GuiResultadoConsulta;
 import Consultas.Logica.Consulta;
+import Usuarios.Gui.GuiNovedades;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
 import Utilidades.Button;
@@ -38,15 +40,17 @@ public class GuiUsuarioNormal extends JFrame
 
 
 	// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
-	private  String estadoInicial = "Inicio";
+	private String estadoInicial = "Inicio";
 	private String estadoModificacion = "ModificandoUsuario";
 	private String estadoConsultaAvanzada = "ConsultaAvanzada";		
+	private String estadoNovedades = "NovedadesUsuario";
 
 	// Opciones basicas para un usuario normal
 	private JPanel panelOpcionesGenerales;		
 	private Button volver; //incio
 	private Button modificarUsuario;	
 	private Button consultaAvanzada;
+	private Button novedades;
 	private Button logout;
 	
 	private static  JLabel estado;
@@ -69,8 +73,13 @@ public class GuiUsuarioNormal extends JFrame
 	private static GuiRegistroModificar panelModificacion;
 	private static GuiConsultaBasica panelConsultaBasica;
 	private static GuiConsultaAvanzada panelConsultaAvanzada;
+	private static GuiNovedades panelNovedades;
 	
 	private Vector<Consulta> novedadesUsuario;
+	
+	private JLabel cuenta;
+	private JLabel busqueda;
+
 	
 	
 	public GuiUsuarioNormal(Usuario usuario)
@@ -98,6 +107,7 @@ public class GuiUsuarioNormal extends JFrame
 		panelModificacion = new GuiRegistroModificar(usuario,1);
 		panelConsultaBasica = new GuiConsultaBasica();
 		panelConsultaAvanzada = new GuiConsultaAvanzada();
+		panelNovedades = new GuiNovedades();
 		GuiConsultaBasica.TIPOUSUARIO = 3;
 		GuiConsultaAvanzada.TIPOUSUARIO = 3;
 	
@@ -143,9 +153,14 @@ public class GuiUsuarioNormal extends JFrame
 		modificarUsuario.addActionListener(manejador);			
 		consultaAvanzada = new Button("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
+		
+		novedades = new Button("Novedades ("+0+")");
+		novedades.addActionListener(manejador);
+		
 		logout = new Button("Salir");
 		logout.setIcon(new ImageIcon("recursos/iconos/logout.png"));
 		logout.addActionListener(manejador);
+		
 					
 
 		// Se agregan los elementos al panel de opciones del usuario normal.
@@ -155,17 +170,25 @@ public class GuiUsuarioNormal extends JFrame
 		restricciones.gridy=1;
 		restricciones.insets= new Insets(0, 0, 20, 0);
 		
+		cuenta= new JLabel("Cuenta",JLabel.CENTER);
+		busqueda= new JLabel("Busqueda",JLabel.CENTER);
+		
+		
 		panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.png")),restricciones);
 		restricciones.insets= new Insets(0, 0, 0, 0);
 		restricciones.gridy++;
-		
-		panelOpcionesGenerales.add(volver, restricciones);
+		panelOpcionesGenerales.add(busqueda, restricciones);
 		restricciones.gridy=3;
-		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
+		panelOpcionesGenerales.add(volver, restricciones);
 		restricciones.gridy=4;
-		panelOpcionesGenerales.add(modificarUsuario, restricciones);
+		panelOpcionesGenerales.add(consultaAvanzada, restricciones);
 		restricciones.gridy=5;
-
+		panelOpcionesGenerales.add(cuenta, restricciones);
+		restricciones.gridy=6;
+		panelOpcionesGenerales.add(modificarUsuario, restricciones);
+		restricciones.gridy=7;
+		panelOpcionesGenerales.add(novedades,restricciones);	
+		restricciones.gridy=8;
 		panelOpcionesGenerales.add(logout, restricciones);
 		
 		//panelOpcionesGenerales.setBackground(new Color(250, 230 , 250));
@@ -211,6 +234,15 @@ public class GuiUsuarioNormal extends JFrame
 					estado.setText(estadoModificacion);
 					repaint();
 				
+				}else if(estado.getText().equals(estadoNovedades))
+				{
+					
+					contenedor.remove(panelNovedades);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
+					repaint();
+					
+					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 
 			}else if(evento.getSource() == volver)
@@ -231,6 +263,16 @@ public class GuiUsuarioNormal extends JFrame
 					estado.setText(estadoInicial);
 					repaint();
 					
+				}
+				else if(estado.getText().equals(estadoNovedades))
+				{
+					
+					contenedor.remove(panelNovedades);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoInicial);
+					repaint();
+					
+					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				}
 				
 			}
@@ -254,6 +296,42 @@ public class GuiUsuarioNormal extends JFrame
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if(estado.getText().equals(estadoNovedades))
+				{
+					
+					contenedor.remove(panelNovedades);
+					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
+					estado.setText(estadoConsultaAvanzada);
+					repaint();
+					
+					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}
+			}
+			else if(evento.getSource() == novedades)
+			{
+				
+				if (estado.getText().equals(estadoModificacion))
+				{
+				
+					contenedor.remove(panelModificacion);
+					contenedor.add(panelNovedades, BorderLayout.CENTER);
+					estado.setText(estadoNovedades);
+					repaint();
+					
+				}else if(estado.getText().equals(estadoInicial))
+				{
+					GuiConsultaBasica.restaurarTodo();
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelNovedades, BorderLayout.CENTER);
+					estado.setText(estadoNovedades);
+					repaint();					
+				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				{
+					GuiConsultaAvanzada.restaurarTodo();
+					contenedor.remove(panelConsultaAvanzada);
+					contenedor.add(panelNovedades, BorderLayout.CENTER);
+					estado.setText(estadoNovedades);
+					repaint();					
 				}
 			}
 			else if(evento.getSource() == logout)
@@ -291,6 +369,12 @@ public class GuiUsuarioNormal extends JFrame
 	
 	public void setNovededadesUsuario(Vector<Consulta> novedades)
 	{
+	
+		
+		GuiNovedades.resultadoConsulta = new GuiResultadoConsulta(novedades, 10);
+		GuiNovedades.panel.add(GuiNovedades.resultadoConsulta);
+		this.novedades.setText("Novedades("+novedades.size()+")");
+		panelNovedades.updateUI();
 		novedadesUsuario = novedades;	
 		
 	}
