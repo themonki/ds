@@ -1,4 +1,3 @@
-﻿
 /* Generating data for Database: proyecto  */
 
 
@@ -28,4 +27,3 @@ INSERT INTO "public"."palabra_clave"("nombre","descripcion")
 VALUES('hardware','corresponde a todas las partes tangibles de una computadora: sus componentes eléctricos, electrónicos, electromecánicos y mecánicos.');
 INSERT INTO "public"."palabra_clave"("nombre","descripcion") 
 VALUES('programación','es un idioma artificial diseñado para expresar computaciones que pueden ser llevadas a cabo por máquinas como las computadoras.');
-

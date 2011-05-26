@@ -2,7 +2,8 @@
 -- PostgreSQL database dump
 --
 
-SET client_encoding = 'LATIN1';
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
 SET standard_conforming_strings = off;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -30,7 +31,7 @@ DROP TABLE Tiene_Documento_Palabra_Clave CASCADE;
 DROP TABLE Pertenece_Documento_Area_Conocimiento CASCADE;
 
 --
--- Name: area_conocimiento; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE area_conocimiento (
@@ -41,30 +42,31 @@ CREATE TABLE area_conocimiento (
 );
 
 
---ALTER TABLE public.area_conocimiento OWNER TO edgaramt;
+--ALTER TABLE public.area_conocimiento OWNER TO yerdogm;
 
 --
--- Name: id_autor_seq; Type: SEQUENCE; Schema: public; Owner: edgaramt
+-- Name: id_autor_seq; Type: SEQUENCE; Schema: public; Owner: yerdogm
 --
 
 CREATE SEQUENCE id_autor_seq
+    START WITH 1
     INCREMENT BY 1
     NO MAXVALUE
     NO MINVALUE
     CACHE 1;
 
 
---ALTER TABLE public.id_autor_seq OWNER TO edgaramt;
+--ALTER TABLE public.id_autor_seq OWNER TO yerdogm;
 
 --
--- Name: id_autor_seq; Type: SEQUENCE SET; Schema: public; Owner: edgaramt
+-- Name: id_autor_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
 --
 
 SELECT pg_catalog.setval('id_autor_seq', 10007, true);
 
 
 --
--- Name: autor; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: autor; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE autor (
@@ -76,10 +78,10 @@ CREATE TABLE autor (
 );
 
 
---ALTER TABLE public.autor OWNER TO edgaramt;
+--ALTER TABLE public.autor OWNER TO yerdogm;
 
 --
--- Name: consulta; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: consulta; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE consulta (
@@ -90,10 +92,10 @@ CREATE TABLE consulta (
 );
 
 
---ALTER TABLE public.consulta OWNER TO edgaramt;
+--ALTER TABLE public.consulta OWNER TO yerdogm;
 
 --
--- Name: descarga_usuario_documento; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: descarga_usuario_documento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE descarga_usuario_documento (
@@ -104,30 +106,31 @@ CREATE TABLE descarga_usuario_documento (
 );
 
 
---ALTER TABLE public.descarga_usuario_documento OWNER TO edgaramt;
+--ALTER TABLE public.descarga_usuario_documento OWNER TO yerdogm;
 
 --
--- Name: id_documento_seq; Type: SEQUENCE; Schema: public; Owner: edgaramt
+-- Name: id_documento_seq; Type: SEQUENCE; Schema: public; Owner: yerdogm
 --
 
 CREATE SEQUENCE id_documento_seq
+    START WITH 1
     INCREMENT BY 1
     NO MAXVALUE
     NO MINVALUE
     CACHE 1;
 
 
---ALTER TABLE public.id_documento_seq OWNER TO edgaramt;
+--ALTER TABLE public.id_documento_seq OWNER TO yerdogm;
 
 --
--- Name: id_documento_seq; Type: SEQUENCE SET; Schema: public; Owner: edgaramt
+-- Name: id_documento_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
 --
 
 SELECT pg_catalog.setval('id_documento_seq', 10011, true);
 
 
 --
--- Name: documento; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: documento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE documento (
@@ -150,10 +153,10 @@ CREATE TABLE documento (
 );
 
 
---ALTER TABLE public.documento OWNER TO edgaramt;
+--ALTER TABLE public.documento OWNER TO yerdogm;
 
 --
--- Name: escribe_autor_documento; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: escribe_autor_documento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE escribe_autor_documento (
@@ -162,10 +165,10 @@ CREATE TABLE escribe_autor_documento (
 );
 
 
---ALTER TABLE public.escribe_autor_documento OWNER TO edgaramt;
+--ALTER TABLE public.escribe_autor_documento OWNER TO yerdogm;
 
 --
--- Name: interesa_usuario_area_conocimiento; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: interesa_usuario_area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE interesa_usuario_area_conocimiento (
@@ -174,10 +177,10 @@ CREATE TABLE interesa_usuario_area_conocimiento (
 );
 
 
---ALTER TABLE public.interesa_usuario_area_conocimiento OWNER TO edgaramt;
+--ALTER TABLE public.interesa_usuario_area_conocimiento OWNER TO yerdogm;
 
 --
--- Name: palabra_clave; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: palabra_clave; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE palabra_clave (
@@ -186,10 +189,10 @@ CREATE TABLE palabra_clave (
 );
 
 
---ALTER TABLE public.palabra_clave OWNER TO edgaramt;
+--ALTER TABLE public.palabra_clave OWNER TO yerdogm;
 
 --
--- Name: pertenece_documento_area_conocimiento; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: pertenece_documento_area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE pertenece_documento_area_conocimiento (
@@ -198,10 +201,10 @@ CREATE TABLE pertenece_documento_area_conocimiento (
 );
 
 
---ALTER TABLE public.pertenece_documento_area_conocimiento OWNER TO edgaramt;
+--ALTER TABLE public.pertenece_documento_area_conocimiento OWNER TO yerdogm;
 
 --
--- Name: tiene_documento_palabra_clave; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: tiene_documento_palabra_clave; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE tiene_documento_palabra_clave (
@@ -210,10 +213,10 @@ CREATE TABLE tiene_documento_palabra_clave (
 );
 
 
---ALTER TABLE public.tiene_documento_palabra_clave OWNER TO edgaramt;
+--ALTER TABLE public.tiene_documento_palabra_clave OWNER TO yerdogm;
 
 --
--- Name: tipomaterial; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: tipomaterial; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE tipomaterial (
@@ -222,10 +225,10 @@ CREATE TABLE tipomaterial (
 );
 
 
---ALTER TABLE public.tipomaterial OWNER TO edgaramt;
+--ALTER TABLE public.tipomaterial OWNER TO yerdogm;
 
 --
--- Name: usuario; Type: TABLE; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: usuario; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 CREATE TABLE usuario (
@@ -244,14 +247,15 @@ CREATE TABLE usuario (
     fecha_nacimiento date,
     fecha_registro date NOT NULL,
     tipo character(1) DEFAULT '3'::bpchar NOT NULL,
-    estado boolean DEFAULT true NOT NULL
+    estado boolean DEFAULT true NOT NULL,
+    fecha_ultimo_acceso date
 );
 
 
---ALTER TABLE public.usuario OWNER TO edgaramt;
+--ALTER TABLE public.usuario OWNER TO yerdogm;
 
 --
--- Data for Name: area_conocimiento; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: area_conocimiento; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
@@ -262,7 +266,7 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 4	modelos de simulacion		3
 5	investigacion de operaciones		3
 6	ingenieria de software		
-7	diseno de software		6
+7	diseño de software		6
 8	gestion de informacion		
 9	hipermedia e hipertexto		8
 10	modelo de sistemas de informacion		8
@@ -270,13 +274,13 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 12	bibliotecas digitales		8
 13	recuperacion de informacion		8
 14	redes de comunicacion		1
-15	diseno fisico de bases de datos		8
+15	diseño fisico de bases de datos		8
 16	lenguajes de programacion		
 17	programacion orientada a objetos		17
 18	sistemas inteligentes		
 19	busqueda por satisfaccion de reestricciones		18
 20	entornos de desarrollo de software		6
-21	diseno de bases de datos relacionales		8
+21	diseño de bases de datos relacionales		8
 22	validacion de software		6
 23	computacion web cliente servidor		1
 24	tecnologias multimedia		1
@@ -291,7 +295,7 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 33	interaccion humano computador		
 34	aspectos de comunicacion		33
 35	desarrollo de software centrado en humano		33
-36	diseno de interfaces graficas de usuario		33
+36	diseño de interfaces graficas de usuario		33
 37	procesamiento de transacciones		8
 38	mineria de datos		8
 39	computacion visual y grafica		
@@ -323,7 +327,7 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 
 
 --
--- Data for Name: autor; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: autor; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY autor (id_autor, nombre, email, apellido, acronimo) FROM stdin;
@@ -335,11 +339,33 @@ COPY autor (id_autor, nombre, email, apellido, acronimo) FROM stdin;
 10005	francisco	fc@com	cerrano	fc
 10006	juan	jd@com	dominguez	jd
 10007	maria	mg@com	gutierres	mg
+10008	javier ignacio	jrgoche@uaeh.edu.mx	naranjo marín	jwsx
+10009	lillian eugenia	andre010686@hotmail.com	osorno gil	oxlr
+10010	sixto gerardo	forsgare@hotmail.com	alzate agudelo	cuxr
+10011	emilio jhony	goavjo@hotmail.com	correa ramírez	vkbp
+10012	alberto germán	almadhf@yahoo.com.mx	berdugo lópez	yold
+10013	antonio oscar	ady_gem2000@hotmail.com	ruiz ruiz	zccb
+10014	darío augusto	jocampo@uaeh.edu.mx	muñoz ramírez	ianv
+10015	césar oswaldo	oiviaverduzco@hotmail.com	gonzález castaño	rley
+10016	gloria amparo	margotdm@hotmail.com	duque gutiérrez	mdaz
+10017	héctor iván	jprice@libraries.claremont.edu	díaz pérez	mnie
+10018	beatriz 	adamsc@bus.umich.edu	gómez cano	lkvy
+10019	elena	Dorakom_Fiorixol816@gmail.com	osorio laverde	rmlm
+10020	herman	CAchmadama@umma.edu	murillo gonzález	ardl
+10021	carlos mario	ERillingeni@uva.edu	lotero upegui	okpy
+10022	carlos iván	GHermelinddiret@lorenz.com	rodas monsalve	hdrz
+10023	carlos alberto	kianamcsharrysbqe@cvsis.com	zárate yépez	kabs
+10024	hernán darío	cynthiamaldaline@yahoocom	molina cano	bcqm
+10025	jorge león	annabelshaeffergarw@tres.com	duque garcía	rbsf
+10026	john jairo	cristintadlock2392@hotmail.com	sáenz hurtado	geri
+10027	armid benjamín	originale574@yahoo.es	palacio martínez	lhef
+10028	elkin octavio	tres3446-16@gmail.com	hurtado pérez	ymdk
+10029	julio cesar  	qbhaqui@uman.edu.jp	osorio laverde	nbsx
 \.
 
 
 --
--- Data for Name: consulta; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: consulta; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY consulta (id_documento, login, fecha, hora) FROM stdin;
@@ -547,7 +573,7 @@ COPY consulta (id_documento, login, fecha, hora) FROM stdin;
 
 
 --
--- Data for Name: descarga_usuario_documento; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: descarga_usuario_documento; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY descarga_usuario_documento (fecha, hora, login, id_documento) FROM stdin;
@@ -555,7 +581,7 @@ COPY descarga_usuario_documento (fecha, hora, login, id_documento) FROM stdin;
 
 
 --
--- Data for Name: documento; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: documento; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY documento (id_documento, idioma, derechos_autor, descripcion, software_recomendado, resolucion, editorial, formato, titulo_principal, titulo_secundario, link, fecha_creacion, fecha_publicacion, tipo_nombre, login_catalogador, fecha_catalogacion) FROM stdin;
@@ -574,13 +600,13 @@ COPY documento (id_documento, idioma, derechos_autor, descripcion, software_reco
 10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural	sin titulo secundario	repositorio/libro3(10).djvu	1999-05-15	2005-01-24	taterial de clase	admin	2011-05-24
 10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp	sin titulo secundario	repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-05-24
 10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual	sin titulo secundario	repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-05-24
-10015	Espa�ol	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos	sin titulo secundario	repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-05-24
+10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos	sin titulo secundario	repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-05-24
 10016	Aleman	Si	animacion usando computadoras	0	0	sin editorial	otro	animaciones graficas	sin titulo secundario	repositorio/libro3(14).djvu	1983-05-15	1984-01-24	taterial de clase	admin	2011-05-24
 \.
 
 
 --
--- Data for Name: escribe_autor_documento; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: escribe_autor_documento; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY escribe_autor_documento (id_autor, id_documento) FROM stdin;
@@ -626,7 +652,7 @@ COPY escribe_autor_documento (id_autor, id_documento) FROM stdin;
 
 
 --
--- Data for Name: interesa_usuario_area_conocimiento; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: interesa_usuario_area_conocimiento; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY interesa_usuario_area_conocimiento (login, id_area) FROM stdin;
@@ -660,7 +686,7 @@ marcela	43
 
 
 --
--- Data for Name: palabra_clave; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: palabra_clave; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY palabra_clave (nombre, descripcion) FROM stdin;
@@ -674,11 +700,23 @@ computacion	sobre computadores
 virtual	medio representativo de algo
 discretas	variables, valores, numeros no continuas
 animacion	creacion de umagenes y graficos en movimiento
+java	lenguaje de programación java
+c++	lenguaje de programación c++
+postgres	motor de base de datos
+mysql	motor de base de datos
+oracol	motor de base de datos
+oz	lenguaje de programación oz
+emacs	editor, compilador.
+editor	herramienta que permite modificar el contenido de archivos.
+latex	lenguaje de programacion para generar documentos.
+software	comprende el conjunto de los componentes lógicos necesarios que hacen posible la realización de tareas específicas
+hardware	corresponde a todas las partes tangibles de una computadora: sus componentes eléctricos, electrónicos, electromecánicos y mecánicos.
+programación	es un idioma artificial diseñado para expresar computaciones que pueden ser llevadas a cabo por máquinas como las computadoras.
 \.
 
 
 --
--- Data for Name: pertenece_documento_area_conocimiento; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: pertenece_documento_area_conocimiento; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY pertenece_documento_area_conocimiento (id_area, id_documento) FROM stdin;
@@ -726,7 +764,7 @@ COPY pertenece_documento_area_conocimiento (id_area, id_documento) FROM stdin;
 
 
 --
--- Data for Name: tiene_documento_palabra_clave; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: tiene_documento_palabra_clave; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY tiene_documento_palabra_clave (nombre, id_documento) FROM stdin;
@@ -760,7 +798,7 @@ discretas	10015
 
 
 --
--- Data for Name: tipomaterial; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: tipomaterial; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
 COPY tipomaterial (tipo_nombre, descripcion) FROM stdin;
@@ -771,31 +809,47 @@ trabajo de grado	trabajo presentado para el grado por estudiantes de pregrado de
 tesis de maestria	trabajo presentado para el grado por estudiantes de maestria de ultimos semestres
 tesis de doctorado	trabajo presentado para el grado por estudiantes de doctorado de ultimos semestres
 taterial de clase	diapositivas, talleres, ejercicios y documentos del profesor
+citas bibliográficas	es un conjunto mínimo de datos que permite la identificación de una publicación o de una parte de la misma (monografías, publicaciones en serie) y todo tipo de contenedor de información.
+revistas	es una publicación de aparición periódica, a intervalos mayores a un día.
+reportes	pueden incluir elementos persuasivos, tales como recomendaciones, sugerencias u otras conclusiones motivacionales que indican posibles acciones futuras que el lector del informe pudiera adoptar.
+diccionarios	es una obra de consulta de palabras o términos que se encuentran ordenados alfabéticamente, de dichas palabras o términos se proporciona su significado, etimología, ortografía.
+enciclopedias	es un texto que busca compendiar el conocimiento humano.
+gráficos	una representación de datos, generalmente numéricos, mediante líneas, superficies o símbolos, para ver la relación que guardan entre sí.
 \.
 
 
 --
--- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: edgaramt
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: yerdogm
 --
 
-COPY usuario (login, contrasena, nombre1, nombre2, apellido1, apellido2, email, nivel_escolaridad, pregunta_secreta, respuesta_secreta, vinculo_univalle, genero, fecha_nacimiento, fecha_registro, tipo, estado) FROM stdin;
-anonimo	anonimo	anonimo	anonimo	anonimo	univalle	anonimo@correo	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	0	f
-admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t
-clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	Tecnología	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t
-monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media Acad�mica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t
-maria	maria	maria	andrea	cruz		maria@gmail.com	Media Acad�mica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t
-felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media Acad�mica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t
-yerdogm	yerdogm	yerminson	doney	gonzales	mu�os	yerdogm@gmail.com	Media Acad�mica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t
-alberto	alberto	alberto		gonzales		alberto@gmail.com	B�sica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t
-carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	B�sica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t
-camilo	camilo	camilo		suarez		camilo@gmail.com	Tecnolog�a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t
-laura	laura	laura		rodrigues		laura@gmail.com	Media T�cnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t
-marcela	marcela	marcela		lozano		marcela@yahoo.es	Maestr�a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t
+COPY usuario (login, contrasena, nombre1, nombre2, apellido1, apellido2, email, nivel_escolaridad, pregunta_secreta, respuesta_secreta, vinculo_univalle, genero, fecha_nacimiento, fecha_registro, tipo, estado, fecha_ultimo_acceso) FROM stdin;
+anonimo	anonimo	anonimo	anonimo	anonimo	univalle	anonimo@correo	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	0	f	\N
+admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t	\N
+clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	Tecnología	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t	\N
+monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media Académica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t	\N
+maria	maria	maria	andrea	cruz		maria@gmail.com	Media Académica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t	\N
+felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media Académica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	\N
+yerdogm	yerdogm	yerminson	doney	gonzales	muños	yerdogm@gmail.com	Media Académica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	\N
+alberto	alberto	alberto		gonzales		alberto@gmail.com	Básica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	\N
+carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	Básica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	\N
+camilo	camilo	camilo		suarez		camilo@gmail.com	Tecnologí­a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t	\N
+laura	laura	laura		rodrigues		laura@gmail.com	Media Técnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t	\N
+marcela	marcela	marcela		lozano		marcela@yahoo.es	Maestrí­a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t	\N
+alvaivan	alvaivan1	álvaro	iván	gómez	molina	alvaiva-4558@gmail.com	Tecnología	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	1987-05-12	2011-04-10	3	t	\N
+albertc	albertc2	carlos	alberto	molina	lotero	albertcpenc13@hotmail.es	Tecnología	Ciudad natal de la abuela	cali	Jubilado	M	1980-12-12	2011-06-16	2	t	\N
+herna08	herna083	hernán	darío	naranjo	naranjo	herna08_12ecw@yahoo.es	Tecnología	Superheroe preferido	superman	Estudiante de pregrado	M	1967-01-12	2011-02-22	3	t	\N
+jo23leon	jo23leon4	jorge	león	osorio	osorio	jo23leonhero@univalle.edu	Tecnología	Ciudad donde pasa las vacaciones	cartagena	Egresado	M	1980-04-17	2011-02-10	3	t	\N
+jhon7452	jhon74525	john	jairo	duque	alzate	jhon7452-super@correounivalle.edu.co	Especialización Técnica	Nombre de la primer mascota	lulu	Egresado	M	1979-07-28	2011-02-27	2	t	\N
+armidb45	armidb456	armid	benjamín	palacio	duque	armidb45-yo@gmail.com	Profesional/Universidad	Cuento que mas veces ha leido	atalanta	Profesor activo	M	1980-11-10	2011-05-28	3	t	\N
+elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	Profesional/Universidad	Mejor amigo de la infancia	angie	Estudiante de postgrado	M	1981-04-24	2011-05-17	3	t	\N
+shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-04-15	3	t	\N
+osito32	osito321	gabriel	jaime	alzate	palacio	osito32-lomaslindo06@live.com	Técnica Profesional	Superheroe preferido	batman	Estudiante de postgrado	M	1992-02-03	2011-06-03	3	t	\N
+marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-02-21	2	f	\N
 \.
 
 
 --
--- Name: area_conocimiento_nombre_key; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: area_conocimiento_nombre_key; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY area_conocimiento
@@ -803,7 +857,7 @@ ALTER TABLE ONLY area_conocimiento
 
 
 --
--- Name: documento_link_key; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: documento_link_key; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY documento
@@ -811,7 +865,7 @@ ALTER TABLE ONLY documento
 
 
 --
--- Name: fecha_hora_login_iddocumento_fk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: fecha_hora_login_iddocumento_fk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY descarga_usuario_documento
@@ -819,7 +873,7 @@ ALTER TABLE ONLY descarga_usuario_documento
 
 
 --
--- Name: id_area_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: id_area_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY area_conocimiento
@@ -827,7 +881,7 @@ ALTER TABLE ONLY area_conocimiento
 
 
 --
--- Name: idarea_iddocumento_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: idarea_iddocumento_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY pertenece_documento_area_conocimiento
@@ -835,7 +889,7 @@ ALTER TABLE ONLY pertenece_documento_area_conocimiento
 
 
 --
--- Name: idautor_iddocumento_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: idautor_iddocumento_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY escribe_autor_documento
@@ -843,7 +897,7 @@ ALTER TABLE ONLY escribe_autor_documento
 
 
 --
--- Name: idautor_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: idautor_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY autor
@@ -851,7 +905,7 @@ ALTER TABLE ONLY autor
 
 
 --
--- Name: iddocumento_login_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: iddocumento_login_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY consulta
@@ -859,7 +913,7 @@ ALTER TABLE ONLY consulta
 
 
 --
--- Name: iddocumento_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: iddocumento_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY documento
@@ -867,7 +921,7 @@ ALTER TABLE ONLY documento
 
 
 --
--- Name: login_idarea_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: login_idarea_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY interesa_usuario_area_conocimiento
@@ -875,7 +929,7 @@ ALTER TABLE ONLY interesa_usuario_area_conocimiento
 
 
 --
--- Name: nombre_iddocumento_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: nombre_iddocumento_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY tiene_documento_palabra_clave
@@ -883,7 +937,7 @@ ALTER TABLE ONLY tiene_documento_palabra_clave
 
 
 --
--- Name: nombre_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: nombre_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY palabra_clave
@@ -891,7 +945,7 @@ ALTER TABLE ONLY palabra_clave
 
 
 --
--- Name: tiponombre_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: tiponombre_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY tipomaterial
@@ -899,7 +953,7 @@ ALTER TABLE ONLY tipomaterial
 
 
 --
--- Name: usuario_email_key; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: usuario_email_key; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY usuario
@@ -907,7 +961,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- Name: usuario_pk; Type: CONSTRAINT; Schema: public; Owner: edgaramt; Tablespace: 
+-- Name: usuario_pk; Type: CONSTRAINT; Schema: public; Owner: yerdogm; Tablespace: 
 --
 
 ALTER TABLE ONLY usuario
@@ -915,7 +969,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- Name: area_padre_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: area_padre_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY area_conocimiento
@@ -923,7 +977,7 @@ ALTER TABLE ONLY area_conocimiento
 
 
 --
--- Name: id_area_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: id_area_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY interesa_usuario_area_conocimiento
@@ -931,7 +985,7 @@ ALTER TABLE ONLY interesa_usuario_area_conocimiento
 
 
 --
--- Name: idarea_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: idarea_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY pertenece_documento_area_conocimiento
@@ -939,7 +993,7 @@ ALTER TABLE ONLY pertenece_documento_area_conocimiento
 
 
 --
--- Name: idautor_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: idautor_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY escribe_autor_documento
@@ -947,7 +1001,7 @@ ALTER TABLE ONLY escribe_autor_documento
 
 
 --
--- Name: iddocumento; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: iddocumento; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY pertenece_documento_area_conocimiento
@@ -955,7 +1009,7 @@ ALTER TABLE ONLY pertenece_documento_area_conocimiento
 
 
 --
--- Name: iddocumento_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: iddocumento_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY descarga_usuario_documento
@@ -963,7 +1017,7 @@ ALTER TABLE ONLY descarga_usuario_documento
 
 
 --
--- Name: iddocumento_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: iddocumento_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY escribe_autor_documento
@@ -971,7 +1025,7 @@ ALTER TABLE ONLY escribe_autor_documento
 
 
 --
--- Name: iddocumento_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: iddocumento_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY consulta
@@ -979,7 +1033,7 @@ ALTER TABLE ONLY consulta
 
 
 --
--- Name: iddocumento_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: iddocumento_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY tiene_documento_palabra_clave
@@ -987,7 +1041,7 @@ ALTER TABLE ONLY tiene_documento_palabra_clave
 
 
 --
--- Name: login_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: login_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY interesa_usuario_area_conocimiento
@@ -995,7 +1049,7 @@ ALTER TABLE ONLY interesa_usuario_area_conocimiento
 
 
 --
--- Name: login_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: login_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY descarga_usuario_documento
@@ -1003,7 +1057,7 @@ ALTER TABLE ONLY descarga_usuario_documento
 
 
 --
--- Name: login_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: login_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY consulta
@@ -1011,7 +1065,7 @@ ALTER TABLE ONLY consulta
 
 
 --
--- Name: logincatalogador_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: logincatalogador_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY documento
@@ -1019,7 +1073,7 @@ ALTER TABLE ONLY documento
 
 
 --
--- Name: nombre_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: nombre_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY tiene_documento_palabra_clave
@@ -1027,7 +1081,7 @@ ALTER TABLE ONLY tiene_documento_palabra_clave
 
 
 --
--- Name: tipo_fk; Type: FK CONSTRAINT; Schema: public; Owner: edgaramt
+-- Name: tipo_fk; Type: FK CONSTRAINT; Schema: public; Owner: yerdogm
 --
 
 ALTER TABLE ONLY documento

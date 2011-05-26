@@ -1,4 +1,3 @@
-﻿
 --Generating data for Database: proyecto
 
 
