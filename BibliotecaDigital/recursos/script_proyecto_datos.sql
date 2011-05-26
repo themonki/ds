@@ -266,7 +266,7 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 4	modelos de simulacion		3
 5	investigacion de operaciones		3
 6	ingenieria de software		
-7	diseno de software		6
+7	diseño de software		6
 8	gestion de informacion		
 9	hipermedia e hipertexto		8
 10	modelo de sistemas de informacion		8
@@ -274,13 +274,13 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 12	bibliotecas digitales		8
 13	recuperacion de informacion		8
 14	redes de comunicacion		1
-15	diseno fisico de bases de datos		8
+15	diseño fisico de bases de datos		8
 16	lenguajes de programacion		
 17	programacion orientada a objetos		17
 18	sistemas inteligentes		
 19	busqueda por satisfaccion de reestricciones		18
 20	entornos de desarrollo de software		6
-21	diseno de bases de datos relacionales		8
+21	diseño de bases de datos relacionales		8
 22	validacion de software		6
 23	computacion web cliente servidor		1
 24	tecnologias multimedia		1
@@ -295,7 +295,7 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 33	interaccion humano computador		
 34	aspectos de comunicacion		33
 35	desarrollo de software centrado en humano		33
-36	diseno de interfaces graficas de usuario		33
+36	diseño de interfaces graficas de usuario		33
 37	procesamiento de transacciones		8
 38	mineria de datos		8
 39	computacion visual y grafica		
@@ -600,7 +600,7 @@ COPY documento (id_documento, idioma, derechos_autor, descripcion, software_reco
 10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural	sin titulo secundario	repositorio/libro3(10).djvu	1999-05-15	2005-01-24	taterial de clase	admin	2011-05-24
 10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp	sin titulo secundario	repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-05-24
 10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual	sin titulo secundario	repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-05-24
-10015	EspaÃ±ol	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos	sin titulo secundario	repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-05-24
+10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos	sin titulo secundario	repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-05-24
 10016	Aleman	Si	animacion usando computadoras	0	0	sin editorial	otro	animaciones graficas	sin titulo secundario	repositorio/libro3(14).djvu	1983-05-15	1984-01-24	taterial de clase	admin	2011-05-24
 \.
 
@@ -825,16 +825,16 @@ gráficos	una representación de datos, generalmente numéricos, mediante línea
 COPY usuario (login, contrasena, nombre1, nombre2, apellido1, apellido2, email, nivel_escolaridad, pregunta_secreta, respuesta_secreta, vinculo_univalle, genero, fecha_nacimiento, fecha_registro, tipo, estado, fecha_ultimo_acceso) FROM stdin;
 anonimo	anonimo	anonimo	anonimo	anonimo	univalle	anonimo@correo	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	0	f	\N
 admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t	\N
-clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	TecnologÃÂ­a	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t	\N
-monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media AcadÃ©mica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t	\N
-maria	maria	maria	andrea	cruz		maria@gmail.com	Media AcadÃ©mica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t	\N
-felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media AcadÃ©mica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	\N
-yerdogm	yerdogm	yerminson	doney	gonzales	muÃ±os	yerdogm@gmail.com	Media AcadÃ©mica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	\N
-alberto	alberto	alberto		gonzales		alberto@gmail.com	BÃ¡sica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	\N
-carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	BÃ¡sica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	\N
-camilo	camilo	camilo		suarez		camilo@gmail.com	TecnologÃ­a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t	\N
-laura	laura	laura		rodrigues		laura@gmail.com	Media TÃ©cnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t	\N
-marcela	marcela	marcela		lozano		marcela@yahoo.es	MaestrÃ­a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t	\N
+clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	Tecnología	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t	\N
+monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media Académica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t	\N
+maria	maria	maria	andrea	cruz		maria@gmail.com	Media Académica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t	\N
+felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media Académica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	\N
+yerdogm	yerdogm	yerminson	doney	gonzales	muños	yerdogm@gmail.com	Media Académica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	\N
+alberto	alberto	alberto		gonzales		alberto@gmail.com	Básica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	\N
+carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	Básica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	\N
+camilo	camilo	camilo		suarez		camilo@gmail.com	Tecnologí­a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t	\N
+laura	laura	laura		rodrigues		laura@gmail.com	Media Técnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t	\N
+marcela	marcela	marcela		lozano		marcela@yahoo.es	Maestrí­a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t	\N
 alvaivan	alvaivan1	álvaro	iván	gómez	molina	alvaiva-4558@gmail.com	Tecnología	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	1987-05-12	2011-04-10	3	t	\N
 albertc	albertc2	carlos	alberto	molina	lotero	albertcpenc13@hotmail.es	Tecnología	Ciudad natal de la abuela	cali	Jubilado	M	1980-12-12	2011-06-16	2	t	\N
 herna08	herna083	hernán	darío	naranjo	naranjo	herna08_12ecw@yahoo.es	Tecnología	Superheroe preferido	superman	Estudiante de pregrado	M	1967-01-12	2011-02-22	3	t	\N
