@@ -38,6 +38,7 @@ import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiPrincipal;
 import Principal.Gui.GuiUsuarioNormal;
+import Usuarios.Dao.DaoUsuario;
 import Utilidades.Estilos;
 
 
@@ -877,6 +878,9 @@ public class GuiVistaDocumento extends JScrollPane {
 		ventana.setSize(450, 450);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
+		
+		DaoUsuario daoUsuario = new DaoUsuario();
+		daoUsuario.consultaDocumentosInteresUsuario("monki");
 
 	}
 }

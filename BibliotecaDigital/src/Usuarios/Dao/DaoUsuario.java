@@ -12,9 +12,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import Consultas.Dao.DaoConsulta;
+import Consultas.Logica.Consulta;
 import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Logica.Usuario;
 import Utilidades.FachadaBD;
+
 
 /**
  * @author yerminson
@@ -438,5 +441,64 @@ public class DaoUsuario {
 		}
 		return -1;
 	}
+	
+	
+	
+	
+	//metodo de consulta general
+	public Vector<Consulta> consultaDocumentosInteresUsuario(String parametro)
+	{
+		Vector<Consulta> consultas = new Vector<Consulta>();
+		String consultaFechaUltimoAcceso, consultaAreasInteresUsuario, consultaDocumentosAreaConocimientoUsuario, consultaCatalogadosDespuesUltimoAcceso;
+		
+		consultaFechaUltimoAcceso = "SELECT d.fecha_ultimo_acceso "+
+		"FROM Usuario AS d " +
+		"WHERE d.login = '"+parametro+"'";
+		
+	
+		consultaAreasInteresUsuario = "SELECT e.id_area "+
+		"FROM interesa_usuario_area_conocimiento AS e " +
+		"WHERE e.login = '"+parametro+"'";
+		
+		consultaDocumentosAreaConocimientoUsuario = "SELECT id_documento "+
+		"FROM pertenece_documento_area_conocimiento AS f NATURAL JOIN ("+consultaAreasInteresUsuario+") AS C ";
+		
+		consultaCatalogadosDespuesUltimoAcceso = "SELECT * "+
+		"FROM ("+consultaDocumentosAreaConocimientoUsuario+") as B NATURAL JOIN " +
+				"documento " +
+		"WHERE fecha_catalogacion > ("+consultaFechaUltimoAcceso+");";
+		
+		
+		
+		System.out.println(consultaCatalogadosDespuesUltimoAcceso);
+
+
+		
+		ResultSet resultado;		
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			resultado = sentencia.executeQuery(consultaCatalogadosDespuesUltimoAcceso);
+			DaoConsulta daoConsulta = new DaoConsulta();
+			while (resultado.next())
+			{
+				Consulta consulta = new Consulta();
+				
+				consulta.setIdDocumento(resultado.getString("id_documento"));
+				consulta.setTituloDocuemto(resultado.getString("titulo_principal"));
+				consulta.setNombresAutoresDocumento(daoConsulta.consultarAutoresDocumento(resultado.getString("id_documento")));
+				consultas.add(consulta);
+			}
+			conn.close();
+			} catch (SQLException e) {			
+				System.out.println(e);
+			} catch (Exception e) {
+				System.out.println(e);					
+			}
+			System.out.println(consultas);
+		return consultas;
+	}
+	
 	
 }
