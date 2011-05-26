@@ -50,11 +50,13 @@ public class ControladorVentanaPrincipal {
 			if(usuario.getTipo().equals("1"))
 			{
 				GuiAdministrador guiAdministrador = new GuiAdministrador(usuario);
+				guiAdministrador.setNovededadesUsuario(controladorUsuario.consultaDocumentosInteresArea(usuario.getLogin()));
 				//guiAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 			}else if(usuario.getTipo().equals("2"))
 			{
 				GuiCatalogador guiCatalogador = new GuiCatalogador(usuario);
+				guiCatalogador.setNovededadesUsuario(controladorUsuario.consultaDocumentosInteresArea(usuario.getLogin()));
 				//guiCatalogador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 				
@@ -62,6 +64,7 @@ public class ControladorVentanaPrincipal {
 			{
 				
 				GuiUsuarioNormal guiUsuarioNormal = new GuiUsuarioNormal(usuario);
+				guiUsuarioNormal.setNovededadesUsuario(controladorUsuario.consultaDocumentosInteresArea(usuario.getLogin()));
 				//guiUsuarioNormal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 			
@@ -75,6 +78,8 @@ public class ControladorVentanaPrincipal {
 			error = 2;
 			respuesta = false;
 		}
+		
+	
 		
 		return respuesta;
 		

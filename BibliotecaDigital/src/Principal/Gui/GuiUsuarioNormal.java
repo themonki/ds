@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,6 +26,7 @@ import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
+import Consultas.Logica.Consulta;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
 import Utilidades.Button;
@@ -68,6 +70,8 @@ public class GuiUsuarioNormal extends JFrame
 	private static GuiConsultaBasica panelConsultaBasica;
 	private static GuiConsultaAvanzada panelConsultaAvanzada;
 	
+	private Vector<Consulta> novedadesUsuario;
+	
 	
 	public GuiUsuarioNormal(Usuario usuario)
 	{
@@ -76,6 +80,7 @@ public class GuiUsuarioNormal extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 		LOGIN = usuario.getLogin();
+		novedadesUsuario = new Vector<Consulta>();
 
 		manejador = new Manejador();	
 	
@@ -93,7 +98,8 @@ public class GuiUsuarioNormal extends JFrame
 		panelModificacion = new GuiRegistroModificar(usuario,1);
 		panelConsultaBasica = new GuiConsultaBasica();
 		panelConsultaAvanzada = new GuiConsultaAvanzada();
-		GuiConsultaBasica.TIPOUSUARIO = 1;
+		GuiConsultaBasica.TIPOUSUARIO = 3;
+		GuiConsultaAvanzada.TIPOUSUARIO = 3;
 	
 		
 		contenedor = getContentPane();
@@ -280,6 +286,17 @@ public class GuiUsuarioNormal extends JFrame
 		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 		estado.setText("Inicio");
 		contenedor.repaint();
+		
+	}
+	
+	public void setNovededadesUsuario(Vector<Consulta> novedades)
+	{
+		novedadesUsuario = novedades;	
+		
+	}
+	public Vector<Consulta>getNovededadesUsuario()
+	{
+		return novedadesUsuario;			
 		
 	}
 }

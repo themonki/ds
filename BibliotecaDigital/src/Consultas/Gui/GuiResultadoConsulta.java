@@ -219,18 +219,25 @@ public class GuiResultadoConsulta extends JScrollPane{
 						.obtenerDatosDocumento(documentoConsultar
 								.getIdDocumento());
 
-				int tu = GuiConsultaBasica.TIPOUSUARIO;
+				int tu = 0;
+				if(GuiResultadoConsulta.TIPOCONSULTA  == 1)
+				{
+					tu= GuiConsultaBasica.TIPOUSUARIO;
+				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 2)
+				{
+					tu = GuiConsultaAvanzada.TIPOUSUARIO;
+				}
 
 				if (tu == 0) {
 					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
 							"anonimo");
-				} else if (tu == 1) {
+				} else if (tu == 3) {
 					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
 							GuiUsuarioNormal.LOGIN);
 				} else if (tu == 2) {
 					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
 							GuiCatalogador.LOGIN);
-				} else if (tu == 3) {
+				} else if (tu == 1) {
 					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
 							GuiAdministrador.LOGIN);
 				}

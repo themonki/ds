@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,6 +26,7 @@ import javax.swing.border.TitledBorder;
 
 import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
+import Consultas.Logica.Consulta;
 import Documento.Gui.GuiCatalogar;
 import Documento.Gui.GuiModificarDoc;
 import Usuarios.Gui.GuiRegistroModificar;
@@ -87,6 +89,8 @@ public class GuiCatalogador extends JFrame
 	private JLabel documento;
 	public static String LOGIN;
 	
+	private Vector<Consulta> novedadesUsuario;
+	
 	
 	public GuiCatalogador(Usuario usuario)
 	{
@@ -98,7 +102,7 @@ public class GuiCatalogador extends JFrame
 		LOGIN = usuario.getLogin();
 		manejador = new Manejador();	
 
-		
+		novedadesUsuario = new Vector<Consulta>();
 		String tituloMuestra = "::Sistema Biblioteca Digital::";
 
 		
@@ -431,6 +435,17 @@ public class GuiCatalogador extends JFrame
 		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 		estado.setText("Inicio");
 		contenedor.repaint();
+		
+	}
+	
+	public void setNovededadesUsuario(Vector<Consulta> novedades)
+	{
+		
+		novedadesUsuario = novedades;	
+	}
+	public Vector<Consulta>getNovededadesUsuario()
+	{
+		return novedadesUsuario;			
 		
 	}
 
