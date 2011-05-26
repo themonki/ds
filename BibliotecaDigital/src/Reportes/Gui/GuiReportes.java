@@ -1,7 +1,14 @@
 package Reportes.Gui;
 
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
@@ -18,6 +25,8 @@ import com.nilo.plaf.nimrod.NimRODTheme;
 public class GuiReportes extends JTabbedPane{
 	
 	JPanel PanelreportesBasicos,panelRepAvanzados; 
+	
+	JLabel etiquetaTabla,etiquetaAtributo,etiquetaCondicion;
 	JComboBox tablas , atributos , condicion;
 	ControladorAreaConocimiento controladorArea;
 	ControladorAutor controladorAutor ;
@@ -29,14 +38,27 @@ public class GuiReportes extends JTabbedPane{
 	}
 
 	private void initComponents() {
-		PanelreportesBasicos= new JPanel();
+		PanelreportesBasicos= new JPanel(new GridBagLayout());
 		panelRepAvanzados= new JPanel();
 		tablas = new JComboBox();
-		
-		
-		
-		
-		
+		atributos = new JComboBox();
+		condicion= new JComboBox();
+		etiquetaTabla= new JLabel("TABLA");
+		etiquetaAtributo= new JLabel("CAMPOS DE LA TABLA");
+		etiquetaCondicion= new JLabel("CONDICION");
+
+	
+		GridBagConstraints retricciones= new GridBagConstraints();
+		retricciones.insets= new Insets(0, 0, 20, 40);
+		retricciones.gridy=0;
+		PanelreportesBasicos.add(etiquetaTabla,retricciones);
+		PanelreportesBasicos.add(tablas,retricciones);
+		retricciones.gridy++;
+		PanelreportesBasicos.add(etiquetaAtributo,retricciones);
+		PanelreportesBasicos.add(atributos,retricciones);
+		retricciones.gridy++;
+		PanelreportesBasicos.add(etiquetaCondicion,retricciones);
+		PanelreportesBasicos.add(condicion,retricciones);
 		
 		
 		
