@@ -100,6 +100,7 @@ public class GuiVistaDocumento extends JScrollPane {
 	// De acuerdo al usuario que halla intentado consultar podremos saber si puede descargar editar un documento.
 	int tipoUsuario ;
 	int flag;
+	static boolean consultandoAutores = false;
 
 	public GuiVistaDocumento(Documento doc) {
 
@@ -315,7 +316,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		for(int i=0;i< autoresDocumento.size();i++)
 		{
 			
-			JLabel aux = new JLabel(autoresDocumento.get(i).getApellido());
+			JLabel aux = new JLabel(autoresDocumento.get(i).getNombre()+" "+autoresDocumento.get(i).getApellido());
 			aux.setFont(Estilos.fontSubtitulos);
 			aux.setForeground(Estilos.colorSubtitulo);
 			aux.addMouseListener(manejador);
@@ -635,7 +636,30 @@ public class GuiVistaDocumento extends JScrollPane {
 
 				JLabel etiquetaAConsultar = (JLabel) evento.getSource();
 				
-				if (etiquetaAConsultar.getParent() == panelAreas) {
+				if (etiquetaAConsultar.getParent() == panelAutores) {
+					consultandoAutores = true;
+				}else
+				{
+					consultandoAutores = false;
+				}
+				
+				if (flag == 0) {
+					
+
+					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					{
+						consultar(etiquetaAConsultar.getText());	
+					}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+					{
+						consultarAvanzado(etiquetaAConsultar.getText());	
+					}
+					
+					flag = 1;
+				} else {
+					flag = 0;
+				}
+				
+				/*if (etiquetaAConsultar.getParent() == panelAreas) {
 					if (flag == 0) {
 					//	JOptionPane.showMessageDialog(null, "Consultar areas: "+etiquetaAConsultar.getText());
 
@@ -653,8 +677,8 @@ public class GuiVistaDocumento extends JScrollPane {
 					}
 				} else if (etiquetaAConsultar.getParent() == panelAutores) {
 					if (flag == 0) {
-					//	JOptionPane
-						//		.showMessageDialog(null, "Consultar autores: "+etiquetaAConsultar.getText());
+					
+						consultandoAutores = true;
 
 					
 						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
@@ -686,7 +710,7 @@ public class GuiVistaDocumento extends JScrollPane {
 					} else {
 						flag = 0;
 					}
-				}
+				}*/
 
 			}
 			
@@ -729,7 +753,20 @@ public class GuiVistaDocumento extends JScrollPane {
 	{
 		ControladorConsulta controlador = new ControladorConsulta();
 		//mira que se hace con loque retorna
-		boolean seleccionBusquedaCompeta = true;
+	
+
+		boolean seleccionBusquedaCompeta;
+		if(consultandoAutores == true)
+		{
+			seleccionBusquedaCompeta = false;
+			
+		}else{
+
+		seleccionBusquedaCompeta = true;
+	
+		}
+		
+		
 		
 		Vector<Consulta> vector = new Vector<Consulta>();
 		
@@ -762,7 +799,18 @@ public class GuiVistaDocumento extends JScrollPane {
 	{
 		ControladorConsulta controlador = new ControladorConsulta();
 		//mira que se hace con loque retorna
-		boolean seleccionBusquedaCompeta = true;
+		boolean seleccionBusquedaCompeta;
+		if(consultandoAutores == true)
+		{
+			seleccionBusquedaCompeta = false;
+			
+		}else{
+
+		seleccionBusquedaCompeta = true;
+	
+		}
+		
+		
 		
 		Vector<Consulta> vector = new Vector<Consulta>();
 		
