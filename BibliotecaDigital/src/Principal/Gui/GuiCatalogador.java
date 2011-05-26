@@ -368,6 +368,10 @@ public class GuiCatalogador extends JFrame
 			{
 				new GuiPrincipal();
 				dispose();
+			}else if(evento.getSource() == salir )
+			{
+				System.exit(0);
+				
 			}
 		}
 	}

@@ -255,6 +255,10 @@ public class GuiUsuarioNormal extends JFrame
 
 				new GuiPrincipal();
 				dispose();
+			}else if(evento.getSource() == salir )
+			{
+				System.exit(0);
+				
 			}
 		}
 	}

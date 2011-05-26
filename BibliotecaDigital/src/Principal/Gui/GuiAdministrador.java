@@ -445,7 +445,11 @@ public class GuiAdministrador extends JFrame
 				GuiPrincipal gp = new GuiPrincipal();
 				gp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				dispose();
-			}	
+			}else if(evento.getSource() == salir )
+			{
+				System.exit(0);
+				
+			}
 		}
 	}
 
