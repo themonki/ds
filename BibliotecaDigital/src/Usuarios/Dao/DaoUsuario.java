@@ -37,6 +37,7 @@ public class DaoUsuario {
 	}
 
 	/**
+	 * Metodo que inserta en la tabla usuario parametro por parametro
 	 * @param login - String con la llave del Usuario
 	 * @param contrasena - String con la contraseña del Usuario
 	 * @param nom1 - String con el primer nombre del Usuario
@@ -53,7 +54,8 @@ public class DaoUsuario {
 	 * @param nacimiento - Date con la fecha de nacimiento del Usuario
 	 * @param tipo - String con el tipo del Usuario
 	 * @param estado - boolean con el estado (activo o inactivo) del Usuario
-	 * @return
+	 * @return 1 si se inserto correctamente, -1 de ser lo contrario
+	 * @author 
 	 */
 	public int guardarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
@@ -97,9 +99,10 @@ public class DaoUsuario {
 	}
 
 	/**
-	 * @param u
-	 * @return
-	 * @author 
+	 * Metodo que inserta en la tabla usuario los datos en el documento u
+	 * @param u - Usuario con los datos a insertar
+	 * @return 1 si se inserto correctamente, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int guardarUsuario(Usuario u) {
 		int value = guardarUsuario(u.getLogin(), u.getContrasena(), u
@@ -113,6 +116,7 @@ public class DaoUsuario {
 	}
 
 	/**
+	 * Metodo que permite modificar los datos de un usuario parametro por parametro
 	 * @param login - String con la llave del Usuario
 	 * @param contrasena - String con la contraseña del Usuario
 	 * @param nom1 - String con el primer nombre del Usuario
@@ -129,8 +133,8 @@ public class DaoUsuario {
 	 * @param nacimiento - Date con la fecha de nacimiento del Usuario
 	 * @param tipo - String con el tipo del Usuario
 	 * @param estado - boolean con el estado (activo o inactivo) del Usuario
-	 * @return
-	 * @author 
+	 * @return 1 si se inserto correctamente, -1 de ser lo contrario
+	 * @author @author Edgar Andres Moncada
 	 */
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
@@ -176,8 +180,10 @@ public class DaoUsuario {
 	}
 
 	/**
-	 * @param u
-	 * @return
+	 * Metodo que permite modificar los datos de un usuario 
+	 * @param u - Usuario con los datos a modificar
+	 * @return 1 si se inserto correctamente, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarUsuario(Usuario u) {
 		int value = modificarUsuario(u.getLogin(), u.getContrasena(), u
@@ -191,9 +197,12 @@ public class DaoUsuario {
 	}
 
 	/**
-	 * @param login
-	 * @param va
-	 * @return
+	 * Metodo que permite insertar las areas de interes de un usuario
+	 * @param login - String con el login del usuario
+	 * @param va - Vector<AreaConocimiento> con las areas de interes del usuario
+	 * @return int con el numero de areas de interes insertadas correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarUsuarioAreas(String login, Vector<AreaConocimiento> va) {
 		int numFilas = 0, cantidad = va.size();
@@ -223,13 +232,11 @@ public class DaoUsuario {
 		return -1;
 
 	}
-
-	/*
-	 * METODO QUE RETORNA TODAS LAS AREAS A LAS QUE ESTE RELACIONADO EL USUARIO
-	 */
 	/**
-	 * @param login
-	 * @return
+	 * Metodo que retorna las areas de interes de un usuario
+	 * @param login - String con el login del usuario
+	 * @return 
+	 * @author Edgar Andres Moncada
 	 */
 	public Vector<AreaConocimiento> consultarUsuarioAreas(String login) {
 
