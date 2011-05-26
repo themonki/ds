@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import GestionDocumento.Logica.AreaConocimiento;
@@ -387,16 +388,16 @@ public class DaoUsuario {
 	 * @return
 	 */
 	public int modificarPerfilEstado(String login, String tipo, String estado){
-		String sql_guardar;
+		String sql_actualizar;
 		int numFilas;
-		sql_guardar = "UPDATE Usuario SET tipo = '"+tipo+"' , estado = '"+estado+"'" +
+		sql_actualizar = "UPDATE Usuario SET tipo = '"+tipo+"' , estado = '"+estado+"'" +
 				" WHERE login = '"+login+"';";
 
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
-			System.out.println(sql_guardar);
-			numFilas = sentencia.executeUpdate(sql_guardar);
+			System.out.println(sql_actualizar);
+			numFilas = sentencia.executeUpdate(sql_actualizar);
 			conn.close();
 			return numFilas;
 		} catch (SQLException e) {
@@ -406,4 +407,34 @@ public class DaoUsuario {
 		}
 		return -1;
 	}
+	
+	
+	/**
+	 * Metodo que actualiza en la base de datos el ultimo acceso de un usuario
+	 * @param login - String con la llave dell usuario
+	 * @param fecha - String con la fecha de acceso al sistema
+	 * @return 1 si se efectuo la actualizacion -1 si no se efectuo correctamente
+	 * @author Edgar Andres Moncada
+	 */
+	public int actualizarFechaAcceso(String login, String fecha){
+		String sql_actualizar;
+		int numFilas;
+		sql_actualizar = "UPDATE Usuario SET fecha_ultimo_acceso = '"+fecha+"" +
+				" WHERE login = '"+login+"'";
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			System.out.println(sql_actualizar);
+			numFilas = sentencia.executeUpdate(sql_actualizar);
+			conn.close();
+			return numFilas;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	
 }
