@@ -1,8 +1,3 @@
-/*
- * AUTOR: EDGAR ANDRES MONCADA
- * 
- * */
-
 package Documento.Dao;
 
 import java.sql.Connection;
@@ -17,11 +12,13 @@ import Utilidades.FachadaBD;
 /**
  * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
  * con los documentos
- * @author 
- * {@linkplain java.lang.Object Object}
+ * @author Edgar Andres Moncada
  */
 public class DaoDocumento {
 
+	/**
+	 * Permite la conexion con la base de datos
+	 */
 	FachadaBD fachada;
 
 	/**
@@ -32,25 +29,26 @@ public class DaoDocumento {
 	}
 
 	
-	/**metodo que permite insertar en la base de datos en la tabla documento
+	/**Metodo que permite insertar en la base de datos en la tabla documento
 	 * recibiendo todos los datos individualmente
-	 * @param id
-	 * @param idioma
-	 * @param derechos
-	 * @param descripcion
-	 * @param software
-	 * @param resolucion
-	 * @param editorial
-	 * @param formato
-	 * @param titulo_principal
-	 * @param titulo_secundario
-	 * @param link
-	 * @param creacion
-	 * @param publicacion
-	 * @param catalogacion
-	 * @param login
-	 * @param tipo
+	 * @param id - String con la llave del documento
+	 * @param idioma - String con el idioma del documento
+	 * @param derechos - String con los derechos de autor del documento
+	 * @param descripcion - String con la descripcion del documento
+	 * @param software - String con el software recomendado 
+	 * @param resolucion - String con la resolucion del documento
+	 * @param editorial - String con la editoral del documento
+	 * @param formato - String con el formato del documento
+	 * @param titulo_principal - String con el titulo principal del documento
+	 * @param titulo_secundario - String con el titulo secundario o traducido del documento
+	 * @param link - String con el enlace del documento
+	 * @param creacion - String con la fecha de creacion del documento
+	 * @param publicacion - String con la fecha de publicacion del documento
+	 * @param catalogacion - String con la fecha de catalogacion del documento
+	 * @param login - String con la llave del usuario catalogador del documento
+	 * @param tipo - String con el tipo de material del documento
 	 * @return devuelve 1 si se inserto el documento -1 de lo contrario
+	 * @autor Edgar Andres Moncada
 	 */
 	public int guardarDocumento(String id, String idioma, String derechos,
 			String descripcion, String software, String resolucion,
@@ -113,6 +111,7 @@ public class DaoDocumento {
 	 * recibiendo un objeto de tipo documento
 	 * @param d - Documento
 	 * @return devuelve 1 si se inserto el documento -1 de lo contrario
+	 * @autor Edgar Andres Moncada
 	 */
 	public int guardarDocumento(Documento d) {
 		int value = guardarDocumento(d.getId_doc(), d.getIdioma(), d
@@ -130,24 +129,25 @@ public class DaoDocumento {
 
 	/**Metodo que permite actualizar en la base de datos en la tabla documento
 	 * recibiendo cada uno de los atributos de la relacion documento
-	 * @param id
-	 * @param idioma
-	 * @param derechos
-	 * @param descripcion
-	 * @param software
-	 * @param resolucion
-	 * @param editorial
-	 * @param formato
-	 * @param titulo_principal
-	 * @param titulo_secundario
-	 * @param link
-	 * @param creacion
-	 * @param publicacion
-	 * @param catalogacion
-	 * @param login
-	 * @param tipo
+	 * @param id - String con la llave del documento
+	 * @param idioma - String con el idioma del documento
+	 * @param derechos - String con los derechos de autor del documento
+	 * @param descripcion - String con la descripcion del documento
+	 * @param software - String con el software recomendado 
+	 * @param resolucion - String con la resolucion del documento
+	 * @param editorial - String con la editoral del documento
+	 * @param formato - String con el formato del documento
+	 * @param titulo_principal - String con el titulo principal del documento
+	 * @param titulo_secundario - String con el titulo secundario o traducido del documento
+	 * @param link - String con el enlace del documento
+	 * @param creacion - String con la fecha de creacion del documento
+	 * @param publicacion - String con la fecha de publicacion del documento
+	 * @param catalogacion - String con la fecha de catalogacion del documento
+	 * @param login - String con la llave del usuario catalogador del documento
+	 * @param tipo - String con el tipo de material del documento
 	 * @return retorna un numero indicando cuantos valores fueron actualizados de 
 	 * lo contrario retorna -1
+	 * @autor Edgar Andres Moncada
 	 */
 	public int modificarDocumento(String id, String idioma, String derechos,
 			String descripcion, String software, String resolucion,
@@ -184,14 +184,12 @@ public class DaoDocumento {
 		}
 		return -1;
 	}
-
-	/*
-	 * metodo que permite actualizar en la base de datos en la tabla documento
-	 * recibiendo un objeto de tipo documento
-	 */
 	/**
-	 * @param d
-	 * @return
+	 * Metodo que permite actualizar en la base de datos en la tabla documento
+	 * recibiendo un objeto de tipo documento
+	 * @param d - Documento con los datos a insertar en la tabla documento
+	 * @return 1 si se actualizo correctamente, -1 de ser lo contrario
+	 * @autor Edgar Andres Moncada
 	 */
 	public int modificarDocumento(Documento d) {
 		int value = modificarDocumento(d.getId_doc(), d.getIdioma(), d
@@ -207,9 +205,12 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param id_doc
-	 * @param ids_area
-	 * @return
+	 * Metodo que permite insertar en la tabla Pertenece_Documento_Area_Conocimiento
+	 * las areas de conocimiento a las que pertenece el documento
+	 * @param id_doc - String con la llave del documento
+	 * @param ids_area - Vector<String> con las llaves de las areas de conocimiento
+	 * @return int con el numero de areas de conocimiento insertadas, retorna -1 de ser lo contrario
+	 * @autor Edgar Andres Moncada
 	 */
 	public int guardarDocumentoAreas(String id_doc, Vector<String> ids_area) {
 
@@ -244,9 +245,12 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param id_doc
-	 * @param ids_palabras
-	 * @return
+	 * Metodo que permite insertar en la tabla Tiene_Documento_Palabra_Clave
+	 * las palabras clave a las que pertenece el documento
+	 * @param id_doc - String con la llave del documento
+	 * @param ids_palabras - Vector<String> con las llaves de las palabras claves
+	 * @return int con el numero de palabras claves insertadas, retorna -1 de ser lo contrario
+	 * @autor Edgar Andres Moncada
 	 */
 	public int guardarDocumentoPalabrasClave(String id_doc,
 			Vector<String> ids_palabras) {
@@ -286,9 +290,12 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param id_doc
-	 * @param ids_autores
-	 * @return
+	 * Metodo que permite insertar en la tabla Escribe_Autor_Documento
+	 * los autores a las que pertenece el documento
+	 * @param id_doc - String con la llave del documento
+	 * @param ids_autores - Vector<String> con las llaves de los autores
+	 * @return int con el numero de autores insertados, retorna -1 de ser lo contrario
+	 * @autor Edgar Andres Moncada
 	 */
 	public int guardarDocumentoAutores(String id_doc, Vector<String> ids_autores) {
 
@@ -325,7 +332,11 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @return
+	 * Metodo que se usa para obtener el login del documento que acaba de ser catalogado
+	 * para poder insertar las areas de conocimiento, las palabras clave y los autores
+	 * del documento
+	 * @return String con la llave del documento catalogado
+	 * @author Edgar Andres Moncada
 	 */
 	public String obtenerLoginDocumento() {
 		String login = "0";
@@ -352,8 +363,10 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param url
-	 * @return
+	 * Metodo para comporbar que un link de un documento, que debe ser unico, se encuentre ya registrado
+	 * @param url - String
+	 * @return boolean, true si se encuentra en la tabla y false de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public boolean comprobarURL(String url) {
 		boolean estado = false;
@@ -378,11 +391,12 @@ public class DaoDocumento {
 		return false;
 	}
 
-	// metodo que retorna los datos de un documento de acuerdo a su login, no
-	// devuelve areas, palabras y autores
+	
 	/**
-	 * @param id_documento
-	 * @return
+	 * Metodo que retorna los datos de un documento de acuerdo a su login, pero no 
+	 * devuelve las areas de conocimiento, las palabras clave y los autores del documento
+	 * @param id_documento - String con la llave del documento
+	 * @return Documento con los datos de la tabla documento, sin las areas de conocimiento, las palabras clave y los autores
 	 */
 	public Documento consultarDatosDocumento(String id_documento) {
 		String consulta_sql = "SELECT * " + "FROM documento "
@@ -427,11 +441,13 @@ public class DaoDocumento {
 		return d;
 	}
 
-	// *******ACTUALIZAR
 	/**
-	 * @param id_documento
-	 * @param ids_areas
-	 * @return
+	 * Metodo que actualiza las areas de conocimiento de un documento
+	 * @param id_documento - String con la llave del documento
+	 * @param ids_areas - Vector<String> con las llaves de las areas de conocimiento
+	 * @return int con el numero de areas de conocimiento actualizadas correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int actualizarDocumentoAreas(String id_documento,
 			Vector<String> ids_areas) {
@@ -440,9 +456,12 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param id_documento
-	 * @param ids_palabras
-	 * @return
+	 * Metodo que actualiza las palabras clave de un documento
+	 * @param id_documento - String con la llave del documento
+	 * @param ids_palabras - Vector<String> con las llaves de las palabras clave
+	 * @return int con el numero de palabras clave actualizadas correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int actualizarDocumentoPalabrasClave(String id_documento,
 			Vector<String> ids_palabras) {
@@ -451,9 +470,12 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param id_documento
-	 * @param ids_autores
-	 * @return
+	 * Metodo que actualiza los autores de un documento
+	 * @param id_documento - String con la llave del documento
+	 * @param ids_autores - Vector<String> con las llaves de los autores
+	 * @return int con el numero de los autores actualizadas correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int actualizarDocumentoAutores(String id_documento,
 			Vector<String> ids_autores) {
@@ -462,8 +484,10 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param id_documento
-	 * @return
+	 * Metodo que elimina todos los autores que esten relacionados al documento
+	 * @param id_documento - String con la llave del documento
+	 * @return int con el numero de autores eliminados, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int eliminarDocumentoAutores(String id_documento) {
 		String sql_eliminar;
@@ -486,8 +510,10 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param id_documento
-	 * @return
+	 * Metodo que elimina todos las palabras clave que esten relacionados al documento
+	 * @param id_documento - String con la llave del documento
+	 * @return int con el numero de palabras clave eliminadas, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int eliminarDocumentoPalabrasClave(String id_documento) {
 		String sql_eliminar;
@@ -510,8 +536,10 @@ public class DaoDocumento {
 	}
 
 	/**
-	 * @param id_documento
-	 * @return
+	 * Metodo que elimina todos las areas de conocimiento que esten relacionados al documento
+	 * @param id_documento - String con la llave del documento
+	 * @return int con el numero de areas de conocimiento eliminadas, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int eliminarDocumentoAreas(String id_documento) {
 		String sql_eliminar;
