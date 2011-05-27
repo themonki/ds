@@ -560,14 +560,14 @@ public class GuiVistaDocumento extends JScrollPane {
 						
 						if(!descarga.equals(""))
 						{
-							int tu = GuiConsultaBasica.TIPOUSUARIO;
-							if (tu == 1) {
+							int tu =tipoUsuario;
+							if (tu == 3) {
 								ControladorConsulta conCon = new ControladorConsulta();
 								conCon.insertarDescargaDocumento(documento.getId_doc(), GuiUsuarioNormal.LOGIN);
 							} else if (tu == 2) {
 								ControladorConsulta conCon = new ControladorConsulta();
 								conCon.insertarDescargaDocumento(documento.getId_doc(), GuiCatalogador.LOGIN);
-							} else if (tu == 3) {
+							} else if (tu == 1) {
 								ControladorConsulta conCon = new ControladorConsulta();
 								conCon.insertarDescargaDocumento(documento.getId_doc(), GuiAdministrador.LOGIN);
 							}else{
