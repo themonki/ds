@@ -18,13 +18,30 @@ import java.util.Vector;
 import GestionDocumento.Logica.TipoMaterial;
 import Utilidades.FachadaBD;
 
+/**
+ * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
+ * con el tipo de material
+ * @author Cristian Leonardo Rios
+ *
+ */
 public class DaoTipoMaterial {
+	/**
+	 * Permite la conexion con la base de datos
+	 */
 	private FachadaBD fachada;
 
+	/**
+	 * Constructor por defecto que inicia la variable fachada
+	 */
 	public DaoTipoMaterial() {
 		this.fachada = new FachadaBD();
 	}
 
+	/**
+	 * Metodo que inserta los datos del tipo de material 
+	 * @param tp - TipoMaterial con los datos a almacenar
+	 * @return 1 si se inserto el tipo de material correctamente, -1 de ser lo contrario
+	 */
 	public int guardarTipoMaterial(TipoMaterial tp) {
 		String sqlInsert;
 		sqlInsert = "INSERT INTO TipoMaterial(tipo_nombre, descripcion) VALUES('"
@@ -33,9 +50,9 @@ public class DaoTipoMaterial {
 		try {
 			Connection conn = this.fachada.conectar();
 			Statement sentencia = conn.createStatement();
-			int numFilas = sentencia.executeUpdate(sqlInsert);
+			int value = sentencia.executeUpdate(sqlInsert);
 			this.fachada.cerrarConexion(conn);
-			return numFilas;
+			return value;
 		} catch (SQLException se) {
 			System.out.println(se.toString());
 		} catch (Exception e) {
@@ -43,8 +60,11 @@ public class DaoTipoMaterial {
 		}
 		return -1;
 	}
-
-	/* consulta tipoMaterial por tipo_nombre */
+	/**
+	 * Metodo que devuelve un TipoMaterial que coincida con el parametro
+	 * @param parametro - String con el criterio de busqueda en el nombre
+	 * @return TipoMaterial que coincide con la busqueda
+	 */
 	public TipoMaterial consultarTipoMaterial(String parametro) {
 		TipoMaterial tipo = new TipoMaterial();
 		String sqlSelect;
@@ -73,6 +93,10 @@ public class DaoTipoMaterial {
 		return tipo;
 	}
 
+	/**
+	 * Metodo que consulta todos los tipos de materiales disponibles y los devuelve en un vector
+	 * @return Vector<TipoMaterial> con todos los tipos de materiales almacenados
+	 */
 	public Vector<TipoMaterial> consultarTodosTipoMaterial() {
 		Vector<TipoMaterial> tipos = new Vector<TipoMaterial>();
 		String sqlSelect;

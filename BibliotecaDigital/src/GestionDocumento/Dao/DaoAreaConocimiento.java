@@ -1,12 +1,3 @@
-/*
- * Nombre: Cristian R�os.
- * Responsabilidad: Realizar la debida manipulacion de datos referentes a el area de conocimiento
- * entre el controlador y la base de datos.
- * Nombre archivo: DaoAreaConocimiento.java
- * Fecha Creacion: Mayo 03 2011
- * Fecha ultima modificaci�n: Mayo 03 2011
- * */
-
 package GestionDocumento.Dao;
 
 import java.sql.Connection;
@@ -18,13 +9,29 @@ import java.util.Vector;
 import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.FachadaBD;
 
-public class DaoAreaConocimiento {
+/**
+ * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
+ * con el tipo de material
+ * @author Cristian Leonardo Rios
+ *
+ */public class DaoAreaConocimiento {
+	/**
+	 * Permite la conexion con la base de datos
+	 */
 	private FachadaBD fachada;
 
+	/**
+	 * Constructor por defecto que inicia la variable fachada
+	 */
 	public DaoAreaConocimiento() {
 		fachada = new FachadaBD();
 	}
 
+	/**
+	 * Metodo que inserta el area de conocimiento
+	 * @param ac - AreaConocimiento con los datos a almacenar
+	 * @return 1 si se almaceno correctamente el area de conocimiento, -1 de ser lo contrario
+	 */
 	public int guardarAreaConocimiento(AreaConocimiento ac) {
 		String sqlInsert;
 		sqlInsert = "INSERT INTO Area_Conocimiento(id_area, nombre, descripcion, area_padre) VALUES('"
@@ -47,10 +54,10 @@ public class DaoAreaConocimiento {
 		}
 		return -1;
 	}
-
-	/*
-	 * consulta area_conocimiento por id_area, como id_area es pk encontrar� un
-	 * dato
+	/**
+	 * Metodo que retorna el area de conociemintoq ue coincida con el parametro, el id_area
+	 * @param parametro - String con el id_area del area de conocimiento
+	 * @return AreaConocimiento que coincide con la busqueda
 	 */
 	public AreaConocimiento consultarArea(String parametro) {
 		AreaConocimiento area = new AreaConocimiento();
@@ -80,6 +87,10 @@ public class DaoAreaConocimiento {
 		return area;
 	}
 
+	/**
+	 * Metodo que consulta todas las areas de conocimiento disponibles y los devuelve en un vector
+	 * @return Vector<AreaConocimiento> con todas las areas de conocimiento almacenadas
+	 */
 	public Vector<AreaConocimiento> consultarAreas() {
 		Vector<AreaConocimiento> areas = new Vector<AreaConocimiento>();
 		String sqlSelect;
@@ -108,6 +119,13 @@ public class DaoAreaConocimiento {
 		return areas;
 	}
 
+	/**
+	 * Metodo que actualiza los valores de respectivos del area de conocimiento
+	 * @param idArea - String con el id_area del area de conocimineto
+	 * @param atributo - String con el nombre del campo o columna de la tabla area de conocimiento
+	 * @param valorAtributo - String con el valor a actualizar del area de conocimineto
+	 * @return 1 si se actualizo correctamente el area de conocimiento, -1 de ser lo contrario 
+	 */
 	public int modificarArea(String idArea, String atributo,
 			String valorAtributo) {
 		String sqlUpdate;
@@ -128,6 +146,11 @@ public class DaoAreaConocimiento {
 		return -1;
 	}
 
+	/**
+	 * Metodo que permite eliminar el area de conocimiento que coincida con el idArea
+	 * @param idArea - String con la llave del area de conocimiento a eliminar
+	 * @return 1 si se elimino adecuadamente, -1 de ser lo contrario
+	 */
 	public int eliminarArea(String idArea) {
 		String sqlDelete;
 		sqlDelete = "DELETE FROM Area_Conocimiento WHERE id_area = '" + idArea
@@ -146,7 +169,12 @@ public class DaoAreaConocimiento {
 		}
 		return -1;
 	}
-//metodo que devuelve las areas de conocimiento de un documento dado su id_documento
+	/**
+	 * Metodo que devuelve las areas de conocimiento de un documento dado su id_documento
+	 * @param id_documento - String con la llave del documento
+	 * @return Vector <AreaConocimiento> con las areas de conocimiento del documento
+	 * @author Edgar Andres Moncada
+	 */
 	public Vector <AreaConocimiento> consultarAreasDocumento(String id_documento) {
 		Vector <AreaConocimiento> vac = new Vector<AreaConocimiento>();
 		String sqlSelect;

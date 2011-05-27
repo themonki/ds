@@ -478,7 +478,7 @@ public class DaoUsuario {
 		consultaCatalogadosDespuesUltimoAcceso = "SELECT * "+
 		"FROM ("+consultaDocumentosAreaConocimientoUsuario+") as B NATURAL JOIN " +
 				"documento " +
-		"WHERE fecha_catalogacion > ("+consultaFechaUltimoAcceso+");";
+		"WHERE fecha_catalogacion >= ("+consultaFechaUltimoAcceso+");";
 		
 		System.out.println(consultaCatalogadosDespuesUltimoAcceso);
 
