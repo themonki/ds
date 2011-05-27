@@ -1,7 +1,6 @@
 package Reportes.Controlador;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
 import java.util.Vector;
 import Reportes.Logica.Reporte;
 
