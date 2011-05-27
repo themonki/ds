@@ -8,16 +8,16 @@ public class Reporte {
 	private Vector<String> vectorColumnas;
 	private Vector<String> vectorRegistros;
 	private int tipo; //Tipo orderby, tipo condicion.
-	private String ruta;
+	private String encabezado;
 	
 	public Reporte()
 	{
 		
 	}
 
-	public Reporte(Vector<String> vectorOrderBy, Vector<String> vectorColumnas, Vector<String> vectorRegistros, int tipo, String ruta)
+	public Reporte(Vector<String> vectorOrderBy, Vector<String> vectorColumnas, Vector<String> vectorRegistros, int tipo, String encabezado)
 	{
-		this.ruta = ruta;
+		this.encabezado = encabezado;
 		this.tipo = tipo;
 		this.vectorColumnas = vectorColumnas;
 		this.vectorOrderBy = vectorOrderBy;
@@ -40,14 +40,20 @@ public class Reporte {
 		return this.vectorRegistros;
 	}
 	
-	public String getRuta()
+	public String getEncabezado()
 	{
-		return this.ruta;
+		return this.encabezado;
 	}
 	
 	public int getTipo()
 	{
 		return this.tipo;
 	}
+	
+	public void setEncabezado(String encabezado)
+	{
+		this.encabezado= encabezado;
+	}
+	
 }
 

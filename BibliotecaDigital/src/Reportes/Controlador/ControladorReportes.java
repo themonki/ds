@@ -2,6 +2,8 @@ package Reportes.Controlador;
 
 
 import java.util.Vector;
+
+import Reportes.Logica.GenerarReporte;
 import Reportes.Logica.Reporte;
 
  
@@ -36,8 +38,6 @@ public class ControladorReportes
 		
 		return reporte;
 	}
-	
-	
 	
 
 }
