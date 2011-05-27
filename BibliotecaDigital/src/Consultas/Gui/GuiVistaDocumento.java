@@ -114,7 +114,12 @@ public class GuiVistaDocumento extends JScrollPane {
 		}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
 		{
 			tipoUsuario= GuiConsultaAvanzada.TIPOUSUARIO;
+		}else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+		{
+			tipoUsuario= GuiNovedades.TIPOUSUARIO;
 		}
+		
+		
 		
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
@@ -605,7 +610,7 @@ public class GuiVistaDocumento extends JScrollPane {
 					else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
 					{
 				
-						
+						GuiCatalogador.cambiarPanelEditarDocumentoNovedades();
 						GuiNovedades.restaurar();
 					}
 					
@@ -626,7 +631,7 @@ public class GuiVistaDocumento extends JScrollPane {
 					}
 					else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
 					{
-						
+						GuiAdministrador.cambiarPanelEditarDocumentoNovedades();
 						GuiNovedades.restaurar();
 					}
 				}
@@ -858,20 +863,16 @@ public class GuiVistaDocumento extends JScrollPane {
 		GuiResultadoConsulta.TIPOCONSULTA = 1;
 		GuiConsultaBasica.panel.add(GuiConsultaBasica.resultadoConsulta, BorderLayout.CENTER);
 		GuiNovedades.restaurar();
-		
-		if(GuiConsultaAvanzada.TIPOUSUARIO == 0)
+	
+		if(GuiNovedades.TIPOUSUARIO == 3)
 		{
-			//GuiPrincipal.cambiarAvanzadaInicio();
-		}
-		else if(GuiConsultaAvanzada.TIPOUSUARIO == 3)
+			GuiUsuarioNormal.cambiarNovedadesInicio();
+		}else if(GuiNovedades.TIPOUSUARIO == 2)
 		{
-			//GuiUsuarioNormal.cambiarAvanzadaInicio();
-		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 2)
+			GuiCatalogador.cambiarNovedadesInicio();
+		}else if(GuiNovedades.TIPOUSUARIO == 1)
 		{
-			//GuiCatalogador.cambiarAvanzadaInicio();
-		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 1)
-		{
-			// GuiAdministrador.cambiarAvanzadaInicio();
+			GuiAdministrador.cambiarNovedadesInicio();
 		}
 		GuiConsultaBasica.panel.updateUI();
 		if(vector.size() <=0 && !parametro.equals("")){

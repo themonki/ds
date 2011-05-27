@@ -108,10 +108,8 @@ public class GuiUsuarioNormal extends JFrame
 		panelConsultaBasica = new GuiConsultaBasica();
 		panelConsultaAvanzada = new GuiConsultaAvanzada();
 		panelNovedades = new GuiNovedades();
-		GuiConsultaBasica.TIPOUSUARIO = 3;
-		
-		GuiConsultaAvanzada.TIPOUSUARIO = 3;
-	
+		GuiConsultaBasica.TIPOUSUARIO = 3;		
+		GuiConsultaAvanzada.TIPOUSUARIO = 3;	
 		GuiNovedades.TIPOUSUARIO = 3;
 		
 		
@@ -158,7 +156,7 @@ public class GuiUsuarioNormal extends JFrame
 		consultaAvanzada = new Button("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
 		
-		novedades = new Button("Novedades ("+0+")");
+		novedades = new Button("Novedades");
 		novedades.addActionListener(manejador);
 		
 		logout = new Button("Salir");
@@ -313,6 +311,7 @@ public class GuiUsuarioNormal extends JFrame
 			}
 			else if(evento.getSource() == novedades)
 			{
+				GuiResultadoConsulta.TIPOCONSULTA = 3;
 				
 				if (estado.getText().equals(estadoModificacion))
 				{
@@ -370,6 +369,16 @@ public class GuiUsuarioNormal extends JFrame
 		contenedor.repaint();
 		
 	}
+	public static void cambiarNovedadesInicio()
+	{
+		
+		
+		contenedor.remove(panelNovedades);
+		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		estado.setText("Inicio");
+		contenedor.repaint();
+		
+	}
 	
 	public void setNovededadesUsuario(Vector<Consulta> novedades)
 	{
@@ -377,6 +386,7 @@ public class GuiUsuarioNormal extends JFrame
 		
 		GuiNovedades.resultadoConsulta = new GuiResultadoConsulta(novedades, 10);
 		GuiNovedades.panel.add(GuiNovedades.resultadoConsulta);
+		
 		GuiResultadoConsulta.TIPOCONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");
 		panelNovedades.updateUI();
