@@ -4,6 +4,10 @@
 	<classpathentry kind="lib" path="recursos/postgresql-9.0-801.jdbc3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="recursos/nimrodlf.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Documents and Settings/camilo/Escritorio/Univalle2011/desarrollo/ds/EjemploReportes/itextpdf-5.1.0.jar"/>
+=======
+	<classpathentry kind="lib" path="../EjemploReportes/itextpdf-5.1.0.jar"/>
+>>>>>>> c7ec3dd9635afdd29037ea7e86d89a251ddf364e
 	<classpathentry kind="output" path="bin"/>
 </classpath>
