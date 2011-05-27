@@ -15,6 +15,7 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
+
 DROP TABLE Usuario CASCADE;
 DROP TABLE Area_Conocimiento CASCADE;
 DROP TABLE Interesa_Usuario_Area_Conocimiento;
@@ -62,7 +63,7 @@ CREATE SEQUENCE id_autor_seq
 -- Name: id_autor_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
 --
 
-SELECT pg_catalog.setval('id_autor_seq', 10007, true);
+SELECT pg_catalog.setval('id_autor_seq', 10030, true);
 
 
 --
@@ -126,7 +127,7 @@ CREATE SEQUENCE id_documento_seq
 -- Name: id_documento_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
 --
 
-SELECT pg_catalog.setval('id_documento_seq', 10011, true);
+SELECT pg_catalog.setval('id_documento_seq', 10017, true);
 
 
 --
@@ -824,7 +825,6 @@ gráficos	una representación de datos, generalmente numéricos, mediante línea
 
 COPY usuario (login, contrasena, nombre1, nombre2, apellido1, apellido2, email, nivel_escolaridad, pregunta_secreta, respuesta_secreta, vinculo_univalle, genero, fecha_nacimiento, fecha_registro, tipo, estado, fecha_ultimo_acceso) FROM stdin;
 anonimo	anonimo	anonimo	anonimo	anonimo	univalle	anonimo@correo	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	0	f	\N
-admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t	\N
 clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	Tecnología	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t	\N
 monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media Académica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t	\N
 maria	maria	maria	andrea	cruz		maria@gmail.com	Media Académica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t	\N
@@ -845,6 +845,7 @@ elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	P
 shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-04-15	3	t	\N
 osito32	osito321	gabriel	jaime	alzate	palacio	osito32-lomaslindo06@live.com	Técnica Profesional	Superheroe preferido	batman	Estudiante de postgrado	M	1992-02-03	2011-06-03	3	t	\N
 marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-02-21	2	f	\N
+admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t	2011-05-26
 \.
 
 
