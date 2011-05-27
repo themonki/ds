@@ -159,22 +159,30 @@ public class GuiIngresarAutor extends JFrame {
 	private class ManejadorBoton implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
-			ControladorAutor conAutor = new ControladorAutor();
-		
-		if(validarDatos()){
-			if(conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
-					campoAcronimo.getText(), campoCorreoElectronico.getText())>=1)
-			{
-			guiCatalogarModi.vectoresParaComboBox();
-			guiCatalogarModi.actualizarAutores();
-			JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
-			dispose();
+			ControladorAutor conAutor = new ControladorAutor();	
+			if(validarDatos()){
+				String mensaje="Esta a punto de ingresar al sistema el autor:\n";
+				mensaje+=campoNombre.getText()+ " " + campoApellido.getText()+"\n";
+				mensaje+="con el acronimo: "+ campoAcronimo.getText()+"\n";
+				mensaje+="con el email: "+campoCorreoElectronico.getText()+"\n";
+				mensaje+="¿esta completamente seguro de que desea ingresarlo?";
+				int value = JOptionPane.showConfirmDialog(null, mensaje, "Confirmar Insertar Autor",
+						JOptionPane.YES_NO_OPTION);
+				//1 para no y 0 para si		
+				if(value==0){
+					if(conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
+							campoAcronimo.getText(), campoCorreoElectronico.getText())>=1)
+					{
+					guiCatalogarModi.vectoresParaComboBox();
+					guiCatalogarModi.actualizarAutores();
+					JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
+					dispose();
 
-			}else{				
-				JOptionPane.showMessageDialog(null, "El autor ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
-			}		
-			
-		}	
+					}else{				
+						JOptionPane.showMessageDialog(null, "El autor ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
 		}
 	}
 	
@@ -237,6 +245,8 @@ public class GuiIngresarAutor extends JFrame {
 	{
 		String nombre = campoNombre.getText();
 		String apellido = campoApellido.getText();
+		String acronimo = campoAcronimo.getText();
+		String email = campoCorreoElectronico.getText();
 		String advertencia = "";
 		
 		
@@ -251,6 +261,14 @@ public class GuiIngresarAutor extends JFrame {
 		{
 			
 			advertencia += "Debe de proporcionar un apellido para el autor \n";
+			respuesta = false;
+		}
+		if(acronimo.isEmpty()){
+			advertencia += "Debe de proporcionar un acronimo para el autor \n";
+			respuesta = false;
+		}
+		if(email.isEmpty() || !email.contains("@")){
+			advertencia += "Debe de proporcionar un email valido, ejemplo: autor@correo.com\n";
 			respuesta = false;
 		}
 		

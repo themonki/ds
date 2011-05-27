@@ -138,16 +138,24 @@ public class GuiIngresarPalabraClave extends JFrame {
 			
 			
 			if(validarDatos()){
-			
-				ControladorPalabraClave conPalabra = new ControladorPalabraClave();
-				if(conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText())>=1)
-				{
-				guicatalogarModi.vectoresParaComboBox();
-				guicatalogarModi.actualizarPalabras();
-				JOptionPane.showMessageDialog(null, "Se ingreso la Palabra Clave correctamente");
-				dispose();
-				}else{
-					JOptionPane.showMessageDialog(null, "La Palabra Clave ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+				String mensaje="Esta a punto de ingresar al sistema la palabra clave:\n";
+				mensaje+=campoNombre.getText()+"\n";
+				mensaje+="con la descripcion: "+ campoDescripcion.getText()+"\n";
+				mensaje+="¿esta completamente seguro de que desea ingresarla?";
+				int value = JOptionPane.showConfirmDialog(null, mensaje, "Confirmar Insertar Palabra CLave",
+						JOptionPane.YES_NO_OPTION);
+				//1 para no y 0 para si		
+				if(value==0){
+					ControladorPalabraClave conPalabra = new ControladorPalabraClave();
+					if(conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText())>=1)
+					{
+					guicatalogarModi.vectoresParaComboBox();
+					guicatalogarModi.actualizarPalabras();
+					JOptionPane.showMessageDialog(null, "Se ingreso la Palabra Clave correctamente");
+					dispose();
+					}else{
+						JOptionPane.showMessageDialog(null, "La Palabra Clave ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				
 			}
