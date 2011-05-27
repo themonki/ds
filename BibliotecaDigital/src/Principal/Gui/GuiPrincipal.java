@@ -192,11 +192,14 @@ public class GuiPrincipal extends JFrame
 			//centrar en la pantalla
 			Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 			//this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
-			this.setResizable(false);
-			this.setMinimumSize(new Dimension(this.getWidth()-1,this.getHeight()-1));
-			//setSize(screenSize.width,screenSize.height-60 );
+						
+			this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			
-			this.setExtendedState(this.MAXIMIZED_BOTH);
+			//this.setSize(screenSize);
+			//System.out.println(this.getWidth());
+			//setSize(this.getWidth(),this.getHeight());
+			//this.setMinimumSize(new Dimension(this.getWidth(),this.getHeight()));
+			this.setResizable(false);
 			setVisible(true);
 
 		}
