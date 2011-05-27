@@ -2,6 +2,7 @@ package Reportes.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -55,6 +56,7 @@ public class GuiReportes extends JTabbedPane{
 	int cantCondicion=0;
 	private JSpinner campoFechaNacimiento;
 	private JSpinner campoFechaNacimiento2;
+	private Vector<String> vectorFechas;
 	
 	GuiReportes()
 	{
@@ -64,7 +66,7 @@ public class GuiReportes extends JTabbedPane{
 	private void initComponents() {
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Reportes Basicos::");
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Reportes Usuarios::");
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
@@ -81,7 +83,18 @@ public class GuiReportes extends JTabbedPane{
 		vectorContablas.add("Areas");
 		
 		vectorAtributos= new Vector<String>();
+		vectorAtributos.add("genero ");
+		vectorAtributos.add("nivel_escolaridad");
+		vectorAtributos.add("vinculo_univalle");
 		
+		vectorFechas= new Vector<String>();
+		vectorFechas.add("fecha_nacimiento");
+		vectorFechas.add("fecha_registro");
+		vectorFechas.add("fecha_ultimo_acceso");
+
+		 
+		
+
 		habilitar= new JCheckBox("habilitar periodo");
 		habilitar.setFont(Estilos.fontSubrayados);
 		
@@ -92,7 +105,7 @@ public class GuiReportes extends JTabbedPane{
 		PanelreportesBasicos.setBackground(Color.WHITE);
 		panelRepAvanzados= new JPanel();
 		tablas = new JComboBox(vectorContablas);
-		atributos = new JComboBox();
+		atributos = new JComboBox(vectorAtributos);
 		condicion= new JComboBox(vectorCondiciones);
 		etiquetaTabla= new JLabel("TABLA");
 		etiquetaAtributo= new JLabel("CAMPOS DE LA TABLA");
@@ -116,6 +129,8 @@ public class GuiReportes extends JTabbedPane{
 		PanelreportesBasicos.add(atributos,retricciones);
 		retricciones.gridy++;
 		PanelreportesBasicos.add(habilitar,retricciones);
+		PanelreportesBasicos.add(new JComboBox(vectorFechas),retricciones);
+		
 		//PanelreportesBasicos.add(atributos,retricciones);
 		
 		//Crear spinner para la fecha de nacimiento.
@@ -190,7 +205,9 @@ public class GuiReportes extends JTabbedPane{
 		JFrame a= new JFrame();
 		a.add(al);
 		a.setVisible(true);
-		a.setSize(600, 500);
+		a.setSize(500,500);
+		a.setExtendedState(a.MAXIMIZED_BOTH);
+
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
@@ -208,7 +225,7 @@ public class GuiReportes extends JTabbedPane{
 	public void nuevaCondicon() 
 	{
 		if(cantCondicion==3)return;
-		JComboBox combo= new JComboBox(vectorContablas);
+		JComboBox combo= new JComboBox(vectorAtributos);
 		//combo.setName("atributo "+cantCondicion);
 		JComboBox combocondicion= new JComboBox(vectorCondiciones);
 		//combocondicion.setName("condicion "+cantCondicion);
@@ -220,6 +237,7 @@ public class GuiReportes extends JTabbedPane{
 		retricciones.anchor= GridBagConstraints.EAST;
 		PanelreportesBasicos.add(combo,retricciones);
 		retricciones.gridx=1;
+		retricciones.anchor= GridBagConstraints.CENTER;
 		PanelreportesBasicos.add(combocondicion,retricciones);
 		retricciones.gridx=2;
 		retricciones.gridx=2;
