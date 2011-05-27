@@ -95,7 +95,12 @@ public class GuiReportes extends JTabbedPane{
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
-		
+		TitledBorder borde2;
+		borde2 = BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Reportes Avanzados::");
+		borde2.setTitleColor(Estilos.colorTitulo);
+		borde2.setTitleFont(Estilos.fontTitulo);
+		borde2.setTitleJustification(TitledBorder.LEFT);
 
 		scroll= new JScrollPane();
 		vectorCondiciones= new Vector<String>();
@@ -212,9 +217,7 @@ public class GuiReportes extends JTabbedPane{
 		panelRepAvanzados= new JPanel();
 		scroll2= new JScrollPane();
 		
-		vectorCondicionesAvanzado= new Vector<String>();
-		vectorCondicionesAvanzado.add("Igual a");
-		vectorCondicionesAvanzado.add("Diferente a");
+	
 	
 		vectorContablasAvanzado= new Vector<String>();
 		vectorContablasAvanzado.add("Descargas");
@@ -226,12 +229,9 @@ public class GuiReportes extends JTabbedPane{
 		vectorAtributosAvanzado.add("Usuario que mas ...");
 		vectorAtributosAvanzado.add("Documento que mas..");
 		vectorAtributosAvanzado.add("Cantidad De ..");
-		vectorAtributosAvanzado.add("");
+		//vectorAtributosAvanzado.add("");
 		
-		vectorFechasAvanzado= new Vector<String>();
-		vectorFechasAvanzado.add("fecha_nacimiento");
-		vectorFechasAvanzado.add("fecha_registro");
-		vectorFechasAvanzado.add("fecha_ultimo_acceso");
+		
 
 		
 	
@@ -244,24 +244,24 @@ public class GuiReportes extends JTabbedPane{
 		
 		
 		panelRepAvanzados= new JPanel(new GridBagLayout());
-		panelRepAvanzados.setBorder(borde);
+		panelRepAvanzados.setBorder(borde2);
 		panelRepAvanzados.setBackground(Color.WHITE);
 		
 		tablasAvanzado = new JComboBox(vectorContablasAvanzado);
 		atributosAvanzado = new JComboBox(vectorAtributosAvanzado);
-		condicionAvanzado= new JComboBox(vectorCondicionesAvanzado);
+		//condicionAvanzado= new JComboBox(vectorCondicionesAvanzado);
 		etiquetaTablaAvanzado= new JLabel("TABLA");
 		etiquetaAtributoAvanzado= new JLabel("CONSULTAR POR   :");
-		etiquetaCondicionAvanzado= new JLabel("CONDICION");
+		//etiquetaCondicionAvanzado= new JLabel("CONDICION");
 		botonGenerarReporteAvanzado= new Button("Generar Reporte");
 		etiquetaTablaAvanzado.setForeground(Estilos.colorLabels);
 		etiquetaAtributoAvanzado.setForeground(Estilos.colorLabels);
-		etiquetaCondicionAvanzado.setForeground(Estilos.colorLabels);
+		//etiquetaCondicionAvanzado.setForeground(Estilos.colorLabels);
 		etiquetaTablaAvanzado.setFont(Estilos.fontLabels);
 		etiquetaAtributoAvanzado.setFont(Estilos.fontLabels);
-		etiquetaCondicionAvanzado.setFont(Estilos.fontLabels);
-		nuevaCondicionAvanzado= new Button("Añadir condicion");
-		nuevaCondicionAvanzado.addActionListener(new Manejador());
+		//etiquetaCondicionAvanzado.setFont(Estilos.fontLabels);
+		//nuevaCondicionAvanzado= new Button("Añadir condicion");
+		//nuevaCondicionAvanzado.addActionListener(new Manejador());
 		
 		retriccionesAvanzado= new GridBagConstraints();
 		retriccionesAvanzado.insets= new Insets(0, 0, 20, 40);
