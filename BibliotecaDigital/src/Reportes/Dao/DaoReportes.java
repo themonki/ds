@@ -7,8 +7,11 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import Consultas.Dao.DaoConsulta;
-import Consultas.Logica.Consulta;
+
 import Utilidades.FachadaBD;
+import Reportes.Logica.Reporte;;
+
+
 
 public class DaoReportes{
 	
@@ -183,35 +186,54 @@ FachadaBD fachada;
 		return areasAgrupadas;
 	}
 	
-	public Vector<String> consultaUsuariosAgrupados(String atributo)
+	public Reporte consultaUsuariosOrdenados(String atributo)
 	{
 		
 		String consultaSql;
 		
 	
+		Vector<String> columnas = new Vector<String>();
+		columnas.add("Login");
+		columnas.add("Nombre");
+		columnas.add("Apellido");
+		columnas.add("Vinculo con Univalle");
 		
-		consultaSql = "SELECT "+atributo+", count("+atributo+") as Cantidad "+
-		"FROM usuario AS d " +
-		"GROUP BY "+atributo+";";
+		Vector<String> registros = new Vector<String>();
+		Vector<String> orderBy = new Vector<String>();
+		
+		
+		
+		consultaSql = "SELECT login, nombre1 , apellido1,vinculo_univalle,"+atributo+" "+
+		"FROM usuario  " +
+		"ORDER BY "+atributo+";";
 		
 	
 		System.out.println(consultaSql);
 		ResultSet resultado;
-		Vector<String> usuarioAgrupado = new Vector<String>();
+		
 		try {
 		Connection conn = fachada.conectar();
 		Statement sentencia = conn.createStatement();			
 		resultado = sentencia.executeQuery(consultaSql);
+		String atributoAnterior = "";
 		
 		while (resultado.next())
 		{
 			
 			
-			usuarioAgrupado.add(resultado.getString(atributo));
-			usuarioAgrupado.add(resultado.getString("cantidad"));			
+			if(!atributoAnterior.equals(resultado.getString(atributo)))
+			{
+			
+				orderBy.add(resultado.getString(atributo));
+				registros.add("");
+			}
+			atributoAnterior = resultado.getString(atributo);
+			registros.add(resultado.getString("login")+"|"+resultado.getString("nombre1")+"|"+resultado.getString("apellido1")+"|"+resultado.getString("vinculo_univalle"));
+			
+			
 		
 		
-			usuarioAgrupado.add("SEPARADOR");			
+				
 			
 			
 		}
@@ -221,9 +243,14 @@ FachadaBD fachada;
 		} catch (Exception e) {
 			System.out.println(e);					
 		}
+		registros.remove(0);
+		System.out.println(registros);
+		System.out.println(columnas);
+		System.out.println(orderBy);
+		Reporte reporte = new Reporte(orderBy,columnas,registros,1,"");
 	
 
-		return usuarioAgrupado;
+		return reporte;
 	}
 	
 	public void consultaDocumentoBasica(String atributo, String condicion, String especificacion)
@@ -269,6 +296,55 @@ FachadaBD fachada;
 	
 
 	}
+	public Vector<String> consultaUsuariosAgrupados(String atributo)
+	{
+		Reporte reporte = new Reporte();
+		String consultaSql;
+		
+	
+		
+		consultaSql = "SELECT "+atributo+", count("+atributo+") as Cantidad "+
+		"FROM usuario AS d " +
+		"GROUP BY "+atributo+";";
+		
+	
+		System.out.println(consultaSql);
+		ResultSet resultado;
+		Vector<String> usuarioAgrupado = new Vector<String>();
+		try {
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();			
+		resultado = sentencia.executeQuery(consultaSql);
+		
+		while (resultado.next())
+		{
+			
+			
+			usuarioAgrupado.add(resultado.getString(atributo));
+			usuarioAgrupado.add(resultado.getString("cantidad"));			
+		
+		
+			usuarioAgrupado.add("SEPARADOR");			
+			
+			
+		}
+		conn.close();
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+	
+
+		return usuarioAgrupado;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void main(String args[])
 	{
@@ -279,8 +355,10 @@ FachadaBD fachada;
 		//daoReportes.consultaDocumentoBasica("titulo_principal", "=", "data base");
 		//daoReportes.consultaUsuarioEntreFechas("fecha_registro", "2011-05-20","2011-05-30" );
 		//daoReportes.consultaDocumentoEntreFechas("fecha_catalogacion", "2010-01-01", "2011-05-20");
-		//System.out.println(daoReportes.consultaUsuariosAgrupados("genero"));
-		System.out.println(daoReportes.consultaAreaAgrupados());
+	//System.out.println(daoReportes.consultaUsuariosAgrupados("genero"));
+		//System.out.println(daoReportes.consultaAreaAgrupados());
+		
+		System.out.println(daoReportes.consultaUsuariosOrdenados("nivel_escolaridad"));
 		
 	}
 	
