@@ -15,6 +15,21 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
+DROP TABLE Usuario CASCADE;
+DROP TABLE Area_Conocimiento CASCADE;
+DROP TABLE Interesa_Usuario_Area_Conocimiento;
+DROP TABLE TipoMaterial CASCADE;
+DROP TABLE Documento CASCADE;
+DROP SEQUENCE id_documento_seq CASCADE;
+DROP TABLE Descarga_Usuario_Documento CASCADE;
+DROP SEQUENCE id_autor_seq CASCADE;
+DROP TABLE Autor CASCADE;
+DROP TABLE Escribe_Autor_Documento CASCADE;
+DROP TABLE Consulta CASCADE;
+DROP TABLE Palabra_Clave CASCADE;
+DROP TABLE Tiene_Documento_Palabra_Clave CASCADE;
+DROP TABLE Pertenece_Documento_Area_Conocimiento CASCADE;
+
 --
 -- Name: area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
