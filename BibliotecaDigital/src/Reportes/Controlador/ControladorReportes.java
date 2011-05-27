@@ -15,6 +15,13 @@ public class ControladorReportes
 		
 		return usuariosAgrupados;
 	}
+	public Vector<String> consultarAreasAgrupadasAreaPadre(){
+		DaoReportes	daoReportes = new DaoReportes();
+		Vector<String> areasAgrupadas = daoReportes.consultaAreaAgrupados();
+		
+		return areasAgrupadas;
+	}
+	
 	
 
 }

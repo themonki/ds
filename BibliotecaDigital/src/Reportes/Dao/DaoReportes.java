@@ -142,6 +142,47 @@ FachadaBD fachada;
 
 	}
 	
+	public Vector<String> consultaAreaAgrupados()
+	{
+		
+		String consultaSql;
+		
+	
+		
+		consultaSql = "SELECT B.nombre AS Areas_Padre,count(B.nombre) AS Cantidad from area_conocimiento AS A ,area_conocimiento AS B where A.area_padre = B.id_area GROUP BY Areas_Padre;";
+		
+	
+		System.out.println(consultaSql);
+		ResultSet resultado;
+		Vector<String> areasAgrupadas = new Vector<String>();
+		try {
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();			
+		resultado = sentencia.executeQuery(consultaSql);
+		
+		while (resultado.next())
+		{
+			
+			
+			areasAgrupadas.add(resultado.getString("Areas_Padre"));
+			areasAgrupadas.add(resultado.getString("Cantidad"));			
+		
+		
+			areasAgrupadas.add("SEPARADOR");			
+			
+			
+		}
+		conn.close();
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+	
+
+		return areasAgrupadas;
+	}
+	
 	public Vector<String> consultaUsuariosAgrupados(String atributo)
 	{
 		
@@ -236,10 +277,10 @@ FachadaBD fachada;
 		DaoReportes daoReportes = new DaoReportes();
 		//daoReportes.consultaUsuarioBasica("vinculo_univalle", "=", "Estudiante de pregrado");
 		//daoReportes.consultaDocumentoBasica("titulo_principal", "=", "data base");
-		daoReportes.consultaUsuarioEntreFechas("fecha_registro", "2011-05-20","2011-05-30" );
+		//daoReportes.consultaUsuarioEntreFechas("fecha_registro", "2011-05-20","2011-05-30" );
 		//daoReportes.consultaDocumentoEntreFechas("fecha_catalogacion", "2010-01-01", "2011-05-20");
-		System.out.println(daoReportes.consultaUsuariosAgrupados("vinculo_univalle"));
-		
+		//System.out.println(daoReportes.consultaUsuariosAgrupados("genero"));
+		System.out.println(daoReportes.consultaAreaAgrupados());
 		
 	}
 	
