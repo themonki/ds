@@ -1,12 +1,3 @@
-/*
- * Nombre: Cristian R�os.
- * Responsabilidad: Realizar la debida manipulacion de datos referentes a la palabra clave
- * entre el controlador y la base de datos.
- * Nombre archivo: DaoPalabraClave.java
- * Fecha Creacion: Mayo 03 2011
- * Fecha ultima modificaci�n: Mayo 03 2011
- * */
-
 package GestionDocumento.Dao;
 
 import java.sql.Connection;
@@ -18,13 +9,30 @@ import java.util.Vector;
 import GestionDocumento.Logica.PalabraClave;
 import Utilidades.FachadaBD;
 
+/**
+ * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
+ * con la palabra clave
+ * @author Cristian Leonardo Rios
+ *
+ */
 public class DaoPalabraClave {
+	/**
+	 * Permite la conexion con la base de datos
+	 */
 	private FachadaBD fachada;
 
+	/**
+	 * Constructor por defecto que inicia la variable fachada
+	 */
 	public DaoPalabraClave() {
 		this.fachada = new FachadaBD();
 	}
 
+	/**
+	 * Metodo que inserta los datos de la palabra clave
+	 * @param pc - PalabraClave con los datos a insertar
+	 * @return retorna 1 si se inserto la plabra correctamente, -1 de ser lo contrario
+	 */
 	public int guardarPalabraClave(PalabraClave pc) {
 		String sqlInsert;
 		sqlInsert = "INSERT INTO Palabra_Clave(nombre, descripcion) VALUES('"
@@ -44,6 +52,11 @@ public class DaoPalabraClave {
 		return -1;
 	}
 
+	/**
+	 * Metodo que devuelve la palabra clave que coincida con el parametro
+	 * @param palabra - String con la palabra a buscar en el nombre
+	 * @return PalabraCLave que coincida con la busqueda
+	 */
 	public PalabraClave consultarPalabraClave(String palabra) {
 		PalabraClave pal = new PalabraClave();
 		String sqlSelect;
@@ -71,6 +84,10 @@ public class DaoPalabraClave {
 		return pal;
 	}
 
+	/**
+	 * Metodo que consulta todas las palabras clave disponibles y los devuelve en un vector
+	 * @return Vector<PalabraClave> con todas las palabras clave almacenadas
+	 */
 	public Vector<PalabraClave> consultarPalabras() {
 		Vector<PalabraClave> palabras = new Vector<PalabraClave>();
 		String sqlSelect;
@@ -97,7 +114,12 @@ public class DaoPalabraClave {
 		}
 		return palabras;
 	}
-	//metodo que devuelve los autores de un documento dado su id_documento
+	/**
+	 * Metodo que devuelve las palabras clave de un documento dado su id_documento
+	 * @param id_documento - String con la llave del documento
+	 * @return Vector <PalabraClave> con las palabras clave asociadas al documento
+	 * @author Edgar Andres Moncada
+	 */
 	public Vector <PalabraClave> consultarPalabrasClaveDocumento(String id_documento) {
 		Vector <PalabraClave> vpc = new Vector<PalabraClave>();
 		String sqlSelect;

@@ -1,10 +1,5 @@
 package GestionDocumento.Dao;
 
-/*
- * Nombre: Yerminson Gonzalez Munoz
- * Responsabilidad : Permite la inserccion consulta de autores.
- * */
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,15 +9,31 @@ import java.util.Vector;
 import GestionDocumento.Logica.Autor;
 import Utilidades.FachadaBD;
 
+/**
+ * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
+ * con el autor
+ * @author Yerminson Gonzalez Muñoz
+ *
+ */
 public class DaoAutor {
+	/**
+	 * Permite la conexion con la base de datos
+	 */
+	private FachadaBD fachada;
 
-	FachadaBD fachada;
-
+	/**
+	 * Constructor por defecto que inicia la variable fachada
+	 */
 	public DaoAutor() {
 		fachada = new FachadaBD();
 
 	}
 
+	/**
+	 * Metodo que inserta los datos del autor
+	 * @param autor - Autor con los datos a insertar
+	 * @return 1 si se inserto el autor correctamente, -1 de ser lo contrario
+	 */
 	public int guardarAutor(Autor autor) {
 		String sqlGuardar;
 		sqlGuardar = "INSERT INTO autor(id_autor, nombre, email, apellido,acronimo) VALUES ("
@@ -48,6 +59,11 @@ public class DaoAutor {
 		return -1;
 	}
 
+	/**
+	 * Metodo que devuelve el autor que coincida con el parametro de busqueda
+	 * @param parametro - String con el valor a buscar (el acronimo)
+	 * @return Autor que coincidio con el parametro
+	 */
 	public Autor consultarAutor(String parametro) {
 
 		Autor autor = new Autor();
@@ -78,6 +94,10 @@ public class DaoAutor {
 		return autor;
 	}
 
+	/**
+	 * Metodo que consulta todos los autores disponibles y los devuelve en un vector
+	 * @return Vector<Autor> con todos los autores almacenados
+	 */
 	public Vector<Autor> consultarAutores() {
 
 		Vector<Autor> autores = new Vector<Autor>();
@@ -107,8 +127,12 @@ public class DaoAutor {
 		return autores;
 
 	}
-	
-//metodo que devuelve los autores de un documento dado su id_documento
+	/**
+	 * Metodo que devuelve los autores de un documento dado su id_documento
+	 * @param id_documento - Strign con la llave del documento
+	 * @return Vector <Autor> con los autores que escribieron el documento
+	 * @author Edgar Andres Moncada
+	 */
 	public Vector <Autor> consultarAutoresDocumento(String id_documento) {
 		Vector <Autor> va = new Vector<Autor>();
 		String sqlSelect;
