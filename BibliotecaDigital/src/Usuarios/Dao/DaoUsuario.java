@@ -1,8 +1,3 @@
-/*
- * AUTOR: EDGAR ANDRES MONCADA
- * 
- * */
-
 package Usuarios.Dao;
 
 import java.sql.Connection;
@@ -20,17 +15,20 @@ import Utilidades.FachadaBD;
 
 
 /**
- * Clase que se encargara de insertar, modificar y consultar en la tabla de usuarios y en las relaciones
- * que tenga
+ * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
+ * con los usuarios
  * @author yerminson
  *
  */
 public class DaoUsuario {
 
+	/**
+	 * Permite la conexion con la base de datos
+	 */
 	FachadaBD fachada;
 
 	/**
-	 * Constructor por defecto
+	 * Constructor por defecto que inicia la variable fachada
 	 */
 	public DaoUsuario() {
 		fachada = new FachadaBD();
@@ -97,7 +95,6 @@ public class DaoUsuario {
 		}
 		return -1;
 	}
-
 	/**
 	 * Metodo que inserta en la tabla usuario los datos en el documento u
 	 * @param u - Usuario con los datos a insertar
@@ -134,7 +131,7 @@ public class DaoUsuario {
 	 * @param tipo - String con el tipo del Usuario
 	 * @param estado - boolean con el estado (activo o inactivo) del Usuario
 	 * @return 1 si se inserto correctamente, -1 de ser lo contrario
-	 * @author @author Edgar Andres Moncada
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarUsuario(String login, String contrasena, String nom1,
 			String nom2, String apll1, String apll2, String email,
@@ -178,7 +175,6 @@ public class DaoUsuario {
 		return -1;
 
 	}
-
 	/**
 	 * Metodo que permite modificar los datos de un usuario 
 	 * @param u - Usuario con los datos a modificar
@@ -195,7 +191,6 @@ public class DaoUsuario {
 		return value;
 
 	}
-
 	/**
 	 * Metodo que permite insertar las areas de interes de un usuario
 	 * @param login - String con el login del usuario
@@ -235,7 +230,7 @@ public class DaoUsuario {
 	/**
 	 * Metodo que retorna las areas de interes de un usuario
 	 * @param login - String con el login del usuario
-	 * @return 
+	 * @return Vector<AreaConocimiento> con las areas de interes del usuario
 	 * @author Edgar Andres Moncada
 	 */
 	public Vector<AreaConocimiento> consultarUsuarioAreas(String login) {
@@ -267,12 +262,12 @@ public class DaoUsuario {
 		return areas;
 
 	}
-	
-	/*añadido por cristian, retorna un vector con todos los usuarios que coincidan en algun atributo*/
 	/**
-	 * @param atributo
-	 * @param valor
-	 * @return
+	 * Metodo que retorna un vector con todos los usuarios que coincidan en algun atributo
+	 * @param atributo - Vector<String> los atributos de la tabla a buscar
+	 * @param valor - Vector<String> con los parametros a buscar
+	 * @return Vector<Usuario> que contiene los usuarios que coincidieron con la busqueda
+	 * @author Cristian Leonardo Rios
 	 */
 	public Vector<Usuario> consultarUsuarios(Vector<String> atributo, Vector<String> valor)
 	{
@@ -324,11 +319,11 @@ public class DaoUsuario {
 		}
 		return usuarios;
 	}
-	
-	/*retorna un usuario bscado por login*/
 	/**
-	 * @param login
-	 * @return
+	 * Metodo que retorna el usuario identificado con el login
+	 * @param login - String con el login del usuario
+	 * @return Usuario con todos sus datos
+	 * @author Cristian Leonardo Rios
 	 */
 	public Usuario consultarUsuario(String login)
 	 {
@@ -378,8 +373,10 @@ public class DaoUsuario {
 		
 //remueve todas las areas de un usuario
 	/**
-	 * @param login
-	 * @return
+	 * Metodo que remueve todas las areas de interes del usuario
+	 * @param login - String con el login del usuario
+	 * @return 1 si se elimino correctamente todas las areas, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int quitarUsuarioAreas(String login){		
 		String sql_borrar;
@@ -400,14 +397,18 @@ public class DaoUsuario {
 	
 	//actualizar el perfil y el estado de un usuario
 	/**
-	 * @param login
-	 * @param tipo
-	 * @param estado
-	 * @return
+	 * Metodo que actualiza el perfil de usuario y el estado del usuario, realizado por el
+	 * Administrador
+	 * @param login - String con el login del usuario a modificar
+	 * @param tipo - String con el tipo de usuario (1 para Administrador, 2 para Catalogador y
+	 *  3 para Usuario Normal)
+	 * @param estado - String con el estado (activo o inactivo) del usuario
+	 * @return 1 si se modifico correctamente, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarPerfilEstado(String login, String tipo, String estado){
 		String sql_actualizar;
-		int numFilas;
+		int value;
 		sql_actualizar = "UPDATE Usuario SET tipo = '"+tipo+"' , estado = '"+estado+"'" +
 				" WHERE login = '"+login+"';";
 
@@ -415,9 +416,9 @@ public class DaoUsuario {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
 			System.out.println(sql_actualizar);
-			numFilas = sentencia.executeUpdate(sql_actualizar);
+			value = sentencia.executeUpdate(sql_actualizar);
 			conn.close();
-			return numFilas;
+			return value;
 		} catch (SQLException e) {
 			System.out.println(e);
 		} catch (Exception e) {
@@ -425,8 +426,6 @@ public class DaoUsuario {
 		}
 		return -1;
 	}
-	
-	
 	/**
 	 * Metodo que actualiza en la base de datos el ultimo acceso de un usuario
 	 * @param login - String con la llave dell usuario
@@ -456,23 +455,26 @@ public class DaoUsuario {
 		return -1;
 	}
 	
-	
-	
-	
-	//metodo de consulta general
-	public Vector<Consulta> consultaDocumentosInteresUsuario(String parametro)
+	/**
+	 * Metodo que retorna un vector con las consultas de los ultimos documentos catalogados despues
+	 * del ultimo acceso del usuario que tengan que ver con sus areas de interes 
+	 * @param parametro - String con el login del usuario
+	 * @return Vector<Consulta> con los documentos que pertenescan a las areas de interes del usuario
+	 * @author Yerminson Gonzalez
+	 */
+	public Vector<Consulta> consultaDocumentosInteresUsuario(String login)
 	{
 		Vector<Consulta> consultas = new Vector<Consulta>();
 		String consultaFechaUltimoAcceso, consultaAreasInteresUsuario, consultaDocumentosAreaConocimientoUsuario, consultaCatalogadosDespuesUltimoAcceso;
 		
 		consultaFechaUltimoAcceso = "SELECT d.fecha_ultimo_acceso "+
 		"FROM Usuario AS d " +
-		"WHERE d.login = '"+parametro+"'";
+		"WHERE d.login = '"+login+"'";
 		
 	
 		consultaAreasInteresUsuario = "SELECT e.id_area "+
 		"FROM interesa_usuario_area_conocimiento AS e " +
-		"WHERE e.login = '"+parametro+"'";
+		"WHERE e.login = '"+login+"'";
 		
 		consultaDocumentosAreaConocimientoUsuario = "SELECT id_documento "+
 		"FROM pertenece_documento_area_conocimiento AS f NATURAL JOIN ("+consultaAreasInteresUsuario+") AS C ";
@@ -482,12 +484,8 @@ public class DaoUsuario {
 				"documento " +
 		"WHERE fecha_catalogacion > ("+consultaFechaUltimoAcceso+");";
 		
-		
-		
 		System.out.println(consultaCatalogadosDespuesUltimoAcceso);
 
-
-		
 		ResultSet resultado;		
 
 		try {
