@@ -101,7 +101,7 @@ public class GuiIngresarArea extends JFrame {
 		panelPrincipal.add(panel3, BorderLayout.CENTER);
 		panelPrincipal.add(panel4, BorderLayout.SOUTH);
 		add(panelPrincipal);
-		setSize(610, 340);
+		setSize(800, 340);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -153,33 +153,41 @@ public class GuiIngresarArea extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			if (validarDatos()) {
-
 				ControladorAreaConocimiento controlador = new ControladorAreaConocimiento();
 				String nombre = campoNombre.getText();
 				String descripcion = campoDescripcionArea.getText();
 				int padreSeleccionado = campoAreaPadre.getSelectedIndex();
-				String padre, contador = "" + campoAreaPadre.getItemCount();
-				;// este coso esta raro por que dependes del orden .
-				System.out.println(padreSeleccionado);
+				String padre, contador = "" + campoAreaPadre.getItemCount();				
 				if (padreSeleccionado == 0) {
 					padre = "";
 				} else {
 					padre = "" + padreSeleccionado;
 				}
+				String mensaje="Esta a punto de ingresar al sistema el area de conocimeinto:\n";
+				mensaje+=nombre+"\n";
+				mensaje+="con la descripcion: "+ descripcion+"\n";
+				mensaje+="con el area padre: "+campoAreaPadre.getSelectedItem()+"\n";
+				mensaje+="¿esta completamente seguro de que desea ingresarla?";
+				int value = JOptionPane.showConfirmDialog(null, mensaje, "Confirmar Insertar Area de Conocimiento",
+						JOptionPane.YES_NO_OPTION);
+				//1 para no y 0 para si		
+				if(value==0){
+					if(controlador.insertarAreaConocimiento(contador, nombre,
+							descripcion, padre) >= 1) {
+						guiCatalogarModi.vectoresParaComboBox();
+						guiCatalogarModi.actualizarAreas();
+						JOptionPane.showMessageDialog(null,
+								"Se ingreso el Area de Conocimiento correctamente");
+						dispose();
 
-				if (controlador.insertarAreaConocimiento(contador, nombre,
-						descripcion, padre) >= 1) {
-					guiCatalogarModi.vectoresParaComboBox();
-					guiCatalogarModi.actualizarAreas();
-					JOptionPane.showMessageDialog(null,
-							"Se ingreso el Area de Conocimiento correctamente");
-					dispose();
-
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"El Area de Conocimiento ya existe", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"El Area de Conocimiento ya existe", "ERROR",
+								JOptionPane.ERROR_MESSAGE);
+					}					
 				}
+				
+
 			}
 
 		}
