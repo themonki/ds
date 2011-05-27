@@ -3,6 +3,7 @@ package Reportes.Controlador;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
+import Reportes.Logica.Reporte;
 
  
 import Reportes.Dao.DaoReportes;
@@ -21,6 +22,15 @@ public class ControladorReportes
 		
 		return areasAgrupadas;
 	}
+	public Reporte consultarUsuariosOrdenados(String atributo){
+		DaoReportes	daoReportes = new DaoReportes();
+		
+		Reporte reporte = daoReportes.consultaUsuariosOrdenados(atributo);
+		
+		
+		return reporte;
+	}
+	
 	
 	
 
