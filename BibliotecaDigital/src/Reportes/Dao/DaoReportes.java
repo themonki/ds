@@ -166,11 +166,11 @@ FachadaBD fachada;
 		{
 			
 			
-			usuarioAgrupado.add(resultado.getString(atributo)+" ");
-			usuarioAgrupado.add(resultado.getString("cantidad")+" ");			
+			usuarioAgrupado.add(resultado.getString(atributo));
+			usuarioAgrupado.add(resultado.getString("cantidad"));			
 		
 		
-			usuarioAgrupado.add(resultado.getString("SEPARADOR")+" ");			
+			usuarioAgrupado.add("SEPARADOR");			
 			
 			
 		}
@@ -238,7 +238,7 @@ FachadaBD fachada;
 		//daoReportes.consultaDocumentoBasica("titulo_principal", "=", "data base");
 		daoReportes.consultaUsuarioEntreFechas("fecha_registro", "2011-05-20","2011-05-30" );
 		//daoReportes.consultaDocumentoEntreFechas("fecha_catalogacion", "2010-01-01", "2011-05-20");
-		daoReportes.consultaUsuariosAgrupados("vinculo_univalle");
+		System.out.println(daoReportes.consultaUsuariosAgrupados("vinculo_univalle"));
 		
 		
 	}
