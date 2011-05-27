@@ -188,18 +188,19 @@ public class GuiPrincipal extends JFrame
 			contenedor.add(estado, BorderLayout.SOUTH);
 			contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 			
-			
+			//setSize(800, 500);
 			//centrar en la pantalla
 			Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+			setSize(screenSize);
 			//this.setLocation((screenSize.width)/2-getWidth()/2,(screenSize.height)/2-getHeight()/2);
 						
-			this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			
 			//this.setSize(screenSize);
 			//System.out.println(this.getWidth());
 			//setSize(this.getWidth(),this.getHeight());
 			//this.setMinimumSize(new Dimension(this.getWidth(),this.getHeight()));
-			this.setResizable(false);
+			//this.setResizable(false);
 			setVisible(true);
 
 		}
