@@ -34,6 +34,7 @@ import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Controlador.ControladorAutor;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
 import Principal.Gui.GuiPrincipal;
+import Reportes.Controlador.ControladorReportes;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
@@ -55,6 +56,7 @@ public class GuiReportes extends JTabbedPane{
 	ControladorAutor controladorAutor ;
 	ControladorTipoMaterial controladorTipoMaterial;
 	ControladorDocumento controladorDocumento; 
+	ControladorReportes controladorReporte;
 	
 	int cantCondicion=0;
 	private JSpinner campoFechaNacimiento;
@@ -81,9 +83,11 @@ public class GuiReportes extends JTabbedPane{
 	private JCheckBox habilitarPorMes;
 	private JCheckBox habilitarPorAño;
 	private JCheckBox habilitarPorHora;
+	private Button botonAvanzado;
 	
 	GuiReportes()
 	{
+		controladorReporte= new ControladorReportes();
 		initComponents();
 	}
 
@@ -116,6 +120,7 @@ public class GuiReportes extends JTabbedPane{
 		vectorAtributos.add("genero ");
 		vectorAtributos.add("nivel_escolaridad");
 		vectorAtributos.add("vinculo_univalle");
+		vectorAtributos.add("perfil");
 		
 		vectorFechas= new Vector<String>();
 		vectorFechas.add("fecha_nacimiento");
@@ -128,17 +133,20 @@ public class GuiReportes extends JTabbedPane{
 		nuevaCondicion= new Button("Añadir condicion");
 		nuevaCondicion.addActionListener(new Manejador());
 		
+		
 		PanelreportesBasicos= new JPanel(new GridBagLayout());
-		//PanelreportesBasicos.setBorder(borde);
+		PanelreportesBasicos.setBorder(borde);
 		PanelreportesBasicos.setBackground(Color.WHITE);
 		
 		tablas = new JComboBox(vectorContablas);
 		atributos = new JComboBox(vectorAtributos);
 		condicion= new JComboBox(vectorCondiciones);
 		etiquetaTabla= new JLabel("TABLA");
-		etiquetaAtributo= new JLabel("CAMPOS DE LA TABLA");
+		etiquetaAtributo= new JLabel("AGRUPADOS POR  :");
 		etiquetaCondicion= new JLabel("CONDICION");
 		botonGenerarReporte= new Button("Generar Reporte");
+		botonAvanzado= new Button("Generar Reporte");
+		
 		etiquetaTabla.setForeground(Estilos.colorLabels);
 		etiquetaAtributo.setForeground(Estilos.colorLabels);
 		etiquetaCondicion.setForeground(Estilos.colorLabels);
@@ -169,7 +177,11 @@ public class GuiReportes extends JTabbedPane{
 		JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
 		campoFechaNacimiento.setEditor(spinnerFecha);
 	    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
-	  //Crear spinner para la fecha de nacimiento.
+	  
+	    //-------------------------------------
+	    campoFechaNacimiento.setEnabled(false);
+	    //-------------------------------------
+	    //Crear spinner para la fecha de nacimiento.
 		SpinnerModel modeloFecha2 = new SpinnerDateModel();
 		campoFechaNacimiento2 = new JSpinner(modeloFecha2);
 	    campoFechaNacimiento2.setFont(Estilos.fontLabels);
@@ -177,7 +189,9 @@ public class GuiReportes extends JTabbedPane{
 		JSpinner.DateEditor spinnerFecha2 = new JSpinner.DateEditor(campoFechaNacimiento2,"yyyy-MM-dd");
 		campoFechaNacimiento2.setEditor(spinnerFecha2);
 	    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(true);
-	    
+	    //-------------------------------------
+	    campoFechaNacimiento2.setEnabled(false);
+	    //-------------------------------------
 	    retricciones.gridy++;
 	    retricciones.gridx=0;
 	    PanelreportesBasicos.add(new JLabel("Desde :"),retricciones);
@@ -197,7 +211,7 @@ public class GuiReportes extends JTabbedPane{
 		retricciones.gridy++;
 		retricciones.anchor=GridBagConstraints.WEST;
 		retricciones.gridwidth=2;
-		PanelreportesBasicos.add(nuevaCondicion,retricciones);
+		//PanelreportesBasicos.add(nuevaCondicion,retricciones);
 		retricciones.gridy++;
 		
 		//PanelreportesBasicos.add(condicion,retricciones);
@@ -229,6 +243,7 @@ public class GuiReportes extends JTabbedPane{
 		vectorAtributosAvanzado.add("Usuario que mas ...");
 		vectorAtributosAvanzado.add("Documento que mas..");
 		vectorAtributosAvanzado.add("Cantidad De ..");
+		
 		//vectorAtributosAvanzado.add("");
 		
 		
@@ -278,8 +293,9 @@ public class GuiReportes extends JTabbedPane{
 		panelRepAvanzados.add(habilitarPorAño,retriccionesAvanzado);
 		panelRepAvanzados.add(habilitarPorMes,retriccionesAvanzado);
 		
-		panelRepAvanzados.add(habilitarPorDia,retriccionesAvanzado);
+		retriccionesAvanzado.gridy++;
 		
+		panelRepAvanzados.add(habilitarPorDia,retriccionesAvanzado);
 		panelRepAvanzados.add(habilitarPorHora,retriccionesAvanzado);
 		
 		
@@ -335,7 +351,7 @@ public class GuiReportes extends JTabbedPane{
 		retriccionesAvanzado.gridx=1;
 		
 		retricciones.insets= new Insets(100, 0, 0, 0);		
-		panelRepAvanzados.add(botonGenerarReporte,retriccionesAvanzado);
+		panelRepAvanzados.add(botonAvanzado,retriccionesAvanzado);
 	
 		
 		retriccionesAvanzado.insets= new Insets(0, 0, 0, 0);
@@ -380,12 +396,21 @@ public class GuiReportes extends JTabbedPane{
 		public void actionPerformed(ActionEvent evento)
 		{
 			if (evento.getSource()==habilitar);
-			nuevaCondicon();
-			
+			if (evento.getSource()== botonGenerarReporte)
+				{
+				//tablas.getSelectedItem();
+				
+				controladorReporte.equals(atributos.getSelectedItem());
+				
+				
+				
+				
+				}
+			//nuevaCondicon();
 		}	
 	}
 
-	public void nuevaCondicon() 
+	/*public void nuevaCondicon() 
 	{
 		if(cantCondicion==3)return;
 		JComboBox combo= new JComboBox(vectorAtributos);
@@ -412,6 +437,6 @@ public class GuiReportes extends JTabbedPane{
 		
 		
 		PanelreportesBasicos.updateUI();
-	}
+	}*/
 	
 }

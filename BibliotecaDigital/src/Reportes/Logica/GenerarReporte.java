@@ -149,9 +149,7 @@ public class GenerarReporte {
 			table.setSpacingAfter(10);
 			table.setWidthPercentage(90);
 			informe.add(table);
-			
-			
-			
+		
 		}
 		
         informe.close();
