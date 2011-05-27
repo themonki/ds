@@ -15,22 +15,6 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
-
-DROP TABLE Usuario CASCADE;
-DROP TABLE Area_Conocimiento CASCADE;
-DROP TABLE Interesa_Usuario_Area_Conocimiento;
-DROP TABLE TipoMaterial CASCADE;
-DROP TABLE Documento CASCADE;
-DROP SEQUENCE id_documento_seq CASCADE;
-DROP TABLE Descarga_Usuario_Documento CASCADE;
-DROP SEQUENCE id_autor_seq CASCADE;
-DROP TABLE Autor CASCADE;
-DROP TABLE Escribe_Autor_Documento CASCADE;
-DROP TABLE Consulta CASCADE;
-DROP TABLE Palabra_Clave CASCADE;
-DROP TABLE Tiene_Documento_Palabra_Clave CASCADE;
-DROP TABLE Pertenece_Documento_Area_Conocimiento CASCADE;
-
 --
 -- Name: area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
 --
@@ -43,7 +27,7 @@ CREATE TABLE area_conocimiento (
 );
 
 
---ALTER TABLE public.area_conocimiento OWNER TO yerdogm;
+ALTER TABLE public.area_conocimiento OWNER TO yerdogm;
 
 --
 -- Name: id_autor_seq; Type: SEQUENCE; Schema: public; Owner: yerdogm
@@ -57,7 +41,7 @@ CREATE SEQUENCE id_autor_seq
     CACHE 1;
 
 
---ALTER TABLE public.id_autor_seq OWNER TO yerdogm;
+ALTER TABLE public.id_autor_seq OWNER TO yerdogm;
 
 --
 -- Name: id_autor_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
@@ -79,7 +63,7 @@ CREATE TABLE autor (
 );
 
 
---ALTER TABLE public.autor OWNER TO yerdogm;
+ALTER TABLE public.autor OWNER TO yerdogm;
 
 --
 -- Name: consulta; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -93,7 +77,7 @@ CREATE TABLE consulta (
 );
 
 
---ALTER TABLE public.consulta OWNER TO yerdogm;
+ALTER TABLE public.consulta OWNER TO yerdogm;
 
 --
 -- Name: descarga_usuario_documento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -107,7 +91,7 @@ CREATE TABLE descarga_usuario_documento (
 );
 
 
---ALTER TABLE public.descarga_usuario_documento OWNER TO yerdogm;
+ALTER TABLE public.descarga_usuario_documento OWNER TO yerdogm;
 
 --
 -- Name: id_documento_seq; Type: SEQUENCE; Schema: public; Owner: yerdogm
@@ -121,7 +105,7 @@ CREATE SEQUENCE id_documento_seq
     CACHE 1;
 
 
---ALTER TABLE public.id_documento_seq OWNER TO yerdogm;
+ALTER TABLE public.id_documento_seq OWNER TO yerdogm;
 
 --
 -- Name: id_documento_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
@@ -154,7 +138,7 @@ CREATE TABLE documento (
 );
 
 
---ALTER TABLE public.documento OWNER TO yerdogm;
+ALTER TABLE public.documento OWNER TO yerdogm;
 
 --
 -- Name: escribe_autor_documento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -166,7 +150,7 @@ CREATE TABLE escribe_autor_documento (
 );
 
 
---ALTER TABLE public.escribe_autor_documento OWNER TO yerdogm;
+ALTER TABLE public.escribe_autor_documento OWNER TO yerdogm;
 
 --
 -- Name: interesa_usuario_area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -178,7 +162,7 @@ CREATE TABLE interesa_usuario_area_conocimiento (
 );
 
 
---ALTER TABLE public.interesa_usuario_area_conocimiento OWNER TO yerdogm;
+ALTER TABLE public.interesa_usuario_area_conocimiento OWNER TO yerdogm;
 
 --
 -- Name: palabra_clave; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -190,7 +174,7 @@ CREATE TABLE palabra_clave (
 );
 
 
---ALTER TABLE public.palabra_clave OWNER TO yerdogm;
+ALTER TABLE public.palabra_clave OWNER TO yerdogm;
 
 --
 -- Name: pertenece_documento_area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -202,7 +186,7 @@ CREATE TABLE pertenece_documento_area_conocimiento (
 );
 
 
---ALTER TABLE public.pertenece_documento_area_conocimiento OWNER TO yerdogm;
+ALTER TABLE public.pertenece_documento_area_conocimiento OWNER TO yerdogm;
 
 --
 -- Name: tiene_documento_palabra_clave; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -214,7 +198,7 @@ CREATE TABLE tiene_documento_palabra_clave (
 );
 
 
---ALTER TABLE public.tiene_documento_palabra_clave OWNER TO yerdogm;
+ALTER TABLE public.tiene_documento_palabra_clave OWNER TO yerdogm;
 
 --
 -- Name: tipomaterial; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -226,7 +210,7 @@ CREATE TABLE tipomaterial (
 );
 
 
---ALTER TABLE public.tipomaterial OWNER TO yerdogm;
+ALTER TABLE public.tipomaterial OWNER TO yerdogm;
 
 --
 -- Name: usuario; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -253,7 +237,7 @@ CREATE TABLE usuario (
 );
 
 
---ALTER TABLE public.usuario OWNER TO yerdogm;
+ALTER TABLE public.usuario OWNER TO yerdogm;
 
 --
 -- Data for Name: area_conocimiento; Type: TABLE DATA; Schema: public; Owner: yerdogm
@@ -824,28 +808,28 @@ gráficos	una representación de datos, generalmente numéricos, mediante línea
 --
 
 COPY usuario (login, contrasena, nombre1, nombre2, apellido1, apellido2, email, nivel_escolaridad, pregunta_secreta, respuesta_secreta, vinculo_univalle, genero, fecha_nacimiento, fecha_registro, tipo, estado, fecha_ultimo_acceso) FROM stdin;
-anonimo	anonimo	anonimo	anonimo	anonimo	univalle	anonimo@correo	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	0	f	\N
-clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	Tecnología	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t	\N
-monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media Académica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t	\N
-maria	maria	maria	andrea	cruz		maria@gmail.com	Media Académica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t	\N
-felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media Académica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	\N
-yerdogm	yerdogm	yerminson	doney	gonzales	muños	yerdogm@gmail.com	Media Académica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	\N
-alberto	alberto	alberto		gonzales		alberto@gmail.com	Básica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	\N
-carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	Básica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	\N
-camilo	camilo	camilo		suarez		camilo@gmail.com	Tecnologí­a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t	\N
-laura	laura	laura		rodrigues		laura@gmail.com	Media Técnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t	\N
-marcela	marcela	marcela		lozano		marcela@yahoo.es	Maestrí­a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t	\N
-alvaivan	alvaivan1	álvaro	iván	gómez	molina	alvaiva-4558@gmail.com	Tecnología	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	1987-05-12	2011-04-10	3	t	\N
-albertc	albertc2	carlos	alberto	molina	lotero	albertcpenc13@hotmail.es	Tecnología	Ciudad natal de la abuela	cali	Jubilado	M	1980-12-12	2011-06-16	2	t	\N
-herna08	herna083	hernán	darío	naranjo	naranjo	herna08_12ecw@yahoo.es	Tecnología	Superheroe preferido	superman	Estudiante de pregrado	M	1967-01-12	2011-02-22	3	t	\N
-jo23leon	jo23leon4	jorge	león	osorio	osorio	jo23leonhero@univalle.edu	Tecnología	Ciudad donde pasa las vacaciones	cartagena	Egresado	M	1980-04-17	2011-02-10	3	t	\N
-jhon7452	jhon74525	john	jairo	duque	alzate	jhon7452-super@correounivalle.edu.co	Especialización Técnica	Nombre de la primer mascota	lulu	Egresado	M	1979-07-28	2011-02-27	2	t	\N
-armidb45	armidb456	armid	benjamín	palacio	duque	armidb45-yo@gmail.com	Profesional/Universidad	Cuento que mas veces ha leido	atalanta	Profesor activo	M	1980-11-10	2011-05-28	3	t	\N
-elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	Profesional/Universidad	Mejor amigo de la infancia	angie	Estudiante de postgrado	M	1981-04-24	2011-05-17	3	t	\N
-shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-04-15	3	t	\N
-osito32	osito321	gabriel	jaime	alzate	palacio	osito32-lomaslindo06@live.com	Técnica Profesional	Superheroe preferido	batman	Estudiante de postgrado	M	1992-02-03	2011-06-03	3	t	\N
-marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-02-21	2	f	\N
-admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t	2011-05-26
+anonimo	anonimo	anonimo	anonimo	anonimo	univalle	anonimo@correo	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	0	f	2010-05-29
+clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	Tecnología	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t	2010-05-29
+monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media Académica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t	2010-05-29
+maria	maria	maria	andrea	cruz		maria@gmail.com	Media Académica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t	2010-05-29
+felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media Académica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	2010-05-29
+yerdogm	yerdogm	yerminson	doney	gonzales	muños	yerdogm@gmail.com	Media Académica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	2010-05-29
+alberto	alberto	alberto		gonzales		alberto@gmail.com	Básica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	2010-05-29
+carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	Básica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	2010-05-29
+camilo	camilo	camilo		suarez		camilo@gmail.com	Tecnologí­a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t	2010-05-29
+laura	laura	laura		rodrigues		laura@gmail.com	Media Técnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t	2010-05-29
+marcela	marcela	marcela		lozano		marcela@yahoo.es	Maestrí­a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t	2010-05-29
+alvaivan	alvaivan1	álvaro	iván	gómez	molina	alvaiva-4558@gmail.com	Tecnología	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	1987-05-12	2011-04-10	3	t	2010-05-29
+albertc	albertc2	carlos	alberto	molina	lotero	albertcpenc13@hotmail.es	Tecnología	Ciudad natal de la abuela	cali	Jubilado	M	1980-12-12	2011-06-16	2	t	2010-05-29
+herna08	herna083	hernán	darío	naranjo	naranjo	herna08_12ecw@yahoo.es	Tecnología	Superheroe preferido	superman	Estudiante de pregrado	M	1967-01-12	2011-02-22	3	t	2010-05-29
+jo23leon	jo23leon4	jorge	león	osorio	osorio	jo23leonhero@univalle.edu	Tecnología	Ciudad donde pasa las vacaciones	cartagena	Egresado	M	1980-04-17	2011-02-10	3	t	2010-05-29
+jhon7452	jhon74525	john	jairo	duque	alzate	jhon7452-super@correounivalle.edu.co	Especialización Técnica	Nombre de la primer mascota	lulu	Egresado	M	1979-07-28	2011-02-27	2	t	2010-05-29
+armidb45	armidb456	armid	benjamín	palacio	duque	armidb45-yo@gmail.com	Profesional/Universidad	Cuento que mas veces ha leido	atalanta	Profesor activo	M	1980-11-10	2011-05-28	3	t	2010-05-29
+elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	Profesional/Universidad	Mejor amigo de la infancia	angie	Estudiante de postgrado	M	1981-04-24	2011-05-17	3	t	2010-05-29
+shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-04-15	3	t	2010-05-29
+osito32	osito321	gabriel	jaime	alzate	palacio	osito32-lomaslindo06@live.com	Técnica Profesional	Superheroe preferido	batman	Estudiante de postgrado	M	1992-02-03	2011-06-03	3	t	2010-05-29
+marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-02-21	2	f	2010-05-29
+admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t	2010-05-29
 \.
 
 
@@ -1093,10 +1077,10 @@ ALTER TABLE ONLY documento
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
 
---REVOKE ALL ON SCHEMA public FROM PUBLIC;
---REVOKE ALL ON SCHEMA public FROM postgres;
---GRANT ALL ON SCHEMA public TO postgres;
---GRANT ALL ON SCHEMA public TO PUBLIC;
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
