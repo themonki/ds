@@ -30,6 +30,13 @@ public class ControladorReportes
 		
 		return reporte;
 	}
+	public Reporte consultarUsuariosOrdenadosTotales(String atributo){
+		DaoReportes	daoReportes = new DaoReportes();
+		
+		Reporte reporte = daoReportes.consultaUsuariosOrdenadosTotales(atributo);		
+		
+		return reporte;
+	}
 	
 	
 	

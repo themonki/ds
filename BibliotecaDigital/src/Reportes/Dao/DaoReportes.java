@@ -186,6 +186,58 @@ FachadaBD fachada;
 		return areasAgrupadas;
 	}
 	
+	public Reporte consultaUsuariosOrdenadosTotales(String atributo)
+	{
+		
+		String consultaSql;
+		
+	
+		Vector<String> columnas = new Vector<String>();
+		columnas.add(atributo);
+		columnas.add("Cantidad");
+		
+		
+		Vector<String> registros = new Vector<String>();
+		Vector<String> orderBy = new Vector<String>();
+		
+		
+		
+		consultaSql = "SELECT "+atributo+", count("+atributo+") as Cantidad "+
+		"FROM usuario AS d " +
+		"GROUP BY "+atributo+";";
+		
+	
+		System.out.println(consultaSql);
+		ResultSet resultado;
+		
+		try {
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();			
+		resultado = sentencia.executeQuery(consultaSql);
+		orderBy.add("Usuarios por "+ atributo);
+	
+		
+		while (resultado.next())
+		{			
+			registros.add(resultado.getString(atributo)+"|"+resultado.getString("Cantidad"));
+			
+		}
+		conn.close();
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		
+		System.out.println(registros);
+		System.out.println(columnas);
+		System.out.println(orderBy);
+		Reporte reporte = new Reporte(orderBy,columnas,registros,1,"");
+	
+
+		return reporte;
+	}
+	
 	public Reporte consultaUsuariosOrdenados(String atributo)
 	{
 		
@@ -358,7 +410,8 @@ FachadaBD fachada;
 	//System.out.println(daoReportes.consultaUsuariosAgrupados("genero"));
 		//System.out.println(daoReportes.consultaAreaAgrupados());
 		
-		System.out.println(daoReportes.consultaUsuariosOrdenados("nivel_escolaridad"));
+		//System.out.println(daoReportes.consultaUsuariosOrdenados("nivel_escolaridad"));
+		System.out.println(daoReportes.consultaUsuariosOrdenadosTotales("genero"));
 		
 	}
 	
