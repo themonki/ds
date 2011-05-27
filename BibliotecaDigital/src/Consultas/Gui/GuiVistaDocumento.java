@@ -39,6 +39,7 @@ import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiPrincipal;
 import Principal.Gui.GuiUsuarioNormal;
 import Usuarios.Dao.DaoUsuario;
+import Usuarios.Gui.GuiNovedades;
 import Utilidades.Estilos;
 
 
@@ -601,6 +602,12 @@ public class GuiVistaDocumento extends JScrollPane {
 						GuiCatalogador.cambiarPanelEditarDocumentoAvanzado();
 						GuiConsultaAvanzada.restaurarTodo();
 					}
+					else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+					{
+				
+						
+						GuiNovedades.restaurar();
+					}
 					
 					
 				}else if(GuiConsultaBasica.TIPOUSUARIO == 1)
@@ -616,6 +623,11 @@ public class GuiVistaDocumento extends JScrollPane {
 					{
 						GuiAdministrador.cambiarPanelEditarDocumentoAvanzado();
 						GuiConsultaAvanzada.restaurarTodo();
+					}
+					else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+					{
+						
+						GuiNovedades.restaurar();
 					}
 				}
 					
@@ -640,6 +652,11 @@ public class GuiVistaDocumento extends JScrollPane {
 					
 					GuiConsultaAvanzada.restaurar();
 				}
+				else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+				{
+					
+					GuiNovedades.restaurar();
+				}
 			}else {
 
 				JLabel etiquetaAConsultar = (JLabel) evento.getSource();
@@ -660,6 +677,9 @@ public class GuiVistaDocumento extends JScrollPane {
 					}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
 					{
 						consultarAvanzado(etiquetaAConsultar.getText());	
+					}else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+					{
+						consultarNovedades(etiquetaAConsultar.getText());	
 					}
 					
 					flag = 1;
@@ -793,7 +813,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		GuiConsultaBasica.campoConsulta.setText(parametro);
 		GuiResultadoConsulta.TIPOCONSULTA = 1;
 		GuiConsultaBasica.restaurar();
-		//GuiConsultaBasica.panel.add(GuiConsultaBasica.resultadoConsulta, BorderLayout.CENTER);
+		
 		GuiConsultaBasica.panel.updateUI();
 		if(vector.size() <=0 && !parametro.equals("")){
 			
@@ -803,6 +823,66 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 	}
 	
+	private static void consultarNovedades(String parametro)
+	{
+		ControladorConsulta controlador = new ControladorConsulta();
+		//mira que se hace con loque retorna
+		boolean seleccionBusquedaCompeta;
+		if(consultandoAutores == true)
+		{
+			seleccionBusquedaCompeta = false;
+			
+		}else{
+
+		seleccionBusquedaCompeta = true;
+	
+		}
+		
+		
+		
+		Vector<Consulta> vector = new Vector<Consulta>();
+		
+		if(!parametro.equals("")){
+			vector = null;
+			vector = controlador.consultaGeneral(parametro, seleccionBusquedaCompeta);					
+		}else{
+			JOptionPane.showMessageDialog(null, "Por favor ingrese parametros para la busqueda",
+					"No ahi parametros", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
+		int cantidad = 10;
+		System.out.println(vector);
+		GuiConsultaBasica.resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
+		GuiConsultaBasica.campoConsulta.setText(parametro);
+		GuiResultadoConsulta.TIPOCONSULTA = 1;
+		GuiConsultaBasica.panel.add(GuiConsultaBasica.resultadoConsulta, BorderLayout.CENTER);
+		GuiNovedades.restaurar();
+		
+		if(GuiConsultaAvanzada.TIPOUSUARIO == 0)
+		{
+			//GuiPrincipal.cambiarAvanzadaInicio();
+		}
+		else if(GuiConsultaAvanzada.TIPOUSUARIO == 3)
+		{
+			//GuiUsuarioNormal.cambiarAvanzadaInicio();
+		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 2)
+		{
+			//GuiCatalogador.cambiarAvanzadaInicio();
+		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 1)
+		{
+			// GuiAdministrador.cambiarAvanzadaInicio();
+		}
+		GuiConsultaBasica.panel.updateUI();
+		if(vector.size() <=0 && !parametro.equals("")){
+			
+			JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
+			
+		}	
+		
+	}
+	
+
 	private static void consultarAvanzado(String parametro)
 	{
 		ControladorConsulta controlador = new ControladorConsulta();
@@ -843,13 +923,13 @@ public class GuiVistaDocumento extends JScrollPane {
 		{
 			GuiPrincipal.cambiarAvanzadaInicio();
 		}
-		else if(GuiConsultaAvanzada.TIPOUSUARIO == 1)
+		else if(GuiConsultaAvanzada.TIPOUSUARIO == 3)
 		{
 			GuiUsuarioNormal.cambiarAvanzadaInicio();
 		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 2)
 		{
 			GuiCatalogador.cambiarAvanzadaInicio();
-		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 3)
+		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 1)
 		{
 			GuiAdministrador.cambiarAvanzadaInicio();
 		}
@@ -861,6 +941,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		}	
 		
 	}
+	
 	public static void main(String[] args) {
 		
 	

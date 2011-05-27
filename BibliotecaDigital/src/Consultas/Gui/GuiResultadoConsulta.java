@@ -27,6 +27,7 @@ import javax.swing.border.TitledBorder;
 import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiUsuarioNormal;
+import Usuarios.Gui.GuiNovedades;
 import Utilidades.Estilos;
 import Utilidades.Button;
 
@@ -230,7 +231,11 @@ public class GuiResultadoConsulta extends JScrollPane{
 				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 2)
 				{
 					tu = GuiConsultaAvanzada.TIPOUSUARIO;
+				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 3)
+				{
+					tu = GuiNovedades.TIPOUSUARIO;
 				}
+
 
 				if (tu == 0) {
 					conConsulta.insertarConsultaDocumentoUsuario(d.getId_doc(),
@@ -260,10 +265,9 @@ public class GuiResultadoConsulta extends JScrollPane{
 
 				} else if (GuiResultadoConsulta.TIPOCONSULTA == 3) {
 					
-					/*
-					 * Aca debe ir lo referente a la clase vista novedades.
-					 * 
-					 * */
+					GuiNovedades.vistaDocumento = new GuiVistaDocumento(d);
+					GuiNovedades.ponerDescripcion();
+				
 
 				}
 

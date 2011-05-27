@@ -28,14 +28,14 @@ public class GuiNovedades extends JScrollPane
 	public static JPanel panel;
 	public static GuiResultadoConsulta resultadoConsulta;
 	public static GuiVistaDocumento vistaDocumento;
-	
+	static TitledBorder borde;
 	public GuiNovedades()
 	{		
 		panel = new JPanel(new BorderLayout());
 		String title = "::Novedades::";
 
 		// Linea y titulo del panel.
-		TitledBorder borde;
+
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createLineBorder(Estilos.colorBorder), title);
 		borde.setTitleColor(Estilos.colorTitulo);
@@ -58,12 +58,14 @@ public class GuiNovedades extends JScrollPane
 	public static void ponerDescripcion()
 	{
 		panel.remove(resultadoConsulta);
+		panel.setBorder(null);
 		panel.add(vistaDocumento, BorderLayout.CENTER);
 		panel.updateUI();
 	}
 	public static void restaurar()
 	{
-		panel.remove(vistaDocumento);		
+		panel.remove(vistaDocumento);	
+		panel.setBorder(borde);
 		panel.add(resultadoConsulta, BorderLayout.CENTER );		
 		panel.remove(vistaDocumento);
 		panel.updateUI();

@@ -109,8 +109,12 @@ public class GuiUsuarioNormal extends JFrame
 		panelConsultaAvanzada = new GuiConsultaAvanzada();
 		panelNovedades = new GuiNovedades();
 		GuiConsultaBasica.TIPOUSUARIO = 3;
+		
 		GuiConsultaAvanzada.TIPOUSUARIO = 3;
 	
+		GuiNovedades.TIPOUSUARIO = 3;
+		
+		
 		
 		contenedor = getContentPane();
 		contenedor.setLayout(new BorderLayout(20,20));
@@ -373,6 +377,7 @@ public class GuiUsuarioNormal extends JFrame
 		
 		GuiNovedades.resultadoConsulta = new GuiResultadoConsulta(novedades, 10);
 		GuiNovedades.panel.add(GuiNovedades.resultadoConsulta);
+		GuiResultadoConsulta.TIPOCONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");
 		panelNovedades.updateUI();
 		novedadesUsuario = novedades;	
