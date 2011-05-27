@@ -370,8 +370,6 @@ public class DaoUsuario {
 	  }
 	  return usuario;
 	 }
-		
-//remueve todas las areas de un usuario
 	/**
 	 * Metodo que remueve todas las areas de interes del usuario
 	 * @param login - String con el login del usuario
@@ -394,8 +392,6 @@ public class DaoUsuario {
 		}
 		return -1;		
 	}
-	
-	//actualizar el perfil y el estado de un usuario
 	/**
 	 * Metodo que actualiza el perfil de usuario y el estado del usuario, realizado por el
 	 * Administrador

@@ -27,28 +27,32 @@ import GestionDocumento.Logica.PalabraClave;
 public class ControladorDocumento {
 
 	/**
-	 * @param id
-	 * @param idioma
-	 * @param derechos
-	 * @param descripcion
-	 * @param software
-	 * @param resolucion
-	 * @param editorial
-	 * @param formato
-	 * @param titulo_principal
-	 * @param titulo_secundario
-	 * @param link
-	 * @param creacion
-	 * @param publicacion
-	 * @param catalogacion
-	 * @param login
-	 * @return
+	 * Metodo que recibe los datos parametro por parametro para catalogar un documento 
+	 * y lo envia al metodo del dao respectivo
+	 * @param id - String con la llave del documento
+	 * @param idioma - String con el idioma del documento
+	 * @param derechos - String con los derechos de autor del documento
+	 * @param descripcion - String con la descripcion del documento
+	 * @param software - String con el software recomendado 
+	 * @param resolucion - String con la resolucion del documento
+	 * @param editorial - String con la editoral del documento
+	 * @param formato - String con el formato del documento
+	 * @param titulo_principal - String con el titulo principal del documento
+	 * @param titulo_secundario - String con el titulo secundario o traducido del documento
+	 * @param link - String con el enlace del documento
+	 * @param creacion - String con la fecha de creacion del documento
+	 * @param publicacion - String con la fecha de publicacion del documento
+	 * @param catalogacion - String con la fecha de catalogacion del documento
+	 * @param login - String con la llave del usuario catalogador del documento
+	 * @param tipo - String con el tipo de material del documento
+	 * @return 1 si se catalogo correctamente el documento, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada Taborda
 	 */
 	public int insertarDocumento(String id, String idioma, String derechos,
 			String descripcion, String software, String resolucion,
 			String editorial, String formato, String titulo_principal,
 			String titulo_secundario, String link, String creacion,
-			String publicacion, String catalogacion, String login) {		
+			String publicacion, String catalogacion, String login, String tipo) {		
 		
 		//se supone que login ya debe llegar con lowercase, y no hace falta en id, creacion, publicacion ni
 		//catalogacion, y no se puede en link.
@@ -73,6 +77,7 @@ public class ControladorDocumento {
 		Date F_catalogacion = Date.valueOf(catalogacion);// formato yyyy-mm-dd
 		d.setFechaDeCatalogacion(F_catalogacion);
 		d.setCatalogadorLogin(login);
+		d.setTipoMaterial(tipo);
 		value = insertarDocumento(d);
 		// por seguridad
 		d = null;
@@ -80,8 +85,11 @@ public class ControladorDocumento {
 	}
 
 	/**
-	 * @param d
-	 * @return
+	 * Metodo que recibe los datos del Documento para catalogar un documento 
+	 * y lo envia al metodo del dao respectivo
+	 * @param d - documento con los datos a catalogar
+	 * @return 1 si se catalogo correctamente el documento, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada Taborda
 	 */
 	public int insertarDocumento(Documento d) {		
 		//d.setIdioma(d.getIdioma().toLowerCase());
@@ -111,28 +119,32 @@ public class ControladorDocumento {
 	}
 
 	/**
-	 * @param id
-	 * @param idioma
-	 * @param derechos
-	 * @param descripcion
-	 * @param software
-	 * @param resolucion
-	 * @param editorial
-	 * @param formato
-	 * @param titulo_principal
-	 * @param titulo_secundario
-	 * @param link
-	 * @param creacion
-	 * @param publicacion
-	 * @param catalogacion
-	 * @param login
-	 * @return
+	 * Metodo que recibe los datos parametro por parametro para modificar un documento 
+	 * y lo envia al metodo del dao respectivo
+	 * @param id - String con la llave del documento
+	 * @param idioma - String con el idioma del documento
+	 * @param derechos - String con los derechos de autor del documento
+	 * @param descripcion - String con la descripcion del documento
+	 * @param software - String con el software recomendado 
+	 * @param resolucion - String con la resolucion del documento
+	 * @param editorial - String con la editoral del documento
+	 * @param formato - String con el formato del documento
+	 * @param titulo_principal - String con el titulo principal del documento
+	 * @param titulo_secundario - String con el titulo secundario o traducido del documento
+	 * @param link - String con el enlace del documento
+	 * @param creacion - String con la fecha de creacion del documento
+	 * @param publicacion - String con la fecha de publicacion del documento
+	 * @param catalogacion - String con la fecha de catalogacion del documento
+	 * @param login - String con la llave del usuario catalogador del documento
+	 * @param tipo - String con el tipo de material del documento
+	 * @return 1 si se modifico correctamente el documento, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada Taborda
 	 */
 	public int modificarDocumento(String id, String idioma, String derechos,
 			String descripcion, String software, String resolucion,
 			String editorial, String formato, String titulo_principal,
 			String titulo_secundario, String link, String creacion,
-			String publicacion, String catalogacion, String login) {		
+			String publicacion, String catalogacion, String login, String tipo) {		
 				
 		Documento d = new Documento();		
 		d.setId_doc(id);
@@ -153,16 +165,16 @@ public class ControladorDocumento {
 		Date F_catalogacion = Date.valueOf(catalogacion);// formato yyyy-mm-dd
 		d.setFechaDeCatalogacion(F_catalogacion);
 		d.setCatalogadorLogin(login);
-
+		d.setTipoMaterial(tipo);
 		int value = modificarDocumento(d);
-		// por seguridad
 		d = null;
 		return value;
 	}
-	// /////////
-	/**
-	 * @param d
-	 * @return
+	/**Metodo que recibe los datos del documento para modificar un documento 
+	 * y lo envia al metodo del dao respectivo
+	 * @param d - Documento con los datos a modificar
+	 * @return 1 si se modifico correctamente el documento, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada Taborda
 	 */
 	public int modificarDocumento(Documento d) {
 		//se pasan a minuscula
@@ -187,8 +199,12 @@ public class ControladorDocumento {
 //**********INSERTAR LAS AREAS, AUTORES Y PALABRASCLAVE*************************************************
 //INSERTANDO AREAS CONOCIMIENTO
 	/**
-	 * @param d
-	 * @return
+	 * Metodo que inserta los datos para almacenar las areas de conocimiento a las que
+	 * pertenece el documento y llama al metodo del dao respectivo
+	 * @param d - documento la llave del documento y las areas de conocimiento a las que pertenece
+	 * @return int con el numero de areas de conocimiento insertadas correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarDocumentoAreas(Documento d) {
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -204,9 +220,13 @@ public class ControladorDocumento {
 		return value;
 	}
 	/**
-	 * @param area_ids
-	 * @param id_doc
-	 * @return
+	 * Metodo que inserta los datos del documento, recibiendo el vector con los identificadores
+	 * de las  y la llave del documento y llama al metodo dao respectivo
+	 * @param area_ids - String con las areas de conocimiento del documento
+	 * @param id_doc - String con la llave del documento
+	 * @return el numero de areas de conocimiento insertadas correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarDocumentoAreas(Vector<String> area_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -217,8 +237,12 @@ public class ControladorDocumento {
 	}
 //INSERTANDO PALABRAS CLAVE	
 	/**
-	 * @param d
-	 * @return
+	 * Metodo que inserta los datos para almacenar las palabras clave a las que
+	 * pertenece el documento y llama al metodo del dao respectivo
+	 * @param d - documento la llave del documento y las palabras clave a las que pertenece
+	 * @return int con el numero de palabras clave insertadas correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarDocumentoPalabrasClave(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -235,9 +259,13 @@ public class ControladorDocumento {
 	}
 	
 	/**
-	 * @param palabras_ids
-	 * @param id_doc
-	 * @return
+	 * Metodo que inserta las palabras clave de un documento, recibiendo el vector con los identificadores
+	 * de las palabras y la llave del documento y llama al metodo dao respectivo
+	 * @param palabras_ids - String con las palabras clave del documento
+	 * @param id_doc - String con la llave del documento
+	 * @return el numero de palabras clave insertadas correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarDocumentoPalabrasClave(Vector<String> palabras_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -248,8 +276,12 @@ public class ControladorDocumento {
 	}
 //INSERTANDO AUTORES	
 	/**
-	 * @param d
-	 * @return
+	 * Metodo que inserta los datos para almacenar los autores  del documento
+	 *  y llama al metodo del dao respectivo
+	 * @param d - documento la llave del documento y los autores
+	 * @return int con el numero de autores insertados correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarDocumentoAutores(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -266,9 +298,13 @@ public class ControladorDocumento {
 	}
 	
 	/**
-	 * @param autores_ids
-	 * @param id_doc
-	 * @return
+	 * Metodo que inserta los autores de un documento, recibiendo el vector con los identificadores
+	 * del autor y la llave del documento y llama al metodo dao respectivo
+	 * @param autores_ids - String con los autores del documento
+	 * @param id_doc - String con la llave del documento
+	 * @return el numero de autores insertados correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int insertarDocumentoAutores(Vector<String> autores_ids, String id_doc){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -279,8 +315,9 @@ public class ControladorDocumento {
 	}
 //*****************************************************************************************************	
 	/**
-	 * @param d
-	 * @return
+	 * Metodo que recibe un documento con todos los datos necesarios para catalogar
+	 * @param d - Documento con todos los datos
+	 * @return 1 si se catalogo el documento correctamente, -1 de ser lo contrario
 	 */
 	public int catalogarDocumento(Documento d){
 		if(verificarInsertarDocumento(d)){
@@ -297,11 +334,15 @@ public class ControladorDocumento {
 	}
 	
 	/**
-	 * @param d
-	 * @param areas_ids
-	 * @param autores_ids
-	 * @param palabras_ids
-	 * @return
+	 * Metodo que recibe un documento con los datos y los identificadores de las areas de conocimiento, 
+	 * autores y palabras clave y llama al metodo dao respectivo para que lo catalogue
+	 * @param d - Documento con los datos basicos de la tabla documento
+	 * @param areas_ids - Vector<String> con las llaves de las areas de conocimeinto
+	 * @param autores_ids - Vector<String> con las llaves de los autores
+	 * @param palabras_ids - Vector<String> con las llaves de las palabras claves
+	 * @return el numero de autores insertados correctamente, 
+	 * -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int catalogarDocumento(Documento d, Vector<String> areas_ids,
 			Vector<String> autores_ids, Vector<String> palabras_ids ){
@@ -338,12 +379,13 @@ public class ControladorDocumento {
 		return 1;/**/
 		
 	}
-
-//el path relativo del archivo,si el archivo ya existe en el repositorio (mismo nombre) no se vuelve 
-//a copiar devolviendo la misma direccion
 	/**
-	 * @param url
-	 * @return
+	 * Metodo para almacenar en el repositorio los documentos catalogados,
+	 * si el nombre del archivo existe no lo sobreescribe y retorna el path relativo
+	 * del archivo
+	 * @param url - String con el path absoluto dell documento a catalogar y almacenar en el repositorio
+	 * @return String con la direccion relativa en el repositorio
+	 * @author Edgar Andres Moncada
 	 */
 	public String copiarDocumento(String url){
 		File src = new File(url), carp_dest=  new File("repositorio/");
@@ -374,8 +416,11 @@ public class ControladorDocumento {
 	}
 	
 	/**
-	 * @param d
-	 * @return
+	 * Metodo usado para verificar los datos al catalogar el documento
+	 * @param d - Documento con los datos a verificar
+	 * @return boolean, true si los datos son correctos, false de ser lo contrario y  muestra un mensaje
+	 * con el error
+	 * @author Edgar Andres Moncada
 	 */
 	public boolean verificarInsertarDocumento(Documento d){
 		boolean estado =true;
@@ -418,8 +463,11 @@ public class ControladorDocumento {
 		return estado;
 	}	
 	/**
-	 * @param d
-	 * @return
+	 * Metodo que comprueba si un enlace ya existe en la base de datos llamando al metodo
+	 * dao correspondiente
+	 * @param d - Documento con el enlace a buscar
+	 * @return bolean, true si el enlace ya esta, false de lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public boolean comprobarEnlace(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -429,6 +477,7 @@ public class ControladorDocumento {
 	/**
 	 * @param id_documento
 	 * @return
+	 * @author Edgar Andres Moncada
 	 */
 	public Documento obtenerDocumento(String id_documento){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -437,9 +486,12 @@ public class ControladorDocumento {
 	}
 	
 	/**
-	 * @param urlFuente
-	 * @param urlDestino
-	 * @return
+	 * Metodo para la descarga de uno de los documentos catalogados, si existe cambia el nombre
+	 * del documento
+	 * @param urlFuente - String con el enlace en el repositorio
+	 * @param urlDestino - String con el enlace carpeta destino
+	 * @return String con el path y el nombre del documento a descargar
+	 * @author Edgar Andres Moncada
 	 */
 	public String descargarDocumento(String urlFuente, String urlDestino){
 		File src = new File(urlFuente);
@@ -482,9 +534,11 @@ public class ControladorDocumento {
 	}
 	
 	/**
-	 * @param archivo
-	 * @param agregar
-	 * @return
+	 * Metodo para cambiar el nombre de un archivo, debe de tener extencion
+	 * @param archivo - String con el nombre del documento a descargar
+	 * @param agregar - String con el paramatero a adicionar al documento para cambiarle el nombre
+	 * @return String el nombre del nuevo documento
+	 * @author Edgar Andres Moncada
 	 */
 	protected String obtenerNombre(File archivo, String agregar){
 		String name = archivo.getName();
@@ -503,8 +557,11 @@ public class ControladorDocumento {
 //*********************************************MODIFICAR
 	
 	/**
-	 * @param d
-	 * @return
+	 * Metodo para la modificacion de las areas de conocimiento de un documento, llamando
+	 * al metodo dao correspondiente
+	 * @param d - Documento con las areas de conocimiento a modificar
+	 * @return int con el numero de areas de conocimiento modificadas
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarDocumentoAreas(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -516,8 +573,11 @@ public class ControladorDocumento {
 		return daoDoc.actualizarDocumentoAreas(d.getId_doc(), ids_areas);
 	}
 	/**
-	 * @param d
-	 * @return
+	 * Metodo para la modificacion de las palabras clave de un documento, llamando
+	 * al metodo dao correspondiente
+	 * @param d - Documento con las palabras clave a modificar
+	 * @return int con el numero de palabras clave modificadas
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarDocumentoPalabrasClave(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -529,8 +589,11 @@ public class ControladorDocumento {
 		return daoDoc.actualizarDocumentoPalabrasClave(d.getId_doc(), ids_palabras);
 	}
 	/**
-	 * @param d
-	 * @return
+	 * Metodo para la modificacion de los autores de un documento, llamando
+	 * al metodo dao correspondiente
+	 * @param d - Documento con los autores a modificar
+	 * @return int con el numero los autores modificados
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarDocumentoAutores(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
@@ -543,9 +606,11 @@ public class ControladorDocumento {
 	}
 	
 	
-	/**
-	 * @param d
-	 * @return
+	/**Metodo que recibe el los datos del documento a modificar y llama al metodo dao respectivo
+	 * para almacenarlo
+	 * @param d - Documento con todos los datos y las areas de conocimiento, autores y palabras clave
+	 * @return 1 si se modifico sactisfactoriamente el documento, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarDatosDocumento(Documento d){
 		if(verificarModificarDocumento(d)){
@@ -558,11 +623,14 @@ public class ControladorDocumento {
 		}else return -1;
 	}
 	/**
-	 * @param d
-	 * @param areas_ids
-	 * @param autores_ids
-	 * @param palabras_ids
-	 * @return
+	 * Metodo que obtiene los datos del documento y los identificadores de las areas de conocimiento,
+	 *  las palabras clave y los autores  y los inserta llamando al metodo dao respectivo
+	 * @param d - Documento con los datos a modificar
+	 * @param areas_ids - Vector<String> con las areas de conocimiento a modificar
+	 * @param autores_ids - Vector<String> con los auotres a modificar
+	 * @param palabras_ids - Vector<String> con las palabras clave a modificar
+	 * @return 1 si se modifico sactisfactoriamente el documento, -1 de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public int modificarDatosDocumento(Documento d, Vector<String> areas_ids,
 			Vector<String> autores_ids, Vector<String> palabras_ids ){
@@ -593,8 +661,11 @@ public class ControladorDocumento {
 	}
 	
 	/**
-	 * @param d
-	 * @return
+	 * Metodo para verificar los datos a modificar del documento
+	 * @param d - Documento con los datos a validar
+	 * @return boolean, true si los datos estan correctamente, de lo contrario falso y muestra
+	 * un mensaje con el error
+	 * @author Edgar Andres Moncada
 	 */
 	public boolean verificarModificarDocumento(Documento d){
 		boolean estado =true;
@@ -621,9 +692,11 @@ public class ControladorDocumento {
 	}
 	
 	/**
-	 * @param formato
-	 * @param nombre
-	 * @return
+	 * Metodo para que el formato del archivo corresponda con el formato dado
+	 * @param formato - String con el formato del documento
+	 * @param nombre - String con el nombre del documento
+	 * @return boolean, true si el formato y la extencion coinciden, false de ser lo contrario
+	 * @author Edgar Andres Moncada
 	 */
 	public boolean comprobarFormato(String formato, String nombre){
 		String name="";
