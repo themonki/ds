@@ -77,7 +77,6 @@ public class GuiReportes extends JTabbedPane{
 	private JLabel etiquetaTablaAvanzado;
 	private JLabel etiquetaAtributoAvanzado;
 	private JLabel etiquetaCondicionAvanzado;
-	private Button botonGenerarReporteAvanzado;
 	private GridBagConstraints retriccionesAvanzado;
 	private JCheckBox habilitarPorDia;
 	private JCheckBox habilitarPorMes;
@@ -120,7 +119,7 @@ public class GuiReportes extends JTabbedPane{
 		vectorAtributos.add("genero ");
 		vectorAtributos.add("nivel_escolaridad");
 		vectorAtributos.add("vinculo_univalle");
-		vectorAtributos.add("perfil");
+		vectorAtributos.add("tipo");
 		
 		vectorFechas= new Vector<String>();
 		vectorFechas.add("fecha_nacimiento");
@@ -146,6 +145,7 @@ public class GuiReportes extends JTabbedPane{
 		etiquetaCondicion= new JLabel("CONDICION");
 		botonGenerarReporte= new Button("Generar Reporte");
 		botonAvanzado= new Button("Generar Reporte");
+		botonGenerarReporte.addActionListener(new Manejador());
 		
 		etiquetaTabla.setForeground(Estilos.colorLabels);
 		etiquetaAtributo.setForeground(Estilos.colorLabels);
@@ -268,7 +268,7 @@ public class GuiReportes extends JTabbedPane{
 		etiquetaTablaAvanzado= new JLabel("TABLA");
 		etiquetaAtributoAvanzado= new JLabel("CONSULTAR POR   :");
 		//etiquetaCondicionAvanzado= new JLabel("CONDICION");
-		botonGenerarReporteAvanzado= new Button("Generar Reporte");
+		//botonGenerarReporteAvanzado= new Button("Generar Reporte");
 		etiquetaTablaAvanzado.setForeground(Estilos.colorLabels);
 		etiquetaAtributoAvanzado.setForeground(Estilos.colorLabels);
 		//etiquetaCondicionAvanzado.setForeground(Estilos.colorLabels);
@@ -400,10 +400,8 @@ public class GuiReportes extends JTabbedPane{
 				{
 				//tablas.getSelectedItem();
 				
-				controladorReporte.equals(atributos.getSelectedItem());
-				
-				
-				
+				System.out.println(controladorReporte.consultarUsuariosAgrupados((String) atributos.getSelectedItem()));
+				System.out.println("entre");
 				
 				}
 			//nuevaCondicon();
