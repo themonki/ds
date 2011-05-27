@@ -9,7 +9,7 @@ import java.util.Vector;
 import Consultas.Dao.DaoConsulta;
 
 import Utilidades.FachadaBD;
-import Reportes.Logica.Reporte;;
+import Reportes.Logica.Reporte;
 
 
 
