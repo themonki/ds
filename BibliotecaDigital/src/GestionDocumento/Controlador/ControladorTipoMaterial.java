@@ -55,4 +55,10 @@ public class ControladorTipoMaterial {
 		return nombres;
 
 	}
+	
+	public int actualizarTipoMaterial(TipoMaterial tp){
+		DaoTipoMaterial daoTipo = new DaoTipoMaterial();
+		tp.setDescripcion(tp.getDescripcion().toLowerCase());
+		return daoTipo.modificarTipoMaterial(tp);
+	}
 }
