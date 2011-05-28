@@ -162,4 +162,29 @@ public class DaoAutor {
 		}
 		return va;
 	}
+	
+	public int modificarAutor(Autor a){
+		String sqlUpdate;
+		sqlUpdate = "UPDATE autor SET "+
+			"nombre = '" + a.getNombre() + "', "+
+			"apellido = '" + a.getApellido() + "', "+
+			"email = '" + a.getCorreo() + "', "+
+			"acronimo = '" + a.getAcronimo() + "' " +
+			"WHERE id_autor = '"+a.getId()+"'; "
+		;
+
+		try {
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			int numFilas = sentencia.executeUpdate(sqlUpdate);
+			this.fachada.cerrarConexion(conn);
+			return numFilas;
+		} catch (SQLException se) {
+			System.out.println(se.toString());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return -1;
+	}
+	
 }

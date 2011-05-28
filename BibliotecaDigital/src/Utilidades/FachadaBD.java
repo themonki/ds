@@ -17,9 +17,9 @@ public class FachadaBD {
 	 * de datos por defecto: url, usuario y password
 	 * */
 	public FachadaBD() {
-		url = "jdbc:postgresql://pgsql:5432/edgaramt";
-		usuario = "edgaramt";
-		password = "edgaramt";
+		url = "jdbc:postgresql://localhost:5432/yerdogm";
+		usuario = "yerdogm";
+		password = "yerdogm";
 	}
 	/**
 	 * Metodo que establece la conexion a la base de datos 

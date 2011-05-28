@@ -69,4 +69,21 @@ public class ControladorAutor {
 		DaoAutor daoAutor = new DaoAutor();
 		return daoAutor.consultarAutoresDocumento(id_documento);
 	}
+	
+	public int actualizarAutor(Autor a){
+		DaoAutor daoAutor = new DaoAutor();
+		String nombre= a.getNombre(), apellido = a.getApellido() ,acronimo=a.getAcronimo(),
+		correoElectronico= a.getCorreo();
+		
+		nombre.toLowerCase();
+		apellido.toLowerCase();
+		acronimo.toLowerCase();
+		correoElectronico.toLowerCase();
+		
+		a.setNombre(nombre);
+		a.setAcronimo(acronimo);
+		a.setApellido(apellido);
+		
+		return daoAutor.modificarAutor(a);
+	}
 }

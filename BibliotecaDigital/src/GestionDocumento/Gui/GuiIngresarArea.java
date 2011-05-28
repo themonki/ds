@@ -230,7 +230,6 @@ public class GuiIngresarArea extends JFrame {
 	boolean validarDatos()
 	{
 		String nombre = campoNombre.getText();
-		String descripcionArea = campoDescripcionArea.getText();
 	
 		String advertencia = "";
 		boolean respuesta = true;
@@ -240,14 +239,7 @@ public class GuiIngresarArea extends JFrame {
 		{		
 			advertencia += "Debe de proporcionar un nombre para el area de conocimiento \n";
 			respuesta = false;
-		}
-		if(descripcionArea.isEmpty())
-		{
-			
-			advertencia += "Debe de proporcionar una descripcion para el area de conocimiento \n";
-			respuesta = false;
-		}
-		
+		}		
 		
 		if(!respuesta)
 		JOptionPane.showMessageDialog(this, advertencia);
