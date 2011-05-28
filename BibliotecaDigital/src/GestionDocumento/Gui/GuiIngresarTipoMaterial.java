@@ -134,16 +134,24 @@ public class GuiIngresarTipoMaterial extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			if(validarDatos()){
-		
-				ControladorTipoMaterial conMaterial = new ControladorTipoMaterial();
-				if(conMaterial.insertarTipoMaterial(campoNombre.getText(), campoDescripcion.getText())>=1)
-				{
-				guicatalogarModi.vectoresParaComboBox();
-				guicatalogarModi.actualizarTipoMaterial();
-				JOptionPane.showMessageDialog(null, "Se ingreso el Tipo de Material Correctamente");
-				dispose();
-				}else{
-					JOptionPane.showMessageDialog(null, "El Tipo de Material ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+				String mensaje="Esta a punto de ingresar al sistema el tipo de material:\n";
+				mensaje+=campoNombre.getText()+"\n";
+				mensaje+="con la descripcion: "+ campoDescripcion.getText()+"\n";
+				mensaje+="¿esta completamente seguro de que desea ingresarlo?";
+				int value = JOptionPane.showConfirmDialog(null, mensaje, "Confirmar Insertar tipo de material",
+						JOptionPane.YES_NO_OPTION);
+				//1 para no y 0 para si		
+				if(value==0){
+					ControladorTipoMaterial conMaterial = new ControladorTipoMaterial();
+					if(conMaterial.insertarTipoMaterial(campoNombre.getText(), campoDescripcion.getText())>=1)
+					{
+					guicatalogarModi.vectoresParaComboBox();
+					guicatalogarModi.actualizarTipoMaterial();
+					JOptionPane.showMessageDialog(null, "Se ingreso el Tipo de Material Correctamente");
+					dispose();
+					}else{
+						JOptionPane.showMessageDialog(null, "El Tipo de Material ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		}		
