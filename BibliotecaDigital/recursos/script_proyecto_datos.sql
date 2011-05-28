@@ -42,7 +42,7 @@ CREATE TABLE area_conocimiento (
 );
 
 
-ALTER TABLE public.area_conocimiento OWNER TO yerdogm;
+--ALTER TABLE public.area_conocimiento OWNER TO yerdogm;
 
 --
 -- Name: id_autor_seq; Type: SEQUENCE; Schema: public; Owner: yerdogm
@@ -56,7 +56,7 @@ CREATE SEQUENCE id_autor_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_autor_seq OWNER TO yerdogm;
+--ALTER TABLE public.id_autor_seq OWNER TO yerdogm;
 
 --
 -- Name: id_autor_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
@@ -78,7 +78,7 @@ CREATE TABLE autor (
 );
 
 
-ALTER TABLE public.autor OWNER TO yerdogm;
+--ALTER TABLE public.autor OWNER TO yerdogm;
 
 --
 -- Name: consulta; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -92,7 +92,7 @@ CREATE TABLE consulta (
 );
 
 
-ALTER TABLE public.consulta OWNER TO yerdogm;
+--ALTER TABLE public.consulta OWNER TO yerdogm;
 
 --
 -- Name: descarga_usuario_documento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -106,7 +106,7 @@ CREATE TABLE descarga_usuario_documento (
 );
 
 
-ALTER TABLE public.descarga_usuario_documento OWNER TO yerdogm;
+--ALTER TABLE public.descarga_usuario_documento OWNER TO yerdogm;
 
 --
 -- Name: id_documento_seq; Type: SEQUENCE; Schema: public; Owner: yerdogm
@@ -120,7 +120,7 @@ CREATE SEQUENCE id_documento_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_documento_seq OWNER TO yerdogm;
+--ALTER TABLE public.id_documento_seq OWNER TO yerdogm;
 
 --
 -- Name: id_documento_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
@@ -153,7 +153,7 @@ CREATE TABLE documento (
 );
 
 
-ALTER TABLE public.documento OWNER TO yerdogm;
+--ALTER TABLE public.documento OWNER TO yerdogm;
 
 --
 -- Name: escribe_autor_documento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -165,7 +165,7 @@ CREATE TABLE escribe_autor_documento (
 );
 
 
-ALTER TABLE public.escribe_autor_documento OWNER TO yerdogm;
+--ALTER TABLE public.escribe_autor_documento OWNER TO yerdogm;
 
 --
 -- Name: interesa_usuario_area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -177,7 +177,7 @@ CREATE TABLE interesa_usuario_area_conocimiento (
 );
 
 
-ALTER TABLE public.interesa_usuario_area_conocimiento OWNER TO yerdogm;
+--ALTER TABLE public.interesa_usuario_area_conocimiento OWNER TO yerdogm;
 
 --
 -- Name: palabra_clave; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -189,7 +189,7 @@ CREATE TABLE palabra_clave (
 );
 
 
-ALTER TABLE public.palabra_clave OWNER TO yerdogm;
+--ALTER TABLE public.palabra_clave OWNER TO yerdogm;
 
 --
 -- Name: pertenece_documento_area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -201,7 +201,7 @@ CREATE TABLE pertenece_documento_area_conocimiento (
 );
 
 
-ALTER TABLE public.pertenece_documento_area_conocimiento OWNER TO yerdogm;
+--ALTER TABLE public.pertenece_documento_area_conocimiento OWNER TO yerdogm;
 
 --
 -- Name: tiene_documento_palabra_clave; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -213,7 +213,7 @@ CREATE TABLE tiene_documento_palabra_clave (
 );
 
 
-ALTER TABLE public.tiene_documento_palabra_clave OWNER TO yerdogm;
+--ALTER TABLE public.tiene_documento_palabra_clave OWNER TO yerdogm;
 
 --
 -- Name: tipomaterial; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -225,7 +225,7 @@ CREATE TABLE tipomaterial (
 );
 
 
-ALTER TABLE public.tipomaterial OWNER TO yerdogm;
+--ALTER TABLE public.tipomaterial OWNER TO yerdogm;
 
 --
 -- Name: usuario; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -252,7 +252,7 @@ CREATE TABLE usuario (
 );
 
 
-ALTER TABLE public.usuario OWNER TO yerdogm;
+--ALTER TABLE public.usuario OWNER TO yerdogm;
 
 --
 -- Data for Name: area_conocimiento; Type: TABLE DATA; Schema: public; Owner: yerdogm
