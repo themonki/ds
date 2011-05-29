@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import GestionDocumento.Logica.PalabraClave;
 import GestionDocumento.Logica.TipoMaterial;
 import Utilidades.FachadaBD;
 
@@ -122,5 +123,26 @@ public class DaoTipoMaterial {
 			System.out.println(e.toString());
 		}
 		return tipos;
+	}
+	
+	public int modificarTipoMaterial(TipoMaterial tp){
+		String sqlUpdate;
+		sqlUpdate = "UPDATE tipomaterial SET "+
+			"descripcion = '" + tp.getDescripcion()+ "' "+
+			"WHERE tipo_nombre = '"+ tp.getNombre()+"'; "
+		;
+
+		try {
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			int numFilas = sentencia.executeUpdate(sqlUpdate);
+			this.fachada.cerrarConexion(conn);
+			return numFilas;
+		} catch (SQLException se) {
+			System.out.println(se.toString());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return -1;
 	}
 }

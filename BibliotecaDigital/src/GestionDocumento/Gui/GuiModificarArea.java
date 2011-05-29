@@ -28,26 +28,27 @@ import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
-public class GuiIngresarArea extends JFrame {
-
-	JLabel nombre, descripcionArea, areaPadre;
+public class GuiModificarArea extends JFrame{
+	JLabel consultar, nombre, descripcionArea, areaPadre;
 	JTextField campoNombre;
-	JComboBox campoAreaPadre;
+	JComboBox campoAreaPadre, campoConsulta;
 	JTextArea campoDescripcionArea;
-	Button botonIngresarArea;
+	Button botonModificarArea;
 	GuiCatalogar guiCatalogarModi;
-
-	
+	ManejadorCombo manejadorCombo;
+	Vector <AreaConocimiento> vac ;
+	String id_area;
+	int posicion;
 	JPanel panel, panel2, panel3, panel4, panel5, panelPrincipal;
 
-	public GuiIngresarArea() {
-		super(":::Ingresar Area:::");
+	public GuiModificarArea() {
+		super(":::Modificar Area:::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		
 	}
-	public GuiIngresarArea(GuiCatalogar guiCatalogarModi) {
-		super(":::Ingresar Area:::");
+	public GuiModificarArea(GuiCatalogar guiCatalogarModi) {
+		super(":::Modificar Area:::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
 		this.guiCatalogarModi=guiCatalogarModi;
@@ -56,7 +57,7 @@ public class GuiIngresarArea extends JFrame {
 
 	public void initComponents() {
 		panel = new JPanel();
-		panel2 = new JPanel(new GridLayout(2, 2, 10, 10));
+		panel2 = new JPanel(new GridLayout(3, 2, 10, 10));
 		panel3 = new JPanel();
 		panel5 = new JPanel(new FlowLayout());
 		panel4 = new JPanel(new BorderLayout());
@@ -68,7 +69,7 @@ public class GuiIngresarArea extends JFrame {
 		panelPrincipal = new JPanel(new BorderLayout());
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Registrar  Area::");
+			    .createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Modificar  Area::");
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.CENTER);
@@ -78,7 +79,8 @@ public class GuiIngresarArea extends JFrame {
 		// ---------------------------------------------
 		iniciarCampos();
 		// --------------------------------------------
-
+		panel2.add(consultar);
+		panel2.add(campoConsulta);
 		panel2.add(nombre);
 		panel2.add(campoNombre);
 		panel2.add(areaPadre);
@@ -92,7 +94,7 @@ public class GuiIngresarArea extends JFrame {
 
 		panel5.add(scroll);
 
-		panel.add(botonIngresarArea);
+		panel.add(botonModificarArea);
 
 		panel4.add(descripcionArea, BorderLayout.NORTH);
 		panel4.add(panel5, BorderLayout.CENTER);
@@ -102,7 +104,7 @@ public class GuiIngresarArea extends JFrame {
 		panelPrincipal.add(panel4, BorderLayout.SOUTH);
 		add(panelPrincipal);
 		setSize(800, 340);
-		setResizable(false);
+		//setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		//centrar en la pantalla
@@ -114,35 +116,50 @@ public class GuiIngresarArea extends JFrame {
 	private void iniciarCampos() {
 
 		ManejadorJTextField manejador = new ManejadorJTextField();
+		manejadorCombo = new ManejadorCombo();
+		campoConsulta = new JComboBox();
+		campoConsulta.addActionListener(manejadorCombo);
 		campoNombre = new JTextField(15);
 		campoNombre.addKeyListener(manejador);
 		campoNombre.setFocusable(true);
+		campoNombre.setEditable(false);
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoDescripcionArea.addKeyListener(manejador);
+		campoDescripcionArea.setEditable(false);
 		campoAreaPadre = new JComboBox();
-		botonIngresarArea = new Button("Registrar Area");
-		botonIngresarArea.addActionListener(new ManejadorBoton());
+		campoAreaPadre.setEnabled(false);
+		botonModificarArea = new Button("Modificar Area");
+		botonModificarArea.addActionListener(new ManejadorBoton());
+		botonModificarArea.setEnabled(false);
 		
 		ControladorAreaConocimiento conArea = new ControladorAreaConocimiento();
-		Vector <AreaConocimiento> vac = conArea.obtenerAreas();
+		vac = conArea.obtenerAreas();
 		int cantidad = vac.size();
 		
 		for(int i = 0; i < cantidad; i++){
 			campoAreaPadre.addItem(vac.get(i).getNombre());
+			if(i>0){
+				campoConsulta.addItem(vac.get(i).getNombre());
+			}else{
+				campoConsulta.addItem("");
+			}
 		}
 		
 	}
 
 	private void iniciarLabels() {
-
+		
+		consultar = new JLabel ("Seleccionar Area a modificar");
 		nombre = new JLabel("  Nombre Del Area :");
 		descripcionArea = new JLabel("Descripcion.", JLabel.CENTER);
 		areaPadre = new JLabel("  Area Padre :");
-
+		
+		consultar.setFont(Estilos.fontLabels);
 		areaPadre.setFont(Estilos.fontLabels);
 		descripcionArea.setFont(Estilos.fontLabels);
 		nombre.setFont(Estilos.fontLabels);
 
+		consultar.setForeground(Estilos.colorLabels);
 		areaPadre.setForeground(Estilos.colorLabels);
 		descripcionArea.setForeground(Estilos.colorLabels);
 		nombre.setForeground(Estilos.colorLabels);
@@ -163,28 +180,38 @@ public class GuiIngresarArea extends JFrame {
 				} else {
 					padre = "" + padreSeleccionado;
 				}
-				String mensaje="Esta a punto de ingresar al sistema el area de conocimeinto:\n";
+				String mensaje="Esta a punto de Modificar el area de conocimeinto:\n";
 				mensaje+=nombre+"\n";
 				mensaje+="con la descripcion: "+ descripcion+"\n";
 				mensaje+="con el area padre: "+campoAreaPadre.getSelectedItem()+"\n";
 				mensaje+="¿esta completamente seguro de que desea ingresarla?";
-				int value = JOptionPane.showConfirmDialog(null, mensaje, "Confirmar Insertar Area de Conocimiento",
+				int value = JOptionPane.showConfirmDialog(null, mensaje, "Confirmar Modificar Area de Conocimiento",
 						JOptionPane.YES_NO_OPTION);
 				//1 para no y 0 para si		
 				if(value==0){
-					if(controlador.insertarAreaConocimiento(contador, nombre,
-							descripcion, padre) >= 1) {
+					//id = campoConsulta.getSelectedIndex();
+					int comprobar  = 0;
+					nombre.toLowerCase();
+					descripcion.toLowerCase();
+					if(!nombre.equals(vac.get(posicion).getNombre())){//si es el mismo nombre no lo actualiza,
+						//para que no tire el error ya que el nombre debe ser UNICO
+						comprobar= controlador.actualizarArea(id_area, "nombre", nombre);
+					}
+					comprobar += controlador.actualizarArea(id_area, "descripcion", descripcion);
+					comprobar += controlador.actualizarArea(id_area, "area_padre", padre);
+										
+					if(comprobar >= 2) {
 						guiCatalogarModi.vectoresParaComboBox();
 						guiCatalogarModi.actualizarAreas();
 						JOptionPane.showMessageDialog(null,
-								"Se ingreso el Area de Conocimiento correctamente");
+								"Se Modifico el Area de Conocimiento correctamente");
 						dispose();
 
 					} else {
 						JOptionPane.showMessageDialog(null,
-								"El Area de Conocimiento ya existe", "ERROR",
+								"No se pudo modificar el area de conocimiento", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
-					}					
+					}			
 				}
 				
 
@@ -245,5 +272,47 @@ public class GuiIngresarArea extends JFrame {
 		JOptionPane.showMessageDialog(this, advertencia);
 	
 		return respuesta;
+	}
+	
+	private class ManejadorCombo implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==campoConsulta){
+				int index = campoConsulta.getSelectedIndex();
+				if(index>0){
+					posicion=index;//no es -1 porque contiene super vac
+					id_area = vac.get(index).getIdArea();
+					campoNombre.setText(vac.get(index).getNombre());
+					campoNombre.setEditable(true);
+					campoDescripcionArea.setText(vac.get(index).getDescripcion());
+					campoDescripcionArea.setEditable(true);
+					String padre = vac.get(index).getAreaPadre();
+					int indexPadre;
+					if(padre.isEmpty()){
+						indexPadre = 0;
+					}else{
+						indexPadre = Integer.parseInt(padre);
+					}
+					campoAreaPadre.setSelectedIndex(indexPadre);
+					campoAreaPadre.setEnabled(true);
+					botonModificarArea.setEnabled(true);
+				}else{
+					id_area="";
+					campoNombre.setText("");
+					campoNombre.setEditable(false);
+					campoDescripcionArea.setText("");
+					campoDescripcionArea.setEditable(false);
+					campoAreaPadre.setSelectedIndex(0);
+					campoAreaPadre.setEnabled(false);
+					botonModificarArea.setEnabled(false);					
+				}
+			}
+		}
+		
+		
+	}
+	
+	public static void main (String []args){
+		GuiModificarArea a = new GuiModificarArea(new GuiCatalogar("admin"));
+		a.setVisible(true);
 	}
 }

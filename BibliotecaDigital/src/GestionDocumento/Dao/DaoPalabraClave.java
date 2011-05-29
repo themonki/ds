@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
 import Utilidades.FachadaBD;
 
@@ -146,4 +147,26 @@ public class DaoPalabraClave {
 		}
 		return vpc;
 	}
+	
+	public int modificarPalabraClave(PalabraClave pc){
+		String sqlUpdate;
+		sqlUpdate = "UPDATE palabra_clave SET "+
+			"descripcion = '" + pc.getDescripcion()+ "' "+
+			"WHERE nombre = '"+ pc.getNombre()+"'; "
+		;
+
+		try {
+			Connection conn = this.fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			int numFilas = sentencia.executeUpdate(sqlUpdate);
+			this.fachada.cerrarConexion(conn);
+			return numFilas;
+		} catch (SQLException se) {
+			System.out.println(se.toString());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return -1;
+	}
+	
 }

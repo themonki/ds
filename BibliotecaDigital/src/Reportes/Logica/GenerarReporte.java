@@ -27,21 +27,48 @@ import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import Reportes.Controlador.ControladorReportes;
+import Reportes.Logica.Reporte;
+
 public class GenerarReporte {
 	
-	private String imagen = "logo3dpajaroGrande.png";
+	private String imagen = "recursos/logo3dpajaroGrande.png";
 	private String path = null;
 	private Document informe;	
 	private String encabezado=null;
 	
 	/*Datos*/
 	
-	private Vector<String> vectorOrderBy = new Vector<String>();
-	private Vector<String> vectorColumnas = new Vector<String>();
-	private Vector<String> vectorRegistros = new Vector<String>(); 
+	private Vector<String> vectorOrderBy = null;
+	private Vector<String> vectorColumnas = null;
+	private Vector<String> vectorRegistros = null; 
 	
-	public GenerarReporte(String ruta){
+	public GenerarReporte(Reporte reporte, String ruta){
 			path = ruta;
+			vectorOrderBy = reporte.getVectorOrderBy();
+			vectorColumnas = reporte.getVectorColumnas();
+			vectorRegistros = reporte.getVectorRegistros();
+			encabezado = reporte.getEncabezado();
+			
+			try {
+				crearPDF();
+				escribirTabla();
+				javax.swing.JOptionPane.showMessageDialog(null,"Su reporte se ha generado con exito.","OK",javax.swing.JOptionPane.INFORMATION_MESSAGE);
+			} catch (FileNotFoundException e) {				
+				e.printStackTrace();
+				javax.swing.JOptionPane.showMessageDialog(null,"Reporte no se ha generado.","OK",javax.swing.JOptionPane.ERROR_MESSAGE);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+				javax.swing.JOptionPane.showMessageDialog(null,"Reporte no se ha generado.","OK",javax.swing.JOptionPane.ERROR_MESSAGE);
+			} catch (DocumentException e) {
+				e.printStackTrace();
+				javax.swing.JOptionPane.showMessageDialog(null,"Reporte no se ha generado.","OK",javax.swing.JOptionPane.ERROR_MESSAGE);
+			} catch (IOException e) {
+				e.printStackTrace();
+				javax.swing.JOptionPane.showMessageDialog(null,"Reporte no se ha generado.","OK",javax.swing.JOptionPane.ERROR_MESSAGE);
+			}
+			
+			
 	}
 	
 	public void crearPDF() throws FileNotFoundException, DocumentException, MalformedURLException, IOException{
@@ -74,29 +101,7 @@ public class GenerarReporte {
 	}
 	
 	public void escribirTabla() throws DocumentException, IOException{
-		
-		/*Ingresando datos para tabla*/
-		vectorOrderBy.add("Administrador");
-		vectorOrderBy.add("Catalogador");
-		vectorOrderBy.add("Usuario normal");
-		
-		vectorColumnas.add("login");
-		vectorColumnas.add("nombre1");
-		vectorColumnas.add("apellido1");
-		vectorColumnas.add("vinculo_univalle");
-		
-		vectorRegistros.add("admin|biblioteca|eisc|Estudiante de pregrado");
-		vectorRegistros.add("");
-		vectorRegistros.add("maria|maria|cruz|Estudiante de pregrado");
-		vectorRegistros.add("felipex|luis|vargas|Estudiante de pregrado");
-		vectorRegistros.add("clrl|cristian|rios|Estudiante de pregrado");
-		vectorRegistros.add("");
-		vectorRegistros.add("monki|edgar|moncada|Estudiante de pregrado");
-		vectorRegistros.add("alberto|alberto|gonzales|Estudiante de pregrado");
-		vectorRegistros.add("carlos|carlos|valderrama|Estudiante de pregrado");
-		vectorRegistros.add("camilo|camilo|suarez|Egresado");
-		vectorRegistros.add("laura|laura|rodrigues|Egresado");
-		vectorRegistros.add("marcela|marcela|lozano|Profesor activo");
+
 		
 		/*Organizar Cabecera*/
 		PdfPTable encabezadoTabla = new PdfPTable(vectorColumnas.size());
@@ -155,24 +160,7 @@ public class GenerarReporte {
         informe.close();
 	}
 
-	public void generar(String tituloReporte){
-		try{
-			this.encabezado= tituloReporte;
-			crearPDF();
-			escribirTabla();
-			javax.swing.JOptionPane.showMessageDialog(null,"Reporte Generado con Exito","OK",javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-		}catch(DocumentException e){
-			System.out.print("Error de Documento");
-			
-		}catch(FileNotFoundException e){
-			e.printStackTrace();
-			System.out.print("Error archivo no encontrado");
-		}catch(IOException e){
-			System.err.println("Error en Flujos");
-		}
-	}
-
+	
 	/*Clase para colocar el numero de paginas del reporte*/
 	
 	private class PaginaEvent extends PdfPageEventHelper
@@ -212,4 +200,13 @@ public class GenerarReporte {
 	        }
 		  
 	}
+	
+	/*public static void main(String[] args)
+	{
+		ControladorReportes controlador = new ControladorReportes();
+		Reporte reporte = controlador.consultarUsuariosOrdenados("genero");
+		reporte.setEncabezado("UN REPORTE OMG!!");
+		GenerarReporte genera = new GenerarReporte(reporte, "C:/Documents and Settings/ANDREA/Desktop/ReporteCodigo.pdf");
+	}*/
+	
 }
