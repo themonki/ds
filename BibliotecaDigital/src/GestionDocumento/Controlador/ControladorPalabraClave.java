@@ -58,4 +58,10 @@ public class ControladorPalabraClave {
 		DaoPalabraClave daoPC = new DaoPalabraClave();
 		return daoPC.consultarPalabrasClaveDocumento(id_documento);
 	}
+	
+	public int actualizarPalabraClave(PalabraClave pc){
+		DaoPalabraClave daoPalabra = new DaoPalabraClave();
+		pc.setDescripcion(pc.getDescripcion().toLowerCase());
+		return daoPalabra.modificarPalabraClave(pc);
+	}
 }
