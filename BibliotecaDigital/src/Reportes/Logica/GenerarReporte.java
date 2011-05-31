@@ -9,6 +9,12 @@ import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -208,5 +214,21 @@ public class GenerarReporte {
 		reporte.setEncabezado("UN REPORTE OMG!!");
 		GenerarReporte genera = new GenerarReporte(reporte, "C:/Documents and Settings/ANDREA/Desktop/ReporteCodigo.pdf");
 	}*/
+	
+	public static void pruebaReporte(String rutaFinal, JasperPrint print)
+	{
+		JRExporter exporter = new JRPdfExporter(); 
+        exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+        exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File(rutaFinal)); 
+        
+        try
+        {
+        	exporter.exportReport();
+        }catch(JRException e)
+        {
+        	System.out.println("Exception generada en GenerarReporte,pruebaRepote");
+        	e.printStackTrace();
+        }
+	}
 	
 }
