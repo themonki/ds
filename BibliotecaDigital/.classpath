@@ -17,7 +17,6 @@
 	<classpathentry kind="lib" path="recursos/jasperreports-javaflow-4.0.2.jar"/>
 	<classpathentry kind="lib" path="recursos/jfreechart-1.0.12.jar"/>
 	<classpathentry kind="lib" path="recursos/jcommon-1.0.15.jar"/>
-	<classpathentry kind="lib" path="recursos/jcommon-1.0.15.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
