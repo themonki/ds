@@ -38,18 +38,19 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 
 import Reportes.Controlador.ControladorReportes;
-import Reportes.Logica.GenerarReporte;
-import Reportes.Logica.Reporte;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
-import com.sun.org.apache.xml.internal.security.keys.content.RetrievalMethod;
-import com.sun.xml.internal.org.jvnet.fastinfoset.RestrictedAlphabet;
 
 public class GuiReportes extends JTabbedPane{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JPanel PanelreportesBasicos,panelRepAvanzados; 
 	
 	private GridBagConstraints retricciones;
@@ -534,14 +535,27 @@ public class GuiReportes extends JTabbedPane{
 					{
 						if(usuario)
 						{
-							//reporte = reporte=controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
+							try
+							{
+								JasperPrint reporte;
+								if(habilitarFechas)
+								{
+									reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado, fechaBusqueda, fechaInicioString, fechaFinString);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else
+								{
+									reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
 						}
 					}
 					
 					//reporte.setEncabezado(encabezado);
-					
-					
-
 				}
 				
 				//System.out.println(controladorReporte.consultarUsuariosAgrupados((String) atributos.getSelectedItem()));

@@ -7,11 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import Consultas.Dao.DaoConsulta;
-
 import Utilidades.FachadaBD;
 import Utilidades.TableDataSource;
-import Reportes.Logica.Reporte;
 
 
 
@@ -24,7 +21,7 @@ FachadaBD fachada;
 		fachada = new FachadaBD();
 		
 	}
-	public void consultaUsuarioBasica(String atributo, String condicion, String especificacion)
+	/*public void consultaUsuarioBasica(String atributo, String condicion, String especificacion)
 	{
 		
 		String consultaSql;		
@@ -349,7 +346,8 @@ FachadaBD fachada;
 		}
 	
 
-	}
+	}*/
+	
 	/*public Vector<String> consultaUsuariosAgrupados(String atributo)
 	{
 		Reporte reporte = new Reporte();
@@ -397,7 +395,7 @@ FachadaBD fachada;
 	{
 		String consultaSql = "SELECT u." + atributoUsuario + 
 		" AS agrupado, u.login, u.nombre1, u.apellido1, u.email, " +
-		"u.vinculo_univalle, u.tipo, u.fecha_nacimiento, u.fecha_registro, u.fecha_ultimo_acceso " +
+		"u.vinculo_univalle, u.tipo, u.fecha_nacimiento, u.fecha_registro " +
 		"FROM usuario AS u ORDER BY agrupado";
 		
 		return procesarDatos(consultaSql, atributoUsuario);
@@ -407,7 +405,7 @@ FachadaBD fachada;
 	{
 		String consultaSql = "SELECT u." + atributoUsuario + 
 		" AS agrupado, u.login, u.nombre1, u.apellido1, u.email, " +
-		"u.vinculo_univalle, u.tipo, u.fecha_nacimiento, u.fecha_registro, u.fecha_ultimo_acceso " +
+		"u.vinculo_univalle, u.tipo, u.fecha_nacimiento, u.fecha_registro " +
 		 "FROM usuario AS u " +
 		"WHERE u." + cualFecha + " BETWEEN '" + fechaInicio + "' AND '" + FechaFin + "' " +
 		"ORDER BY agrupado";
@@ -417,25 +415,14 @@ FachadaBD fachada;
 	
 	private TableDataSource procesarDatos(String consultaSql, String atributoUsuario)
 	{
-		int opcion = 0;
-		if(atributoUsuario.equals("genero"))
-		{
-			opcion = 1;
-		}else if(atributoUsuario.equals("tipo"))
-		{
-			opcion = 2;
-		}
-		
-		ResultSet resultado;
-		ResultSetMetaData metaData;
 		TableDataSource data = new TableDataSource();
 		
 		try 
 		{
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();			
-			resultado = sentencia.executeQuery(consultaSql);
-			metaData = resultado.getMetaData();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
 			
 			for(int i=0; i<metaData.getColumnCount(); i++)
 			{
@@ -448,7 +435,7 @@ FachadaBD fachada;
 			Vector<Object> row = new Vector<Object>(0,1);
 			
 			String columnOne = resultado.getString(1);
-			if(opcion == 1)
+			if(atributoUsuario.equals("genero"))
 			{
 				if(columnOne.equals("M"))
 				{
@@ -458,7 +445,7 @@ FachadaBD fachada;
 				{
 					row.add("Femenino");
 				}					
-			}else if(opcion == 2)
+			}else if(atributoUsuario.equals("tipo"))
 			{
 				if(columnOne.equals("3"))
 				{
@@ -488,16 +475,117 @@ FachadaBD fachada;
 			row.add(resultado.getString(7));
 			row.add(resultado.getString(8));
 			row.add(resultado.getString(9));
-			row.add(resultado.getString(10));
 			
 			data.addRow(row);				
 		}
 		fachada.cerrarConexion(conn);
+		conn = null;
+		fachada = null;
+		sentencia = null;
+		resultado = null;
+		metaData = null;
 		} catch (SQLException e) {			
 			System.out.println(e);
 		} catch (Exception e) {
 			System.out.println(e);					
 		}
+		
+		return data;
+	}
+	
+	public TableDataSource consultaUsuariosAgrupadosTotales(String atributoUsuario)
+	{
+		String consultaSql = "SELECT u." + atributoUsuario + 
+		" AS agrupado, count(" + atributoUsuario + ") As cuantos " +
+		"FROM usuario AS u " +
+		"GROUP BY agrupado " +
+		"ORDER BY agrupado";
+		
+		return procesarDatosTotales(consultaSql, atributoUsuario);
+	}
+	
+	public TableDataSource consultaUsuariosAgrupadosTotales(String atributoUsuario,String cualFecha, String fechaInicio, String FechaFin)
+	{
+		String consultaSql = "SELECT u." + atributoUsuario + 
+		" AS agrupado, count(" + atributoUsuario + ") AS cuantos " +
+		"FROM usuario AS u " +
+		"WHERE u." + cualFecha + " BETWEEN '" + fechaInicio + "' AND '" + FechaFin + "' " +
+		"GROUP BY agrupado " +
+		"ORDER BY agrupado";
+		
+		return procesarDatosTotales(consultaSql, atributoUsuario);
+	}
+	
+	private TableDataSource procesarDatosTotales(String consultaSql,String atributoUsuario)
+	{
+		TableDataSource data = new TableDataSource();
+		
+		try 
+		{
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+			
+			for(int i=0; i<metaData.getColumnCount(); i++)
+			{
+				data.addColumn(metaData.getColumnName(i+1));
+				//System.out.println(metaData.getColumnTypeName(i+1));
+			}
+		
+		while (resultado.next())
+		{
+			Vector<Object> row = new Vector<Object>(0,1);
+			
+			String columnOne = resultado.getString(1);
+			if(atributoUsuario.equals("genero"))
+			{
+				if(columnOne.equals("M"))
+				{
+					row.add("Masculino");
+				
+				}else
+				{
+					row.add("Femenino");
+				}					
+			}else if(atributoUsuario.equals("tipo"))
+			{
+				if(columnOne.equals("3"))
+				{
+					row.add("Normal");
+				
+				}else if(columnOne.equals("2"))
+				{
+					row.add("Catalogador");
+					
+				}else if(columnOne.equals("1"))
+				{
+					row.add("Administrador");
+				
+				}else
+				{
+					row.add("Anónimo");
+				}
+			}else
+			{
+				row.add(columnOne);
+			}
+			row.add(resultado.getString(2));
+			
+			data.addRow(row);				
+		}
+		fachada.cerrarConexion(conn);
+		conn = null;
+		fachada = null;
+		sentencia = null;
+		resultado = null;
+		metaData = null;
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		
 		return data;
 	}
 	
@@ -505,7 +593,7 @@ FachadaBD fachada;
 	{
 		
 		
-		DaoReportes daoReportes = new DaoReportes();
+		//DaoReportes daoReportes = new DaoReportes();
 		//daoReportes.consultaUsuarioBasica("vinculo_univalle", "=", "Estudiante de pregrado");
 		//daoReportes.consultaDocumentoBasica("titulo_principal", "=", "data base");
 		//daoReportes.consultaUsuarioEntreFechas("fecha_registro", "2011-05-20","2011-05-30" );
@@ -514,7 +602,7 @@ FachadaBD fachada;
 		//System.out.println(daoReportes.consultaAreaAgrupados());
 		
 		//System.out.println(daoReportes.consultaUsuariosOrdenados("nivel_escolaridad"));
-		System.out.println(daoReportes.consultaUsuariosOrdenadosTotales("genero"));
+		//System.out.println(daoReportes.consultaUsuariosOrdenadosTotales("genero"));
 		
 	}
 	

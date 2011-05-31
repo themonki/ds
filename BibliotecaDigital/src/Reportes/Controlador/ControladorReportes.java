@@ -3,7 +3,6 @@ package Reportes.Controlador;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
@@ -15,90 +14,107 @@ import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
-import Reportes.Logica.GenerarReporte;
-import Reportes.Logica.Reporte;
 
- 
 import Reportes.Dao.DaoReportes;
 import Utilidades.TableDataSource;
 
 public class ControladorReportes 
 {
-	/*public Vector<String> consultarUsuariosAgrupados(String atributoUsuario){
-		DaoReportes	daoReportes = new DaoReportes();
-		Vector<String> usuariosAgrupados = daoReportes.consultaUsuariosAgrupados(atributoUsuario);
-		
-		return usuariosAgrupados;
-	}*/
-	
 	public JasperPrint reporteUsuariosAgrupados(String atributoUsuario, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
 		TableDataSource tableData = daoReportes.consultaUsuariosAgrupados(atributoUsuario);
-		//System.out.println(tableData.toString());
-		
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteUsuariosAgrupados2.jasper");
-				
-		Map<String, String> parametros = new HashMap<String, String>();
-		parametros.put("titulo", tituloReporte);
-		if(atributoUsuario.equals("vinculo_univalle"))
-		{
-			parametros.put("opcion", "Tipo");
-			tableData.setColumnName(6, "opcion"); //6 es tipo
-			
-		}else
-		{
-			parametros.put("opcion", "Vinculo con Univalle");
-			tableData.setColumnName(5, "opcion"); //5 es vinculo_univalle
-		}
-		
-        JRTableModelDataSource table = new JRTableModelDataSource(tableData);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
-        
-        daoReportes = null;
-        parametros = null;
-        tableData = null;
-        table = null;
-        reporte = null;
-        
-        return jasperPrint;
+		daoReportes = null;
+		return procesarDatosReporteUsuariosAgrupados(atributoUsuario, tituloReporte, tableData);
 	}
 	
 	public JasperPrint reporteUsuariosAgrupados(String atributoUsuario, String tituloReporte, String cualFecha, String fechaI, String fechaF) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
 		TableDataSource tableData = daoReportes.consultaUsuariosAgrupados(atributoUsuario, cualFecha, fechaI, fechaF);
-		//System.out.println(tableData.toString());
+		daoReportes = null;
+		return procesarDatosReporteUsuariosAgrupados(atributoUsuario, tituloReporte, tableData);
+	}
+	
+	private JasperPrint procesarDatosReporteUsuariosAgrupados(String atributoUsuario, String tituloReporte, TableDataSource tableData) throws JRException
+	{
+		boolean opcionReporte;
 		
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteUsuariosAgrupados2.jasper");
-				
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		if(atributoUsuario.equals("vinculo_univalle"))
 		{
 			parametros.put("opcion", "Tipo");
+			parametros.put("convencion_title", "Convención para Tipos de usuarios");
+			parametros.put("convencion", "1:Administrador 2:Catalogador 3:Normal");
 			tableData.setColumnName(6, "opcion"); //6 es tipo
+			opcionReporte = true;
 			
-		}else
+		}else if(atributoUsuario.equals("tipo"))
 		{
 			parametros.put("opcion", "Vinculo con Univalle");
 			tableData.setColumnName(5, "opcion"); //5 es vinculo_univalle
+			opcionReporte = true;
+		}else
+		{
+			opcionReporte = false;
+		}
+		
+		JasperReport reporte;
+		if(opcionReporte)
+		{
+			reporte = (JasperReport) JRLoader.loadObject("recursos/reporteUsuariosAgrupados_1.jasper");
+		}else
+		{
+			reporte = (JasperReport) JRLoader.loadObject("recursos/reporteUsuariosAgrupados_2.jasper");
 		}
 		
         JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
-        daoReportes = null;
         parametros = null;
         tableData = null;
         table = null;
         reporte = null;
         
         return jasperPrint;
-
 	}
 	
-	public Vector<String> consultarAreasAgrupadasAreaPadre(){
+	public JasperPrint reporteUsuariosAgrupadosTotales(String atributoUsuario, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaUsuariosAgrupadosTotales(atributoUsuario);
+		daoReportes = null;
+		return procesarDatosReporteUsuariosAgrupadosTotales(tituloReporte, atributoUsuario, tableData);
+	}
+	
+	public JasperPrint reporteUsuariosAgrupadosTotales(String atributoUsuario, String tituloReporte, String cualFecha, String fechaI, String fechaF)throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaUsuariosAgrupadosTotales(atributoUsuario,cualFecha, fechaI, fechaF);
+		daoReportes = null;
+		return procesarDatosReporteUsuariosAgrupadosTotales(tituloReporte, atributoUsuario, tableData);
+	}
+	
+	private JasperPrint procesarDatosReporteUsuariosAgrupadosTotales(String tituloReporte,String atributoUsuario, TableDataSource tableData) throws JRException
+	{
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("grupo", atributoUsuario);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteUsuariosAgrupadosTotales.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	/*public Vector<String> consultarAreasAgrupadasAreaPadre(){
 		DaoReportes	daoReportes = new DaoReportes();
 		Vector<String> areasAgrupadas = daoReportes.consultaAreaAgrupados();
 		
@@ -118,7 +134,7 @@ public class ControladorReportes
 		Reporte reporte = daoReportes.consultaUsuariosOrdenadosTotales(atributo);		
 		
 		return reporte;
-	}
+	}*/
 	
 	public void generarReporte(String rutaFinal, JasperPrint print)
 	{
