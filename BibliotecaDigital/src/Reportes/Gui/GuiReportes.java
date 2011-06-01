@@ -104,7 +104,7 @@ public class GuiReportes extends JTabbedPane{
 	
 	private Button botonAvanzado;
 
-	GuiReportes()
+	public GuiReportes()
 	{
 		controladorReporte= new ControladorReportes();
 		initComponents();
@@ -180,6 +180,7 @@ public class GuiReportes extends JTabbedPane{
 		botonGenerarReporte= new Button("Generar Reporte");
 		botonAvanzado= new Button("Generar Reporte");
 		botonGenerarReporte.addActionListener(new Manejador());
+		botonAvanzado.addActionListener(new Manejador());
 		
 		etiquetaTabla.setForeground(Estilos.colorLabels);
 		etiquetaAtributo.setForeground(Estilos.colorLabels);
@@ -563,6 +564,9 @@ public class GuiReportes extends JTabbedPane{
 				//System.out.println("reporte generado");
 				
 				}
+			if(evento.getSource()==botonAvanzado){
+				JOptionPane.showMessageDialog(null, "En construccion","Lo sentimos", JOptionPane.INFORMATION_MESSAGE);
+			}
 			//nuevaCondicon();
 		}	
 	}
