@@ -21,7 +21,9 @@ FachadaBD fachada;
 		fachada = new FachadaBD();
 		
 	}
-	/*public void consultaUsuarioBasica(String atributo, String condicion, String especificacion)
+	
+	/*
+	 * public void consultaUsuarioBasica(String atributo, String condicion, String especificacion)
 	{
 		
 		String consultaSql;		
@@ -185,7 +187,7 @@ FachadaBD fachada;
 		return areasAgrupadas;
 	}
 	
-	public Reporte consultaUsuariosOrdenadosTotales(String atributo)
+	public Reporte consultaUsuariosOrdenadosTotales(String atributo, String fechaPrimera, String fechaSegunda, String atributoFecha)
 	{
 		
 		String consultaSql;
@@ -202,8 +204,12 @@ FachadaBD fachada;
 		
 		
 		consultaSql = "SELECT "+atributo+", count("+atributo+") as Cantidad "+
-		"FROM usuario AS d " +
-		"GROUP BY "+atributo+";";
+		"FROM usuario AS d ";
+		if(!fechaPrimera.equals("")){
+			consultaSql+="WHERE "+atributoFecha+" BETWEEN '"+ fechaPrimera+ "' AND '"+fechaSegunda+"' ";
+		}
+		
+		consultaSql+="GROUP BY "+atributo+";";
 		
 	
 		System.out.println(consultaSql);
@@ -237,7 +243,7 @@ FachadaBD fachada;
 		return reporte;
 	}
 	
-	public Reporte consultaUsuariosOrdenados(String atributo)
+	public Reporte consultaUsuariosOrdenados(String atributo, String fechaPrimera, String fechaSegunda, String atributoFecha)
 	{
 		
 		String consultaSql;
@@ -255,8 +261,11 @@ FachadaBD fachada;
 		
 		
 		consultaSql = "SELECT login, nombre1 , apellido1,vinculo_univalle,"+atributo+" "+
-		"FROM usuario  " +
-		"ORDER BY "+atributo+";";
+		"FROM usuario  " ;
+		if(!fechaPrimera.equals("")){
+			consultaSql+="WHERE "+atributoFecha+" BETWEEN '"+ fechaPrimera+ "' AND '"+fechaSegunda+"' ";
+		}
+		consultaSql += " ORDER BY "+atributo+";";
 		
 	
 		System.out.println(consultaSql);
@@ -346,9 +355,9 @@ FachadaBD fachada;
 		}
 	
 
-	}*/
+	}
 	
-	/*public Vector<String> consultaUsuariosAgrupados(String atributo)
+	public Vector<String> consultaUsuariosAgrupados(String atributo)
 	{
 		Reporte reporte = new Reporte();
 		String consultaSql;
@@ -389,7 +398,124 @@ FachadaBD fachada;
 	
 
 		return usuarioAgrupado;
-	}*/
+	}
+	
+	public Reporte consultarAreasOrdenadas(String atributo)
+	{
+		String consultaSql;
+		
+		
+		Vector<String> columnas = new Vector<String>();
+		columnas.add("Id Area");
+		columnas.add("Nombre");
+		
+		Vector<String> registros = new Vector<String>();
+		Vector<String> orderBy = new Vector<String>();
+		
+		
+		
+		consultaSql = "SELECT id_area, nombre, " +atributo+" "+
+		"FROM  Area_Conocimiento " +
+		"ORDER BY "+atributo+";";
+		
+	
+		System.out.println(consultaSql);
+		ResultSet resultado;
+		
+		try {
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();			
+		resultado = sentencia.executeQuery(consultaSql);
+		String atributoAnterior = "";
+		
+		while (resultado.next())
+		{
+			
+			
+			if(!atributoAnterior.equals(resultado.getString(atributo)))
+			{
+			
+				orderBy.add(resultado.getString(atributo));
+				registros.add("");
+			}
+			atributoAnterior = resultado.getString(atributo);
+			registros.add(resultado.getString("id_area")+"|"+resultado.getString("nombre"));
+			
+			
+		
+		
+				
+			
+			
+		}
+		conn.close();
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		registros.remove(0);
+		System.out.println(registros);
+		System.out.println(columnas);
+		System.out.println(orderBy);
+		Reporte reporte = new Reporte(orderBy,columnas,registros,1,"");
+	
+
+		return reporte;
+	}
+
+	// Metodo areas totales
+	 
+	
+	public Reporte consultarAreasOrdenadasTotales(String atributo)
+	{
+		String consultaSql;
+		
+		
+		Vector<String> columnas = new Vector<String>();
+		columnas.add(atributo);
+		columnas.add("Cantidad");
+		
+		
+		Vector<String> registros = new Vector<String>();
+		Vector<String> orderBy = new Vector<String>();
+		
+		
+		
+		consultaSql =" SELECT B.nombre AS Areas_Padre,count(B.nombre) AS Cantidad from area_conocimiento AS A ,area_conocimiento AS B where A.area_padre = B.id_area GROUP BY Areas_Padre;";
+		
+	
+		System.out.println(consultaSql);
+		ResultSet resultado;
+		
+		try {
+		Connection conn = fachada.conectar();
+		Statement sentencia = conn.createStatement();			
+		resultado = sentencia.executeQuery(consultaSql);
+		orderBy.add("Areas por "+ atributo);
+	
+		
+		while (resultado.next())
+		{			
+			registros.add(resultado.getString("Areas_Padre")+"|"+resultado.getString("Cantidad"));
+			
+		}
+		conn.close();
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		
+		System.out.println(registros);
+		System.out.println(columnas);
+		System.out.println(orderBy);
+		Reporte reporte = new Reporte(orderBy,columnas,registros,1,"");
+	
+
+		return reporte;
+	}
+	 */
 	
 	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario)
 	{

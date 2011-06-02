@@ -114,24 +114,49 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	/*public Vector<String> consultarAreasAgrupadasAreaPadre(){
+	/*public Vector<String> consultarUsuariosAgrupados(String atributoUsuario){
+		DaoReportes	daoReportes = new DaoReportes();
+		Vector<String> usuariosAgrupados = daoReportes.consultaUsuariosAgrupados(atributoUsuario);
+		
+		return usuariosAgrupados;
+	}
+	
+	public Vector<String> consultarAreasAgrupadasAreaPadre(){
 		DaoReportes	daoReportes = new DaoReportes();
 		Vector<String> areasAgrupadas = daoReportes.consultaAreaAgrupados();
 		
 		return areasAgrupadas;
 	}
-	public Reporte consultarUsuariosOrdenados(String atributo){
+	
+	public Reporte consultarAreasOrdenadas(String atributo)
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		Reporte reporte = daoReportes.consultarAreasOrdenadas(atributo);
+		
+		return reporte;
+	}
+	
+	public Reporte consultarUsuariosOrdenados(String atributo, String fechaPrimera, String fechaSegunda, String atributoFecha){
 		DaoReportes	daoReportes = new DaoReportes();
 		
-		Reporte reporte = daoReportes.consultaUsuariosOrdenados(atributo);
+		Reporte reporte = daoReportes.consultaUsuariosOrdenados(atributo, fechaPrimera, fechaSegunda, atributoFecha);
 		
 		
 		return reporte;
 	}
-	public Reporte consultarUsuariosOrdenadosTotales(String atributo){
+	
+	public Reporte consultarUsuariosOrdenadosTotales(String atributo, String fechaPrimera, String fechaSegunda, String atributoFecha){
 		DaoReportes	daoReportes = new DaoReportes();
 		
-		Reporte reporte = daoReportes.consultaUsuariosOrdenadosTotales(atributo);		
+		Reporte reporte = daoReportes.consultaUsuariosOrdenadosTotales(atributo, fechaPrimera, fechaSegunda, atributoFecha);		
+		
+		return reporte;
+	}
+	
+	public Reporte consultarAreasOrdenadasTotales(String atributo)
+	{
+		DaoReportes	daoReportes = new DaoReportes();
+		Reporte reporte = daoReportes.consultarAreasOrdenadasTotales(atributo);		
 		
 		return reporte;
 	}*/
