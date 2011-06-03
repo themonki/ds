@@ -617,7 +617,7 @@ public class GuiVistaDocumento extends JScrollPane {
 					
 				}else if(GuiConsultaBasica.TIPOUSUARIO == 1)
 				{
-					GuiAdministrador.panelModificarDoc = new GuiModificarDoc(GuiAdministrador.LOGIN, documento);
+					GuiAdministrador.PANEL_MODIFICAR_DOCUMENTO = new GuiModificarDoc(GuiAdministrador.LOGIN, documento);
 					
 					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
 					{
