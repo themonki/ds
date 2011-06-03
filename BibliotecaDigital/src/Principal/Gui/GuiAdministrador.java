@@ -695,8 +695,8 @@ public class GuiAdministrador extends JFrame
 	
 	public void setNovededadesUsuario(Vector<Consulta> novedades)
 	{
-		GuiNovedades.RESULTADOCONSULTA = new GuiResultadoConsulta(novedades, 10);
-		GuiNovedades.PANELNOVEDADES.add(GuiNovedades.RESULTADOCONSULTA);
+		GuiNovedades.RESULTADO_CONSULTA = new GuiResultadoConsulta(novedades, 10);
+		GuiNovedades.PANEL_NOVEDADES.add(GuiNovedades.RESULTADO_CONSULTA);
 		
 		GuiResultadoConsulta.TIPOCONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");

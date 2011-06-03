@@ -21,13 +21,13 @@ public class GuiNovedades extends JScrollPane
 	public static int TIPOUSUARIO;
 	
 	
-	public static JPanel PANELNOVEDADES;
-	public static GuiResultadoConsulta RESULTADOCONSULTA;
-	public static GuiVistaDocumento VISTADOCUMENTO;
+	public static JPanel PANEL_NOVEDADES;
+	public static GuiResultadoConsulta RESULTADO_CONSULTA;
+	public static GuiVistaDocumento VISTA_DOCUMENTO;
 	private static TitledBorder BORDE;
 	public GuiNovedades()
 	{		
-		PANELNOVEDADES = new JPanel(new BorderLayout());
+		PANEL_NOVEDADES = new JPanel(new BorderLayout());
 		String title = "::Novedades::";
 
 		// Linea y titulo del panel.
@@ -39,7 +39,7 @@ public class GuiNovedades extends JScrollPane
 		BORDE.setTitleJustification(TitledBorder.LEFT);
 	
 			
-		PANELNOVEDADES.setBorder(BORDE);
+		PANEL_NOVEDADES.setBorder(BORDE);
 		
 		
 
@@ -47,7 +47,7 @@ public class GuiNovedades extends JScrollPane
 		
 		
 		
-		this.setViewportView(PANELNOVEDADES);
+		this.setViewportView(PANEL_NOVEDADES);
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		
@@ -55,18 +55,18 @@ public class GuiNovedades extends JScrollPane
 	
 	public static void ponerDescripcion()
 	{
-		PANELNOVEDADES.remove(RESULTADOCONSULTA);
-		PANELNOVEDADES.setBorder(null);
-		PANELNOVEDADES.add(VISTADOCUMENTO, BorderLayout.CENTER);
-		PANELNOVEDADES.updateUI();
+		PANEL_NOVEDADES.remove(RESULTADO_CONSULTA);
+		PANEL_NOVEDADES.setBorder(null);
+		PANEL_NOVEDADES.add(VISTA_DOCUMENTO, BorderLayout.CENTER);
+		PANEL_NOVEDADES.updateUI();
 	}
 	public static void restaurar()
 	{
-		PANELNOVEDADES.remove(VISTADOCUMENTO);	
-		PANELNOVEDADES.setBorder(BORDE);
-		PANELNOVEDADES.add(RESULTADOCONSULTA, BorderLayout.CENTER );		
-		PANELNOVEDADES.remove(VISTADOCUMENTO);
-		PANELNOVEDADES.updateUI();
+		PANEL_NOVEDADES.remove(VISTA_DOCUMENTO);	
+		PANEL_NOVEDADES.setBorder(BORDE);
+		PANEL_NOVEDADES.add(RESULTADO_CONSULTA, BorderLayout.CENTER );		
+		PANEL_NOVEDADES.remove(VISTA_DOCUMENTO);
+		PANEL_NOVEDADES.updateUI();
 	}
 	
 	
