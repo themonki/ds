@@ -552,16 +552,9 @@ public class GuiReportes extends JTabbedPane{
 						{
 							try
 							{
-								JasperPrint reporte;
-								if(habilitarFechas)
-								{
-									reporte = controlador.reporteAreasAgrupadas(encabezado, fechaBusqueda, fechaInicioString, fechaFinString);
-									controlador.generarReporte(rutaFinal, reporte);
-								}else
-								{
-									reporte = controlador.reporteAreasAgrupadas(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
-								}
+								JasperPrint reporte = controlador.reporteAreasAgrupadas(encabezado);
+								controlador.generarReporte(rutaFinal, reporte);
+								
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed" +
@@ -589,6 +582,21 @@ public class GuiReportes extends JTabbedPane{
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
+						}
+						
+						if(areas)
+						{
+							try
+							{
+								JasperPrint reporte = controlador.reporteAreasAgrupadasTotales(encabezado);
+								controlador.generarReporte(rutaFinal, reporte);
+								
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed" +
+										"tratando de llamarse el generar reporte de areas totales");
 								e.printStackTrace();
 							}
 						}

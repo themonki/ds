@@ -114,12 +114,28 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	public JasperPrint reporteAreasAgrupadas(String encabezado, String fechaBusqueda, String fechaInicioString, String fechaFinString) throws JRException
+	public JasperPrint reporteAreasAgrupadas(String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultarAreasConocimientoAgrupadasTotales();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteAreasAgrupadasTotales.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
-	public JasperPrint reporteAreasAgrupadas(String encabezado) throws JRException
+	public JasperPrint reporteAreasAgrupadasTotales(String tituloReporte) throws JRException
 	{
 		return null;
 	}
