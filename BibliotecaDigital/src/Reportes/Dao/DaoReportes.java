@@ -370,6 +370,60 @@ FachadaBD fachada;
 		return data;
 	}
 	
+	public TableDataSource consultaDocumentosAgrupadosArea()
+	{
+		String consultaSql = "SELECT doc.titulo_principal, doc.editorial, autor_area.nombre_area, autor_area.nombre_autor FROM " +
+				"(SELECT d.id_documento, d.titulo_principal, d.editorial FROM documento AS d) AS doc " +
+				"NATURAL JOIN " +
+				"((SELECT x.id_documento, x.nombre AS nombre_autor FROM " +
+				"(escribe_autor_documento NATURAL JOIN " +
+				"(SELECT a.id_autor, a.nombre FROM autor AS a) AS s) AS x) AS autor " +
+				"NATURAL JOIN " +
+				"(SELECT y.id_documento, y.nombre AS nombre_area FROM " +
+				"(pertenece_documento_area_conocimiento NATURAL JOIN " +
+				"(SELECT a.id_area, a.nombre FROM area_conocimiento AS a) AS t) AS y)AS area) AS autor_area " +
+				"ORDER BY autor_area.nombre_area";
+		
+		TableDataSource data = new TableDataSource();
+		
+		try 
+		{
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+			
+			for(int i=0; i<metaData.getColumnCount(); i++)
+			{
+				data.addColumn(metaData.getColumnName(i+1));
+			}
+		
+		while (resultado.next())
+		{
+			Vector<Object> row = new Vector<Object>(0,1);
+			
+			row.add(resultado.getString(1));
+			row.add(resultado.getString(2));
+			row.add(resultado.getString(3));
+			row.add(resultado.getString(4));
+			
+			data.addRow(row);				
+		}
+		fachada.cerrarConexion(conn);
+		conn = null;
+		fachada = null;
+		sentencia = null;
+		resultado = null;
+		metaData = null;
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		
+		System.out.println(data);
+		return data;
+	}
 	public static void main(String args[])
 	{
 		
