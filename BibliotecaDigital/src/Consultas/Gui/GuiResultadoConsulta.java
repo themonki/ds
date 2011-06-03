@@ -129,8 +129,13 @@ public class GuiResultadoConsulta extends JScrollPane{
 		rl.agregarElementos(mostrar);
 		listaResultado.setListData(mostrar);
 		listaResultado.setCellRenderer(rl);
+		if(cantidadTotalResultados==0)//no ahi resultados
+		{
+			borde.setTitle("No ahi resultados");
+		}else{
 		borde.setTitle("Mostrando desde "+ (posicionResultado+1)+
 				" hasta "+ i +" de "+cantidadTotalResultados+ " resultados");
+		}
 		posicionResultado=posicionFinal;
 		this.updateUI();
 	}

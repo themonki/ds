@@ -64,7 +64,7 @@ public class GuiAdministrador extends JFrame
 	private Button novedades;
 	private Button reportes;
 	
-	private static JLabel estado;
+	private static JLabel ESTADO;
 
 	// Clase interna que permite administrar todos los eventos que genera la
 	// ventana y son escuchados.
@@ -73,7 +73,7 @@ public class GuiAdministrador extends JFrame
 	// Elementos de la barra de menu
 	private JMenu archivo;
 	private JMenu acercaDe;
-	private static Container contenedor;
+	private static Container CONTENEDOR;
 	private JMenuItem salir;
 	private JMenuItem informacion;
 	private JMenuBar barra;
@@ -81,12 +81,12 @@ public class GuiAdministrador extends JFrame
 	// otros paneles
 	private GuiRegistroModificar panelModificacion;
 	private GuiConsultarUsuarios panelConsultarUsuarios;
-	private static GuiConsultaBasica panelConsultaBasica;
-	private static GuiConsultaAvanzada panelConsultaAvanzada;
-	public static GuiModificarDoc panelModificarDoc;
+	private static GuiConsultaBasica PANEL_CONSULTA_BASICA;
+	private static GuiConsultaAvanzada PANEL_CONSULTA_AVANZADA;
+	public static GuiModificarDoc PANEL_MODIFICAR_DOCUMENTO;
 	private GuiCatalogar panelCatalogar;
-	private static GuiNovedades panelNovedades;
-	private static GuiReportes panelReportes;
+	private static GuiNovedades PANEL_NOVEDADES;
+	private static GuiReportes PANEL_REPORTES;
 	
 	private Usuario usuario;
 	private JLabel cuenta;
@@ -120,10 +120,10 @@ public class GuiAdministrador extends JFrame
 		
 		// se instancias paneles adicionales		
 		panelConsultarUsuarios = new GuiConsultarUsuarios();
-		panelConsultaBasica = new GuiConsultaBasica();
-		panelConsultaAvanzada = new GuiConsultaAvanzada();
-		panelNovedades =  new GuiNovedades();
-		panelReportes = new GuiReportes();
+		PANEL_CONSULTA_BASICA = new GuiConsultaBasica();
+		PANEL_CONSULTA_AVANZADA = new GuiConsultaAvanzada();
+		PANEL_NOVEDADES =  new GuiNovedades();
+		PANEL_REPORTES = new GuiReportes();
 		GuiConsultaBasica.TIPOUSUARIO = 1;
 		GuiConsultaAvanzada.TIPOUSUARIO = 1;
 		GuiNovedades.TIPOUSUARIO = 1;
@@ -132,9 +132,9 @@ public class GuiAdministrador extends JFrame
 		panelModificacion = new GuiRegistroModificar(this.usuario,1);
 	
 		
-		contenedor = getContentPane();
-		contenedor.setLayout(new BorderLayout(20,20));
-		((JComponent) contenedor).setBorder(borde);
+		CONTENEDOR = getContentPane();
+		CONTENEDOR.setLayout(new BorderLayout(20,20));
+		((JComponent) CONTENEDOR).setBorder(borde);
 		
 		// Se instancian todos los elementos de la barra del menu.
 		archivo = new JMenu("Archivo");
@@ -233,11 +233,11 @@ public class GuiAdministrador extends JFrame
 		JPanel panelconOpciones2= new JPanel(); //evita que los botones crescan si la ventana es redimensionada
 		panelconOpciones2.add(panelOpcionesGenerales);
 
-		estado = new JLabel(estadoInicial);
+		ESTADO = new JLabel(estadoInicial);
 
-		contenedor.add(panelconOpciones2, BorderLayout.WEST);
-		contenedor.add(estado, BorderLayout.SOUTH);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		CONTENEDOR.add(panelconOpciones2, BorderLayout.WEST);
+		CONTENEDOR.add(ESTADO, BorderLayout.SOUTH);
+		CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
 	
 		//setSize(800, 500); 
 		//centrar en la pantalla
@@ -258,52 +258,52 @@ public class GuiAdministrador extends JFrame
 			{
 				
 				
-				if (estado.getText().equals(estadoInicial)){
+				if (ESTADO.getText().equals(estadoInicial)){
 				
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
-					estado.setText(estadoConsultarUsuario);
+					CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
+					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultarUsuario);
 					repaint();
 					
 					
-				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				}else if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{		
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
-					estado.setText(estadoConsultarUsuario);
+					CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultarUsuario);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoModificacion))
+				}else if(ESTADO.getText().equals(estadoModificacion))
 				{
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
-					estado.setText(estadoConsultarUsuario);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultarUsuario);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoCatalogar))
+				}else if(ESTADO.getText().equals(estadoCatalogar))
 				{
-					contenedor.remove(panelCatalogar);
-					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
-					estado.setText(estadoConsultarUsuario);
+					CONTENEDOR.remove(panelCatalogar);
+					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultarUsuario);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
-					estado.setText(estadoConsultarUsuario);
+					CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultarUsuario);
 					repaint();
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
-					estado.setText(estadoConsultarUsuario);
+					CONTENEDOR.remove(PANEL_NOVEDADES);
+					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultarUsuario);
 					repaint();
-				}else if(estado.getText().equals(estadoReporte)){
-					contenedor.remove(panelReportes);
-					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
-					estado.setText(estadoConsultarUsuario);
+				}else if(ESTADO.getText().equals(estadoReporte)){
+					CONTENEDOR.remove(PANEL_REPORTES);
+					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultarUsuario);
 					repaint();
 				}
 
@@ -311,50 +311,50 @@ public class GuiAdministrador extends JFrame
 			}else if(evento.getSource() == volver)
 			{
 				
-				if (estado.getText().equals(estadoModificacion)) {
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+				if (ESTADO.getText().equals(estadoModificacion)) {
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
 				}
-				else if(estado.getText().equals(estadoConsultaAvanzada))
+				else if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoConsultarUsuario))
+				}else if(ESTADO.getText().equals(estadoConsultarUsuario))
 				{
-					contenedor.remove(panelConsultarUsuarios);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(panelConsultarUsuarios);
+					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();	
 				
-				}else if(estado.getText().equals(estadoCatalogar))
+				}else if(ESTADO.getText().equals(estadoCatalogar))
 				{
-					contenedor.remove(panelCatalogar);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(panelCatalogar);
+					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
 				}
-				else if(estado.getText().equals(estadoNovedades))
+				else if(ESTADO.getText().equals(estadoNovedades))
 				{
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(PANEL_NOVEDADES);
+					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
-				}else if(estado.getText().equals(estadoReporte)){
-					contenedor.remove(panelReportes);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+				}else if(ESTADO.getText().equals(estadoReporte)){
+					CONTENEDOR.remove(PANEL_REPORTES);
+					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
 				}
 				
@@ -362,60 +362,60 @@ public class GuiAdministrador extends JFrame
 			else if(evento.getSource() == consultaAvanzada)
 			{
 				
-				if (estado.getText().equals(estadoModificacion))
+				if (ESTADO.getText().equals(estadoModificacion))
 				{
 				
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
-				}else if(estado.getText().equals(estadoInicial))
+				}else if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
+					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
-				}else if(estado.getText().equals(estadoConsultarUsuario))
+				}else if(ESTADO.getText().equals(estadoConsultarUsuario))
 				{
-					contenedor.remove(panelConsultarUsuarios);
-					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(panelConsultarUsuarios);
+					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				
-				}else if(estado.getText().equals(estadoCatalogar))
+				}else if(ESTADO.getText().equals(estadoCatalogar))
 				{
-					contenedor.remove(panelCatalogar);
-					contenedor.add(panelConsultaAvanzada);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(panelCatalogar);
+					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelConsultaAvanzada);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelConsultaAvanzada);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(PANEL_NOVEDADES);
+					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
-				}else if(estado.getText().equals(estadoReporte)){
-					contenedor.remove(panelReportes);
-					contenedor.add(panelConsultaAvanzada);
-					estado.setText(estadoConsultaAvanzada);
+				}else if(ESTADO.getText().equals(estadoReporte)){
+					CONTENEDOR.remove(PANEL_REPORTES);
+					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 				}
 								
@@ -423,202 +423,202 @@ public class GuiAdministrador extends JFrame
 			else if(evento.getSource()==modificarMiUsuario)
 			{
 			
-				if (estado.getText().equals(estadoConsultaAvanzada))
+				if (ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
-				}else if(estado.getText().equals(estadoConsultarUsuario))
+				}else if(ESTADO.getText().equals(estadoConsultarUsuario))
 				{
-					contenedor.remove(panelConsultarUsuarios);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(panelConsultarUsuarios);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoInicial))
+				}else if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
 				
-				}else if(estado.getText().equals(estadoCatalogar))
+				}else if(ESTADO.getText().equals(estadoCatalogar))
 				{
-					contenedor.remove(panelCatalogar);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(panelCatalogar);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(PANEL_NOVEDADES);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
-				}else if(estado.getText().equals(estadoReporte)){
-					contenedor.remove(panelReportes);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+				}else if(ESTADO.getText().equals(estadoReporte)){
+					CONTENEDOR.remove(PANEL_REPORTES);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
 				}
 				
 				
 			}else if(evento.getSource() == catalogar)
 			{
-				if(estado.getText().equals(estadoConsultaAvanzada))
+				if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelCatalogar);
-					estado.setText(estadoCatalogar);
+					CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+					CONTENEDOR.add(panelCatalogar);
+					ESTADO.setText(estadoCatalogar);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoConsultarUsuario))
+				}else if(ESTADO.getText().equals(estadoConsultarUsuario))
 				{
-					contenedor.remove(panelConsultarUsuarios);
-					contenedor.add(panelCatalogar);
-					estado.setText(estadoCatalogar);
+					CONTENEDOR.remove(panelConsultarUsuarios);
+					CONTENEDOR.add(panelCatalogar);
+					ESTADO.setText(estadoCatalogar);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoInicial))
+				}else if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelCatalogar);
-					estado.setText(estadoCatalogar);
+					CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
+					CONTENEDOR.add(panelCatalogar);
+					ESTADO.setText(estadoCatalogar);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoModificacion))
+				}else if(ESTADO.getText().equals(estadoModificacion))
 				{
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelCatalogar);
-					estado.setText(estadoCatalogar);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(panelCatalogar);
+					ESTADO.setText(estadoCatalogar);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelCatalogar);
-					estado.setText(estadoCatalogar);
+					CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+					CONTENEDOR.add(panelCatalogar);
+					ESTADO.setText(estadoCatalogar);
 					repaint();
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelCatalogar);
-					estado.setText(estadoCatalogar);
+					CONTENEDOR.remove(PANEL_NOVEDADES);
+					CONTENEDOR.add(panelCatalogar);
+					ESTADO.setText(estadoCatalogar);
 					repaint();
-				}else if(estado.getText().equals(estadoReporte)){
-					contenedor.remove(panelReportes);
-					contenedor.add(panelCatalogar);
-					estado.setText(estadoCatalogar);
+				}else if(ESTADO.getText().equals(estadoReporte)){
+					CONTENEDOR.remove(PANEL_REPORTES);
+					CONTENEDOR.add(panelCatalogar);
+					ESTADO.setText(estadoCatalogar);
 					repaint();
 				}
 				
 			}else if(evento.getSource() == novedades)
 			{
 				GuiResultadoConsulta.TIPOCONSULTA = 3;
-				if(estado.getText().equals(estadoConsultaAvanzada))
+				if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+					CONTENEDOR.add(PANEL_NOVEDADES);
+					ESTADO.setText(estadoNovedades);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoConsultarUsuario))
+				}else if(ESTADO.getText().equals(estadoConsultarUsuario))
 				{
-					contenedor.remove(panelConsultarUsuarios);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(panelConsultarUsuarios);
+					CONTENEDOR.add(PANEL_NOVEDADES);
+					ESTADO.setText(estadoNovedades);
 					repaint();;
 					
-				}else if(estado.getText().equals(estadoInicial))
+				}else if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
+					CONTENEDOR.add(PANEL_NOVEDADES);
+					ESTADO.setText(estadoNovedades);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoModificacion))
+				}else if(ESTADO.getText().equals(estadoModificacion))
 				{
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(PANEL_NOVEDADES);
+					ESTADO.setText(estadoNovedades);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+					CONTENEDOR.add(PANEL_NOVEDADES);
+					ESTADO.setText(estadoNovedades);
 					repaint();
-				}else if(estado.getText().equals(estadoCatalogar))
+				}else if(ESTADO.getText().equals(estadoCatalogar))
 				{
-					contenedor.remove(panelCatalogar);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(panelCatalogar);
+					CONTENEDOR.add(PANEL_NOVEDADES);
+					ESTADO.setText(estadoNovedades);
 					repaint();
-				}else if(estado.getText().equals(estadoReporte)){
-					contenedor.remove(panelReportes);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+				}else if(ESTADO.getText().equals(estadoReporte)){
+					CONTENEDOR.remove(PANEL_REPORTES);
+					CONTENEDOR.add(PANEL_NOVEDADES);
+					ESTADO.setText(estadoNovedades);
 					repaint();
 				}
 				
 			}else if(evento.getSource() == reportes){
-				if(estado.getText().equals(estadoConsultaAvanzada))
+				if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelReportes);
-					estado.setText(estadoReporte);
+					CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+					CONTENEDOR.add(PANEL_REPORTES);
+					ESTADO.setText(estadoReporte);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoConsultarUsuario))
+				}else if(ESTADO.getText().equals(estadoConsultarUsuario))
 				{
-					contenedor.remove(panelConsultarUsuarios);
-					contenedor.add(panelReportes);
-					estado.setText(estadoReporte);
+					CONTENEDOR.remove(panelConsultarUsuarios);
+					CONTENEDOR.add(PANEL_REPORTES);
+					ESTADO.setText(estadoReporte);
 					repaint();;
 					
-				}else if(estado.getText().equals(estadoInicial))
+				}else if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelReportes);
-					estado.setText(estadoReporte);
+					CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
+					CONTENEDOR.add(PANEL_REPORTES);
+					ESTADO.setText(estadoReporte);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoModificacion))
+				}else if(ESTADO.getText().equals(estadoModificacion))
 				{
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelReportes);
-					estado.setText(estadoReporte);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(PANEL_REPORTES);
+					ESTADO.setText(estadoReporte);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelReportes);
-					estado.setText(estadoReporte);
+					CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+					CONTENEDOR.add(PANEL_REPORTES);
+					ESTADO.setText(estadoReporte);
 					repaint();
-				}else if(estado.getText().equals(estadoCatalogar))
+				}else if(ESTADO.getText().equals(estadoCatalogar))
 				{
-					contenedor.remove(panelCatalogar);
-					contenedor.add(panelReportes);
-					estado.setText(estadoReporte);
+					CONTENEDOR.remove(panelCatalogar);
+					CONTENEDOR.add(PANEL_REPORTES);
+					ESTADO.setText(estadoReporte);
 					repaint();
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelReportes);
-					estado.setText(estadoReporte);
+					CONTENEDOR.remove(PANEL_NOVEDADES);
+					CONTENEDOR.add(PANEL_REPORTES);
+					ESTADO.setText(estadoReporte);
 					repaint();
 				}
 			}
@@ -639,57 +639,57 @@ public class GuiAdministrador extends JFrame
 	public void cambiarPanelInicio()
 	{
 		
-		contenedor.remove(panelModificacion);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText(estadoInicial);
+		CONTENEDOR.remove(panelModificacion);
+		CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+		ESTADO.setText(estadoInicial);
 		repaint();
 		
 	}public static void cambiarPanelEditarDocumento()
 	{
 		
-		contenedor.remove(panelConsultaBasica);
-		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
-		estado.setText("Modificando Documento");
-		contenedor.repaint();
+		CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
+		CONTENEDOR.add(PANEL_MODIFICAR_DOCUMENTO, BorderLayout.CENTER);
+		ESTADO.setText("Modificando Documento");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarPanelEditarDocumentoAvanzado()
 	{
 		
-		contenedor.remove(panelConsultaAvanzada);
-		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
-		estado.setText("Modificando Documento");
-		contenedor.repaint();
+		CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+		CONTENEDOR.add(PANEL_MODIFICAR_DOCUMENTO, BorderLayout.CENTER);
+		ESTADO.setText("Modificando Documento");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarPanelVista()
 	{
 		
 		
-		contenedor.remove(panelModificarDoc);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText("Inicio");
-		contenedor.repaint();
+		CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+		CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+		ESTADO.setText("Inicio");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarPanelVistaAvanzado()
 	{
 		
 		
-		contenedor.remove(panelModificarDoc);
-		contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-		estado.setText("ConsultaAvanzada");
-		contenedor.repaint();
+		CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+		CONTENEDOR.add(PANEL_CONSULTA_AVANZADA, BorderLayout.CENTER);
+		ESTADO.setText("ConsultaAvanzada");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarAvanzadaInicio()
 	{
 		
 		
-		contenedor.remove(panelConsultaAvanzada);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText("Inicio");
-		contenedor.repaint();
+		CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+		CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+		ESTADO.setText("Inicio");
+		CONTENEDOR.repaint();
 		
 	}
 	
@@ -700,7 +700,7 @@ public class GuiAdministrador extends JFrame
 		
 		GuiResultadoConsulta.TIPOCONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");
-		panelNovedades.updateUI();
+		PANEL_NOVEDADES.updateUI();
 		novedadesUsuario = novedades;	
 		
 	}
@@ -710,19 +710,19 @@ public class GuiAdministrador extends JFrame
 		
 	}
 	public static void cambiarNovedadesInicio() {
-		contenedor.remove(panelNovedades);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText("Inicio");
-		contenedor.repaint();
+		CONTENEDOR.remove(PANEL_NOVEDADES);
+		CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+		ESTADO.setText("Inicio");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarPanelEditarDocumentoNovedades()
 	{
 		
-		contenedor.remove(panelNovedades);
-		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
-		estado.setText("Modificando Documento");
-		contenedor.repaint();
+		CONTENEDOR.remove(PANEL_NOVEDADES);
+		CONTENEDOR.add(PANEL_MODIFICAR_DOCUMENTO, BorderLayout.CENTER);
+		ESTADO.setText("Modificando Documento");
+		CONTENEDOR.repaint();
 		
 	}
 
