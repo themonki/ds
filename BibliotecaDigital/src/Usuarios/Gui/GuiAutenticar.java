@@ -31,12 +31,10 @@ import Utilidades.Estilos;
 
 /**
  * @author Cristian Leonardo Rios
- *
+ * 
  */
 
-public class GuiAutenticar extends JPanel
-{
-	private JPanel panel = this;
+public class GuiAutenticar extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel nombreUsuario, contrasena;
@@ -44,44 +42,40 @@ public class GuiAutenticar extends JPanel
 	private JPasswordField campoContrasena;
 	private Button botonAutenticar;
 	private Button botonCambiarPassword;
-	private GuiPrincipal gp;
-	
+	private GuiPrincipal guiPrincipal;
+
 	/**
 	 * @param gp
 	 */
-	public GuiAutenticar(GuiPrincipal gp)
-	{
-		this.gp = gp;
+	public GuiAutenticar(GuiPrincipal gp) {
+		this.guiPrincipal = gp;
 		this.initComponents();
 	}
-	
-	
-	private void initComponents()
-	{
+
+	private void initComponents() {
 		JPanel panelBoton = new JPanel();
 		JPanel panelDatosInterno = new JPanel(new GridBagLayout());
 		JPanel panelDatos = new JPanel();
 		// --------------------------------------------------------
-		panelDatosInterno.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
-		//panelBoton.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelDatosInterno.setBorder(BorderFactory.createEtchedBorder(
+				Estilos.colorBorder, Estilos.colorLightBorder));
+		// panelBoton.setBorder(BorderFactory.createLineBorder(Color.black));
 		// ---------------------------------------------------------
 		iniciarLabels();
 		// ---------------------------------------------------------
 		iniciarCampos();
 		// ----------------------------------------------------------
-		
+
 		String title = "::Autentificar::";
 
-		
 		// Linea y titulo del panel.
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), title);
+				.createEtchedBorder(Estilos.colorBorder,
+						Estilos.colorLightBorder), title);
 		borde.setTitleColor(Estilos.colorTitulo);
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
-		
-		
 
 		GridBagConstraints restriccionCampo = new GridBagConstraints(), restriccionEtiquetas = new GridBagConstraints();
 
@@ -122,14 +116,12 @@ public class GuiAutenticar extends JPanel
 		this.setSize(430, 220);
 		this.setVisible(true);
 	}
-	
-	
-	private void iniciarCampos()
-	{
+
+	private void iniciarCampos() {
 		campoNombre = new JTextField(20);
 		campoContrasena = new JPasswordField(20);
 		campoContrasena.addKeyListener(new ManejadorJPasswordField());
-		
+
 		botonAutenticar = new Button("Ingresar al Sistema");
 		botonAutenticar.addActionListener(new ManejadorBoton());
 		botonCambiarPassword = new Button("Olvide Contraseña");
@@ -137,88 +129,77 @@ public class GuiAutenticar extends JPanel
 
 	}
 
-	private void iniciarLabels()
-	{
-	
+	private void iniciarLabels() {
+
 		nombreUsuario = new JLabel("  Login  :");
 		contrasena = new JLabel("  Contraseña  :");
-		
-		
+
 		contrasena.setFont(Estilos.fontLabels);
 		nombreUsuario.setFont(Estilos.fontLabels);
-		
-		
+
 		contrasena.setForeground(Estilos.colorLabels);
 		nombreUsuario.setForeground(Estilos.colorLabels);
-		
+
 	}
-	
+
 	/**
 	 * @author Cristian Leonardo Rios
-	 *
+	 * 
 	 */
-	private class ManejadorBoton implements ActionListener
-	{
+	private class ManejadorBoton implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent evento)
-		{
+		public void actionPerformed(ActionEvent evento) {
 
-			if(evento.getSource() == botonAutenticar)
-			{
+			if (evento.getSource() == botonAutenticar) {
 				ControladorVentanaPrincipal controladorVentanaPrincipal = new ControladorVentanaPrincipal();
-				if(controladorVentanaPrincipal.verificarUsuario(campoNombre.getText(),new String(campoContrasena.getPassword())))
-				{
-					
-				
-					gp.setVisible(false);
-					gp.dispose();
-					
-					
-				}else{
-					if(controladorVentanaPrincipal.getError()==1)
-					{
+				if (controladorVentanaPrincipal.verificarUsuario(campoNombre
+						.getText(), new String(campoContrasena.getPassword()))) {
+
+					guiPrincipal.setVisible(false);
+					guiPrincipal.dispose();
+
+				} else {
+					if (controladorVentanaPrincipal.getError() == 1) {
 						campoNombre.selectAll();
 						campoNombre.requestFocus(true);
-					}else if(controladorVentanaPrincipal.getError() == 2){
+					} else if (controladorVentanaPrincipal.getError() == 2) {
 						campoContrasena.selectAll();
 						campoContrasena.requestFocus(true);
 					}
 				}
-				
-				
-			}else if(evento.getSource() == botonCambiarPassword)
-			{
+
+			} else if (evento.getSource() == botonCambiarPassword) {
 				GuiPrincipal.insertarPanelCambiar();
-				gp.repaint();
-				
-			}			
-		}	
+				guiPrincipal.repaint();
+
+			}
+		}
 	}
-	
+
 	/**
 	 * @author Cristian Leonardo Rios
-	 *
+	 * 
 	 */
-	private class ManejadorJPasswordField implements KeyListener{
+	private class ManejadorJPasswordField implements KeyListener {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			if(e.getKeyCode() == KeyEvent.VK_ENTER)
-				botonAutenticar.doClick();			
+			if (e.getKeyCode() == KeyEvent.VK_ENTER)
+				botonAutenticar.doClick();
 		}
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void keyTyped(KeyEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	}
 }
