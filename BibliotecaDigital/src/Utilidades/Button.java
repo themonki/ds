@@ -24,6 +24,10 @@ import javax.swing.JButton;
 public class Button extends JButton{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * 
      */
     private Color color1 = new Color(230,0,0);
