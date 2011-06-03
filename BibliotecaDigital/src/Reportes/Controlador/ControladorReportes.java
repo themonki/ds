@@ -117,6 +117,27 @@ public class ControladorReportes
 	public JasperPrint reporteAreasAgrupadas(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultarAreasConocimientoAgrupadas();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteAreasAgrupadas.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteAreasAgrupadasTotales(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
 		TableDataSource tableData = daoReportes.consultarAreasConocimientoAgrupadasTotales();
 		daoReportes = null;
 		
@@ -133,11 +154,6 @@ public class ControladorReportes
         reporte = null;
         
         return jasperPrint;
-	}
-	
-	public JasperPrint reporteAreasAgrupadasTotales(String tituloReporte) throws JRException
-	{
-		return null;
 	}
 	
 	/*public Vector<String> consultarUsuariosAgrupados(String atributoUsuario){

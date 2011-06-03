@@ -314,9 +314,9 @@ FachadaBD fachada;
 	
 	public TableDataSource consultarAreasConocimientoAgrupadas()
 	{
-		String consultaSql = "SELECT A.nombre, B.nombre AS nombreAreaPadre " +
+		String consultaSql = "SELECT A.nombre, B.nombre AS nombre_Area_Padre " +
 				"FROM area_conocimiento AS A JOIN area_conocimiento AS B " +
-				"ON A.area_padre = B.id_area ORDER BY nombreAreaPadre";
+				"ON A.area_padre = B.id_area ORDER BY nombre_Area_Padre";
 		
 		return procesarDatos(consultaSql);
 	}

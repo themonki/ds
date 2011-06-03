@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="0.9090909090909123"/>
 	<property name="ireport.x" value="122"/>
-	<property name="ireport.y" value="51"/>
+	<property name="ireport.y" value="195"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="opcion" class="java.lang.String"/>
 	<parameter name="convencion_title" class="java.lang.String"/>

@@ -1,56 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.210000000000009"/>
-	<property name="ireport.x" value="35"/>
-	<property name="ireport.y" value="887"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
 	<parameter name="titulo" class="java.lang.String"/>
-	<field name="nombre_area_padre" class="java.lang.String"/>
-	<field name="nombre" class="java.lang.String"/>
-	<variable name="nombre_area_padre_1" class="java.lang.Integer" calculation="Count">
-		<variableExpression><![CDATA[$F{nombre_area_padre}]]></variableExpression>
-	</variable>
-	<group name="AREAPADRE">
-		<groupExpression><![CDATA[$F{nombre_area_padre}]]></groupExpression>
-		<groupHeader>
-			<band height="46">
-				<textField>
-					<reportElement x="20" y="3" width="464" height="20"/>
-					<textElement>
-						<font fontName="DejaVu Serif Condensed" size="12"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre_area_padre}]]></textFieldExpression>
-				</textField>
-				<frame>
-					<reportElement mode="Opaque" x="46" y="26" width="438" height="20" backcolor="#FF3333"/>
-					<staticText>
-						<reportElement x="0" y="0" width="250" height="20" forecolor="#FFFFFF"/>
-						<textElement/>
-						<text><![CDATA[Nombre Area Descendiente]]></text>
-					</staticText>
-				</frame>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band height="23">
-				<line>
-					<reportElement x="93" y="0" width="348" height="1"/>
-					<graphicElement>
-						<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#CCCCCC"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="253" y="1" width="84" height="20"/>
-					<textElement/>
-					<text><![CDATA[Total Sub-Áreas:]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="337" y="1" width="51" height="20"/>
-					<textElement/>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{AREAPADRE_COUNT}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupFooter>
-	</group>
+	<field name="areas_padre" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -74,12 +29,40 @@
 			</image>
 		</band>
 	</title>
+	<columnHeader>
+		<band height="21">
+			<frame>
+				<reportElement mode="Opaque" x="46" y="0" width="438" height="20" backcolor="#FF3333"/>
+				<staticText>
+					<reportElement x="0" y="0" width="250" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font fontName="DejaVu Serif Condensed" size="11"/>
+					</textElement>
+					<text><![CDATA[Nombre Area Descendiente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="250" y="0" width="188" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font fontName="DejaVu Serif Condensed" size="11"/>
+					</textElement>
+					<text><![CDATA[Cantidad Sub-áreas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="46" y="0" width="438" height="20"/>
+				<reportElement x="296" y="0" width="188" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="0" width="250" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{areas_padre}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -118,14 +101,13 @@
 					</chartTitle>
 					<chartSubtitle>
 						<font fontName="DejaVu Serif Condensed" isBold="true"/>
-						<subtitleExpression><![CDATA["Total de Áreas: " + $V{nombre_area_padre_1}]]></subtitleExpression>
 					</chartSubtitle>
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{nombre_area_padre}]]></keyExpression>
-					<valueExpression><![CDATA[$V{AREAPADRE_COUNT}]]></valueExpression>
-					<labelExpression><![CDATA[$V{AREAPADRE_COUNT}]]></labelExpression>
+					<keyExpression><![CDATA[$F{areas_padre}]]></keyExpression>
+					<valueExpression><![CDATA[java.lang.Integer.parseInt($F{cantidad})]]></valueExpression>
+					<labelExpression><![CDATA[java.lang.Integer.parseInt($F{cantidad})]]></labelExpression>
 				</pieDataset>
 				<piePlot>
 					<plot>
