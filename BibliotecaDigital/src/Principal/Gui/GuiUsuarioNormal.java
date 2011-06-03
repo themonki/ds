@@ -384,8 +384,8 @@ public class GuiUsuarioNormal extends JFrame
 	{
 	
 		
-		GuiNovedades.resultadoConsulta = new GuiResultadoConsulta(novedades, 10);
-		GuiNovedades.panel.add(GuiNovedades.resultadoConsulta);
+		GuiNovedades.RESULTADOCONSULTA = new GuiResultadoConsulta(novedades, 10);
+		GuiNovedades.PANELNOVEDADES.add(GuiNovedades.RESULTADOCONSULTA);
 		
 		GuiResultadoConsulta.TIPOCONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");

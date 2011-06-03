@@ -264,7 +264,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 
 				} else if (GuiResultadoConsulta.TIPOCONSULTA == 3) {
 					
-					GuiNovedades.vistaDocumento = new GuiVistaDocumento(d);
+					GuiNovedades.VISTADOCUMENTO = new GuiVistaDocumento(d);
 					GuiNovedades.ponerDescripcion();
 				
 

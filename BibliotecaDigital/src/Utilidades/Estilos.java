@@ -11,7 +11,7 @@ public class Estilos {
 	
 	/**
 	 * Constructor por defecto, no inicializa nada
-	 * @deprecated 
+	 * 
 	 */
 	public Estilos(){}
 	
