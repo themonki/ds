@@ -30,6 +30,7 @@ import Consultas.Gui.GuiResultadoConsulta;
 import Consultas.Logica.Consulta;
 import Documento.Gui.GuiCatalogar;
 import Documento.Gui.GuiModificarDoc;
+import Reportes.Gui.GuiReportes;
 import Usuarios.Gui.GuiConsultarUsuarios;
 import Usuarios.Gui.GuiNovedades;
 import Usuarios.Gui.GuiRegistroModificar;
@@ -49,7 +50,8 @@ public class GuiAdministrador extends JFrame
 	private String estadoConsultaAvanzada = "ConsultaAvanzada";
 	private String estadoCatalogar = "Catalogar";
 	private String estadoModificandoDoc = "Modificando Documento";
-	private String estadoNovedades = "NovedadesUsuario";
+	private String estadoNovedades = "Novedades Usuario";
+	private String estadoReporte = "Generar Reportes";
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
@@ -60,7 +62,7 @@ public class GuiAdministrador extends JFrame
 	private Button catalogar;
 	private Button logout;
 	private Button novedades;
-
+	private Button reportes;
 	
 	private static JLabel estado;
 
@@ -84,6 +86,7 @@ public class GuiAdministrador extends JFrame
 	public static GuiModificarDoc panelModificarDoc;
 	private GuiCatalogar panelCatalogar;
 	private static GuiNovedades panelNovedades;
+	private static GuiReportes panelReportes;
 	
 	private Usuario usuario;
 	private JLabel cuenta;
@@ -120,6 +123,7 @@ public class GuiAdministrador extends JFrame
 		panelConsultaBasica = new GuiConsultaBasica();
 		panelConsultaAvanzada = new GuiConsultaAvanzada();
 		panelNovedades =  new GuiNovedades();
+		panelReportes = new GuiReportes();
 		GuiConsultaBasica.TIPOUSUARIO = 1;
 		GuiConsultaAvanzada.TIPOUSUARIO = 1;
 		GuiNovedades.TIPOUSUARIO = 1;
@@ -174,6 +178,8 @@ public class GuiAdministrador extends JFrame
 		catalogar = new Button("Catalogar");
 		catalogar.setIcon(new ImageIcon("recursos/iconos/add_document.png"));
 		catalogar.addActionListener(manejador);
+		reportes = new Button("Reportes");
+		reportes.addActionListener(manejador);
 		novedades = new Button("Novedades");
 		novedades.addActionListener(manejador);
 		logout = new Button("Salir");
@@ -209,11 +215,15 @@ public class GuiAdministrador extends JFrame
 		restricciones.gridy++;		
 		panelOpcionesGenerales.add(catalogar, restricciones);
 		restricciones.gridy++;
+		
+		restricciones.gridy++;
+		panelOpcionesGenerales.add(reportes, restricciones);
 				
 		panelOpcionesGenerales.add(cuenta, restricciones);
 		restricciones.gridy++;
 		
 		panelOpcionesGenerales.add(modificarMiUsuario, restricciones);
+		
 		restricciones.gridy++;
 		panelOpcionesGenerales.add(novedades, restricciones);
 		restricciones.gridy++;
@@ -290,6 +300,11 @@ public class GuiAdministrador extends JFrame
 					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
 					estado.setText(estadoConsultarUsuario);
 					repaint();
+				}else if(estado.getText().equals(estadoReporte)){
+					contenedor.remove(panelReportes);
+					contenedor.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					estado.setText(estadoConsultarUsuario);
+					repaint();
 				}
 
 				
@@ -333,6 +348,11 @@ public class GuiAdministrador extends JFrame
 				else if(estado.getText().equals(estadoNovedades))
 				{
 					contenedor.remove(panelNovedades);
+					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+					estado.setText(estadoInicial);
+					repaint();
+				}else if(estado.getText().equals(estadoReporte)){
+					contenedor.remove(panelReportes);
 					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
 					estado.setText(estadoInicial);
 					repaint();
@@ -392,6 +412,11 @@ public class GuiAdministrador extends JFrame
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if(estado.getText().equals(estadoReporte)){
+					contenedor.remove(panelReportes);
+					contenedor.add(panelConsultaAvanzada);
+					estado.setText(estadoConsultaAvanzada);
+					repaint();
 				}
 								
 			}
@@ -435,6 +460,11 @@ public class GuiAdministrador extends JFrame
 				}else if(estado.getText().equals(estadoNovedades))
 				{
 					contenedor.remove(panelNovedades);
+					contenedor.add(panelModificacion, BorderLayout.CENTER);
+					estado.setText(estadoModificacion);
+					repaint();
+				}else if(estado.getText().equals(estadoReporte)){
+					contenedor.remove(panelReportes);
 					contenedor.add(panelModificacion, BorderLayout.CENTER);
 					estado.setText(estadoModificacion);
 					repaint();
@@ -484,6 +514,11 @@ public class GuiAdministrador extends JFrame
 					contenedor.add(panelCatalogar);
 					estado.setText(estadoCatalogar);
 					repaint();
+				}else if(estado.getText().equals(estadoReporte)){
+					contenedor.remove(panelReportes);
+					contenedor.add(panelCatalogar);
+					estado.setText(estadoCatalogar);
+					repaint();
 				}
 				
 			}else if(evento.getSource() == novedades)
@@ -530,8 +565,62 @@ public class GuiAdministrador extends JFrame
 					contenedor.add(panelNovedades);
 					estado.setText(estadoNovedades);
 					repaint();
+				}else if(estado.getText().equals(estadoReporte)){
+					contenedor.remove(panelReportes);
+					contenedor.add(panelNovedades);
+					estado.setText(estadoNovedades);
+					repaint();
 				}
 				
+			}else if(evento.getSource() == reportes){
+				if(estado.getText().equals(estadoConsultaAvanzada))
+				{
+					GuiConsultaAvanzada.restaurarTodo();
+					contenedor.remove(panelConsultaAvanzada);
+					contenedor.add(panelReportes);
+					estado.setText(estadoReporte);
+					repaint();
+					
+				}else if(estado.getText().equals(estadoConsultarUsuario))
+				{
+					contenedor.remove(panelConsultarUsuarios);
+					contenedor.add(panelReportes);
+					estado.setText(estadoReporte);
+					repaint();;
+					
+				}else if(estado.getText().equals(estadoInicial))
+				{
+					GuiConsultaBasica.restaurarTodo();
+					contenedor.remove(panelConsultaBasica);
+					contenedor.add(panelReportes);
+					estado.setText(estadoReporte);
+					repaint();
+					
+				}else if(estado.getText().equals(estadoModificacion))
+				{
+					contenedor.remove(panelModificacion);
+					contenedor.add(panelReportes);
+					estado.setText(estadoReporte);
+					repaint();
+				}else if(estado.getText().equals(estadoModificandoDoc))
+				{
+					contenedor.remove(panelModificarDoc);
+					contenedor.add(panelReportes);
+					estado.setText(estadoReporte);
+					repaint();
+				}else if(estado.getText().equals(estadoCatalogar))
+				{
+					contenedor.remove(panelCatalogar);
+					contenedor.add(panelReportes);
+					estado.setText(estadoReporte);
+					repaint();
+				}else if(estado.getText().equals(estadoNovedades))
+				{
+					contenedor.remove(panelNovedades);
+					contenedor.add(panelReportes);
+					estado.setText(estadoReporte);
+					repaint();
+				}
 			}
 			else if(evento.getSource() == logout)
 			{

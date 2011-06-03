@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="recursos/postgresql-9.0-801.jdbc3.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="recursos/nimrodlf.jar"/>
 <<<<<<< HEAD
 	
@@ -10,6 +9,23 @@
 
 =======
 	<classpathentry kind="lib" path="recursos/itextpdf-5.1.0.jar"/>
+<<<<<<< HEAD
 >>>>>>> f4e78bbef9863bf03f8e0b0829ab3fb88723190e
+=======
+	<classpathentry kind="lib" path="recursos/poi-3.6.jar"/>
+	<classpathentry kind="lib" path="recursos/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="recursos/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="recursos/commons-digester-1.7.jar"/>
+	<classpathentry kind="lib" path="recursos/commons-javaflow-20060411.jar"/>
+	<classpathentry kind="lib" path="recursos/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="recursos/groovy-all-1.7.5.jar"/>
+	<classpathentry kind="lib" path="recursos/iText-2.1.7.jar"/>
+	<classpathentry kind="lib" path="recursos/jasperreports-4.0.2.jar"/>
+	<classpathentry kind="lib" path="recursos/jasperreports-fonts-4.0.2.jar"/>
+	<classpathentry kind="lib" path="recursos/jasperreports-javaflow-4.0.2.jar"/>
+	<classpathentry kind="lib" path="recursos/jfreechart-1.0.12.jar"/>
+	<classpathentry kind="lib" path="recursos/jcommon-1.0.15.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+>>>>>>> fed1e4feacf27094e8b85b31068f9ac75d3a6704
 	<classpathentry kind="output" path="bin"/>
 </classpath>

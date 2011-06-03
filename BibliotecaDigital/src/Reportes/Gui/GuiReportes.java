@@ -9,6 +9,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -18,6 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -30,50 +33,53 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrint;
+
 
 import Reportes.Controlador.ControladorReportes;
-import Reportes.Logica.GenerarReporte;
-import Reportes.Logica.Reporte;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
-import com.sun.org.apache.xml.internal.security.keys.content.RetrievalMethod;
-import com.sun.xml.internal.org.jvnet.fastinfoset.RestrictedAlphabet;
 
 public class GuiReportes extends JTabbedPane{
 	
-	JPanel PanelreportesBasicos,panelRepAvanzados; 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private JPanel PanelreportesBasicos,panelRepAvanzados; 
 	
-	GridBagConstraints retricciones;
+	private GridBagConstraints retricciones;
 	
-	JCheckBox habilitar;
+	private JCheckBox habilitar;
 	
-	JScrollPane scroll;
+	private JScrollPane scroll;
 	
-	JLabel etiquetaTabla, etiquetaAtributo, etiquetaTitulo;
+	private JLabel etiquetaTabla, etiquetaAtributo, etiquetaTitulo;
 	
-	JTextField campoTitulo;
+	private JTextField campoTitulo;
 	
-	JComboBox tablas , atributos ,fechas;
+	private JComboBox tablas , atributos ,fechas;
 	
-	Button botonGenerarReporte;
+	private Button botonGenerarReporte;
 	
-	JRadioButton detallado, totales;
+	private JRadioButton detallado, totales;
 	
-	ButtonGroup opcionReporte;
+	private ButtonGroup opcionReporte;
 	
  
 	ControladorReportes controladorReporte;
 	
 	//int cantCondicion=0;
-	private JSpinner campoFechaNacimiento;
-	private JSpinner campoFechaNacimiento2;
+	private JSpinner campoFecha;
+	private JSpinner campoFecha2;
 	private JSpinner campoFechaNacimiento3;
 	private JSpinner campoFechaNacimiento4;
 	
-	private Vector<String> vectorFechas;
 	private Vector<String> vectorContablasAvanzado;
 	private Vector<String> vectorAtributosAvanzado;
 	
@@ -98,7 +104,7 @@ public class GuiReportes extends JTabbedPane{
 	
 	private Button botonAvanzado;
 
-	GuiReportes()
+	public GuiReportes()
 	{
 		controladorReporte= new ControladorReportes();
 		initComponents();
@@ -174,6 +180,7 @@ public class GuiReportes extends JTabbedPane{
 		botonGenerarReporte= new Button("Generar Reporte");
 		botonAvanzado= new Button("Generar Reporte");
 		botonGenerarReporte.addActionListener(new Manejador());
+		botonAvanzado.addActionListener(new Manejador());
 		
 		etiquetaTabla.setForeground(Estilos.colorLabels);
 		etiquetaAtributo.setForeground(Estilos.colorLabels);
@@ -209,32 +216,32 @@ public class GuiReportes extends JTabbedPane{
 		
 		//Crear spinner para la fecha de nacimiento.
 		SpinnerModel modeloFecha = new SpinnerDateModel();
-		campoFechaNacimiento = new JSpinner(modeloFecha);
-	    campoFechaNacimiento.setFont(Estilos.fontLabels);
-	    campoFechaNacimiento.setForeground(Estilos.colorLabels);
-		JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFechaNacimiento,"yyyy-MM-dd");
-		campoFechaNacimiento.setEditor(spinnerFecha);
-	    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(false);
+		campoFecha = new JSpinner(modeloFecha);
+	    campoFecha.setFont(Estilos.fontLabels);
+	    campoFecha.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFecha = new JSpinner.DateEditor(campoFecha,"yyyy-MM-dd");
+		campoFecha.setEditor(spinnerFecha);
+	    ((JSpinner.DateEditor) campoFecha.getEditor()).getTextField().setEditable(false);
 	    //-------------------------------------
-	    campoFechaNacimiento.setVisible(false);
+	    campoFecha.setVisible(false);
 	    //-------------------------------------
 	    //Crear spinner para la fecha de nacimiento.
 		SpinnerModel modeloFecha2 = new SpinnerDateModel();
-		campoFechaNacimiento2 = new JSpinner(modeloFecha2);
-	    campoFechaNacimiento2.setFont(Estilos.fontLabels);
-	    campoFechaNacimiento2.setForeground(Estilos.colorLabels);
-		JSpinner.DateEditor spinnerFecha2 = new JSpinner.DateEditor(campoFechaNacimiento2,"yyyy-MM-dd");
-		campoFechaNacimiento2.setEditor(spinnerFecha2);
-	    ((JSpinner.DateEditor) campoFechaNacimiento.getEditor()).getTextField().setEditable(true);
+		campoFecha2 = new JSpinner(modeloFecha2);
+	    campoFecha2.setFont(Estilos.fontLabels);
+	    campoFecha2.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFecha2 = new JSpinner.DateEditor(campoFecha2,"yyyy-MM-dd");
+		campoFecha2.setEditor(spinnerFecha2);
+	    ((JSpinner.DateEditor) campoFecha.getEditor()).getTextField().setEditable(true);
 	    //-------------------------------------
-	    campoFechaNacimiento2.setVisible(false);
+	    campoFecha2.setVisible(false);
 	    //-------------------------------------
 	    retricciones.gridy++;
 	    retricciones.gridx=0;
 	    PanelreportesBasicos.add(etiquetaDesde,retricciones);
 	    retricciones.anchor=GridBagConstraints.EAST;
 	    retricciones.gridx=0;
-		PanelreportesBasicos.add(campoFechaNacimiento,retricciones);
+		PanelreportesBasicos.add(campoFecha,retricciones);
 		retricciones.gridy++;
 		retricciones.gridx=0;
 		retricciones.anchor=GridBagConstraints.WEST;
@@ -242,7 +249,7 @@ public class GuiReportes extends JTabbedPane{
 		PanelreportesBasicos.add(etiquetaHasta,retricciones);
 		retricciones.gridx=0;
 		retricciones.anchor=GridBagConstraints.EAST;
-		PanelreportesBasicos.add(campoFechaNacimiento2,retricciones);
+		PanelreportesBasicos.add(campoFecha2,retricciones);
 		
 		retricciones.gridx=1;
 		retricciones.gridy++;
@@ -419,7 +426,7 @@ public class GuiReportes extends JTabbedPane{
 		a.add(al);
 		a.setVisible(true);
 		a.setSize(500,500);
-		a.setExtendedState(a.MAXIMIZED_BOTH);
+		//a.setExtendedState(a.MAXIMIZED_BOTH);
 
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -430,31 +437,31 @@ public class GuiReportes extends JTabbedPane{
 		
 		public void actionPerformed(ActionEvent evento)
 		{
-			if (evento.getSource()==habilitar){
+			if (evento.getSource()==habilitar)
+			{
 				if(habilitar.isSelected())
 				{
-				
-					campoFechaNacimiento.setVisible(true);
-					campoFechaNacimiento2.setVisible(true);
+					campoFecha.setVisible(true);
+					campoFecha2.setVisible(true);
 					etiquetaHasta.setVisible(true);
 					etiquetaDesde.setVisible(true);
 				}
-				else {
-					campoFechaNacimiento.setVisible(false);
-					campoFechaNacimiento2.setVisible(false);
+				else
+				{
+					campoFecha.setVisible(false);
+					campoFecha2.setVisible(false);
 					etiquetaHasta.setVisible(false);
 					etiquetaDesde.setVisible(false);
-					}
+				}
 				
-			};
-			if (evento.getSource()== tablas){
+			}else if (evento.getSource()== tablas)
+			{
 				String item =(String) tablas.getSelectedItem(); 
 				System.out.println(item);
 				if ( item.contains("Areas"))
 				{
 					atributos.removeAllItems();
-					atributos.addItem("area_padre");
-					
+					atributos.addItem("area_padre");		
 				}
 				if ( item.contains("Usuario"))
 				{
@@ -463,12 +470,10 @@ public class GuiReportes extends JTabbedPane{
 					atributos.addItem("nivel_escolaridad");
 					atributos.addItem("vinculo_univalle");
 					atributos.addItem("tipo");
-	
 				}
-				
-			};
-			if (evento.getSource()== botonGenerarReporte)
-				{
+			
+			}else if (evento.getSource()== botonGenerarReporte)
+			{
 				//tablas.getSelectedItem();
 				String ruta;
 				JFileChooser archivos = new JFileChooser();
@@ -478,10 +483,9 @@ public class GuiReportes extends JTabbedPane{
 				FileNameExtensionFilter filtroPdf = new FileNameExtensionFilter("*.pdf", "pdf");
 				archivos.setFileFilter(filtroPdf);
 				int opcion = archivos.showSaveDialog(null);
-				
-				
-				
-				if(opcion == JFileChooser.APPROVE_OPTION){
+					
+				if(opcion == JFileChooser.APPROVE_OPTION)
+				{
 					File archivo = archivos.getSelectedFile();
 					ruta = archivo.getPath();
 					String rutaFinal = ruta+".pdf";
@@ -489,39 +493,80 @@ public class GuiReportes extends JTabbedPane{
 					String encabezado = campoTitulo.getText();
 					boolean detalladoR = opcionReporte.isSelected(detallado.getModel());
 					boolean totalesR = opcionReporte.isSelected(totales.getModel());
+					boolean habilitarFechas = habilitar.isSelected();
 					boolean usuario = tablas.getSelectedItem().equals("Usuarios");
 					boolean areas = tablas.getSelectedItem().equals("Areas");
 					
 					String atributoSeleccionado = (String) atributos.getSelectedItem();
+					String fechaBusqueda = (String)fechas.getSelectedItem();
+					Date fecha= ((JSpinner.DateEditor) campoFecha.getEditor()).getModel().getDate();
+				    SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
+					String fechaInicioString = formatoFecha.format(fecha);
+					System.out.println("Fecha inio " + fechaInicioString);
+					fecha= ((JSpinner.DateEditor) campoFecha2.getEditor()).getModel().getDate();
+					String fechaFinString = formatoFecha.format(fecha);
+					System.out.println("Fecha fin " +fechaFinString);
 					
 					ControladorReportes controlador = new ControladorReportes();
-					Reporte reporte = new Reporte();
 					
 					if(detalladoR)
 					{
 						if(usuario)
 						{
-							reporte=controlador.consultarUsuariosOrdenados(atributoSeleccionado);
+							try
+							{
+								JasperPrint reporte;
+								if(habilitarFechas)
+								{
+									reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, encabezado, fechaBusqueda, fechaInicioString, fechaFinString);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else
+								{
+									reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
 						}
 					}
 					if(totalesR)
 					{
 						if(usuario)
 						{
-							reporte=controlador.consultarUsuariosOrdenadosTotales(atributoSeleccionado);
+							try
+							{
+								JasperPrint reporte;
+								if(habilitarFechas)
+								{
+									reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado, fechaBusqueda, fechaInicioString, fechaFinString);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else
+								{
+									reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
 						}
 					}
 					
-					reporte.setEncabezado(encabezado);
-					GenerarReporte generarR = new GenerarReporte(reporte, rutaFinal);
-					
-
+					//reporte.setEncabezado(encabezado);
 				}
 				
-				System.out.println(controladorReporte.consultarUsuariosAgrupados((String) atributos.getSelectedItem()));
-				System.out.println("entre");
+				//System.out.println(controladorReporte.consultarUsuariosAgrupados((String) atributos.getSelectedItem()));
+				JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+				//System.out.println("reporte generado");
 				
 				}
+			if(evento.getSource()==botonAvanzado){
+				JOptionPane.showMessageDialog(null, "En construccion","Lo sentimos", JOptionPane.INFORMATION_MESSAGE);
+			}
 			//nuevaCondicon();
 		}	
 	}
