@@ -259,7 +259,7 @@ CREATE TABLE usuario (
 --
 
 COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
-	super		
+	ciencias de la computacion		
 1	computacion centrada en la red		
 2	construccion de aplicaciones web		1
 3	metodos numericos computacionales		

@@ -114,6 +114,16 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	public JasperPrint reporteAreasAgrupadas(String encabezado, String fechaBusqueda, String fechaInicioString, String fechaFinString) throws JRException
+	{
+		return null;
+	}
+	
+	public JasperPrint reporteAreasAgrupadas(String encabezado) throws JRException
+	{
+		return null;
+	}
+	
 	/*public Vector<String> consultarUsuariosAgrupados(String atributoUsuario){
 		DaoReportes	daoReportes = new DaoReportes();
 		Vector<String> usuariosAgrupados = daoReportes.consultaUsuariosAgrupados(atributoUsuario);

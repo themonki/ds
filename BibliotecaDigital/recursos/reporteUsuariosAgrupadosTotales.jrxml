@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados2" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupadosTotales" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.3310000000000146"/>
-	<property name="ireport.x" value="49"/>
-	<property name="ireport.y" value="115"/>
+	<property name="ireport.x" value="57"/>
+	<property name="ireport.y" value="824"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -38,7 +38,7 @@
 			<textField>
 				<reportElement x="57" y="32" width="327" height="56"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Comic Sans MS" size="18"/>
+					<font fontName="DejaVu Serif Condensed" size="18"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{titulo}]]></textFieldExpression>
 			</textField>
@@ -123,7 +123,7 @@
 			<staticText>
 				<reportElement x="0" y="0" width="224" height="20"/>
 				<textElement>
-					<font fontName="Comic Sans MS" size="11"/>
+					<font fontName="DejaVu Serif Condensed" size="11"/>
 				</textElement>
 				<text><![CDATA[Biblioteca Digital EISC]]></text>
 			</staticText>
@@ -152,7 +152,7 @@
 						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>
 					</chartTitle>
 					<chartSubtitle>
-						<font fontName="Comic Sans MS" isBold="true"/>
+						<font fontName="DejaVu Serif Condensed" isBold="true"/>
 						<subtitleExpression><![CDATA["Total de Usuarios: "]]></subtitleExpression>
 					</chartSubtitle>
 					<chartLegend/>
@@ -173,7 +173,7 @@
 						<seriesColor seriesOrder="6" color="#009900"/>
 					</plot>
 					<itemLabel color="#000000" backgroundColor="#FFFFFF">
-						<font fontName="Comic Sans MS"/>
+						<font fontName="DejaVu Serif Condensed"/>
 					</itemLabel>
 				</piePlot>
 			</pieChart>
@@ -186,7 +186,7 @@
 			<staticText>
 				<reportElement x="0" y="692" width="224" height="20"/>
 				<textElement>
-					<font fontName="Comic Sans MS" size="11"/>
+					<font fontName="DejaVu Serif Condensed" size="11"/>
 				</textElement>
 				<text><![CDATA[Biblioteca Digital EISC]]></text>
 			</staticText>
