@@ -129,6 +129,7 @@ public class ControladorConsulta
 				}else if(opAutor == 3)
 				{
 					valorAutor.add(valor.elementAt(i));
+					System.out.print("qqqqqqqqqqqqqqqqqqqqqqq");
 				}
 				
 			}else if(elemento.equals("titulo"))
