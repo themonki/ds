@@ -102,21 +102,21 @@ public class GuiVistaDocumento extends JScrollPane {
 	// De acuerdo al usuario que halla intentado consultar podremos saber si puede descargar editar un documento.
 	int tipoUsuario ;
 	int flag;
-	static boolean consultandoAutores = false;
+	static boolean CONSULTANDO_AUTORES = false;
 
 	public GuiVistaDocumento(Documento doc) {
 
 		super();
 		documento = doc;
-		if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+		if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 		{
-			tipoUsuario= GuiConsultaBasica.TIPOUSUARIO;
-		}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+			tipoUsuario= GuiConsultaBasica.TIPO_USUARIO;
+		}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 		{
-			tipoUsuario= GuiConsultaAvanzada.TIPOUSUARIO;
-		}else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+			tipoUsuario= GuiConsultaAvanzada.TIPO_USUARIO;
+		}else if(GuiResultadoConsulta.TIPO_CONSULTA == 3)
 		{
-			tipoUsuario= GuiNovedades.TIPOUSUARIO;
+			tipoUsuario= GuiNovedades.TIPO_USUARIO;
 		}
 		
 		
@@ -528,13 +528,13 @@ public class GuiVistaDocumento extends JScrollPane {
 						//JOptionPane.showMessageDialog(null,"Cambiar al panel de registro de usuario (aun no esta )");
 						
 						
-						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+						if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 						{
 					
 							GuiPrincipal.cambiarPanelRegistro();
 							GuiConsultaBasica.restaurarTodo();
 						}
-						else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 						{
 							GuiPrincipal.cambiarPanelRegistroAvanzado();
 							GuiConsultaAvanzada.restaurarTodo();
@@ -592,22 +592,22 @@ public class GuiVistaDocumento extends JScrollPane {
 			}else if(evento.getSource() == etiquetaEditarDocumento)
 			{
 			
-				if(GuiConsultaBasica.TIPOUSUARIO == 2)
+				if(GuiConsultaBasica.TIPO_USUARIO == 2)
 				{
-					GuiCatalogador.panelModificarDoc = new GuiModificarDoc(GuiCatalogador.LOGIN, documento);
+					GuiCatalogador.panelModificarDoc = new GuiModificarDoc(documento);
 					
-					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 					{
 						GuiCatalogador.cambiarPanelEditarDocumento();
 						GuiConsultaBasica.restaurarTodo();
 					}
-					else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+					else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 					{
 				
 						GuiCatalogador.cambiarPanelEditarDocumentoAvanzado();
 						GuiConsultaAvanzada.restaurarTodo();
 					}
-					else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+					else if(GuiResultadoConsulta.TIPO_CONSULTA == 3)
 					{
 				
 						GuiCatalogador.cambiarPanelEditarDocumentoNovedades();
@@ -615,21 +615,21 @@ public class GuiVistaDocumento extends JScrollPane {
 					}
 					
 					
-				}else if(GuiConsultaBasica.TIPOUSUARIO == 1)
+				}else if(GuiConsultaBasica.TIPO_USUARIO == 1)
 				{
-					GuiAdministrador.panelModificarDoc = new GuiModificarDoc(GuiAdministrador.LOGIN, documento);
+					GuiAdministrador.PANEL_MODIFICAR_DOCUMENTO = new GuiModificarDoc(documento);
 					
-					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 					{
 						GuiAdministrador.cambiarPanelEditarDocumento();
 						GuiConsultaBasica.restaurarTodo();
 					}
-					else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+					else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 					{
 						GuiAdministrador.cambiarPanelEditarDocumentoAvanzado();
 						GuiConsultaAvanzada.restaurarTodo();
 					}
-					else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+					else if(GuiResultadoConsulta.TIPO_CONSULTA == 3)
 					{
 						GuiAdministrador.cambiarPanelEditarDocumentoNovedades();
 						GuiNovedades.restaurar();
@@ -646,18 +646,18 @@ public class GuiVistaDocumento extends JScrollPane {
 				
 			}else if (evento.getSource() == volver)
 			{
-				if(GuiResultadoConsulta.TIPOCONSULTA == 1){
+				if(GuiResultadoConsulta.TIPO_CONSULTA == 1){
 				
 			
 					GuiConsultaBasica.restaurar();
 				
 				
-				}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+				}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 				{
 					
 					GuiConsultaAvanzada.restaurar();
 				}
-				else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+				else if(GuiResultadoConsulta.TIPO_CONSULTA == 3)
 				{
 					
 					GuiNovedades.restaurar();
@@ -667,22 +667,22 @@ public class GuiVistaDocumento extends JScrollPane {
 				JLabel etiquetaAConsultar = (JLabel) evento.getSource();
 				
 				if (etiquetaAConsultar.getParent() == panelAutores) {
-					consultandoAutores = true;
+					CONSULTANDO_AUTORES = true;
 				}else
 				{
-					consultandoAutores = false;
+					CONSULTANDO_AUTORES = false;
 				}
 				
 				if (flag == 0) {
 					
 
-					if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+					if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 					{
 						consultar(etiquetaAConsultar.getText());	
-					}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+					}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 					{
 						consultarAvanzado(etiquetaAConsultar.getText());	
-					}else if(GuiResultadoConsulta.TIPOCONSULTA == 3)
+					}else if(GuiResultadoConsulta.TIPO_CONSULTA == 3)
 					{
 						consultarNovedades(etiquetaAConsultar.getText());	
 					}
@@ -696,10 +696,10 @@ public class GuiVistaDocumento extends JScrollPane {
 					if (flag == 0) {
 					//	JOptionPane.showMessageDialog(null, "Consultar areas: "+etiquetaAConsultar.getText());
 
-						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+						if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 						{
 							consultar(etiquetaAConsultar.getText());	
-						}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 						{
 							consultarAvanzado(etiquetaAConsultar.getText());	
 						}
@@ -711,13 +711,13 @@ public class GuiVistaDocumento extends JScrollPane {
 				} else if (etiquetaAConsultar.getParent() == panelAutores) {
 					if (flag == 0) {
 					
-						consultandoAutores = true;
+						CONSULTANDO_AUTORES = true;
 
 					
-						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+						if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 						{
 							consultar(etiquetaAConsultar.getText());	
-						}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 						{
 							consultarAvanzado(etiquetaAConsultar.getText());	
 						}
@@ -731,10 +731,10 @@ public class GuiVistaDocumento extends JScrollPane {
 						//JOptionPane.showMessageDialog(null,
 						//		"Consultar palabras clave: "+etiquetaAConsultar.getText());
 						
-						if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+						if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 						{
 							consultar(etiquetaAConsultar.getText());	
-						}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+						}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 						{
 							consultarAvanzado(etiquetaAConsultar.getText());	
 						}	
@@ -789,7 +789,7 @@ public class GuiVistaDocumento extends JScrollPane {
 	
 
 		boolean seleccionBusquedaCompeta;
-		if(consultandoAutores == true)
+		if(CONSULTANDO_AUTORES == true)
 		{
 			seleccionBusquedaCompeta = false;
 			
@@ -814,12 +814,12 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		int cantidad = 10;
 		System.out.println(vector);
-		GuiConsultaBasica.resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
-		GuiConsultaBasica.campoConsulta.setText(parametro);
-		GuiResultadoConsulta.TIPOCONSULTA = 1;
+		GuiConsultaBasica.PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(vector,cantidad);
+		GuiConsultaBasica.CAMPO_CONSULTA.setText(parametro);
+		GuiResultadoConsulta.TIPO_CONSULTA = 1;
 		GuiConsultaBasica.restaurar();
 		
-		GuiConsultaBasica.panel.updateUI();
+		GuiConsultaBasica.PANEL_PRINCIPAL.updateUI();
 		if(vector.size() <=0 && !parametro.equals("")){
 			
 			JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
@@ -833,7 +833,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		ControladorConsulta controlador = new ControladorConsulta();
 		//mira que se hace con loque retorna
 		boolean seleccionBusquedaCompeta;
-		if(consultandoAutores == true)
+		if(CONSULTANDO_AUTORES == true)
 		{
 			seleccionBusquedaCompeta = false;
 			
@@ -858,23 +858,23 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		int cantidad = 10;
 		System.out.println(vector);
-		GuiConsultaBasica.resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
-		GuiConsultaBasica.campoConsulta.setText(parametro);
-		GuiResultadoConsulta.TIPOCONSULTA = 1;
-		GuiConsultaBasica.panel.add(GuiConsultaBasica.resultadoConsulta, BorderLayout.CENTER);
+		GuiConsultaBasica.PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(vector,cantidad);
+		GuiConsultaBasica.CAMPO_CONSULTA.setText(parametro);
+		GuiResultadoConsulta.TIPO_CONSULTA = 1;
+		GuiConsultaBasica.PANEL_PRINCIPAL.add(GuiConsultaBasica.PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER);
 		GuiNovedades.restaurar();
 	
-		if(GuiNovedades.TIPOUSUARIO == 3)
+		if(GuiNovedades.TIPO_USUARIO == 3)
 		{
 			GuiUsuarioNormal.cambiarNovedadesInicio();
-		}else if(GuiNovedades.TIPOUSUARIO == 2)
+		}else if(GuiNovedades.TIPO_USUARIO == 2)
 		{
 			GuiCatalogador.cambiarNovedadesInicio();
-		}else if(GuiNovedades.TIPOUSUARIO == 1)
+		}else if(GuiNovedades.TIPO_USUARIO == 1)
 		{
 			GuiAdministrador.cambiarNovedadesInicio();
 		}
-		GuiConsultaBasica.panel.updateUI();
+		GuiConsultaBasica.PANEL_PRINCIPAL.updateUI();
 		if(vector.size() <=0 && !parametro.equals("")){
 			
 			JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
@@ -889,7 +889,7 @@ public class GuiVistaDocumento extends JScrollPane {
 		ControladorConsulta controlador = new ControladorConsulta();
 		//mira que se hace con loque retorna
 		boolean seleccionBusquedaCompeta;
-		if(consultandoAutores == true)
+		if(CONSULTANDO_AUTORES == true)
 		{
 			seleccionBusquedaCompeta = false;
 			
@@ -914,27 +914,27 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 		int cantidad = 10;
 		System.out.println(vector);
-		GuiConsultaBasica.resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
-		GuiConsultaBasica.campoConsulta.setText(parametro);
-		GuiResultadoConsulta.TIPOCONSULTA = 1;
-		GuiConsultaBasica.panel.add(GuiConsultaBasica.resultadoConsulta, BorderLayout.CENTER);
+		GuiConsultaBasica.PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(vector,cantidad);
+		GuiConsultaBasica.CAMPO_CONSULTA.setText(parametro);
+		GuiResultadoConsulta.TIPO_CONSULTA = 1;
+		GuiConsultaBasica.PANEL_PRINCIPAL.add(GuiConsultaBasica.PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER);
 		GuiConsultaAvanzada.restaurarTodo();
 		
-		if(GuiConsultaAvanzada.TIPOUSUARIO == 0)
+		if(GuiConsultaAvanzada.TIPO_USUARIO == 0)
 		{
 			GuiPrincipal.cambiarAvanzadaInicio();
 		}
-		else if(GuiConsultaAvanzada.TIPOUSUARIO == 3)
+		else if(GuiConsultaAvanzada.TIPO_USUARIO == 3)
 		{
 			GuiUsuarioNormal.cambiarAvanzadaInicio();
-		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 2)
+		}else if(GuiConsultaAvanzada.TIPO_USUARIO == 2)
 		{
 			GuiCatalogador.cambiarAvanzadaInicio();
-		}else if(GuiConsultaAvanzada.TIPOUSUARIO == 1)
+		}else if(GuiConsultaAvanzada.TIPO_USUARIO == 1)
 		{
 			GuiAdministrador.cambiarAvanzadaInicio();
 		}
-		GuiConsultaBasica.panel.updateUI();
+		GuiConsultaBasica.PANEL_PRINCIPAL.updateUI();
 		if(vector.size() <=0 && !parametro.equals("")){
 			
 			JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");

@@ -48,11 +48,11 @@ public class GuiConsultaAvanzada extends JScrollPane
 {
 	
 	private JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacionAntes, fechaPublicacionDespues,formatoArchivo,etiquetaCantidadResultado;
-	private static JTextField campoPalabraClave;
-	private static JTextField campoTitulo;
-	private static JTextField campoAutor;
-	private static JTextField campoFechaPublicacionAntes;
-	private static JTextField campoFechaPublicacionDespues;
+	private static JTextField CAMPO_PALABRA_CLAVE;
+	private static JTextField CAMPO_TITULO;
+	private static JTextField CAMPO_AUTOR;
+	private static JTextField CAMPO_FECHA_PUBLICACION_ANTES;
+	private static JTextField CAMPO_FECHA_PUBLICACION_DESPUES;
 	private JComboBox campoAreas, campoIdioma,campoFormArchivo;
 	private JRadioButton cualquieraTitulo, sinTitulo, exactaTitulo, cualquieraAutor, sinAutor, exactaAutor,
 	cualquieraPalabra, sinPalabra, exactaPalabra;
@@ -60,14 +60,14 @@ public class GuiConsultaAvanzada extends JScrollPane
 	private JButton botonConsultaAvanzada;
 	private Manejador manejador;
 	
-	public static int TIPOUSUARIO;
+	public static int TIPO_USUARIO;
 	
 	private JComboBox campoCantidadResultados;
 	private String cantidades[] = {"5","10","15","20", "25"};
-	public static GuiResultadoConsulta resultadoConsulta;
-	public static GuiVistaDocumento vistaDocumento;
+	public static GuiResultadoConsulta PANEL_RESULTADO_CONSULTA;
+	public static GuiVistaDocumento PANEL_VISTA_DOCUMENTO;
 	
-	private static JPanel principal;
+	private static JPanel PANEL_AVANZADA;
 	
 	private Vector<String> valoresConsulta;
 	private Vector<String> atributosConsulta;
@@ -77,7 +77,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 	String formatoArchivoArray[] = {"Todos", "jpg", "pdf", "doc", "odt", "otro"};
 	Vector<String> areas; 
 	
-	public static JPanel  panel;
+	public static JPanel  PANEL_PRINCIPAL;
 
 	
 	public GuiConsultaAvanzada()
@@ -85,7 +85,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		manejador = new Manejador();
 		initComponents();
 		
-		principal = new JPanel(new GridBagLayout());
+		PANEL_AVANZADA = new JPanel(new GridBagLayout());
 		GridBagConstraints restriccionesEtiqueta = configurar(0, 0, new Insets(2,2,2,0));
 		GridBagConstraints restriccionesBoton = configurar(0, 0, new Insets(2,0,2,0));
 		
@@ -94,98 +94,98 @@ public class GuiConsultaAvanzada extends JScrollPane
 		panelCantidadResultados.add(campoCantidadResultados);
 
 		
-		principal.add(titulo, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(titulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
-		principal.add(campoTitulo, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(CAMPO_TITULO, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
-		principal.add(sinTitulo, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(sinTitulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
-		principal.add(cualquieraTitulo, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(cualquieraTitulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=3;
-		principal.add(exactaTitulo, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(exactaTitulo, restriccionesEtiqueta);
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		//restriccionesEtiqueta.gridwidth=1;
-		principal.add(autor, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(autor, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
-		principal.add(campoAutor, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(CAMPO_AUTOR, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
-		principal.add(sinAutor, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(sinAutor, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
-		principal.add(cualquieraAutor, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(cualquieraAutor, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=3;
-		principal.add(exactaAutor, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(exactaAutor, restriccionesEtiqueta);
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
-		principal.add(palabraClave, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(palabraClave, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
-		principal.add(campoPalabraClave, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(CAMPO_PALABRA_CLAVE, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
-		principal.add(sinPalabra, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(sinPalabra, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
-		principal.add(cualquieraPalabra, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(cualquieraPalabra, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=3;
-		principal.add(exactaPalabra, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(exactaPalabra, restriccionesEtiqueta);
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		//restriccionesEtiqueta.gridwidth=1;
-		principal.add(area, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(area, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
-		principal.add(campoAreas, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(campoAreas, restriccionesEtiqueta);
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		//restriccionesEtiqueta.weightx=1.0;
-		principal.add(idioma, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(idioma, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
-		principal.add(campoIdioma, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(campoIdioma, restriccionesEtiqueta);
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
-		principal.add(formatoArchivo, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(formatoArchivo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
 		restriccionesEtiqueta.gridwidth=3;
-		principal.add(campoFormArchivo, restriccionesEtiqueta);	
+		PANEL_AVANZADA.add(campoFormArchivo, restriccionesEtiqueta);	
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		//restriccionesEtiqueta.gridwidth=1;
-		principal.add(fechaPublicacionAntes, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(fechaPublicacionAntes, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
 		restriccionesEtiqueta.gridwidth=2;
-		principal.add(campoFechaPublicacionAntes, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(CAMPO_FECHA_PUBLICACION_ANTES, restriccionesEtiqueta);
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		//restriccionesEtiqueta.gridwidth=1;
-		principal.add(fechaPublicacionDespues, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(fechaPublicacionDespues, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=2;
 		restriccionesEtiqueta.gridwidth=2;
-		principal.add(campoFechaPublicacionDespues, restriccionesEtiqueta);
+		PANEL_AVANZADA.add(CAMPO_FECHA_PUBLICACION_DESPUES, restriccionesEtiqueta);
 		
 		
 		restriccionesBoton.gridy=restriccionesEtiqueta.gridy+1;
 		restriccionesBoton.insets= new Insets(4,2,2,2);
 		restriccionesBoton.gridwidth= 4;
 		restriccionesBoton.anchor = GridBagConstraints.CENTER;
-		principal.add(botonConsultaAvanzada, restriccionesBoton);
-		//principal.add();
-		panel = new JPanel(new BorderLayout());
-		panel.add(principal, BorderLayout.NORTH);
+		PANEL_AVANZADA.add(botonConsultaAvanzada, restriccionesBoton);
+		//PANEL_AVANZADA.add();
+		PANEL_PRINCIPAL = new JPanel(new BorderLayout());
+		PANEL_PRINCIPAL.add(PANEL_AVANZADA, BorderLayout.NORTH);
 		//setLayout(new BorderLayout());
-		this.getViewport().add(panel);
+		this.getViewport().add(PANEL_PRINCIPAL);
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 	}
@@ -229,15 +229,15 @@ public class GuiConsultaAvanzada extends JScrollPane
 	
 	private void inicializarTextFields() 
 	{
-		campoPalabraClave = new JTextField(30); 
-		campoTitulo = new JTextField(30);
-		campoAutor = new JTextField(30);
-		campoFechaPublicacionAntes = new JTextField(10);
-		campoFechaPublicacionAntes.addKeyListener(manejador);
-		campoFechaPublicacionAntes.setToolTipText("Año de cuatro digitos.");
-		campoFechaPublicacionDespues = new JTextField(10);
-		campoFechaPublicacionDespues.addKeyListener(manejador);
-		campoFechaPublicacionDespues.setToolTipText("Año de cuatro digitos.");
+		CAMPO_PALABRA_CLAVE = new JTextField(30); 
+		CAMPO_TITULO = new JTextField(30);
+		CAMPO_AUTOR = new JTextField(30);
+		CAMPO_FECHA_PUBLICACION_ANTES = new JTextField(10);
+		CAMPO_FECHA_PUBLICACION_ANTES.addKeyListener(manejador);
+		CAMPO_FECHA_PUBLICACION_ANTES.setToolTipText("Año de cuatro digitos.");
+		CAMPO_FECHA_PUBLICACION_DESPUES = new JTextField(10);
+		CAMPO_FECHA_PUBLICACION_DESPUES.addKeyListener(manejador);
+		CAMPO_FECHA_PUBLICACION_DESPUES.setToolTipText("Año de cuatro digitos.");
 		
 
 	}
@@ -344,11 +344,11 @@ public class GuiConsultaAvanzada extends JScrollPane
 				atributosConsulta = new Vector<String>();
 				valoresConsulta = new Vector<String>();
 				
-				palabraClave = campoPalabraClave.getText();
-				titulo = campoTitulo.getText();
-				autor = campoAutor.getText();
-				fechaPublicacionAntes = campoFechaPublicacionAntes.getText();
-				fechaPublicacionDespues = campoFechaPublicacionDespues.getText();
+				palabraClave = CAMPO_PALABRA_CLAVE.getText();
+				titulo = CAMPO_TITULO.getText();
+				autor = CAMPO_AUTOR.getText();
+				fechaPublicacionAntes = CAMPO_FECHA_PUBLICACION_ANTES.getText();
+				fechaPublicacionDespues = CAMPO_FECHA_PUBLICACION_DESPUES.getText();
 				
 				if(!palabraClave.equals(""))
 				{
@@ -387,30 +387,30 @@ public class GuiConsultaAvanzada extends JScrollPane
 				Vector<Consulta> consulta = controlador.consultaAvanzada(atributosConsulta, valoresConsulta, opcionTitulo, opcionPalabra, opcionAutor);
 			
 				System.out.println(consulta);
-				GuiResultadoConsulta.TIPOCONSULTA = 2;
+				GuiResultadoConsulta.TIPO_CONSULTA = 2;
 				
 				
 				
-				if(resultadoConsulta!=null){
-					panel.remove(resultadoConsulta);
+				if(PANEL_RESULTADO_CONSULTA!=null){
+					PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
 					
 					
 				}else{
-					resultadoConsulta=null;
+					PANEL_RESULTADO_CONSULTA=null;
 					}
 				int cantidad = Integer.parseInt((String) campoCantidadResultados.getSelectedItem());
-				resultadoConsulta = new GuiResultadoConsulta(consulta,cantidad);
+				PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(consulta,cantidad);
 				
 				
 				//JOptionPane.showMessageDialog(null, ""+consulta.size());
-				panel.add(resultadoConsulta, BorderLayout.CENTER);
-				panel.updateUI();
+				PANEL_PRINCIPAL.add(PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER);
+				PANEL_PRINCIPAL.updateUI();
 				if(consulta.size() <=0){
 					
 					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
 					
 				}	
-				System.out.println(GuiConsultaBasica.TIPOUSUARIO);
+				System.out.println(GuiConsultaBasica.TIPO_USUARIO);
 				
 				
 				
@@ -537,38 +537,38 @@ public class GuiConsultaAvanzada extends JScrollPane
 	
 	public static void ponerDescripcion()
 	{
-		panel.remove(resultadoConsulta);
-		panel.remove(principal);
-		panel.add(vistaDocumento, BorderLayout.CENTER);
-		panel.updateUI();
+		PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
+		PANEL_PRINCIPAL.remove(PANEL_AVANZADA);
+		PANEL_PRINCIPAL.add(PANEL_VISTA_DOCUMENTO, BorderLayout.CENTER);
+		PANEL_PRINCIPAL.updateUI();
 	}
 	public static void restaurar()
 	{
-		panel.remove(vistaDocumento);
+		PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
 		//campoConsulta.setText("");
-		panel.add(principal, BorderLayout.NORTH);
-		panel.add(resultadoConsulta, BorderLayout.CENTER );
+		PANEL_PRINCIPAL.add(PANEL_AVANZADA, BorderLayout.NORTH);
+		PANEL_PRINCIPAL.add(PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER );
 		
-		//resultadoConsulta = new GuiResultadoConsulta();
-		panel.remove(vistaDocumento);
-		panel.updateUI();
+		//PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta();
+		PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
+		PANEL_PRINCIPAL.updateUI();
 	}
 	public static void restaurarTodo()
 	{
-		if(!(vistaDocumento == null))		
-			panel.remove(vistaDocumento);
+		if(!(PANEL_VISTA_DOCUMENTO == null))		
+			PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
 		
-		campoPalabraClave.setText("");
-		campoTitulo.setText("");
-		campoAutor.setText("");
-		campoFechaPublicacionDespues.setText("");
-		campoFechaPublicacionAntes.setText("");
-		panel.add(principal, BorderLayout.NORTH);		
+		CAMPO_PALABRA_CLAVE.setText("");
+		CAMPO_TITULO.setText("");
+		CAMPO_AUTOR.setText("");
+		CAMPO_FECHA_PUBLICACION_DESPUES.setText("");
+		CAMPO_FECHA_PUBLICACION_ANTES.setText("");
+		PANEL_PRINCIPAL.add(PANEL_AVANZADA, BorderLayout.NORTH);		
 		
-		if(!(resultadoConsulta == null))
-					panel.remove(resultadoConsulta);
+		if(!(PANEL_RESULTADO_CONSULTA == null))
+					PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
 		
-		panel.updateUI();
+		PANEL_PRINCIPAL.updateUI();
 	}
 	
 	

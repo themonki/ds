@@ -43,6 +43,7 @@ import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
+import com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolverException;
 
 public class GuiReportes extends JTabbedPane{
 	
@@ -75,10 +76,10 @@ public class GuiReportes extends JTabbedPane{
 	ControladorReportes controladorReporte;
 	
 	//int cantCondicion=0;
-	private JSpinner campoFecha;
+	private JSpinner campoFecha; //estos dos son para el intervalo de reportes basicos
 	private JSpinner campoFecha2;
-	private JSpinner campoFechaNacimiento3;
-	private JSpinner campoFechaNacimiento4;
+	private JSpinner campoFecha3; //estos dos son para el intervaloe de reportes avanzados
+	private JSpinner campoFecha4;
 	
 	private Vector<String> vectorContablasAvanzado;
 	private Vector<String> vectorAtributosAvanzado;
@@ -214,7 +215,7 @@ public class GuiReportes extends JTabbedPane{
 		
 		//PanelreportesBasicos.add(atributos,retricciones);
 		
-		//Crear spinner para la fecha de nacimiento.
+		//Crear spinner para la fecha1.
 		SpinnerModel modeloFecha = new SpinnerDateModel();
 		campoFecha = new JSpinner(modeloFecha);
 	    campoFecha.setFont(Estilos.fontLabels);
@@ -225,14 +226,14 @@ public class GuiReportes extends JTabbedPane{
 	    //-------------------------------------
 	    campoFecha.setVisible(false);
 	    //-------------------------------------
-	    //Crear spinner para la fecha de nacimiento.
+	    //Crear spinner para la fecha2.
 		SpinnerModel modeloFecha2 = new SpinnerDateModel();
 		campoFecha2 = new JSpinner(modeloFecha2);
 	    campoFecha2.setFont(Estilos.fontLabels);
 	    campoFecha2.setForeground(Estilos.colorLabels);
 		JSpinner.DateEditor spinnerFecha2 = new JSpinner.DateEditor(campoFecha2,"yyyy-MM-dd");
 		campoFecha2.setEditor(spinnerFecha2);
-	    ((JSpinner.DateEditor) campoFecha.getEditor()).getTextField().setEditable(true);
+	    ((JSpinner.DateEditor) campoFecha2.getEditor()).getTextField().setEditable(false);
 	    //-------------------------------------
 	    campoFecha2.setVisible(false);
 	    //-------------------------------------
@@ -348,29 +349,29 @@ public class GuiReportes extends JTabbedPane{
 		
 		//PanelreportesBasicos.add(atributos,retricciones);
 		
-		//Crear spinner para la fecha de nacimiento.
+		//Crear spinner para la fecha3.
 		SpinnerModel modeloFecha3 = new SpinnerDateModel();
-		campoFechaNacimiento3 = new JSpinner(modeloFecha3);
-	    campoFechaNacimiento3.setFont(Estilos.fontLabels);
-	    campoFechaNacimiento3.setForeground(Estilos.colorLabels);
-		JSpinner.DateEditor spinnerFecha3 = new JSpinner.DateEditor(campoFechaNacimiento3,"yyyy-MM-dd");
-		campoFechaNacimiento3.setEditor(spinnerFecha3);
-	    ((JSpinner.DateEditor) campoFechaNacimiento3.getEditor()).getTextField().setEditable(false);
-	  //Crear spinner para la fecha de nacimiento.
+		campoFecha3 = new JSpinner(modeloFecha3);
+	    campoFecha3.setFont(Estilos.fontLabels);
+	    campoFecha3.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFecha3 = new JSpinner.DateEditor(campoFecha3,"yyyy-MM-dd");
+		campoFecha3.setEditor(spinnerFecha3);
+	    ((JSpinner.DateEditor) campoFecha3.getEditor()).getTextField().setEditable(false);
+	  //Crear spinner para la fecha4.
 		SpinnerModel modeloFecha4 = new SpinnerDateModel();
-		campoFechaNacimiento4 = new JSpinner(modeloFecha4);
-	    campoFechaNacimiento4.setFont(Estilos.fontLabels);
-	    campoFechaNacimiento4.setForeground(Estilos.colorLabels);
-		JSpinner.DateEditor spinnerFecha4 = new JSpinner.DateEditor(campoFechaNacimiento4,"yyyy-MM-dd");
-		campoFechaNacimiento4.setEditor(spinnerFecha4);
-	    ((JSpinner.DateEditor) campoFechaNacimiento4.getEditor()).getTextField().setEditable(true);
+		campoFecha4 = new JSpinner(modeloFecha4);
+	    campoFecha4.setFont(Estilos.fontLabels);
+	    campoFecha4.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFecha4 = new JSpinner.DateEditor(campoFecha4,"yyyy-MM-dd");
+		campoFecha4.setEditor(spinnerFecha4);
+	    ((JSpinner.DateEditor) campoFecha4.getEditor()).getTextField().setEditable(false);
 	    
 	    retriccionesAvanzado.gridy++;
 	    retriccionesAvanzado.gridx=0;
 	    panelRepAvanzados.add(new JLabel("Desde :"),retriccionesAvanzado);
 	    retriccionesAvanzado.anchor=GridBagConstraints.EAST;
 	    retriccionesAvanzado.gridx=0;
-	    panelRepAvanzados.add(campoFechaNacimiento3,retriccionesAvanzado);
+	    panelRepAvanzados.add(campoFecha3,retriccionesAvanzado);
 		retriccionesAvanzado.gridy++;
 		retriccionesAvanzado.gridx=0;
 		retriccionesAvanzado.anchor=GridBagConstraints.WEST;
@@ -378,7 +379,7 @@ public class GuiReportes extends JTabbedPane{
 		panelRepAvanzados.add(new JLabel("Hasta :"),retriccionesAvanzado);
 		retriccionesAvanzado.gridx=0;
 		retriccionesAvanzado.anchor=GridBagConstraints.EAST;
-		panelRepAvanzados.add(campoFechaNacimiento4,retriccionesAvanzado);
+		panelRepAvanzados.add(campoFecha4,retriccionesAvanzado);
 		
 		retriccionesAvanzado.gridx=1;
 		retriccionesAvanzado.gridy++;
@@ -461,7 +462,13 @@ public class GuiReportes extends JTabbedPane{
 				if ( item.contains("Areas"))
 				{
 					atributos.removeAllItems();
-					atributos.addItem("area_padre");		
+					atributos.addItem("area_padre");
+					campoFecha.setVisible(false);
+					campoFecha2.setVisible(false);
+					habilitar.setVisible(false);
+					fechas.setVisible(false);
+					etiquetaDesde.setVisible(false);
+					etiquetaHasta.setVisible(false);
 				}
 				if ( item.contains("Usuario"))
 				{
@@ -470,6 +477,15 @@ public class GuiReportes extends JTabbedPane{
 					atributos.addItem("nivel_escolaridad");
 					atributos.addItem("vinculo_univalle");
 					atributos.addItem("tipo");
+					habilitar.setVisible(true);
+					fechas.setVisible(true);
+					if(habilitar.isSelected())
+					{
+						etiquetaDesde.setVisible(true);
+						etiquetaHasta.setVisible(true);
+						campoFecha.setVisible(true);
+						campoFecha2.setVisible(true);
+					}
 				}
 			
 			}else if (evento.getSource()== botonGenerarReporte)
@@ -531,6 +547,21 @@ public class GuiReportes extends JTabbedPane{
 								e.printStackTrace();
 							}
 						}
+						
+						if(areas)
+						{
+							try
+							{
+								JasperPrint reporte = controlador.reporteAreasAgrupadas(encabezado);
+								controlador.generarReporte(rutaFinal, reporte);
+								
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed" +
+										"tratando de llamarse el generar reporte de areas detalladas");
+								e.printStackTrace();
+							}
+						}
 					}
 					if(totalesR)
 					{
@@ -551,6 +582,21 @@ public class GuiReportes extends JTabbedPane{
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
+						}
+						
+						if(areas)
+						{
+							try
+							{
+								JasperPrint reporte = controlador.reporteAreasAgrupadasTotales(encabezado);
+								controlador.generarReporte(rutaFinal, reporte);
+								
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed" +
+										"tratando de llamarse el generar reporte de areas totales");
 								e.printStackTrace();
 							}
 						}

@@ -42,7 +42,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	Vector<Consulta> vectorConsulta;	
 	Button botonSiguiente, botonAtras;
 	int posicionResultado, cantidadTotalResultados, cantidadMostrar;
-	public static int TIPOCONSULTA;
+	public static int TIPO_CONSULTA;
 	RenderLista rl;//formato de la lista
 	TitledBorder borde;
 	
@@ -129,8 +129,13 @@ public class GuiResultadoConsulta extends JScrollPane{
 		rl.agregarElementos(mostrar);
 		listaResultado.setListData(mostrar);
 		listaResultado.setCellRenderer(rl);
+		if(cantidadTotalResultados==0)//no ahi resultados
+		{
+			borde.setTitle("No ahi resultados");
+		}else{
 		borde.setTitle("Mostrando desde "+ (posicionResultado+1)+
 				" hasta "+ i +" de "+cantidadTotalResultados+ " resultados");
+		}
 		posicionResultado=posicionFinal;
 		this.updateUI();
 	}
@@ -224,15 +229,15 @@ public class GuiResultadoConsulta extends JScrollPane{
 								.getIdDocumento());
 
 				int tu = 0;
-				if(GuiResultadoConsulta.TIPOCONSULTA  == 1)
+				if(TIPO_CONSULTA  == 1)
 				{
-					tu= GuiConsultaBasica.TIPOUSUARIO;
-				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 2)
+					tu= GuiConsultaBasica.TIPO_USUARIO;
+				}else if(TIPO_CONSULTA  == 2)
 				{
-					tu = GuiConsultaAvanzada.TIPOUSUARIO;
-				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 3)
+					tu = GuiConsultaAvanzada.TIPO_USUARIO;
+				}else if(TIPO_CONSULTA  == 3)
 				{
-					tu = GuiNovedades.TIPOUSUARIO;
+					tu = GuiNovedades.TIPO_USUARIO;
 				}
 
 
@@ -251,20 +256,20 @@ public class GuiResultadoConsulta extends JScrollPane{
 				}
 		
 				
-				if (GuiResultadoConsulta.TIPOCONSULTA == 1) {
+				if (TIPO_CONSULTA == 1) {
 
-					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
+					GuiConsultaBasica.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
 
-				} else if (GuiResultadoConsulta.TIPOCONSULTA == 2) {
-					GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(
+				} else if (TIPO_CONSULTA == 2) {
+					GuiConsultaAvanzada.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(
 							d);
 					
 					GuiConsultaAvanzada.ponerDescripcion();
 
-				} else if (GuiResultadoConsulta.TIPOCONSULTA == 3) {
+				} else if (TIPO_CONSULTA == 3) {
 					
-					GuiNovedades.VISTADOCUMENTO = new GuiVistaDocumento(d);
+					GuiNovedades.VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiNovedades.ponerDescripcion();
 				
 

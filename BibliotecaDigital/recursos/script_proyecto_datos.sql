@@ -259,7 +259,7 @@ CREATE TABLE usuario (
 --
 
 COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
-	super		
+	ciencias de la computacion		
 1	computacion centrada en la red		
 2	construccion de aplicaciones web		1
 3	metodos numericos computacionales		
@@ -284,7 +284,7 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 22	validacion de software		6
 23	computacion web cliente servidor		1
 24	tecnologias multimedia		1
-25	computacion inalambrica		1
+25	computacion inhalambrica		1
 26	procesamiento de lenguaje natural		18
 27	sistemas multimedia		8
 28	fundamentos de programacion		

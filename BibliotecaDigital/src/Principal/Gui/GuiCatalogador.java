@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
@@ -60,7 +59,7 @@ public class GuiCatalogador extends JFrame
 	private Button catalogar;
 	private Button novedades;
 
-	private static JLabel estado;
+	private static JLabel ESTADO;
 
 	// Clase interna que permite administrar todos los eventos que genera la
 	// ventana y son escuchados.
@@ -69,7 +68,7 @@ public class GuiCatalogador extends JFrame
 	// Elementos de la barra de menu
 	private JMenu archivo;
 	private JMenu acercaDe;
-	private static Container contenedor;
+	private static Container CONTENEDOR;
 	private JMenuItem salir;
 	private JMenuItem informacion;
 	private JMenuBar barra;
@@ -120,15 +119,15 @@ public class GuiCatalogador extends JFrame
 		panelConsultaAvanzada = new GuiConsultaAvanzada();
 		panelNovedades = new GuiNovedades();
 	
-		GuiConsultaBasica.TIPOUSUARIO = 2;
-		GuiConsultaAvanzada.TIPOUSUARIO = 2;
-		GuiNovedades.TIPOUSUARIO = 2;
+		GuiConsultaBasica.TIPO_USUARIO = 2;
+		GuiConsultaAvanzada.TIPO_USUARIO = 2;
+		GuiNovedades.TIPO_USUARIO = 2;
 		
 		
 		
-		contenedor = getContentPane();
-		contenedor.setLayout(new BorderLayout(20,20));
-		((JComponent) contenedor).setBorder(borde);
+		CONTENEDOR = getContentPane();
+		CONTENEDOR.setLayout(new BorderLayout(20,20));
+		((JComponent) CONTENEDOR).setBorder(borde);
 		
 		// Se instancian todos los elementos de la barra del menu.
 		archivo = new JMenu("Archivo");
@@ -216,11 +215,11 @@ public class GuiCatalogador extends JFrame
 		JPanel panelconOpciones2= new JPanel(); //evita que los botones crescan si la ventana es redimensionada
 		panelconOpciones2.add(panelOpcionesGenerales);
 		
-		estado = new JLabel(estadoInicial);
+		ESTADO = new JLabel(estadoInicial);
 
-		contenedor.add(panelconOpciones2, BorderLayout.WEST);
-		contenedor.add(estado, BorderLayout.SOUTH);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
+		CONTENEDOR.add(panelconOpciones2, BorderLayout.WEST);
+		CONTENEDOR.add(ESTADO, BorderLayout.SOUTH);
+		CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
 		//setSize(800, 500);
 		//centrar en la pantalla 
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -240,40 +239,40 @@ public class GuiCatalogador extends JFrame
 
 			if (evento.getSource() == modificarUsuario)
 			{			
-				if (estado.getText().equals(estadoInicial))
+				if (ESTADO.getText().equals(estadoInicial))
 				{		
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(panelConsultaBasica);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				}else if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{		
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(panelConsultaAvanzada);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
 				
-				}else if(estado.getText().equals(estadoCatalogando))
+				}else if(ESTADO.getText().equals(estadoCatalogando))
 				{
-					contenedor.remove(panelCatalogarModificar);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(panelCatalogarModificar);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(panelModificarDoc);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
 					
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelModificacion, BorderLayout.CENTER);
-					estado.setText(estadoModificacion);
+					CONTENEDOR.remove(panelNovedades);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
@@ -282,39 +281,39 @@ public class GuiCatalogador extends JFrame
 			}else if(evento.getSource() == volver)
 			{
 				
-				if (estado.getText().equals(estadoModificacion))
+				if (ESTADO.getText().equals(estadoModificacion))
 				{
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
 				
-				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				}else if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(panelConsultaAvanzada);
+					CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
 				
-				}else if(estado.getText().equals(estadoCatalogando))
+				}else if(ESTADO.getText().equals(estadoCatalogando))
 				{
-					contenedor.remove(panelCatalogarModificar);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(panelCatalogarModificar);
+					CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(panelModificarDoc);
+					CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
 					
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-					estado.setText(estadoInicial);
+					CONTENEDOR.remove(panelNovedades);
+					CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
@@ -324,47 +323,47 @@ public class GuiCatalogador extends JFrame
 			else if(evento.getSource() == consultaAvanzada)
 			{
 				
-				if (estado.getText().equals(estadoModificacion))
+				if (ESTADO.getText().equals(estadoModificacion))
 				{
 					
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(panelConsultaAvanzada, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				
-				}else if(estado.getText().equals(estadoInicial))
+				}else if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(panelConsultaBasica);
+					CONTENEDOR.add(panelConsultaAvanzada, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
 				
-				}else if(estado.getText().equals(estadoCatalogando))
+				}else if(ESTADO.getText().equals(estadoCatalogando))
 				{
-					contenedor.remove(panelCatalogarModificar);
-					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(panelCatalogarModificar);
+					CONTENEDOR.add(panelConsultaAvanzada, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(panelModificarDoc);
+					CONTENEDOR.add(panelConsultaAvanzada, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
 					
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-					estado.setText(estadoConsultaAvanzada);
+					CONTENEDOR.remove(panelNovedades);
+					CONTENEDOR.add(panelConsultaAvanzada, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
@@ -372,40 +371,40 @@ public class GuiCatalogador extends JFrame
 			}
 			else if(evento.getSource() == catalogar)
 			{
-				if(estado.getText().equals(estadoInicial))
+				if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelCatalogarModificar);
-					estado.setText(estadoCatalogando);
+					CONTENEDOR.remove(panelConsultaBasica);
+					CONTENEDOR.add(panelCatalogarModificar);
+					ESTADO.setText(estadoCatalogando);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				}else if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelCatalogarModificar);
-					estado.setText(estadoCatalogando);
+					CONTENEDOR.remove(panelConsultaAvanzada);
+					CONTENEDOR.add(panelCatalogarModificar);
+					ESTADO.setText(estadoCatalogando);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoModificacion))
+				}else if(ESTADO.getText().equals(estadoModificacion))
 				{
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelCatalogarModificar);
-					estado.setText(estadoCatalogando);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(panelCatalogarModificar);
+					ESTADO.setText(estadoCatalogando);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelCatalogarModificar);
-					estado.setText(estadoCatalogando);
+					CONTENEDOR.remove(panelModificarDoc);
+					CONTENEDOR.add(panelCatalogarModificar);
+					ESTADO.setText(estadoCatalogando);
 					repaint();
-				}else if(estado.getText().equals(estadoNovedades))
+				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
 					
-					contenedor.remove(panelNovedades);
-					contenedor.add(panelCatalogarModificar, BorderLayout.CENTER);
-					estado.setText(estadoCatalogando);
+					CONTENEDOR.remove(panelNovedades);
+					CONTENEDOR.add(panelCatalogarModificar, BorderLayout.CENTER);
+					ESTADO.setText(estadoCatalogando);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
@@ -413,41 +412,41 @@ public class GuiCatalogador extends JFrame
 				
 			}else if(evento.getSource() == novedades)
 			{
-				GuiResultadoConsulta.TIPOCONSULTA = 3;
-				if(estado.getText().equals(estadoInicial))
+				GuiResultadoConsulta.TIPO_CONSULTA = 3;
+				if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
-					contenedor.remove(panelConsultaBasica);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(panelConsultaBasica);
+					CONTENEDOR.add(panelNovedades);
+					ESTADO.setText(estadoNovedades);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoConsultaAvanzada))
+				}else if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
-					contenedor.remove(panelConsultaAvanzada);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(panelConsultaAvanzada);
+					CONTENEDOR.add(panelNovedades);
+					ESTADO.setText(estadoNovedades);
 					repaint();
 					
-				}else if(estado.getText().equals(estadoModificacion))
+				}else if(ESTADO.getText().equals(estadoModificacion))
 				{
-					contenedor.remove(panelModificacion);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(panelNovedades);
+					ESTADO.setText(estadoNovedades);
 					repaint();
-				}else if(estado.getText().equals(estadoModificandoDoc))
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
-					contenedor.remove(panelModificarDoc);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(panelModificarDoc);
+					CONTENEDOR.add(panelNovedades);
+					ESTADO.setText(estadoNovedades);
 					repaint();
-				}else if(estado.getText().equals(estadoCatalogando))
+				}else if(ESTADO.getText().equals(estadoCatalogando))
 				{
 					
-					contenedor.remove(panelCatalogarModificar);
-					contenedor.add(panelNovedades);
-					estado.setText(estadoNovedades);
+					CONTENEDOR.remove(panelCatalogarModificar);
+					CONTENEDOR.add(panelNovedades);
+					ESTADO.setText(estadoNovedades);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
@@ -469,77 +468,77 @@ public class GuiCatalogador extends JFrame
 	public void cambiarPanelInicio()
 	{
 		
-		contenedor.remove(panelModificacion);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText(estadoInicial);
+		CONTENEDOR.remove(panelModificacion);
+		CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+		ESTADO.setText(estadoInicial);
 		repaint();
 		
 	}
 	public static void cambiarPanelEditarDocumento()
 	{
 		
-		contenedor.remove(panelConsultaBasica);
-		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
-		estado.setText("Modificando Documento");
-		contenedor.repaint();
+		CONTENEDOR.remove(panelConsultaBasica);
+		CONTENEDOR.add(panelModificarDoc, BorderLayout.CENTER);
+		ESTADO.setText("Modificando Documento");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarPanelEditarDocumentoAvanzado()
 	{
 		
-		contenedor.remove(panelConsultaAvanzada);
-		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
-		estado.setText("Modificando Documento");
-		contenedor.repaint();
+		CONTENEDOR.remove(panelConsultaAvanzada);
+		CONTENEDOR.add(panelModificarDoc, BorderLayout.CENTER);
+		ESTADO.setText("Modificando Documento");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarPanelEditarDocumentoNovedades()
 	{
 		
-		contenedor.remove(panelNovedades);
-		contenedor.add(panelModificarDoc, BorderLayout.CENTER);
-		estado.setText("Modificando Documento");
-		contenedor.repaint();
+		CONTENEDOR.remove(panelNovedades);
+		CONTENEDOR.add(panelModificarDoc, BorderLayout.CENTER);
+		ESTADO.setText("Modificando Documento");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarPanelVista()
 	{
 		
 		
-		contenedor.remove(panelModificarDoc);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText("Inicio");
-		contenedor.repaint();
+		CONTENEDOR.remove(panelModificarDoc);
+		CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+		ESTADO.setText("Inicio");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarPanelVistaAvanzado()
 	{
 		
 		
-		contenedor.remove(panelModificarDoc);
-		contenedor.add(panelConsultaAvanzada, BorderLayout.CENTER);
-		estado.setText("ConsultaAvanzada");
-		contenedor.repaint();
+		CONTENEDOR.remove(panelModificarDoc);
+		CONTENEDOR.add(panelConsultaAvanzada, BorderLayout.CENTER);
+		ESTADO.setText("ConsultaAvanzada");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarAvanzadaInicio()
 	{
 		
 		
-		contenedor.remove(panelConsultaAvanzada);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText("Inicio");
-		contenedor.repaint();
+		CONTENEDOR.remove(panelConsultaAvanzada);
+		CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+		ESTADO.setText("Inicio");
+		CONTENEDOR.repaint();
 		
 	}
 	public static void cambiarNovedadesInicio()
 	{
 		
 		
-		contenedor.remove(panelNovedades);
-		contenedor.add(panelConsultaBasica, BorderLayout.CENTER);
-		estado.setText("Inicio");
-		contenedor.repaint();
+		CONTENEDOR.remove(panelNovedades);
+		CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+		ESTADO.setText("Inicio");
+		CONTENEDOR.repaint();
 		
 	}
 	
@@ -547,10 +546,10 @@ public class GuiCatalogador extends JFrame
 	{
 		
 		
-		GuiNovedades.RESULTADOCONSULTA = new GuiResultadoConsulta(novedades, 10);
-		GuiNovedades.PANELNOVEDADES.add(GuiNovedades.RESULTADOCONSULTA);
+		GuiNovedades.RESULTADO_CONSULTA = new GuiResultadoConsulta(novedades, 10);
+		GuiNovedades.PANEL_NOVEDADES.add(GuiNovedades.RESULTADO_CONSULTA);
 		
-		GuiResultadoConsulta.TIPOCONSULTA = 3;
+		GuiResultadoConsulta.TIPO_CONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");
 		panelNovedades.updateUI();
 		novedadesUsuario = novedades;	
