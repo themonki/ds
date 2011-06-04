@@ -330,7 +330,7 @@ public class DaoConsulta {
 				}
 
 			}
-		}else
+		}else if(opTitulo==3 && !valorDocumento.isEmpty())
 		{
 			consultaDocumentoTituloSql += "documento.titulo_principal LIKE '%" +
 			valorDocumento.elementAt(0) + "%' OR " +
@@ -467,7 +467,7 @@ public class DaoConsulta {
 					consultaPalabraTempSql += " OR ";
 				}
 			}
-		}else
+		}else if(opPalabra==3 && !valorPalabra.isEmpty())
 		{
 			consultaPalabraTempSql += "tiene_documento_palabra_clave.nombre = '" +
 			valorPalabra.elementAt(0) + "'";
@@ -543,7 +543,7 @@ public class DaoConsulta {
 				}
 			}
 
-		}else
+		}else if(opAutor==3 && !valorAutor.isEmpty())
 		{//solo puede conicidir con el nombre o con el apellido
 			consultaAutorTemp += "a.nombre = '" +
 			valorAutor.elementAt(0) + "' OR " +
