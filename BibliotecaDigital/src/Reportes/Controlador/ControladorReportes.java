@@ -177,14 +177,46 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosAgrupadosTipo()
+	public JasperPrint reporteDocumentosAgrupadosTipo(String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosAgrupadosTipo();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadoTipo.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosAgrupadosFormato()
+	public JasperPrint reporteDocumentosAgrupadosFormato(String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosAgrupadosFormato();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadoFormato.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
 	/*public Vector<String> consultarUsuariosAgrupados(String atributoUsuario){
@@ -255,7 +287,9 @@ public class ControladorReportes
 		ControladorReportes c = new ControladorReportes();
 		try
 		{
-			c.generarReporte("recursos/prueba.pdf", c.reporteDocumentosAgrupadosArea("Reporte"));
+			//c.generarReporte("recursos/documento_areas.pdf", c.reporteDocumentosAgrupadosArea("Reporte Documento Areas"));
+			//c.generarReporte("recursos/documento_tipo.pdf", c.reporteDocumentosAgrupadosTipo("Reporte Documento Tipos"));
+			c.generarReporte("recursos/documento_formato.pdf", c.reporteDocumentosAgrupadosFormato("Reporte Documento Formato"));
 		}catch(JRException e)
 		{
 			e.printStackTrace();
