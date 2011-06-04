@@ -40,7 +40,7 @@ public class GuiConsultaBasica extends JScrollPane
 
 	private static final long serialVersionUID = 1L;
 	private JLabel etiquetaConsulta, etiquetaCantidadResultado;
-	public static  JTextField campoConsulta;
+	public static  JTextField CAMPO_CONSULTA;
 	private JPanel panelCampoConsulta;
 	private Button consultar;
 	private JCheckBox busquedaCompleta;
@@ -48,33 +48,31 @@ public class GuiConsultaBasica extends JScrollPane
 	private String cantidades[] = {"5","10","15","20", "25"};
 	private Manejador manejador;
 	// Nos permite saber el tipo del usuario que realiza la consulta por defecto es cero.
-	public static int TIPOUSUARIO;
+	public static int TIPO_USUARIO;
 	
-	private static JPanel panelConsulta;
-	private JPanel panelResultado;
-	static JPanel panel;
-	public static GuiResultadoConsulta resultadoConsulta;
-	public static GuiVistaDocumento vistaDocumento;
+	private static JPanel PANEL_CONSULTA;
+	static JPanel PANEL_PRINCIPAL;
+	public static GuiResultadoConsulta PANEL_RESULTADO_CONSULTA;
+	public static GuiVistaDocumento PANEL_VISTA_DOCUMENTO;
 	
 	public GuiConsultaBasica()
 	{		
-		panel = new JPanel(new BorderLayout());
+		PANEL_PRINCIPAL = new JPanel(new BorderLayout());
 		//Manejador de eventos
 		manejador = new Manejador();
-		panelConsulta = new JPanel(new GridBagLayout());
-		panelResultado = new JPanel(new FlowLayout());
+		PANEL_CONSULTA = new JPanel(new GridBagLayout());
 		
 		//this.setLayout(new FlowLayout(1,150,40));
-		//panelConsultaBasica = new JPanel(new FlowLayout(1,200,40));
+		//PANEL_CONSULTABasica = new JPanel(new FlowLayout(1,200,40));
 
 		etiquetaConsulta = new JLabel("Consulta",JLabel.CENTER);
 		etiquetaConsulta.setFont(Estilos.fontTitulo);
 		etiquetaConsulta.setForeground(Estilos.colorTitulo);
 		etiquetaCantidadResultado= new JLabel("Resultados por pagina: ");
 		
-		campoConsulta = new JTextField(30);
-		campoConsulta.setFont(Estilos.fontLabels);
-		campoConsulta.addKeyListener(manejador);
+		CAMPO_CONSULTA = new JTextField(30);
+		CAMPO_CONSULTA.setFont(Estilos.fontLabels);
+		CAMPO_CONSULTA.addKeyListener(manejador);
 		
 		busquedaCompleta = new JCheckBox("Realizar búsqueda con coincidencia exacta");
 		busquedaCompleta.addItemListener(manejador);
@@ -93,7 +91,7 @@ public class GuiConsultaBasica extends JScrollPane
 		
 		restriccion.gridy=0;
 		restriccion.anchor=GridBagConstraints.WEST;
-		panelCampoConsulta.add(campoConsulta, restriccion);
+		panelCampoConsulta.add(CAMPO_CONSULTA, restriccion);
 		restriccion.gridy=1;
 		panelCampoConsulta.add(busquedaCompleta, restriccion);
 		restriccion.gridy=2;
@@ -108,16 +106,16 @@ public class GuiConsultaBasica extends JScrollPane
 		restricciones.gridx=1;
 		restricciones.gridy=1;
 		restricciones.insets= new Insets(20, 0,5, 0);
-		panelConsulta.add(etiquetaConsulta, restricciones);
+		PANEL_CONSULTA.add(etiquetaConsulta, restricciones);
 		restricciones.gridy=2;
-		panelConsulta.add(panelCampoConsulta, restricciones);
+		PANEL_CONSULTA.add(panelCampoConsulta, restricciones);
 		restricciones.gridy=3;
 		restricciones.insets= new Insets(0, 0,0, 0);	
-		panelConsulta.add(consultar, restricciones);
-		panel.add(panelConsulta, BorderLayout.NORTH);
-		//add(panel);
+		PANEL_CONSULTA.add(consultar, restricciones);
+		PANEL_PRINCIPAL.add(PANEL_CONSULTA, BorderLayout.NORTH);
+		//add(PANEL_PRINCIPAL);
 		
-		this.setViewportView(panel);
+		this.setViewportView(PANEL_PRINCIPAL);
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		
@@ -125,31 +123,31 @@ public class GuiConsultaBasica extends JScrollPane
 	
 	public static void ponerDescripcion()
 	{
-		panel.remove(resultadoConsulta);
-		panel.remove(panelConsulta);
-		panel.add(vistaDocumento, BorderLayout.CENTER);
-		panel.updateUI();
+		PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
+		PANEL_PRINCIPAL.remove(PANEL_CONSULTA);
+		PANEL_PRINCIPAL.add(PANEL_VISTA_DOCUMENTO, BorderLayout.CENTER);
+		PANEL_PRINCIPAL.updateUI();
 	}
 	public static void restaurar()
 	{
-		panel.remove(vistaDocumento);		
-		panel.add(panelConsulta, BorderLayout.NORTH);
-		panel.add(resultadoConsulta, BorderLayout.CENTER );		
-		panel.remove(vistaDocumento);
-		panel.updateUI();
+		PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);		
+		PANEL_PRINCIPAL.add(PANEL_CONSULTA, BorderLayout.NORTH);
+		PANEL_PRINCIPAL.add(PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER );		
+		PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
+		PANEL_PRINCIPAL.updateUI();
 	}
 	public static void restaurarTodo()
 	{
-		if(!(vistaDocumento == null))	
-			panel.remove(vistaDocumento);
+		if(!(PANEL_VISTA_DOCUMENTO == null))	
+			PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
 		
-		campoConsulta.setText("");
-		panel.add(panelConsulta, BorderLayout.NORTH);		
+		CAMPO_CONSULTA.setText("");
+		PANEL_PRINCIPAL.add(PANEL_CONSULTA, BorderLayout.NORTH);		
 		
-		if(!(resultadoConsulta == null))
-			panel.remove(resultadoConsulta);
+		if(!(PANEL_RESULTADO_CONSULTA == null))
+			PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
 		
-		panel.updateUI();
+		PANEL_PRINCIPAL.updateUI();
 	}
 	
 	private class Manejador implements ActionListener, ItemListener, KeyListener
@@ -164,33 +162,33 @@ public class GuiConsultaBasica extends JScrollPane
 				Vector<Consulta> vector = new Vector<Consulta>();
 				GuiResultadoConsulta.TIPOCONSULTA = 1;
 				
-				if(!campoConsulta.getText().equals("")){
+				if(!CAMPO_CONSULTA.getText().equals("")){
 					vector = null;
-					vector = controlador.consultaGeneral(campoConsulta.getText(), seleccionBusquedaCompleta);	
+					vector = controlador.consultaGeneral(CAMPO_CONSULTA.getText(), seleccionBusquedaCompleta);	
 				
 				}else{
 					JOptionPane.showMessageDialog(null, "Por favor ingrese parametros para la busqueda",
 							"No hay parametros", JOptionPane.ERROR_MESSAGE);
 				}
 				
-				if(resultadoConsulta!=null){
-					panel.remove(resultadoConsulta);
+				if(PANEL_RESULTADO_CONSULTA!=null){
+					PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
 				}else{
-					resultadoConsulta=null;
+					PANEL_RESULTADO_CONSULTA=null;
 					}
 				int cantidad = Integer.parseInt((String) campoCantidadResultados.getSelectedItem());
-				resultadoConsulta = new GuiResultadoConsulta(vector,cantidad);
+				PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(vector,cantidad);
 				
 				
 				
-				panel.add(resultadoConsulta, BorderLayout.CENTER);
-				panel.updateUI();
-				if(vector.size() <=0 && !campoConsulta.getText().equals("")){
+				PANEL_PRINCIPAL.add(PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER);
+				PANEL_PRINCIPAL.updateUI();
+				if(vector.size() <=0 && !CAMPO_CONSULTA.getText().equals("")){
 					
 					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
 					
 				}	
-				System.out.println(GuiConsultaBasica.TIPOUSUARIO);
+				System.out.println(GuiConsultaBasica.TIPO_USUARIO);
 			}
 			
 		}

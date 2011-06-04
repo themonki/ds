@@ -229,26 +229,26 @@ public class GuiModificarDoc  extends GuiCatalogar
 				
 				if(GuiResultadoConsulta.TIPOCONSULTA == 1)
 				{
-					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
+					GuiConsultaBasica.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
 					
-					if(GuiConsultaBasica.TIPOUSUARIO == 2)
+					if(GuiConsultaBasica.TIPO_USUARIO == 2)
 					{
 						GuiCatalogador.cambiarPanelVista();
 					}
-					if(GuiConsultaBasica.TIPOUSUARIO == 3)
+					if(GuiConsultaBasica.TIPO_USUARIO == 3)
 					{				
 						GuiAdministrador.cambiarPanelVista();
 					}	
 				}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
 				{
-					GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(d);
+					GuiConsultaAvanzada.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiConsultaAvanzada.ponerDescripcion();
-					if(GuiConsultaBasica.TIPOUSUARIO == 2)
+					if(GuiConsultaBasica.TIPO_USUARIO == 2)
 					{
 						GuiCatalogador.cambiarPanelVistaAvanzado();
 					}
-					if(GuiConsultaBasica.TIPOUSUARIO == 3)
+					if(GuiConsultaBasica.TIPO_USUARIO == 3)
 					{				
 						GuiAdministrador.cambiarPanelVistaAvanzado();
 					}

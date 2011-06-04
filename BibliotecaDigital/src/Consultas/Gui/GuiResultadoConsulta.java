@@ -231,10 +231,10 @@ public class GuiResultadoConsulta extends JScrollPane{
 				int tu = 0;
 				if(GuiResultadoConsulta.TIPOCONSULTA  == 1)
 				{
-					tu= GuiConsultaBasica.TIPOUSUARIO;
+					tu= GuiConsultaBasica.TIPO_USUARIO;
 				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 2)
 				{
-					tu = GuiConsultaAvanzada.TIPOUSUARIO;
+					tu = GuiConsultaAvanzada.TIPO_USUARIO;
 				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 3)
 				{
 					tu = GuiNovedades.TIPOUSUARIO;
@@ -258,11 +258,11 @@ public class GuiResultadoConsulta extends JScrollPane{
 				
 				if (GuiResultadoConsulta.TIPOCONSULTA == 1) {
 
-					GuiConsultaBasica.vistaDocumento = new GuiVistaDocumento(d);
+					GuiConsultaBasica.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
 
 				} else if (GuiResultadoConsulta.TIPOCONSULTA == 2) {
-					GuiConsultaAvanzada.vistaDocumento = new GuiVistaDocumento(
+					GuiConsultaAvanzada.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(
 							d);
 					
 					GuiConsultaAvanzada.ponerDescripcion();

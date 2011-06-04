@@ -96,8 +96,8 @@ public class GuiPrincipal extends JFrame
 			PANEL_REGISTRO = new GuiRegistroModificar();
 			PANEL_CONSULTA_BASICA = new GuiConsultaBasica();
 			PANEL_CONSULTA_AVANZADA = new GuiConsultaAvanzada();
-			GuiConsultaBasica.TIPOUSUARIO = 0;
-			GuiConsultaAvanzada.TIPOUSUARIO = 0;
+			GuiConsultaBasica.TIPO_USUARIO = 0;
+			GuiConsultaAvanzada.TIPO_USUARIO = 0;
 			PANEL_AUTENTICAR = new GuiAutenticar(this);
 			PANEL_RECUPERAR_PASSWORD = new GuiRecuperarPassword(this);
 			

@@ -108,8 +108,8 @@ public class GuiUsuarioNormal extends JFrame
 		PANEL_CONSULTA_BASICA = new GuiConsultaBasica();
 		PANEL_CONSULTA_AVANZADA = new GuiConsultaAvanzada();
 		PANEL_NOVEDADES = new GuiNovedades();
-		GuiConsultaBasica.TIPOUSUARIO = 3;		
-		GuiConsultaAvanzada.TIPOUSUARIO = 3;	
+		GuiConsultaBasica.TIPO_USUARIO = 3;		
+		GuiConsultaAvanzada.TIPO_USUARIO = 3;	
 		GuiNovedades.TIPOUSUARIO = 3;
 		
 		

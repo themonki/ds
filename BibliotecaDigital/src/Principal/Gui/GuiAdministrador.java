@@ -124,8 +124,8 @@ public class GuiAdministrador extends JFrame
 		PANEL_CONSULTA_AVANZADA = new GuiConsultaAvanzada();
 		PANEL_NOVEDADES =  new GuiNovedades();
 		PANEL_REPORTES = new GuiReportes();
-		GuiConsultaBasica.TIPOUSUARIO = 1;
-		GuiConsultaAvanzada.TIPOUSUARIO = 1;
+		GuiConsultaBasica.TIPO_USUARIO = 1;
+		GuiConsultaAvanzada.TIPO_USUARIO = 1;
 		GuiNovedades.TIPOUSUARIO = 1;
 		
 		panelCatalogar = new GuiCatalogar(usuario.getLogin());
