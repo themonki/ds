@@ -4,6 +4,9 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+
 
 public class TableDataSource extends AbstractTableModel
 {
@@ -28,7 +31,8 @@ public class TableDataSource extends AbstractTableModel
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
+	public Object getValueAt(int rowIndex, int columnIndex)
+	{
 		return this.data.elementAt(rowIndex).elementAt(columnIndex);
 	}
 	

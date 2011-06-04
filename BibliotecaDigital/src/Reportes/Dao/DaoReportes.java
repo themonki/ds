@@ -372,17 +372,13 @@ FachadaBD fachada;
 	
 	public TableDataSource consultaDocumentosAgrupadosArea()
 	{
-		String consultaSql = "SELECT doc.titulo_principal, doc.editorial, autor_area.nombre_area, autor_area.nombre_autor FROM " +
-				"(SELECT d.id_documento, d.titulo_principal, d.editorial FROM documento AS d) AS doc " +
-				"NATURAL JOIN " +
-				"((SELECT x.id_documento, x.nombre AS nombre_autor FROM " +
-				"(escribe_autor_documento NATURAL JOIN " +
-				"(SELECT a.id_autor, a.nombre FROM autor AS a) AS s) AS x) AS autor " +
+		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, area.nombre_area " +
+				"FROM (SELECT d.id_documento, d.titulo_principal, d.editorial FROM documento AS d) AS doc " +
 				"NATURAL JOIN " +
 				"(SELECT y.id_documento, y.nombre AS nombre_area FROM " +
 				"(pertenece_documento_area_conocimiento NATURAL JOIN " +
-				"(SELECT a.id_area, a.nombre FROM area_conocimiento AS a) AS t) AS y)AS area) AS autor_area " +
-				"ORDER BY autor_area.nombre_area";
+				"(SELECT a.id_area, a.nombre FROM area_conocimiento AS a) AS t) AS y)AS area " +
+				"ORDER BY area.nombre_area";
 		
 		TableDataSource data = new TableDataSource();
 		
@@ -393,19 +389,21 @@ FachadaBD fachada;
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 			ResultSetMetaData metaData = resultado.getMetaData();
 			
-			for(int i=0; i<metaData.getColumnCount(); i++)
+			for(int i=1; i<metaData.getColumnCount(); i++)
 			{
 				data.addColumn(metaData.getColumnName(i+1));
 			}
+			data.addColumn("nombre_autor");
 		
 		while (resultado.next())
 		{
 			Vector<Object> row = new Vector<Object>(0,1);
 			
-			row.add(resultado.getString(1));
+			String columnOne = resultado.getString(1);
 			row.add(resultado.getString(2));
 			row.add(resultado.getString(3));
 			row.add(resultado.getString(4));
+			row.add(obtenerAutoresDocumento(columnOne));
 			
 			data.addRow(row);				
 		}
@@ -421,9 +419,140 @@ FachadaBD fachada;
 			System.out.println(e);					
 		}
 		
-		System.out.println(data);
+		//System.out.println(data);
 		return data;
 	}
+	
+	public TableDataSource consultaDocumentosAgrupadosTipo()
+	{
+		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.tipo_nombre " +
+				"FROM documento AS doc ORDER BY doc.tipo_nombre";
+
+		TableDataSource data = new TableDataSource();
+
+		try 
+		{
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+	
+		for(int i=1; i<metaData.getColumnCount(); i++)
+		{
+			data.addColumn(metaData.getColumnName(i+1));
+		}
+		data.addColumn("nombre_autor");
+
+		while (resultado.next())
+		{
+			Vector<Object> row = new Vector<Object>(0,1);
+			
+			String columnOne = resultado.getString(1);
+			row.add(resultado.getString(2));
+			row.add(resultado.getString(3));
+			row.add(resultado.getString(4));
+			row.add(obtenerAutoresDocumento(columnOne));
+			
+			data.addRow(row);				
+		}
+		fachada.cerrarConexion(conn);
+		conn = null;
+		fachada = null;
+		sentencia = null;
+		resultado = null;
+		metaData = null;
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		
+		//System.out.println(data);
+		return data;
+	}
+	
+	/*nota!! formato y ripo se pueden hacer solo en un metodo*/
+	public TableDataSource consultaDocumentosAgrupadosFormato()
+	{
+		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.formato " +
+		"FROM documento AS doc ORDER BY doc.formato";
+
+		TableDataSource data = new TableDataSource();
+		
+		try 
+		{
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+		
+		for(int i=1; i<metaData.getColumnCount(); i++)
+		{
+			data.addColumn(metaData.getColumnName(i+1));
+		}
+		data.addColumn("nombre_autor");
+		
+		while (resultado.next())
+		{
+			Vector<Object> row = new Vector<Object>(0,1);
+			
+			String columnOne = resultado.getString(1);
+			row.add(resultado.getString(2));
+			row.add(resultado.getString(3));
+			row.add(resultado.getString(4));
+			row.add(obtenerAutoresDocumento(columnOne));
+			
+			data.addRow(row);				
+		}
+		fachada.cerrarConexion(conn);
+		conn = null;
+		fachada = null;
+		sentencia = null;
+		resultado = null;
+		metaData = null;
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		
+		//System.out.println(data);
+		return data;
+	}
+	
+	/*metodo usado para obtener los autores de un documento cen forma de string*/
+	private String obtenerAutoresDocumento(String id_documento)
+	{
+		String consultaSql = "SELECT s.nombre AS nombre_autor FROM " +
+				"(SELECT e.id_autor FROM escribe_autor_documento AS e " +
+				"WHERE e.id_documento = " + id_documento + ") AS t " +
+				"NATURAL JOIN (SELECT a.id_autor, a.nombre FROM autor AS a) AS s";
+
+		String autores = "";
+		
+		try 
+		{
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+				
+		while (resultado.next())
+		{	
+			autores += resultado.getString(1) + ", ";		
+		}
+		fachada.cerrarConexion(conn);
+		conn = null;
+		//fachada = null;
+		sentencia = null;
+		resultado = null;
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		return autores;
+	}
+	
 	public static void main(String args[])
 	{
 		

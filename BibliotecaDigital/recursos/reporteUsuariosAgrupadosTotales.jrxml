@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupadosTotales" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.3310000000000146"/>
-	<property name="ireport.x" value="57"/>
-	<property name="ireport.y" value="824"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -70,12 +70,16 @@
 			</frame>
 			<staticText>
 				<reportElement x="2" y="0" width="110" height="20"/>
-				<textElement/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<text><![CDATA[Usuarios agrupados por]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="112" y="0" width="274" height="20"/>
-				<textElement/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{grupo}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -107,12 +111,12 @@
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="5" y="0" width="322" height="20"/>
+				<reportElement x="5" y="0" width="322" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $F{agrupado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="328" y="0" width="146" height="20"/>
+				<reportElement x="328" y="0" width="146" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cuantos}]]></textFieldExpression>
 			</textField>
