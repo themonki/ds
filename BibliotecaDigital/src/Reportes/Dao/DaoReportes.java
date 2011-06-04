@@ -121,7 +121,7 @@ FachadaBD fachada;
 		"u.vinculo_univalle, u.tipo, u.fecha_nacimiento, u.fecha_registro " +
 		"FROM usuario AS u ORDER BY agrupado";
 		
-		return procesarDatos(consultaSql, atributoUsuario);
+		return procesarDatosUsuario(consultaSql, atributoUsuario);
 	}
 	
 	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario,String cualFecha, String fechaInicio, String FechaFin)
@@ -133,10 +133,10 @@ FachadaBD fachada;
 		"WHERE u." + cualFecha + " BETWEEN '" + fechaInicio + "' AND '" + FechaFin + "' " +
 		"ORDER BY agrupado";
 		
-		return procesarDatos(consultaSql, atributoUsuario);
+		return procesarDatosUsuario(consultaSql, atributoUsuario);
 	}
 	
-	private TableDataSource procesarDatos(String consultaSql, String atributoUsuario)
+	private TableDataSource procesarDatosUsuario(String consultaSql, String atributoUsuario)
 	{
 		TableDataSource data = new TableDataSource();
 		
@@ -224,7 +224,7 @@ FachadaBD fachada;
 		"GROUP BY agrupado " +
 		"ORDER BY agrupado";
 		
-		return procesarDatosTotales(consultaSql, atributoUsuario);
+		return procesarDatosUsuarioTotales(consultaSql, atributoUsuario);
 	}
 	
 	public TableDataSource consultaUsuariosAgrupadosTotales(String atributoUsuario,String cualFecha, String fechaInicio, String FechaFin)
@@ -236,10 +236,10 @@ FachadaBD fachada;
 		"GROUP BY agrupado " +
 		"ORDER BY agrupado";
 		
-		return procesarDatosTotales(consultaSql, atributoUsuario);
+		return procesarDatosUsuarioTotales(consultaSql, atributoUsuario);
 	}
 	
-	private TableDataSource procesarDatosTotales(String consultaSql,String atributoUsuario)
+	private TableDataSource procesarDatosUsuarioTotales(String consultaSql,String atributoUsuario)
 	{
 		TableDataSource data = new TableDataSource();
 		
@@ -318,7 +318,7 @@ FachadaBD fachada;
 				"FROM area_conocimiento AS A JOIN area_conocimiento AS B " +
 				"ON A.area_padre = B.id_area ORDER BY nombre_Area_Padre";
 		
-		return procesarDatos(consultaSql);
+		return procesarDatosAreas(consultaSql);
 	}
 	
 	public TableDataSource consultarAreasConocimientoAgrupadasTotales()
@@ -326,10 +326,10 @@ FachadaBD fachada;
 		String consultaSql = "SELECT B.nombre AS Areas_Padre, count(B.nombre) AS Cantidad " +
 				"FROM area_conocimiento AS A JOIN area_conocimiento AS B " +
 				"ON A.area_padre = B.id_area GROUP BY Areas_Padre ORDER BY Areas_Padre";
-		return procesarDatos(consultaSql);
+		return procesarDatosAreas(consultaSql);
 	}
 	
-	private TableDataSource procesarDatos(String consultaSql)
+	private TableDataSource procesarDatosAreas(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
 		
@@ -380,47 +380,7 @@ FachadaBD fachada;
 				"(SELECT a.id_area, a.nombre FROM area_conocimiento AS a) AS t) AS y)AS area " +
 				"ORDER BY area.nombre_area";
 		
-		TableDataSource data = new TableDataSource();
-		
-		try 
-		{
-			Connection conn = fachada.conectar();
-			Statement sentencia = conn.createStatement();			
-			ResultSet resultado = sentencia.executeQuery(consultaSql);
-			ResultSetMetaData metaData = resultado.getMetaData();
-			
-			for(int i=1; i<metaData.getColumnCount(); i++)
-			{
-				data.addColumn(metaData.getColumnName(i+1));
-			}
-			data.addColumn("nombre_autor");
-		
-		while (resultado.next())
-		{
-			Vector<Object> row = new Vector<Object>(0,1);
-			
-			String columnOne = resultado.getString(1);
-			row.add(resultado.getString(2));
-			row.add(resultado.getString(3));
-			row.add(resultado.getString(4));
-			row.add(obtenerAutoresDocumento(columnOne));
-			
-			data.addRow(row);				
-		}
-		fachada.cerrarConexion(conn);
-		conn = null;
-		fachada = null;
-		sentencia = null;
-		resultado = null;
-		metaData = null;
-		} catch (SQLException e) {			
-			System.out.println(e);
-		} catch (Exception e) {
-			System.out.println(e);					
-		}
-		
-		//System.out.println(data);
-		return data;
+		return procesarDatosDocumento(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosAgrupadosTipo()
@@ -428,55 +388,31 @@ FachadaBD fachada;
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.tipo_nombre " +
 				"FROM documento AS doc ORDER BY doc.tipo_nombre";
 
-		TableDataSource data = new TableDataSource();
-
-		try 
-		{
-			Connection conn = fachada.conectar();
-			Statement sentencia = conn.createStatement();			
-			ResultSet resultado = sentencia.executeQuery(consultaSql);
-			ResultSetMetaData metaData = resultado.getMetaData();
-	
-		for(int i=1; i<metaData.getColumnCount(); i++)
-		{
-			data.addColumn(metaData.getColumnName(i+1));
-		}
-		data.addColumn("nombre_autor");
-
-		while (resultado.next())
-		{
-			Vector<Object> row = new Vector<Object>(0,1);
-			
-			String columnOne = resultado.getString(1);
-			row.add(resultado.getString(2));
-			row.add(resultado.getString(3));
-			row.add(resultado.getString(4));
-			row.add(obtenerAutoresDocumento(columnOne));
-			
-			data.addRow(row);				
-		}
-		fachada.cerrarConexion(conn);
-		conn = null;
-		fachada = null;
-		sentencia = null;
-		resultado = null;
-		metaData = null;
-		} catch (SQLException e) {			
-			System.out.println(e);
-		} catch (Exception e) {
-			System.out.println(e);					
-		}
-		
-		//System.out.println(data);
-		return data;
+		return procesarDatosDocumento(consultaSql);
 	}
 	
-	/*nota!! formato y ripo se pueden hacer solo en un metodo*/
 	public TableDataSource consultaDocumentosAgrupadosFormato()
 	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.formato " +
 		"FROM documento AS doc ORDER BY doc.formato";
 
+		return procesarDatosDocumento(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosAgrupadosAutor()
+	{
+		String consultaSql = "SELECT doc.titulo_principal, doc.editorial, autor.nombre_autor " +
+				"FROM (SELECT d.id_documento, d.titulo_principal, d.editorial FROM documento AS d) AS doc " +
+				"NATURAL JOIN " +
+				"(SELECT x.id_documento, x.nombre AS nombre_autor FROM (escribe_autor_documento " +
+				"NATURAL JOIN (SELECT a.id_autor, a.nombre FROM autor AS a) AS s) AS x) AS autor " +
+				"ORDER BY autor.nombre_autor";
+		
+		return procesarDatosDocumento2(consultaSql);
+	}
+	
+	private TableDataSource procesarDatosDocumento(String consultaSql)
+	{
 		TableDataSource data = new TableDataSource();
 		
 		try 
@@ -520,7 +456,52 @@ FachadaBD fachada;
 		return data;
 	}
 	
-	/*metodo usado para obtener los autores de un documento cen forma de string*/
+	private TableDataSource procesarDatosDocumento2(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+		
+		try 
+		{
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+		
+		for(int i=1; i<metaData.getColumnCount(); i++)
+		{
+			data.addColumn(metaData.getColumnName(i+1));
+		}
+		data.addColumn("areas");
+		
+		while (resultado.next())
+		{
+			Vector<Object> row = new Vector<Object>(0,1);
+			
+			String columnOne = resultado.getString(1);
+			row.add(resultado.getString(2));
+			row.add(resultado.getString(3));
+			row.add(resultado.getString(4));
+			row.add(obtenerAreasDocumento(columnOne));
+			
+			data.addRow(row);				
+		}
+		fachada.cerrarConexion(conn);
+		conn = null;
+		fachada = null;
+		sentencia = null;
+		resultado = null;
+		metaData = null;
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		
+		//System.out.println(data);
+		return data;
+	}
+	
+	/*metodo usado para obtener los autores de un documento en forma de string*/
 	private String obtenerAutoresDocumento(String id_documento)
 	{
 		String consultaSql = "SELECT s.nombre AS nombre_autor FROM " +
@@ -551,6 +532,33 @@ FachadaBD fachada;
 			System.out.println(e);					
 		}
 		return autores;
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosFecha()
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosFecha(String fechaI, String fechaF)
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosArea()
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosUsuario()
+	{
+		return null;
+	}
+	
+	
+	/*metodo para obtener las areas de un documento en forma de string*/
+	private String obtenerAreasDocumento(String id_documento)
+	{
+		return null;
 	}
 	
 	public static void main(String args[])

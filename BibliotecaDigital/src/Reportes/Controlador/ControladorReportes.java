@@ -219,52 +219,26 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	/*public Vector<String> consultarUsuariosAgrupados(String atributoUsuario){
-		DaoReportes	daoReportes = new DaoReportes();
-		Vector<String> usuariosAgrupados = daoReportes.consultaUsuariosAgrupados(atributoUsuario);
-		
-		return usuariosAgrupados;
-	}
-	
-	public Vector<String> consultarAreasAgrupadasAreaPadre(){
-		DaoReportes	daoReportes = new DaoReportes();
-		Vector<String> areasAgrupadas = daoReportes.consultaAreaAgrupados();
-		
-		return areasAgrupadas;
-	}
-	
-	public Reporte consultarAreasOrdenadas(String atributo)
+	public JasperPrint reporteDocumentosAgrupadosAutor(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		Reporte reporte = daoReportes.consultarAreasOrdenadas(atributo);
+		TableDataSource tableData = daoReportes.consultaDocumentosAgrupadosAutor();
+		daoReportes = null;
 		
-		return reporte;
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadoAutor.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
-	
-	public Reporte consultarUsuariosOrdenados(String atributo, String fechaPrimera, String fechaSegunda, String atributoFecha){
-		DaoReportes	daoReportes = new DaoReportes();
-		
-		Reporte reporte = daoReportes.consultaUsuariosOrdenados(atributo, fechaPrimera, fechaSegunda, atributoFecha);
-		
-		
-		return reporte;
-	}
-	
-	public Reporte consultarUsuariosOrdenadosTotales(String atributo, String fechaPrimera, String fechaSegunda, String atributoFecha){
-		DaoReportes	daoReportes = new DaoReportes();
-		
-		Reporte reporte = daoReportes.consultaUsuariosOrdenadosTotales(atributo, fechaPrimera, fechaSegunda, atributoFecha);		
-		
-		return reporte;
-	}
-	
-	public Reporte consultarAreasOrdenadasTotales(String atributo)
-	{
-		DaoReportes	daoReportes = new DaoReportes();
-		Reporte reporte = daoReportes.consultarAreasOrdenadasTotales(atributo);		
-		
-		return reporte;
-	}*/
 	
 	public void generarReporte(String rutaFinal, JasperPrint print)
 	{
