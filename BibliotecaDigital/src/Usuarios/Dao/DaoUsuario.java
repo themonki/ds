@@ -472,7 +472,7 @@ public class DaoUsuario {
 		"FROM interesa_usuario_area_conocimiento AS e " +
 		"WHERE e.login = '"+login+"'";
 		
-		consultaDocumentosAreaConocimientoUsuario = "SELECT id_documento "+
+		consultaDocumentosAreaConocimientoUsuario = "SELECT DISTINCT id_documento "+
 		"FROM pertenece_documento_area_conocimiento AS f NATURAL JOIN ("+consultaAreasInteresUsuario+") AS C ";
 		
 		consultaCatalogadosDespuesUltimoAcceso = "SELECT * "+
