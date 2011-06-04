@@ -160,7 +160,7 @@ public class GuiConsultaBasica extends JScrollPane
 			{
 				ControladorConsulta controlador = new ControladorConsulta();				
 				Vector<Consulta> vector = new Vector<Consulta>();
-				GuiResultadoConsulta.TIPOCONSULTA = 1;
+				GuiResultadoConsulta.TIPO_CONSULTA = 1;
 				
 				if(!CAMPO_CONSULTA.getText().equals("")){
 					vector = null;

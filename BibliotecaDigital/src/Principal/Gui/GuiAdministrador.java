@@ -126,7 +126,7 @@ public class GuiAdministrador extends JFrame
 		PANEL_REPORTES = new GuiReportes();
 		GuiConsultaBasica.TIPO_USUARIO = 1;
 		GuiConsultaAvanzada.TIPO_USUARIO = 1;
-		GuiNovedades.TIPOUSUARIO = 1;
+		GuiNovedades.TIPO_USUARIO = 1;
 		
 		panelCatalogar = new GuiCatalogar(usuario.getLogin());
 		panelModificacion = new GuiRegistroModificar(this.usuario,1);
@@ -523,7 +523,7 @@ public class GuiAdministrador extends JFrame
 				
 			}else if(evento.getSource() == novedades)
 			{
-				GuiResultadoConsulta.TIPOCONSULTA = 3;
+				GuiResultadoConsulta.TIPO_CONSULTA = 3;
 				if(ESTADO.getText().equals(estadoConsultaAvanzada))
 				{
 					GuiConsultaAvanzada.restaurarTodo();
@@ -698,7 +698,7 @@ public class GuiAdministrador extends JFrame
 		GuiNovedades.RESULTADO_CONSULTA = new GuiResultadoConsulta(novedades, 10);
 		GuiNovedades.PANEL_NOVEDADES.add(GuiNovedades.RESULTADO_CONSULTA);
 		
-		GuiResultadoConsulta.TIPOCONSULTA = 3;
+		GuiResultadoConsulta.TIPO_CONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");
 		PANEL_NOVEDADES.updateUI();
 		novedadesUsuario = novedades;	

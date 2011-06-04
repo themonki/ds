@@ -42,7 +42,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 	Vector<Consulta> vectorConsulta;	
 	Button botonSiguiente, botonAtras;
 	int posicionResultado, cantidadTotalResultados, cantidadMostrar;
-	public static int TIPOCONSULTA;
+	public static int TIPO_CONSULTA;
 	RenderLista rl;//formato de la lista
 	TitledBorder borde;
 	
@@ -229,15 +229,15 @@ public class GuiResultadoConsulta extends JScrollPane{
 								.getIdDocumento());
 
 				int tu = 0;
-				if(GuiResultadoConsulta.TIPOCONSULTA  == 1)
+				if(TIPO_CONSULTA  == 1)
 				{
 					tu= GuiConsultaBasica.TIPO_USUARIO;
-				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 2)
+				}else if(TIPO_CONSULTA  == 2)
 				{
 					tu = GuiConsultaAvanzada.TIPO_USUARIO;
-				}else if(GuiResultadoConsulta.TIPOCONSULTA  == 3)
+				}else if(TIPO_CONSULTA  == 3)
 				{
-					tu = GuiNovedades.TIPOUSUARIO;
+					tu = GuiNovedades.TIPO_USUARIO;
 				}
 
 
@@ -256,18 +256,18 @@ public class GuiResultadoConsulta extends JScrollPane{
 				}
 		
 				
-				if (GuiResultadoConsulta.TIPOCONSULTA == 1) {
+				if (TIPO_CONSULTA == 1) {
 
 					GuiConsultaBasica.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
 
-				} else if (GuiResultadoConsulta.TIPOCONSULTA == 2) {
+				} else if (TIPO_CONSULTA == 2) {
 					GuiConsultaAvanzada.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(
 							d);
 					
 					GuiConsultaAvanzada.ponerDescripcion();
 
-				} else if (GuiResultadoConsulta.TIPOCONSULTA == 3) {
+				} else if (TIPO_CONSULTA == 3) {
 					
 					GuiNovedades.VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiNovedades.ponerDescripcion();

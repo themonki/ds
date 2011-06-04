@@ -13,14 +13,10 @@ public class GuiNovedades extends JScrollPane
 {
 
 	private static final long serialVersionUID = 1L;
-
-
-	
 	
 	// Nos permite saber el tipo del usuario que realiza la consulta por defecto es cero.
-	public static int TIPOUSUARIO;
-	
-	
+	public static int TIPO_USUARIO;
+		
 	public static JPanel PANEL_NOVEDADES;
 	public static GuiResultadoConsulta RESULTADO_CONSULTA;
 	public static GuiVistaDocumento VISTA_DOCUMENTO;
@@ -37,15 +33,8 @@ public class GuiNovedades extends JScrollPane
 		BORDE.setTitleColor(Estilos.colorTitulo);
 		BORDE.setTitleFont(Estilos.fontTitulo);
 		BORDE.setTitleJustification(TitledBorder.LEFT);
-	
-			
+		
 		PANEL_NOVEDADES.setBorder(BORDE);
-		
-		
-
-		
-		
-		
 		
 		this.setViewportView(PANEL_NOVEDADES);
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

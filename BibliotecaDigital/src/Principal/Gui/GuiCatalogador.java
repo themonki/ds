@@ -121,7 +121,7 @@ public class GuiCatalogador extends JFrame
 	
 		GuiConsultaBasica.TIPO_USUARIO = 2;
 		GuiConsultaAvanzada.TIPO_USUARIO = 2;
-		GuiNovedades.TIPOUSUARIO = 2;
+		GuiNovedades.TIPO_USUARIO = 2;
 		
 		
 		
@@ -412,7 +412,7 @@ public class GuiCatalogador extends JFrame
 				
 			}else if(evento.getSource() == novedades)
 			{
-				GuiResultadoConsulta.TIPOCONSULTA = 3;
+				GuiResultadoConsulta.TIPO_CONSULTA = 3;
 				if(ESTADO.getText().equals(estadoInicial))
 				{
 					GuiConsultaBasica.restaurarTodo();
@@ -549,7 +549,7 @@ public class GuiCatalogador extends JFrame
 		GuiNovedades.RESULTADO_CONSULTA = new GuiResultadoConsulta(novedades, 10);
 		GuiNovedades.PANEL_NOVEDADES.add(GuiNovedades.RESULTADO_CONSULTA);
 		
-		GuiResultadoConsulta.TIPOCONSULTA = 3;
+		GuiResultadoConsulta.TIPO_CONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");
 		panelNovedades.updateUI();
 		novedadesUsuario = novedades;	

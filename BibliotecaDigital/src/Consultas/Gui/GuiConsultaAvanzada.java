@@ -387,7 +387,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 				Vector<Consulta> consulta = controlador.consultaAvanzada(atributosConsulta, valoresConsulta, opcionTitulo, opcionPalabra, opcionAutor);
 			
 				System.out.println(consulta);
-				GuiResultadoConsulta.TIPOCONSULTA = 2;
+				GuiResultadoConsulta.TIPO_CONSULTA = 2;
 				
 				
 				

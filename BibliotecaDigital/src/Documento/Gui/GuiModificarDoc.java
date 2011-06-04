@@ -45,14 +45,12 @@ import com.nilo.plaf.nimrod.NimRODTheme;
 
 public class GuiModificarDoc  extends GuiCatalogar
 {
-
-	private String loginModificador;
 	private Button botonModificar;
 	private JLabel campoFechaCatalogacion, fechaCatalogacion;
 
 	public GuiModificarDoc() {}
 
-	public GuiModificarDoc (String loginIngreso,Documento doc) 
+	public GuiModificarDoc (Documento doc) 
 	{
 		
 		//--------------INICIALIZAR CONTROLADORES--------------------------------
@@ -62,7 +60,6 @@ public class GuiModificarDoc  extends GuiCatalogar
 		controladorTipoMaterial = new ControladorTipoMaterial() ;
 		controladorDocumento= new ControladorDocumento();
 		initComponents();
-		this.loginModificador = loginIngreso;
 		this.doc=doc;
 	
 		TitledBorder borde;
@@ -227,7 +224,7 @@ public class GuiModificarDoc  extends GuiCatalogar
 				Documento d  = conConsulta.obtenerDatosDocumento(doc.getId_doc());
 				
 				
-				if(GuiResultadoConsulta.TIPOCONSULTA == 1)
+				if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 				{
 					GuiConsultaBasica.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiConsultaBasica.ponerDescripcion();
@@ -240,7 +237,7 @@ public class GuiModificarDoc  extends GuiCatalogar
 					{				
 						GuiAdministrador.cambiarPanelVista();
 					}	
-				}else if(GuiResultadoConsulta.TIPOCONSULTA == 2)
+				}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 				{
 					GuiConsultaAvanzada.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
 					GuiConsultaAvanzada.ponerDescripcion();
