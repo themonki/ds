@@ -1,4 +1,4 @@
-+ Revisar mensaje de descarga para usuario no registrado.
++ Revisar mensaje de descarga para usuario no registrado. (Yermi)
 + El nombre del boton en consulta avanzada
 + Agregar cantidad de resultados en consulta avanzada
 + Acomodar panel areas tamaño en registrarMOdificar usuario
