@@ -149,7 +149,7 @@ public class GuiModificarArea extends JFrame{
 
 	private void iniciarLabels() {
 		
-		consultar = new JLabel ("Seleccionar Area a modificar");
+		consultar = new JLabel (" Seleccionar Area a modificar");
 		nombre = new JLabel("  Nombre Del Area :");
 		descripcionArea = new JLabel("Descripcion.", JLabel.CENTER);
 		areaPadre = new JLabel("  Area Padre :");

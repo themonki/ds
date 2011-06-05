@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.464100000000007"/>
-	<property name="ireport.x" value="101"/>
-	<property name="ireport.y" value="192"/>
+	<property name="ireport.zoom" value="1.2100000000000057"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="94"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Documents and Settings\\Leonardo\\Escritorio\\univalle\\semestreSeis\\desarrolloSoftwareI\\ds\\BibliotecaDigital\\recursos\\"]]></defaultValueExpression>
 	</parameter>
-	<field name="formato" class="java.lang.String"/>
+	<parameter name="opcion" class="java.lang.String"/>
+	<field name="agrupado" class="java.lang.String"/>
 	<field name="titulo_principal" class="java.lang.String"/>
 	<field name="editorial" class="java.lang.String"/>
-	<field name="nombre_autor" class="java.lang.String"/>
+	<field name="opcion" class="java.lang.String"/>
 	<variable name="agrupado_1" class="java.lang.Integer" calculation="Count">
-		<variableExpression><![CDATA[$F{formato}]]></variableExpression>
+		<variableExpression><![CDATA[$F{agrupado}]]></variableExpression>
 	</variable>
 	<group name="AGRUPADO">
-		<groupExpression><![CDATA[$F{formato}]]></groupExpression>
+		<groupExpression><![CDATA[$F{agrupado}]]></groupExpression>
 		<groupHeader>
 			<band height="41">
 				<textField>
@@ -23,10 +24,10 @@
 					<textElement>
 						<font size="11"/>
 					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{formato}]]></textFieldExpression>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{agrupado}]]></textFieldExpression>
 				</textField>
 				<frame>
-					<reportElement mode="Opaque" x="14" y="20" width="558" height="20" backcolor="#FF3333"/>
+					<reportElement mode="Opaque" x="14" y="20" width="558" height="20" forecolor="#FFFFFF" backcolor="#FF3333"/>
 					<staticText>
 						<reportElement x="0" y="0" width="236" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
@@ -37,11 +38,11 @@
 						<textElement/>
 						<text><![CDATA[Editorial]]></text>
 					</staticText>
-					<staticText>
-						<reportElement x="336" y="0" width="100" height="20" forecolor="#FFFFFF"/>
+					<textField isBlankWhenNull="true">
+						<reportElement x="336" y="1" width="220" height="19" forecolor="#FFFFFF"/>
 						<textElement/>
-						<text><![CDATA[Autor(es)]]></text>
-					</staticText>
+						<textFieldExpression class="java.lang.String"><![CDATA[$P{opcion}]]></textFieldExpression>
+					</textField>
 				</frame>
 			</band>
 		</groupHeader>
@@ -54,7 +55,7 @@
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="313" y="1" width="92" height="20"/>
+					<reportElement x="299" y="1" width="106" height="20"/>
 					<textElement/>
 					<text><![CDATA[Toral Documentos:]]></text>
 				</staticText>
@@ -90,7 +91,7 @@
 		</band>
 	</title>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<textField>
 				<reportElement x="14" y="0" width="236" height="20" forecolor="#595959"/>
 				<textElement/>
@@ -101,10 +102,10 @@
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{editorial}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="350" y="0" width="222" height="20" forecolor="#595959"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre_autor}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{opcion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -148,7 +149,7 @@
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{formato}]]></keyExpression>
+					<keyExpression><![CDATA[$F{agrupado}]]></keyExpression>
 					<valueExpression><![CDATA[$V{AGRUPADO_COUNT}]]></valueExpression>
 					<labelExpression><![CDATA[$V{AGRUPADO_COUNT}]]></labelExpression>
 				</pieDataset>

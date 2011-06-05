@@ -22,98 +22,7 @@ FachadaBD fachada;
 	}
 	
 		
-	/*
-	
-	public void consultaDocumentoEntreFechas(String atributo, String fechaInicial, String fechaFinal)
-	{
 		
-		String consultaSql;
-		
-	
-		
-		consultaSql = "SELECT d.id_documento, d.titulo_principal, d.fecha_publicacion , d.fecha_catalogacion, d."+atributo+" "+
-		"FROM documento AS d " +
-		"WHERE "+atributo+" BETWEEN '"+fechaInicial+"' AND '"+fechaFinal+"' ;";
-		
-	
-		System.out.println(consultaSql);
-		ResultSet resultado;
-	
-		try {
-		Connection conn = fachada.conectar();
-		Statement sentencia = conn.createStatement();			
-		resultado = sentencia.executeQuery(consultaSql);
-		while (resultado.next())
-		{
-			
-			
-			System.out.print(resultado.getString("id_documento")+" ");
-			System.out.print(resultado.getString("titulo_principal")+" ");			
-			System.out.print(resultado.getString("fecha_publicacion")+" ");
-			System.out.print(resultado.getString("fecha_Catalogacion")+" ");
-			DaoConsulta daoConsulta = new DaoConsulta();
-			System.out.print(daoConsulta.consultarAutoresDocumento(resultado.getString("id_documento")));
-			
-			
-			System.out.println();
-			
-		}
-		conn.close();
-		} catch (SQLException e) {			
-			System.out.println(e);
-		} catch (Exception e) {
-			System.out.println(e);					
-		}
-	
-
-	}
-	
-	
-	public void consultaDocumentoBasica(String atributo, String condicion, String especificacion)
-	{
-		
-		String consultaSql;
-		
-	
-		
-		consultaSql = "SELECT d.id_documento, d.titulo_principal, d.fecha_publicacion , d.fecha_catalogacion, d."+atributo+" "+
-		"FROM documento AS d " +
-		"WHERE "+atributo+" "+condicion+" '"+especificacion+"' ;";
-		
-	
-		System.out.println(consultaSql);
-		ResultSet resultado;
-	
-		try {
-		Connection conn = fachada.conectar();
-		Statement sentencia = conn.createStatement();			
-		resultado = sentencia.executeQuery(consultaSql);
-		while (resultado.next())
-		{
-			
-			
-			System.out.print(resultado.getString("id_documento")+" ");
-			System.out.print(resultado.getString("titulo_principal")+" ");			
-			System.out.print(resultado.getString("fecha_publicacion")+" ");
-			System.out.print(resultado.getString("fecha_Catalogacion")+" ");
-			DaoConsulta daoConsulta = new DaoConsulta();
-			System.out.print(daoConsulta.consultarAutoresDocumento(resultado.getString("id_documento")));
-			
-			
-			System.out.println();
-			
-		}
-		conn.close();
-		} catch (SQLException e) {			
-			System.out.println(e);
-		} catch (Exception e) {
-			System.out.println(e);					
-		}
-	
-
-	}
-	 */
-	
 	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario)
 	{
 		String consultaSql = "SELECT u." + atributoUsuario + 
@@ -372,7 +281,7 @@ FachadaBD fachada;
 	
 	public TableDataSource consultaDocumentosAgrupadosArea()
 	{
-		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, area.nombre_area " +
+		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, area.nombre_area AS agrupado " +
 				"FROM (SELECT d.id_documento, d.titulo_principal, d.editorial FROM documento AS d) AS doc " +
 				"NATURAL JOIN " +
 				"(SELECT y.id_documento, y.nombre AS nombre_area FROM " +
@@ -385,7 +294,7 @@ FachadaBD fachada;
 	
 	public TableDataSource consultaDocumentosAgrupadosTipo()
 	{
-		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.tipo_nombre " +
+		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.tipo_nombre AS agrupado " +
 				"FROM documento AS doc ORDER BY doc.tipo_nombre";
 
 		return procesarDatosDocumento(consultaSql);
@@ -393,7 +302,7 @@ FachadaBD fachada;
 	
 	public TableDataSource consultaDocumentosAgrupadosFormato()
 	{
-		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.formato " +
+		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.formato AS agrupado " +
 		"FROM documento AS doc ORDER BY doc.formato";
 
 		return procesarDatosDocumento(consultaSql);
@@ -401,7 +310,7 @@ FachadaBD fachada;
 	
 	public TableDataSource consultaDocumentosAgrupadosAutor()
 	{
-		String consultaSql = "SELECT doc.titulo_principal, doc.editorial, autor.nombre_autor " +
+		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, autor.nombre_autor AS agrupado " +
 				"FROM (SELECT d.id_documento, d.titulo_principal, d.editorial FROM documento AS d) AS doc " +
 				"NATURAL JOIN " +
 				"(SELECT x.id_documento, x.nombre AS nombre_autor FROM (escribe_autor_documento " +
@@ -426,7 +335,7 @@ FachadaBD fachada;
 		{
 			data.addColumn(metaData.getColumnName(i+1));
 		}
-		data.addColumn("nombre_autor");
+		data.addColumn("opcion");
 		
 		while (resultado.next())
 		{
@@ -471,17 +380,18 @@ FachadaBD fachada;
 		{
 			data.addColumn(metaData.getColumnName(i+1));
 		}
-		data.addColumn("areas");
+		data.addColumn("opcion");
 		
 		while (resultado.next())
 		{
 			Vector<Object> row = new Vector<Object>(0,1);
 			
-			String columnOne = resultado.getString(1);
+			//String columnOne = resultado.getString(1);
 			row.add(resultado.getString(2));
 			row.add(resultado.getString(3));
 			row.add(resultado.getString(4));
-			row.add(obtenerAreasDocumento(columnOne));
+			//row.add(obtenerAreasDocumento(columnOne));
+			row.add("");
 			
 			data.addRow(row);				
 		}
@@ -554,11 +464,82 @@ FachadaBD fachada;
 		return null;
 	}
 	
+	public TableDataSource consultaDocumentosAgrupadosFormatoTotal()
+	{
+		String consultaSql = "select d.titulo_principal, d.editorial, d.formato AS agrupado FROM documento as d order by d.formato";
+		
+		TableDataSource data = new TableDataSource();
+		
+		try 
+		{
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+		
+		for(int i=0; i<metaData.getColumnCount(); i++)
+		{
+			data.addColumn(metaData.getColumnName(i+1));
+		}
+		data.addColumn("autor");
+		
+		while (resultado.next())
+		{
+			Vector<Object> row = new Vector<Object>(0,1);
+			
+			row.add(resultado.getString(1));
+			row.add(resultado.getString(2));
+			row.add(resultado.getString(3));
+			row.add("felipe");
+			
+			data.addRow(row);				
+		}
+		fachada.cerrarConexion(conn);
+		conn = null;
+		fachada = null;
+		sentencia = null;
+		resultado = null;
+		metaData = null;
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		
+		System.out.println(data);
+		return data;
+	}
 	
 	/*metodo para obtener las areas de un documento en forma de string*/
 	private String obtenerAreasDocumento(String id_documento)
 	{
-		return null;
+		String consultaSql = "SELECT a.nombre FROM area_conocimiento AS a " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento AS p " +
+				"WHERE p.id_documento = " + id_documento;
+
+		String autores = "";
+		
+		try 
+		{
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();			
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+		
+		while (resultado.next())
+		{	
+			autores += resultado.getString(1) + ", ";		
+		}
+		fachada.cerrarConexion(conn);
+		conn = null;
+		//fachada = null;
+		sentencia = null;
+		resultado = null;
+		} catch (SQLException e) {			
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);					
+		}
+		return autores;
 	}
 	
 	public static void main(String args[])

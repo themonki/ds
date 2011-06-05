@@ -1,0 +1,49 @@
++ Revisar mensaje de descarga para usuario no registrado.
++ El nombre del boton en consulta avanzada
++ Agregar cantidad de resultados en consulta avanzada
++ Acomodar panel areas tamaño en registrarMOdificar usuario
++ Acomodar insects y weightX en gridbaglayout de consulta avanzada para radionButton, y formatos.. fechas
++ Acomodar posicion boton descargar en vista documento que quede igual que 
++ Acomodar orden de los atributos en vista documento
++ Modificar titulo de mas haya de la nube a mas alla de la nube
++ Colocar login e icono de usuario en el menu a la derecha en las gui admin, catalogador, normal
++ Acomodar formato en base de datos .. djvu
++ Descripcion evento de enter cuando llegue a estos 20 caracteres. linewrap en true 
++ DOS DOCUMENTOS POR INTEGRANTE EN FORMATO TXT TAL Y CMO ESTA EN LA INTERFAZ. ^^
+
+
+
+***********************************************************+EXPOSICION+****************************************************************+
+Consulta Basica
+Mostrar detallado de documentos
+link autor palabra clave etc,.
+Consulta Avanzada
+Titulo = bases de , autor james f, palabra programacion
+consultar solo por titulo exacta con.. todas las opciones
+se agrega autor y titulo en con estas palabras 
+se muestran todas las opciones con autor
+y luego se agrega palabra y lo mismo
+luego por area area modelos de simulacion  idioma ingles, formato pdf 
+Se selecciona documento y se le da descargar
+se registra nuevo usuario *
+se ingreas con el usuario 
+se consulta y se descarga
+se modifican datos y se sale
+se ingresa con admnin
+y se cambia el usuario registrado a catalogador
+
+
+
+
+
+
+
+****************************************************************************DESARROLLO DOCUMENTO****************************
++ Cambiar TCP por jdbc
++ Modificar diagrama de clases 
++ Modificar diagrama de secuencias
++ Modificar resumen ¬¬ (Baah)
++ Modificar Modelo de datos.
+
+
+
