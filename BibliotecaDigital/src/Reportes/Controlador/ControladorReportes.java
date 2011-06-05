@@ -125,16 +125,20 @@ public class ControladorReportes
 		 * Método que permite generar reportes de usuario agrupados por un tipo de año
 		 * y retorna un reporte mostrando todos los usuarios en todos los años con
 		 * todos los meses que se encuentren en el sistema.
-		 * @param tipoAnio - String puede ser nacimiento o registro, usado para
+		 * @param tipoAnio - String puede ser fecha_nacimiento o fecha_registro, usado para
 		 * descriminar por que año se agrupara la vista del reporte.
 		 * @pram tituloReporte - String el titulo usado para el reporte.
 		 * @return JasperPrint que contiene el reporte y podrá ser usado para imprimirlo.
 		 * @author Leonardo Ríos
 		 * */
-		return null;
+		
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaUsuariosAnio(tipoAnio);
+		daoReportes = null;
+		return procesarDatosReporteUsuariosFecha(tituloReporte, tableData);
 	}
 	
-	public JasperPrint reporteUsuariosAnio(String tipoAnio, String anioI, String anioF, String tituloReporte)
+	public JasperPrint reporteUsuariosAnio(String tipoAnio, String anioI, String anioF, String tituloReporte) throws JRException
 	{
 		/**
 		 * Método que permite generar reportes de usuario agrupados por un tipo de año
@@ -142,56 +146,80 @@ public class ControladorReportes
 		 * que se encentren en el sistema entre los años indicados con sus respectivos meses.
 		 * @param tipoAnio - String puede ser nacimiento o registro, usado para
 		 * descriminar por que año se agrupara la vista del reporte.
-		 * @param anioI - String para formar un intervalo de año, es el año inicial.
-		 * @param anioF - String para formar un intervalo de año, es el año final.
+		 * @param anioI - String para formar un intervalo de año, es el año inicial, cuatro caracteres.
+		 * @param anioF - String para formar un intervalo de año, es el año final, cuatro caracteres.
 		 * @pram tituloReporte - String el titulo usado para el reporte.
 		 * @return JasperPrint que contiene el reporte y podrá ser usado para imprimirlo.
 		 * @author Leonardo Ríos
 		 * */
-		return null;
+		
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaUsuariosAnio(tipoAnio, anioI, anioF);
+		daoReportes = null;
+		return procesarDatosReporteUsuariosFecha(tituloReporte, tableData);
 	}
 	
-	public JasperPrint reporteUsuariosAnioMes(String tipoAnio, String mesI, String mesF, String tituloReporte)
+	public JasperPrint reporteUsuariosAnioMes(String tipoAnio, String mesI, String mesF, String tituloReporte) throws JRException
 	{
 		/**
 		 * Método que permite generar reportes de usuario agrupados por un tipo de año
 		 * y cada año tiene sus meses restringidos entre mesI y mesF
 		 * retorna un reporte mostrando los usuarios que se encentren en el sistema en todos los años 
 		 * con sus meses restringidos por los mese indicados.
-		 * @param tipoAnio - String puede ser nacimiento o registro, usado para
+		 * @param tipoAnio - String puede ser fecha_nacimiento o fecha_registro, usado para
 		 * descriminar por que año se agrupara la vista del reporte.
-		 * @param mesI - String para formar el intervalo de mes en cada año, es el mes inicial.
-		 * @param mesF - String para formar el intervalo de mes en cada año, es el mes final.
+		 * @param mesI - String para formar el intervalo de mes en cada año, es el mes inicial, dos caracteres.
+		 * @param mesF - String para formar el intervalo de mes en cada año, es el mes final, dos caracteres.
 		 * @pram tituloReporte - String el titulo usado para el reporte.
 		 * @return JasperPrint que contiene el reporte y podrá ser usado para imprimirlo.
 		 * @author Leonardo Ríos
 		 * */
-		return null;
+
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaUsuariosAnioMes(tipoAnio, mesI, mesF);
+		daoReportes = null;
+		return procesarDatosReporteUsuariosFecha(tituloReporte, tableData);
 	}
 	
-	public JasperPrint reporteUsuariosAnioMes(String tipoAnio, String anioI, String anioF, String mesI, String mesF, String tituloReporte)
+	public JasperPrint reporteUsuariosAnioMes(String tipoAnio, String anioI, String anioF, String mesI, String mesF, String tituloReporte) throws JRException
 	{
 		/**
 		 * Método que permite generar reportes de usuario agrupados por un tipo de año
 		 * que esta restringido entre anioI y anioF, y cada año tiene sus meses restringidos entre mesI y mesF
 		 * retorna un reporte mostrando los usuarios que se encentren en el sistema entre los años y los
 		 * meses indicados indicados.
-		 * @param tipoAnio - String puede ser nacimiento o registro, usado para
+		 * @param tipoAnio - String puede ser fecha_nacimiento o fecha_registo, usado para
 		 * descriminar por que año se agrupara la vista del reporte.
-		 * @param anioI - String para formar un intervalo de año, es el año inicial.
-		 * @param anioF - String para formar un intervalo de año, es el año final.
-		 * @param mesI - String para formar el intervalo de mes en cada año, es el mes inicial.
-		 * @param mesF - String para formar el intervalo de mes en cada año, es el mes final.
+		 * @param anioI - String para formar un intervalo de año, es el año inicial, cuatro caracteres.
+		 * @param anioF - String para formar un intervalo de año, es el año final, cuatro caracteres.
+		 * @param mesI - String para formar el intervalo de mes en cada año, es el mes inicial, dos caracteres.
+		 * @param mesF - String para formar el intervalo de mes en cada año, es el mes final, dos caracteres.
 		 * @pram tituloReporte - String el titulo usado para el reporte.
 		 * @return JasperPrint que contiene el reporte y podrá ser usado para imprimirlo.
 		 * @author Leonardo Ríos
 		 * */
-		return null;
+		
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaUsuariosAnioMes(tipoAnio, anioI, anioF, mesI, mesF);
+		daoReportes = null;
+		return procesarDatosReporteUsuariosFecha(tituloReporte, tableData);
 	}
 	
-	private JasperPrint procesarDatosUsuariosFecha(String tituloReporte, TableDataSource tableData)
+	private JasperPrint procesarDatosReporteUsuariosFecha(String tituloReporte, TableDataSource tableData) throws JRException
 	{
-		return null;
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteUsuariosAgrupadosFecha.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
 /* **************reporte relacionados con areas ************************** */

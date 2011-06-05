@@ -223,101 +223,57 @@ FachadaBD fachada;
 	
 	public TableDataSource consultaUsuariosAnio(String tipoAnio)
 	{
-		String consultaSql = "";
-		if(tipoAnio.equals("nacimiento"))
-		{
-			consultaSql = "SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, " +
-					"EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
+					"EXTRACT(MONTH FROM u." + tipoAnio+ ") AS mes, " +
 					"u.login, u.nombre1, u.apellido1, u.email " +
 					"FROM usuario AS u " +
-					"ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  fecha_nacimiento)";
-		}else if(tipoAnio.equals("registro"))
-		{
-			consultaSql = "SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, " +
-			"EXTRACT(MONTH FROM u.fecha_registro) AS mes, " +
-			"u.login, u.nombre1, u.apellido1, u.email " +
-			"FROM usuario AS u " +
-			"ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  fecha_registro)";
-		}
+					"ORDER BY date_trunc('year', u." + tipoAnio + "), " +
+						"date_trunc('month', u." + tipoAnio + ")";
 		
-		return procesarDatosUsuarioFecha(consultaSql);
+		return procesarDatosUsuariosFecha(consultaSql);
 	}
 	
-	public TableDataSource consultaUsuarioAnio(String tipoAnio, String anioI, String anioF)
+	public TableDataSource consultaUsuariosAnio(String tipoAnio, String anioI, String anioF)
 	{
-		String consultaSql = "";
-		if(tipoAnio.equals("nacimiento"))
-		{
-			consultaSql = "SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, " +
-					"EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
+					"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
 					"u.login, u.nombre1, u.apellido1, u.email " +
 					"FROM usuario AS u " +
-					"WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN " + anioI + " AND " +  anioF +
-					" ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  fecha_nacimiento)";
-		}else if(tipoAnio.equals("registro"))
-		{
-			consultaSql = "SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, " +
-			"EXTRACT(MONTH FROM u.fecha_registro) AS mes, " +
-			"u.login, u.nombre1, u.apellido1, u.email " +
-			"FROM usuario AS u " +
-			"WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN " + anioI + " AND " + anioF +
-			" ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  fecha_registro)";
-		}
-		
-		return procesarDatosUsuarioFecha(consultaSql);
+					"WHERE EXTRACT(YEAR FROM u." + tipoAnio + ") BETWEEN " + anioI + " AND " +  anioF +
+					" ORDER BY date_trunc('year', u." + tipoAnio + "), " +
+							"date_trunc('month', u." + tipoAnio + ")";
+				
+		return procesarDatosUsuariosFecha(consultaSql);
 	}
 	
-	public TableDataSource consultaUsuarioAnioMes(String tipoAnio, String mesI, String mesF)
+	public TableDataSource consultaUsuariosAnioMes(String tipoAnio, String mesI, String mesF)
 	{
-		String consultaSql = "";
+		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
+					"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
+					"u.login, u.nombre1, u.apellido1, u.email " +
+					"FROM usuario AS u " +
+					"WHERE EXTRACT(MONTH FROM u." + tipoAnio + ") BETWEEN " + mesI + " AND " + mesF +
+					" ORDER BY date_trunc('year', u." + tipoAnio + "), " +
+							"date_trunc('month',  u." + tipoAnio + ")";
 		
-		if(tipoAnio.equals("nacimiento"))
-		{
-			consultaSql = "SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, " +
-					"EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, " +
-					"u.login, u.nombre1, u.apellido1, u.email " +
-					"FROM usuario AS u " +
-					"WHERE EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN " + mesI + " AND " + mesF +
-					" ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento)";
-		}else if(tipoAnio.equals("registros"))
-		{
-			consultaSql = "SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, " +
-					"EXTRACT(MONTH FROM u.fecha_registro) AS mes, " +
-					"u.login, u.nombre1, u.apellido1, u.email " +
-					"FROM usuario AS u " +
-					"WHERE EXTRACT(MONTH FROM u.fecha_registro) BETWEEN " + mesI + " AND " + mesF + 
-					" ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro)";
-		}
-		return procesarDatosUsuarioFecha(consultaSql);
+		return procesarDatosUsuariosFecha(consultaSql);
 	}
 	
-	public TableDataSource consultaUsuarioAnioMes(String tipoAnio, String anioI, String anioF, String mesI, String mesF)
+	public TableDataSource consultaUsuariosAnioMes(String tipoAnio, String anioI, String anioF, String mesI, String mesF)
 	{
-String consultaSql = "";
+		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
+					"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
+					"u.login, u.nombre1, u.apellido1, u.email " +
+					"FROM usuario AS u " +
+					"WHERE EXTRACT(MONTH FROM u." + tipoAnio + ") BETWEEN " + mesI + " AND " + mesF +
+					" AND EXTRACT(YEAR FROM u." + tipoAnio + ") BETWEEN " + anioI + " AND " + anioF +
+					" ORDER BY date_trunc('year', u." + tipoAnio + "), " +
+							"date_trunc('month',  u." + tipoAnio + ")";
 		
-		if(tipoAnio.equals("nacimiento"))
-		{
-			consultaSql = "SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, " +
-					"EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, " +
-					"u.login, u.nombre1, u.apellido1, u.email " +
-					"FROM usuario AS u " +
-					"WHERE EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN " + mesI + " AND " + mesF +
-					" AND EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN " + anioI + " AND " + anioF +
-					" ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento)";
-		}else if(tipoAnio.equals("registros"))
-		{
-			consultaSql = "SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, " +
-					"EXTRACT(MONTH FROM u.fecha_registro) AS mes, " +
-					"u.login, u.nombre1, u.apellido1, u.email " +
-					"FROM usuario AS u " +
-					"WHERE EXTRACT(MONTH FROM u.fecha_registro) BETWEEN " + mesI + " AND " + mesF +
-					" AND EXTRACT(YEAR FROM u.fecha_registro) BETWEEN " + anioI + " AND " + anioF +
-					" ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro)";
-		}
-		return procesarDatosUsuarioFecha(consultaSql);
+		return procesarDatosUsuariosFecha(consultaSql);
 	}
 	
-	private TableDataSource procesarDatosUsuarioFecha(String consultaSql)
+	private TableDataSource procesarDatosUsuariosFecha(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
 		
