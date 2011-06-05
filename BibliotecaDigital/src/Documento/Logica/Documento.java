@@ -1,12 +1,10 @@
  /**
  * Documento.java
  * 
- * Clase que presenta un Usuario es decir una persona que puede
- * hacer uso de la biblioteca digital,por lo tanto, es importante 
- * guardar sus atributos informacion que nos permita disitinguirlos
- * de otros usuarios y asi mismo manejar su ingreso al sistema 
- * adecuadamente.
-
+ * Clase que representa un Documento es decir los documentos digitales
+ * que estan almacenados en la Biblioteca Digital tienen metadatos
+ * que estan guardados en la base de datos y para permitir el facil 
+ * manejo de ellos se almacenan sus atributos en este objeto.
  * 
  * JAVA version "1.6.0"
  * 

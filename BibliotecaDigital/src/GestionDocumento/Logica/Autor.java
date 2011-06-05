@@ -1,3 +1,16 @@
+ /**
+ * Autor.java
+ * 
+ * Clase que representa un Autor es decir que almacenará los atri-
+ * butos de los autores que escriben los documentos de la Biblio-
+ * teca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Yerminson Gonzalez Munoz
+ * Version:   4.0
+ */
 package GestionDocumento.Logica;
 
 /**

@@ -1,3 +1,16 @@
+ /**
+ * PalabraClave.java
+ * 
+ * Clase que representa una Palbra Clave es decir que almacenará
+ * los atributos de las palabras calve que se especifican en los
+ * documentos de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Cristian Leonardo Rios
+ * Version:   4.0
+ */
 package GestionDocumento.Logica;
 
 /**
