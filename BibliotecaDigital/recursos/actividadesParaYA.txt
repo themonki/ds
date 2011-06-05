@@ -1,10 +1,10 @@
-+ Revisar mensaje de descarga para usuario no registrado.
-+ El nombre del boton en consulta avanzada
++ Revisar mensaje de descarga para usuario no registrado. -----------------> Listo
++ El nombre del boton en consulta avanzada-----------LISTO
 + Agregar cantidad de resultados en consulta avanzada
 + Acomodar panel areas tamaño en registrarMOdificar usuario
 + Acomodar insects y weightX en gridbaglayout de consulta avanzada para radionButton, y formatos.. fechas
-+ Acomodar posicion boton descargar en vista documento que quede igual que 
-+ Acomodar orden de los atributos en vista documento
++ Acomodar posicion boton descargar en vista documento que quede igual que  ---------------> Listo
++ Acomodar orden de los atributos en vista documento ---------------------------------> Listo 
 + Modificar titulo de mas haya de la nube a mas alla de la nube
 + Colocar login e icono de usuario en el menu a la derecha en las gui admin, catalogador, normal
 + Acomodar formato en base de datos .. djvu
