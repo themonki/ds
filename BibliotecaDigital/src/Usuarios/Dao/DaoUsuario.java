@@ -1,4 +1,12 @@
-
+/**
+ * DaoUsuario.java
+ * 
+  * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor:  Cristian Leornando Rios 
+ * Version:   4.0
+ */
 
 
 

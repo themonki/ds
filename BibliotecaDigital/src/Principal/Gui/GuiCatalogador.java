@@ -547,7 +547,7 @@ public class GuiCatalogador extends JFrame
 		
 		
 		GuiNovedades.PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(novedades, 10);
-		GuiNovedades.PANEL_NOVEDADES.add(GuiNovedades.PANEL_RESULTADO_CONSULTA);
+		GuiNovedades.PANEL_NOVEDADES.add(GuiNovedades.PANEL_VISTA_DETALLADA_CONSULTA);
 		
 		GuiResultadoConsulta.TIPO_CONSULTA = 3;
 		this.novedades.setText("Novedades("+novedades.size()+")");

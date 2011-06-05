@@ -26,6 +26,7 @@ import GestionDocumento.Logica.AreaConocimiento;
  * 
  * @version 1.0 24/04/2011
  * @author Yerminson Gonzalez
+ * 
  */
 public class Usuario {
 
