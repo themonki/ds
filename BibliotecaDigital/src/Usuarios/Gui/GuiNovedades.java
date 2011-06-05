@@ -1,3 +1,18 @@
+/**
+ * GuiNovedades.java
+ * 
+ * Clase que representa un resultado de una consulta de un usuario
+ * donde se mantiene informando al usuario sobre los nuevos documentos
+ * catalogados despues de su ultimo ingreso teniendolo asi actualizado 
+ * en cuanto a documentos de  
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Yerminson Gonzalez Munoz
+ * Version:   4.0
+ */
+
 package Usuarios.Gui;
 
 import java.awt.BorderLayout;
@@ -6,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import Consultas.Gui.GuiResultadoConsulta;
-import Consultas.Gui.GuiVistaDocumento;
+import Consultas.Gui.GuiVistaDetalladaConsulta;
 import Utilidades.Estilos;
 
 public class GuiNovedades extends JScrollPane
@@ -18,8 +33,8 @@ public class GuiNovedades extends JScrollPane
 	public static int TIPO_USUARIO;
 		
 	public static JPanel PANEL_NOVEDADES;
-	public static GuiResultadoConsulta RESULTADO_CONSULTA;
-	public static GuiVistaDocumento VISTA_DOCUMENTO;
+	public static GuiResultadoConsulta PANEL_RESULTADO_CONSULTA;
+	public static GuiVistaDetalladaConsulta PANEL_VISTA_DETALLADA_CONSULTA;
 	private static TitledBorder BORDE;
 	public GuiNovedades()
 	{		
@@ -44,17 +59,17 @@ public class GuiNovedades extends JScrollPane
 	
 	public static void ponerDescripcion()
 	{
-		PANEL_NOVEDADES.remove(RESULTADO_CONSULTA);
+		PANEL_NOVEDADES.remove(PANEL_RESULTADO_CONSULTA);
 		PANEL_NOVEDADES.setBorder(null);
-		PANEL_NOVEDADES.add(VISTA_DOCUMENTO, BorderLayout.CENTER);
+		PANEL_NOVEDADES.add(PANEL_VISTA_DETALLADA_CONSULTA, BorderLayout.CENTER);
 		PANEL_NOVEDADES.updateUI();
 	}
 	public static void restaurar()
 	{
-		PANEL_NOVEDADES.remove(VISTA_DOCUMENTO);	
+		PANEL_NOVEDADES.remove(PANEL_VISTA_DETALLADA_CONSULTA);	
 		PANEL_NOVEDADES.setBorder(BORDE);
-		PANEL_NOVEDADES.add(RESULTADO_CONSULTA, BorderLayout.CENTER );		
-		PANEL_NOVEDADES.remove(VISTA_DOCUMENTO);
+		PANEL_NOVEDADES.add(PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER );		
+		PANEL_NOVEDADES.remove(PANEL_VISTA_DETALLADA_CONSULTA);
 		PANEL_NOVEDADES.updateUI();
 	}
 	

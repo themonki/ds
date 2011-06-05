@@ -1,7 +1,7 @@
 /**
  * Usuario.java
  * 
- * Clase que presenta un Usuario es decir una persona que puede
+ * Clase que representa un Usuario es decir una persona que puede
  * hacer uso de la biblioteca digital,por lo tanto, es importante 
  * guardar sus atributos informacion que nos permita disitinguirlos
  * de otros usuarios y asi mismo manejar su ingreso al sistema 
@@ -26,15 +26,16 @@ import GestionDocumento.Logica.AreaConocimiento;
  * 
  * @version 1.0 24/04/2011
  * @author Yerminson Gonzalez
+ * 
  */
 public class Usuario {
 
-	 /** 
-     * Constructor por defecto sin parametros.
-     */
+	/**
+	 * Constructor por defecto sin parametros.
+	 */
 	public Usuario() {
 	}
-	
+
 	/**
 	 * String que contiene la llave del Usuario
 	 */
@@ -48,7 +49,7 @@ public class Usuario {
 	 */
 	String nombre1;
 	/**
-	 * String que contiene el segundo nombre del Usuario 
+	 * String que contiene el segundo nombre del Usuario
 	 */
 	String nombre2;
 	/**
@@ -56,11 +57,11 @@ public class Usuario {
 	 */
 	String apellido1;
 	/**
-	 * String que contiene el segundo apellido del Usuario 
+	 * String que contiene el segundo apellido del Usuario
 	 */
 	String apellido2;
 	/**
-	 * String que contiene el email del Usuario 
+	 * String que contiene el email del Usuario
 	 */
 	String email;
 	/**
@@ -68,11 +69,11 @@ public class Usuario {
 	 */
 	String nivelEscolaridad;
 	/**
-	 * String que contiene el vinculo con la universidad del Usuario 
+	 * String que contiene el vinculo con la universidad del Usuario
 	 */
 	String vinculoUnivalle;
 	/**
-	 * String que contiene  la pregunta secreta del Usuario
+	 * String que contiene la pregunta secreta del Usuario
 	 */
 	String preguntaSecreta;
 	/**
@@ -80,7 +81,7 @@ public class Usuario {
 	 */
 	String respuestaSecreta;
 	/**
-	 * String que contiene el genero del Usuario 
+	 * String que contiene el genero del Usuario
 	 */
 	String genero;
 	/**
@@ -97,7 +98,7 @@ public class Usuario {
 	Date fechaUltimoAcceso;
 	/**
 	 * String que contiene el tipo del Usuario
-	 */	
+	 */
 	String tipo;
 	/**
 	 * boolean que contiene el estado (activo o inactivo) del Usuario
@@ -108,34 +109,57 @@ public class Usuario {
 	 */
 	Vector<AreaConocimiento> areasInteres;
 
-	  /** 
-     * Crea un Usuario a partir de sus atributos basicos.
-     * @param login - String con el login de acceso del usuario.
-     * @param contrasena - String con la clave que le permite el ingreso al sistema.
-     * @param nombre1 - String con el primer nombre del usuario.
-     * @param nombre2 - String con el segundo nombre del usuario.
-     * @param apellido1 - String con el primer apellido del usuario.
-     * @param apellido2 - String con el segundo apellido del usuario.
-     * @param email - String con el correo electronico del usuario del usuario.
-     * @param nivelEscolaridad - String con el nivel de estudios del usuario.
-     * @param vinculoConUnivalle - String con la relacion con la Universidad del valle que tiene  el usuario.
-     * @param preguntaSecreta - String con la pregunta que permitirar recuperar la clave del usuario.
-     * @param respuestaSecreta - String con la respuesta a la pregunta secreta del usuario.
-     * @param genero - String con el genero del usuario.
-     * @param fechaRegistro - Date con la fecha en la que se registro el usuario al sistema.
-     * @param fechaNacimiento - Date con la fecha en la que nacio el usuario
-     * @param fechaUltimoAcceso - Date con la fecha de ultimo ingreso al sistema
-     * @param tipo - String con el valor que indica el tipo de usuario: Usuario Normal, Catalogador o Administrador.
-     * @param estado - boolean que indica si esta habilitado para el ingreso al sistema
-     * 
-     */
+	/**
+	 * Crea un Usuario a partir de sus atributos basicos.
+	 * 
+	 * @param login
+	 *            - String con el login de acceso del usuario.
+	 * @param contrasena
+	 *            - String con la clave que le permite el ingreso al sistema.
+	 * @param nombre1
+	 *            - String con el primer nombre del usuario.
+	 * @param nombre2
+	 *            - String con el segundo nombre del usuario.
+	 * @param apellido1
+	 *            - String con el primer apellido del usuario.
+	 * @param apellido2
+	 *            - String con el segundo apellido del usuario.
+	 * @param email
+	 *            - String con el correo electronico del usuario del usuario.
+	 * @param nivelEscolaridad
+	 *            - String con el nivel de estudios del usuario.
+	 * @param vinculoConUnivalle
+	 *            - String con la relacion con la Universidad del valle que
+	 *            tiene el usuario.
+	 * @param preguntaSecreta
+	 *            - String con la pregunta que permitirar recuperar la clave del
+	 *            usuario.
+	 * @param respuestaSecreta
+	 *            - String con la respuesta a la pregunta secreta del usuario.
+	 * @param genero
+	 *            - String con el genero del usuario.
+	 * @param fechaRegistro
+	 *            - Date con la fecha en la que se registro el usuario al
+	 *            sistema.
+	 * @param fechaNacimiento
+	 *            - Date con la fecha en la que nacio el usuario
+	 * @param fechaUltimoAcceso
+	 *            - Date con la fecha de ultimo ingreso al sistema
+	 * @param tipo
+	 *            - String con el valor que indica el tipo de usuario: Usuario
+	 *            Normal, Catalogador o Administrador.
+	 * @param estado
+	 *            - boolean que indica si esta habilitado para el ingreso al
+	 *            sistema
+	 * 
+	 */
 
 	public Usuario(String login, String contrasena, String nombre1,
 			String nombre2, String apellido1, String apellido2, String email,
 			String nivelEscolaridad, String vinculoUnivalle,
 			String preguntaSecreta, String respuestaSecreta, String genero,
-			Date fechaRegistro, Date fechaNacimiento, Date fechaUltimoAcceso ,String tipo, boolean estado,
-			Vector<AreaConocimiento> areasInteres) {
+			Date fechaRegistro, Date fechaNacimiento, Date fechaUltimoAcceso,
+			String tipo, boolean estado, Vector<AreaConocimiento> areasInteres) {
 
 		this.login = login;
 		this.contrasena = contrasena;
@@ -159,13 +183,13 @@ public class Usuario {
 
 	/**
 	 * Metodo que permite obtener el login de usuario
+	 * 
 	 * @return el Login del usuario
 	 */
 	public String getLogin() {
 		return login;
 	}
 
-	
 	/**
 	 * @return
 	 */
@@ -173,7 +197,6 @@ public class Usuario {
 		return contrasena;
 	}
 
-	
 	/**
 	 * @return
 	 */
@@ -257,7 +280,7 @@ public class Usuario {
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	
+
 	/**
 	 * @return
 	 */
@@ -289,8 +312,7 @@ public class Usuario {
 	/**
 	 * @param value
 	 */
-	public void setLogin(String value)
-	{
+	public void setLogin(String value) {
 		login = value;
 	}
 
@@ -384,7 +406,7 @@ public class Usuario {
 	public void setFechaNacimiento(Date value) {
 		fechaNacimiento = value;
 	}
-	
+
 	/**
 	 * @param value
 	 */
@@ -412,11 +434,13 @@ public class Usuario {
 	public void setAreas(Vector<AreaConocimiento> value) {
 		areasInteres = value;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString(){
+	public String toString() {
 		String usuario;
 		usuario = login + " " + nombre1;
 		return usuario;

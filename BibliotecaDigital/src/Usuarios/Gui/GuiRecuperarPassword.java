@@ -1,13 +1,19 @@
 package Usuarios.Gui;
 
-/*
- * Autor Yerminson Gonzalez
+/**
+ * GuiRecuperarPassword.java
  * 
- * */
-
+ * Clase que representa una interfaz de usuario que permite cambiar 
+ * el password en caso de haberlo olvidado, para esto hace uso de la 
+ * pregunta secreta que el usuario proporciono cuando se registro al
+ * sistema.
+ *  
+ * JAVA version "1.6.0"
+ *  
+ * Autor:  Yerminson Gonzalez Munoz
+ * Version:   4.0
+ */
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -28,7 +34,6 @@ import Usuarios.Controlador.ControladorUsuario;
 import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
-
 
 public class GuiRecuperarPassword extends JPanel {
 
@@ -93,7 +98,6 @@ public class GuiRecuperarPassword extends JPanel {
 
 		String title = "::Recuperar Password::";
 
-	
 		// Linea y titulo del panel.
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
@@ -202,7 +206,6 @@ public class GuiRecuperarPassword extends JPanel {
 	}
 
 	private void iniciarLabels() {
-	
 
 		nombreUsuario = new JLabel("Login  :");
 		nombreUsuario.setFont(Estilos.fontLabels);
@@ -248,7 +251,7 @@ public class GuiRecuperarPassword extends JPanel {
 					panelPreguntaSecreta.setVisible(true);
 					panelBotonCambiar.add(botonRegresar);
 					panelBotonCambiar.setVisible(true);
-					
+
 					campoDescripcionPregunta.setText(usuario
 							.getPreguntaSecreta());
 
@@ -257,7 +260,7 @@ public class GuiRecuperarPassword extends JPanel {
 			} else if (evento.getSource() == botonCambiarPassword) {
 				String respuestaDada = campoRespuestaPregunta.getText();
 				String respuestaCorrecta = usuario.getRespuestaSecreta();
-				
+
 				if (respuestaDada.equals(respuestaCorrecta)) {
 					panelPreguntaSecreta.setVisible(false);
 					panelBotonCambiar.setVisible(false);
@@ -278,22 +281,21 @@ public class GuiRecuperarPassword extends JPanel {
 				String verificacionPassword = new String(campoVerificarPassword
 						.getPassword());
 				if (password.equals(verificacionPassword)) {
-					
-					if(!password.equals("")){				
-					
+
+					if (!password.equals("")) {
+
 						usuario.setContrasena(password);
-					controladorUsuario.modificarUsuario(usuario);
-					JOptionPane
-							.showMessageDialog(null,
-									"Se cambio correctamente la contraseña ahora puede ingresar");
-					GuiPrincipal.cambiarPanelIngresarRemover();
-					gp.repaint();
-					restaurar();
-					}else
-					{
+						controladorUsuario.modificarUsuario(usuario);
 						JOptionPane
-						.showMessageDialog(null,
-								"Los campos no pueden estar vacios por favor intente nuevamente");
+								.showMessageDialog(null,
+										"Se cambio correctamente la contraseña ahora puede ingresar");
+						GuiPrincipal.cambiarPanelIngresarRemover();
+						gp.repaint();
+						restaurar();
+					} else {
+						JOptionPane
+								.showMessageDialog(null,
+										"Los campos no pueden estar vacios por favor intente nuevamente");
 
 					}
 
@@ -305,7 +307,6 @@ public class GuiRecuperarPassword extends JPanel {
 
 			} else if (evento.getSource() == botonRegresar) {
 
-				
 				GuiPrincipal.cambiarPanelIngresarRemover();
 				restaurar();
 				gp.repaint();
@@ -352,7 +353,6 @@ public class GuiRecuperarPassword extends JPanel {
 		panelBotonGuardar.setVisible(false);
 		panelPreguntaSecreta.setVisible(false);
 		panelBotonCambiar.setVisible(false);
-		
 
 	}
 

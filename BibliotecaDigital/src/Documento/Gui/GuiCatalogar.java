@@ -1,3 +1,15 @@
+ /**
+ * GuiCatalogar.java
+ * 
+ * Clase que representa la interfaz que permite realizar la catalogación
+ * de los documentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Luis Felipe Vargas
+ * Version:   4.0
+ */
 package Documento.Gui;
 
 

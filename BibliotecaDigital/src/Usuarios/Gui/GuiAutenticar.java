@@ -1,10 +1,16 @@
-/*
- * Nombre autor: Cristian Ríos
- * Responsabilidad: crear la interfaz que permite a un usuario ingresar al sistema.
- * Nombre Archivo: GuiAutenticar.java
- * Fecha creación: Mayo 05 2011
- * Fecha Ultima modificación: Mayo 05 2011 
- * */
+/**
+ * GuiAutentificar.java
+ * 
+ * Clase que representa la interfaz de usuario que permite ingresar
+ * al sistema , proporcionando un login y un password lo que permitira
+ * acceder a las funcioanalidades del sistema de acuerdo a al perfil
+ * de usaurio.
+ * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor:  Cristian Leornando Rios 
+ * Version:   4.0
+ */
 
 package Usuarios.Gui;
 

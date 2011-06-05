@@ -1,3 +1,15 @@
+ /**
+ * GuiConsultaBasica.java
+ * 
+ * Clase que representa la interfaz que permite realizar la consulta
+ * general de los documentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  
+ * Version:   4.0
+ */
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
@@ -45,7 +57,7 @@ public class GuiConsultaBasica extends JScrollPane
 	private static JPanel PANEL_CONSULTA;
 	static JPanel PANEL_PRINCIPAL;
 	public static GuiResultadoConsulta PANEL_RESULTADO_CONSULTA;
-	public static GuiVistaDocumento PANEL_VISTA_DOCUMENTO;
+	public static GuiVistaDetalladaConsulta PANEL_VISTA_DETALLADA_CONSULTA;
 	
 	public GuiConsultaBasica()
 	{		
@@ -117,21 +129,21 @@ public class GuiConsultaBasica extends JScrollPane
 	{
 		PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
 		PANEL_PRINCIPAL.remove(PANEL_CONSULTA);
-		PANEL_PRINCIPAL.add(PANEL_VISTA_DOCUMENTO, BorderLayout.CENTER);
+		PANEL_PRINCIPAL.add(PANEL_VISTA_DETALLADA_CONSULTA, BorderLayout.CENTER);
 		PANEL_PRINCIPAL.updateUI();
 	}
 	public static void restaurar()
 	{
-		PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);		
+		PANEL_PRINCIPAL.remove(PANEL_VISTA_DETALLADA_CONSULTA);		
 		PANEL_PRINCIPAL.add(PANEL_CONSULTA, BorderLayout.NORTH);
 		PANEL_PRINCIPAL.add(PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER );		
-		PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
+		PANEL_PRINCIPAL.remove(PANEL_VISTA_DETALLADA_CONSULTA);
 		PANEL_PRINCIPAL.updateUI();
 	}
 	public static void restaurarTodo()
 	{
-		if(!(PANEL_VISTA_DOCUMENTO == null))	
-			PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
+		if(!(PANEL_VISTA_DETALLADA_CONSULTA == null))	
+			PANEL_PRINCIPAL.remove(PANEL_VISTA_DETALLADA_CONSULTA);
 		
 		CAMPO_CONSULTA.setText("");
 		PANEL_PRINCIPAL.add(PANEL_CONSULTA, BorderLayout.NORTH);		

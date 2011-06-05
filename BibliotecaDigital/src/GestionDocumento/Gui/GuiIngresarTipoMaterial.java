@@ -1,5 +1,18 @@
+
 package GestionDocumento.Gui;
 
+/**
+ * GuiIngresarTipoMaterial.java
+ * 
+ * Clase que representa la interfaz que permite insertar un nuevo
+ * Tipo de Material de los documentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  
+ * Version:   4.0
+ */
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;

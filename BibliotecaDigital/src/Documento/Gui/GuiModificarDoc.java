@@ -1,3 +1,16 @@
+ /**
+ * GuiModificarDoc.java
+ * 
+ * Clase que representa la interfaz que permite realizar la modificación
+ * de los documentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Luis Felipe Vargas
+ * Autor:     Edgar Andres Moncada
+ * Version:   4.0
+ */
 package Documento.Gui;
 
 import java.awt.BorderLayout;
@@ -22,7 +35,7 @@ import Consultas.Controlador.ControladorConsulta;
 import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
 import Consultas.Gui.GuiResultadoConsulta;
-import Consultas.Gui.GuiVistaDocumento;
+import Consultas.Gui.GuiVistaDetalladaConsulta;
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -224,7 +237,7 @@ public class GuiModificarDoc  extends GuiCatalogar
 				
 				if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 				{
-					GuiConsultaBasica.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
+					GuiConsultaBasica.PANEL_VISTA_DETALLADA_CONSULTA = new GuiVistaDetalladaConsulta(d);
 					GuiConsultaBasica.ponerDescripcion();
 					
 					if(GuiConsultaBasica.TIPO_USUARIO == 2)
@@ -237,7 +250,7 @@ public class GuiModificarDoc  extends GuiCatalogar
 					}	
 				}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 				{
-					GuiConsultaAvanzada.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
+					GuiConsultaAvanzada.PANEL_VISTA_DETALLADA_CONSULTA = new GuiVistaDetalladaConsulta(d);
 					GuiConsultaAvanzada.ponerDescripcion();
 					if(GuiConsultaBasica.TIPO_USUARIO == 2)
 					{
