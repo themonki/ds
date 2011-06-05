@@ -94,8 +94,7 @@ public class GuiVistaDocumento extends JScrollPane {
 
 	JLabel icono;
 
-	// Panel para las acciones especiales
-	JPanel panelAccionesDocumento;
+
 	
 	Documento documento;
 	
@@ -158,6 +157,8 @@ public class GuiVistaDocumento extends JScrollPane {
 		posEtiquetas++;
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
+		
+		
 		panel.add(tituloPrincipal, restriccionEtiquetas);
 		panel.add(campoTituloPrincipal, restriccionCampo);
 
@@ -165,6 +166,12 @@ public class GuiVistaDocumento extends JScrollPane {
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 
+
+		panel.add(tituloSecundario, restriccionEtiquetas);
+		panel.add(campoTituloSecundario, restriccionCampo);
+		posEtiquetas++;
+		restriccionEtiquetas.gridy = posEtiquetas;
+		restriccionCampo.gridy = posEtiquetas;
 
 		panel.add(autores,restriccionEtiquetas);
 		panel.add(panelAutores, restriccionCampo);
@@ -186,11 +193,6 @@ public class GuiVistaDocumento extends JScrollPane {
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 		
-		panel.add(tituloSecundario, restriccionEtiquetas);
-		panel.add(campoTituloSecundario, restriccionCampo);
-		posEtiquetas++;
-		restriccionEtiquetas.gridy = posEtiquetas;
-		restriccionCampo.gridy = posEtiquetas;
 
 		panel.add(idioma, restriccionEtiquetas);
 		panel.add(campoIdioma, restriccionCampo);
@@ -230,17 +232,20 @@ public class GuiVistaDocumento extends JScrollPane {
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 
+		panel.add(fechaCreacion, restriccionEtiquetas);
+		panel.add(campoFechaCreacion, restriccionCampo);
+		posEtiquetas++;
+		restriccionEtiquetas.gridy = posEtiquetas;
+		restriccionCampo.gridy = posEtiquetas;
+		
+		
 		panel.add(fechaPublicacion, restriccionEtiquetas);
 		panel.add(campoFechaPublicacion, restriccionCampo);
 		posEtiquetas++;
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 
-		panel.add(fechaCreacion, restriccionEtiquetas);
-		panel.add(campoFechaCreacion, restriccionCampo);
-		posEtiquetas++;
-		restriccionEtiquetas.gridy = posEtiquetas;
-		restriccionCampo.gridy = posEtiquetas;
+		
 
 		panel.add(descripcion, restriccionEtiquetas);
 		panel.add(campoDescripcion, restriccionCampo);
@@ -248,26 +253,23 @@ public class GuiVistaDocumento extends JScrollPane {
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 
-	
+		
 	
 		
 		
-		JPanel panel2 = new JPanel(new BorderLayout());
-		panelAccionesDocumento = new JPanel(new FlowLayout(50,200,50));
+		
 
-		panelAccionesDocumento.add(etiquetaDescargar);
-	
-		panelAccionesDocumento.add(etiquetaEditarDocumento);
+		panel.add(etiquetaDescargar, restriccionEtiquetas);	
+		panel.add(etiquetaEditarDocumento,restriccionCampo);
 		posEtiquetas++;
 		restriccionEtiquetas.gridy = posEtiquetas;
 		restriccionCampo.gridy = posEtiquetas;
 
-		panel2.add(panel, BorderLayout.NORTH);
-		panel2.add(panelAccionesDocumento, BorderLayout.CENTER);
+
 		//panel2.setBorder(borde);
 		setBorder(borde);
 		// add(panel);
-		this.setViewportView(panel2);
+		this.setViewportView(panel);
 
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -521,7 +523,7 @@ public class GuiVistaDocumento extends JScrollPane {
 				if(tipoUsuario == 0)
 				{
 					
-					int opcion = JOptionPane.showConfirmDialog(null," Lo sentimos para desargar el documento debe registarse ¿Desea hacerlo?");
+					int opcion = JOptionPane.showConfirmDialog(null, " Lo sentimos para descargar el documento debe registarse, ¿Desea hacerlo?", "Descarga Documento",JOptionPane.YES_NO_OPTION);
 			
 					if(opcion == 0)
 					{
