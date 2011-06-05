@@ -26,140 +26,141 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 
-
 /**
  * Esta clase es usada para todos los botones en las GUI
- * @author 
- *
+ * 
+ * @author
+ * 
  */
-public class Button extends JButton{
+public class Button extends JButton {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
      * 
      */
-    private Color color1 = new Color(230,0,0);
-    /**
+	private Color color1 = new Color(230, 0, 0);
+	/**
      * 
      */
-    private Color color2 = new Color(100,100,100);
-    /**
+	private Color color2 = new Color(100, 100, 100);
+	/**
      * 
      */
-    private Color color3 = new Color(150,150,150);
+	private Color color3 = new Color(150, 150, 150);
 
-   
-    
-    /**
-     * Contructor de la clase Button
-     * @param c - String con el nombre para el Boton
-     */
-    public Button(String c) {
-    	Font fontTitulo = new Font("dejavu sans",Font.BOLD, 13);
+	/**
+	 * Contructor de la clase Button
+	 * 
+	 * @param c
+	 *            - String con el nombre para el Boton
+	 */
+	public Button(String c) {
+		Font fontTitulo = new Font("dejavu sans", Font.BOLD, 13);
 		setText(c);
-        setOpaque(false);
-        setContentAreaFilled(false);
-        setForeground(Color.white);
-        setFont(fontTitulo);
-        setFocusPainted(false);
-        setBorderPainted(false);
-    }
-    
-    /* Metodo sobreescrito de la clase JButton para cambiar el estilo del boton
-     */
-    protected void paintComponent(Graphics g) {
-        Color c1,c2,c3;
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+		setOpaque(false);
+		setContentAreaFilled(false);
+		setForeground(Color.white);
+		setFont(fontTitulo);
+		setFocusPainted(false);
+		setBorderPainted(false);
+	}
 
-        ButtonModel m = getModel();
+	/*
+	 * Metodo sobreescrito de la clase JButton para cambiar el estilo del boton
+	 */
+	protected void paintComponent(Graphics g) {
+		Color c1, c2, c3;
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
 
-         Paint oldPaint = g2.getPaint();
-        
-        
-         if (m.isArmed()){
-           c2=color1.darker();
-           c1=color2.darker();
-           c3=color3;
-        }else{
-           c1=color1.darker();
-           c2=color2.darker();
-           c3=color3.brighter();
-        }
-        if (!m.isEnabled()){
-           c2=color1.brighter();
-           c1=color2.brighter();
-           
-        }
-        if (m.isRollover()){
-       	 
-        	 c2=color1.brighter();
-             c1=color2.brighter();
-             c3=color3.brighter();
-             setCursor(new Cursor(Cursor.HAND_CURSOR));
-        }
-          RoundRectangle2D.Float r2d = new RoundRectangle2D.Float(
-                    0,0,getWidth(),getHeight()-1,20,20);
-            g2.clip(r2d);
-            
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, c1,
-                    0.0f, getHeight(), c2));
-            
-            g2.fillRect(0,0,getWidth(),getHeight());
+		ButtonModel m = getModel();
 
-            g2.setStroke(new BasicStroke(4f));
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, c3,
-                    0.0f, getHeight(), c3));
-            g2.drawRoundRect(0, 0, getWidth()-2 , getHeight() -2, 18, 18);
+		Paint oldPaint = g2.getPaint();
 
-        g2.setPaint(oldPaint);
-        super.paintComponent(g);
-    }
-    
-    /**
-     * @return el color1
-     */
-    public Color getColor1() {
-        return color1;
-    }
+		if (m.isArmed()) {
+			c2 = color1.darker();
+			c1 = color2.darker();
+			c3 = color3;
+		} else {
+			c1 = color1.darker();
+			c2 = color2.darker();
+			c3 = color3.brighter();
+		}
+		if (!m.isEnabled()) {
+			c2 = color1.brighter();
+			c1 = color2.brighter();
 
-    /**
-     * @param color1 - Color a modificar
-     */
-    public void setColor1(Color color1) {
-        this.color1 = color1;
-    }
+		}
+		if (m.isRollover()) {
 
-    /**
-     * @return color2
-     */
-    public Color getColor2() {
-        return color2;
-    }
+			c2 = color1.brighter();
+			c1 = color2.brighter();
+			c3 = color3.brighter();
+			setCursor(new Cursor(Cursor.HAND_CURSOR));
+		}
+		RoundRectangle2D.Float r2d = new RoundRectangle2D.Float(0, 0,
+				getWidth(), getHeight() - 1, 20, 20);
+		g2.clip(r2d);
 
-    /**
-     * @param color2 - Color a modificar
-     */
-    public void setColor2(Color color2) {
-        this.color2 = color2;
-    }
+		g2.setPaint(new GradientPaint(0.0f, 0.0f, c1, 0.0f, getHeight(), c2));
 
-    /**
-     * @return color3
-     */
-    public Color getColor3() {
-        return color3;
-    }
+		g2.fillRect(0, 0, getWidth(), getHeight());
 
-    /**
-     * @param color3 - Color a modificar
-     */
-    public void setColor3(Color color3) {
-        this.color3 = color3;
-    }
+		g2.setStroke(new BasicStroke(4f));
+		g2.setPaint(new GradientPaint(0.0f, 0.0f, c3, 0.0f, getHeight(), c3));
+		g2.drawRoundRect(0, 0, getWidth() - 2, getHeight() - 2, 18, 18);
+
+		g2.setPaint(oldPaint);
+		super.paintComponent(g);
+	}
+
+	/**
+	 * @return el color1
+	 */
+	public Color getColor1() {
+		return color1;
+	}
+
+	/**
+	 * @param color1
+	 *            - Color a modificar
+	 */
+	public void setColor1(Color color1) {
+		this.color1 = color1;
+	}
+
+	/**
+	 * @return color2
+	 */
+	public Color getColor2() {
+		return color2;
+	}
+
+	/**
+	 * @param color2
+	 *            - Color a modificar
+	 */
+	public void setColor2(Color color2) {
+		this.color2 = color2;
+	}
+
+	/**
+	 * @return color3
+	 */
+	public Color getColor3() {
+		return color3;
+	}
+
+	/**
+	 * @param color3
+	 *            - Color a modificar
+	 */
+	public void setColor3(Color color3) {
+		this.color3 = color3;
+	}
 
 }
