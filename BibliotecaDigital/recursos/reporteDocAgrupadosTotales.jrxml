@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="3.452271214393134"/>
+	<property name="ireport.x" value="5"/>
+	<property name="ireport.y" value="515"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="opcion" class="java.lang.String"/>
+	<field name="agrupado" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="140" splitType="Stretch">
+			<textField>
+				<reportElement x="57" y="32" width="321" height="56"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Serif Condensed" size="18"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="166" y="88" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="388" y="0" width="184" height="140"/>
+				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21">
+			<frame>
+				<reportElement mode="Opaque" x="46" y="0" width="438" height="20" backcolor="#FF3333"/>
+				<staticText>
+					<reportElement x="250" y="0" width="188" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font fontName="DejaVu Serif Condensed" size="11"/>
+					</textElement>
+					<text><![CDATA[Cantidad Documentos]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="0" width="250" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{opcion}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="296" y="0" width="188" height="20" forecolor="#595959"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="0" width="250" height="20" forecolor="#595959"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{agrupado}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="46" y="19" width="438" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="483" y="0" width="1" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="295" y="0" width="1" height="19"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="45" y="0" width="1" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Immediate">
+			<staticText>
+				<reportElement x="266" y="1" width="30" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Serif Condensed"/>
+				</textElement>
+				<text><![CDATA[Total: ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="98" y="0" width="340" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="296" y="0" width="43" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="1" width="224" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Serif Condensed" size="11"/>
+				</textElement>
+				<text><![CDATA[Biblioteca Digital EISC]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="572" height="1"/>
+			</line>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="440" y="1" width="63" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="503" y="1" width="24" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="752" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="76" y="77" width="420" height="419"/>
+					<chartTitle>
+						<font fontName="DejaVu Serif Condensed" size="12" isBold="true"/>
+						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle>
+						<font fontName="DejaVu Serif Condensed" isBold="true"/>
+						<subtitleExpression><![CDATA["Total de Documentos: " + $V{total}]]></subtitleExpression>
+					</chartSubtitle>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{agrupado}]]></keyExpression>
+					<valueExpression><![CDATA[$F{cantidad}]]></valueExpression>
+					<labelExpression><![CDATA[$F{cantidad}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#FF033E"/>
+						<seriesColor seriesOrder="1" color="#FF7E00"/>
+						<seriesColor seriesOrder="2" color="#007FFF"/>
+						<seriesColor seriesOrder="3" color="#00693E"/>
+						<seriesColor seriesOrder="4" color="#6633FF"/>
+						<seriesColor seriesOrder="5" color="#009999"/>
+						<seriesColor seriesOrder="6" color="#FFFF33"/>
+					</plot>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF">
+						<font fontName="DejaVu Serif Condensed"/>
+					</itemLabel>
+				</piePlot>
+			</pieChart>
+			<line>
+				<reportElement x="-2" y="713" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="714" width="224" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Serif Condensed" size="11"/>
+				</textElement>
+				<text><![CDATA[Biblioteca Digital EISC]]></text>
+			</staticText>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="438" y="713" width="63" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="501" y="713" width="24" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
