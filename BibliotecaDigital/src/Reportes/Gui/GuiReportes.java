@@ -142,27 +142,27 @@ public class GuiReportes extends JTabbedPane{
 		retricciones.insets= new Insets(6,10,6,2);
 		retricciones.gridy=0;
 		retricciones.anchor= GridBagConstraints.WEST;
-		retricciones.weightx=0.0;
+		//retricciones.weightx=0.0;
 		PanelreportesBasicos.add(etiquetaTabla,retricciones);
-		retricciones.weightx=1.0;
+		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(tablas,retricciones);
 		retricciones.gridy++;
-		retricciones.weightx=0.0;
+		//retricciones.weightx=0.0;
 		PanelreportesBasicos.add(etiquetaAtributo,retricciones);
-		retricciones.weightx=1.0;
+		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(atributos,retricciones);
 		retricciones.gridy++;
-		retricciones.weightx=0.0;
+		//retricciones.weightx=0.0;
 		PanelreportesBasicos.add(etiquetaTitulo, retricciones);
-		retricciones.weightx=1.0;
+		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoTitulo, retricciones);
 		retricciones.gridy++;	
-		retricciones.weightx=0.0;
+		//retricciones.weightx=0.0;
 		PanelreportesBasicos.add(detallado, retricciones);
 		PanelreportesBasicos.add(totales, retricciones);
 		retricciones.gridy++;
 		PanelreportesBasicos.add(habilitar,retricciones);
-		retricciones.weightx=1.0;
+		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(fechas,retricciones);
 		
 
@@ -170,28 +170,28 @@ public class GuiReportes extends JTabbedPane{
 	    
 	    retricciones.gridy++;
 	    retricciones.gridx=0;
-	    retricciones.weightx=0.0;
+	    //retricciones.weightx=0.0;
 	    PanelreportesBasicos.add(etiquetaDesde,retricciones);
 	    retricciones.anchor=GridBagConstraints.WEST;
 	    retricciones.gridx=1;
-	    retricciones.weightx=1.0;
+	    //retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoFecha,retricciones);
 		retricciones.gridy++;
 		retricciones.gridx=0;
-		retricciones.weightx=0.0;	    
+		//retricciones.weightx=0.0;	    
 		PanelreportesBasicos.add(etiquetaHasta,retricciones);
 		retricciones.gridx=1;
-		retricciones.weightx=1.0;
+		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoFecha2,retricciones);
 		
 		
 		retricciones.gridy++;
-		//retricciones.gridwidth=1;
+		retricciones.gridwidth=2;
 		retricciones.gridy++;
 		retricciones.gridy=retricciones.gridy+10;
 		retricciones.gridx=0;
-		retricciones.anchor= GridBagConstraints.EAST;
-		retricciones.weightx=0.0;
+		retricciones.anchor= GridBagConstraints.CENTER;
+		//retricciones.weightx=0.0;
 		retricciones.insets= new Insets(100, 0, 0, 0);		
 		PanelreportesBasicos.add(botonGenerarReporte,retricciones);
 	
