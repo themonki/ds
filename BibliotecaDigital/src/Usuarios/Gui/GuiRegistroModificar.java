@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -198,14 +199,14 @@ public class GuiRegistroModificar extends JScrollPane{
 		bordeAreaInteres.setTitleFont(Estilos.fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
 		panelAreasInteres.setBorder(bordeAreaInteres);
-		panelAreasInteres.setSize(450, 100);
+		panelAreasInteres.setPreferredSize(new Dimension(400, 180));
 		panelAreasInteres.setToolTipText("Aqui se muestran las areas de interes seleccionadas y que quedaran en tu usuario ");
 		panelAreasInteres.setLayout(new BoxLayout(panelAreasInteres, BoxLayout.Y_AXIS));
 		
 		//scroll para areas de interes, por si crece demasiado.
 		scrollAreaInteres = new JScrollPane(panelAreasInteres);
 		scrollAreaInteres.getViewport().add(panelAreasInteres);
-		scrollAreaInteres.setPreferredSize(new Dimension(450,100));
+		scrollAreaInteres.setPreferredSize(new Dimension(410,190));
 		//scrollAreaInteres.setMaximumSize(new Dimension(100, 100));
 		//Panel donde se incluira todo.
 		panelPrincipal = new JPanel();
@@ -364,10 +365,19 @@ public class GuiRegistroModificar extends JScrollPane{
 		}
 		
 		//Organizar vista para el panel principal.
-		panelPrincipal.setLayout(new BorderLayout(0,10)); 
-		panelPrincipal.add(panelDatos,BorderLayout.NORTH);
-		panelPrincipal.add(scrollAreaInteres,BorderLayout.CENTER);
-		panelPrincipal.add(panelBotones,BorderLayout.SOUTH);
+		panelPrincipal.setLayout(new GridBagLayout()); 
+		GridBagConstraints restriccionesPanel = new GridBagConstraints();
+		restriccionesPanel.anchor= GridBagConstraints.WEST;
+		restriccionesPanel.weightx=1.0;
+		restriccionesPanel.insets = new Insets(2,2,2,2);
+		restriccionesPanel.gridy=0;
+		panelPrincipal.add(panelDatos, restriccionesPanel);
+		restriccionesPanel.gridy++;
+		restriccionesPanel.anchor= GridBagConstraints.CENTER;
+		panelPrincipal.add(scrollAreaInteres, restriccionesPanel);
+		restriccionesPanel.gridy++;
+		
+		panelPrincipal.add(panelBotones, restriccionesPanel);
 		//panelPrincipal.setBorder(borde);
 		
 		this.getViewport().add(panelPrincipal);
