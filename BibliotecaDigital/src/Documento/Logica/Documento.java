@@ -1,3 +1,19 @@
+ /**
+ * Documento.java
+ * 
+ * Clase que presenta un Usuario es decir una persona que puede
+ * hacer uso de la biblioteca digital,por lo tanto, es importante 
+ * guardar sus atributos informacion que nos permita disitinguirlos
+ * de otros usuarios y asi mismo manejar su ingreso al sistema 
+ * adecuadamente.
+
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Yerminson Gonzales
+ * Version:   4.0
+ */
 package Documento.Logica;
 /*Yermi*/
 import java.sql.Date;
