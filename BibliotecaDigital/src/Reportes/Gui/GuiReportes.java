@@ -2,6 +2,7 @@ package Reportes.Gui;
 
 import java.io.File;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -59,10 +60,9 @@ public class GuiReportes extends JTabbedPane{
 	
 	private JCheckBox habilitar;
 	
-	private JScrollPane scroll;
-	private JScrollPane scroll2;
+	private JScrollPane scroll, scroll2;
 	
-	private JLabel etiquetaTabla, etiquetaAtributo, etiquetaTitulo;
+	private JLabel etiquetaTabla, etiquetaAtributo, etiquetaTitulo, etiquetaDesde, etiquetaHasta; ;
 	
 	private JTextField campoTitulo;
 	
@@ -74,15 +74,9 @@ public class GuiReportes extends JTabbedPane{
 	
 	private ButtonGroup opcionReporte;
 	
+	private JSpinner campoFecha, campoFecha2; //estos dos son para el intervalo de reportes basicos
  
-	ControladorReportes controladorReporte;
-	
-	//int cantCondicion=0;
-	private JSpinner campoFecha; //estos dos son para el intervalo de reportes basicos
-	private JSpinner campoFecha2;
-	
-	private JLabel etiquetaDesde;
-	private JLabel etiquetaHasta;
+	private ControladorReportes controladorReporte;
 
 	public GuiReportes()
 	{
@@ -91,54 +85,20 @@ public class GuiReportes extends JTabbedPane{
 	}
 
 	private void initComponents() {
-	
-		//-----------------------------BORDES----------
-		//--ANDREA: "me parecen redundates puesto que los tab contienen de que se trata el panel"
-		/*TitledBorder borde;
-		borde = BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Reportes Usuarios::");
-		borde.setTitleColor(Estilos.colorTitulo);
-		borde.setTitleFont(Estilos.fontTitulo);
-		borde.setTitleJustification(TitledBorder.LEFT);
-		TitledBorder borde2;
 		
-		borde2 = BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Reportes Avanzados::");
-		borde2.setTitleColor(Estilos.colorTitulo);
-		borde2.setTitleFont(Estilos.fontTitulo);
-		borde2.setTitleJustification(TitledBorder.LEFT);*/
-
-		//--------------------------------------------------
 		scroll= new JScrollPane();
 		scroll2= new JScrollPane();
+		
+		inicializarLabels();
+		inicializarComboBOx();
+		
+		PanelreportesBasicos= new JPanel(new GridBagLayout());
+		PanelreportesBasicos.setBackground(Color.WHITE);
 						
 		habilitar= new JCheckBox("Habilitar Periodo Con:");
 		habilitar.setFont(Estilos.fontSubrayados);
 		habilitar.addActionListener(new Manejador());
-		
-				
-		PanelreportesBasicos= new JPanel(new GridBagLayout());
-		//PanelreportesBasicos.setBorder(borde);
-		PanelreportesBasicos.setBackground(Color.WHITE);
-		
-		tablas = new JComboBox();
-		tablas.addItem("Usuarios");
-		tablas.addItem("Areas");
-		tablas.addActionListener(new Manejador());
-		
-		atributos = new JComboBox();
-		atributos.removeAllItems();
-		atributos.addItem("genero");
-		atributos.addItem("nivel_escolaridad");
-		atributos.addItem("vinculo_univalle");
-		atributos.addItem("tipo");
-		
-		fechas= new JComboBox();
-		fechas.addItem("fecha_nacimiento");
-		fechas.addItem("fecha_registro");
-		fechas.addItem("fecha_ultimo_acceso");
-		//condicion= new JComboBox(vectorCondiciones);
-		
+
 		detallado = new JRadioButton("Informe detallado", true);
 		detallado.addActionListener(new Manejador());
 		totales = new JRadioButton("Informe solo con totales", false);
@@ -149,50 +109,6 @@ public class GuiReportes extends JTabbedPane{
 		opcionReporte.add(totales);
 		
 		campoTitulo = new JTextField(20);
-		
-		etiquetaTabla= new JLabel("TABLA: ");
-		etiquetaAtributo= new JLabel("AGRUPADOS POR: ");
-		etiquetaTitulo = new JLabel("TITULO DEL REPORTE: ");
-		etiquetaDesde= new JLabel("Desde :");
-		etiquetaHasta= new JLabel("Hasta :");
-		etiquetaHasta.setVisible(false);
-		etiquetaDesde.setVisible(false);
-		
-		//etiquetaCondicion= new JLabel("CONDICION");
-		botonGenerarReporte= new Button("Generar Reporte");
-		botonGenerarReporte.addActionListener(new Manejador());
-		
-		etiquetaTabla.setForeground(Estilos.colorLabels);
-		etiquetaAtributo.setForeground(Estilos.colorLabels);
-		etiquetaTitulo.setForeground(Estilos.colorLabels);
-		//etiquetaCondicion.setForeground(Estilos.colorLabels);
-		etiquetaTabla.setFont(Estilos.fontLabels);
-		etiquetaAtributo.setFont(Estilos.fontLabels);
-		etiquetaTitulo.setFont(Estilos.fontLabels);
-		//etiquetaCondicion.setFont(Estilos.fontLabels);
-		
-		retricciones= new GridBagConstraints();
-		retricciones.insets= new Insets(0, 0, 20, 40);
-		retricciones.gridy=0;
-		retricciones.anchor= GridBagConstraints.WEST;
-		//retricciones.weightx=1.0;
-		//retricciones.weighty=1.0;
-		PanelreportesBasicos.add(etiquetaTabla,retricciones);
-		PanelreportesBasicos.add(tablas,retricciones);
-		retricciones.gridy++;
-		PanelreportesBasicos.add(etiquetaAtributo,retricciones);
-		PanelreportesBasicos.add(atributos,retricciones);
-		retricciones.gridy++;
-		PanelreportesBasicos.add(etiquetaTitulo, retricciones);
-		PanelreportesBasicos.add(campoTitulo, retricciones);
-		retricciones.gridy++;	
-		PanelreportesBasicos.add(detallado, retricciones);
-		PanelreportesBasicos.add(totales, retricciones);
-		retricciones.gridy++;
-		PanelreportesBasicos.add(habilitar,retricciones);
-		PanelreportesBasicos.add(fechas,retricciones);
-		
-		//PanelreportesBasicos.add(atributos,retricciones);
 		
 		//Crear spinner para la fecha1.
 		SpinnerModel modeloFecha = new SpinnerDateModel();
@@ -216,54 +132,125 @@ public class GuiReportes extends JTabbedPane{
 	    //-------------------------------------
 	    campoFecha2.setVisible(false);
 	    //-------------------------------------
+
+		botonGenerarReporte= new Button("Generar Reporte");
+		botonGenerarReporte.addActionListener(new Manejador());
+		
+		//--- INGRESANDO ATRIBUTOS EN EL PANEL ---
+		
+		retricciones= new GridBagConstraints();
+		retricciones.insets= new Insets(6,10,6,2);
+		retricciones.gridy=0;
+		retricciones.anchor= GridBagConstraints.WEST;
+		//retricciones.weightx=0.0;
+		PanelreportesBasicos.add(etiquetaTabla,retricciones);
+		//retricciones.weightx=1.0;
+		PanelreportesBasicos.add(tablas,retricciones);
+		retricciones.gridy++;
+		//retricciones.weightx=0.0;
+		PanelreportesBasicos.add(etiquetaAtributo,retricciones);
+		//retricciones.weightx=1.0;
+		PanelreportesBasicos.add(atributos,retricciones);
+		retricciones.gridy++;
+		//retricciones.weightx=0.0;
+		retricciones.insets= new Insets(50, 0, 0, 0);		
+
+		PanelreportesBasicos.add(etiquetaTitulo, retricciones);
+		//retricciones.weightx=1.0;
+		PanelreportesBasicos.add(campoTitulo, retricciones);
+		retricciones.gridy++;
+		retricciones.insets= new Insets(5,10,16,2);
+		
+		//retricciones.weightx=0.0;
+		PanelreportesBasicos.add(detallado, retricciones);
+		PanelreportesBasicos.add(totales, retricciones);
+		retricciones.gridy++;
+		PanelreportesBasicos.add(habilitar,retricciones);
+		//retricciones.weightx=1.0;
+		PanelreportesBasicos.add(fechas,retricciones);
+		
+
+	    
+	    
 	    retricciones.gridy++;
 	    retricciones.gridx=0;
+	    //retricciones.weightx=0.0;
 	    PanelreportesBasicos.add(etiquetaDesde,retricciones);
-	    retricciones.anchor=GridBagConstraints.EAST;
-	    retricciones.gridx=0;
+	    retricciones.anchor=GridBagConstraints.WEST;
+	    retricciones.gridx=1;
+	    //retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoFecha,retricciones);
 		retricciones.gridy++;
 		retricciones.gridx=0;
-		retricciones.anchor=GridBagConstraints.WEST;
-	    
+		//retricciones.weightx=0.0;	    
 		PanelreportesBasicos.add(etiquetaHasta,retricciones);
-		retricciones.gridx=0;
-		retricciones.anchor=GridBagConstraints.EAST;
+		retricciones.gridx=1;
+		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoFecha2,retricciones);
 		
-		retricciones.gridx=1;
+		
 		retricciones.gridy++;
-		retricciones.anchor=GridBagConstraints.WEST;
 		retricciones.gridwidth=2;
-		//PanelreportesBasicos.add(nuevaCondicion,retricciones);
 		retricciones.gridy++;
-		
-		//PanelreportesBasicos.add(condicion,retricciones);
-		retricciones.gridwidth=1;
 		retricciones.gridy=retricciones.gridy+10;
-		retricciones.gridx=1;
-		
+		retricciones.gridx=0;
+		retricciones.anchor= GridBagConstraints.CENTER;
+		//retricciones.weightx=0.0;
 		retricciones.insets= new Insets(100, 0, 0, 0);		
 		PanelreportesBasicos.add(botonGenerarReporte,retricciones);
 	
-		
 		retricciones.insets= new Insets(0, 0, 0, 0);
-		
-		retricciones.insets= new Insets(100, 0, 0, 0);		
-	
-		
-		retricciones.insets= new Insets(0, 0, 0, 0);
-		
 
-		
 		scroll.setViewportView(PanelreportesBasicos);
 		panelReportesAvanzados = new GuiReportesAvanzados();
 		scroll2.setViewportView(panelReportesAvanzados);
 		
-		addTab("Reportes Basicos",scroll );
+		addTab("Reportes Basicos",scroll);
 		addTab("Reportes Avanzados",scroll2 );
 	}
 
+
+	private void inicializarComboBOx() {
+		
+		tablas = new JComboBox();
+		tablas.addItem("Usuarios");
+		tablas.addItem("Areas");
+		tablas.addActionListener(new Manejador());
+		
+		atributos = new JComboBox();
+		atributos.removeAllItems();
+		atributos.addItem("genero");
+		atributos.addItem("nivel_escolaridad");
+		atributos.addItem("vinculo_univalle");
+		atributos.addItem("tipo");
+		
+		fechas= new JComboBox();
+		fechas.addItem("fecha_nacimiento");
+		fechas.addItem("fecha_registro");
+		fechas.addItem("fecha_ultimo_acceso");
+		
+	}
+
+	private void inicializarLabels() {
+		
+		etiquetaTabla= new JLabel("Reporte De: ");
+		etiquetaAtributo= new JLabel("Agrupados Por: ");
+		etiquetaTitulo = new JLabel("Titulo Del Reporte : ");
+		etiquetaDesde= new JLabel("Desde :");
+		etiquetaHasta= new JLabel("Hasta :");
+		
+		etiquetaHasta.setVisible(false);
+		etiquetaDesde.setVisible(false);
+		
+		etiquetaTabla.setForeground(Estilos.colorLabels);
+		etiquetaAtributo.setForeground(Estilos.colorLabels);
+		//etiquetaTitulo.setForeground(Estilos.colorLabels);
+		
+		etiquetaTabla.setFont(Estilos.fontLabels);
+		etiquetaAtributo.setFont(Estilos.fontLabels);
+		etiquetaTitulo.setFont(Estilos.fontSubtitulos);
+		
+	}
 
 	public static void main(String args[]) {
 

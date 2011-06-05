@@ -4,7 +4,7 @@
  * Clase que representa un resultado de una consulta de un usuario
  * donde se mantiene informando al usuario sobre los nuevos documentos
  * catalogados despues de su ultimo ingreso teniendolo asi actualizado 
- * en cuanto a documentos de su area de interes. 
+ * en cuanto a documentos de  
  * 
  * JAVA version "1.6.0"
  * 
@@ -21,23 +21,23 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import Consultas.Gui.GuiResultadoConsulta;
-import Consultas.Gui.GuiVistaDocumento;
+import Consultas.Gui.GuiVistaDetalladaConsulta;
 import Utilidades.Estilos;
 
-public class GuiNovedades extends JScrollPane {
+public class GuiNovedades extends JScrollPane
+{
 
 	private static final long serialVersionUID = 1L;
-
-	// Nos permite saber el tipo del usuario que realiza la consulta por defecto
-	// es cero.
+	
+	// Nos permite saber el tipo del usuario que realiza la consulta por defecto es cero.
 	public static int TIPO_USUARIO;
-
+		
 	public static JPanel PANEL_NOVEDADES;
 	public static GuiResultadoConsulta RESULTADO_CONSULTA;
-	public static GuiVistaDocumento VISTA_DOCUMENTO;
+	public static GuiVistaDetalladaConsulta PANEL_VISTA_DETALLADA_CONSULTA;
 	private static TitledBorder BORDE;
-
-	public GuiNovedades() {
+	public GuiNovedades()
+	{		
 		PANEL_NOVEDADES = new JPanel(new BorderLayout());
 		String title = "::Novedades::";
 
@@ -48,28 +48,30 @@ public class GuiNovedades extends JScrollPane {
 		BORDE.setTitleColor(Estilos.colorTitulo);
 		BORDE.setTitleFont(Estilos.fontTitulo);
 		BORDE.setTitleJustification(TitledBorder.LEFT);
-
+		
 		PANEL_NOVEDADES.setBorder(BORDE);
-
+		
 		this.setViewportView(PANEL_NOVEDADES);
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
+		
 	}
-
-	public static void ponerDescripcion() {
+	
+	public static void ponerDescripcion()
+	{
 		PANEL_NOVEDADES.remove(RESULTADO_CONSULTA);
 		PANEL_NOVEDADES.setBorder(null);
-		PANEL_NOVEDADES.add(VISTA_DOCUMENTO, BorderLayout.CENTER);
+		PANEL_NOVEDADES.add(PANEL_VISTA_DETALLADA_CONSULTA, BorderLayout.CENTER);
 		PANEL_NOVEDADES.updateUI();
 	}
-
-	public static void restaurar() {
-		PANEL_NOVEDADES.remove(VISTA_DOCUMENTO);
+	public static void restaurar()
+	{
+		PANEL_NOVEDADES.remove(PANEL_VISTA_DETALLADA_CONSULTA);	
 		PANEL_NOVEDADES.setBorder(BORDE);
-		PANEL_NOVEDADES.add(RESULTADO_CONSULTA, BorderLayout.CENTER);
-		PANEL_NOVEDADES.remove(VISTA_DOCUMENTO);
+		PANEL_NOVEDADES.add(RESULTADO_CONSULTA, BorderLayout.CENTER );		
+		PANEL_NOVEDADES.remove(PANEL_VISTA_DETALLADA_CONSULTA);
 		PANEL_NOVEDADES.updateUI();
 	}
-
+	
+	
 }

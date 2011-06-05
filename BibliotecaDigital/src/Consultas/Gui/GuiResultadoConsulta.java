@@ -1,3 +1,16 @@
+ /**
+ * GuiResultadoConsulta.java
+ * 
+ * Clase que representa la interfaz que permite mostrar los resul-
+ * tados que arrojan las consultas general y avanzada de los do-
+ * cumentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Edgar Andres Moncada
+ * Version:   4.0
+ */
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
@@ -266,18 +279,18 @@ public class GuiResultadoConsulta extends JScrollPane{
 				
 				if (TIPO_CONSULTA == 1) {
 
-					GuiConsultaBasica.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
+					GuiConsultaBasica.PANEL_VISTA_DETALLADA_CONSULTA = new GuiVistaDetalladaConsulta(d);
 					GuiConsultaBasica.ponerDescripcion();
 
 				} else if (TIPO_CONSULTA == 2) {
-					GuiConsultaAvanzada.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(
+					GuiConsultaAvanzada.PANEL_VISTA_DETALLADA_CONSULTA = new GuiVistaDetalladaConsulta(
 							d);
 					
 					GuiConsultaAvanzada.ponerDescripcion();
 
 				} else if (TIPO_CONSULTA == 3) {
 					
-					GuiNovedades.VISTA_DOCUMENTO = new GuiVistaDocumento(d);
+					GuiNovedades.PANEL_VISTA_DETALLADA_CONSULTA = new GuiVistaDetalladaConsulta(d);
 					GuiNovedades.ponerDescripcion();
 				
 
