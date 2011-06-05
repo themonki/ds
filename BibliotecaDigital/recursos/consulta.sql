@@ -4,29 +4,34 @@
 --documentos descargados por fecha
 SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x;
 
---consulta por fecha de nacimiento para todos los anio y todos los meses organiado
-SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email FROM usuario AS u ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
+--usuarios por fecha de nacimiento para todos los anio y todos los meses organiado
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
+
+--usuarios por fecha de nacimiento para todos los anio y todos los meses totales
+
 
 --consulta por fecha de registro para todos los anio y todos los meses organiado
-SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email FROM usuario AS u ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro);
+SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro);
 
 --consulta por fecha de nacimiento para anios restringidos y todos los meses organiado
-SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2010 ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2010 ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
 
 --consulta por fecha de resgistro para anios restringidos y todos los meses organiado
-SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  fecha_registro);
+SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  fecha_registro);
 
 --consulta por fecha nacimiento para todos los anio y mese restringidos
-SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email FROM usuario AS u WHERE EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN 3 AND 8 ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u WHERE EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN 3 AND 8 ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
 
 --consulta por fecha registro para todos los anio y meses restringidos
-SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email FROM usuario AS u WHERE EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 03 AND 08 ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro);
+SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u WHERE EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 03 AND 08 ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro);
 
 --consulta por fecha nacimiento con años y mes restringidos
-SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN 5 AND 8 ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN 5 AND 8 ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
 
 --consulta por fecha registro con años y mes restringidos
-SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 5 AND 8 ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro);
+SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 5 AND 8 ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro);
+
+
 
 --areas del conocimiento con sus respectivas areas padres
 --SELECT A.nombre, B.nombre AS nombre_Area_Padre FROM area_conocimiento AS A JOIN area_conocimiento AS B ON A.area_padre = B.id_area ORDER BY nombre_Area_Padre;

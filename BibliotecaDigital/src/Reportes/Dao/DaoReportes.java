@@ -69,32 +69,11 @@ FachadaBD fachada;
 			String columnOne = resultado.getString(1);
 			if(atributoUsuario.equals("genero"))
 			{
-				if(columnOne.equals("M"))
-				{
-					row.add("Masculino");
-				
-				}else
-				{
-					row.add("Femenino");
-				}					
+				row.add(convertirGenero(resultado.getString(1)));
+						
 			}else if(atributoUsuario.equals("tipo"))
 			{
-				if(columnOne.equals("3"))
-				{
-					row.add("Normal");
-				
-				}else if(columnOne.equals("2"))
-				{
-					row.add("Catalogador");
-					
-				}else if(columnOne.equals("1"))
-				{
-					row.add("Administrador");
-				
-				}else
-				{
-					row.add("Anónimo");
-				}
+				row.add(convertirTipo(resultado.getInt(1)));
 			}else
 			{
 				row.add(columnOne);
@@ -172,32 +151,12 @@ FachadaBD fachada;
 			String columnOne = resultado.getString(1);
 			if(atributoUsuario.equals("genero"))
 			{
-				if(columnOne.equals("M"))
-				{
-					row.add("Masculino");
+				row.add(convertirGenero(resultado.getString(1)));
 				
-				}else
-				{
-					row.add("Femenino");
-				}					
 			}else if(atributoUsuario.equals("tipo"))
 			{
-				if(columnOne.equals("3"))
-				{
-					row.add("Normal");
+				row.add(convertirTipo(resultado.getInt(1)));
 				
-				}else if(columnOne.equals("2"))
-				{
-					row.add("Catalogador");
-					
-				}else if(columnOne.equals("1"))
-				{
-					row.add("Administrador");
-				
-				}else
-				{
-					row.add("Anónimo");
-				}
 			}else
 			{
 				row.add(columnOne);
@@ -455,6 +414,18 @@ FachadaBD fachada;
 			default:
 				return "Anónimo";
 		}
+	}
+	
+	private String convertirGenero(String genero)
+	{
+		if(genero.equals("M"))
+		{
+			return "Masculino";
+		
+		}else
+		{
+			return "Femenino";
+		}		
 	}
 /* ******************Reporte relacionados con documento********************** */
 	public TableDataSource consultaDocumentosAgrupadosArea()
