@@ -55,6 +55,10 @@ import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * @author Maria Andrea Cruz Blandon
+ *
+ */
 public class GuiRegistroModificar extends JScrollPane {
 
 	// ATRIBUTOS GUI
@@ -132,6 +136,13 @@ public class GuiRegistroModificar extends JScrollPane {
 	}
 
 	// Constructor para modificar usuario.
+	/**
+	 * Constructor que recibe el usuario que quiere modificar sus datos,
+	 * asi cosntruye la interfaz que se va a presentar y el modo indicando
+	 * que es la gui de modificar.
+	 * @param usuarioModificar
+	 * @param modo
+	 */
 	public GuiRegistroModificar(Usuario usuarioModificar, int modo) {
 		this.modo = modo; // 1 normal 2
 		this.usuarioModificar = usuarioModificar;
@@ -468,6 +479,11 @@ public class GuiRegistroModificar extends JScrollPane {
 
 	}
 
+	/**
+	 * 
+	 * Se inicializan los manjeadores de los eventos en la Gui.
+	 * 
+	 */
 	private void inicializarManejadores() {
 		manejadorBoton = new ManejadorBoton();
 		manejadorComboBox = new ManejadorComboBox();
@@ -475,9 +491,12 @@ public class GuiRegistroModificar extends JScrollPane {
 		manejadorJTextField = new ManejadorJTextField();
 	}
 
-	// Incializar jcomponents para registro
-
-	// Inicializar jcomponents para registrar usuario.
+	
+	/**
+	 * 
+	 * Inicializar jcomponents para registrar usuario.
+	 * 
+	 */
 	private void inicializarJComponentsRegistro() {
 
 		// JTextField
@@ -527,7 +546,11 @@ public class GuiRegistroModificar extends JScrollPane {
 				.setEditable(false);
 	}
 
-	// Inicializar jcomponents para modificar en perfil administrador.
+	/**
+	*
+	*  Inicializar jcomponents para modificar en perfil 
+	*  administrador.
+	*/
 	private void inicializarJComponentsModificarAdministrador() {
 
 		// Obtener datos del usuario e ingresarlos a los correspondientes
@@ -580,7 +603,11 @@ public class GuiRegistroModificar extends JScrollPane {
 		campoEstado.setSelectedIndex(usuarioModificar.getEstado() ? 0 : 1);
 	}
 
-	// Inicializar jcomponents para modificar en perfil usuario normal.
+	
+	/**
+	 * 
+	 *  Inicializar jcomponents para modificar en perfil usuario normal.
+	 */
 	private void inicializarJComponentsModificarUsuarioNormal() {
 
 		// Obtener datos de usuario e introducirlos en los JTextField.
@@ -646,8 +673,13 @@ public class GuiRegistroModificar extends JScrollPane {
 
 	}
 
-	// Inicializa labels, creando una nueva con el nombre indicado(titulo) y
-	// estilo de letra y color predifinidos.
+	
+	/**
+	 * Inicializa labels, creando una nueva con el nombre indicado(titulo) y
+	 * estilo de letra y color predifinidos.
+	 * @param titulo
+	 * @return
+	 */
 	private JLabel inicializarLabel(String titulo) {
 		JLabel label = new JLabel(titulo, JLabel.LEFT);
 		label.setForeground(Estilos.colorLabels);
@@ -655,10 +687,18 @@ public class GuiRegistroModificar extends JScrollPane {
 		return label;
 	}
 
-	// Permite configurar opciones de inseccion, y estilo de los JComponents en
-	// los paneles.
-
-	// Configura las restricciones para ingresar en el panel de datos.
+	
+	/**
+	 * 
+	 * Permite configurar opciones de inseccion, y estilo de los JComponents en
+	 * los paneles.
+	 * Configura las restricciones para ingresar en el panel de datos.
+	 * 
+	 * @param x
+	 * @param y
+	 * @param insets
+	 * @return GridBagConstraints
+	 */
 	private GridBagConstraints configurar(int x, int y, Insets insets) {
 
 		GridBagConstraints configuracion = new GridBagConstraints();
@@ -673,7 +713,12 @@ public class GuiRegistroModificar extends JScrollPane {
 		return configuracion;
 	}
 
-	// Funcion que limpia los campos despues de registrar.
+	
+	/**
+	 * 
+	 * Funcion que limpia los campos despues de registrar.
+	 * 
+	 */
 	private void LimpiarCampos() {
 		campoLoginTF.setText("");
 		campoNombre1.setText("");
@@ -693,9 +738,14 @@ public class GuiRegistroModificar extends JScrollPane {
 		areaConocimientoVector.removeAllElements();
 	}
 
-	// ActionListeners de diferntes JComponents
-
-	// ActionListener de los botones dependiendo del modo.
+	
+	/**
+	 * ActionListeners de diferntes JComponents
+ 	 * ActionListener de los botones dependiendo del modo.
+	 * 
+	 * @author Maria Andrea Cruz Blandon
+	 *
+	 */
 	private class ManejadorBoton implements ActionListener {
 
 		@Override
@@ -900,10 +950,15 @@ public class GuiRegistroModificar extends JScrollPane {
 
 	}
 
-	// ActionListener para manejar areas de interes que seleccione o
-	// deseleccione el usuario.
-
-	// ActionListener del JComboBox de areas de interes.
+	
+	/**
+	 * ActionListener para manejar areas de interes que seleccione o
+	 * deseleccione el usuario.
+	 * ActionListener del JComboBox de areas de interes.
+	 * 
+	 * @author Maria Andrea Cruz Blandon
+	 *
+	 */
 	private class ManejadorComboBox implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -926,8 +981,14 @@ public class GuiRegistroModificar extends JScrollPane {
 
 	}
 
-	// Manejador para las etiqutas (areas de interes) que agrega el usuario, y
-	// se visualizan en el panelAreasInteres.
+	
+	/**
+	 * Manejador para las etiqutas (areas de interes) que agrega el usuario, y
+	 * se visualizan en el panelAreasInteres.
+	 * 
+	 * @author Maria Andrea Cruz Blandon
+	 *
+	 */
 	private class ManejadorMouse implements MouseListener {
 
 		@Override
@@ -970,7 +1031,14 @@ public class GuiRegistroModificar extends JScrollPane {
 
 	}
 
-	// KeyListener para no permitir mas de determinados tamanos de cadenas.
+	
+	/**
+	 * 
+	 * KeyListener para no permitir mas de determinados tamanos de cadenas.
+	 * 
+	 * @author Maria Andrea Cruz Blandon
+	 *
+	 */
 	private class ManejadorJTextField implements KeyListener {
 
 		@Override
