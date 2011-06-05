@@ -355,7 +355,6 @@ public class GuiCatalogar extends JScrollPane{
 
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
 
-		
 		panel5.add(scroll);
 		panel.add(botonCatalogar);
 
@@ -379,9 +378,6 @@ public class GuiCatalogar extends JScrollPane{
 		panel22.add(panel2,BorderLayout.NORTH);		
 		panel22.add(panel4,BorderLayout.SOUTH);
 		this.setViewportView(panel22);
-
-		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		//------------------------------------------
 		setVisible(true);

@@ -54,8 +54,8 @@ public class GuiPrincipal extends JFrame
 		private Button ingresarSistema;
 		private Button consultaAvanzada;
 		
-		private static JLabel ESTADO,CUENTA,BUSQUEDA;
-
+		private static JLabel ESTADO;
+		private JLabel cuenta, busqueda;
 		// Clase interna que permite administrar todos los eventos que genera la
 		// ventana y son escuchados.
 		private Manejador manejador;
@@ -146,8 +146,8 @@ public class GuiPrincipal extends JFrame
 			ingresarSistema.addActionListener(manejador);
 			consultaAvanzada = new Button("Consulta Avanzada");
 			consultaAvanzada.addActionListener(manejador);			
-			CUENTA= new JLabel("Cuenta",JLabel.CENTER);
-			BUSQUEDA= new JLabel("Busqueda",JLabel.CENTER);
+			cuenta= new JLabel("Cuenta",JLabel.CENTER);
+			busqueda= new JLabel("Busqueda",JLabel.CENTER);
 			
 			
 			
@@ -160,14 +160,14 @@ public class GuiPrincipal extends JFrame
 			panelOpcionesGenerales.add(new JLabel(new ImageIcon("recursos/logo3dpajaro.png")),restricciones);
 			restricciones.insets= new Insets(0, 0, 0, 0);
 			restricciones.gridy++;
-			panelOpcionesGenerales.add(BUSQUEDA, restricciones);
+			panelOpcionesGenerales.add(busqueda, restricciones);
 			restricciones.gridy++;
 			panelOpcionesGenerales.add(volver, restricciones);
 			restricciones.gridy++;
 			panelOpcionesGenerales.add(consultaAvanzada, restricciones);
 			restricciones.gridy++;
 			
-			panelOpcionesGenerales.add(CUENTA, restricciones);
+			panelOpcionesGenerales.add(cuenta, restricciones);
 			restricciones.gridy++;
 			panelOpcionesGenerales.add(crearUsuario, restricciones);
 			restricciones.gridy++;			

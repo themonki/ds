@@ -82,11 +82,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 		panel3.add(panel2);
 
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
-		scroll
-				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
+		
 		panel5.add(scroll);
 
 		panel.add(botonIngresarPalabra);
@@ -115,6 +111,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 		campoNombre.addKeyListener(manejador);
 		campoDescripcion = new JTextArea(5, 20);
 		campoDescripcion.addKeyListener(manejador);
+		campoDescripcion.setLineWrap(true);
 		botonIngresarPalabra = new Button("Registrar Palabra");
 		botonIngresarPalabra.addActionListener(new ManejadorBoton());
 
