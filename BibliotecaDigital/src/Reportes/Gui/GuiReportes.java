@@ -215,8 +215,12 @@ public class GuiReportes extends JTabbedPane{
 		panelReportesAvanzados = new GuiReportesAvanzados();
 		scroll2.setViewportView(panelReportesAvanzados);
 		
+		//-------------------------------------
+		GuiReporteSQL sqlpanel= new GuiReporteSQL();
+		
 		addTab("Reportes Basicos",scroll);
 		addTab("Reportes Avanzados",scroll2 );
+		addTab("Consultas SQL",sqlpanel );
 	}
 
 
