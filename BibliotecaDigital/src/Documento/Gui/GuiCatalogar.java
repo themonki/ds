@@ -232,13 +232,16 @@ public class GuiCatalogar extends JScrollPane{
 		panel2.add(campoTituloSecundario,restriccionCampo);
 
 		restriccionEtiquetas.gridy=2;
+		restriccionEtiquetas.weightx=0.0;
 		restriccionCampo.gridy = 2;
 		restriccionCampo.ipadx=50;
-		restriccionCampo.gridwidth=1;
+		restriccionCampo.weightx=0.0;
+		//restriccionCampo.gridwidth=1;
 
 		restriccionBotones.gridx=2;
 		restriccionBotones.gridy=2;
 		restriccionBotones.ipadx=20;
+		restriccionBotones.anchor= GridBagConstraints.WEST;
 
 		panel2.add(autor,restriccionEtiquetas);
 		panel2.add(campoAutor,restriccionCampo);		
@@ -262,9 +265,9 @@ public class GuiCatalogar extends JScrollPane{
 		restriccionEtiquetas.gridy=5;
 		restriccionCampo.gridy = 5;
 		restriccionCampo.ipadx=0;
-		restriccionCampo.gridwidth=1;
+		//restriccionCampo.gridwidth=1;
 		restriccionBotones.gridy=5;
-		restriccionBotones.anchor= GridBagConstraints.EAST;
+		//restriccionBotones.anchor= GridBagConstraints.EAST;
 		restriccionBotones.gridx=2;
 		restriccionBotones.ipadx=10;
 
