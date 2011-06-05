@@ -70,8 +70,7 @@ public class FachadaBD {
 	/**
 	 * Meotodo para cerrar una conexion
 	 * 
-	 * @param c
-	 *            La conexion a la base de datos
+	 * @param c La conexion a la base de datos
 	 * */
 
 	public void cerrarConexion(Connection c) {
