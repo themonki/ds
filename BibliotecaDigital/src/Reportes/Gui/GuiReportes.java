@@ -52,13 +52,15 @@ public class GuiReportes extends JTabbedPane{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JPanel PanelreportesBasicos,panelRepAvanzados; 
+	private JPanel PanelreportesBasicos; 
+	private GuiReportesAvanzados panelReportesAvanzados;
 	
 	private GridBagConstraints retricciones;
 	
 	private JCheckBox habilitar;
 	
 	private JScrollPane scroll;
+	private JScrollPane scroll2;
 	
 	private JLabel etiquetaTabla, etiquetaAtributo, etiquetaTitulo;
 	
@@ -78,32 +80,9 @@ public class GuiReportes extends JTabbedPane{
 	//int cantCondicion=0;
 	private JSpinner campoFecha; //estos dos son para el intervalo de reportes basicos
 	private JSpinner campoFecha2;
-	private JSpinner campoFecha3; //estos dos son para el intervaloe de reportes avanzados
-	private JSpinner campoFecha4;
 	
-	private Vector<String> vectorContablasAvanzado;
-	private Vector<String> vectorAtributosAvanzado;
-	
-	private JScrollPane scroll2;
-	
-	private JCheckBox habilitarAvanzado;
-	
-	private JComboBox tablasAvanzado;
-	private JComboBox atributosAvanzado;
-	
-	private JLabel etiquetaTablaAvanzado;
-	private JLabel etiquetaAtributoAvanzado;
 	private JLabel etiquetaDesde;
 	private JLabel etiquetaHasta;
-	
-	private GridBagConstraints retriccionesAvanzado;
-	
-	private JCheckBox habilitarPorDia;
-	private JCheckBox habilitarPorMes;
-	private JCheckBox habilitarPorAño;
-	private JCheckBox habilitarPorHora;
-	
-	private Button botonAvanzado;
 
 	public GuiReportes()
 	{
@@ -131,6 +110,7 @@ public class GuiReportes extends JTabbedPane{
 
 		//--------------------------------------------------
 		scroll= new JScrollPane();
+		scroll2= new JScrollPane();
 						
 		habilitar= new JCheckBox("Habilitar Periodo Con:");
 		habilitar.setFont(Estilos.fontSubrayados);
@@ -180,9 +160,7 @@ public class GuiReportes extends JTabbedPane{
 		
 		//etiquetaCondicion= new JLabel("CONDICION");
 		botonGenerarReporte= new Button("Generar Reporte");
-		botonAvanzado= new Button("Generar Reporte");
 		botonGenerarReporte.addActionListener(new Manejador());
-		botonAvanzado.addActionListener(new Manejador());
 		
 		etiquetaTabla.setForeground(Estilos.colorLabels);
 		etiquetaAtributo.setForeground(Estilos.colorLabels);
@@ -270,141 +248,17 @@ public class GuiReportes extends JTabbedPane{
 	
 		
 		retricciones.insets= new Insets(0, 0, 0, 0);
-
-		
-		//******************************PANEL AVANZADO**********************************
-		//--------------------------------------------------------
-		panelRepAvanzados= new JPanel();
-		scroll2= new JScrollPane();
-		
-		
-		vectorContablasAvanzado= new Vector<String>();
-		vectorContablasAvanzado.add("Descargas");
-		vectorContablasAvanzado.add("Consultas");
-		vectorContablasAvanzado.add("Catalogar");
-		vectorContablasAvanzado.add("Modificar");
-		
-		vectorAtributosAvanzado= new Vector<String>();
-		vectorAtributosAvanzado.add("Usuario que mas ...");
-		vectorAtributosAvanzado.add("Documento que mas..");
-		vectorAtributosAvanzado.add("Cantidad De ..");
-		
-		//vectorAtributosAvanzado.add("");
-	
-	
-		habilitarAvanzado= new JCheckBox("habilitar periodo");
-		habilitarPorDia= new JCheckBox("Generar Por Dia");
-		habilitarPorMes= new JCheckBox("Generar Por Mes");
-		habilitarPorAño= new JCheckBox("Generar Por Año");
-		habilitarPorHora= new JCheckBox("Generar Por Hora");
-		habilitarAvanzado.setFont(Estilos.fontSubrayados);
-		
-		
-		panelRepAvanzados= new JPanel(new GridBagLayout());
-		//panelRepAvanzados.setBorder(borde2);
-		panelRepAvanzados.setBackground(Color.WHITE);
-		
-		tablasAvanzado = new JComboBox(vectorContablasAvanzado);
-		atributosAvanzado = new JComboBox(vectorAtributosAvanzado);
-		//condicionAvanzado= new JComboBox(vectorCondicionesAvanzado);
-		etiquetaTablaAvanzado= new JLabel("TABLA");
-		etiquetaAtributoAvanzado= new JLabel("CONSULTAR POR   :");
-		//etiquetaCondicionAvanzado= new JLabel("CONDICION");
-		//botonGenerarReporteAvanzado= new Button("Generar Reporte");
-		etiquetaTablaAvanzado.setForeground(Estilos.colorLabels);
-		etiquetaAtributoAvanzado.setForeground(Estilos.colorLabels);
-		//etiquetaCondicionAvanzado.setForeground(Estilos.colorLabels);
-		etiquetaTablaAvanzado.setFont(Estilos.fontLabels);
-		etiquetaAtributoAvanzado.setFont(Estilos.fontLabels);
-		//etiquetaCondicionAvanzado.setFont(Estilos.fontLabels);
-		//nuevaCondicionAvanzado= new Button("Añadir condicion");
-		//nuevaCondicionAvanzado.addActionListener(new Manejador());
-		
-		retriccionesAvanzado= new GridBagConstraints();
-		retriccionesAvanzado.insets= new Insets(0, 0, 20, 40);
-		retriccionesAvanzado.gridy=0;
-		retriccionesAvanzado.anchor= GridBagConstraints.WEST;
-		//retriccionesAvanzado.weightx=1.0;
-		//retriccionesAvanzado.weighty=1.0;
-		panelRepAvanzados.add(etiquetaTablaAvanzado,retriccionesAvanzado);
-		panelRepAvanzados.add(tablasAvanzado,retriccionesAvanzado);
-		retriccionesAvanzado.gridy++;
-		panelRepAvanzados.add(etiquetaAtributoAvanzado,retriccionesAvanzado);
-		panelRepAvanzados.add(atributosAvanzado,retriccionesAvanzado);
-
-		retriccionesAvanzado.gridy++;
-		
-		panelRepAvanzados.add(habilitarPorAño,retriccionesAvanzado);
-		panelRepAvanzados.add(habilitarPorMes,retriccionesAvanzado);
-		
-		retriccionesAvanzado.gridy++;
-		
-		panelRepAvanzados.add(habilitarPorDia,retriccionesAvanzado);
-		panelRepAvanzados.add(habilitarPorHora,retriccionesAvanzado);
-		
-		
-		retriccionesAvanzado.gridy++;
-		
-		panelRepAvanzados.add(habilitarAvanzado,retriccionesAvanzado);
-		//panelRepAvanzados.add(new JComboBox(vectorFechasAvanzado),retriccionesAvanzado);
-		
-		//PanelreportesBasicos.add(atributos,retricciones);
-		
-		//Crear spinner para la fecha3.
-		SpinnerModel modeloFecha3 = new SpinnerDateModel();
-		campoFecha3 = new JSpinner(modeloFecha3);
-	    campoFecha3.setFont(Estilos.fontLabels);
-	    campoFecha3.setForeground(Estilos.colorLabels);
-		JSpinner.DateEditor spinnerFecha3 = new JSpinner.DateEditor(campoFecha3,"yyyy-MM-dd");
-		campoFecha3.setEditor(spinnerFecha3);
-	    ((JSpinner.DateEditor) campoFecha3.getEditor()).getTextField().setEditable(false);
-	  //Crear spinner para la fecha4.
-		SpinnerModel modeloFecha4 = new SpinnerDateModel();
-		campoFecha4 = new JSpinner(modeloFecha4);
-	    campoFecha4.setFont(Estilos.fontLabels);
-	    campoFecha4.setForeground(Estilos.colorLabels);
-		JSpinner.DateEditor spinnerFecha4 = new JSpinner.DateEditor(campoFecha4,"yyyy-MM-dd");
-		campoFecha4.setEditor(spinnerFecha4);
-	    ((JSpinner.DateEditor) campoFecha4.getEditor()).getTextField().setEditable(false);
-	    
-	    retriccionesAvanzado.gridy++;
-	    retriccionesAvanzado.gridx=0;
-	    panelRepAvanzados.add(new JLabel("Desde :"),retriccionesAvanzado);
-	    retriccionesAvanzado.anchor=GridBagConstraints.EAST;
-	    retriccionesAvanzado.gridx=0;
-	    panelRepAvanzados.add(campoFecha3,retriccionesAvanzado);
-		retriccionesAvanzado.gridy++;
-		retriccionesAvanzado.gridx=0;
-		retriccionesAvanzado.anchor=GridBagConstraints.WEST;
-	    
-		panelRepAvanzados.add(new JLabel("Hasta :"),retriccionesAvanzado);
-		retriccionesAvanzado.gridx=0;
-		retriccionesAvanzado.anchor=GridBagConstraints.EAST;
-		panelRepAvanzados.add(campoFecha4,retriccionesAvanzado);
-		
-		retriccionesAvanzado.gridx=1;
-		retriccionesAvanzado.gridy++;
-		retriccionesAvanzado.anchor=GridBagConstraints.WEST;
-		retriccionesAvanzado.gridwidth=2;
-		//panelRepAvanzados.add(nuevaCondicionAvanzado,retriccionesAvanzado);
-		retriccionesAvanzado.gridy++;
-		
-		//PanelreportesBasicos.add(condicion,retricciones);
-		retriccionesAvanzado.gridwidth=1;
-		retriccionesAvanzado.gridy=retriccionesAvanzado.gridy+10;
-		retriccionesAvanzado.gridx=1;
 		
 		retricciones.insets= new Insets(100, 0, 0, 0);		
-		panelRepAvanzados.add(botonAvanzado,retriccionesAvanzado);
 	
 		
-		retriccionesAvanzado.insets= new Insets(0, 0, 0, 0);
 		retricciones.insets= new Insets(0, 0, 0, 0);
 		
 
 		
 		scroll.setViewportView(PanelreportesBasicos);
-		scroll2.setViewportView(panelRepAvanzados);
+		panelReportesAvanzados = new GuiReportesAvanzados();
+		scroll2.setViewportView(panelReportesAvanzados);
 		
 		addTab("Reportes Basicos",scroll );
 		addTab("Reportes Avanzados",scroll2 );
@@ -611,9 +465,6 @@ public class GuiReportes extends JTabbedPane{
 				//System.out.println("reporte generado");
 				
 				}
-			if(evento.getSource()==botonAvanzado){
-				JOptionPane.showMessageDialog(null, "En construccion","Lo sentimos", JOptionPane.INFORMATION_MESSAGE);
-			}
 			//nuevaCondicon();
 		}	
 	}
