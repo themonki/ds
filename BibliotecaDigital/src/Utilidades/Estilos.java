@@ -1,12 +1,23 @@
+/**
+ * Estilos.java
+ * 
+ * Clase que representa un estilos como tipos de letras y colores
+ * que pueden ser usados por botones,etiquetas atributos  y campos 
+ * de texto para darle una mejor  apariencia a la interfaz.
+ *
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:    Luis Felipe Vargas
+ * Version:   4.0
+ */
+
 package Utilidades;
 
 import java.awt.Color;
 import java.awt.Font;
 
-/**
- * @author 
- *
- */
+
 public class Estilos {
 	
 	/**

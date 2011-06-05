@@ -1,3 +1,17 @@
+ /**
+ * Consulta.java
+ * 
+ * Clase que representa una Consulta es decir una representacion
+ * de un resultado de una consulta de un Documento de la Biblio-
+ * teca digital que contiene el titulo principal, los autores y
+ * la llave del documento.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Edgar Andres Moncada
+ * Version:   4.0
+ */
 package Consultas.Logica;
 
 import java.util.Vector;

@@ -1,3 +1,18 @@
+/*
+ * ControladorPalabraClave.java
+ * 
+ * Clase que permite la comunicación entre la aplicación y la base de datos
+ * en el envió de información que este relacionada con los Autores de la b-
+ * iblioteca digital involucrando algunas de las clases en el paquete y su-
+ * bpaquetes de GestionDocumento.
+ * 
+ *
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Cristian Leonardo Rios
+ * Version:   4.0
+ */
 package GestionDocumento.Controlador;
 
 import java.util.Vector;

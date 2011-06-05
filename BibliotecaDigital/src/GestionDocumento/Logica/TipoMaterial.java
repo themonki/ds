@@ -1,3 +1,16 @@
+/**
+ * TipoMaterial.java
+ * 
+ * Clase que representa un Tipo Material es decir que almacenará
+ * los atributos de el tipo de Material de un documento de la Bi-
+ * blioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Cristian Leonardo Rios
+ * Version:   4.0
+ */
 package GestionDocumento.Logica;
 
 /**

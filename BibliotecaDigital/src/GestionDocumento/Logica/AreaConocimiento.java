@@ -1,3 +1,16 @@
+ /**
+ * AreaConocimiento.java
+ * 
+ * Clase que representa un Area de Conocimiento es decir que alma-
+ * cenará los atributos de las areas de conocimiento que se espe-
+ * cifican para los diferentes documentos de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Cristian Leonardo Rios
+ * Version:   4.0
+ */
 package GestionDocumento.Logica;
 
 /**

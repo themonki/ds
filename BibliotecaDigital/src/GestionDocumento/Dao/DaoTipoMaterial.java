@@ -1,11 +1,18 @@
 /*
- * Nombre: Cristian R�os.
- * Responsabilidad: Realizar la debida manipulacion de datos referentes al tipo de material
- * entre el controlador y la base de datos.
- * Nombre archivo: DaoTipoMaterial.java
- * Fecha Creacion: Mayo 03 2011
- * Fecha ultima modificaci�n: Mayo 03 2011
- * */
+ * DaoTipoMaterial.java
+ * 
+ * Clase que permite el acceso a la base de datos usando la clase FachadaBD
+ * para la inserción, actualizacion y consulta de información que esta rel-
+ * acionada con los Tipos de Material de los Documentos de la Biblioteca D-
+ * igital.
+ * 
+ *
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Cristian Rios
+ * Version:   4.0
+ */
 
 package GestionDocumento.Dao;
 

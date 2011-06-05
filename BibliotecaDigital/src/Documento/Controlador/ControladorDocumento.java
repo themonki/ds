@@ -1,3 +1,18 @@
+/*
+ * ControladorDocumento.java
+ * 
+ * Clase que permite la comunicación entre la aplicación y la base de datos
+ * en el envió de información que este relacionada con los documentos digi-
+ * tales de la biblioteca digital involucrando todas las clases en el paqu-
+ * ete y subpaquetes de Documento.
+ * 
+ *
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Edgar Andres Moncada
+ * Version:   4.0
+ */
 package Documento.Controlador;
 
 import java.io.File;

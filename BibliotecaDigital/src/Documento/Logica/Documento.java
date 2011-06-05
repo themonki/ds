@@ -1,3 +1,17 @@
+ /**
+ * Documento.java
+ * 
+ * Clase que representa un Documento es decir los documentos digitales
+ * que estan almacenados en la Biblioteca Digital tienen metadatos
+ * que estan guardados en la base de datos y para permitir el facil 
+ * manejo de ellos se almacenan sus atributos en este objeto.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Yerminson Gonzales
+ * Version:   4.0
+ */
 package Documento.Logica;
 /*Yermi*/
 import java.sql.Date;

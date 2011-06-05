@@ -1,3 +1,17 @@
+/*
+ * DaoConsulta.java
+ * 
+ * Clase que permite el acceso a la base de datos usando la clase FachadaBD
+ * para la inserción, actualizacion y consulta de información que esta rel-
+ * acionada con la consulta de los Documentos de la Biblioteca Digital.
+ * 
+ *
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Edgar Andres Moncada
+ * Version:   4.0
+ */
 package Consultas.Dao;
 
 import java.sql.Connection;
