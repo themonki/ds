@@ -1,7 +1,25 @@
+/**
+ * GuiPrincipal.java
+ * 
+ * Clase que representa la interfaz de usuario no registrado en la cual 
+ * tiene la posibilidad de consultar basica y avanzadaamente, asi mismo
+ * la posibilidad de registrarse al sistema para despues ingresar y 
+ * tener los privilegios de un usuario normal.
+ * 
+ * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor(es):  Yerminson Doney Gonzalez 	
+ * 			   Luis Felipe Vargas	
+ * 			  
+ * Version:   4.0
+ */
+
+
+
 package Principal.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Event;
@@ -10,8 +28,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -20,7 +36,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;

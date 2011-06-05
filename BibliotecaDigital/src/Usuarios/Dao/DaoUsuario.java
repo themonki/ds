@@ -1,11 +1,15 @@
 /**
  * DaoUsuario.java
  * 
-  * 
+ * Clase que permite el acceso a la base de datos usando la clase FachadaBD
+ * para la inserción, actualizacion y consulta de información que esta rel-
+ * acionada con la informacion de los Usuarios de la Biblioteca Digital.
+
  * JAVA version "1.6.0"
  *  
  * Autor:  Cristian Leornando Rios 
  * Version:   4.0
+ * 
  */
 
 

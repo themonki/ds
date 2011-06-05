@@ -1,3 +1,23 @@
+/**
+ * GuiUsuarioNormal.java
+ * 
+ * Clase que representa la interfaz de usuario normal en la cual 
+ * tiene la posibilidad de consultar basica y avanzadaamente, asi mismo
+ * como un reporte de los documentos que se han catalogado despues de 
+ * su ultimo acceso y la posibilidad de cambiar datos sobre su 
+ * informacion. Este perfil tiene la posibilidad de descargar los documentos 
+ * consultados.
+ * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor(es):  Cristian Leornardo Rios
+ * 			   Luis Felipe Vargas	
+ * 			   Yerminson Doney Gonzalez 	
+ * Version:   4.0
+ */
+
+
+
 package Principal.Gui;
 
 import java.awt.BorderLayout;
@@ -10,7 +30,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -19,7 +38,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
@@ -88,7 +106,7 @@ public class GuiUsuarioNormal extends JFrame
 		setIconImage(new ImageIcon("recursos/bd.gif").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
-		LOGIN = usuario.getLogin();
+		LOGIN = this.usuario.getLogin();
 		novedadesUsuario = new Vector<Consulta>();
 
 		manejador = new Manejador();	
