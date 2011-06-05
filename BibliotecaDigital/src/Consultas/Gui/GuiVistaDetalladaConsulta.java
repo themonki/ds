@@ -1,3 +1,18 @@
+ /**
+ * GuiVistaDetalladaConsulta.java
+ * 
+ * Clase que representa la interfaz que permite mostrar el deta-
+ * lle de un documento seleccionado despues de realizar una con-
+ * sulta de los documentos digitales de la Biblioteca Digital, 
+ * y dependiendo del perfil permite la descarga y/o modificación
+ * de dicho documento.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  
+ * Version:   4.0
+ */
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
@@ -40,7 +55,7 @@ import Utilidades.Estilos;
 
 
 
-public class GuiVistaDocumento extends JScrollPane {
+public class GuiVistaDetalladaConsulta extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;
 
@@ -99,7 +114,7 @@ public class GuiVistaDocumento extends JScrollPane {
 	int flag;
 	static boolean CONSULTANDO_AUTORES = false;
 
-	public GuiVistaDocumento(Documento doc) {
+	public GuiVistaDetalladaConsulta(Documento doc) {
 
 		super();
 		documento = doc;

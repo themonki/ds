@@ -1,3 +1,15 @@
+ /**
+ * GuiConsultaAvanzada.java
+ * 
+ * Clase que representa la interfaz que permite realizar las consultas
+ * avanzadas de los documentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  
+ * Version:   4.0
+ */
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
@@ -51,14 +63,14 @@ public class GuiConsultaAvanzada extends JScrollPane
 	private ButtonGroup grupoTitulo, grupoAutor, grupoPalabra;
 	private Button botonConsultaAvanzada;
 	private Manejador manejador;
-	private JPanel panelCantidadResultados;
+	private JPanel panelBuscar;
 	
 	public static int TIPO_USUARIO;
 	
 	private JComboBox campoCantidadResultados;
 	private String cantidades[] = {"5","10","15","20", "25"};
 	public static GuiResultadoConsulta PANEL_RESULTADO_CONSULTA;
-	public static GuiVistaDocumento PANEL_VISTA_DOCUMENTO;
+	public static GuiVistaDetalladaConsulta PANEL_VISTA_DETALLADA_CONSULTA;
 	
 	private static JPanel PANEL_AVANZADA;
 	
@@ -85,9 +97,11 @@ public class GuiConsultaAvanzada extends JScrollPane
 		GridBagConstraints restriccionesEtiqueta2 = configurar(0, 0, new Insets(4,10,2,2));
 		GridBagConstraints restriccionesBoton = configurar(0, 0, new Insets(2,0,2,0));
 		
-		panelCantidadResultados = new JPanel(new FlowLayout());
-		panelCantidadResultados.add(etiquetaCantidadResultado);
-		panelCantidadResultados.add(campoCantidadResultados);
+		panelBuscar = new JPanel(new BorderLayout());
+		JPanel panelCantidadResultado = new JPanel(new FlowLayout()); 
+		panelCantidadResultado.add(etiquetaCantidadResultado);
+		panelCantidadResultado.add(campoCantidadResultados);
+		panelBuscar.add(panelCantidadResultado, BorderLayout.NORTH);
 
 		panelTexto.add(titulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
@@ -190,7 +204,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		restriccionesEtiqueta2.weightx=1.0;
 		panelCombo.add(CAMPO_FECHA_PUBLICACION_DESPUES, restriccionesEtiqueta2);
 		
-		
+		/*
 		restriccionesEtiqueta2.gridx=0;
 		restriccionesEtiqueta2.gridy++;
 		restriccionesEtiqueta2.weightx=0.0;
@@ -199,7 +213,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		restriccionesEtiqueta2.gridwidth=1;
 		restriccionesEtiqueta2.weightx=1.0;
 		panelCombo.add(campoCantidadResultados, restriccionesEtiqueta2);
-		
+		*/
 		/*restriccionesEtiqueta2.gridx=0;
 		restriccionesEtiqueta2.gridy++;
 		restriccionesEtiqueta2.weightx=0.0;
@@ -215,7 +229,8 @@ public class GuiConsultaAvanzada extends JScrollPane
 		panelContenedor.add(panelCombo, BorderLayout.EAST);
 		JPanel panelboton = new JPanel();
 		panelboton.add(botonConsultaAvanzada);
-		panelContenedor.add(panelboton,BorderLayout.SOUTH);
+		panelBuscar.add(panelboton,BorderLayout.SOUTH);
+		panelContenedor.add(panelBuscar,BorderLayout.SOUTH);
 		PANEL_AVANZADA.add(panelContenedor);
 		//PANEL_AVANZADA.add(botonConsultaAvanzada, restriccionesBoton);
 		//PANEL_AVANZADA.add();
@@ -252,7 +267,9 @@ public class GuiConsultaAvanzada extends JScrollPane
 		fechaPublicacionDespues = inicializarLabel("Después del año de publicación: ");
 		formatoArchivo = inicializarLabel("Formato de archivo: ");
 		
-		etiquetaCantidadResultado= inicializarLabel("Resultados por pagina: ");
+		etiquetaCantidadResultado= new JLabel("Resultados por pagina: ");
+		etiquetaCantidadResultado.setForeground(Estilos.colorLabels);
+		
 		
 	}
 	
@@ -538,24 +555,24 @@ public class GuiConsultaAvanzada extends JScrollPane
 	{
 		PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
 		PANEL_PRINCIPAL.remove(PANEL_AVANZADA);
-		PANEL_PRINCIPAL.add(PANEL_VISTA_DOCUMENTO, BorderLayout.CENTER);
+		PANEL_PRINCIPAL.add(PANEL_VISTA_DETALLADA_CONSULTA, BorderLayout.CENTER);
 		PANEL_PRINCIPAL.updateUI();
 	}
 	public static void restaurar()
 	{
-		PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
+		PANEL_PRINCIPAL.remove(PANEL_VISTA_DETALLADA_CONSULTA);
 		//campoConsulta.setText("");
 		PANEL_PRINCIPAL.add(PANEL_AVANZADA, BorderLayout.NORTH);
 		PANEL_PRINCIPAL.add(PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER );
 		
 		//PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta();
-		PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
+		PANEL_PRINCIPAL.remove(PANEL_VISTA_DETALLADA_CONSULTA);
 		PANEL_PRINCIPAL.updateUI();
 	}
 	public static void restaurarTodo()
 	{
-		if(!(PANEL_VISTA_DOCUMENTO == null))		
-			PANEL_PRINCIPAL.remove(PANEL_VISTA_DOCUMENTO);
+		if(!(PANEL_VISTA_DETALLADA_CONSULTA == null))		
+			PANEL_PRINCIPAL.remove(PANEL_VISTA_DETALLADA_CONSULTA);
 		
 		CAMPO_PALABRA_CLAVE.setText("");
 		CAMPO_TITULO.setText("");

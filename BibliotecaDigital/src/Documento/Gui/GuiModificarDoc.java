@@ -22,7 +22,7 @@ import Consultas.Controlador.ControladorConsulta;
 import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
 import Consultas.Gui.GuiResultadoConsulta;
-import Consultas.Gui.GuiVistaDocumento;
+import Consultas.Gui.GuiVistaDetalladaConsulta;
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -224,7 +224,7 @@ public class GuiModificarDoc  extends GuiCatalogar
 				
 				if(GuiResultadoConsulta.TIPO_CONSULTA == 1)
 				{
-					GuiConsultaBasica.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
+					GuiConsultaBasica.PANEL_VISTA_DETALLADA_CONSULTA = new GuiVistaDetalladaConsulta(d);
 					GuiConsultaBasica.ponerDescripcion();
 					
 					if(GuiConsultaBasica.TIPO_USUARIO == 2)
@@ -237,7 +237,7 @@ public class GuiModificarDoc  extends GuiCatalogar
 					}	
 				}else if(GuiResultadoConsulta.TIPO_CONSULTA == 2)
 				{
-					GuiConsultaAvanzada.PANEL_VISTA_DOCUMENTO = new GuiVistaDocumento(d);
+					GuiConsultaAvanzada.PANEL_VISTA_DETALLADA_CONSULTA = new GuiVistaDetalladaConsulta(d);
 					GuiConsultaAvanzada.ponerDescripcion();
 					if(GuiConsultaBasica.TIPO_USUARIO == 2)
 					{
