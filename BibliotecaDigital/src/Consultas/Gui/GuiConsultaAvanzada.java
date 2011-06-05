@@ -1,8 +1,6 @@
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,16 +11,11 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.Vector;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,8 +23,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.text.MaskFormatter;
 
 import Consultas.Controlador.ControladorConsulta;
 import Consultas.Logica.Consulta;
@@ -39,10 +30,6 @@ import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.Button;
 import Utilidades.Estilos;
-
-import com.nilo.plaf.nimrod.NimRODLookAndFeel;
-import com.nilo.plaf.nimrod.NimRODTheme;
-import com.sun.org.apache.regexp.internal.RESyntaxException;
 
 public class GuiConsultaAvanzada extends JScrollPane
 {
@@ -57,7 +44,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 	private JRadioButton cualquieraTitulo, sinTitulo, exactaTitulo, cualquieraAutor, sinAutor, exactaAutor,
 	cualquieraPalabra, sinPalabra, exactaPalabra;
 	private ButtonGroup grupoTitulo, grupoAutor, grupoPalabra;
-	private JButton botonConsultaAvanzada;
+	private Button botonConsultaAvanzada;
 	private Manejador manejador;
 	
 	public static int TIPO_USUARIO;
@@ -198,7 +185,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		inicializarComboBox();
 		inicializarRadioButtons();
 		
-		botonConsultaAvanzada = new Button("Buscar");
+		botonConsultaAvanzada = new Button("Consultar");
 	    botonConsultaAvanzada.setIcon(new ImageIcon("recursos/iconos/search.png"));
 		botonConsultaAvanzada.setHorizontalTextPosition(SwingConstants.LEFT);
 		botonConsultaAvanzada.addActionListener(manejador);
@@ -482,7 +469,6 @@ public class GuiConsultaAvanzada extends JScrollPane
 		}
 		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 		@Override
@@ -498,44 +484,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		}
 		
 	}
-	
-	/*public static void main(String args[]) 
-	{
-
-		try
-		{				
-			NimRODTheme nt = new NimRODTheme();
-			nt.setPrimary1( new Color(10,10,230));
-			nt.setPrimary2( new Color(110,110,150));
-			nt.setPrimary3( new Color(0,0,230));
-			//nt.setPrimary(new Color(100,100,100));
-			//nt.setSecondary(new Color(230, 220,250));
-			nt.setSecondary1(new Color(0,0,100));
-			nt.setSecondary2(new Color(0, 100,0));
-			nt.setSecondary3(new Color(250,250,250));
-			nt.setWhite(new Color(250, 230,250));
-			
-			
-
-			NimRODLookAndFeel NimRODLF = new NimRODLookAndFeel();
-			NimRODLookAndFeel.setCurrentTheme( nt);
-			UIManager.setLookAndFeel( NimRODLF);
-			//UIManager.setLookAndFeel("com.nilo.plaf.nimrod.NimRODLookAndFeel"); 
-		}
-		catch (Exception e){e.printStackTrace();}
-	
-		GuiConsultaAvanzada aD = new GuiConsultaAvanzada();
-		JFrame a = new JFrame();
-		a.add(aD);
-		a.setVisible(true);
-		a.setSize(550,360);
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	}
-	*/
-	
-	
-	
+		
 	public static void ponerDescripcion()
 	{
 		PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);

@@ -1,5 +1,5 @@
 + Revisar mensaje de descarga para usuario no registrado. (Yermi)
-+ El nombre del boton en consulta avanzada
++ El nombre del boton en consulta avanzada-----------LISTO
 + Agregar cantidad de resultados en consulta avanzada
 + Acomodar panel areas tamaño en registrarMOdificar usuario
 + Acomodar insects y weightX en gridbaglayout de consulta avanzada para radionButton, y formatos.. fechas
