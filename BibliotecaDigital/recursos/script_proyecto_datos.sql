@@ -585,7 +585,7 @@ COPY descarga_usuario_documento (fecha, hora, login, id_documento) FROM stdin;
 --
 
 COPY documento (id_documento, idioma, derechos_autor, descripcion, software_recomendado, resolucion, editorial, formato, titulo_principal, titulo_secundario, link, fecha_creacion, fecha_publicacion, tipo_nombre, login_catalogador, fecha_catalogacion) FROM stdin;
-10000	Ingles	Si	libro de redes	adobe	0	pearson	pdf	computing networking aproach top-down		repositorio/Computer Networking - A Top-down Approach Featuring the Internet, 3rd Ed [by Kurose, Ross].pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-07
+10000	Ingles	Si	libro de redes	adobe	0	pearson	pdf	computing networking aproach top-down		repositorio/comp.pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-07
 10001	Ingles	Si	libro de bases de datos	adobe	0	pearson	pdf	data base	bases de datos	repositorio/libro1.pdf	1999-05-09	2003-07-14	libro	clrl	2010-06-10
 10002	Ingles	No	libro de computadores	adobe	0	norma	pdf	introduccion a los computadores		repositorio/libro2.pdf	1994-05-09	1998-05-10	libro	clrl	2010-06-11
 10003	Aleman	Si	libro de robotica	ninguno	0	pearson	otro	erste robotik	robotica incial	repositorio/libro3.djvu	1993-05-14	2001-05-14	libro	clrl	2010-06-12
@@ -597,11 +597,11 @@ COPY documento (id_documento, idioma, derechos_autor, descripcion, software_reco
 10009	Ingles	No	articulo sobre computacion en la nube	word	0	sin editorial	doc	mas alla de la nube		repositorio/article.doc	2005-05-14	2005-05-14	libro	clrl	2010-06-18
 10010	Ingles	No	trabajo de grado sobre redes	adobe	0	sin editorial	pdf	wireless networks	redes inalambricas	repositorio/archivo.pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-19
 10011	Ingles	No	libro de desarrollo de software	adobe	0	sin editorial	pdf	software project starting	iniciando proyecto de software	repositorio/documento.pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-20
-10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural	sin titulo secundario	repositorio/libro3(10).djvu	1999-05-15	2005-01-24	taterial de clase	admin	2011-05-24
-10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp	sin titulo secundario	repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-05-24
-10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual	sin titulo secundario	repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-05-24
-10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos	sin titulo secundario	repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-05-24
-10016	Aleman	Si	animacion usando computadoras	0	0	sin editorial	otro	animaciones graficas	sin titulo secundario	repositorio/libro3(14).djvu	1983-05-15	1984-01-24	taterial de clase	admin	2011-05-24
+10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural		repositorio/libro3(10).djvu	1999-05-15	2005-01-24	material de clase	admin	2011-05-24
+10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp		repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-05-24
+10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual		repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-05-24
+10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos		repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-05-24
+10016	Aleman	Si	animacion usando computadoras	ninguno	0	sin editorial	otro	animaciones graficas		repositorio/libro3(14).djvu	1983-05-15	1984-01-24	material de clase	admin	2011-05-24
 \.
 
 
@@ -808,7 +808,7 @@ memoria	biografia
 trabajo de grado	trabajo presentado para el grado por estudiantes de pregrado de ultimos semestres
 tesis de maestria	trabajo presentado para el grado por estudiantes de maestria de ultimos semestres
 tesis de doctorado	trabajo presentado para el grado por estudiantes de doctorado de ultimos semestres
-taterial de clase	diapositivas, talleres, ejercicios y documentos del profesor
+material de clase	diapositivas, talleres, ejercicios y documentos del profesor
 citas bibliográficas	es un conjunto mínimo de datos que permite la identificación de una publicación o de una parte de la misma (monografías, publicaciones en serie) y todo tipo de contenedor de información.
 revistas	es una publicación de aparición periódica, a intervalos mayores a un día.
 reportes	pueden incluir elementos persuasivos, tales como recomendaciones, sugerencias u otras conclusiones motivacionales que indican posibles acciones futuras que el lector del informe pudiera adoptar.
