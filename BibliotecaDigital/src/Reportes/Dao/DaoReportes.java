@@ -225,7 +225,7 @@ FachadaBD fachada;
 	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
 					"EXTRACT(MONTH FROM u." + tipoAnio+ ") AS mes, " +
-					"u.login, u.nombre1, u.apellido1, u.email " +
+					"u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo " +
 					"FROM usuario AS u " +
 					"ORDER BY date_trunc('year', u." + tipoAnio + "), " +
 						"date_trunc('month', u." + tipoAnio + ")";
@@ -237,7 +237,7 @@ FachadaBD fachada;
 	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
 					"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
-					"u.login, u.nombre1, u.apellido1, u.email " +
+					"u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo " +
 					"FROM usuario AS u " +
 					"WHERE EXTRACT(YEAR FROM u." + tipoAnio + ") BETWEEN " + anioI + " AND " +  anioF +
 					" ORDER BY date_trunc('year', u." + tipoAnio + "), " +
@@ -250,7 +250,7 @@ FachadaBD fachada;
 	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
 					"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
-					"u.login, u.nombre1, u.apellido1, u.email " +
+					"u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo " +
 					"FROM usuario AS u " +
 					"WHERE EXTRACT(MONTH FROM u." + tipoAnio + ") BETWEEN " + mesI + " AND " + mesF +
 					" ORDER BY date_trunc('year', u." + tipoAnio + "), " +
@@ -263,7 +263,7 @@ FachadaBD fachada;
 	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
 					"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
-					"u.login, u.nombre1, u.apellido1, u.email " +
+					"u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo " +
 					"FROM usuario AS u " +
 					"WHERE EXTRACT(MONTH FROM u." + tipoAnio + ") BETWEEN " + mesI + " AND " + mesF +
 					" AND EXTRACT(YEAR FROM u." + tipoAnio + ") BETWEEN " + anioI + " AND " + anioF +
@@ -295,12 +295,14 @@ FachadaBD fachada;
 			Vector<Object> row = new Vector<Object>(0,1);
 			
 			row.add(resultado.getString(1));
-			row.add(resultado.getString(2));
+			row.add(convertirMes(resultado.getInt(2)));
 			row.add(resultado.getString(3));
 			row.add(resultado.getString(4));
 			row.add(resultado.getString(5));
 			row.add(resultado.getString(6));
-			
+			row.add(resultado.getString(7));
+			row.add(convertirTipo(resultado.getInt(8)));
+						
 			data.addRow(row);				
 		}
 		fachada.cerrarConexion(conn);
@@ -409,7 +411,51 @@ FachadaBD fachada;
 		return data;
 	}
 	
-
+	private String convertirMes(int mes)
+	{
+		switch(mes)
+		{
+			case 1:
+				return "Enero";
+			case 2:
+				return "Febrero";
+			case 3:
+				return "Marzo";
+			case 4:
+				return "Abril";
+			case 5:
+				return "Mayo";
+			case 6:
+				return "Junio";
+			case 7:
+				return "Julio";
+			case 8:
+				return "Agosto";
+			case 9:
+				return "Septiembre";
+			case 10:
+				return "Octubre";
+			case 11:
+				return "Noviembre";
+			default:
+				return "Dicciembre";
+		}
+	}
+	
+	private String convertirTipo(int tipo)
+	{
+		switch(tipo)
+		{
+			case 3:
+				return "Normal";
+			case 2:
+				return "Catalogador";
+			case 1:
+				return "Administrador";
+			default:
+				return "Anónimo";
+		}
+	}
 /* ******************Reporte relacionados con documento********************** */
 	public TableDataSource consultaDocumentosAgrupadosArea()
 	{

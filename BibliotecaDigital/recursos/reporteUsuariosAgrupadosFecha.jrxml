@@ -1,76 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.6105100000000068"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="131"/>
+	<property name="ireport.zoom" value="0.9090909090909145"/>
+	<property name="ireport.x" value="239"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
-	<parameter name="opcion" class="java.lang.String"/>
-	<parameter name="convencion_title" class="java.lang.String"/>
-	<parameter name="convencion" class="java.lang.String"/>
-	<field name="agrupado" class="java.lang.String"/>
-	<field name="opcion" class="java.lang.String"/>
+	<field name="anio" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
 	<field name="login" class="java.lang.String"/>
 	<field name="nombre1" class="java.lang.String"/>
 	<field name="apellido1" class="java.lang.String"/>
 	<field name="email" class="java.lang.String"/>
-	<field name="fecha_nacimiento" class="java.lang.String"/>
-	<field name="fecha_registro" class="java.lang.String"/>
+	<field name="mes" class="java.lang.String"/>
+	<field name="vinculo_univalle" class="java.lang.String"/>
 	<variable name="agrupado_1" class="java.lang.Integer" calculation="Count">
-		<variableExpression><![CDATA[$F{agrupado}]]></variableExpression>
+		<variableExpression><![CDATA[$F{anio}]]></variableExpression>
 	</variable>
 	<group name="AGRUPADO">
-		<groupExpression><![CDATA[$F{agrupado}]]></groupExpression>
+		<groupExpression><![CDATA[$F{anio}]]></groupExpression>
 		<groupHeader>
 			<band height="47">
 				<textField>
 					<reportElement x="0" y="0" width="313" height="20"/>
 					<textElement/>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{agrupado}]]></textFieldExpression>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{anio}]]></textFieldExpression>
 				</textField>
 				<frame>
 					<reportElement mode="Opaque" x="14" y="20" width="738" height="25" backcolor="#FF3333"/>
 					<staticText>
-						<reportElement x="0" y="0" width="75" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="75" y="0" width="75" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Login]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Transparent" x="75" y="0" width="75" height="20" forecolor="#FFFFFF"/>
+						<reportElement mode="Transparent" x="150" y="0" width="75" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Nombre]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="150" y="0" width="75" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="225" y="0" width="75" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Apellido]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="521" y="0" width="182" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="535" y="0" width="182" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[E-mail]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="225" y="0" width="80" height="20" forecolor="#FFFFFF"/>
-						<textElement textAlignment="Left"/>
-						<text><![CDATA[F. Nacimiento]]></text>
+						<reportElement x="0" y="0" width="75" height="20" forecolor="#FFFFFF"/>
+						<textElement/>
+						<text><![CDATA[Mes]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="305" y="0" width="80" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="300" y="0" width="88" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
-						<text><![CDATA[F. Registro]]></text>
+						<text><![CDATA[Tipo]]></text>
 					</staticText>
-					<textField>
-						<reportElement x="385" y="0" width="136" height="20" forecolor="#FFFFFF"/>
+					<staticText>
+						<reportElement x="388" y="0" width="147" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
-						<textFieldExpression class="java.lang.String"><![CDATA[$P{opcion}]]></textFieldExpression>
-					</textField>
+						<text><![CDATA[Vinculo con Univalle]]></text>
+					</staticText>
 				</frame>
 			</band>
 		</groupHeader>
 		<groupFooter>
 			<band height="23">
 				<line>
-					<reportElement x="57" y="0" width="660" height="1"/>
+					<reportElement x="57" y="0" width="586" height="1"/>
 					<graphicElement>
 						<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#CCCCCC"/>
 					</graphicElement>
@@ -109,56 +106,44 @@
 				<reportElement x="514" y="0" width="184" height="140"/>
 				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
 			</image>
-			<textField isBlankWhenNull="true">
-				<reportElement x="213" y="120" width="216" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{convencion}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="120" width="213" height="20"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{convencion_title}]]></textFieldExpression>
-			</textField>
 		</band>
 	</title>
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="14" y="0" width="75" height="20" forecolor="#595959"/>
+				<reportElement x="89" y="0" width="75" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{login}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="164" y="0" width="75" height="20" forecolor="#595959"/>
+				<reportElement x="239" y="0" width="75" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{apellido1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="537" y="2" width="180" height="20" forecolor="#595959"/>
+				<reportElement x="549" y="0" width="180" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="319" y="0" width="80" height="20" forecolor="#595959"/>
+				<reportElement x="314" y="0" width="88" height="20" forecolor="#595959"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecha_registro}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="399" y="0" width="136" height="20" forecolor="#595959"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{opcion}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="89" y="0" width="75" height="20" forecolor="#595959"/>
+				<reportElement x="164" y="0" width="75" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="239" y="0" width="80" height="20" forecolor="#595959"/>
+				<reportElement x="14" y="0" width="75" height="20" forecolor="#595959"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="0" width="147" height="20" forecolor="#595959"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{vinculo_univalle}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -202,7 +187,7 @@
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{agrupado}]]></keyExpression>
+					<keyExpression><![CDATA[$F{anio}]]></keyExpression>
 					<valueExpression><![CDATA[$V{AGRUPADO_COUNT}]]></valueExpression>
 					<labelExpression><![CDATA[$V{AGRUPADO_COUNT}]]></labelExpression>
 				</pieDataset>
