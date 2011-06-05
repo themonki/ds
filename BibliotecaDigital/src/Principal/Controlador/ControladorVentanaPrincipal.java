@@ -1,3 +1,19 @@
+/**
+ * ControladorVentanaPrincipal
+ * 
+ * Clase que permite la comunicación entre la aplicación y la base de datos
+ * en el envió de información que este relacionada con las Interfaces de usuario
+ * de la biblioteca digital involucrando todas las clases en el
+ * paquete y subpaquetes de Principal.
+ * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor:  Cristian Leornando Rios 
+ * Version:   4.0
+ */
+
+
+
 package Principal.Controlador;
 
 
