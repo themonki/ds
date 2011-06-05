@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="0.9090909090909123"/>
-	<property name="ireport.x" value="122"/>
-	<property name="ireport.y" value="195"/>
+	<property name="ireport.zoom" value="1.6105100000000068"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="131"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="opcion" class="java.lang.String"/>
 	<parameter name="convencion_title" class="java.lang.String"/>
@@ -45,7 +45,7 @@
 						<text><![CDATA[Apellido]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="495" y="0" width="182" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="521" y="0" width="182" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[E-mail]]></text>
 					</staticText>
@@ -60,7 +60,7 @@
 						<text><![CDATA[F. Registro]]></text>
 					</staticText>
 					<textField>
-						<reportElement x="385" y="0" width="108" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="385" y="0" width="136" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<textFieldExpression class="java.lang.String"><![CDATA[$P{opcion}]]></textFieldExpression>
 					</textField>
@@ -76,9 +76,9 @@
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="476" y="1" width="73" height="20"/>
+					<reportElement x="462" y="1" width="87" height="20"/>
 					<textElement/>
-					<text><![CDATA[Toral Usuarios:]]></text>
+					<text><![CDATA[Total Usuarios:]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="549" y="1" width="33" height="20"/>
@@ -110,13 +110,15 @@
 				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement x="182" y="120" width="187" height="20"/>
+				<reportElement x="213" y="120" width="216" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{convencion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="0" y="120" width="182" height="20"/>
-				<textElement/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="120" width="213" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{convencion_title}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -134,7 +136,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{apellido1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="509" y="2" width="180" height="20" forecolor="#595959"/>
+				<reportElement x="537" y="2" width="180" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
@@ -144,7 +146,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecha_registro}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="399" y="0" width="108" height="20" forecolor="#595959"/>
+				<reportElement x="399" y="0" width="136" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{opcion}]]></textFieldExpression>
 			</textField>
@@ -238,7 +240,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement positionType="Float" x="657" y="541" width="24" height="20"/>
+				<reportElement positionType="Float" x="657" y="540" width="24" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

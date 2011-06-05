@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_2" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.1000000000000039"/>
-	<property name="ireport.x" value="9"/>
-	<property name="ireport.y" value="604"/>
+	<property name="ireport.zoom" value="1.3310000000000048"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="87"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<field name="agrupado" class="java.lang.String"/>
 	<field name="login" class="java.lang.String"/>
@@ -43,7 +43,7 @@
 						<text><![CDATA[Apellido]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="548" y="0" width="182" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="558" y="0" width="170" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[E-mail]]></text>
 					</staticText>
@@ -58,12 +58,12 @@
 						<text><![CDATA[F. Registro]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="370" y="0" width="78" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="370" y="0" width="68" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Tipo]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="448" y="0" width="100" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="438" y="0" width="120" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Vinculo con Univalle]]></text>
 					</staticText>
@@ -79,7 +79,7 @@
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="476" y="1" width="73" height="20"/>
+					<reportElement x="462" y="1" width="87" height="20"/>
 					<textElement/>
 					<text><![CDATA[Toral Usuarios:]]></text>
 				</staticText>
@@ -113,14 +113,14 @@
 				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="0" y="120" width="182" height="20"/>
+				<reportElement x="0" y="120" width="213" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Conveción para Tipos de usuarios: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="182" y="120" width="187" height="20"/>
+				<reportElement x="213" y="120" width="216" height="20"/>
 				<textElement/>
 				<text><![CDATA[1:Administrador 2:Catalogador 3:Normal]]></text>
 			</staticText>
@@ -154,17 +154,17 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecha_registro}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="384" y="0" width="78" height="20" forecolor="#595959"/>
+				<reportElement x="384" y="0" width="68" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="462" y="0" width="100" height="20" forecolor="#595959"/>
+				<reportElement x="452" y="0" width="120" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{vinculo_univalle}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="562" y="0" width="180" height="20" forecolor="#595959"/>
+				<reportElement x="572" y="0" width="170" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>

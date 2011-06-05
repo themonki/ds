@@ -101,7 +101,8 @@ public class GuiConsultaAvanzada extends JScrollPane
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
 		PANEL_AVANZADA.add(sinTitulo, restriccionesEtiqueta);
-		restriccionesEtiqueta.gridx=2;
+		restriccionesEtiqueta.gridx=2; //modificar weigth
+		//restriccionesEtiqueta.weightx = 
 		PANEL_AVANZADA.add(cualquieraTitulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=3;
 		PANEL_AVANZADA.add(exactaTitulo, restriccionesEtiqueta);
@@ -498,7 +499,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		
 	}
 	
-	public static void main(String args[]) 
+	/*public static void main(String args[]) 
 	{
 
 		try
@@ -531,7 +532,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-	
+	*/
 	
 	
 	
@@ -570,12 +571,5 @@ public class GuiConsultaAvanzada extends JScrollPane
 		
 		PANEL_PRINCIPAL.updateUI();
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -354,8 +354,6 @@ public class GuiCatalogar extends JScrollPane{
 		panel2.add(campoResolucion,restriccionCampo);
 
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		
 		panel5.add(scroll);
@@ -482,6 +480,8 @@ public class GuiCatalogar extends JScrollPane{
 		campoTituloPpal = new JTextField();   
 		campoEditorial= new JTextField();
 		campoDescripcion= new JTextArea(5,30);
+		//LImite de caracteres
+		campoDescripcion.setLineWrap(true);
 		campoResolucion= new JTextField(10); 
 		campoSoftware= new JTextField();
 		campoEnlaceDoc= new JTextField(30);
