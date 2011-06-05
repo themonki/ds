@@ -1,7 +1,7 @@
  /**
  * Consulta.java
  * 
- * Clase que presenta una Consulta es decir una representacion
+ * Clase que representa una Consulta es decir una representacion
  * de un resultado de una consulta de un Documento de la Biblio-
  * teca digital que contiene el titulo principal, los autores y
  * la llave del documento.
