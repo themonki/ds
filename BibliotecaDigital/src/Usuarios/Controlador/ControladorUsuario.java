@@ -1,6 +1,10 @@
 /**
  * ControladorUsuario.java
  * 
+ * Clase que permite la comunicación entre la aplicación y la base de datos
+ * en el envió de información que este relacionada con las consultas de los
+ * usuarios de la biblioteca digital involucrando todas las clases en el
+ * paquete y subpaquetes de Usuarios.
  * 
  * JAVA version "1.6.0"
  *  

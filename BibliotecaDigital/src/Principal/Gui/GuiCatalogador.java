@@ -1,3 +1,23 @@
+/**
+ * GuiCatalogador.java
+ * 
+ * Clase que representa la interfaz de usuario catalogador en la cual 
+ * tiene la posibilidad de consultar basica y avanzadaamente, asi mismo
+ * la posibilidad de catalogar documentos, ,modificar sus datos de usuario
+ * y cuando consulta los documentos tienela posibilidad tanto de descargar 
+ * como de editar los documentos.
+ * 
+ * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor(es):  Cristian Leonardo Rios	
+ * 			   Luis Felipe Vargas	
+ * 			  
+ * Version:   4.0
+ */
+
+
+
 package Principal.Gui;
 
 import java.awt.BorderLayout;
@@ -10,7 +30,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -22,7 +41,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
-
 import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
 import Consultas.Gui.GuiResultadoConsulta;
@@ -98,7 +116,7 @@ public class GuiCatalogador extends JFrame
 		setIconImage(new ImageIcon("recursos/bd.gif").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
-		LOGIN = usuario.getLogin();
+		LOGIN = this.usuario.getLogin();
 		manejador = new Manejador();	
 
 		novedadesUsuario = new Vector<Consulta>();

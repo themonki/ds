@@ -1,3 +1,21 @@
+/**
+ * GuiAdministrador.java
+ * 
+ * Clase que representa la interfaz de usuario administrador ,en la cual 
+ * tiene la posibilidad de consultar basica y avanzadamente, asi mismo
+ * la posibilidad de catalogar documentos,modificar sus datos,asignar perfiles
+ * de usuario y eliminarlos del sistema.Y cuando consulta los documentos tiene 
+ * la posibilidad tanto de descargar como de editar los documentos.
+ * 
+ * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor(es):  Cristian Leonardo Rios	
+ * 			   Luis Felipe Vargas	
+ * 			  
+ * Version:   4.0
+ */
+
 package Principal.Gui;
 
 import java.awt.BorderLayout;
@@ -10,7 +28,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -19,7 +36,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
