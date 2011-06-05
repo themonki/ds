@@ -77,121 +77,147 @@ public class GuiConsultaAvanzada extends JScrollPane
 	{
 		manejador = new Manejador();
 		initComponents();
-		
-		PANEL_AVANZADA = new JPanel(new GridBagLayout());
+		JPanel panelTexto = new JPanel(new GridBagLayout());
+		JPanel panelCombo = new JPanel(new GridBagLayout());
+		JPanel panelContenedor = new JPanel(new BorderLayout());
+		PANEL_AVANZADA = new JPanel(new FlowLayout());
 		GridBagConstraints restriccionesEtiqueta = configurar(0, 0, new Insets(4,10,2,2));
+		GridBagConstraints restriccionesEtiqueta2 = configurar(0, 0, new Insets(4,10,2,2));
 		GridBagConstraints restriccionesBoton = configurar(0, 0, new Insets(2,0,2,0));
 		
 		panelCantidadResultados = new JPanel(new FlowLayout());
 		panelCantidadResultados.add(etiquetaCantidadResultado);
 		panelCantidadResultados.add(campoCantidadResultados);
 
-		PANEL_AVANZADA.add(titulo, restriccionesEtiqueta);
+		panelTexto.add(titulo, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
 		restriccionesEtiqueta.weightx=1;
-		PANEL_AVANZADA.add(CAMPO_TITULO, restriccionesEtiqueta);
+		int pax = restriccionesEtiqueta.ipadx;
+		restriccionesEtiqueta.ipadx=120;
+		panelTexto.add(CAMPO_TITULO, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
-		
+		restriccionesEtiqueta.ipadx=pax;
 		JPanel opcionTitulo = new JPanel(new GridLayout(1, 3, 5, 2));
 		opcionTitulo.add(sinTitulo);
 		opcionTitulo.add(cualquieraTitulo);
 		opcionTitulo.add(exactaTitulo);
-		PANEL_AVANZADA.add(opcionTitulo, restriccionesEtiqueta);
+		panelTexto.add(opcionTitulo, restriccionesEtiqueta);
 
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.weightx=0.0;
-		PANEL_AVANZADA.add(autor, restriccionesEtiqueta);
+		panelTexto.add(autor, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
 		restriccionesEtiqueta.weightx=1.0;
-		PANEL_AVANZADA.add(CAMPO_AUTOR, restriccionesEtiqueta);
+		restriccionesEtiqueta.ipadx=120;
+		panelTexto.add(CAMPO_AUTOR, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
+		restriccionesEtiqueta.ipadx=pax;
 		
 		JPanel opcionAutor = new JPanel(new GridLayout(1,3,5,2));
 		opcionAutor.add(sinAutor);
 		opcionAutor.add(cualquieraAutor);
 		opcionAutor.add(exactaAutor);
-		PANEL_AVANZADA.add(opcionAutor, restriccionesEtiqueta);
+		panelTexto.add(opcionAutor, restriccionesEtiqueta);
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.gridwidth=1;
 		restriccionesEtiqueta.weightx=0.0;
-		PANEL_AVANZADA.add(palabraClave, restriccionesEtiqueta);
+		panelTexto.add(palabraClave, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
 		restriccionesEtiqueta.weightx=1.0;
-		PANEL_AVANZADA.add(CAMPO_PALABRA_CLAVE, restriccionesEtiqueta);
+		restriccionesEtiqueta.ipadx=120;
+		panelTexto.add(CAMPO_PALABRA_CLAVE, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridy++;
+		restriccionesEtiqueta.ipadx=pax;
+		
 		JPanel opcionPalabra = new JPanel(new GridLayout(1,3,5,2));
 		opcionPalabra.add(sinPalabra);
 		opcionPalabra.add(cualquieraPalabra);
 		opcionPalabra.add(exactaPalabra);
-		PANEL_AVANZADA.add(opcionPalabra, restriccionesEtiqueta);
+		panelTexto.add(opcionPalabra, restriccionesEtiqueta);
 		
 		
 		restriccionesEtiqueta.gridx=0;
 		restriccionesEtiqueta.gridy++;
 		restriccionesEtiqueta.weightx=0.0;
-		PANEL_AVANZADA.add(area, restriccionesEtiqueta);
+		panelTexto.add(area, restriccionesEtiqueta);
 		restriccionesEtiqueta.gridx=1;
 		restriccionesEtiqueta.gridwidth=3;
 		restriccionesEtiqueta.weightx=1.0;
-		PANEL_AVANZADA.add(campoAreas, restriccionesEtiqueta);
+		panelTexto.add(campoAreas, restriccionesEtiqueta);
 		
-		restriccionesEtiqueta.gridx=0;
-		restriccionesEtiqueta.gridy++;
-		restriccionesEtiqueta.weightx=0.0;
-		PANEL_AVANZADA.add(idioma, restriccionesEtiqueta);
-		restriccionesEtiqueta.gridx=1;
-		restriccionesEtiqueta.gridwidth=3;
-		restriccionesEtiqueta.weightx=1.0;
-		PANEL_AVANZADA.add(campoIdioma, restriccionesEtiqueta);
-		
-		restriccionesEtiqueta.gridx=0;
-		restriccionesEtiqueta.gridy++;
-		restriccionesEtiqueta.weightx=0.0;
-		PANEL_AVANZADA.add(formatoArchivo, restriccionesEtiqueta);
-		restriccionesEtiqueta.gridx=2;
-		restriccionesEtiqueta.gridwidth=3;
-		restriccionesEtiqueta.weightx=1.0;
-		PANEL_AVANZADA.add(campoFormArchivo, restriccionesEtiqueta);	
-		
-		restriccionesEtiqueta.gridx=0;
-		restriccionesEtiqueta.gridy++;
-		restriccionesEtiqueta.gridwidth=2;
-		restriccionesEtiqueta.weightx=0.0;
-		PANEL_AVANZADA.add(fechaPublicacionAntes, restriccionesEtiqueta);
-		restriccionesEtiqueta.gridx=2;
-		restriccionesEtiqueta.gridwidth=2;
-		restriccionesEtiqueta.weightx=1.0;
-		PANEL_AVANZADA.add(CAMPO_FECHA_PUBLICACION_ANTES, restriccionesEtiqueta);
-		
-		restriccionesEtiqueta.gridx=0;
-		restriccionesEtiqueta.gridy++;
-		restriccionesEtiqueta.gridwidth=2;
-		restriccionesEtiqueta.weightx=0.0;
-		PANEL_AVANZADA.add(fechaPublicacionDespues, restriccionesEtiqueta);
-		restriccionesEtiqueta.gridx=2;
-		restriccionesEtiqueta.gridwidth=2;
-		restriccionesEtiqueta.weightx=1.0;
-		PANEL_AVANZADA.add(CAMPO_FECHA_PUBLICACION_DESPUES, restriccionesEtiqueta);
+
+		panelCombo.add(idioma, restriccionesEtiqueta2);
+		restriccionesEtiqueta2.gridx=2;
+		restriccionesEtiqueta2.gridwidth=3;
+		restriccionesEtiqueta2.weightx=1.0;
+		panelCombo.add(campoIdioma, restriccionesEtiqueta2);
 		
 		
-		restriccionesEtiqueta.gridx=0;
-		restriccionesEtiqueta.gridy++;
-		restriccionesEtiqueta.weightx=0.0;
-		restriccionesEtiqueta.insets= new Insets(4, 3, 2, 2);
-		PANEL_AVANZADA.add(panelCantidadResultados, restriccionesEtiqueta);
+		restriccionesEtiqueta2.gridx=0;
+		restriccionesEtiqueta2.gridy++;
+		restriccionesEtiqueta2.weightx=0.0;
+		panelCombo.add(formatoArchivo, restriccionesEtiqueta2);
+		restriccionesEtiqueta2.gridx=2;
+		restriccionesEtiqueta2.gridwidth=1;
+		restriccionesEtiqueta2.weightx=1.0;
+		panelCombo.add(campoFormArchivo, restriccionesEtiqueta2);	
 		
+		restriccionesEtiqueta2.gridx=0;
+		restriccionesEtiqueta2.gridy++;
+		restriccionesEtiqueta2.gridy++;
+		restriccionesEtiqueta2.gridwidth=2;
+		restriccionesEtiqueta2.weightx=0.0;
+		panelCombo.add(fechaPublicacionAntes, restriccionesEtiqueta2);
+		restriccionesEtiqueta2.gridx=2;
+		restriccionesEtiqueta2.gridwidth=2;
+		restriccionesEtiqueta2.weightx=1.0;
+		panelCombo.add(CAMPO_FECHA_PUBLICACION_ANTES, restriccionesEtiqueta2);
+		
+		restriccionesEtiqueta2.gridx=0;
+		restriccionesEtiqueta2.gridy++;
+		restriccionesEtiqueta2.gridwidth=2;
+		restriccionesEtiqueta2.weightx=0.0;
+		panelCombo.add(fechaPublicacionDespues, restriccionesEtiqueta2);
+		restriccionesEtiqueta2.gridx=2;
+		restriccionesEtiqueta2.gridwidth=2;
+		restriccionesEtiqueta2.weightx=1.0;
+		panelCombo.add(CAMPO_FECHA_PUBLICACION_DESPUES, restriccionesEtiqueta2);
+		
+		
+		restriccionesEtiqueta2.gridx=0;
+		restriccionesEtiqueta2.gridy++;
+		restriccionesEtiqueta2.weightx=0.0;
+		panelCombo.add(etiquetaCantidadResultado, restriccionesEtiqueta2);
+		restriccionesEtiqueta2.gridx=2;
+		restriccionesEtiqueta2.gridwidth=1;
+		restriccionesEtiqueta2.weightx=1.0;
+		panelCombo.add(campoCantidadResultados, restriccionesEtiqueta2);
+		
+		/*restriccionesEtiqueta2.gridx=0;
+		restriccionesEtiqueta2.gridy++;
+		restriccionesEtiqueta2.weightx=0.0;
+		restriccionesEtiqueta2.insets= new Insets(4, 3, 2, 2);
+		panelCombo.add(panelCantidadResultados, restriccionesEtiqueta2);
+		*/
 		restriccionesBoton.gridy=restriccionesEtiqueta.gridy+1;
 		restriccionesBoton.insets= new Insets(4,2,2,2);
 		restriccionesBoton.gridwidth= 3;
 		restriccionesBoton.anchor = GridBagConstraints.EAST;
-		PANEL_AVANZADA.add(botonConsultaAvanzada, restriccionesBoton);
+		
+		panelContenedor.add(panelTexto, BorderLayout.WEST);
+		panelContenedor.add(panelCombo, BorderLayout.EAST);
+		JPanel panelboton = new JPanel();
+		panelboton.add(botonConsultaAvanzada);
+		panelContenedor.add(panelboton,BorderLayout.SOUTH);
+		PANEL_AVANZADA.add(panelContenedor);
+		//PANEL_AVANZADA.add(botonConsultaAvanzada, restriccionesBoton);
 		//PANEL_AVANZADA.add();
 		PANEL_PRINCIPAL = new JPanel(new BorderLayout());
 		PANEL_PRINCIPAL.add(PANEL_AVANZADA, BorderLayout.NORTH);
@@ -222,8 +248,8 @@ public class GuiConsultaAvanzada extends JScrollPane
 		titulo = inicializarLabel("Titulo: ");
 		autor = inicializarLabel("Autor: ");
 		idioma = inicializarLabel("Idioma: ");
-		fechaPublicacionAntes = inicializarLabel("Fecha de publicación antes del año: ");
-		fechaPublicacionDespues = inicializarLabel("Fecha de publicación después del año: ");
+		fechaPublicacionAntes = inicializarLabel("Antes del año de publicación: ");
+		fechaPublicacionDespues = inicializarLabel("Después del año de publicación: ");
 		formatoArchivo = inicializarLabel("Formato de archivo: ");
 		
 		etiquetaCantidadResultado= inicializarLabel("Resultados por pagina: ");
