@@ -38,23 +38,15 @@ public class GuiReportesAvanzados extends JPanel{
 	private Vector<String> vectorAtributosAvanzado;
 
 	
-	private JCheckBox habilitarAvanzado;
+	private JCheckBox habilitarAvanzado, habilitarPorDia, habilitarPorMes, habilitarPorAño, habilitarPorHora;
 	
-	private JComboBox tablasAvanzado;
-	private JComboBox atributosAvanzado;
+	private JComboBox tablasAvanzado, atributosAvanzado;
 	
-	private JLabel etiquetaTablaAvanzado;
-	private JLabel etiquetaAtributoAvanzado;
+	private JLabel etiquetaTablaAvanzado, etiquetaAtributoAvanzado;
 	
 	private GridBagConstraints retriccionesAvanzado;
 	
-	private JCheckBox habilitarPorDia;
-	private JCheckBox habilitarPorMes;
-	private JCheckBox habilitarPorAño;
-	private JCheckBox habilitarPorHora;
-	
-	private JSpinner campoFecha3; //estos dos son para el intervaloe de reportes avanzados
-	private JSpinner campoFecha4;
+	private JSpinner campoFecha3, campoFecha4; //estos dos son para el intervaloe de reportes avanzados
 	
 	private Button botonAvanzado;
 	
@@ -68,11 +60,6 @@ public class GuiReportesAvanzados extends JPanel{
 	private void initComponents()
 	{
 
-		
-		botonAvanzado= new Button("Generar Reporte");
-		//botonAvanzado.addActionListener(new Manejador());
-		
-		
 		vectorContablasAvanzado= new Vector<String>();
 		vectorContablasAvanzado.add("Descargas");
 		vectorContablasAvanzado.add("Consultas");
@@ -84,66 +71,16 @@ public class GuiReportesAvanzados extends JPanel{
 		vectorAtributosAvanzado.add("Documento que mas..");
 		vectorAtributosAvanzado.add("Cantidad De ..");
 		
-		//vectorAtributosAvanzado.add("");
-	
-	
-		habilitarAvanzado= new JCheckBox("habilitar periodo");
-		habilitarPorDia= new JCheckBox("Generar Por Dia");
-		habilitarPorMes= new JCheckBox("Generar Por Mes");
-		habilitarPorAño= new JCheckBox("Generar Por Año");
-		habilitarPorHora= new JCheckBox("Generar Por Hora");
-		habilitarAvanzado.setFont(Estilos.fontSubrayados);
-		
+		inicializarLabels();
+		inicializarComboBox();
+		inicializarCheckBox();
 		
 		panelPrincipal= new JPanel(new GridBagLayout());
-		//panelPrincipal.setBorder(borde2);
 		panelPrincipal.setBackground(Color.WHITE);
 		
-		tablasAvanzado = new JComboBox(vectorContablasAvanzado);
-		atributosAvanzado = new JComboBox(vectorAtributosAvanzado);
-		//condicionAvanzado= new JComboBox(vectorCondicionesAvanzado);
-		etiquetaTablaAvanzado= new JLabel("TABLA");
-		etiquetaAtributoAvanzado= new JLabel("CONSULTAR POR   :");
-		//etiquetaCondicionAvanzado= new JLabel("CONDICION");
-		//botonGenerarReporteAvanzado= new Button("Generar Reporte");
-		etiquetaTablaAvanzado.setForeground(Estilos.colorLabels);
-		etiquetaAtributoAvanzado.setForeground(Estilos.colorLabels);
-		//etiquetaCondicionAvanzado.setForeground(Estilos.colorLabels);
-		etiquetaTablaAvanzado.setFont(Estilos.fontLabels);
-		etiquetaAtributoAvanzado.setFont(Estilos.fontLabels);
-		//etiquetaCondicionAvanzado.setFont(Estilos.fontLabels);
-		//nuevaCondicionAvanzado= new Button("Añadir condicion");
-		//nuevaCondicionAvanzado.addActionListener(new Manejador());
+		botonAvanzado= new Button("Generar Reporte");
+		//botonAvanzado.addActionListener(new Manejador());
 		
-		retriccionesAvanzado= new GridBagConstraints();
-		retriccionesAvanzado.insets= new Insets(0, 0, 20, 40);
-		retriccionesAvanzado.gridy=0;
-		retriccionesAvanzado.anchor= GridBagConstraints.WEST;
-		//retriccionesAvanzado.weightx=1.0;
-		//retriccionesAvanzado.weighty=1.0;
-		panelPrincipal.add(etiquetaTablaAvanzado,retriccionesAvanzado);
-		panelPrincipal.add(tablasAvanzado,retriccionesAvanzado);
-		retriccionesAvanzado.gridy++;
-		panelPrincipal.add(etiquetaAtributoAvanzado,retriccionesAvanzado);
-		panelPrincipal.add(atributosAvanzado,retriccionesAvanzado);
-
-		retriccionesAvanzado.gridy++;
-		
-		panelPrincipal.add(habilitarPorAño,retriccionesAvanzado);
-		panelPrincipal.add(habilitarPorMes,retriccionesAvanzado);
-		
-		retriccionesAvanzado.gridy++;
-		
-		panelPrincipal.add(habilitarPorDia,retriccionesAvanzado);
-		panelPrincipal.add(habilitarPorHora,retriccionesAvanzado);
-		
-		
-		retriccionesAvanzado.gridy++;
-		
-		panelPrincipal.add(habilitarAvanzado,retriccionesAvanzado);
-		//panelPrincipal.add(new JComboBox(vectorFechasAvanzado),retriccionesAvanzado);
-		
-		//PanelreportesBasicos.add(atributos,retricciones);
 		
 		//Crear spinner para la fecha3.
 		SpinnerModel modeloFecha3 = new SpinnerDateModel();
@@ -161,6 +98,26 @@ public class GuiReportesAvanzados extends JPanel{
 		JSpinner.DateEditor spinnerFecha4 = new JSpinner.DateEditor(campoFecha4,"yyyy-MM-dd");
 		campoFecha4.setEditor(spinnerFecha4);
 	    ((JSpinner.DateEditor) campoFecha4.getEditor()).getTextField().setEditable(false);
+	    
+	    //---- INSERTAR COMPONENTES EN PANEL ---
+
+		retriccionesAvanzado= new GridBagConstraints();
+		retriccionesAvanzado.insets= new Insets(0, 0, 20, 40);
+		retriccionesAvanzado.gridy=0;
+		retriccionesAvanzado.anchor= GridBagConstraints.WEST;
+		panelPrincipal.add(etiquetaTablaAvanzado,retriccionesAvanzado);
+		panelPrincipal.add(tablasAvanzado,retriccionesAvanzado);
+		retriccionesAvanzado.gridy++;
+		panelPrincipal.add(etiquetaAtributoAvanzado,retriccionesAvanzado);
+		panelPrincipal.add(atributosAvanzado,retriccionesAvanzado);
+		retriccionesAvanzado.gridy++;
+		panelPrincipal.add(habilitarPorAño,retriccionesAvanzado);
+		panelPrincipal.add(habilitarPorMes,retriccionesAvanzado);
+		retriccionesAvanzado.gridy++;
+		panelPrincipal.add(habilitarPorDia,retriccionesAvanzado);
+		panelPrincipal.add(habilitarPorHora,retriccionesAvanzado);
+		retriccionesAvanzado.gridy++;
+		panelPrincipal.add(habilitarAvanzado,retriccionesAvanzado);
 	    
 	    retriccionesAvanzado.gridy++;
 	    retriccionesAvanzado.gridx=0;
@@ -197,6 +154,39 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		this.add(panelPrincipal, BorderLayout.CENTER);
+		
+	}
+
+	private void inicializarCheckBox() {
+		
+		habilitarAvanzado= new JCheckBox("habilitar periodo");
+		habilitarPorDia= new JCheckBox("Generar Por Dia");
+		habilitarPorMes= new JCheckBox("Generar Por Mes");
+		habilitarPorAño= new JCheckBox("Generar Por Año");
+		habilitarPorHora= new JCheckBox("Generar Por Hora");
+		habilitarAvanzado.setFont(Estilos.fontSubrayados);
+		
+	}
+
+	private void inicializarComboBox() {
+		
+		tablasAvanzado = new JComboBox(vectorContablasAvanzado);
+		atributosAvanzado = new JComboBox(vectorAtributosAvanzado);
+		
+	}
+
+	private void inicializarLabels() {
+		
+		etiquetaTablaAvanzado= new JLabel("TABLA");
+		etiquetaAtributoAvanzado= new JLabel("CONSULTAR POR   :");
+
+		
+		etiquetaTablaAvanzado.setForeground(Estilos.colorLabels);
+		etiquetaAtributoAvanzado.setForeground(Estilos.colorLabels);
+
+		
+		etiquetaTablaAvanzado.setFont(Estilos.fontLabels);
+		etiquetaAtributoAvanzado.setFont(Estilos.fontLabels);
 		
 	}
 
