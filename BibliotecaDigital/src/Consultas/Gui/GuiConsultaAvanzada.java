@@ -198,7 +198,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		inicializarComboBox();
 		inicializarRadioButtons();
 		
-		botonConsultaAvanzada = new Button("Buscar");
+		botonConsultaAvanzada = new Button("Consultar");
 	    botonConsultaAvanzada.setIcon(new ImageIcon("recursos/iconos/search.png"));
 		botonConsultaAvanzada.setHorizontalTextPosition(SwingConstants.LEFT);
 		botonConsultaAvanzada.addActionListener(manejador);
