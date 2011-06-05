@@ -3,10 +3,8 @@ package Consultas.Gui;
 import java.awt.BorderLayout;
 
 import java.awt.Color;
-import java.awt.Container;
+
 import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -14,7 +12,6 @@ import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.sql.Date;
 import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -38,7 +35,6 @@ import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiPrincipal;
 import Principal.Gui.GuiUsuarioNormal;
-import Usuarios.Dao.DaoUsuario;
 import Usuarios.Gui.GuiNovedades;
 import Utilidades.Estilos;
 
@@ -945,33 +941,5 @@ public class GuiVistaDocumento extends JScrollPane {
 		
 	}
 	
-	public static void main(String[] args) {
-		
-	
-		
-	
-		
-		JFrame ventana = new JFrame();
-		Container a = ventana.getContentPane();
 
-		Documento doc = new Documento("112", "Ingles", "Ni idea",
-				"Aplicacion de la teoria de grafos en la busqueda del camino mas corto entre dos host" ,"Adobe Reader", "1024*800",
-				"No tiene" ,"pdf","Enrutamiento de paquetes",
-				"Routers basicos", "aca.pdf", new Date(555555550),
-				 new Date(1121540), new Date(1555555550),
-				"marianito", "Articulo",
-				new Vector<Autor>(), new Vector<AreaConocimiento>(),
-				new Vector<PalabraClave>());
-		ControladorConsulta cd = new ControladorConsulta();
-		Documento doc2 = cd.obtenerDatosDocumento("10000");
-		
-		a.add(new GuiVistaDocumento(doc2));
-		ventana.setSize(450, 450);
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setVisible(true);
-		
-		DaoUsuario daoUsuario = new DaoUsuario();
-		daoUsuario.consultaDocumentosInteresUsuario("monki");
-
-	}
 }

@@ -55,6 +55,10 @@ import Utilidades.Estilos;
 public class GuiCatalogar extends JScrollPane{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
