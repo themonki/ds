@@ -23,12 +23,15 @@ import javax.swing.border.TitledBorder;
 
 import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorAutor;
-import GestionDocumento.Logica.AreaConocimiento;
 import GestionDocumento.Logica.Autor;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiModificarAutor extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel consultar, nombre, apellido, correoElectronico, acronimo;
 	JTextField campoNombre, campoApellido, campoCorreoElectronico,
 			campoAcronimo;

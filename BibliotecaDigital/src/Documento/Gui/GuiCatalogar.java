@@ -55,6 +55,10 @@ import Utilidades.Estilos;
 public class GuiCatalogar extends JScrollPane{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
@@ -232,13 +236,16 @@ public class GuiCatalogar extends JScrollPane{
 		panel2.add(campoTituloSecundario,restriccionCampo);
 
 		restriccionEtiquetas.gridy=2;
+		restriccionEtiquetas.weightx=0.0;
 		restriccionCampo.gridy = 2;
 		restriccionCampo.ipadx=50;
-		restriccionCampo.gridwidth=1;
+		restriccionCampo.weightx=0.0;
+		//restriccionCampo.gridwidth=1;
 
 		restriccionBotones.gridx=2;
 		restriccionBotones.gridy=2;
 		restriccionBotones.ipadx=20;
+		restriccionBotones.anchor= GridBagConstraints.WEST;
 
 		panel2.add(autor,restriccionEtiquetas);
 		panel2.add(campoAutor,restriccionCampo);		
@@ -262,9 +269,9 @@ public class GuiCatalogar extends JScrollPane{
 		restriccionEtiquetas.gridy=5;
 		restriccionCampo.gridy = 5;
 		restriccionCampo.ipadx=0;
-		restriccionCampo.gridwidth=1;
+		//restriccionCampo.gridwidth=1;
 		restriccionBotones.gridy=5;
-		restriccionBotones.anchor= GridBagConstraints.EAST;
+		//restriccionBotones.anchor= GridBagConstraints.EAST;
 		restriccionBotones.gridx=2;
 		restriccionBotones.ipadx=10;
 
@@ -355,7 +362,6 @@ public class GuiCatalogar extends JScrollPane{
 
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
 
-		
 		panel5.add(scroll);
 		panel.add(botonCatalogar);
 
@@ -379,9 +385,6 @@ public class GuiCatalogar extends JScrollPane{
 		panel22.add(panel2,BorderLayout.NORTH);		
 		panel22.add(panel4,BorderLayout.SOUTH);
 		this.setViewportView(panel22);
-
-		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		//------------------------------------------
 		setVisible(true);

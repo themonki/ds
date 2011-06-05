@@ -24,15 +24,17 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import Documento.Gui.GuiCatalogar;
-import GestionDocumento.Controlador.ControladorPalabraClave;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
-import GestionDocumento.Logica.PalabraClave;
 import GestionDocumento.Logica.TipoMaterial;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiModificarTipoMaterial extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel consultar, nombre, descripcion;
 	JTextField campoNombre;
 	JComboBox campoConsulta;
@@ -89,11 +91,7 @@ public class GuiModificarTipoMaterial extends JFrame {
 		panel3.add(panel2);
 
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
-		scroll
-				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
+		
 		panel5.add(scroll);
 
 		panel.add(botonModificarTipo);
@@ -142,6 +140,7 @@ public class GuiModificarTipoMaterial extends JFrame {
 		campoDescripcion = new JTextArea(5, 20);
 		campoDescripcion.addKeyListener(manejador);
 		campoDescripcion.setEditable(false);
+		campoDescripcion.setLineWrap(true);
 		botonModificarTipo = new Button("Registrar Tipo Material");
 		botonModificarTipo.addActionListener(new ManejadorBoton());
 		botonModificarTipo.setEnabled(false);

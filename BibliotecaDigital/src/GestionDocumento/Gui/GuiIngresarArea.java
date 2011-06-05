@@ -30,6 +30,10 @@ import Utilidades.Estilos;
 
 public class GuiIngresarArea extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel nombre, descripcionArea, areaPadre;
 	JTextField campoNombre;
 	JComboBox campoAreaPadre;
@@ -85,11 +89,7 @@ public class GuiIngresarArea extends JFrame {
 		panel2.add(campoAreaPadre);
 		panel3.add(panel2);
 		JScrollPane scroll = new JScrollPane(campoDescripcionArea);
-		scroll
-				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
+		
 		panel5.add(scroll);
 
 		panel.add(botonIngresarArea);
@@ -119,6 +119,7 @@ public class GuiIngresarArea extends JFrame {
 		campoNombre.setFocusable(true);
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoDescripcionArea.addKeyListener(manejador);
+		campoDescripcionArea.setLineWrap(true);
 		campoAreaPadre = new JComboBox();
 		botonIngresarArea = new Button("Registrar Area");
 		botonIngresarArea.addActionListener(new ManejadorBoton());

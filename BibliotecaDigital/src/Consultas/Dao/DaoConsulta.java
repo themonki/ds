@@ -1,4 +1,5 @@
 package Consultas.Dao;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +7,6 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import Consultas.Logica.Consulta;
-import Documento.Logica.Documento;
 import Utilidades.FachadaBD;
 
 public class DaoConsulta {

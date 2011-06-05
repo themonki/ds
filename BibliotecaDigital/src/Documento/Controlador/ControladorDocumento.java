@@ -9,9 +9,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.util.Vector;
-
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import Documento.Dao.DaoDocumento;
@@ -106,9 +103,8 @@ public class ControladorDocumento {
 		if(d.getResolucion().equals("")){
 			d.setResolucion("sin resolucion");
 		}
-		
-		if(d.getTitulo_secundario().equals("")){
-			d.setTitulo_secundario("sin titulo secundario");
+		if(d.getSoftware_recomentado().equals("")){
+			d.setSoftware_recomentado("ninguno");
 		}
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value = daoDoc.guardarDocumento(d);
@@ -188,7 +184,12 @@ public class ControladorDocumento {
 		d.setTituloppal(d.getTituloppal().toLowerCase());
 		d.setTitulo_secundario(d.getTitulo_secundario().toLowerCase());
 		d.setTipoMaterial(d.getTipoMaterial().toLowerCase());
-		
+		if(d.getResolucion().equals("")){
+			d.setResolucion("sin resolucion");
+		}
+		if(d.getSoftware_recomentado().equals("")){
+			d.setSoftware_recomentado("ninguno");
+		}
 		DaoDocumento daoDoc = new DaoDocumento();
 		int value = daoDoc.modificarDocumento(d);
 		System.out.println("Se modifico el documento");

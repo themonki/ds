@@ -29,6 +29,10 @@ import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiModificarArea extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel consultar, nombre, descripcionArea, areaPadre;
 	JTextField campoNombre;
 	JComboBox campoAreaPadre, campoConsulta;
@@ -87,11 +91,7 @@ public class GuiModificarArea extends JFrame{
 		panel2.add(campoAreaPadre);
 		panel3.add(panel2);
 		JScrollPane scroll = new JScrollPane(campoDescripcionArea);
-		scroll
-				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
+		
 		panel5.add(scroll);
 
 		panel.add(botonModificarArea);
@@ -126,6 +126,7 @@ public class GuiModificarArea extends JFrame{
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoDescripcionArea.addKeyListener(manejador);
 		campoDescripcionArea.setEditable(false);
+		campoDescripcionArea.setLineWrap(true);
 		campoAreaPadre = new JComboBox();
 		campoAreaPadre.setEnabled(false);
 		botonModificarArea = new Button("Modificar Area");
@@ -174,7 +175,7 @@ public class GuiModificarArea extends JFrame{
 				String nombre = campoNombre.getText();
 				String descripcion = campoDescripcionArea.getText();
 				int padreSeleccionado = campoAreaPadre.getSelectedIndex();
-				String padre, contador = "" + campoAreaPadre.getItemCount();				
+				String padre; 
 				if (padreSeleccionado == 0) {
 					padre = "";
 				} else {

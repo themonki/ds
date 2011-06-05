@@ -31,6 +31,10 @@ import Utilidades.Estilos;
 
 public class GuiModificarPalabraClave extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel consultar, nombre, descripcion;
 	JTextField campoNombre;
 	JTextArea campoDescripcion;
@@ -91,11 +95,7 @@ public class GuiModificarPalabraClave extends JFrame {
 		panel3.add(panel2);
 
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
-		scroll
-				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
+		
 		panel5.add(scroll);
 
 		panel.add(botonModificarPalabra);
@@ -129,6 +129,7 @@ public class GuiModificarPalabraClave extends JFrame {
 		campoDescripcion = new JTextArea(5, 20);
 		campoDescripcion.addKeyListener(manejador);
 		campoDescripcion.setEditable(false);
+		campoDescripcion.setLineWrap(true);
 		botonModificarPalabra = new Button("Modificar Palabra");
 		botonModificarPalabra.addActionListener(new ManejadorBoton());
 		botonModificarPalabra.setEnabled(false);
