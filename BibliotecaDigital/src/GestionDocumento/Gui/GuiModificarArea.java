@@ -175,7 +175,7 @@ public class GuiModificarArea extends JFrame{
 				String nombre = campoNombre.getText();
 				String descripcion = campoDescripcionArea.getText();
 				int padreSeleccionado = campoAreaPadre.getSelectedIndex();
-				String padre, contador = "" + campoAreaPadre.getItemCount();	// 	Contador si es necesario aca?		
+				String padre; 
 				if (padreSeleccionado == 0) {
 					padre = "";
 				} else {

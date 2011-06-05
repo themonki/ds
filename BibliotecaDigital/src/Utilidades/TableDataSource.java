@@ -1,11 +1,23 @@
+/**
+ * TablaDataSource.java
+ * 
+ * Clase que podria ser usada para almacenar los resultados de
+ * una consulta a una base da datos, que siendo así, podria ser 
+ * usado para construir un Data Source con el que se ingresaran 
+ * datos a los reportes
+ *
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  Cristian Leonardo Rios
+ * Version:   4.0
+ */
 package Utilidades;
 
 import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 
 public class TableDataSource extends AbstractTableModel
