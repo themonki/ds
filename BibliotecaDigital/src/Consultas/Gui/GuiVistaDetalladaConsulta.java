@@ -10,7 +10,8 @@
  * JAVA version "1.6.0"
  * 
  * 
- * Autor:  
+ * Autor:  	  Edgar Andres Moncada
+ * Autor:     Terminson Gonzales
  * Version:   4.0
  */
 package Consultas.Gui;

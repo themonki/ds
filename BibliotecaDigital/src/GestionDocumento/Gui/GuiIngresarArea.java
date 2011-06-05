@@ -1,3 +1,16 @@
+ /**
+ * GuiIngresarArea.java
+ * 
+ * Clase que representa la interfaz que permite insertar una nueva
+ * Area de Conocimiento para los documentos digitales de la Biblio-
+ * teca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  
+ * Version:   4.0
+ */
 package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;

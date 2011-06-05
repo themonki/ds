@@ -1,3 +1,16 @@
+ /**
+ * GuiModificarDoc.java
+ * 
+ * Clase que representa la interfaz que permite realizar la modificación
+ * de los documentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Luis Felipe Vargas
+ * Autor:     Edgar Andres Moncada
+ * Version:   4.0
+ */
 package Documento.Gui;
 
 import java.awt.BorderLayout;

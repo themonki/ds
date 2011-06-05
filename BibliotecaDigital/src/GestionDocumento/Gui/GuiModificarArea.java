@@ -1,3 +1,15 @@
+ /**
+ * GuiModificarArea.java
+ * 
+ * Clase que representa la interfaz que permite modificar un Area de
+ * Conocimiento para los documentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:     Edgar Andres Moncada
+ * Version:   4.0
+ */
 package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;

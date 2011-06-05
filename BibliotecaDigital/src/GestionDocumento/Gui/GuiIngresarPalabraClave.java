@@ -1,3 +1,15 @@
+ /**
+ * GuiIngresarPalabraClave.java
+ * 
+ * Clase que representa la interfaz que permite insertar una nueva
+ * Palabra Clave para los documentos digitales de la Biblioteca Digital.
+ * 
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:  
+ * Version:   4.0
+ */
 package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
