@@ -1,12 +1,9 @@
 package Reportes.Gui;
 
-<<<<<<< HEAD
+
 import javax.swing.JPanel;
 
-public class GuiReportesAvanzados extends JPanel{
-	
-	
-=======
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -202,6 +199,6 @@ public class GuiReportesAvanzados extends JPanel{
 		this.add(panelPrincipal, BorderLayout.CENTER);
 		
 	}
->>>>>>> 66c86a6f73a89b1ca8b92a8dbf6f5fba51c72b5e
+
 
 }

@@ -153,10 +153,14 @@ public class GuiReportes extends JTabbedPane{
 		PanelreportesBasicos.add(atributos,retricciones);
 		retricciones.gridy++;
 		//retricciones.weightx=0.0;
+		retricciones.insets= new Insets(50, 0, 0, 0);		
+
 		PanelreportesBasicos.add(etiquetaTitulo, retricciones);
 		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoTitulo, retricciones);
-		retricciones.gridy++;	
+		retricciones.gridy++;
+		retricciones.insets= new Insets(5,10,16,2);
+		
 		//retricciones.weightx=0.0;
 		PanelreportesBasicos.add(detallado, retricciones);
 		PanelreportesBasicos.add(totales, retricciones);
@@ -229,9 +233,9 @@ public class GuiReportes extends JTabbedPane{
 
 	private void inicializarLabels() {
 		
-		etiquetaTabla= new JLabel("TABLA: ");
-		etiquetaAtributo= new JLabel("AGRUPADOS POR: ");
-		etiquetaTitulo = new JLabel("TITULO DEL REPORTE: ");
+		etiquetaTabla= new JLabel("Reporte De: ");
+		etiquetaAtributo= new JLabel("Agrupados Por: ");
+		etiquetaTitulo = new JLabel("Titulo Del Reporte : ");
 		etiquetaDesde= new JLabel("Desde :");
 		etiquetaHasta= new JLabel("Hasta :");
 		
@@ -240,11 +244,11 @@ public class GuiReportes extends JTabbedPane{
 		
 		etiquetaTabla.setForeground(Estilos.colorLabels);
 		etiquetaAtributo.setForeground(Estilos.colorLabels);
-		etiquetaTitulo.setForeground(Estilos.colorLabels);
+		//etiquetaTitulo.setForeground(Estilos.colorLabels);
 		
 		etiquetaTabla.setFont(Estilos.fontLabels);
 		etiquetaAtributo.setFont(Estilos.fontLabels);
-		etiquetaTitulo.setFont(Estilos.fontLabels);
+		etiquetaTitulo.setFont(Estilos.fontSubtitulos);
 		
 	}
 

@@ -533,7 +533,7 @@ public class GuiConsultaAvanzada extends JScrollPane
 		}
 		
 	}
-<<<<<<< HEAD
+
 	
 	/*public static void main(String args[]) 
 	{
@@ -572,9 +572,6 @@ public class GuiConsultaAvanzada extends JScrollPane
 	
 	
 	
-=======
-		
->>>>>>> b7479d9aa62cdf60d2f0f3fb1551b51e6e25e708
 	public static void ponerDescripcion()
 	{
 		PANEL_PRINCIPAL.remove(PANEL_RESULTADO_CONSULTA);
