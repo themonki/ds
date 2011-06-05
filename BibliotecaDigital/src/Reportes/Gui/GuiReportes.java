@@ -16,6 +16,7 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -62,7 +63,7 @@ public class GuiReportes extends JTabbedPane{
 	
 	private JScrollPane scroll, scroll2;
 	
-	private JLabel etiquetaTabla, etiquetaAtributo, etiquetaTitulo, etiquetaDesde, etiquetaHasta; ;
+	private JLabel etiquetaIcono,etiquetaTabla, etiquetaAtributo, etiquetaTitulo, etiquetaDesde, etiquetaHasta; ;
 	
 	private JTextField campoTitulo;
 	
@@ -93,15 +94,15 @@ public class GuiReportes extends JTabbedPane{
 		inicializarComboBOx();
 		
 		PanelreportesBasicos= new JPanel(new GridBagLayout());
-		PanelreportesBasicos.setBackground(Color.WHITE);
+		//PanelreportesBasicos.setBackground(Color.WHITE);
 						
-		habilitar= new JCheckBox("Habilitar Periodo Con:");
+		habilitar= new JCheckBox("Habilitar Periodo Con : ");
 		habilitar.setFont(Estilos.fontSubrayados);
 		habilitar.addActionListener(new Manejador());
 
-		detallado = new JRadioButton("Informe detallado", true);
+		detallado = new JRadioButton("Informe Detallado", true);
 		detallado.addActionListener(new Manejador());
-		totales = new JRadioButton("Informe solo con totales", false);
+		totales = new JRadioButton("Informe Solo Con Totales", false);
 		totales.addActionListener(new Manejador());
 		
 		opcionReporte = new ButtonGroup();
@@ -134,29 +135,39 @@ public class GuiReportes extends JTabbedPane{
 	    //-------------------------------------
 
 		botonGenerarReporte= new Button("Generar Reporte");
+		botonGenerarReporte.setIcon(new ImageIcon("recursos/iconos/Report2.png"));
 		botonGenerarReporte.addActionListener(new Manejador());
 		
 		//--- INGRESANDO ATRIBUTOS EN EL PANEL ---
 		
 		retricciones= new GridBagConstraints();
-		retricciones.insets= new Insets(6,10,6,2);
+		retricciones.insets= new Insets(6,2,60,2);
 		retricciones.gridy=0;
-		retricciones.anchor= GridBagConstraints.WEST;
+		retricciones.gridwidth=4;
+		
+		retricciones.anchor= GridBagConstraints.CENTER;
 		//retricciones.weightx=0.0;
+		PanelreportesBasicos.add(etiquetaIcono,retricciones);
+		retricciones.insets= new Insets(6,10,6,2);
+		retricciones.anchor= GridBagConstraints.WEST;
+		retricciones.gridwidth=1;
+		retricciones.gridy++;
 		PanelreportesBasicos.add(etiquetaTabla,retricciones);
 		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(tablas,retricciones);
-		retricciones.gridy++;
+		//retricciones.gridy++;
 		//retricciones.weightx=0.0;
+		retricciones.insets= new Insets(6, 20, 6, 50);		
 		PanelreportesBasicos.add(etiquetaAtributo,retricciones);
 		//retricciones.weightx=1.0;
+		retricciones.insets= new Insets(6,10,6,0);
 		PanelreportesBasicos.add(atributos,retricciones);
 		retricciones.gridy++;
 		//retricciones.weightx=0.0;
-		retricciones.insets= new Insets(50, 0, 0, 0);		
+		retricciones.insets= new Insets(35, 10, 2, 6);		
 
 		PanelreportesBasicos.add(etiquetaTitulo, retricciones);
-		//retricciones.weightx=1.0;
+		retricciones.gridwidth=2;
 		PanelreportesBasicos.add(campoTitulo, retricciones);
 		retricciones.gridy++;
 		retricciones.insets= new Insets(5,10,16,2);
@@ -165,13 +176,12 @@ public class GuiReportes extends JTabbedPane{
 		PanelreportesBasicos.add(detallado, retricciones);
 		PanelreportesBasicos.add(totales, retricciones);
 		retricciones.gridy++;
+		retricciones.insets= new Insets(30,10,16,2);
+		
 		PanelreportesBasicos.add(habilitar,retricciones);
 		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(fechas,retricciones);
-		
-
-	    
-	    
+		retricciones.insets= new Insets(6,10,6,2);
 	    retricciones.gridy++;
 	    retricciones.gridx=0;
 	    //retricciones.weightx=0.0;
@@ -180,11 +190,11 @@ public class GuiReportes extends JTabbedPane{
 	    retricciones.gridx=1;
 	    //retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoFecha,retricciones);
-		retricciones.gridy++;
-		retricciones.gridx=0;
+		//retricciones.gridy++;
+		retricciones.gridx=2;
 		//retricciones.weightx=0.0;	    
 		PanelreportesBasicos.add(etiquetaHasta,retricciones);
-		retricciones.gridx=1;
+		retricciones.gridx=3;
 		//retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoFecha2,retricciones);
 		
@@ -193,7 +203,7 @@ public class GuiReportes extends JTabbedPane{
 		retricciones.gridwidth=2;
 		retricciones.gridy++;
 		retricciones.gridy=retricciones.gridy+10;
-		retricciones.gridx=0;
+		retricciones.gridx=1;
 		retricciones.anchor= GridBagConstraints.CENTER;
 		//retricciones.weightx=0.0;
 		retricciones.insets= new Insets(100, 0, 0, 0);		
@@ -234,10 +244,11 @@ public class GuiReportes extends JTabbedPane{
 	private void inicializarLabels() {
 		
 		etiquetaTabla= new JLabel("Reporte De: ");
-		etiquetaAtributo= new JLabel("Agrupados Por: ");
+		etiquetaAtributo= new JLabel("Agrupados Por : ");
 		etiquetaTitulo = new JLabel("Titulo Del Reporte : ");
 		etiquetaDesde= new JLabel("Desde :");
 		etiquetaHasta= new JLabel("Hasta :");
+		etiquetaIcono= new JLabel(new ImageIcon("recursos/iconos/custom-reports.png"));
 		
 		etiquetaHasta.setVisible(false);
 		etiquetaDesde.setVisible(false);
@@ -248,6 +259,8 @@ public class GuiReportes extends JTabbedPane{
 		
 		etiquetaTabla.setFont(Estilos.fontLabels);
 		etiquetaAtributo.setFont(Estilos.fontLabels);
+		etiquetaDesde.setFont(Estilos.fontSubtitulos);
+		etiquetaHasta.setFont(Estilos.fontSubtitulos);
 		etiquetaTitulo.setFont(Estilos.fontSubtitulos);
 		
 	}
