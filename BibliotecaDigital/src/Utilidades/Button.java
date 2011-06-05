@@ -1,4 +1,16 @@
-
+/**
+ * Button.java
+ * 
+ * Clase que representa un boton con caracteristicas especiales es 
+ * decir ya tiene un estilo definido y ciertos efectos que lo hacen
+ * mas amigable con una interfaz.
+ *
+ * JAVA version "1.6.0"
+ * 
+ * 
+ * Autor:   Luis Felipe Vargas
+ * Version:   4.0
+ */
 package Utilidades;
 
 import java.awt.BasicStroke;
@@ -11,7 +23,6 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
-
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 

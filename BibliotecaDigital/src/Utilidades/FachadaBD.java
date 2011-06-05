@@ -1,5 +1,20 @@
-package Utilidades;
+/**
+ * FachadaDB.java
+ * 
+ * Clase que permite realizar la conexion a la base de datos.
+ *
+ * Clase que permite conectarse a la base de datos cargando el driver de postgres
+ * usando JDBC conectandonos correctamente a la base de datos que se encuentra
+ * ya creada y configurada localmente en el equipo.
+ *
+ * JAVA version "1.6.0_20"
+ * 
+ * @package    Utilidades
+ * @author     Yerminson Gonzalez Munoz 
+ * @version    4.0
+ */
 
+package Utilidades;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
