@@ -87,11 +87,7 @@ public class GuiModificarArea extends JFrame{
 		panel2.add(campoAreaPadre);
 		panel3.add(panel2);
 		JScrollPane scroll = new JScrollPane(campoDescripcionArea);
-		scroll
-				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
+		
 		panel5.add(scroll);
 
 		panel.add(botonModificarArea);
@@ -126,6 +122,7 @@ public class GuiModificarArea extends JFrame{
 		campoDescripcionArea = new JTextArea(5, 20);
 		campoDescripcionArea.addKeyListener(manejador);
 		campoDescripcionArea.setEditable(false);
+		campoDescripcionArea.setLineWrap(true);
 		campoAreaPadre = new JComboBox();
 		campoAreaPadre.setEnabled(false);
 		botonModificarArea = new Button("Modificar Area");
