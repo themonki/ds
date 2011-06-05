@@ -33,7 +33,7 @@ public class GuiNovedades extends JScrollPane
 	public static int TIPO_USUARIO;
 		
 	public static JPanel PANEL_NOVEDADES;
-	public static GuiResultadoConsulta RESULTADO_CONSULTA;
+	public static GuiResultadoConsulta PANEL_RESULTADO_CONSULTA;
 	public static GuiVistaDetalladaConsulta PANEL_VISTA_DETALLADA_CONSULTA;
 	private static TitledBorder BORDE;
 	public GuiNovedades()
@@ -59,7 +59,7 @@ public class GuiNovedades extends JScrollPane
 	
 	public static void ponerDescripcion()
 	{
-		PANEL_NOVEDADES.remove(RESULTADO_CONSULTA);
+		PANEL_NOVEDADES.remove(PANEL_RESULTADO_CONSULTA);
 		PANEL_NOVEDADES.setBorder(null);
 		PANEL_NOVEDADES.add(PANEL_VISTA_DETALLADA_CONSULTA, BorderLayout.CENTER);
 		PANEL_NOVEDADES.updateUI();
@@ -68,7 +68,7 @@ public class GuiNovedades extends JScrollPane
 	{
 		PANEL_NOVEDADES.remove(PANEL_VISTA_DETALLADA_CONSULTA);	
 		PANEL_NOVEDADES.setBorder(BORDE);
-		PANEL_NOVEDADES.add(RESULTADO_CONSULTA, BorderLayout.CENTER );		
+		PANEL_NOVEDADES.add(PANEL_RESULTADO_CONSULTA, BorderLayout.CENTER );		
 		PANEL_NOVEDADES.remove(PANEL_VISTA_DETALLADA_CONSULTA);
 		PANEL_NOVEDADES.updateUI();
 	}
