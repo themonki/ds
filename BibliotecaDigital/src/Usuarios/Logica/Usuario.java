@@ -22,10 +22,7 @@ import java.util.Vector;
 import GestionDocumento.Logica.AreaConocimiento;
 
 /**
- * Una clase que permite representar un usuario de una biblioteca digital.
- * 
- * @version 1.0 24/04/2011
- * @author Yerminson Gonzalez
+ * @author Yerminson Gonzalez Munoz
  * 
  */
 public class Usuario {
@@ -184,132 +181,150 @@ public class Usuario {
 	/**
 	 * Metodo que permite obtener el login de usuario
 	 * 
-	 * @return el Login del usuario
+	 * @return login 
 	 */
 	public String getLogin() {
 		return login;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener la contrasena de un usuario
+	 * @return contrasena
 	 */
 	public String getContrasena() {
 		return contrasena;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el primer nombre de un usuario
+	 * @return nombre1
 	 */
 	public String getNombre1() {
 		return nombre1;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el segundo nombre de un usuario
+	 * @return nombre2
 	 */
 	public String getNombre2() {
 		return nombre2;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el primer apellido de un usuario
+	 * @return apellido1
 	 */
 	public String getApellido1() {
 		return apellido1;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el segundo apellido de un usuario
+	 * @return apellido2
 	 */
 	public String getApellido2() {
 		return apellido2;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el correo de un usuario
+	 * @return email
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el nivel de escolaridad de un usuario
+	 * @return nivelEscolaridad
 	 */
 	public String getNivelEscolaridad() {
 		return nivelEscolaridad;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el vinculo univalle de un usuario
+	 * @return vinculoUnivalle
 	 */
 	public String getVinculoUnivalle() {
 		return vinculoUnivalle;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener la pregunta secreta de un usuario
+	 * @return preguntaSecreta
 	 */
 	public String getPreguntaSecreta() {
 		return preguntaSecreta;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener la respuesta secreta de un usuario
+	 * @return respuestaSecreta
 	 */
 	public String getRespuestaSecreta() {
 		return respuestaSecreta;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el genero de un usuario
+	 * @return genero
 	 */
 	public String getGenero() {
 		return genero;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener la fecha de registro un usuario
+	 * @return fechaRegistro
 	 */
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener la fecha de nacimiento de un usuario
+	 * @return fechaNacimiento
 	 */
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener la fecha de ultimo acceso de un usuario
+	 * @return fechaUltimoAcceso
 	 */
 	public Date getFechaUltimoAcceso() {
 		return fechaUltimoAcceso;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el tipo de un usuario
+	 * @return tipo
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener el estado de un usuario
+	 * @return estado
 	 */
 	public boolean getEstado() {
 		return estado;
 	}
 
 	/**
-	 * @return
+	 * Metodo que permite obtener las areas de interes de un usuario
+	 * @return areasInteres
 	 */
 	public Vector<AreaConocimiento> getAreas() {
 		return areasInteres;
 	}
 
 	/**
+	 * Metodo que permite cambiar el login de un usuario
 	 * @param value
 	 */
 	public void setLogin(String value) {
@@ -317,6 +332,7 @@ public class Usuario {
 	}
 
 	/**
+	 * Metodo que permite cambiar la  contrasena de un usuario
 	 * @param value
 	 */
 	public void setContrasena(String value) {
@@ -324,6 +340,7 @@ public class Usuario {
 	}
 
 	/**
+	 * Metodo que permite cambiar el primer nombre de un usuario
 	 * @param value
 	 */
 	public void setNombre1(String value) {
@@ -331,6 +348,8 @@ public class Usuario {
 	}
 
 	/**
+	 * Metodo que permite cambiar el segundo nombre de un usuario
+	 *   
 	 * @param value
 	 */
 	public void setNombre2(String value) {
@@ -338,6 +357,8 @@ public class Usuario {
 	}
 
 	/**
+	 * 
+	 *  Metodo que permite cambiar el primer apellido de un usuario
 	 * @param value
 	 */
 	public void setApellido1(String value) {
@@ -345,6 +366,7 @@ public class Usuario {
 	}
 
 	/**
+	 * Metodo que permite cambiar el segundo apellido de un usuario
 	 * @param value
 	 */
 	public void setApellido2(String value) {
@@ -352,6 +374,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar el correo de un usuario
 	 * @param value
 	 */
 	public void setEmail(String value) {
@@ -359,6 +382,7 @@ public class Usuario {
 	}
 
 	/**
+	 * Metodo que permite cambiar el nivel de escolaridad de un usuario
 	 * @param value
 	 */
 	public void setNivelEscolaridad(String value) {
@@ -366,6 +390,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar el vinculo con univalle de un usuario
 	 * @param value
 	 */
 	public void setVinculoUnivalle(String value) {
@@ -373,6 +398,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar la pregunta secreta de un usuario
 	 * @param value
 	 */
 	public void setPreguntaSecreta(String value) {
@@ -380,6 +406,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar el respuesta secreta de un usuario
 	 * @param value
 	 */
 	public void setRespuestaSecreta(String value) {
@@ -387,6 +414,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar el genero de un usuario
 	 * @param value
 	 */
 	public void setGenero(String value) {
@@ -394,6 +422,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar el fecha de registro de un usuario
 	 * @param value
 	 */
 	public void setFechaRegistro(Date value) {
@@ -401,6 +430,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar la fecha de nacimiento de un usuario
 	 * @param value
 	 */
 	public void setFechaNacimiento(Date value) {
@@ -408,6 +438,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar el fecha ultimo acceso de un usuario
 	 * @param value
 	 */
 	public void setFechaUltimoAcceso(Date value) {
@@ -415,6 +446,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar el tipo de un usuario
 	 * @param value
 	 */
 	public void setTipo(String value) {
@@ -422,6 +454,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar el estado de un usuario
 	 * @param value
 	 */
 	public void setEstado(boolean value) {
@@ -429,6 +462,7 @@ public class Usuario {
 	}
 
 	/**
+	 *  Metodo que permite cambiar las areas de interes de un usuario
 	 * @param value
 	 */
 	public void setAreas(Vector<AreaConocimiento> value) {

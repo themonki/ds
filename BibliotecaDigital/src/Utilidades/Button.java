@@ -39,10 +39,11 @@ public class Button extends JButton {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-     * 
+     *
      */
 	private Color color1 = new Color(230, 0, 0);
 	/**
+     * 
      * 
      */
 	private Color color2 = new Color(100, 100, 100);
@@ -70,6 +71,9 @@ public class Button extends JButton {
 
 	/*
 	 * Metodo sobreescrito de la clase JButton para cambiar el estilo del boton
+	 */
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	protected void paintComponent(Graphics g) {
 		Color c1, c2, c3;
