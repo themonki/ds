@@ -37,6 +37,10 @@ import Documento.Logica.Documento;
 
 public class GuiResultadoConsulta extends JScrollPane{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Resultados
 	JList listaResultado;
 	Vector<Consulta> vectorConsulta;	
@@ -184,6 +188,10 @@ public class GuiResultadoConsulta extends JScrollPane{
 //clase que se encargara de como se mostraran ls elementos de la lista
 	private class RenderLista extends JLabel implements ListCellRenderer, MouseListener, MouseMotionListener{
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		Hashtable<Object, ImageIcon> elementos;
 		ImageIcon icono = new ImageIcon("recursos/book.gif");
 

@@ -25,6 +25,10 @@ import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiIngresarAutor extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel nombre, apellido, correoElectronico, acronimo;
 	JTextField campoNombre, campoApellido, campoCorreoElectronico,
 			campoAcronimo;

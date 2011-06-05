@@ -35,6 +35,10 @@ import Utilidades.Estilos;
 public class GuiConsultaAvanzada extends JScrollPane
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacionAntes, fechaPublicacionDespues,formatoArchivo,etiquetaCantidadResultado;
 	private static JTextField CAMPO_PALABRA_CLAVE;
 	private static JTextField CAMPO_TITULO;

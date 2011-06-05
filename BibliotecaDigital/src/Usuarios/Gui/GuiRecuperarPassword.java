@@ -16,8 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -95,8 +93,7 @@ public class GuiRecuperarPassword extends JPanel {
 
 		String title = "::Recuperar Password::";
 
-		Color colorTitulo = new Color(0, 50, 0);
-		Font fontTitulo = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
+	
 		// Linea y titulo del panel.
 		TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
@@ -205,10 +202,7 @@ public class GuiRecuperarPassword extends JPanel {
 	}
 
 	private void iniciarLabels() {
-		Font font1 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 17);
-		Font font3 = new Font("Book Antiqua", Font.BOLD + Font.ITALIC, 25);
-
-		Color colorletras = new Color(0, 60, 0);
+	
 
 		nombreUsuario = new JLabel("Login  :");
 		nombreUsuario.setFont(Estilos.fontLabels);

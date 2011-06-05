@@ -27,6 +27,10 @@ import Utilidades.Button;
 import Utilidades.Estilos;
 public class GuiIngresarPalabraClave extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel nombre, descripcion;
 	JTextField campoNombre;
 	JTextArea campoDescripcion;

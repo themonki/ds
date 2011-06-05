@@ -2,7 +2,6 @@ package Consultas.Controlador;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.Vector;
 

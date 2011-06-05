@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import GestionDocumento.Logica.PalabraClave;
+
 import GestionDocumento.Logica.TipoMaterial;
 import Utilidades.FachadaBD;
 

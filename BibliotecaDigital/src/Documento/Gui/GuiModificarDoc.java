@@ -12,12 +12,10 @@ import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import Consultas.Controlador.ControladorConsulta;
@@ -25,7 +23,6 @@ import Consultas.Gui.GuiConsultaAvanzada;
 import Consultas.Gui.GuiConsultaBasica;
 import Consultas.Gui.GuiResultadoConsulta;
 import Consultas.Gui.GuiVistaDocumento;
-import Consultas.Logica.Consulta;
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
@@ -40,11 +37,12 @@ import Principal.Gui.GuiCatalogador;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
-import com.nilo.plaf.nimrod.NimRODLookAndFeel;
-import com.nilo.plaf.nimrod.NimRODTheme;
-
 public class GuiModificarDoc  extends GuiCatalogar
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Button botonModificar;
 	private JLabel campoFechaCatalogacion, fechaCatalogacion;
 

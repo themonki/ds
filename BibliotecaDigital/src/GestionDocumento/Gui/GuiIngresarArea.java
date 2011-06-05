@@ -30,6 +30,10 @@ import Utilidades.Estilos;
 
 public class GuiIngresarArea extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel nombre, descripcionArea, areaPadre;
 	JTextField campoNombre;
 	JComboBox campoAreaPadre;

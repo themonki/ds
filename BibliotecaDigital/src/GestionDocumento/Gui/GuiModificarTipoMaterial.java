@@ -24,15 +24,17 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import Documento.Gui.GuiCatalogar;
-import GestionDocumento.Controlador.ControladorPalabraClave;
 import GestionDocumento.Controlador.ControladorTipoMaterial;
-import GestionDocumento.Logica.PalabraClave;
 import GestionDocumento.Logica.TipoMaterial;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiModificarTipoMaterial extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel consultar, nombre, descripcion;
 	JTextField campoNombre;
 	JComboBox campoConsulta;

@@ -31,6 +31,10 @@ import Utilidades.Estilos;
 
 public class GuiModificarPalabraClave extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel consultar, nombre, descripcion;
 	JTextField campoNombre;
 	JTextArea campoDescripcion;

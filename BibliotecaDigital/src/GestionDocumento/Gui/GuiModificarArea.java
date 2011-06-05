@@ -29,6 +29,10 @@ import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiModificarArea extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel consultar, nombre, descripcionArea, areaPadre;
 	JTextField campoNombre;
 	JComboBox campoAreaPadre, campoConsulta;
@@ -171,7 +175,7 @@ public class GuiModificarArea extends JFrame{
 				String nombre = campoNombre.getText();
 				String descripcion = campoDescripcionArea.getText();
 				int padreSeleccionado = campoAreaPadre.getSelectedIndex();
-				String padre, contador = "" + campoAreaPadre.getItemCount();				
+				String padre, contador = "" + campoAreaPadre.getItemCount();	// 	Contador si es necesario aca?		
 				if (padreSeleccionado == 0) {
 					padre = "";
 				} else {
