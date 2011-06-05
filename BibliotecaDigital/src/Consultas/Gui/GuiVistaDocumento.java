@@ -523,7 +523,7 @@ public class GuiVistaDocumento extends JScrollPane {
 				if(tipoUsuario == 0)
 				{
 					
-					int opcion = JOptionPane.showConfirmDialog(null," Lo sentimos para descargar el documento debe registarse, ¿Desea hacerlo?");
+					int opcion = JOptionPane.showConfirmDialog(null, " Lo sentimos para descargar el documento debe registarse, ¿Desea hacerlo?", "Descarga Documento",JOptionPane.YES_NO_OPTION);
 			
 					if(opcion == 0)
 					{
