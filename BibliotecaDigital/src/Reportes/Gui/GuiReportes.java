@@ -114,7 +114,8 @@ public class GuiReportes extends JTabbedPane{
 	private void initComponents() {
 	
 		//-----------------------------BORDES----------
-		TitledBorder borde;
+		//--ANDREA: "me parecen redundates puesto que los tab contienen de que se trata el panel"
+		/*TitledBorder borde;
 		borde = BorderFactory.createTitledBorder(BorderFactory
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Reportes Usuarios::");
 		borde.setTitleColor(Estilos.colorTitulo);
@@ -126,7 +127,7 @@ public class GuiReportes extends JTabbedPane{
 				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "::Reportes Avanzados::");
 		borde2.setTitleColor(Estilos.colorTitulo);
 		borde2.setTitleFont(Estilos.fontTitulo);
-		borde2.setTitleJustification(TitledBorder.LEFT);
+		borde2.setTitleJustification(TitledBorder.LEFT);*/
 
 		//--------------------------------------------------
 		scroll= new JScrollPane();
@@ -137,7 +138,7 @@ public class GuiReportes extends JTabbedPane{
 		
 				
 		PanelreportesBasicos= new JPanel(new GridBagLayout());
-		PanelreportesBasicos.setBorder(borde);
+		//PanelreportesBasicos.setBorder(borde);
 		PanelreportesBasicos.setBackground(Color.WHITE);
 		
 		tablas = new JComboBox();
@@ -300,7 +301,7 @@ public class GuiReportes extends JTabbedPane{
 		
 		
 		panelRepAvanzados= new JPanel(new GridBagLayout());
-		panelRepAvanzados.setBorder(borde2);
+		//panelRepAvanzados.setBorder(borde2);
 		panelRepAvanzados.setBackground(Color.WHITE);
 		
 		tablasAvanzado = new JComboBox(vectorContablasAvanzado);
