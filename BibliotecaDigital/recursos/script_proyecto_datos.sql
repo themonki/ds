@@ -588,15 +588,15 @@ COPY documento (id_documento, idioma, derechos_autor, descripcion, software_reco
 10000	Ingles	Si	libro de redes	adobe	0	pearson	pdf	computing networking aproach top-down		repositorio/Computer Networking - A Top-down Approach Featuring the Internet, 3rd Ed [by Kurose, Ross].pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-07
 10001	Ingles	Si	libro de bases de datos	adobe	0	pearson	pdf	data base	bases de datos	repositorio/libro1.pdf	1999-05-09	2003-07-14	libro	clrl	2010-06-10
 10002	Ingles	No	libro de computadores	adobe	0	norma	pdf	introduccion a los computadores		repositorio/libro2.pdf	1994-05-09	1998-05-10	libro	clrl	2010-06-11
+10003	Aleman	Si	libro de robotica	ninguno	0	pearson	otro	erste robotik	robotica incial	repositorio/libro3.djvu	1993-05-14	2001-05-14	libro	clrl	2010-06-12
 10004	Ingles	Si	libro de bases de datos	adobe	0	pearson	pdf	bases de dados	bases de datos	repositorio/libro4.pdf	2002-05-14	2003-05-14	libro	clrl	2010-06-13
+10005	Frances	Si	libro de computadores y redes	ninguno	0	norma	otro	ordinateurs et des reseaux	computadores y redes	repositorio/libro5.djvu	1996-05-14	2002-05-14	libro	clrl	2010-06-14
+10006	Ingles	No	libro de programacion java	adobe	0	scrib	pdf	java programming	programacion en java	repositorio/libro6.pdf	2003-05-14	2004-11-06	libro	clrl	2010-06-15
 10007	Ingles	Si	libro de programacion c++	adobe	0	sin editorial	pdf	programar en c++		repositorio/libro7.pdf	2000-05-14	2005-04-14	libro	clrl	2010-06-16
 10008	Ingles	No	diapositivas curso base datos	writter	0	sin editorial	odt	diapositivas base datos		repositorio/ppt1.odt	2004-04-07	2005-09-14	libro	clrl	2010-06-17
+10009	Ingles	No	articulo sobre computacion en la nube	word	0	sin editorial	doc	mas alla de la nube		repositorio/article.doc	2005-05-14	2005-05-14	libro	clrl	2010-06-18
 10010	Ingles	No	trabajo de grado sobre redes	adobe	0	sin editorial	pdf	wireless networks	redes inalambricas	repositorio/archivo.pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-19
 10011	Ingles	No	libro de desarrollo de software	adobe	0	sin editorial	pdf	software project starting	iniciando proyecto de software	repositorio/documento.pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-20
-10009	Ingles	No	articulo sobre computacion en la nube	word	0	sin editorial	doc	mas haya de la nube		repositorio/article.doc	2005-05-14	2005-05-14	libro	clrl	2010-06-18
-10006	Ingles	No	libro de programacion java	adobe	0	scrib	pdf	java programming	programacion en java	repositorio/libro6.pdf	2003-05-14	2004-11-06	libro	clrl	2010-06-15
-10003	Aleman	Si	libro de robotica	otro	0	pearson	djvu	erste robotik	robotica incial	repositorio/libro3.djvu	1993-05-14	2001-05-14	libro	clrl	2010-06-12
-10005	Frances	Si	libro de computadores y redes	otro	0	norma	djvu	ordinateurs et des reseaux	computadores y redes	repositorio/libro5.djvu	1996-05-14	2002-05-14	libro	clrl	2010-06-14
 10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural	sin titulo secundario	repositorio/libro3(10).djvu	1999-05-15	2005-01-24	taterial de clase	admin	2011-05-24
 10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp	sin titulo secundario	repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-05-24
 10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual	sin titulo secundario	repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-05-24
