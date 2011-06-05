@@ -5,9 +5,9 @@
 + Acomodar insects y weightX en gridbaglayout de consulta avanzada para radionButton, y formatos.. fechas
 + Acomodar posicion boton descargar en vista documento que quede igual que  ---------------> Listo
 + Acomodar orden de los atributos en vista documento ---------------------------------> Listo 
-+ Modificar titulo de mas haya de la nube a mas alla de la nube
++ Modificar titulo de mas haya de la nube a mas alla de la nube -----------------LISTO
 + Colocar login e icono de usuario en el menu a la derecha en las gui admin, catalogador, normal
-+ Acomodar formato en base de datos .. djvu
++ Acomodar formato en base de datos .. djvu--------------LISTO
 + Descripcion evento de enter cuando llegue a estos 20 caracteres. linewrap en true 
 + DOS DOCUMENTOS POR INTEGRANTE EN FORMATO TXT TAL Y CMO ESTA EN LA INTERFAZ. ^^
 
