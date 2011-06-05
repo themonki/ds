@@ -1,6 +1,7 @@
 package Reportes.Controlador;
 
 
+import java.lang.annotation.Documented;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +21,9 @@ import Utilidades.TableDataSource;
 
 public class ControladorReportes 
 {
+/* ***********************Reportes relacionados con usuarios************** */
+	
+	/*atributoUsuarios pueder ser genero, tipo de usuario,vinvulo con univalle o nivel escolaridad */
 	public JasperPrint reporteUsuariosAgrupados(String atributoUsuario, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -114,6 +118,83 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	
+	public JasperPrint reporteUsuariosAnio(String tipoAnio, String tituloReporte) throws JRException
+	{
+		/**
+		 * Método que permite generar reportes de usuario agrupados por un tipo de año
+		 * y retorna un reporte mostrando todos los usuarios en todos los años con
+		 * todos los meses que se encuentren en el sistema.
+		 * @param tipoAnio - String puede ser nacimiento o registro, usado para
+		 * descriminar por que año se agrupara la vista del reporte.
+		 * @pram tituloReporte - String el titulo usado para el reporte.
+		 * @return JasperPrint que contiene el reporte y podrá ser usado para imprimirlo.
+		 * @author Leonardo Ríos
+		 * */
+		return null;
+	}
+	
+	public JasperPrint reporteUsuariosAnio(String tipoAnio, String anioI, String anioF, String tituloReporte)
+	{
+		/**
+		 * Método que permite generar reportes de usuario agrupados por un tipo de año
+		 * que esta restringido entre anioI y anioF, retorna un reporte mostrando los usuarios
+		 * que se encentren en el sistema entre los años indicados con sus respectivos meses.
+		 * @param tipoAnio - String puede ser nacimiento o registro, usado para
+		 * descriminar por que año se agrupara la vista del reporte.
+		 * @param anioI - String para formar un intervalo de año, es el año inicial.
+		 * @param anioF - String para formar un intervalo de año, es el año final.
+		 * @pram tituloReporte - String el titulo usado para el reporte.
+		 * @return JasperPrint que contiene el reporte y podrá ser usado para imprimirlo.
+		 * @author Leonardo Ríos
+		 * */
+		return null;
+	}
+	
+	public JasperPrint reporteUsuariosAnioMes(String tipoAnio, String mesI, String mesF, String tituloReporte)
+	{
+		/**
+		 * Método que permite generar reportes de usuario agrupados por un tipo de año
+		 * y cada año tiene sus meses restringidos entre mesI y mesF
+		 * retorna un reporte mostrando los usuarios que se encentren en el sistema en todos los años 
+		 * con sus meses restringidos por los mese indicados.
+		 * @param tipoAnio - String puede ser nacimiento o registro, usado para
+		 * descriminar por que año se agrupara la vista del reporte.
+		 * @param mesI - String para formar el intervalo de mes en cada año, es el mes inicial.
+		 * @param mesF - String para formar el intervalo de mes en cada año, es el mes final.
+		 * @pram tituloReporte - String el titulo usado para el reporte.
+		 * @return JasperPrint que contiene el reporte y podrá ser usado para imprimirlo.
+		 * @author Leonardo Ríos
+		 * */
+		return null;
+	}
+	
+	public JasperPrint reporteUsuariosAnioMes(String tipoAnio, String anioI, String anioF, String mesI, String mesF, String tituloReporte)
+	{
+		/**
+		 * Método que permite generar reportes de usuario agrupados por un tipo de año
+		 * que esta restringido entre anioI y anioF, y cada año tiene sus meses restringidos entre mesI y mesF
+		 * retorna un reporte mostrando los usuarios que se encentren en el sistema entre los años y los
+		 * meses indicados indicados.
+		 * @param tipoAnio - String puede ser nacimiento o registro, usado para
+		 * descriminar por que año se agrupara la vista del reporte.
+		 * @param anioI - String para formar un intervalo de año, es el año inicial.
+		 * @param anioF - String para formar un intervalo de año, es el año final.
+		 * @param mesI - String para formar el intervalo de mes en cada año, es el mes inicial.
+		 * @param mesF - String para formar el intervalo de mes en cada año, es el mes final.
+		 * @pram tituloReporte - String el titulo usado para el reporte.
+		 * @return JasperPrint que contiene el reporte y podrá ser usado para imprimirlo.
+		 * @author Leonardo Ríos
+		 * */
+		return null;
+	}
+	
+	private JasperPrint procesarDatosUsuariosFecha(String tituloReporte, TableDataSource tableData)
+	{
+		return null;
+	}
+	
+/* **************reporte relacionados con areas ************************** */
 	public JasperPrint reporteAreasAgrupadas(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -155,7 +236,8 @@ public class ControladorReportes
         
         return jasperPrint;
 	}
-	
+
+/* ****************reportes relacionados con documentos **************************** */
 	public JasperPrint reporteDocumentosAgrupadosArea(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -244,17 +326,17 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosAgrupadosFormatoTotal(String tituloReporte) throws JRException
+	public JasperPrint reporteDocumentosAgrupadosFormatoTotales(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosAgrupadosFormatoTotal();
+		TableDataSource tableData = daoReportes.consultaDocumentosAgrupadosFormatoTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		//parametros.put("opcion", "Autor(es)");
+		parametros.put("opcion", "Documentos agrupados por Formato");
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadoTotales.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -266,6 +348,73 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	public JasperPrint reporteDocumentosAgrupadosTipoTotales(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosAgrupadosTipoTotales();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Documentos agrupados por Tipo");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosAgrupadosAreaTotales(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosAgrupadosAreaTotales();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Documentos agrupados por Área");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosAgrupadosAutorTotales(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosAgrupadosAutorTotales();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Documentos agrupados por Autor");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+/* ********************metodos utilitarios *********************************/
 	public void generarReporte(String rutaFinal, JasperPrint print)
 	{
 		JRExporter exporter = new JRPdfExporter(); 
@@ -287,26 +436,28 @@ public class ControladorReportes
 		ControladorReportes c = new ControladorReportes();
 		try
 		{
-			/*c.generarReporte("recursos/documento_areas.pdf", c.reporteDocumentosAgrupadosArea("Reporte Documento Areas"));
-			c.generarReporte("recursos/documento_tipo.pdf", c.reporteDocumentosAgrupadosTipo("Reporte Documento Tipo"));
-			c.generarReporte("recursos/documento_formato.pdf", c.reporteDocumentosAgrupadosFormato("Reporte Documento Formato"));
-			c.generarReporte("recursos/documento_autor.pdf", c.reporteDocumentosAgrupadosAutor("Reporte Documento Autores"));
+			//c.generarReporte("recursos/documento_areas.pdf", c.reporteDocumentosAgrupadosArea("Reporte Documento Areas"));
+			//c.generarReporte("recursos/documento_tipo.pdf", c.reporteDocumentosAgrupadosTipo("Reporte Documento Tipo"));
+			//c.generarReporte("recursos/documento_formato.pdf", c.reporteDocumentosAgrupadosFormato("Reporte Documento Formato"));
+			//c.generarReporte("recursos/documento_autor.pdf", c.reporteDocumentosAgrupadosAutor("Reporte Documento Autores"));	
+			//c.generarReporte("recursos/documento_formato_total.pdf", c.reporteDocumentosAgrupadosFormatoTotales("Reporte Documento Formato Totales"));
+			//c.generarReporte("recursos/documento_tipo_total.pdf", c.reporteDocumentosAgrupadosTipoTotales("Reporte Documento Tipo Totales"));
+			//c.generarReporte("recursos/documento_area_total.pdf", c.reporteDocumentosAgrupadosAreaTotales("Reporte Documento Area Totales"));
+			//c.generarReporte("recursos/documento_autor_total.pdf", c.reporteDocumentosAgrupadosAutorTotales("Reporte Documento Autor Totales"));
 			
-			c.generarReporte("recursos/usuario_escolaridad.pdf", c.reporteUsuariosAgrupados("nivel_escolaridad", "Reporte Usuarios Nivel Escolaridad"));
-			c.generarReporte("recursos/usuario_genero.pdf", c.reporteUsuariosAgrupados("genero", "Reporte Usuarios Genero"));
-			c.generarReporte("recursos/usuario_tipo.pdf", c.reporteUsuariosAgrupados("tipo", "Reporte Usuarios Tipo"));
-			c.generarReporte("recursos/usuario_vinculo.pdf", c.reporteUsuariosAgrupados("vinculo_univalle", "Reporte Usuarios Vinculo Univalle"));
-			c.generarReporte("recursos/usuario_escolaridad_total.pdf", c.reporteUsuariosAgrupadosTotales("nivel_escolaridad", "Reporte Usuarios Nivel Escolaridad Total"));
-			c.generarReporte("recursos/usuario_genero_total.pdf", c.reporteUsuariosAgrupadosTotales("genero", "Reporte Usuarios Genero Total"));
-			c.generarReporte("recursos/usuario_tipo_total.pdf", c.reporteUsuariosAgrupadosTotales("tipo", "Reporte Usuarios Tipo Total"));
-			c.generarReporte("recursos/usuario_vinculo_total.pdf", c.reporteUsuariosAgrupadosTotales("vinculo_univalle", "Reporte Usuarios Vinculo Univalle Totales"));
+			//c.generarReporte("recursos/usuario_escolaridad.pdf", c.reporteUsuariosAgrupados("nivel_escolaridad", "Reporte Usuarios Nivel Escolaridad"));
+			//c.generarReporte("recursos/usuario_genero.pdf", c.reporteUsuariosAgrupados("genero", "Reporte Usuarios Genero"));
+			//c.generarReporte("recursos/usuario_tipo.pdf", c.reporteUsuariosAgrupados("tipo", "Reporte Usuarios Tipo"));
+			//c.generarReporte("recursos/usuario_vinculo.pdf", c.reporteUsuariosAgrupados("vinculo_univalle", "Reporte Usuarios Vinculo Univalle"));
+			//c.generarReporte("recursos/usuario_escolaridad_total.pdf", c.reporteUsuariosAgrupadosTotales("nivel_escolaridad", "Reporte Usuarios Nivel Escolaridad Total"));
+			//c.generarReporte("recursos/usuario_genero_total.pdf", c.reporteUsuariosAgrupadosTotales("genero", "Reporte Usuarios Genero Total"));
+			//c.generarReporte("recursos/usuario_tipo_total.pdf", c.reporteUsuariosAgrupadosTotales("tipo", "Reporte Usuarios Tipo Total"));
+			//c.generarReporte("recursos/usuario_vinculo_total.pdf", c.reporteUsuariosAgrupadosTotales("vinculo_univalle", "Reporte Usuarios Vinculo Univalle Totales"));
 			
-			c.generarReporte("recursos/areas.pdf", c.reporteAreasAgrupadas("Reporte Areas"));
-			c.generarReporte("recursos/areas_totales.pdf", c.reporteAreasAgrupadasTotales("Reporte Areas Totales"));*/
+			//c.generarReporte("recursos/areas.pdf", c.reporteAreasAgrupadas("Reporte Areas"));
+			//c.generarReporte("recursos/areas_totales.pdf", c.reporteAreasAgrupadasTotales("Reporte Areas Totales"));
 			
-			c.generarReporte("recursos/prueba.pdf", c.reporteDocumentosAgrupadosFormatoTotal("Reporte"));
-			
-			//throw new JRException("no se");
+			throw new JRException("no se");
 		}catch(JRException e)
 		{
 			e.printStackTrace();
