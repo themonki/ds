@@ -85,9 +85,9 @@ public class GuiModificarDoc  extends GuiCatalogar
 		botonModificar= new Button("Modificar");
 		setBotonCatalogar(botonModificar);
 		this.botonModificar.addActionListener(new ManejadorBotonModificar());		
-		this.panel2.remove(this.examinarDoc);
-		this.panel2.remove(this.formato);
-		this.panel2.remove(this.campoFormato);
+		this.panelConDatos.remove(this.examinarDoc);
+		this.panelConDatos.remove(this.formato);
+		this.panelConDatos.remove(this.campoFormato);
 		initDocumentInfo();
 	}
 
@@ -130,8 +130,8 @@ public class GuiModificarDoc  extends GuiCatalogar
 		restriccionEtiquetas.insets= new Insets(0,14,0,0);// espacios entre componentes
 		restriccionEtiquetas.anchor=GridBagConstraints.WEST;//alinear a la izquierda		
 		restriccionEtiquetas.gridy=16;		
-		panel2.add(fechaCatalogacion, restriccionEtiquetas);
-		panel2.add(campoFechaCatalogacion, restriccionCampo);
+		panelConDatos.add(fechaCatalogacion, restriccionEtiquetas);
+		panelConDatos.add(campoFechaCatalogacion, restriccionCampo);
 		
 	}
 	
@@ -220,10 +220,10 @@ public class GuiModificarDoc  extends GuiCatalogar
 			// tomar fechas de splinner
 			fechaCreacionDate = editorCreacion.getModel().getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String fes = sdf.format(fechaCreacion);
+			String fes = sdf.format(fechaCreacionDate);
 			fechaPublicacionDate = editorPublicacion.getModel().getDate();
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String fes2 = sdf2.format(fechaPublicacion);
+			String fes2 = sdf2.format(fechaPublicacionDate);
 			doc.setFecha_creacion(java.sql.Date.valueOf(fes));
 			doc.setFecha_publicacion(java.sql.Date.valueOf(fes2));
 			if (controladorDocumento.modificarDatosDocumento(doc,

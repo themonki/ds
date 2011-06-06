@@ -84,6 +84,7 @@ public class Button extends JButton {
 		ButtonModel m = getModel();
 
 		Paint oldPaint = g2.getPaint();
+		
 
 		if (m.isArmed()) {
 			c2 = color1.darker();
