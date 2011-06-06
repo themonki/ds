@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.swing.JTable;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -483,6 +485,13 @@ public class ControladorReportes
 		return atributos;
 	}
 	
+	public JTable consultaGenerica(String consultaSql)
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		JTable tabla = daoReportes.consultaGenerica(consultaSql);
+		return tabla;
+	}
+	
 	
 	
 	public static void main(String arg[])
@@ -490,6 +499,7 @@ public class ControladorReportes
 		ControladorReportes c = new ControladorReportes();
 		try
 		{
+			System.out.println(c.consultaGenerica("select * from usuario"));
 			//c.generarReporte("recursos/documento_areas.pdf", c.reporteDocumentosAgrupadosArea("Reporte Documento Areas"));
 			//c.generarReporte("recursos/documento_tipo.pdf", c.reporteDocumentosAgrupadosTipo("Reporte Documento Tipo"));
 			//c.generarReporte("recursos/documento_formato.pdf", c.reporteDocumentosAgrupadosFormato("Reporte Documento Formato"));

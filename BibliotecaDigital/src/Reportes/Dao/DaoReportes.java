@@ -1,5 +1,10 @@
 package Reportes.Dao;
 
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.ScrollPane;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -8,6 +13,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JViewport;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+
+import com.sun.xml.internal.ws.api.server.Container;
+
 import Utilidades.FachadaBD;
 import Utilidades.TableDataSource;
 
@@ -15,11 +34,14 @@ public class DaoReportes {
 
 	FachadaBD fachada;
 
+	JTable tabla;
+	DefaultTableModel modelo;
+
 	public DaoReportes() {
 		fachada = new FachadaBD();
 	}
 
-	/*  ***********************Reportes relacionados con usuarios************** */
+	/*   ***********************Reportes relacionados con usuarios************** */
 	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario) {
 		String consultaSql = "SELECT u."
 				+ atributoUsuario
@@ -274,7 +296,7 @@ public class DaoReportes {
 		return data;
 	}
 
-	/* 
+	/*
 	 * ************reportes relacionados con areas de ciencias de la
 	 * computacion***********
 	 */
@@ -411,7 +433,7 @@ public class DaoReportes {
 		}
 	}
 
-	/* 
+	/*
 	 * ******************Reporte relacionados con
 	 * documento**********************
 	 */
@@ -634,7 +656,7 @@ public class DaoReportes {
 		return null;
 	}
 
-	/* 
+	/*
 	 * ********************************** metodos de utilidad
 	 * *************************
 	 */
@@ -714,11 +736,7 @@ public class DaoReportes {
 			while (resultado.next()) {
 				tablas.add(resultado.getString(primerElemento));
 			}
-			
-			
-			
 
-			
 			fachada.cerrarConexion(conn);
 			conn = null;
 			// fachada = null;
@@ -732,9 +750,10 @@ public class DaoReportes {
 
 		return tablas;
 	}
-	
+
 	public Vector<String> obtenerAtributosTabla(String nombreTabla) {
-		String consultaSql = "SELECT column_name FROM information_schema.columns WHERE table_name = '"+nombreTabla+"' ;";
+		String consultaSql = "SELECT column_name FROM information_schema.columns WHERE table_name = '"
+				+ nombreTabla + "' ;";
 
 		Vector<String> atributos = new Vector<String>();
 
@@ -747,11 +766,7 @@ public class DaoReportes {
 			while (resultado.next()) {
 				atributos.add(resultado.getString(primerElemento));
 			}
-			
-			
-			
 
-			
 			fachada.cerrarConexion(conn);
 			conn = null;
 			// fachada = null;
@@ -765,6 +780,116 @@ public class DaoReportes {
 
 		return atributos;
 	}
+	
+	public JTable consultaGenerica(String consultaSql) {
+
+		
+		
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+
+			crearTabla(resultado);
+			
+			fachada.cerrarConexion(conn);
+			conn = null;
+			// fachada = null;
+			sentencia = null;
+			resultado = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return tabla;
+	}
+
+	private void configurarTabla() {
+
+		modelo = new DefaultTableModel();
+		tabla = new JTable(modelo);
+		
+
+	}
+
+	private void crearTabla(ResultSet rs) {
+		try {
+
+			ResultSetMetaData rsmd = rs.getMetaData();
+
+			int columnas = rsmd.getColumnCount();
+
+			// Se crea un array de etiquetas para rellenar
+			Vector<String> etiquetas = new Vector<String>();
+
+			// Se obtiene cada una de las etiquetas para cada columna
+			for (int i = 0; i < columnas; i++) {
+				// Nuevamente, para ResultSetMetaData la primera columna es la
+				// 1.
+				etiquetas.add(rsmd.getColumnName(i + 1));
+				//System.out.println(etiquetas.get(i));
+			}
+		
+			configurarTabla();
+			
+
+			modelo.setColumnIdentifiers(etiquetas);
+			
+			String[] fila = new String[columnas];
+
+			for (int i = 0; i < columnas; i++) {
+				// Nuevamente, para ResultSetMetaData la primera columna es la
+				// 1.
+				String nombreColumna = rsmd.getColumnName(i + 1);
+				fila[i] = nombreColumna;
+			}
+			
+			modelo.addRow(fila);
+
+			while (rs.next()) {
+
+				// Se crea un array que será una de las filas de la tabla.
+
+				// Se rellena cada posición del array con una de las columnas de
+				// la tabla en base de datos.
+				for (int i = 0; i < columnas; i++) {
+					fila[i] = rs.getString(i + 1); // El primer indice en rs es
+													// el 1, no el cero, por eso
+													// se suma 1.
+					//System.out.println(fila[i]);
+				}
+				// Se añade al modelo la fila completa.
+
+				modelo.addRow(fila);
+
+			}
+			// se suma 1.
+			System.out.println(modelo.getRowCount());
+			tabla.setRowHeight(modelo.getRowCount());
+
+		} catch (SQLException e) {
+
+			
+		}
+	}
+	
+	public void setAnchoColumnas(){        
+	 
+
+		
+		
+		for(int i=0; i< tabla.getColumnCount(); i++){
+	
+			
+			TableColumn columna = tabla.getColumn(tabla.getColumnName(i));
+			System.out.println(columna.getIdentifier());
+			columna.setPreferredWidth(200);
+		}
+		
+	}  
 
 	public static void main(String args[]) {
 
@@ -782,8 +907,26 @@ public class DaoReportes {
 
 		// System.out.println(daoReportes.consultaUsuariosOrdenados("nivel_escolaridad"));
 		// System.out.println(daoReportes.consultaUsuariosOrdenadosTotales("genero"));
+		
+		JFrame a = new JFrame();
+		java.awt.Container contenedor = a.getContentPane();
+		contenedor.setLayout(new FlowLayout());
+		JPanel panel = new JPanel();
+		JTable asd = daoReportes.consultaGenerica("Select * from usuario where login = 'monki';");
+		daoReportes.setAnchoColumnas();
+		
+		
+		
+		panel.add(asd);
+		
+		JScrollPane b = new JScrollPane(panel);
+		contenedor.add(b);
+		a.setVisible(true);
+		a.setSize(500,500);
+		
+		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		System.out.println(daoReportes.obtenerAtributosTabla("documento"));
+		
 	}
 
 }
