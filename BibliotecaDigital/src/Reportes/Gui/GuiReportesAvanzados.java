@@ -378,14 +378,12 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		panelDocumento.add(tipoReporte, restricciones);
 		restricciones.gridy++;
-		restricciones.gridwidth = 2;
 		panelDocumento.add(documentosExistentes, restricciones);
-		restricciones.gridx = 2;
+		restricciones.gridy++;
 		panelDocumento.add(documentosCatalogados, restricciones);
 		
 		restricciones.insets.left = 40;
 		restricciones.gridy++;
-		restricciones.gridx = 0;
 		restricciones.gridwidth = 4;
 		panelDocumento.add(orden, restricciones);
 		restricciones.insets.left = 60;
