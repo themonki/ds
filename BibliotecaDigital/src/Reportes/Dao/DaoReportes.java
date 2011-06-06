@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -1338,6 +1339,7 @@ public class DaoReportes
 			resultado = null;
 		} catch (SQLException e) {
 			System.out.println(e);
+			JOptionPane.showMessageDialog(null, e);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
