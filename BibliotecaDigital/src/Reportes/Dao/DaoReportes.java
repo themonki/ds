@@ -1,17 +1,21 @@
 package Reportes.Dao;
 
+import java.awt.Font;
 import java.awt.ScrollPane;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -24,6 +28,7 @@ public class DaoReportes {
 
 	JTable tabla;
 	DefaultTableModel modelo;
+	int[] maximos ;
 
 	public DaoReportes() {
 		fachada = new FachadaBD();
@@ -779,8 +784,8 @@ public class DaoReportes {
 			Statement sentencia = conn.createStatement();
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 
-			crearTabla(resultado);
-			
+			System.out.println(consultaSql);
+			crearTabla(resultado);			
 			fachada.cerrarConexion(conn);
 			conn = null;
 			// fachada = null;
@@ -826,12 +831,21 @@ public class DaoReportes {
 
 			modelo.setColumnIdentifiers(etiquetas);
 			
+			maximos = new int[200];
 			String[] fila = new String[columnas];
 
 			for (int i = 0; i < columnas; i++) {
 				// Nuevamente, para ResultSetMetaData la primera columna es la
 				// 1.
 				String nombreColumna = rsmd.getColumnName(i + 1);
+				
+				int valor = nombreColumna.length();
+				
+				if( valor > maximos [i])
+				{
+					maximos[i] = valor;
+				}
+				
 				fila[i] = nombreColumna;
 			}
 			
@@ -844,7 +858,16 @@ public class DaoReportes {
 				// Se rellena cada posición del array con una de las columnas de
 				// la tabla en base de datos.
 				for (int i = 0; i < columnas; i++) {
-					fila[i] = rs.getString(i + 1); // El primer indice en rs es
+					
+					String atributo = rs.getString(i + 1);
+					int valor = atributo.length();
+					
+					if( valor > maximos [i])
+					{
+						maximos[i] = valor;
+					}
+					
+					fila[i] = atributo; // El primer indice en rs es
 													// el 1, no el cero, por eso
 													// se suma 1.
 					//System.out.println(fila[i]);
@@ -857,6 +880,9 @@ public class DaoReportes {
 			// se suma 1.
 			System.out.println(modelo.getRowCount());
 			tabla.setRowHeight(20);
+			setAnchoColumnas();
+			
+			
 
 		} catch (SQLException e) {
 
@@ -864,17 +890,23 @@ public class DaoReportes {
 		}
 	}
 	
-	public void setAnchoColumnas(){        
+	private void setAnchoColumnas(){        
 	 
 
 		
 		
 		for(int i=0; i< tabla.getColumnCount(); i++){
 	
+		
+			DefaultTableCellRenderer modeloCellRenderer = new DefaultTableCellRenderer();	   
 			
-			TableColumn columna = tabla.getColumn(tabla.getColumnName(i));
-			//System.out.println(columna.getIdentifier());
-			columna.setPreferredWidth(200);
+			modeloCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+			
+			TableColumn columna = tabla.getColumn(tabla.getColumnName(i));			
+			 System.out.println(maximos[i]);
+			columna.setPreferredWidth(maximos[i]*10);
+			columna.setCellRenderer(modeloCellRenderer);
+			
 		}
 		
 	}  
@@ -900,7 +932,7 @@ public class DaoReportes {
 		JPanel panel =  new JPanel();
 		panel.add(daoReportes.consultaGenerica("select * from usuario where login ='monki'"));
 		JScrollPane asd = new JScrollPane(panel);
-		daoReportes.setAnchoColumnas();
+		
 		a.add(asd);
 	
 		a.setVisible(true);
