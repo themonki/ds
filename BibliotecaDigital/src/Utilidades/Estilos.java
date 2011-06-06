@@ -73,4 +73,11 @@ public class Estilos {
 	 * Variable que contiene el color para los lightBorder
 	 */
 	public static Color colorLightBorder = new Color(167, 153, 157);
+	
+	//------------------------------Color panel de menu -------------------------
+	
+	/**
+	 * Variable que contiene el color para los panels de menu 
+	 */
+	public static Color colorFondoPanel = new Color(205,74,74);
 }
