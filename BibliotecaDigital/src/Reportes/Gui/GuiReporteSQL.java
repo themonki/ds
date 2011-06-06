@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -101,11 +102,18 @@ public class GuiReporteSQL extends JTabbedPane {
 		
 		public void actionPerformed(ActionEvent evento)
 		{
+			
 			tabla=null;
 			resultadoPanel.removeAll();
 			String consultaSql =" SELECT " + campoAtributos.getText()+" "+areaConsulta.getText();
 			tabla = conReport.consultaGenerica(consultaSql);
+			
 			if(tabla==null){return;}
+			tabla.setEnabled(false);
+			tabla.setBorder(BorderFactory.createTitledBorder(BorderFactory
+					.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), ""));
+
+
 			resultadoPanel.add(tabla);
 			resultadoPanel.repaint();
 			resultadoPanel.updateUI();
