@@ -60,7 +60,7 @@ public class GuiReportesAvanzados extends JPanel{
 	
 	private JTextArea campoIntroDescargasConsultas, campoIntroDocumento;
 	
-	private JScrollPane scrollIntroDescargasConsultas, scrollIntroDocumento;
+	private JScrollPane scrollIntroDescargasConsultas, scrollIntroDocumento, scrollPanel;
 	
 	private GridBagConstraints retriccionesAvanzado;
 	
@@ -107,6 +107,9 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		
 	    panelPrincipal.add(panelOpcionesReportes, BorderLayout.NORTH);
+	    scrollPanel = new JScrollPane();
+	    scrollPanel.setViewportView(panelDescargasConsultas);
+	    panelPrincipal.add(scrollPanel, BorderLayout.CENTER);
 	    //---- INSERTAR COMPONENTES EN PANEL ---
 /*
 		retriccionesAvanzado= new GridBagConstraints();
@@ -304,25 +307,33 @@ public class GuiReportesAvanzados extends JPanel{
 		JLabel tipoReporte, contenido, orden, formato, agrupado, desde, hasta;
 		
 		tipoReporte = new JLabel("Reporte de: ");
-		tipoReporte.setFont(Estilos.fontSubrayados);
+		tipoReporte.setFont(Estilos.fontLabels);
+		tipoReporte.setForeground(Estilos.colorSubtitulo);
 		contenido = new JLabel("Que contenga sólo información de: ");
+		contenido.setFont(Estilos.fontSubrayados);
 		orden = new JLabel("Orden");
+		orden.setFont(Estilos.fontSubrayados);
 		formato = new JLabel("Formato");
-		agrupado = new JLabel("Agrupado");
+		formato.setFont(Estilos.fontSubrayados);
+		agrupado = new JLabel("Agrupado por");
+		agrupado.setFont(Estilos.fontSubrayados);
 		desde = new JLabel("Desde: ");
 		hasta = new JLabel("Hasta: ");
 		
-		//Panel para opciones
+		//-------------Panel para opciones
 		
 		JPanel opcionesReporte = new JPanel(new GridBagLayout());
+		opcionesReporte.setBackground(Color.WHITE);
 		
 		TitledBorder bordeOpciones = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Opciones reporte");
 		bordeOpciones.setTitleJustification(TitledBorder.LEFT);
+		bordeOpciones.setTitleFont(Estilos.fontSubtitulos);
+		bordeOpciones.setTitleColor(Estilos.colorSubtitulo);
 		opcionesReporte.setBorder(bordeOpciones);
 		
 		GridBagConstraints restriccionesOpciones = new GridBagConstraints();
 		restriccionesOpciones.anchor = GridBagConstraints.WEST;
-		restriccionesOpciones.insets = new Insets(4, 4, 4, 4);
+		restriccionesOpciones.insets = new Insets(4, 20, 4, 20);
 		restriccionesOpciones.gridx = 0;
 		restriccionesOpciones.gridy = 0;
 		
@@ -346,11 +357,11 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		opcionesReporte.add(agrupado, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(habilitarPorHoraDescargasConsultas);
+		opcionesReporte.add(habilitarPorHoraDescargasConsultas, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(habilitarPorMesDescargasConsultas);
+		opcionesReporte.add(habilitarPorMesDescargasConsultas, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(habilitarPorAnioDescargasConsultas);
+		opcionesReporte.add(habilitarPorAnioDescargasConsultas, restriccionesOpciones);
 		
 		restriccionesOpciones.gridx = 0;
 		restriccionesOpciones.gridy++;
@@ -358,29 +369,76 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		opcionesReporte.add(habilitarPeriodoDescargasConsultas, restriccionesOpciones);
 		restriccionesOpciones.gridwidth=1;
-		restriccionesOpciones.insets = new Insets(4, 20, 4, 4);
+		restriccionesOpciones.insets = new Insets(4, 40, 4, 20);
 		restriccionesOpciones.gridy++;
 		opcionesReporte.add(desde, restriccionesOpciones);
 		restriccionesOpciones.gridx = 1;
+		restriccionesOpciones.insets.left = 20;
 		opcionesReporte.add(campoFechaDesdeDescargas, restriccionesOpciones);
+		restriccionesOpciones.gridx = 0;
+		restriccionesOpciones.insets.left = 40;
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(hasta, restriccionesOpciones);
+		restriccionesOpciones.gridx = 1;
+		restriccionesOpciones.insets.left = 20;
+		opcionesReporte.add(campoFechaHastaDescargas, restriccionesOpciones);		
 		
-		
-		//Fin panel para opciones
+		//---------Fin panel para opciones
 		
 		GridBagConstraints restricciones = new GridBagConstraints();
 		restricciones.anchor= GridBagConstraints.WEST;
+		restricciones.gridx = 0;
+		restricciones.gridy = 0;
+		restricciones.insets = new Insets(4, 4, 8, 4);
 		
+		panelDescargasConsultas.add(tipoReporte, restricciones);
+		restricciones.gridy++;
+		panelDescargasConsultas.add(descargasRadio, restricciones);
+		restricciones.gridx = 1;
+		panelDescargasConsultas.add(consultasRadio, restricciones);
 		
+		restricciones.gridx = 0;
+		restricciones.gridy++;
+		restricciones.gridwidth = 3;
 		
+		panelDescargasConsultas.add(contenido, restricciones);
+		restricciones.gridwidth = 1;
+		restricciones.gridy++;
+		panelDescargasConsultas.add(documentosRadio, restricciones);
+		restricciones.gridx = 1;
+		panelDescargasConsultas.add(usuariosRadio, restricciones);
 		
+		restricciones.gridy++;
+		restricciones.gridwidth=3;
+		restricciones.gridx = 0;
+		panelDescargasConsultas.add(opcionesReporte, restricciones);
 		
+		restricciones.gridwidth =1;
+		restricciones.gridy++;
+		panelDescargasConsultas.add(etiquetaTituloDescargasConsultas, restricciones);
+		restricciones.gridwidth = 2;
+		restricciones.gridx = 1;
+		panelDescargasConsultas.add(campoTituloDescargasConsultas, restricciones);
+		
+		restricciones.gridy++;
+		restricciones.gridwidth=3;
+		restricciones.gridx = 0;
+		panelDescargasConsultas.add(etiquetaIntroDescargasConsultas, restricciones);
+		restricciones.gridy++;
+		panelDescargasConsultas.add(scrollIntroDescargasConsultas, restricciones);
+		
+		restricciones.gridy++;
+		restricciones.anchor = GridBagConstraints.CENTER;
+		panelDescargasConsultas.add(botonDescargasConsultasGenerar, restricciones);	
 		
 	}
 
 	private void inicializarButtons() {
 
 		botonDescargasConsultasGenerar = new Button("Generar Reporte");
+		botonDescargasConsultasGenerar.setIcon(new ImageIcon("recursos/iconos/Report2.png"));
 		botonDocumentoGenerar = new Button("Generar Reporte");
+		botonDocumentoGenerar.setIcon(new ImageIcon("recursos/iconos/Report2.png"));
 		
 		//botonDescargas.addActionListener(new Manejador());
 		//botonConsultas.addActionListener(new Manejador());
