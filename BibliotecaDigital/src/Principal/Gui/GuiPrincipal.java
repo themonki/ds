@@ -52,6 +52,10 @@ import Utilidades.Estilos;
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
 
+/**
+ * @author 
+ *
+ */
 public class GuiPrincipal extends JFrame
 {
 		private static final long serialVersionUID = 1L;
@@ -90,6 +94,9 @@ public class GuiPrincipal extends JFrame
 		private static GuiConsultaAvanzada PANEL_CONSULTA_AVANZADA;
 		private static GuiRecuperarPassword PANEL_RECUPERAR_PASSWORD;
 		
+		/**
+		 * 
+		 */
 		public GuiPrincipal()
 		{
 			
@@ -220,6 +227,10 @@ public class GuiPrincipal extends JFrame
 
 		}
 
+		/**
+		 * @author yerminson
+		 *
+		 */
 		public class Manejador implements ActionListener
 		{		
 			@Override
@@ -346,6 +357,9 @@ public class GuiPrincipal extends JFrame
 
 	
 
+		/**
+		 * @param args
+		 */
 		public static void main(String args[]) {
 
 			try
@@ -364,6 +378,9 @@ public class GuiPrincipal extends JFrame
 
 		}
 		
+		/**
+		 * 
+		 */
 		public static void cambiarPanelIngresar()
 		{
 			
@@ -374,6 +391,9 @@ public class GuiPrincipal extends JFrame
 			
 			
 		}
+		/**
+		 * 
+		 */
 		public static void cambiarPanelRegistro()
 		{
 			
@@ -385,6 +405,9 @@ public class GuiPrincipal extends JFrame
 			
 			
 		}
+		/**
+		 * 
+		 */
 		public static void cambiarPanelRegistroAvanzado()
 		{
 			
@@ -396,6 +419,9 @@ public class GuiPrincipal extends JFrame
 			
 			
 		}
+		/**
+		 * 
+		 */
 		public static void insertarPanelCambiar()
 		{
 			
@@ -407,12 +433,18 @@ public class GuiPrincipal extends JFrame
 			
 		}
 
+		/**
+		 * 
+		 */
 		public static void cambiarPanelIngresarRemover() {
 			CONTENEDOR.remove(PANEL_RECUPERAR_PASSWORD);
 			
 			CONTENEDOR.add(PANEL_AUTENTICAR, BorderLayout.CENTER);
 			ESTADO.setText(ESTADO_INGRESANDO);
 		}	
+		/**
+		 * 
+		 */
 		public static void cambiarAvanzadaInicio()
 		{
 			

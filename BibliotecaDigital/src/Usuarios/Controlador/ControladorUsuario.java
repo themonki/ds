@@ -28,9 +28,13 @@ import Usuarios.Dao.DaoUsuario;
 import Usuarios.Logica.Usuario;
 
 /**
- * Clase que se encargara de manejar los datos que se reciben y envian a las
- * Guis que lo requieran
- * 
+ * Clase que permite la comunicación entre la Clase {@link Consultas.Dao.DaoUsuario DaoUsuario} y las Clases
+ * de aplicación: {@link Usuario.Gui.GuiRegistroModificar GuiRegistroModificar}, 
+ * {@link Usuario.GuiAutentificar GuiAuntentificar},
+ * {@link Usuario.Gui.GuiRecuperarPassword GuiRecuperarPassword},
+ * {@link Usuario.Gui.GuiConsultarUsuarios GuiConsultarUsuarios} y {@link Usuario.Gui.GuiNovedades GuiNovedades} 
+ * para el intercambio de datos.
+
  * @author Yerminson
  * 
  */

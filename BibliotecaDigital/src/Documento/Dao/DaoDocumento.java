@@ -25,7 +25,7 @@ import Utilidades.FachadaBD;
 
 /**
  * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
- * con los documentos
+ * con los documentos mediante la Clase {@link Utilidades.FachadaBD FachadaBD}
  * @author Edgar Andres Moncada
  */
 public class DaoDocumento {

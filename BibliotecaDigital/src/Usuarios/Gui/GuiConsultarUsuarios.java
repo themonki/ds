@@ -40,6 +40,14 @@ import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * 
+ * Clase que permite consultar usuarios para realizar tareas
+ * administrativas con respecto a perfil y acceso a la aplicacion
+ * pero no con respecto a datos del usuario.
+ * @author 
+ *
+ */
 public class GuiConsultarUsuarios extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;
@@ -55,6 +63,9 @@ public class GuiConsultarUsuarios extends JScrollPane {
 	DefaultListModel modeloLista;
 	Vector<Usuario> usuariosVector;
 
+	/**
+	 * Constructor que permite iniciar los elementos principales de la interfaz
+	 */
 	public GuiConsultarUsuarios() {
 		iniComponents();
 	}
@@ -122,6 +133,13 @@ public class GuiConsultarUsuarios extends JScrollPane {
 		this.getViewport().add(panelPrincipal);
 	}
 
+	/**
+	 * Metodo que permite inicializar una etiqueta y la 
+	 * retorna para que sea usada en la interfaz.
+	 * 
+	 * @param titulo
+	 * @return JLabel
+	 */
 	private JLabel inicializarLabel(String titulo) {
 		JLabel label = new JLabel(titulo, JLabel.LEFT);
 		label.setFont(Estilos.fontLabels);
@@ -129,6 +147,13 @@ public class GuiConsultarUsuarios extends JScrollPane {
 		return label;
 	}
 
+	/**
+	 * 
+	 * Clase que permite manejar los eventos generados por los botones
+	 * como por ejemplo consultar o modificar
+	 * @author 
+	 *
+	 */
 	private class ManejadorBoton implements ActionListener {
 		private JLabel mensajeEstado;
 
@@ -218,6 +243,14 @@ public class GuiConsultarUsuarios extends JScrollPane {
 		}
 	}
 
+	/**
+	 * 
+	 * Clase que permite manejar los elementos que se van seleccionando de la lista 
+	 * y asi mismo va mostrando el usuario a modificar en el momento
+	 * @author
+	 * 
+	 *
+	 */
 	private class ManejadorLista implements ListSelectionListener {
 
 		int flag = 0;

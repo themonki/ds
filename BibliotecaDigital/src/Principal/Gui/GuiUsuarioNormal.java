@@ -52,6 +52,13 @@ import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * 
+ * Clase que permite mostrar las diferentes funcionalidades que 
+ * tiene un usuario normal
+ * @author 
+ *
+ */
 public class GuiUsuarioNormal extends JFrame
 {
 	private static final long serialVersionUID = 1L;
@@ -100,6 +107,11 @@ public class GuiUsuarioNormal extends JFrame
 
 	
 	
+	/**
+	 * Constructor que permite inicializar los principales campos de
+	 * la interfaz y realizar arreglos relacionados con el estilo de la aplicacion
+	 * @param usuario
+	 */
 	public GuiUsuarioNormal(Usuario usuario)
 	{
 		super("::: Sistema de Biblioteca Digital :::");	
@@ -230,6 +242,13 @@ public class GuiUsuarioNormal extends JFrame
 
 	}
 	
+	/**
+	 * Metodo que permite realizar le manejo de los eventos 
+	 * generados por un boton
+	 * 
+	 * @author 
+	 *
+	 */
 	public class Manejador implements ActionListener
 	{		
 		@Override
@@ -368,6 +387,10 @@ public class GuiUsuarioNormal extends JFrame
 		}
 	}
 	
+	/**
+	 * Metodo que permite cambiar desde el panel de modificacion hasta 
+	 * el panel de inicio que es donde se encuentra consulta avanzada.
+	 */
 	public void cambiarPanelInicio()
 	{
 		CONTENEDOR.remove(PANEL_REGISTRO_MODIFICAR);
@@ -377,6 +400,13 @@ public class GuiUsuarioNormal extends JFrame
 		
 		
 	}
+	/**
+	 * 
+	 * Metodo que permite manejar los paneles dinamicamente 
+	 * es decir cambiar desde una consulta avanzada hasta la
+	 * consulta basica
+	 * 
+	 */
 	public static void cambiarAvanzadaInicio()
 	{
 		
@@ -387,6 +417,12 @@ public class GuiUsuarioNormal extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 * Metodo que permite cambiar desde de novedades hasta el
+	 * lugar de la consulta basica
+	 * 
+	 */
 	public static void cambiarNovedadesInicio()
 	{
 		
@@ -398,6 +434,13 @@ public class GuiUsuarioNormal extends JFrame
 		
 	}
 	
+	/**
+	 * 
+	 * Metodo que permite actualizar la interfaz para presentar las
+	 * novedades al usuario, de la misma manera que se haria en una
+	 * consulta basica o avanzada.
+	 * @param novedades
+	 */
 	public void setNovededadesUsuario(Vector<Consulta> novedades)
 	{
 	
@@ -411,6 +454,15 @@ public class GuiUsuarioNormal extends JFrame
 		novedadesUsuario = novedades;	
 		
 	}
+	/**
+	 * 
+	 * Metodo que retorna las novedades del usuario es decir
+	 * el vector de consultas. En caso de ser vacio el
+	 * usuario no tiene novedades es decir documentos que se 
+	 * le puedan mostrar como nuevos.
+	 * 
+	 * @return
+	 */
 	public Vector<Consulta>getNovededadesUsuario()
 	{
 		return novedadesUsuario;			

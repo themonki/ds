@@ -25,7 +25,7 @@ import Utilidades.FachadaBD;
 
 /**
  * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
- * con el tipo de material
+ * con el tipo de material mediante la Clase {@link Utilidades.FachadaBD FachadaBD}.
  * @author Cristian Leonardo Rios
  *
  */public class DaoAreaConocimiento {

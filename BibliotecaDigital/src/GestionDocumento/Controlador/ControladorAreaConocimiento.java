@@ -21,6 +21,15 @@ import java.util.Vector;
 import GestionDocumento.Dao.DaoAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
 
+/**
+ * Clase que permite la comunicación entre la Clase {@link GestionDocumento.Dao.DaoAreaConocimiento DaoAreaConocimiento}
+ *  y las Clases
+ * de aplicación: {@link GestionDocumento.Gui.GuiInsertarArea GuiInsertarArea}, 
+ * y {@link GestionDocumento.Gui.GuiModificarArea GuiModificarArea} 
+ * para el intercambio de datos.
+ * @author 
+ *
+ */
 public class ControladorAreaConocimiento
 {
 	public int insertarAreaConocimiento(String id, String nombre,

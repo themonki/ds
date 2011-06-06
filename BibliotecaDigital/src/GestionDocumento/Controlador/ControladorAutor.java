@@ -20,12 +20,14 @@ import java.util.Vector;
 import GestionDocumento.Dao.DaoAutor;
 import GestionDocumento.Logica.Autor;
 
-/*
- * Implementado por Yerminson Gonzalez
- * Controlador Autor
- * 
- * */
-
+/**
+ * Clase que permite la comunicación entre la Clase {@link GestionDocumento.Dao.DaoAutor DaoAutor} y las Clases
+ * de aplicación: {@link GestionDocumento.Gui.GuiInsertarAutor GuiInsertarAutor}, 
+ * y {@link GestionDocumento.Gui.GuiModificarAutor GuiModificarAutor} 
+ * para el intercambio de datos.
+ * @author Yerminson Gonzales
+ *
+ */
 public class ControladorAutor {
 
 	public int insertarAutor(String nombre, String apellido, String acronimo,

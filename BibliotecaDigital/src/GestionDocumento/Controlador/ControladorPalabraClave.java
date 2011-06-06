@@ -20,8 +20,15 @@ import java.util.Vector;
 import GestionDocumento.Dao.DaoPalabraClave;
 import GestionDocumento.Logica.PalabraClave;
 
-
-
+/**
+ * Clase que permite la comunicación entre la Clase {@link GestionDocumento.Dao.DaoPalabraClave DaoPalabraClave}
+ *  y las Clases
+ * de aplicación: {@link GestionDocumento.Gui.GuiIngresarPalabraClave GuiIngresarPalabraClave}, 
+ * y {@link GestionDocumento.Gui.GuiModificarPalabraClave GuiModificarPalabraClave} 
+ * para el intercambio de datos.
+ * @author 
+ *
+ */
 public class ControladorPalabraClave {
 
 	public int insertarPalabraClave(String nombre, String descripcion) {
