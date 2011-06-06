@@ -1,31 +1,19 @@
 package Reportes.Dao;
 
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.ScrollPane;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JViewport;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-
-import com.sun.xml.internal.ws.api.server.Container;
 
 import Utilidades.FachadaBD;
 import Utilidades.TableDataSource;
@@ -868,7 +856,7 @@ public class DaoReportes {
 			}
 			// se suma 1.
 			System.out.println(modelo.getRowCount());
-			tabla.setRowHeight(modelo.getRowCount());
+			tabla.setRowHeight(20);
 
 		} catch (SQLException e) {
 
@@ -885,7 +873,7 @@ public class DaoReportes {
 	
 			
 			TableColumn columna = tabla.getColumn(tabla.getColumnName(i));
-			System.out.println(columna.getIdentifier());
+			//System.out.println(columna.getIdentifier());
 			columna.setPreferredWidth(200);
 		}
 		
@@ -909,21 +897,14 @@ public class DaoReportes {
 		// System.out.println(daoReportes.consultaUsuariosOrdenadosTotales("genero"));
 		
 		JFrame a = new JFrame();
-		java.awt.Container contenedor = a.getContentPane();
-		contenedor.setLayout(new FlowLayout());
-		JPanel panel = new JPanel();
-		JTable asd = daoReportes.consultaGenerica("Select * from usuario where login = 'monki';");
+		JPanel panel =  new JPanel();
+		panel.add(daoReportes.consultaGenerica("select * from usuario where login ='monki'"));
+		JScrollPane asd = new JScrollPane(panel);
 		daoReportes.setAnchoColumnas();
-		
-		
-		
-		panel.add(asd);
-		
-		JScrollPane b = new JScrollPane(panel);
-		contenedor.add(b);
+		a.add(asd);
+	
 		a.setVisible(true);
-		a.setSize(500,500);
-		
+		a.setSize(400,400);
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
