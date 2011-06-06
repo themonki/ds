@@ -1,6 +1,8 @@
 package Reportes.Gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -22,12 +24,13 @@ import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiReporteSQL extends JTabbedPane {
-	JPanel panelppal,panelConEsquemas;
+	JPanel panelGlobal,panelppal,panelConEsquemas;
 	JLabel etiquetaSelect,icon,esquemas;
 	JTextField campoAtributos ;
 	JTextArea areaConsulta;
 	JTable tabla;
 	Button botonConsulta;
+	JPanel resultadoPanel;
 	JScrollPane resultadoScroll;
 	ControladorReportes conReport;
 	GuiReporteSQL(){
@@ -47,9 +50,11 @@ public class GuiReporteSQL extends JTabbedPane {
 		botonConsulta.addActionListener(new Manejador());
 		
 		panelppal= new JPanel();
+		panelGlobal= new JPanel(new BorderLayout());
 		panelConEsquemas= new JPanel();
+		resultadoPanel= new JPanel();
 		resultadoScroll= new JScrollPane();
-		
+		//resultadoScroll.setPreferredSize(new Dimension(400, 100));
 		//-----------------------------------
 		panelppal.setLayout(new GridBagLayout());
 		GridBagConstraints restricciones = new GridBagConstraints();
@@ -67,16 +72,19 @@ public class GuiReporteSQL extends JTabbedPane {
 		restricciones.gridwidth=1;
 		restricciones.gridx=1;
 		panelppal.add(botonConsulta,restricciones);
-		/*restricciones.gridy++;
-		restricciones.gridwidth=1;
-		restricciones.gridx=1;
-		panelppal.add(resultadoScroll,restricciones);*/
+		//restricciones.gridy++;
+		//restricciones.gridwidth=4;
+		//restricciones.gridx=0;
+		//panelppal.add(resultadoScroll,restricciones);
+		
+		panelGlobal.add(panelppal,BorderLayout.NORTH);
+		panelGlobal.add(resultadoScroll,BorderLayout.CENTER);
 		//---------------------------------------------
 		esquemas= new JLabel();
 		initEsquemas();
 		
 		
-		this.addTab("",new ImageIcon("recursos/iconos/SQL.png") , panelppal);
+		this.addTab("",new ImageIcon("recursos/iconos/SQL.png") , panelGlobal);
 		this.addTab("",icon.getIcon(), panelConEsquemas);
 		
 	
@@ -92,8 +100,15 @@ public class GuiReporteSQL extends JTabbedPane {
 		
 		public void actionPerformed(ActionEvent evento)
 		{
-			String sql =" SELECT " + campoAtributos.getText()+" "+areaConsulta.getText();		
+			tabla=null;
+			String consultaSql =" SELECT " + campoAtributos.getText()+" "+areaConsulta.getText();
+			tabla = conReport.consultaGenerica(consultaSql);
+			resultadoPanel.add(tabla);
+			resultadoPanel.repaint();
+			resultadoPanel.updateUI();
+			resultadoScroll.setViewportView(resultadoPanel);
 		
+			System.out.println(tabla.getValueAt(0, 0));
 			
 			
 		}
