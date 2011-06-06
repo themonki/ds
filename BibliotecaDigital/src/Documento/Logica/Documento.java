@@ -13,7 +13,6 @@
  * Version:   4.0
  */
 package Documento.Logica;
-/*Yermi*/
 import java.sql.Date;
 import java.util.Vector;
 
@@ -22,8 +21,8 @@ import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
 
 /**
- * Representacion de la entidad documento del modelo relacional (tabla documento y relaciones)
- * @author 
+ * Clase que representa un documento
+ * @author Yerminson Gonzales
  *
  */
 public class Documento {
@@ -169,6 +168,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna la llave del documento
 	 * @return un String con la llave del documento
 	 */
 	public String getId_doc() {
@@ -176,6 +176,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna el idioma del documento
 	 * @return un String con el idioma del documento 
 	 */
 	public String getIdioma() {
@@ -183,6 +184,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna los derecho de autor del documento
 	 * @return un String con el derecho de autor del documento 
 	 */
 	public String getDerechosDeAutor() {
@@ -190,6 +192,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna la descripcion del documento
 	 * @return un String con la descripcion del documento
 	 */
 	public String getDescripcion() {
@@ -197,6 +200,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna el software para la edicion del documento
 	 * @return un String con el software para edicion del documento
 	 */
 	public String getSoftware_recomentado() {
@@ -204,6 +208,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna la resolucion del documento
 	 * @return un String con la resolucion del documento
 	 */
 	public String getResolucion() {
@@ -211,6 +216,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna la editorial del documento
 	 * @return un String con la editorial del documento
 	 */
 	public String getEditorial() {
@@ -218,6 +224,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna el formato del documento
 	 * @return un String con el formato del documento
 	 */
 	public String getFormato() {
@@ -225,6 +232,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna el titulo secundario del documento
 	 * @return un String con el titulo principal del documento
 	 */
 	public String getTituloppal() {
@@ -232,6 +240,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna el titulo principal del documento
 	 * @return un String con el titulo secundario del documento
 	 */
 	public String getTitulo_secundario() {
@@ -239,6 +248,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna el enlace de almacenamiento del documento
 	 * @return un String con el link del documento
 	 */
 	public String getUrl() {
@@ -246,6 +256,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna la fecha de creacion del documento
 	 * @return un String con la fecha de creacion del documento
 	 */
 	public Date getFecha_creacion() {
@@ -253,6 +264,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna la fecha de publicacion del documento
 	 * @return un String con la fecha de publicacion del documento
 	 */
 	public Date getFecha_publicacion() {
@@ -260,6 +272,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna la fecha de catalogacion del documento
 	 * @return un String con la fecha de catalogacion del documento
 	 */
 	public Date getFechaDeCatalogacion() {
@@ -267,6 +280,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna con la llave del usuario catalogador del documento
 	 * @return un String con la llave del usuario catalogador del documento
 	 */
 	public String getCatalogadorLogin() {
@@ -274,6 +288,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna el tipo de material del documento
 	 * @return un String con el tipo de material del documento
 	 */
 	public String getTipoMaterial() {
@@ -281,6 +296,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna los autores del documento
 	 * @return un String con los autores que escribieron el documento
 	 */
 	public Vector<Autor> getAutores() {
@@ -288,6 +304,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna las areas de conocimiento a las que pertenece el documento
 	 * @return un String con las areas de conocimeinto del documento
 	 */
 	public Vector<AreaConocimiento> getAreas() {
@@ -295,6 +312,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que retorna las palabras clave del documento
 	 * @return un String con las palabras claves asociadas al documento
 	 */
 	public Vector<PalabraClave> getPalabrasClave() {
@@ -302,6 +320,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica la llave del documento
 	 * @param value - String con el nuevo valor para la llave del documento
 	 */
 	public void setId_doc(String value) {
@@ -309,6 +328,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica el idioma del documento
 	 * @param value - String con el nuevo valor para el idioma del documento
 	 */
 	public void setIdioma(String value) {
@@ -316,6 +336,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica los derechos de autor del documento
 	 * @param value - String con el nuevo valor para los derechos de autor del documento
 	 */
 	public void setDerechosDeAutor(String value) {
@@ -323,6 +344,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica la descripcion del documento
 	 * @param value - String con el nuevo valor para la descripcion del documento
 	 */
 	public void setDescripcion(String value) {
@@ -330,6 +352,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica el software para la edicion del documento
 	 * @param value - String con el nuevo valor para el software para edicion del documento
 	 */
 	public void setSoftware_recomentado(String value) {
@@ -337,6 +360,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica la resolucion del documento
 	 * @param value - String con el nuevo valor para la resolucion del archivo
 	 */
 	public void setResolucion(String value) {
@@ -344,6 +368,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica la editorial del documento
 	 * @param value - String con el nuevo valor para la editorial del documento
 	 */
 	public void setEditorial(String value) {
@@ -351,6 +376,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica el formato del documento
 	 * @param value - String con el nuevo valor para el formato del documento
 	 */
 	public void setFormato(String value) {
@@ -358,6 +384,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica el titulo principal del documento
 	 * @param value - String con el nuevo valor para el titulo principal del documento
 	 */
 	public void setTituloppal(String value) {
@@ -365,6 +392,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica el titulo secundario del documento
 	 * @param value - String con el nuevo valor para el titulo secundario del documento
 	 */
 	public void setTitulo_secundario(String value) {
@@ -372,6 +400,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica el enlace de alamcenamiento del documento
 	 * @param value - String con el nuevo valor para el link del documento
 	 */
 	public void setUrl(String value) {
@@ -379,6 +408,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica la fecha de creacion del documento
 	 * @param value - Date con el nuevo valor para la fecha de creacion del documento 
 	 */
 	public void setFecha_creacion(Date value) {
@@ -386,6 +416,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica la fecha de publicacion del documento
 	 * @param value - Date con el nuevo valor para la fecha de publicacion del documento
 	 */
 	public void setFecha_publicacion(Date value) {
@@ -393,6 +424,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica la fecha de catalogacion del documento
 	 * @param value - Date con el nuevo valor para la fecha de catalogacion del documento 
 	 */
 	public void setFechaDeCatalogacion(Date value) {
@@ -400,6 +432,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica la llave del usuario catalogador del documento
 	 * @param value - String con el nuevo valor para la llave del usuario catalogador del documento
 	 */
 	public void setCatalogadorLogin(String value) {
@@ -407,6 +440,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica el tipo de material del documento
 	 * @param value - String con el nuevo valor para el tipo de material del documento
 	 */
 	public void setTipoMaterial(String value) {
@@ -414,6 +448,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica los autores del documento
 	 * @param value - Vector<Autor> con el nuevo valor para los autores del documento 
 	 */
 	public void setAutores(Vector<Autor> value) {
@@ -421,6 +456,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica las areas de conocimient del documento
 	 * @param value - Vector<AreaConocimiento> con el nuevo valor para las areas de conocimiento 
 	 * del documento 
 	 */
@@ -429,6 +465,7 @@ public class Documento {
 	}
 
 	/**
+	 * Metodo que modifica las palabras clave del documento
 	 * @param value - Vector<PalabraClave> con el nuevo valor para las palabras clave del documento 
 	 */
 	public void setPalabrasClave(Vector<PalabraClave> value) {

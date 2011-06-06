@@ -16,28 +16,82 @@ package Consultas.Logica;
 
 import java.util.Vector;
 
-public class Consulta {
 
+/**
+* Clase que representa una consulta de un documento
+ * @author Edgar Andres Moncada
+ *
+ */
+public class Consulta {
+	
+	/**
+	 * String con la llave del documento
+	 */
 	String idDocumento;
-	String tituloDocuemto ;
+	/**
+	 * String con el titulo del documento
+	 */
+	String tituloDocumeto ;
+	/**
+	 * Vector <String> con los nombres de los autores del documento
+	 */
 	Vector <String> nombresAutoresDocumento;
 	
-	public Consulta(){}
+	
+	/**
+	 * Constructor por defecto que inicializa los atributos
+	 */
+	public Consulta(){idDocumento=""; tituloDocumeto=""; nombresAutoresDocumento = new Vector<String>(1,1); }
+	/**
+	 * Constructor que recibe atributo por atributo
+	 * @param id_doc - String con la llave del documento consultado
+	 * @param titulo - String con el titulo del documento
+	 * @param nombreAutor - Vector <String> con los nombres de los autores del documento
+	 */
 	public Consulta(String id_doc, String titulo, Vector <String> nombreAutor){
 		idDocumento = id_doc;
-		tituloDocuemto = titulo;
+		tituloDocumeto = titulo;
 		nombresAutoresDocumento=nombreAutor;
 	}
-
+	
+	/**
+	 * Metodo que retorna la llave del documento consultado
+	 * @return String con la llave del documento
+	 */
 	public String getIdDocumento(){return idDocumento;}
-	public String getTituloDocuemto(){return tituloDocuemto;}
+	/**
+	 * Metodo que retorna el tiitulo principal del documento consultado
+	 * @return String con el titulo del documento
+	 */
+	public String getTituloDocuemto(){return tituloDocumeto;}
+	/**
+	 * Metodo que retorna la llave del documento consultado
+	 * @return Vector <String> con los nombres de los autores
+	 */
 	public Vector <String> getNombresAutoresDocumento(){return nombresAutoresDocumento;}
+	/**
+	 * Metodo que modifica la llave del documento consultado
+	 * @param value - String con la llave del documento
+	 */
 	public void setIdDocumento(String value) {idDocumento=value;}
-	public void setTituloDocuemto(String value) {tituloDocuemto=value;}
+	/**
+	 * Metodo que modifica el titulo del documento consultado
+	 * @param value - String con el titulo del documento
+	 */
+	public void setTituloDocuemto(String value) {tituloDocumeto=value;}
+	/**
+	 * Metodo que modifica los nombres de los autores del documento consultado
+	 * @param value - Vector <String> con los nuevos nombres de los autores del documento
+	 */
 	public void setNombresAutoresDocumento(Vector <String> value) {nombresAutoresDocumento=value;}
+	/**
+	 * Metodo sobreescrito para mostrar el resultado de la consulta en 
+	 * {@link Consultas.Gui.GuiResultadoConsulta GuiResultadoConsulta}
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString(){
 		String mostrarDatos = "<html><font color = \"blue\"> <u>"
-			+tituloDocuemto 
+			+tituloDocumeto 
 			+ "</u> </font>"
 			+"<br>Autor(es): ";
 		int cantidad = nombresAutoresDocumento.size();
