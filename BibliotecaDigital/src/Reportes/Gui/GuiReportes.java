@@ -45,7 +45,6 @@ import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
-import com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolverException;
 
 public class GuiReportes extends JTabbedPane{
 	
