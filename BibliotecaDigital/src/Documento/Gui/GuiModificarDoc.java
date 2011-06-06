@@ -220,10 +220,10 @@ public class GuiModificarDoc  extends GuiCatalogar
 			// tomar fechas de splinner
 			fechaCreacionDate = editorCreacion.getModel().getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String fes = sdf.format(fechaCreacion);
+			String fes = sdf.format(fechaCreacionDate);
 			fechaPublicacionDate = editorPublicacion.getModel().getDate();
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String fes2 = sdf2.format(fechaPublicacion);
+			String fes2 = sdf2.format(fechaPublicacionDate);
 			doc.setFecha_creacion(java.sql.Date.valueOf(fes));
 			doc.setFecha_publicacion(java.sql.Date.valueOf(fes2));
 			if (controladorDocumento.modificarDatosDocumento(doc,
