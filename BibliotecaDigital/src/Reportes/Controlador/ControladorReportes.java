@@ -445,6 +445,304 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	public JasperPrint reporteDocumentosDescargadosFecha(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFecha();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("uso", "Descargas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosDescargadosFecha(String fechaI, String fechaF, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFecha(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("uso", "Descargas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosDescargadosArea(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosArea();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Fecha");
+		parametros.put("uso", "Descargas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosDescargadosArea(String fechaI, String fechaF, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosArea(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Fecha");
+		parametros.put("uso", "Descargas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosDescargadosUsuario(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosUsuario();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("uso", "Descargas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados_2.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosDescargadosUsuario(String fechaI, String fechaF, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosUsuario(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("uso", "Descargas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados_2.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosConsultadosFecha(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFecha();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("uso", "Consultas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosConsultadosFecha(String fechaI, String fechaF, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFecha(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("uso", "Consultas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosConsultadosArea(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosArea();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Fecha");
+		parametros.put("uso", "Consultas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosConsultadosArea(String fechaI, String fechaF, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosArea(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Fecha");
+		parametros.put("uso", "Consultas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosConsultadosUsuario(String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosUsuario();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("uso", "Consultas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados_2.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosConsultadosUsuario(String fechaI, String fechaF, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosUsuario(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("uso", "Consultas: ");
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados_2.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosFecha(String tituloReporte) throws JRException
+	{
+		return null;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosFecha(String fechaI, String fechaF, String tituloReporte) throws JRException
+	{
+		return null;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosArea(String tituloReporte) throws JRException
+	{
+		return null;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosArea(String fechaI, String fechaF, String tiutloReporte) throws JRException
+	{
+		return null;
+	}
+	
+	public JasperPrint reporteDocumetnosCatalogadosUsuario(String tituloReporte) throws JRException
+	{
+		return null;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosUsuario(String fechaI, String fechaF, String tituloReprte) throws JRException
+	{
+		return null;
+	}
+	
 /* ********************metodos utilitarios *********************************/
 	public void generarReporte(String rutaFinal, JasperPrint print)
 	{
@@ -500,7 +798,7 @@ public class ControladorReportes
 		ControladorReportes c = new ControladorReportes();
 		try
 		{
-			System.out.println(c.consultaGenerica("select * from usuario"));
+			//System.out.println(c.consultaGenerica("select * from usuario"));
 			//c.generarReporte("recursos/documento_areas.pdf", c.reporteDocumentosAgrupadosArea("Reporte Documento Areas"));
 			//c.generarReporte("recursos/documento_tipo.pdf", c.reporteDocumentosAgrupadosTipo("Reporte Documento Tipo"));
 			//c.generarReporte("recursos/documento_formato.pdf", c.reporteDocumentosAgrupadosFormato("Reporte Documento Formato"));
@@ -523,6 +821,19 @@ public class ControladorReportes
 			
 			//c.generarReporte("recursos/areas.pdf", c.reporteAreasAgrupadas("Reporte Areas"));
 			//c.generarReporte("recursos/areas_totales.pdf", c.reporteAreasAgrupadasTotales("Reporte Areas Totales"));
+			
+			//c.generarReporte("recursos/descargado_fecha.pdf", c.reporteDocumentosDescargadosFecha("Reporte Documentos Descargados por Fecha"));
+			//c.generarReporte("recursos/descargado_fecha_intervalo.pdf", c.reporteDocumentosDescargadosFecha("1989-02-15","2010-01-12","Reporte Documentos Descargados por Fecha"));
+			//c.generarReporte("recursos/descargado_area.pdf", c.reporteDocumentosDescargadosArea("Reporte Documentos Descargados por Área"));
+			//c.generarReporte("recursos/descargado_area_intervalo.pdf", c.reporteDocumentosDescargadosArea("1989-02-15","2010-01-12","Reporte Documentos Descargados por Área"));
+			//c.generarReporte("recursos/descargado_usuario.pdf", c.reporteDocumentosDescargadosUsuario("Reporte Documentos Descargados por Usuario"));
+			//c.generarReporte("recursos/descargado_usuario_intervalo.pdf", c.reporteDocumentosDescargadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Descargados por Usuario"));
+			//c.generarReporte("recursos/consultado_fecha.pdf", c.reporteDocumentosConsultadosFecha("Reporte Documentos Consultados por Fecha"));
+			//c.generarReporte("recursos/consultado_fecha_intervalo.pdf", c.reporteDocumentosConsultadosFecha("2011-05-20","2011-05-30","Reporte Consultados Descargados por Fecha"));
+			//c.generarReporte("recursos/consultado_area.pdf", c.reporteDocumentosConsultadosArea("Reporte Documentos Consultados por Área"));
+			//c.generarReporte("recursos/consultado_area_intervalo.pdf", c.reporteDocumentosConsultadosArea("2011-05-20","2011-05-30","Reporte Documentos Consultados por Área"));
+			//c.generarReporte("recursos/consultado_usuario.pdf", c.reporteDocumentosConsultadosUsuario("Reporte Documentos Consultados por Usuario"));
+			//c.generarReporte("recursos/consutlado_usuario_intervalo.pdf", c.reporteDocumentosConsultadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Consultados por Usuario"));
 			
 			throw new JRException("no se");
 		}catch(JRException e)
