@@ -169,7 +169,7 @@ public class DaoConsulta {
 	/**
 	 * Metodo que consulta los autores que escribieron un documento
 	 * @param idDocumento - String con la llave del documento
-	 * @return Vector<String> con 
+	 * @return Vector<String> con los nombres de los autores del documento
 	 */
 	public Vector<String> consultarAutoresDocumento(String idDocumento)
 	{
@@ -202,6 +202,20 @@ public class DaoConsulta {
 		return autores;
 	}
 	
+	/**
+	 * Metodo que realiza la consulta avanzada de los documentos digitales de la Biblioteca Digital.
+	 * Recibe los parametros para buscar por titulo, palabra clave y autor, con las opciones de "Con algunas",
+	 * "Con ninguna" y "Coincidencia exacta" de las palabras; tambien se busca por area de conocimiento
+	 * @param opTitulo - int 
+	 * @param atributoDocumento - Vector<Integer>
+	 * @param valorDocumento - Vector<String> 
+	 * @param opPalabra - int
+	 * @param valorPalabra - Vector<String>
+	 * @param opAutor - int 
+	 * @param valorAutor - Vector<String>
+	 * @param areaString - String
+	 * @return Vector<Consulta> con el resultado de las consultas que correspondan a los parametros dados
+	 */
 	public Vector<Consulta> consultaAvanzada(int opTitulo, Vector<Integer> atributoDocumento, Vector<String> valorDocumento, int opPalabra, Vector<String> valorPalabra, int opAutor, Vector<String> valorAutor, String areaString)
 	{
 		Vector<Consulta>  consultas = new Vector<Consulta>();
@@ -296,8 +310,8 @@ public class DaoConsulta {
 		//System.out.print(consultaSql);
 		
 		ResultSet resultado;		
-		System.out.println("***************************\n\n");
-		System.out.println(consultaSql);
+		//System.out.println("***************************\n\n");
+		//System.out.println(consultaSql);
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();			
