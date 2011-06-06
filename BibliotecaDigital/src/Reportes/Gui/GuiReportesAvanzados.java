@@ -110,6 +110,8 @@ public class GuiReportesAvanzados extends JPanel{
 	    scrollPanel = new JScrollPane();
 	    scrollPanel.setViewportView(panelDescargasConsultas);
 	    panelPrincipal.add(scrollPanel, BorderLayout.CENTER);
+	    
+	    
 	    //---- INSERTAR COMPONENTES EN PANEL ---
 /*
 		retriccionesAvanzado= new GridBagConstraints();
