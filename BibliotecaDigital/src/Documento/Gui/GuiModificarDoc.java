@@ -136,30 +136,30 @@ public class GuiModificarDoc  extends GuiCatalogar
 	}
 	
 	private void initFechas(){
-		this.panelFecha.remove(this.spinner);
-		this.panelFecha2.remove(this.spinner2);
+		this.panelFecha.remove(this.spinnerCreacion);
+		this.panelFecha2.remove(this.spinnerPublicacion);
 		
 		//spiner que obtiene la fecha de creacion
 		Date fechaCreacion = doc.getFecha_creacion();
-		this.model= new SpinnerDateModel(fechaCreacion,null,null,Calendar.DAY_OF_YEAR);
-		this.spinner = new JSpinner(model);
-		this.spinner.setFont(Estilos.fontLabels);
-		this.spinner.setForeground(Estilos.colorLabels);
-		this.editor= new JSpinner.DateEditor(this.spinner,"yyyy-MM-dd");
-		this.spinner.setEditor(editor);
-	    ((JSpinner.DateEditor) this.spinner.getEditor()).getTextField().setEditable(false);
+		this.modelCreacion= new SpinnerDateModel(fechaCreacion,null,null,Calendar.DAY_OF_YEAR);
+		this.spinnerCreacion = new JSpinner(modelCreacion);
+		this.spinnerCreacion.setFont(Estilos.fontLabels);
+		this.spinnerCreacion.setForeground(Estilos.colorLabels);
+		this.editorCreacion= new JSpinner.DateEditor(this.spinnerCreacion,"yyyy-MM-dd");
+		this.spinnerCreacion.setEditor(editorCreacion);
+	    ((JSpinner.DateEditor) this.spinnerCreacion.getEditor()).getTextField().setEditable(false);
 	    
 	    Date fechaPublicacion = doc.getFecha_publicacion();
-	    this.model2 = new SpinnerDateModel(fechaPublicacion,null,null,Calendar.DAY_OF_YEAR);
-		this.spinner2 = new JSpinner(model2);
-		this.spinner2.setFont(Estilos.fontLabels);
-		this.spinner2.setForeground(Estilos.colorLabels);
-		this.editor2 = new JSpinner.DateEditor(this.spinner2,"yyyy-MM-dd");
-		this.spinner2.setEditor(editor2);
-	    ((JSpinner.DateEditor) this.spinner2.getEditor()).getTextField().setEditable(false);
+	    this.modelPublicacion = new SpinnerDateModel(fechaPublicacion,null,null,Calendar.DAY_OF_YEAR);
+		this.spinnerPublicacion = new JSpinner(modelPublicacion);
+		this.spinnerPublicacion.setFont(Estilos.fontLabels);
+		this.spinnerPublicacion.setForeground(Estilos.colorLabels);
+		this.editorPublicacion = new JSpinner.DateEditor(this.spinnerPublicacion,"yyyy-MM-dd");
+		this.spinnerPublicacion.setEditor(editorPublicacion);
+	    ((JSpinner.DateEditor) this.spinnerPublicacion.getEditor()).getTextField().setEditable(false);
 	    
-	    this.panelFecha.add(this.spinner, BorderLayout.CENTER);
-	    this.panelFecha2.add(this.spinner2, BorderLayout.CENTER);
+	    this.panelFecha.add(this.spinnerCreacion, BorderLayout.CENTER);
+	    this.panelFecha2.add(this.spinnerPublicacion, BorderLayout.CENTER);
 	}
 
 	private void initPalabrasActuales() {		
@@ -218,12 +218,12 @@ public class GuiModificarDoc  extends GuiCatalogar
 					.toString());
 			// --------------------------------------
 			// tomar fechas de splinner
-			fecha = editor.getModel().getDate();
+			fechaCreacionDate = editorCreacion.getModel().getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String fes = sdf.format(fecha);
-			fecha2 = editor2.getModel().getDate();
+			String fes = sdf.format(fechaCreacion);
+			fechaPublicacionDate = editorPublicacion.getModel().getDate();
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String fes2 = sdf2.format(fecha2);
+			String fes2 = sdf2.format(fechaPublicacion);
 			doc.setFecha_creacion(java.sql.Date.valueOf(fes));
 			doc.setFecha_publicacion(java.sql.Date.valueOf(fes2));
 			if (controladorDocumento.modificarDatosDocumento(doc,

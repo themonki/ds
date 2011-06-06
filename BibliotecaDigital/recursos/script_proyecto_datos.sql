@@ -130,7 +130,7 @@ CREATE SEQUENCE id_documento_seq
 -- Name: id_documento_seq; Type: SEQUENCE SET; Schema: public; Owner: yerdogm
 --
 
-SELECT pg_catalog.setval('id_documento_seq', 10017, true);
+SELECT pg_catalog.setval('id_documento_seq', 10018, true);
 
 
 --
@@ -523,6 +523,8 @@ COPY consulta (id_documento, login, fecha, hora) FROM stdin;
 10004	armidb45	2011-06-06	01:51:27
 10007	armidb45	2011-06-06	01:51:34
 10005	armidb45	2011-06-06	01:51:40
+10017	shakespea	2011-06-06	04:00:08
+10018	shakespea	2011-06-06	04:00:32
 \.
 
 
@@ -541,6 +543,8 @@ COPY descarga_usuario_documento (fecha, hora, login, id_documento) FROM stdin;
 2011-06-06	01:51:29	armidb45	10004
 2011-06-06	01:51:37	armidb45	10007
 2011-06-06	01:51:42	armidb45	10005
+2011-06-06	04:00:11	shakespea	10017
+2011-06-06	04:00:39	shakespea	10018
 \.
 
 
@@ -560,12 +564,14 @@ COPY documento (id_documento, idioma, derechos_autor, descripcion, software_reco
 10008	Español	No	diapositivas curso base datos	writter	0	sin editorial	odt	diapositivas base datos		repositorio/ppt1.odt	2004-04-07	2005-09-14	material de clase	clrl	2011-05-29
 10009	Español	No	articulo sobre computacion en la nube	word	0	sin editorial	doc	mas alla de la nube		repositorio/article.doc	2005-05-14	2005-05-14	libro	clrl	2011-05-29
 10010	Ingles	No	trabajo de grado sobre redes	adobe	0	sin editorial	pdf	wireless networks	redes inalambricas	repositorio/archivo.pdf	2006-05-14	2006-05-14	libro	clrl	2011-05-29
-10011	Ingles	No	libro de desarrollo de software	adobe	0	sin editorial	pdf	software project starting	iniciando proyecto de software	repositorio/documento.pdf	2006-05-14	2011-06-06	libro	clrl	2010-06-20
+10011	Ingles	No	libro de desarrollo de software	adobe	0	sin editorial	pdf	software project starting	iniciando proyecto de software	repositorio/documento.pdf	2006-05-14	2011-06-06	libro	clrl	2011-05-29
 10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural		repositorio/libro3(10).djvu	1999-05-15	2005-01-24	material de clase	admin	2011-06-06
 10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp		repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-06-06
-10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual		repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-06-07
-10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos		repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-06-07
-10016	Aleman	Si	animacion usando computadoras	ninguno	0	sin editorial	otro	animaciones graficas		repositorio/libro3(14).djvu	1983-05-15	1984-01-24	material de clase	admin	2011-06-07
+10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual		repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-06-06
+10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos		repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-06-06
+10016	Aleman	Si	animacion usando computadoras	ninguno	0	sin editorial	otro	animaciones graficas		repositorio/libro3(14).djvu	1983-05-15	1984-01-24	material de clase	admin	2011-06-06
+10017	Español	No	diapositivas de la presentacion de la exposicion sobre base de datos relacionales	ninguno	0	ninguna	pdf	diapositivas base datos relacional		repositorio/diapos.pdf	2011-05-06	2011-05-25	material de clase	clrl	2011-06-06
+10018	Aleman	Si	diapositivas en aleman sobre sistemas operativos	adobe	0	sin editorial	pdf	betriebssysteme	sistemas operativos	repositorio/libro6(2).pdf	2010-05-06	2010-06-21	material de clase	clrl	2011-06-06
 \.
 
 
@@ -620,6 +626,11 @@ COPY escribe_autor_documento (id_autor, id_documento) FROM stdin;
 10007	10011
 10021	10011
 10026	10011
+10022	10017
+10023	10017
+10024	10017
+10019	10018
+10018	10018
 \.
 
 
@@ -628,13 +639,6 @@ COPY escribe_autor_documento (id_autor, id_documento) FROM stdin;
 --
 
 COPY interesa_usuario_area_conocimiento (login, id_area) FROM stdin;
-monki	7
-monki	14
-monki	23
-monki	49
-monki	47
-monki	57
-monki	61
 alberto	16
 alberto	29
 alberto	42
@@ -687,6 +691,59 @@ jhon7452	52
 jhon7452	61
 jhon7452	57
 jhon7452	58
+monki	7
+monki	14
+monki	23
+monki	47
+monki	49
+monki	57
+monki	61
+monki	43
+monki	46
+monki	51
+monki	52
+monki	58
+monki	27
+monki	28
+monki	29
+monki	30
+shakespea	2
+shakespea	28
+shakespea	46
+shakespea	59
+shakespea	57
+shakespea	61
+shakespea	48
+shakespea	47
+shakespea	35
+shakespea	25
+shakespea	14
+jo23leon	4
+jo23leon	14
+jo23leon	23
+jo23leon	38
+jo23leon	34
+jo23leon	40
+jo23leon	50
+jo23leon	49
+jo23leon	53
+jo23leon	59
+jo23leon	58
+jo23leon	57
+jo23leon	61
+jo23leon	27
+jo23leon	28
+albertc	6
+albertc	7
+albertc	23
+albertc	22
+albertc	28
+albertc	14
+albertc	16
+albertc	17
+albertc	49
+albertc	57
+albertc	58
 \.
 
 
@@ -899,7 +956,7 @@ jo23leon	jo23leon4	jorge	león	osorio	osorio	jo23leonhero@univalle.edu	Tecnolog�
 jhon7452	jhon74525	john	jairo	duque	alzate	jhon7452-super@correounivalle.edu.co	Especialización Técnica	Nombre de la primer mascota	lulu	Egresado	M	1979-07-28	2011-05-28	2	t	2011-05-29
 armidb45	armidb456	armid	benjamín	palacio	duque	armidb45-yo@gmail.com	Profesional/Universidad	Cuento que mas veces ha leido	atalanta	Profesor activo	M	1980-11-10	2011-05-28	3	t	2011-06-06
 elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	Profesional/Universidad	Mejor amigo de la infancia	angie	Estudiante de postgrado	M	1981-04-24	2011-06-03	3	t	2011-06-06
-shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-06-03	3	t	2011-06-03
+shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-06-03	3	t	2011-06-06
 osito32	osito321	gabriel	jaime	alzate	palacio	osito32-lomaslindo06@live.com	Técnica Profesional	Superheroe preferido	batman	Estudiante de postgrado	M	1992-02-03	2011-06-03	3	t	2011-06-06
 marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-06-03	2	f	2011-06-03
 \.
