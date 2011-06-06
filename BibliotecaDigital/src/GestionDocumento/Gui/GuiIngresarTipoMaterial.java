@@ -39,6 +39,14 @@ import GestionDocumento.Controlador.ControladorTipoMaterial;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar los datos de los nuevos tipos de materiales que son adicionadas
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Luis Felipe Vargas
+ * 
+ */
 public class GuiIngresarTipoMaterial extends JFrame {
 
 	/**
@@ -53,7 +61,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 
 	JPanel panel, panel1, panel2, panel3, panel4, panel5, panelPrincipal;
 	
-	GuiCatalogar guicatalogarModi;
+	GuiCatalogar guiCatalogarModi;
 
 	public GuiIngresarTipoMaterial() {
 		super("::Ingresar Tipo Material::");
@@ -63,7 +71,7 @@ public class GuiIngresarTipoMaterial extends JFrame {
 	public GuiIngresarTipoMaterial(GuiCatalogar guicatalogarModi) {
 		super("::Ingresar Tipo Material::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
-		this.guicatalogarModi=guicatalogarModi;
+		this.guiCatalogarModi=guicatalogarModi;
 		initComponents();
 	}
 
@@ -159,10 +167,12 @@ public class GuiIngresarTipoMaterial extends JFrame {
 					ControladorTipoMaterial conMaterial = new ControladorTipoMaterial();
 					if(conMaterial.insertarTipoMaterial(campoNombre.getText(), campoDescripcion.getText())>=1)
 					{
-					guicatalogarModi.vectoresParaComboBox();
-					guicatalogarModi.actualizarTipoMaterial();
-					JOptionPane.showMessageDialog(null, "Se ingreso el Tipo de Material Correctamente");
-					dispose();
+						if(guiCatalogarModi!=null){
+							guiCatalogarModi.vectoresParaComboBox();
+							guiCatalogarModi.actualizarTipoMaterial();
+						}
+						JOptionPane.showMessageDialog(null, "Se ingreso el Tipo de Material Correctamente");
+						dispose();
 					}else{
 						JOptionPane.showMessageDialog(null, "El Tipo de Material ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
 					}

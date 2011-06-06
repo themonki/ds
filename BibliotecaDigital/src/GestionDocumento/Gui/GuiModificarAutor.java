@@ -39,6 +39,14 @@ import GestionDocumento.Logica.Autor;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar los datos para modificar los autores realizado
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Edgar Andres Moncada
+ * 
+ */
 public class GuiModificarAutor extends JFrame {
 	/**
 	 * 
@@ -226,10 +234,13 @@ public class GuiModificarAutor extends JFrame {
 					a.setCorreo(campoCorreoElectronico.getText());
 					if(conAutor.actualizarAutor(a)>=1)
 					{
-					guiCatalogarModi.vectoresParaComboBox();
-					guiCatalogarModi.actualizarAutores();
-					JOptionPane.showMessageDialog(null, "Se Modifico el Autor correctamente");
-					dispose();
+						if(guiCatalogarModi!=null){
+							guiCatalogarModi.vectoresParaComboBox();
+							guiCatalogarModi.actualizarAutores();
+						}
+					
+						JOptionPane.showMessageDialog(null, "Se Modifico el Autor correctamente");
+						dispose();
 
 					}else{				
 						JOptionPane.showMessageDialog(null, "No se pudo modificar el autor","ERROR", JOptionPane.ERROR_MESSAGE);

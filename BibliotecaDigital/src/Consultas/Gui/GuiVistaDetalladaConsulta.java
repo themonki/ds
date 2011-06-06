@@ -11,7 +11,7 @@
  * 
  * 
  * Autor:  	  Edgar Andres Moncada
- * Autor:     Terminson Gonzales
+ * Autor:     Yerminson Gonzales
  * Version:   4.0
  */
 package Consultas.Gui;
@@ -54,8 +54,15 @@ import Principal.Gui.GuiUsuarioNormal;
 import Usuarios.Gui.GuiNovedades;
 import Utilidades.Estilos;
 
-
-
+/**
+ * Clase que permite manejar el resultado de las consultas generales y
+ * avanzadas que realizan los usuarios para buscar los documentos 
+ * digitales de la Biblioteca Digital.
+ * 
+ * @author Edgar Andres Moncada
+ * @author Yerminson Gonzales
+ * 
+ */
 public class GuiVistaDetalladaConsulta extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;

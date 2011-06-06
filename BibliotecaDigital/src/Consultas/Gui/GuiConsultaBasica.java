@@ -39,6 +39,14 @@ import Consultas.Logica.Consulta;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar las consultas generales que realizan
+ * los usuarios para buscar los documentos digitales de la Biblioteca
+ * Digital.
+ * 
+ * @author 
+ * 
+ */
 public class GuiConsultaBasica extends JScrollPane
 {
 

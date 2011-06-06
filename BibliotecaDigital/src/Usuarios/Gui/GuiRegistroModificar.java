@@ -106,7 +106,7 @@ public class GuiRegistroModificar extends JScrollPane {
 	private ManejadorComboBox manejadorComboBox;
 	private ManejadorMouse manejadorMouse;
 	private ManejadorJTextField manejadorJTextField;
-
+	boolean actualiza=false;
 	int modo; // Indica si es modo registrar 0, modo modificar por usuario
 	// normal 1 o modo modificar por usuario administrador 2.
 
@@ -652,6 +652,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		campoGenero.setSelectedItem(usuarioModificar.getGenero());
 		campoAreasInteres = new JComboBox(areasInteresArray);
 		campoAreasInteres.addActionListener(manejadorComboBox);
+		campoAreasInteres.setSelectedIndex(-1);
 		campoVinculoUnivalle = new JComboBox(vinculoUnivalleArray);
 		campoVinculoUnivalle.setSelectedItem(usuarioModificar
 				.getVinculoUnivalle());
@@ -734,7 +735,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		campoNivelEscolaridad.setSelectedIndex(0);
 		campoVinculoUnivalle.setSelectedIndex(0);
 		campoGenero.setSelectedIndex(0);
-		// campoAreasInteres.setSelectedIndex(0);
+		campoAreasInteres.setSelectedIndex(-1);
 		panelAreasInteres.removeAll();
 		areaConocimientoVector.removeAllElements();
 	}
@@ -965,8 +966,8 @@ public class GuiRegistroModificar extends JScrollPane {
 		public void actionPerformed(ActionEvent e) {
 
 			if (e.getSource() == campoAreasInteres) {
-				if(campoAreasInteres.getSelectedIndex()==-1) return;
-				
+				if(campoAreasInteres.getSelectedIndex()==-1 || actualiza) return;
+								
 				if (areaConocimientoVector.indexOf(campoAreasInteres
 						.getSelectedItem()) == -1) {
 					JLabel nuevaArea = new JLabel();
@@ -1106,5 +1107,30 @@ public class GuiRegistroModificar extends JScrollPane {
 
 		}
 
+	}
+	
+	public void actualizarAreasInteres(){
+		
+		ControladorAreaConocimiento controladorAreasInteres = new ControladorAreaConocimiento();
+
+		areasInteresVector = controladorAreasInteres.obtenerAreas();
+
+		// Construir areasInteresArray (el que se usar para inicializar el
+		// jcombobox),
+		// con el vector areasInteresVector.
+		
+		campoAreasInteres.removeAllItems();
+		actualiza=true;
+		areasInteresArray = new Vector<String>(areasInteresVector.size());
+		for (int i = 0; i < areasInteresVector.size() - 1; i++) {
+						
+			areasInteresArray.add(i, areasInteresVector.elementAt(i + 1)
+					.getNombre()); // llenamos el vector con el nombre de
+									// las areas que hay en el sistema.
+			campoAreasInteres.addItem(areasInteresArray.elementAt(i));
+		}
+		
+		campoAreasInteres.setSelectedIndex(-1);
+		actualiza=false;
 	}
 }

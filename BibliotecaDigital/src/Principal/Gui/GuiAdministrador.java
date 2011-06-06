@@ -51,6 +51,7 @@ import Consultas.Gui.GuiResultadoConsulta;
 import Consultas.Logica.Consulta;
 import Documento.Gui.GuiCatalogar;
 import Documento.Gui.GuiModificarDoc;
+import GestionDocumento.Gui.GuiGestionDocumento;
 import Reportes.Gui.GuiReportes;
 import Usuarios.Gui.GuiConsultarUsuarios;
 import Usuarios.Gui.GuiNovedades;
@@ -74,6 +75,7 @@ public class GuiAdministrador extends JFrame
 	private String estadoConsultarUsuario ="ConsultarUsuario";
 	private String estadoConsultaAvanzada = "ConsultaAvanzada";
 	private String estadoCatalogar = "Catalogar";
+	private String estadoGestionDocumento = "Gestion de Documento";
 	private String estadoModificandoDoc = "Modificando Documento";
 	private String estadoNovedades = "Novedades Usuario";
 	private String estadoReporte = "Generar Reportes";
@@ -88,6 +90,7 @@ public class GuiAdministrador extends JFrame
 	private Button logout;
 	private Button novedades;
 	private Button reportes;
+	private Button gestionDocumento;
 	
 	private static JLabel ESTADO;
 
@@ -106,6 +109,7 @@ public class GuiAdministrador extends JFrame
 	// otros paneles
 	private GuiRegistroModificar panelModificacion;
 	private GuiConsultarUsuarios panelConsultarUsuarios;
+	private GuiGestionDocumento panelGestionDocumento;
 	private static GuiConsultaBasica PANEL_CONSULTA_BASICA;
 	private static GuiConsultaAvanzada PANEL_CONSULTA_AVANZADA;
 	public static GuiModificarDoc PANEL_MODIFICAR_DOCUMENTO;
@@ -156,9 +160,11 @@ public class GuiAdministrador extends JFrame
 		GuiConsultaAvanzada.TIPO_USUARIO = 1;
 		GuiNovedades.TIPO_USUARIO = 1;
 		
-		panelCatalogar = new GuiCatalogar(usuario.getLogin());
 		panelModificacion = new GuiRegistroModificar(this.usuario,1);
-	
+		panelCatalogar = new GuiCatalogar(usuario.getLogin());
+		panelCatalogar.setGuiRegistroModi(panelModificacion);
+		panelGestionDocumento = new GuiGestionDocumento(panelCatalogar);
+		panelGestionDocumento.setGuiRegistroModi(panelModificacion);
 		
 		CONTENEDOR = getContentPane();
 		CONTENEDOR.setLayout(new BorderLayout(20,20));
@@ -209,7 +215,7 @@ public class GuiAdministrador extends JFrame
 		modificarMiUsuario.addActionListener(manejador);
 		consultaAvanzada = new Button("Consulta Avanzada");
 		consultaAvanzada.addActionListener(manejador);
-		catalogar = new Button("Catalogar");
+		catalogar = new Button("Catalogar Documento");
 		catalogar.setIcon(new ImageIcon("recursos/iconos/add_document.png"));
 		catalogar.addActionListener(manejador);
 		reportes = new Button("Reportes");
@@ -220,7 +226,10 @@ public class GuiAdministrador extends JFrame
 		logout.setIcon(new ImageIcon("recursos/iconos/logout.png"));
 		logout.addActionListener(manejador);
 		
-
+		gestionDocumento = new Button("Gestion de Documento");
+		gestionDocumento.setIcon(new ImageIcon("recursos/iconos/add_document.png"));		
+		gestionDocumento.addActionListener(manejador);
+		
 		cuenta= new JLabel("Cuenta",JLabel.CENTER);
 		busqueda= new JLabel("Busqueda",JLabel.CENTER);
 		documento = new JLabel("Documento",JLabel.CENTER);	
@@ -248,6 +257,8 @@ public class GuiAdministrador extends JFrame
 		panelOpcionesGenerales.add(documento, restricciones);
 		restricciones.gridy++;		
 		panelOpcionesGenerales.add(catalogar, restricciones);
+		restricciones.gridy++;
+		panelOpcionesGenerales.add(gestionDocumento, restricciones);
 		restricciones.gridy++;
 		
 		
@@ -344,6 +355,12 @@ public class GuiAdministrador extends JFrame
 					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
 					ESTADO.setText(estadoConsultarUsuario);
 					repaint();
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(panelConsultarUsuarios, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultarUsuario);
+					repaint();
+					
 				}
 
 				
@@ -395,6 +412,12 @@ public class GuiAdministrador extends JFrame
 					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
 					ESTADO.setText(estadoInicial);
 					repaint();
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
+					repaint();
+					
 				}
 				
 			}
@@ -456,6 +479,12 @@ public class GuiAdministrador extends JFrame
 					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA);
 					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(PANEL_CONSULTA_AVANZADA);
+					ESTADO.setText(estadoConsultaAvanzada);
+					repaint();
+					
 				}
 								
 			}
@@ -507,6 +536,11 @@ public class GuiAdministrador extends JFrame
 					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
 					ESTADO.setText(estadoModificacion);
 					repaint();
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
+					repaint();					
 				}
 				
 				
@@ -558,6 +592,11 @@ public class GuiAdministrador extends JFrame
 					CONTENEDOR.add(panelCatalogar);
 					ESTADO.setText(estadoCatalogar);
 					repaint();
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(panelCatalogar);
+					ESTADO.setText(estadoCatalogar);
+					repaint();				
 				}
 				
 			}else if(evento.getSource() == novedades)
@@ -609,6 +648,11 @@ public class GuiAdministrador extends JFrame
 					CONTENEDOR.add(PANEL_NOVEDADES);
 					ESTADO.setText(estadoNovedades);
 					repaint();
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(PANEL_NOVEDADES);
+					ESTADO.setText(estadoNovedades);
+					repaint();			
 				}
 				
 			}else if(evento.getSource() == reportes){
@@ -659,6 +703,70 @@ public class GuiAdministrador extends JFrame
 					CONTENEDOR.add(PANEL_REPORTES);
 					ESTADO.setText(estadoReporte);
 					repaint();
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(PANEL_REPORTES);
+					ESTADO.setText(estadoReporte);
+					repaint();			
+				}
+			}else if (evento.getSource() ==gestionDocumento)
+			{
+				if(ESTADO.getText().equals(estadoInicial))
+				{
+					GuiConsultaBasica.restaurarTodo();
+					CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+					
+				}else if(ESTADO.getText().equals(estadoConsultaAvanzada))
+				{
+					GuiConsultaAvanzada.restaurarTodo();
+					CONTENEDOR.remove(PANEL_CONSULTA_AVANZADA);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+					
+				}else if(ESTADO.getText().equals(estadoConsultarUsuario))
+				{
+					CONTENEDOR.remove(panelConsultarUsuarios);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+					
+				}else if(ESTADO.getText().equals(estadoReporte)){
+					CONTENEDOR.remove(PANEL_REPORTES);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+				}else if(ESTADO.getText().equals(estadoModificacion))
+				{
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
+				{
+					CONTENEDOR.remove(PANEL_MODIFICAR_DOCUMENTO);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+				}else if(ESTADO.getText().equals(estadoCatalogar))
+				{
+					
+					CONTENEDOR.remove(panelCatalogar);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+					
+				}else if(ESTADO.getText().equals(estadoNovedades))
+				{
+					
+					CONTENEDOR.remove(PANEL_NOVEDADES);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();				
+					
 				}
 			}
 			else if(evento.getSource() == logout)

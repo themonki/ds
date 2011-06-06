@@ -36,6 +36,14 @@ import GestionDocumento.Controlador.ControladorAutor;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar los datos de los nuevos autores que son adicionadas
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Luis Felipe Vargas
+ * 
+ */
 public class GuiIngresarAutor extends JFrame {
 	/**
 	 * 
@@ -189,10 +197,12 @@ public class GuiIngresarAutor extends JFrame {
 					if(conAutor.insertarAutor(campoNombre.getText(), campoApellido.getText(),
 							campoAcronimo.getText(), campoCorreoElectronico.getText())>=1)
 					{
-					guiCatalogarModi.vectoresParaComboBox();
-					guiCatalogarModi.actualizarAutores();
-					JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
-					dispose();
+						if(guiCatalogarModi!=null){
+							guiCatalogarModi.vectoresParaComboBox();
+							guiCatalogarModi.actualizarAutores();
+						}					
+						JOptionPane.showMessageDialog(null, "Se ingreso el Autor correctamente");
+						dispose();
 
 					}else{				
 						JOptionPane.showMessageDialog(null, "El autor ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
