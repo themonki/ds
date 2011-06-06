@@ -20,6 +20,7 @@ package Principal.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.GridBagConstraints;
@@ -27,6 +28,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -92,10 +97,10 @@ public class GuiAdministrador extends JFrame
 
 	// Elementos de la barra de menu
 	private JMenu archivo;
-	private JMenu acercaDe;
+	private JMenu ayuda;
 	private static Container CONTENEDOR;
 	private JMenuItem salir;
-	private JMenuItem informacion;
+	private JMenuItem informacion, contenidoAyuda;
 	private JMenuBar barra;
 
 	// otros paneles
@@ -163,24 +168,30 @@ public class GuiAdministrador extends JFrame
 		archivo = new JMenu("Archivo");
 		archivo.setMnemonic('A');
 
-		acercaDe = new JMenu("Acerca de ");
-		acercaDe.setMnemonic('c');
+		ayuda = new JMenu("Ayuda ");
+		ayuda.setMnemonic('y');
 
 		salir = new JMenuItem("Salir");
 		salir.setMnemonic('S');
 		salir.addActionListener(manejador);
 		salir.setAccelerator(KeyStroke.getKeyStroke('S', Event.CTRL_MASK));
 
-		informacion = new JMenuItem("Ayuda");
-		informacion.setMnemonic('y');
+		informacion = new JMenuItem("Acerca de ");
+		informacion.setMnemonic('c');
 		informacion.addActionListener(manejador);
-
+		
+		contenidoAyuda = new JMenuItem("Contenido de Ayuda");
+		contenidoAyuda.setMnemonic('y');
+		contenidoAyuda.addActionListener(manejador);
+		contenidoAyuda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1,0));
+		
 		archivo.add(salir);
-		acercaDe.add(informacion);
+		ayuda.add(contenidoAyuda);
+		ayuda.add(informacion);
 
 		barra = new JMenuBar();
 		barra.add(archivo);
-		barra.add(acercaDe);
+		barra.add(ayuda);
 		setJMenuBar(barra);
 
 		// Se instancian todos los elementos que pertenecen al panel del
@@ -659,6 +670,14 @@ public class GuiAdministrador extends JFrame
 			{
 				System.exit(0);
 				
+			}else if(evento.getSource()==contenidoAyuda){
+				try {
+					Desktop.getDesktop().browse(new URI("http://bibliotecadigitaleisc.wikispaces.com/"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
