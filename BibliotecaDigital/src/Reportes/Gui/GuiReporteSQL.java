@@ -6,26 +6,32 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import Reportes.Controlador.ControladorReportes;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiReporteSQL extends JTabbedPane {
 	JPanel panelppal,panelConEsquemas;
-	JLabel etiquetaSelect,icon;
+	JLabel etiquetaSelect,icon,esquemas;
 	JTextField campoAtributos ;
 	JTextArea areaConsulta;
 	JTable tabla;
 	Button botonConsulta;
+	JScrollPane resultadoScroll;
+	ControladorReportes conReport;
 	GuiReporteSQL(){
+		conReport= new ControladorReportes();
 		initComponents();
 		
 	}
@@ -42,7 +48,7 @@ public class GuiReporteSQL extends JTabbedPane {
 		
 		panelppal= new JPanel();
 		panelConEsquemas= new JPanel();
-		
+		resultadoScroll= new JScrollPane();
 		
 		//-----------------------------------
 		panelppal.setLayout(new GridBagLayout());
@@ -61,11 +67,24 @@ public class GuiReporteSQL extends JTabbedPane {
 		restricciones.gridwidth=1;
 		restricciones.gridx=1;
 		panelppal.add(botonConsulta,restricciones);
+		/*restricciones.gridy++;
+		restricciones.gridwidth=1;
+		restricciones.gridx=1;
+		panelppal.add(resultadoScroll,restricciones);*/
+		//---------------------------------------------
+		esquemas= new JLabel();
+		initEsquemas();
 		
 		
 		this.addTab("",new ImageIcon("recursos/iconos/SQL.png") , panelppal);
 		this.addTab("",icon.getIcon(), panelConEsquemas);
 		
+	
+	}
+	private void initEsquemas() {
+		Vector <String> nada= conReport.obtenerNombreTablas();
+		esquemas.setText(""+nada);
+		panelConEsquemas.add(esquemas);
 	
 	}
 	private class Manejador implements ActionListener
@@ -75,6 +94,8 @@ public class GuiReporteSQL extends JTabbedPane {
 		{
 			String sql =" SELECT " + campoAtributos.getText()+" "+areaConsulta.getText();		
 		
+			
+			
 		}
 		
 	}
