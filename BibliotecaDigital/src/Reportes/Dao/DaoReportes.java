@@ -734,9 +734,9 @@ public class DaoReportes {
 	}
 	
 	public Vector<String> obtenerAtributosTabla(String nombreTabla) {
-		String consultaSql = "select table_name from information_schema.tables where table_schema = 'public'";
+		String consultaSql = "SELECT column_name FROM information_schema.columns WHERE table_name = '"+nombreTabla+"' ;";
 
-		Vector<String> tablas = new Vector<String>();
+		Vector<String> atributos = new Vector<String>();
 
 		try {
 			Connection conn = fachada.conectar();
@@ -745,7 +745,7 @@ public class DaoReportes {
 
 			int primerElemento = 1;
 			while (resultado.next()) {
-				tablas.add(resultado.getString(primerElemento));
+				atributos.add(resultado.getString(primerElemento));
 			}
 			
 			
@@ -763,7 +763,7 @@ public class DaoReportes {
 			System.out.println(e);
 		}
 
-		return tablas;
+		return atributos;
 	}
 
 	public static void main(String args[]) {
@@ -783,7 +783,7 @@ public class DaoReportes {
 		// System.out.println(daoReportes.consultaUsuariosOrdenados("nivel_escolaridad"));
 		// System.out.println(daoReportes.consultaUsuariosOrdenadosTotales("genero"));
 
-		System.out.println(daoReportes.obtenerNombreTablas());
+		System.out.println(daoReportes.obtenerAtributosTabla("documento"));
 	}
 
 }

@@ -475,6 +475,15 @@ public class ControladorReportes
 		return tablas;
 	}
 	
+	public Vector<String> obtenerNombreTablas(String nombreTabla)
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		Vector<String> atributos = daoReportes.obtenerAtributosTabla(nombreTabla);
+		
+		return atributos;
+	}
+	
+	
 	
 	public static void main(String arg[])
 	{
