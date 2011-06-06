@@ -75,7 +75,7 @@ public class GuiCatalogar extends JScrollPane{
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
-	protected JPanel panel,panelFecha,panel2,panel4,panel5,panelConAutores,panelConpalabrasC,panel8,panelConAreas,panelFecha2;
+	protected JPanel panel,panelFecha,panelConDatos,panel4,panel5,panelConAutores,panelConpalabrasC,contenedorAreasAutorPala,panelConAreas,panelFecha2;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 
 	protected JLabel tipoMaterial,tituloPrincipal,idioma,autor,
@@ -155,10 +155,10 @@ public class GuiCatalogar extends JScrollPane{
 		inicializarFormatos();
 		//--------------------------------------
 		panel= new JPanel();
-		panel2= new JPanel();
+		panelConDatos= new JPanel();
 		panel4= new JPanel();
 		panel5= new JPanel();
-		panel8= new JPanel();
+		contenedorAreasAutorPala= new JPanel();
 		// el boxlayout es para que las organice en fila 
 		
 		panelConAutores= new JPanel();
@@ -172,13 +172,13 @@ public class GuiCatalogar extends JScrollPane{
 		panelScrollPalabras= new JScrollPane();
 		
 		panelScrollAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Autores Documentos"));
+				.createEtchedBorder(this.getBackground(),this.getBackground()), "Autores Documentos"));
 
 		panelScrollPalabras.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Palabras Documentos"));
+				.createEtchedBorder(this.getBackground(),this.getBackground()), "Palabras Documentos"));
 
 		panelScrollAreas.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Areas Documentos"));
+				.createEtchedBorder(this.getBackground(), this.getBackground()), "Areas Documentos"));
 
 
 			//----------------------------------------------------
@@ -212,15 +212,15 @@ public class GuiCatalogar extends JScrollPane{
 		panelFecha2.add(spinnerPublicacion, BorderLayout.CENTER);
 
 		//-----------------------------ponerBordeaPanel----------	
-		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		//panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel4.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
-		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		//panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 
 		//Organizacion de layouts y paneles
-		panel2.setLayout(new GridBagLayout());
+		panelConDatos.setLayout(new GridBagLayout());
 
 		panel4.setLayout(new BorderLayout());
-		panel8.setLayout(new GridLayout(1,3));
+		contenedorAreasAutorPala.setLayout(new GridLayout(1,3));
 
 		GridBagConstraints restriccionCampo= new GridBagConstraints()
 		,restriccionEtiquetas= new GridBagConstraints(),
@@ -231,22 +231,24 @@ public class GuiCatalogar extends JScrollPane{
 		restriccionCampo.gridwidth = 2;
 		restriccionCampo.gridx = 1;
 		restriccionCampo.gridy = 0;
-		restriccionCampo.insets = new Insets(1,40,1,0);
+		restriccionCampo.insets = new Insets(20,40,1,0);
 
 
-		restriccionEtiquetas.insets= new Insets(0,14,0,0);// espacios entre componentes
+		restriccionEtiquetas.insets= new Insets(20,20,0,0);// espacios entre componentes
 		restriccionEtiquetas.anchor=GridBagConstraints.WEST;//alinear a la izquierda
 		restriccionCampo.anchor=GridBagConstraints.WEST;
 		restriccionEtiquetas.gridy=0;
 
-		panel2.add(tituloPrincipal,restriccionEtiquetas);		
-		panel2.add(campoTituloPpal,restriccionCampo);
-
+		panelConDatos.add(tituloPrincipal,restriccionEtiquetas);		
+		panelConDatos.add(campoTituloPpal,restriccionCampo);
+		
+		restriccionCampo.insets = new Insets(1,40,1,1);
+		restriccionEtiquetas.insets= new Insets(1,20,1,1);
 		restriccionEtiquetas.gridy=1;
 		restriccionCampo.gridy = 1;
 
-		panel2.add(tituloSecundario,restriccionEtiquetas);
-		panel2.add(campoTituloSecundario,restriccionCampo);
+		panelConDatos.add(tituloSecundario,restriccionEtiquetas);
+		panelConDatos.add(campoTituloSecundario,restriccionCampo);
 
 		restriccionEtiquetas.gridy=2;
 		restriccionEtiquetas.weightx=0.0;
@@ -260,17 +262,17 @@ public class GuiCatalogar extends JScrollPane{
 		restriccionBotones.ipadx=20;
 		restriccionBotones.anchor= GridBagConstraints.WEST;
 
-		panel2.add(autor,restriccionEtiquetas);
-		panel2.add(campoAutor,restriccionCampo);		
-		panel2.add(nuevoAutor,restriccionBotones);
+		panelConDatos.add(autor,restriccionEtiquetas);
+		panelConDatos.add(campoAutor,restriccionCampo);		
+		panelConDatos.add(nuevoAutor,restriccionBotones);
 
 
 		restriccionEtiquetas.gridy=3;
 		restriccionCampo.gridy = 3;
 		restriccionCampo.ipadx=90;
 
-		panel2.add(idioma,restriccionEtiquetas);
-		panel2.add(campoIdioma,restriccionCampo);
+		panelConDatos.add(idioma,restriccionEtiquetas);
+		panelConDatos.add(campoIdioma,restriccionCampo);
 
 
 		restriccionEtiquetas.gridy=4;
@@ -288,17 +290,17 @@ public class GuiCatalogar extends JScrollPane{
 		restriccionBotones.gridx=2;
 		restriccionBotones.ipadx=10;
 
-		panel2.add(tipoMaterial,restriccionEtiquetas);
-		panel2.add(campoTipoMaterial,restriccionCampo);
-		panel2.add(nuevoTipo,restriccionBotones);
+		panelConDatos.add(tipoMaterial,restriccionEtiquetas);
+		panelConDatos.add(campoTipoMaterial,restriccionCampo);
+		panelConDatos.add(nuevoTipo,restriccionBotones);
 
 		restriccionEtiquetas.gridy=6;
 		restriccionCampo.gridy = 6;
 		restriccionCampo.ipadx=200;
 		restriccionCampo.gridwidth=2;
 
-		panel2.add(editorial,restriccionEtiquetas);
-		panel2.add(campoEditorial,restriccionCampo);
+		panelConDatos.add(editorial,restriccionEtiquetas);
+		panelConDatos.add(campoEditorial,restriccionCampo);
 
 		restriccionEtiquetas.gridy=7;
 		restriccionCampo.gridy = 7;
@@ -309,16 +311,16 @@ public class GuiCatalogar extends JScrollPane{
 		restriccionBotones.gridx=2;
 
 
-		panel2.add(palabrasClave,restriccionEtiquetas);
-		panel2.add(campoPalabras,restriccionCampo);
-		panel2.add(nuevaPalabra,restriccionBotones);
+		panelConDatos.add(palabrasClave,restriccionEtiquetas);
+		panelConDatos.add(campoPalabras,restriccionCampo);
+		panelConDatos.add(nuevaPalabra,restriccionBotones);
 
 		restriccionCampo.ipadx=7;
 		restriccionEtiquetas.gridy=8;
 		restriccionCampo.gridy = 8;
 
-		panel2.add(derechosAutor,restriccionEtiquetas);
-		panel2.add(campoDerechosAutor,restriccionCampo);
+		panelConDatos.add(derechosAutor,restriccionEtiquetas);
+		panelConDatos.add(campoDerechosAutor,restriccionCampo);
 
 		restriccionEtiquetas.gridy=9;
 		restriccionCampo.gridy = 9;
@@ -327,34 +329,34 @@ public class GuiCatalogar extends JScrollPane{
 		restriccionBotones.ipadx=9;
 		restriccionBotones.gridx=2;
 
-		panel2.add(areas,restriccionEtiquetas);
-		panel2.add(campoAreas,restriccionCampo);
-		panel2.add(nuevaArea,restriccionBotones);
+		panelConDatos.add(areas,restriccionEtiquetas);
+		panelConDatos.add(campoAreas,restriccionCampo);
+		panelConDatos.add(nuevaArea,restriccionBotones);
 
 		restriccionEtiquetas.gridy=10;
 		restriccionCampo.gridy=10;
-		panel2.add(formato,restriccionEtiquetas);	
-		panel2.add(campoFormato,restriccionCampo);	
+		panelConDatos.add(formato,restriccionEtiquetas);	
+		panelConDatos.add(campoFormato,restriccionCampo);	
 
 		restriccionEtiquetas.gridy=11;
 		restriccionCampo.gridy=11;
 		restriccionCampo.ipadx=150;
 
-		panel2.add(softwareRecomendado,restriccionEtiquetas);	
-		panel2.add(campoSoftware,restriccionCampo);	
+		panelConDatos.add(softwareRecomendado,restriccionEtiquetas);	
+		panelConDatos.add(campoSoftware,restriccionCampo);	
 
 		restriccionCampo.ipadx=0;
 		restriccionEtiquetas.gridy=12;
 		restriccionCampo.gridy=12;
 
-		panel2.add(fechaCreacion,restriccionEtiquetas);
-		panel2.add(panelFecha,restriccionCampo);
+		panelConDatos.add(fechaCreacion,restriccionEtiquetas);
+		panelConDatos.add(panelFecha,restriccionCampo);
 
 		restriccionEtiquetas.gridy=13;
 		restriccionCampo.gridy=13;
 
-		panel2.add(fechaPublicacion,restriccionEtiquetas);
-		panel2.add(panelFecha2,restriccionCampo);
+		panelConDatos.add(fechaPublicacion,restriccionEtiquetas);
+		panelConDatos.add(panelFecha2,restriccionCampo);
 
 		restriccionEtiquetas.gridy=14;
 		restriccionCampo.gridy=14;
@@ -363,15 +365,15 @@ public class GuiCatalogar extends JScrollPane{
 		restriccionBotones.ipadx=14;
 		restriccionBotones.gridx=2;
 
-		panel2.add(enlaceDoc,restriccionEtiquetas);	
-		panel2.add(campoEnlaceDoc,restriccionCampo);
-		panel2.add(examinarDoc, restriccionBotones);
+		panelConDatos.add(enlaceDoc,restriccionEtiquetas);	
+		panelConDatos.add(campoEnlaceDoc,restriccionCampo);
+		panelConDatos.add(examinarDoc, restriccionBotones);
 
 		restriccionEtiquetas.gridy=15;
 		restriccionCampo.gridy=15;
 
-		panel2.add(resolucion,restriccionEtiquetas);
-		panel2.add(campoResolucion,restriccionCampo);
+		panelConDatos.add(resolucion,restriccionEtiquetas);
+		panelConDatos.add(campoResolucion,restriccionCampo);
 
 		JScrollPane scroll = new JScrollPane(campoDescripcion);
 
@@ -386,18 +388,18 @@ public class GuiCatalogar extends JScrollPane{
 		panelScrollPalabras.setViewportView(panelConpalabrasC);
 		panelScrollAreas.setViewportView(panelConAreas);
 				
-		panel8.add(panelScrollAutores);
-		panel8.add(panelScrollPalabras);
-		panel8.add(panelScrollAreas);
+		contenedorAreasAutorPala.add(panelScrollAutores);
+		contenedorAreasAutorPala.add(panelScrollPalabras);
+		contenedorAreasAutorPala.add(panelScrollAreas);
 
-		panel8.setPreferredSize( new Dimension(100, 100));
+		contenedorAreasAutorPala.setPreferredSize( new Dimension(100, 100));
 
-		JPanel panel22= new JPanel();
-		panel22.setLayout(new BorderLayout(10,10));
-		panel22.add(panel8,BorderLayout.CENTER);
-		panel22.add(panel2,BorderLayout.NORTH);		
-		panel22.add(panel4,BorderLayout.SOUTH);
-		this.setViewportView(panel22);
+		JPanel panelPpal= new JPanel();
+		panelPpal.setLayout(new BorderLayout(10,10));
+		panelPpal.add(contenedorAreasAutorPala,BorderLayout.CENTER);
+		panelPpal.add(panelConDatos,BorderLayout.NORTH);		
+		panelPpal.add(panel4,BorderLayout.SOUTH);
+		this.setViewportView(panelPpal);
 
 		//------------------------------------------
 		setVisible(true);

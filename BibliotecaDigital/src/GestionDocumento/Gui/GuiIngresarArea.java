@@ -16,7 +16,10 @@ package GestionDocumento.Gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -73,14 +76,14 @@ public class GuiIngresarArea extends JFrame {
 
 	public void initComponents() {
 		panel = new JPanel();
-		panel2 = new JPanel(new GridLayout(2, 2, 10, 10));
+		panel2 = new JPanel(new GridBagLayout());
 		panel3 = new JPanel();
 		panel5 = new JPanel(new FlowLayout());
 		panel4 = new JPanel(new BorderLayout());
 		// --------------------------------------------------------
-		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
-		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
-		panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		//panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		//panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		//panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 
 		panelPrincipal = new JPanel(new BorderLayout());
 		TitledBorder borde;
@@ -96,10 +99,15 @@ public class GuiIngresarArea extends JFrame {
 		iniciarCampos();
 		// --------------------------------------------
 
-		panel2.add(nombre);
-		panel2.add(campoNombre);
-		panel2.add(areaPadre);
-		panel2.add(campoAreaPadre);
+		GridBagConstraints restricciones = new GridBagConstraints();
+		restricciones.gridy=0;
+		restricciones.anchor= GridBagConstraints.WEST;
+		restricciones.insets= new Insets(10 ,10 ,10,10);
+		panel2.add(nombre,restricciones);
+		panel2.add(campoNombre,restricciones);
+		restricciones.gridy++;
+		panel2.add(areaPadre,restricciones);
+		panel2.add(campoAreaPadre,restricciones);
 		panel3.add(panel2);
 		JScrollPane scroll = new JScrollPane(campoDescripcionArea);
 		
@@ -114,7 +122,7 @@ public class GuiIngresarArea extends JFrame {
 		panelPrincipal.add(panel3, BorderLayout.CENTER);
 		panelPrincipal.add(panel4, BorderLayout.SOUTH);
 		add(panelPrincipal);
-		setSize(800, 340);
+		setSize(600, 340);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
