@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -20,6 +21,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
+import javax.swing.border.EtchedBorder;
+
+import com.sun.java.swing.plaf.motif.MotifBorders.BevelBorder;
 
 import Reportes.Controlador.ControladorReportes;
 import Reportes.Gui.GuiReportes.Manejador;
@@ -37,13 +41,13 @@ public class GuiReportesAvanzados extends JPanel{
 	private Vector<String> vectorAtributosAvanzado;
 	
 
-	private JPanel panelPrincipal, panelOpcionesReportes, panelDescargas, panelConsultas, panelDocumento;
+	private JPanel panelPrincipal, panelOpcionesReportes, panelDescargasConsultas, panelDocumento;
 	
 	private JCheckBox habilitarAvanzado, habilitarPorDia, habilitarPorMes, habilitarPorAño, habilitarPorHora;
 	
 	private JComboBox tablasAvanzado, atributosAvanzado;
 	
-	private JLabel etiquetaTablaAvanzado, etiquetaAtributoAvanzado, etiquetaDescargas, etiquetaConsultas, etiquetaDocumento;
+	private JLabel etiquetaTablaAvanzado, etiquetaAtributoAvanzado, etiquetaDescargasConsultas, etiquetaDocumento;
 	
 	private GridBagConstraints retriccionesAvanzado;
 	
@@ -78,6 +82,7 @@ public class GuiReportesAvanzados extends JPanel{
 		inicializarButtons();
 		inicializarPanels();
 		
+		
 		//Crear spinner para la fecha3.
 		SpinnerModel modeloFecha3 = new SpinnerDateModel();
 		campoFecha3 = new JSpinner(modeloFecha3);
@@ -86,7 +91,7 @@ public class GuiReportesAvanzados extends JPanel{
 		JSpinner.DateEditor spinnerFecha3 = new JSpinner.DateEditor(campoFecha3,"yyyy-MM-dd");
 		campoFecha3.setEditor(spinnerFecha3);
 	    ((JSpinner.DateEditor) campoFecha3.getEditor()).getTextField().setEditable(false);
-	  //Crear spinner para la fecha4.
+	    //Crear spinner para la fecha4.
 		SpinnerModel modeloFecha4 = new SpinnerDateModel();
 		campoFecha4 = new JSpinner(modeloFecha4);
 	    campoFecha4.setFont(Estilos.fontLabels);
@@ -96,7 +101,7 @@ public class GuiReportesAvanzados extends JPanel{
 	    ((JSpinner.DateEditor) campoFecha4.getEditor()).getTextField().setEditable(false);
 	    
 	    //---- INSERTAR COMPONENTES EN PANEL ---
-
+/*
 		retriccionesAvanzado= new GridBagConstraints();
 		retriccionesAvanzado.insets= new Insets(0, 0, 20, 40);
 		retriccionesAvanzado.gridy=0;
@@ -147,7 +152,7 @@ public class GuiReportesAvanzados extends JPanel{
 	
 		
 		retriccionesAvanzado.insets= new Insets(0, 0, 0, 0);
-		
+		*/
 		this.setLayout(new BorderLayout());
 		this.add(panelPrincipal, BorderLayout.CENTER);
 		
@@ -159,6 +164,27 @@ public class GuiReportesAvanzados extends JPanel{
 		panelPrincipal.setBackground(Color.WHITE);
 		
 		panelOpcionesReportes = new JPanel (new GridBagLayout());
+		
+		//panelConsultas = new JPanel(new GridBagLayout());
+		inicializarPanelConsultas();
+		//panelDescargas = new JPanel(new GridBagLayout());
+		inicializarPanelDescargas();
+		panelDocumento = new JPanel(new GridBagLayout());
+		inicializarPanelDocumento();
+		
+	}
+
+	private void inicializarPanelDocumento() {
+		
+		
+	}
+
+	private void inicializarPanelDescargas() {
+		
+		
+	}
+
+	private void inicializarPanelConsultas() {
 		
 		
 	}
@@ -197,17 +223,15 @@ public class GuiReportesAvanzados extends JPanel{
 	private void inicializarLabels() {
 		
 		//Etiquetas del menu.
-		etiquetaDescargas = new JLabel("Descargas");
-		etiquetaDescargas.setIcon(new ImageIcon("recursos/iconos/download.png"));
-		etiquetaDescargas.setVerticalTextPosition(JLabel.BOTTOM);
-		
-		etiquetaConsultas = new JLabel("Consultas");
-		etiquetaConsultas.setIcon(new ImageIcon("recursos/iconos/search.png"));
-		etiquetaConsultas.setVerticalTextPosition(JLabel.BOTTOM);
+		etiquetaDescargasConsultas = new JLabel("Descargas-Consultas");
+		etiquetaDescargasConsultas.setIcon(new ImageIcon("recursos/iconos/big/download.png"));
+		etiquetaDescargasConsultas.setVerticalTextPosition(JLabel.BOTTOM);
+		etiquetaDescargasConsultas.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		
 		etiquetaDocumento = new JLabel("Consultas");
-		etiquetaDocumento.setIcon(new ImageIcon("recursos/iconos/search.png"));
+		etiquetaDocumento.setIcon(new ImageIcon("recursos/iconos/big/edit_document.png"));
 		etiquetaDocumento.setVerticalTextPosition(JLabel.BOTTOM);
+		etiquetaDocumento.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 		//Fin etiquetas del menu
 		
 		etiquetaTablaAvanzado= new JLabel("TABLA");
