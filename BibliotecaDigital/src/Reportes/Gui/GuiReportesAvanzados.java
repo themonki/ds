@@ -536,13 +536,8 @@ public class GuiReportesAvanzados extends JPanel{
 			{
 				botonDescargasConsultas.getModel().setArmed(true);
 				botonDescargasConsultas.getModel().setPressed(true);
-				botonDescargasConsultas.requestFocus(true);
-				botonDescargasConsultas.updateUI();
 				scrollPanel.setViewportView(panelDescargasConsultas);
-				panelPrincipal.updateUI();
-				
-				System.out.println("The frame was clicked.");
-				//mouseExited(e);
+				panelPrincipal.updateUI();	
 				
 			}
 				
