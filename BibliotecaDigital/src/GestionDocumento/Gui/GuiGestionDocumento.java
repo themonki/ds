@@ -64,24 +64,31 @@ public class GuiGestionDocumento extends JScrollPane{
 		restriccion.gridx=0;
 		restriccion.anchor = GridBagConstraints.WEST;
 				
-		int pos = 0;
+		int pos = 1;
 
 		panel.add(botonIngresarArea, restriccion);
 		restriccion.gridy=pos++;
+		restriccion.ipadx=100;
 		panel.add(botonIngresarAutor, restriccion);
 		restriccion.gridy=pos++;
+		restriccion.ipadx=40;
 		panel.add(botonIngresarPalabra, restriccion);
 		restriccion.gridy=pos++;
+		restriccion.ipadx=20;
 		panel.add(botonIngresarTipoMaterial, restriccion);
-		pos=0;
-		restriccion.gridy=pos;
+		pos=1;
+		restriccion.gridy=0;
 		restriccion.gridx=1;
+		restriccion.ipadx=0;
 		panel.add(botonModificarArea, restriccion);
 		restriccion.gridy=pos++;
+		restriccion.ipadx=100;
 		panel.add(botonModificarAutor, restriccion);
 		restriccion.gridy=pos++;
+		restriccion.ipadx=40;
 		panel.add(botonModificarPalabra, restriccion);
 		restriccion.gridy=pos++;
+		restriccion.ipadx=20;
 		panel.add(botonModificarTipoMaterial, restriccion);
 		
 		panelPrincipal.add(panel, BorderLayout.CENTER);
