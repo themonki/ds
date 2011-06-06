@@ -598,6 +598,10 @@ public class GuiCatalogar extends JScrollPane{
 		campoAutor.addActionListener(manejador);
 		campoPalabras.addActionListener(manejador);    
 		campoAreas.addActionListener(manejador);
+		
+		campoAreas.setSelectedIndex(-1);
+		campoAutor.setSelectedIndex(-1);
+		campoPalabras.setSelectedIndex(-1);
 	}
 
 	protected class ManejadorBoton implements ActionListener 
@@ -673,7 +677,8 @@ public class GuiCatalogar extends JScrollPane{
 			JLabel etiqueta= new JLabel();
 
 			if (event.getSource()==campoAutor)
-			{
+			{	
+				if(campoAutor.getSelectedIndex()==-1)return;
 				if (autoresActualVector.indexOf(campoAutor.getSelectedItem())==-1)
 				{
 					autoresActualVector.add((String) campoAutor.getSelectedItem());		
@@ -690,6 +695,7 @@ public class GuiCatalogar extends JScrollPane{
 			};
 			if (event.getSource()== campoPalabras)
 			{	
+				if(campoPalabras.getSelectedIndex()==-1)return;
 				if (palabActualVec.indexOf(campoPalabras.getSelectedItem())==-1)
 				{
 					palabActualVec.add((String) campoPalabras.getSelectedItem());		
@@ -702,6 +708,7 @@ public class GuiCatalogar extends JScrollPane{
 
 			if (event.getSource()==campoAreas)
 			{
+				if(campoAreas.getSelectedIndex()==-1)return;
 				if (areasActualVecr.indexOf(campoAreas.getSelectedItem())==-1)
 				{
 					areasActualVecr.add((String) campoAreas.getSelectedItem());			
