@@ -1,3 +1,21 @@
+/**
+ * GuiReportes.java
+ * 
+ * Clase que representa la interfaz de usuario administrador ,en la cual 
+ * tiene la posibilidad de consultar basica y avanzadamente, asi mismo
+ * la posibilidad de catalogar documentos,modificar sus datos,asignar perfiles
+ * de usuario y eliminarlos del sistema.Y cuando consulta los documentos tiene 
+ * la posibilidad tanto de descargar como de editar los documentos.
+ * 
+ * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor(es):  Luis Felipe Vargas
+ * 			   Maria Andrea Cruz Blandon
+ * 			  
+ * Version:   4.0
+ */
+
 package Reportes.Gui;
 
 import java.io.File;
@@ -47,6 +65,16 @@ import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
 import com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolverException;
 
+/**
+ * 
+ * Clase que permite a un usuario administrador tener una interfaz detallada 
+ * con los diferentes tipos de reportes que el puede realizar, ya sean 
+ * basicos, avazanzados o reportes generados por el mismo mediante la ejecuccion 
+ * de una consulta sql.
+ * 
+ * @author 
+ *
+ */
 public class GuiReportes extends JTabbedPane{
 	
 	/**
@@ -79,12 +107,27 @@ public class GuiReportes extends JTabbedPane{
  
 	private ControladorReportes controladorReporte;
 
+	/**
+	 *
+	 *	Construcor que permite inicializar los componentes principales de la gui
+	 *	esta interfaz se encuentra dividad en pestanas para hacer mas facil su
+	 *	uso y la elaboracion de cada uno de los reportes requeridos.
+	 * 
+	 */
 	public GuiReportes()
 	{
 		controladorReporte= new ControladorReportes();
 		initComponents();
 	}
 
+	/**
+	 * 
+	 * Metodo que inicializa cada uno de los componentes de la interfaz
+	 * dandole un determinado estilo e instanciandolos adecuandamente, es 
+	 * decir asignandoles espacio en memoria.
+	 * 
+	 * 
+	 */
 	private void initComponents() {
 		
 		scroll= new JScrollPane();
@@ -245,6 +288,15 @@ public class GuiReportes extends JTabbedPane{
 		
 	}
 
+	/**
+	 * 
+	 * Metodo que permite inicializar las etiquetas
+	 * dandoles su respectivo nombre y algunas cambiandoles
+	 * la imagen con la que van a ser visualizadas
+	 * 
+	 * 
+	 * 
+	 */
 	private void inicializarLabels() {
 		
 		etiquetaTabla= new JLabel("Reporte De: ");
@@ -292,6 +344,14 @@ public class GuiReportes extends JTabbedPane{
 
 	}
 	
+	/**
+	 * Clase que permite manejar todos los eventos relacionados con 
+	 * los botones que pertenecen a la interfaz asi mismo como 
+	 * realizar una determinada accion correspondiente al evento generado
+	 * 
+	 * @author 
+	 *
+	 */
 	public class Manejador implements ActionListener
 	{		
 		
