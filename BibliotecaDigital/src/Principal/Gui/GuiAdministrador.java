@@ -54,6 +54,10 @@ import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * @author 
+ *
+ */
 public class GuiAdministrador extends JFrame
 {
 	
@@ -115,6 +119,9 @@ public class GuiAdministrador extends JFrame
 	private Vector<Consulta> novedadesUsuario;
 	
 	
+	/**
+	 * @param usuario
+	 */
 	public GuiAdministrador(Usuario usuario){
 		
 		super("::: Sistema de Biblioteca Digital :::");	
@@ -265,6 +272,10 @@ public class GuiAdministrador extends JFrame
 
 	}
 
+	/**
+	 * @author yerminson
+	 *
+	 */
 	public class Manejador implements ActionListener
 	{		
 		@Override
@@ -653,6 +664,9 @@ public class GuiAdministrador extends JFrame
 	}
 
 	
+	/**
+	 * 
+	 */
 	public void cambiarPanelInicio()
 	{
 		
@@ -661,7 +675,11 @@ public class GuiAdministrador extends JFrame
 		ESTADO.setText(estadoInicial);
 		repaint();
 		
-	}public static void cambiarPanelEditarDocumento()
+	}
+	/**
+	 * 
+	 */
+	public static void cambiarPanelEditarDocumento()
 	{
 		
 		CONTENEDOR.remove(PANEL_CONSULTA_BASICA);
@@ -670,6 +688,9 @@ public class GuiAdministrador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarPanelEditarDocumentoAvanzado()
 	{
 		
@@ -679,6 +700,9 @@ public class GuiAdministrador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarPanelVista()
 	{
 		
@@ -689,6 +713,9 @@ public class GuiAdministrador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarPanelVistaAvanzado()
 	{
 		
@@ -699,6 +726,9 @@ public class GuiAdministrador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarAvanzadaInicio()
 	{
 		
@@ -710,6 +740,9 @@ public class GuiAdministrador extends JFrame
 		
 	}
 	
+	/**
+	 * @param novedades
+	 */
 	public void setNovededadesUsuario(Vector<Consulta> novedades)
 	{
 		GuiNovedades.PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(novedades, 10);
@@ -721,11 +754,17 @@ public class GuiAdministrador extends JFrame
 		novedadesUsuario = novedades;	
 		
 	}
+	/**
+	 * @return
+	 */
 	public Vector<Consulta>getNovededadesUsuario()
 	{
 		return novedadesUsuario;			
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarNovedadesInicio() {
 		CONTENEDOR.remove(PANEL_NOVEDADES);
 		CONTENEDOR.add(PANEL_CONSULTA_BASICA, BorderLayout.CENTER);
@@ -733,6 +772,9 @@ public class GuiAdministrador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarPanelEditarDocumentoNovedades()
 	{
 		

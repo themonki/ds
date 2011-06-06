@@ -53,6 +53,14 @@ import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * @author 
+ *
+ */
+/**
+ * @author yerminson
+ *
+ */
 public class GuiCatalogador extends JFrame
 {
 	
@@ -109,6 +117,9 @@ public class GuiCatalogador extends JFrame
 	private Vector<Consulta> novedadesUsuario;
 	
 	
+	/**
+	 * @param usuario
+	 */
 	public GuiCatalogador(Usuario usuario)
 	{
 		
@@ -249,6 +260,10 @@ public class GuiCatalogador extends JFrame
 
 	}
 
+	/**
+	 * @author 
+	 *
+	 */
 	public class Manejador implements ActionListener
 	{		
 		@Override
@@ -483,6 +498,9 @@ public class GuiCatalogador extends JFrame
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void cambiarPanelInicio()
 	{
 		
@@ -492,6 +510,9 @@ public class GuiCatalogador extends JFrame
 		repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarPanelEditarDocumento()
 	{
 		
@@ -501,6 +522,9 @@ public class GuiCatalogador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarPanelEditarDocumentoAvanzado()
 	{
 		
@@ -510,6 +534,9 @@ public class GuiCatalogador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarPanelEditarDocumentoNovedades()
 	{
 		
@@ -519,6 +546,9 @@ public class GuiCatalogador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarPanelVista()
 	{
 		
@@ -539,6 +569,9 @@ public class GuiCatalogador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarAvanzadaInicio()
 	{
 		
@@ -549,6 +582,9 @@ public class GuiCatalogador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * 
+	 */
 	public static void cambiarNovedadesInicio()
 	{
 		
@@ -560,6 +596,9 @@ public class GuiCatalogador extends JFrame
 		
 	}
 	
+	/**
+	 * @param novedades
+	 */
 	public void setNovededadesUsuario(Vector<Consulta> novedades)
 	{
 		
@@ -572,6 +611,9 @@ public class GuiCatalogador extends JFrame
 		panelNovedades.updateUI();
 		novedadesUsuario = novedades;	
 	}
+	/**
+	 * @return
+	 */
 	public Vector<Consulta>getNovededadesUsuario()
 	{
 		return novedadesUsuario;			

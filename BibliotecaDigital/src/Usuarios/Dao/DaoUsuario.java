@@ -35,9 +35,9 @@ import Utilidades.FachadaBD;
 
 /**
  * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que
- * ver con los usuarios
+ * ver con la clase  la Clase {@link Utilidades.FachadaBD FachadaBD}
  * 
- * @author yerminson
+ * @author Yerminson Gonzalez Munoz
  * 
  */
 public class DaoUsuario {
