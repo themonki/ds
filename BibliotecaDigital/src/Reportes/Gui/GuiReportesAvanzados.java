@@ -9,10 +9,16 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -28,6 +34,7 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeListener;
 
 import com.sun.java.swing.plaf.motif.MotifBorders.BevelBorder;
 
@@ -72,9 +79,12 @@ public class GuiReportesAvanzados extends JPanel{
 	
 	private JRadioButton descargasRadio, consultasRadio, documentosRadio, usuariosRadio, detallado, totales, ascendente, descendente;
 	
-	private ButtonGroup opcionTipo, opcionInformacion, opcionReporte, opcionOrden;
+	private ButtonGroup opcionTipo, opcionInformacion, opcionReporte, opcionOrden, menu;
 	
-	ControladorReportes controladorReporte;
+	private ControladorReportes controladorReporte;
+	
+	private Manejador manejador;
+	
 	
 	public GuiReportesAvanzados() {
 		controladorReporte= new ControladorReportes();
@@ -94,6 +104,8 @@ public class GuiReportesAvanzados extends JPanel{
 		vectorAtributosAvanzado.add("Usuario que mas ...");
 		vectorAtributosAvanzado.add("Documento que mas..");
 		vectorAtributosAvanzado.add("Cantidad De ..");
+		
+		manejador = new Manejador();
 		
 		inicializarLabels();
 		inicializarComboBox();
@@ -242,6 +254,10 @@ public class GuiReportesAvanzados extends JPanel{
 		opcionOrden.add(ascendente);
 		opcionOrden.add(descendente);
 		
+		menu = new ButtonGroup();
+		menu.add(botonDescargasConsultas);
+		menu.add(botonDocumento);
+		
 	}
 
 	private void inicializarRadioButtons() {
@@ -302,8 +318,6 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		//--INGRESAR COMPONENTES AL PANEL--
 		
-		panelDescargasConsultas.setBackground(Color.WHITE);
-		
 		//Labels indicativas
 		
 		JLabel tipoReporte, contenido, orden, formato, agrupado, desde, hasta;
@@ -325,7 +339,6 @@ public class GuiReportesAvanzados extends JPanel{
 		//-------------Panel para opciones
 		
 		JPanel opcionesReporte = new JPanel(new GridBagLayout());
-		opcionesReporte.setBackground(Color.WHITE);
 		
 		TitledBorder bordeOpciones = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Opciones reporte");
 		bordeOpciones.setTitleJustification(TitledBorder.LEFT);
@@ -335,7 +348,7 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		GridBagConstraints restriccionesOpciones = new GridBagConstraints();
 		restriccionesOpciones.anchor = GridBagConstraints.WEST;
-		restriccionesOpciones.insets = new Insets(4, 20, 4, 20);
+		restriccionesOpciones.insets = new Insets(4, 40, 4, 40);
 		restriccionesOpciones.gridx = 0;
 		restriccionesOpciones.gridy = 0;
 		
@@ -371,18 +384,18 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		opcionesReporte.add(habilitarPeriodoDescargasConsultas, restriccionesOpciones);
 		restriccionesOpciones.gridwidth=1;
-		restriccionesOpciones.insets = new Insets(4, 40, 4, 20);
+		restriccionesOpciones.insets = new Insets(4, 80, 4, 4);
 		restriccionesOpciones.gridy++;
 		opcionesReporte.add(desde, restriccionesOpciones);
 		restriccionesOpciones.gridx = 1;
-		restriccionesOpciones.insets.left = 20;
+		restriccionesOpciones.insets.left = 40;
 		opcionesReporte.add(campoFechaDesdeDescargas, restriccionesOpciones);
 		restriccionesOpciones.gridx = 0;
-		restriccionesOpciones.insets.left = 40;
+		restriccionesOpciones.insets.left = 80;
 		restriccionesOpciones.gridy++;
 		opcionesReporte.add(hasta, restriccionesOpciones);
 		restriccionesOpciones.gridx = 1;
-		restriccionesOpciones.insets.left = 20;
+		restriccionesOpciones.insets.left = 40;
 		opcionesReporte.add(campoFechaHastaDescargas, restriccionesOpciones);		
 		
 		//---------Fin panel para opciones
@@ -391,7 +404,7 @@ public class GuiReportesAvanzados extends JPanel{
 		restricciones.anchor= GridBagConstraints.WEST;
 		restricciones.gridx = 0;
 		restricciones.gridy = 0;
-		restricciones.insets = new Insets(4, 4, 8, 4);
+		restricciones.insets = new Insets(4, 20, 8, 10);
 		
 		panelDescargasConsultas.add(tipoReporte, restricciones);
 		restricciones.gridy++;
@@ -439,26 +452,29 @@ public class GuiReportesAvanzados extends JPanel{
 
 		botonDescargasConsultasGenerar = new Button("Generar Reporte");
 		botonDescargasConsultasGenerar.setIcon(new ImageIcon("recursos/iconos/Report2.png"));
+		botonDescargasConsultasGenerar.addActionListener(manejador);
 		botonDocumentoGenerar = new Button("Generar Reporte");
 		botonDocumentoGenerar.setIcon(new ImageIcon("recursos/iconos/Report2.png"));
+		botonDocumentoGenerar.addActionListener(manejador);
 		
-		//botonDescargas.addActionListener(new Manejador());
-		//botonConsultas.addActionListener(new Manejador());
-		//botonDocumento.addActionListener(new Manejador());
 		
-		//Etiquetas del menu.
+		
+		//Botones del menu.
 		botonDescargasConsultas = new JButton("    Descargas-Consultas    ");
 		botonDescargasConsultas.setIcon(new ImageIcon("recursos/iconos/big/reports.png"));
 		botonDescargasConsultas.setVerticalTextPosition(JLabel.BOTTOM);
 		botonDescargasConsultas.setHorizontalTextPosition(JLabel.CENTER);
+		botonDescargasConsultas.addActionListener(manejador);
 		
-		
+	
 		
 		botonDocumento = new JButton("    Documentos    ");
 		botonDocumento.setIcon(new ImageIcon("recursos/iconos/big/edit_document.png"));
 		botonDocumento.setVerticalTextPosition(JLabel.BOTTOM);
 		botonDocumento.setHorizontalTextPosition(JLabel.CENTER);
-		//Fin etiquetas del menu
+		botonDocumento.addActionListener(manejador);
+		
+		//Fin botones del menu
 		
 		
 	}
@@ -510,5 +526,28 @@ public class GuiReportesAvanzados extends JPanel{
 		
 	}
 
+	private class Manejador implements ActionListener
+	{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if(e.getSource() == botonDescargasConsultas)
+			{
+				botonDescargasConsultas.getModel().setArmed(true);
+				botonDescargasConsultas.getModel().setPressed(true);
+				botonDescargasConsultas.requestFocus(true);
+				botonDescargasConsultas.updateUI();
+				scrollPanel.setViewportView(panelDescargasConsultas);
+				panelPrincipal.updateUI();
+				
+				System.out.println("The frame was clicked.");
+				//mouseExited(e);
+				
+			}
+				
+		}
+
+		
+	}
 }
