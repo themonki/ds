@@ -1,20 +1,11 @@
---
--- PostgreSQL database dump
---
-
-SET statement_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = off;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-SET escape_string_warning = off;
-
-SET search_path = public, pg_catalog;
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
+/*
+Scrib biblioteca digital
+Maria Andrea Cruz Blandon - 0831816
+Yerminson Doney Gonzalez Muños - 0843846
+Cristian Leonardo Rios Lopez - 0814239
+Luis Felipe Vargas Rojas - 0836342
+Edgar Andres Moncada - 0832294
+*/
 DROP TABLE Usuario CASCADE;
 DROP TABLE Area_Conocimiento CASCADE;
 DROP TABLE Interesa_Usuario_Area_Conocimiento;
@@ -29,6 +20,19 @@ DROP TABLE Consulta CASCADE;
 DROP TABLE Palabra_Clave CASCADE;
 DROP TABLE Tiene_Documento_Palabra_Clave CASCADE;
 DROP TABLE Pertenece_Documento_Area_Conocimiento CASCADE;
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
 
 --
 -- Name: area_conocimiento; Type: TABLE; Schema: public; Owner: yerdogm; Tablespace: 
@@ -284,7 +288,7 @@ COPY area_conocimiento (id_area, nombre, descripcion, area_padre) FROM stdin;
 22	validacion de software		6
 23	computacion web cliente servidor		1
 24	tecnologias multimedia		1
-25	computacion inhalambrica		1
+25	computacion inalambrica		1
 26	procesamiento de lenguaje natural		18
 27	sistemas multimedia		8
 28	fundamentos de programacion		
@@ -385,190 +389,129 @@ COPY consulta (id_documento, login, fecha, hora) FROM stdin;
 10000	anonimo	2011-05-20	08:58:10
 10000	anonimo	2011-05-20	08:58:48
 10000	anonimo	2011-05-20	08:58:49
-10000	anonimo	2011-05-20	08:58:50
-10000	anonimo	2011-05-20	08:59:01
-10000	anonimo	2011-05-20	08:59:06
-10000	anonimo	2011-05-20	08:59:24
-10000	anonimo	2011-05-20	08:59:25
-10000	anonimo	2011-05-20	09:00:58
-10000	anonimo	2011-05-20	09:01:03
-10000	anonimo	2011-05-20	09:01:09
-10000	anonimo	2011-05-20	09:01:13
-10000	anonimo	2011-05-20	09:01:14
-10000	admin	2011-05-20	09:02:17
-10000	admin	2011-05-20	09:02:22
-10000	anonimo	2011-05-20	09:42:39
-10000	anonimo	2011-05-20	09:58:55
-10000	anonimo	2011-05-20	10:05:26
-10000	anonimo	2011-05-20	10:05:36
-10000	anonimo	2011-05-20	10:06:07
-10000	anonimo	2011-05-20	10:54:24
-10000	anonimo	2011-05-20	15:13:20
-10000	admin	2011-05-20	15:19:27
-10001	admin	2011-05-20	15:43:42
-10001	admin	2011-05-20	15:43:43
-10001	admin	2011-05-20	15:44:31
-10002	admin	2011-05-20	15:48:58
-10003	admin	2011-05-20	15:50:47
-10004	admin	2011-05-20	15:51:36
-10005	admin	2011-05-20	15:52:24
-10006	admin	2011-05-20	15:53:34
-10006	admin	2011-05-20	15:54:27
-10007	admin	2011-05-20	15:54:41
-10008	admin	2011-05-20	15:55:17
-10008	admin	2011-05-20	15:55:55
-10009	admin	2011-05-20	15:56:04
-10010	admin	2011-05-20	15:56:30
-10011	admin	2011-05-20	15:56:48
-10001	admin	2011-05-20	15:58:00
-10007	admin	2011-05-20	15:58:02
-10000	admin	2011-05-20	15:58:04
-10011	admin	2011-05-20	15:58:05
-10002	admin	2011-05-20	15:58:10
-10006	admin	2011-05-20	15:58:12
-10002	admin	2011-05-20	15:58:15
-10001	admin	2011-05-20	15:58:17
-10011	admin	2011-05-20	15:58:19
-10007	admin	2011-05-20	15:58:20
-10001	admin	2011-05-20	15:58:23
-10005	admin	2011-05-20	15:58:25
-10011	admin	2011-05-20	15:58:26
-10002	admin	2011-05-20	16:00:49
-10002	admin	2011-05-20	16:01:00
-10002	admin	2011-05-20	16:02:01
-10002	admin	2011-05-20	16:02:53
-10005	admin	2011-05-20	16:06:13
-10006	admin	2011-05-20	16:06:15
-10007	admin	2011-05-20	16:06:18
-10008	admin	2011-05-20	16:06:20
-10009	admin	2011-05-20	16:06:22
-10008	admin	2011-05-20	16:06:24
-10000	admin	2011-05-20	16:10:54
-10001	admin	2011-05-20	16:12:27
-10004	admin	2011-05-20	16:12:31
-10008	admin	2011-05-20	16:12:35
-10005	admin	2011-05-20	16:13:28
-10009	admin	2011-05-20	16:13:31
-10002	admin	2011-05-20	16:13:37
-10001	admin	2011-05-20	16:13:43
-10004	admin	2011-05-20	16:13:45
-10000	admin	2011-05-20	16:13:57
-10002	admin	2011-05-20	16:14:34
-10005	anonimo	2011-05-20	16:23:47
-10004	anonimo	2011-05-20	16:23:50
-10004	admin	2011-05-20	16:24:02
-10009	anonimo	2011-05-20	16:33:39
-10002	anonimo	2011-05-20	16:43:21
-10002	anonimo	2011-05-20	16:43:32
-10007	anonimo	2011-05-20	16:50:27
-10010	anonimo	2011-05-20	16:50:29
-10002	anonimo	2011-05-20	16:50:40
-10002	anonimo	2011-05-20	16:51:13
-10000	anonimo	2011-05-20	16:51:23
-10011	anonimo	2011-05-20	16:51:27
-10009	anonimo	2011-05-20	16:51:29
-10009	anonimo	2011-05-20	16:51:31
-10011	anonimo	2011-05-20	16:51:33
-10008	anonimo	2011-05-20	16:51:35
-10010	anonimo	2011-05-20	16:51:37
-10007	anonimo	2011-05-20	16:51:39
-10006	anonimo	2011-05-20	16:51:44
-10005	anonimo	2011-05-20	16:51:45
-10006	anonimo	2011-05-20	16:51:50
-10006	admin	2011-05-20	16:52:30
-10000	admin	2011-05-20	16:52:55
-10003	admin	2011-05-20	16:53:21
-10008	admin	2011-05-20	16:58:00
-10009	admin	2011-05-20	16:58:03
-10010	admin	2011-05-20	16:58:05
-10009	admin	2011-05-20	16:58:07
-10006	admin	2011-05-20	16:58:09
-10000	admin	2011-05-20	16:58:11
-10002	admin	2011-05-20	16:58:13
-10004	admin	2011-05-20	16:58:15
-10007	admin	2011-05-20	16:58:16
-10005	admin	2011-05-20	16:58:19
-10003	admin	2011-05-20	16:58:22
-10011	admin	2011-05-20	17:10:08
-10011	admin	2011-05-20	17:10:35
-10000	admin	2011-05-20	17:10:57
-10002	anonimo	2011-05-20	17:14:58
-10002	anonimo	2011-05-20	17:26:04
-10002	anonimo	2011-05-20	17:28:16
-10001	anonimo	2011-05-20	17:30:23
-10003	anonimo	2011-05-20	17:30:35
-10009	anonimo	2011-05-20	17:30:56
-10001	anonimo	2011-05-20	17:31:15
-10000	anonimo	2011-05-20	17:31:25
-10001	anonimo	2011-05-20	17:31:28
-10002	anonimo	2011-05-20	17:31:31
-10003	anonimo	2011-05-20	17:31:45
-10004	anonimo	2011-05-20	17:31:48
-10004	anonimo	2011-05-20	17:31:55
-10005	anonimo	2011-05-20	17:32:03
-10006	anonimo	2011-05-20	17:32:07
-10009	anonimo	2011-05-20	17:32:10
-10010	anonimo	2011-05-20	17:32:12
-10002	anonimo	2011-05-20	17:35:17
-10004	anonimo	2011-05-20	17:35:20
-10005	anonimo	2011-05-20	17:35:22
-10011	anonimo	2011-05-20	17:35:25
-10002	anonimo	2011-05-20	17:35:27
-10002	anonimo	2011-05-20	17:35:37
-10004	anonimo	2011-05-20	17:35:39
-10005	anonimo	2011-05-20	17:35:40
-10011	anonimo	2011-05-20	17:35:42
-10004	anonimo	2011-05-20	17:36:04
-10004	anonimo	2011-05-20	17:36:07
-10000	anonimo	2011-05-20	17:36:15
-10001	anonimo	2011-05-20	17:36:18
-10002	anonimo	2011-05-20	17:36:21
-10000	admin	2011-05-20	17:39:50
-10000	admin	2011-05-20	17:39:56
-10001	admin	2011-05-20	17:39:58
-10001	admin	2011-05-20	17:40:11
-10001	admin	2011-05-20	17:40:23
-10000	anonimo	2011-05-20	17:44:42
-10001	anonimo	2011-05-20	17:44:44
-10003	anonimo	2011-05-20	17:44:48
-10003	anonimo	2011-05-20	17:45:05
-10001	anonimo	2011-05-20	17:45:15
-10001	anonimo	2011-05-20	17:45:37
-10001	anonimo	2011-05-20	17:46:58
-10005	anonimo	2011-05-20	17:59:41
-10004	anonimo	2011-05-20	17:59:50
-10011	anonimo	2011-05-20	17:59:53
-10004	anonimo	2011-05-20	17:59:55
-10011	anonimo	2011-05-20	18:00:00
-10004	anonimo	2011-05-20	18:00:08
-10000	anonimo	2011-05-20	18:00:12
-10001	anonimo	2011-05-20	18:00:16
-10000	anonimo	2011-05-20	18:00:20
-10000	anonimo	2011-05-20	18:07:26
-10003	admin	2011-05-24	14:49:38
-10001	admin	2011-05-24	14:50:41
-10004	admin	2011-05-24	14:50:43
-10000	admin	2011-05-24	14:50:45
-10003	admin	2011-05-24	14:50:49
-10001	marcela	2011-05-24	16:21:43
-10003	marcela	2011-05-24	16:21:45
-10006	marcela	2011-05-24	16:21:49
-10001	yerdogm	2011-05-24	16:22:12
-10004	yerdogm	2011-05-24	16:22:15
-10013	yerdogm	2011-05-24	16:22:21
-10005	felipex	2011-05-24	16:22:42
-10009	felipex	2011-05-24	16:22:46
-10015	felipex	2011-05-24	16:22:51
-10006	maria	2011-05-24	16:23:13
-10000	clrl	2011-05-24	16:23:28
-10002	clrl	2011-05-24	16:23:30
-10003	clrl	2011-05-24	16:23:32
-10002	camilo	2011-05-24	16:23:46
-10001	camilo	2011-05-24	16:23:53
-10002	monki	2011-05-24	16:24:04
-10001	monki	2011-05-24	16:24:05
-10008	monki	2011-05-24	16:24:09
-10012	monki	2011-05-24	16:24:12
+10000	anonimo	2011-05-21	08:58:50
+10000	anonimo	2011-05-21	08:59:01
+10000	anonimo	2011-05-21	08:59:06
+10000	anonimo	2011-05-21	08:59:24
+10000	anonimo	2011-05-21	08:59:25
+10000	anonimo	2011-05-21	09:00:58
+10000	anonimo	2011-05-21	09:01:03
+10000	anonimo	2011-05-21	09:01:09
+10000	anonimo	2011-05-21	09:01:13
+10000	anonimo	2011-05-21	09:01:14
+10000	admin	2011-05-21	09:02:17
+10000	admin	2011-05-21	09:02:22
+10000	anonimo	2011-05-21	09:42:39
+10000	anonimo	2011-05-21	09:58:55
+10000	anonimo	2011-05-22	10:05:26
+10000	anonimo	2011-05-22	10:05:36
+10000	anonimo	2011-05-22	10:06:07
+10000	anonimo	2011-05-22	10:54:24
+10000	anonimo	2011-05-22	15:13:20
+10000	admin	2011-05-22	15:19:27
+10001	admin	2011-05-22	15:43:42
+10001	admin	2011-05-22	15:43:43
+10001	admin	2011-05-22	15:44:31
+10002	admin	2011-05-23	15:48:58
+10003	admin	2011-05-23	15:50:47
+10004	admin	2011-05-23	15:51:36
+10005	admin	2011-05-23	15:52:24
+10006	admin	2011-05-23	15:53:34
+10006	admin	2011-05-23	15:54:27
+10007	admin	2011-05-24	15:54:41
+10008	admin	2011-05-24	15:55:17
+10008	admin	2011-05-24	15:55:55
+10009	admin	2011-05-24	15:56:04
+10010	admin	2011-05-24	15:56:30
+10001	admin	2011-05-24	15:58:00
+10007	admin	2011-05-24	15:58:02
+10000	admin	2011-05-24	15:58:04
+10006	admin	2011-05-24	15:58:12
+10002	admin	2011-05-24	15:58:15
+10001	admin	2011-05-24	15:58:17
+10007	admin	2011-05-24	15:58:20
+10001	admin	2011-05-24	15:58:23
+10005	admin	2011-05-25	15:58:25
+10002	admin	2011-05-25	16:00:49
+10002	admin	2011-05-25	16:01:00
+10002	admin	2011-05-25	16:02:01
+10002	admin	2011-05-25	16:02:53
+10005	admin	2011-05-25	16:06:13
+10006	admin	2011-05-25	16:06:15
+10007	admin	2011-05-25	16:06:18
+10008	admin	2011-05-25	16:06:20
+10009	admin	2011-05-25	16:06:22
+10008	admin	2011-05-25	16:06:24
+10000	admin	2011-05-25	16:10:54
+10001	admin	2011-05-25	16:12:27
+10004	admin	2011-05-25	16:12:31
+10008	admin	2011-05-25	16:12:35
+10005	admin	2011-05-25	16:13:28
+10009	admin	2011-05-25	16:13:31
+10002	admin	2011-05-25	16:13:37
+10001	admin	2011-05-25	16:13:43
+10004	admin	2011-05-25	16:13:45
+10000	admin	2011-05-25	16:13:57
+10002	admin	2011-05-25	16:14:34
+10005	anonimo	2011-05-26	16:23:47
+10004	anonimo	2011-05-26	16:23:50
+10004	admin	2011-05-26	16:24:02
+10009	anonimo	2011-05-26	16:33:39
+10002	anonimo	2011-05-26	16:43:21
+10002	anonimo	2011-05-26	16:43:32
+10007	anonimo	2011-05-26	16:50:27
+10010	anonimo	2011-05-26	16:50:29
+10002	anonimo	2011-05-26	16:50:40
+10002	anonimo	2011-05-26	16:51:13
+10000	anonimo	2011-05-26	16:51:23
+10009	anonimo	2011-05-26	16:51:29
+10009	anonimo	2011-05-26	16:51:31
+10011	anonimo	2011-05-26	16:51:33
+10008	anonimo	2011-05-26	16:51:35
+10010	anonimo	2011-05-26	16:51:37
+10007	anonimo	2011-05-26	16:51:39
+10006	anonimo	2011-05-26	16:51:44
+10005	anonimo	2011-05-26	16:51:45
+10006	anonimo	2011-05-26	16:51:50
+10003	admin	2011-05-27	14:49:38
+10001	admin	2011-05-27	14:50:41
+10004	admin	2011-05-27	14:50:43
+10000	admin	2011-05-27	14:50:45
+10003	admin	2011-05-27	14:50:49
+10001	marcela	2011-05-27	16:21:43
+10003	marcela	2011-05-27	16:21:45
+10006	marcela	2011-05-27	16:21:49
+10001	yerdogm	2011-05-27	16:22:12
+10004	yerdogm	2011-05-27	16:22:15
+10013	yerdogm	2011-05-27	16:22:21
+10005	felipex	2011-05-27	16:22:42
+10009	felipex	2011-05-27	16:22:46
+10015	felipex	2011-05-27	16:22:51
+10006	maria	2011-05-27	16:23:13
+10000	clrl	2011-05-27	16:23:28
+10002	clrl	2011-05-27	16:23:30
+10003	clrl	2011-05-27	16:23:32
+10002	camilo	2011-05-27	16:23:46
+10001	camilo	2011-05-27	16:23:53
+10002	monki	2011-05-27	16:24:04
+10001	monki	2011-05-27	16:24:05
+10008	monki	2011-05-27	16:24:09
+10012	monki	2011-05-27	16:24:12
+10000	admin	2011-06-06	00:05:39
+10000	admin	2011-06-06	00:09:02
+10001	admin	2011-06-06	00:09:08
+10002	admin	2011-06-06	00:12:17
+10003	admin	2011-06-06	00:15:20
+10004	admin	2011-06-06	00:17:38
+10005	admin	2011-06-06	00:19:46
+10003	admin	2011-06-06	00:20:29
+10005	admin	2011-06-06	00:21:01
+10006	admin	2011-06-06	00:23:13
+10007	admin	2011-06-06	00:25:21
+10008	admin	2011-06-06	00:27:25
+10009	admin	2011-06-06	00:28:41
+10010	admin	2011-06-06	00:30:20
+10011	admin	2011-06-06	00:33:54
 \.
 
 
@@ -585,23 +528,23 @@ COPY descarga_usuario_documento (fecha, hora, login, id_documento) FROM stdin;
 --
 
 COPY documento (id_documento, idioma, derechos_autor, descripcion, software_recomendado, resolucion, editorial, formato, titulo_principal, titulo_secundario, link, fecha_creacion, fecha_publicacion, tipo_nombre, login_catalogador, fecha_catalogacion) FROM stdin;
-10000	Ingles	Si	libro de redes	adobe	0	pearson	pdf	computing networking aproach top-down		repositorio/comp.pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-07
-10001	Ingles	Si	libro de bases de datos	adobe	0	pearson	pdf	data base	bases de datos	repositorio/libro1.pdf	1999-05-09	2003-07-14	libro	clrl	2010-06-10
-10002	Ingles	No	libro de computadores	adobe	0	norma	pdf	introduccion a los computadores		repositorio/libro2.pdf	1994-05-09	1998-05-10	libro	clrl	2010-06-11
-10003	Aleman	Si	libro de robotica	ninguno	0	pearson	otro	erste robotik	robotica incial	repositorio/libro3.djvu	1993-05-14	2001-05-14	libro	clrl	2010-06-12
-10004	Ingles	Si	libro de bases de datos	adobe	0	pearson	pdf	bases de dados	bases de datos	repositorio/libro4.pdf	2002-05-14	2003-05-14	libro	clrl	2010-06-13
-10005	Frances	Si	libro de computadores y redes	ninguno	0	norma	otro	ordinateurs et des reseaux	computadores y redes	repositorio/libro5.djvu	1996-05-14	2002-05-14	libro	clrl	2010-06-14
-10006	Ingles	No	libro de programacion java	adobe	0	scrib	pdf	java programming	programacion en java	repositorio/libro6.pdf	2003-05-14	2004-11-06	libro	clrl	2010-06-15
-10007	Ingles	Si	libro de programacion c++	adobe	0	sin editorial	pdf	programar en c++		repositorio/libro7.pdf	2000-05-14	2005-04-14	libro	clrl	2010-06-16
-10008	Ingles	No	diapositivas curso base datos	writter	0	sin editorial	odt	diapositivas base datos		repositorio/ppt1.odt	2004-04-07	2005-09-14	libro	clrl	2010-06-17
-10009	Ingles	No	articulo sobre computacion en la nube	word	0	sin editorial	doc	mas alla de la nube		repositorio/article.doc	2005-05-14	2005-05-14	libro	clrl	2010-06-18
-10010	Ingles	No	trabajo de grado sobre redes	adobe	0	sin editorial	pdf	wireless networks	redes inalambricas	repositorio/archivo.pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-19
-10011	Ingles	No	libro de desarrollo de software	adobe	0	sin editorial	pdf	software project starting	iniciando proyecto de software	repositorio/documento.pdf	2006-05-14	2006-05-14	libro	clrl	2010-06-20
-10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural		repositorio/libro3(10).djvu	1999-05-15	2005-01-24	material de clase	admin	2011-05-24
-10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp		repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-05-24
-10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual		repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-05-24
-10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos		repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-05-24
-10016	Aleman	Si	animacion usando computadoras	ninguno	0	sin editorial	otro	animaciones graficas		repositorio/libro3(14).djvu	1983-05-15	1984-01-24	material de clase	admin	2011-05-24
+10000	Ingles	Si	libro de redes de computadores	adobe	0	pearson	pdf	computing networking aproach top-down		repositorio/comp.pdf	2005-02-07	2006-09-22	libro	clrl	2011-05-29
+10001	Ingles	Si	libro de bases de datos	adobe	0	pearson	pdf	data base	bases de datos	repositorio/libro1.pdf	1999-05-09	2003-07-14	libro	clrl	2011-05-29
+10002	Español	No	libro de computadores	adobe	0	norma	pdf	introduccion a los computadores		repositorio/libro2.pdf	1994-05-09	1997-03-10	libro	clrl	2011-05-29
+10003	Aleman	Si	libro de robotica	ninguno	0	pearson	otro	erste robotik	robotica incial	repositorio/libro3.djvu	1993-05-14	2001-05-14	libro	clrl	2011-05-29
+10004	Portuges	Si	libro de bases de datos	adobe	0	pearson	pdf	bases de dados	bases de datos	repositorio/libro4.pdf	2002-05-14	2003-05-14	libro	clrl	2011-05-29
+10005	Frances	Si	libro de computadores y redes	ninguno	0	norma	otro	ordinateurs et des reseaux	computadores y redes	repositorio/libro5.djvu	1996-05-14	2002-05-14	libro	clrl	2011-05-29
+10006	Ingles	No	libro de programacion java	adobe	0	scrib	pdf	java programming	programacion en java	repositorio/libro6.pdf	2003-05-14	2004-11-06	libro	clrl	2011-05-29
+10007	Español	Si	libro de programacion c++	adobe	0	sin editorial	pdf	programar en c++		repositorio/libro7.pdf	2000-05-14	2005-04-14	libro	clrl	2011-05-29
+10008	Español	No	diapositivas curso base datos	writter	0	sin editorial	odt	diapositivas base datos		repositorio/ppt1.odt	2004-04-07	2005-09-14	material de clase	clrl	2011-05-29
+10009	Español	No	articulo sobre computacion en la nube	word	0	sin editorial	doc	mas alla de la nube		repositorio/article.doc	2005-05-14	2005-05-14	libro	clrl	2011-05-29
+10010	Ingles	No	trabajo de grado sobre redes	adobe	0	sin editorial	pdf	wireless networks	redes inalambricas	repositorio/archivo.pdf	2006-05-14	2006-05-14	libro	clrl	2011-05-29
+10011	Ingles	No	libro de desarrollo de software	adobe	0	sin editorial	pdf	software project starting	iniciando proyecto de software	repositorio/documento.pdf	2006-05-14	2011-06-06	libro	clrl	2010-06-20
+10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural		repositorio/libro3(10).djvu	1999-05-15	2005-01-24	material de clase	admin	2011-06-06
+10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp		repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-06-06
+10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual		repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-06-06
+10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos		repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-06-06
+10016	Aleman	Si	animacion usando computadoras	ninguno	0	sin editorial	otro	animaciones graficas		repositorio/libro3(14).djvu	1983-05-15	1984-01-24	material de clase	admin	2011-06-06
 \.
 
 
@@ -610,35 +553,6 @@ COPY documento (id_documento, idioma, derechos_autor, descripcion, software_reco
 --
 
 COPY escribe_autor_documento (id_autor, id_documento) FROM stdin;
-10000	10000
-10001	10000
-10000	10001
-10005	10001
-10007	10001
-10000	10002
-10004	10002
-10002	10002
-10006	10002
-10005	10004
-10006	10004
-10002	10004
-10005	10005
-10007	10005
-10006	10007
-10007	10007
-10003	10007
-10002	10007
-10004	10008
-10006	10008
-10007	10008
-10005	10009
-10002	10010
-10007	10011
-10001	10006
-10006	10006
-10000	10003
-10003	10003
-10006	10003
 10006	10012
 10004	10012
 10002	10013
@@ -648,6 +562,43 @@ COPY escribe_autor_documento (id_autor, id_documento) FROM stdin;
 10001	10015
 10005	10016
 10006	10016
+10000	10000
+10001	10000
+10000	10001
+10005	10001
+10007	10001
+10000	10002
+10002	10002
+10004	10002
+10006	10002
+10002	10004
+10005	10004
+10006	10004
+10000	10003
+10003	10003
+10006	10003
+10005	10005
+10007	10005
+10026	10005
+10006	10006
+10029	10006
+10027	10006
+10002	10007
+10003	10007
+10006	10007
+10007	10007
+10004	10008
+10006	10008
+10007	10008
+10025	10008
+10005	10009
+10027	10009
+10029	10009
+10002	10010
+10024	10010
+10007	10011
+10021	10011
+10026	10011
 \.
 
 
@@ -712,6 +663,10 @@ latex	lenguaje de programacion para generar documentos.
 software	comprende el conjunto de los componentes lógicos necesarios que hacen posible la realización de tareas específicas
 hardware	corresponde a todas las partes tangibles de una computadora: sus componentes eléctricos, electrónicos, electromecánicos y mecánicos.
 programación	es un idioma artificial diseñado para expresar computaciones que pueden ser llevadas a cabo por máquinas como las computadoras.
+internet	red de redes
+network	red que comunica equipos de computadores
+modelo	representacion abstracta de la realidad
+robot	referente a la programacion de robots
 \.
 
 
@@ -720,39 +675,6 @@ programación	es un idioma artificial diseñado para expresar computaciones que 
 --
 
 COPY pertenece_documento_area_conocimiento (id_area, id_documento) FROM stdin;
-49	10000
-5	10001
-21	10001
-41	10001
-62	10001
-60	10001
-29	10002
-20	10002
-56	10002
-62	10002
-8	10004
-4	10004
-26	10004
-48	10004
-62	10004
-63	10004
-7	10005
-30	10005
-26	10007
-48	10007
-61	10007
-57	10007
-4	10008
-6	10009
-49	10010
-26	10011
-6	10006
-22	10006
-37	10006
-57	10006
-29	10003
-35	10003
-60	10003
 22	10012
 25	10012
 28	10013
@@ -760,6 +682,64 @@ COPY pertenece_documento_area_conocimiento (id_area, id_documento) FROM stdin;
 42	10014
 45	10015
 41	10016
+49	10000
+2	10000
+1	10000
+21	10001
+15	10001
+53	10001
+20	10002
+6	10002
+7	10002
+13	10002
+22	10002
+48	10004
+8	10004
+13	10004
+21	10004
+6	10003
+10	10003
+17	10003
+33	10003
+42	10003
+50	10003
+30	10003
+6	10005
+7	10005
+14	10005
+17	10005
+25	10005
+23	10005
+31	10005
+43	10005
+17	10006
+16	10006
+28	10006
+17	10007
+31	10007
+16	10007
+8	10008
+12	10008
+13	10008
+48	10008
+6	10009
+2	10009
+58	10009
+49	10009
+49	10010
+14	10010
+33	10010
+40	10010
+42	10010
+54	10010
+13	10010
+30	10010
+5	10010
+6	10010
+7	10011
+20	10011
+22	10011
+35	10011
 \.
 
 
@@ -768,32 +748,55 @@ COPY pertenece_documento_area_conocimiento (id_area, id_documento) FROM stdin;
 --
 
 COPY tiene_documento_palabra_clave (nombre, id_documento) FROM stdin;
-red	10000
-programacion	10001
-red	10001
-computacion nube	10001
-base datos	10001
-computacion	10001
-desarrollo software	10002
-computacion	10002
-grafos	10002
-computacion nube	10004
-desarrollo software	10004
-grafos	10004
-programacion	10005
-desarrollo software	10005
-computacion	10009
-computacion	10010
-desarrollo software	10011
-base datos	10006
-computacion	10006
-red	10003
-computacion nube	10003
-computacion	10003
 grafos	10012
 programacion	10013
 virtual	10014
 discretas	10015
+red	10000
+internet	10000
+network	10000
+base datos	10001
+modelo	10001
+mysql	10001
+postgres	10001
+desarrollo software	10002
+computacion	10002
+base datos	10004
+java	10004
+mysql	10004
+programacion	10003
+desarrollo software	10003
+robot	10003
+programacion	10005
+red	10005
+desarrollo software	10005
+computacion	10005
+programacion	10006
+programación	10006
+java	10006
+desarrollo software	10006
+programacion	10007
+computacion	10007
+c++	10007
+oracol	10007
+base datos	10008
+mysql	10008
+oracol	10008
+postgres	10008
+computacion	10009
+computacion nube	10009
+virtual	10009
+red	10009
+network	10009
+internet	10009
+software	10009
+computacion	10010
+red	10010
+network	10010
+internet	10010
+desarrollo software	10011
+computacion	10011
+software	10011
 \.
 
 
@@ -824,27 +827,27 @@ gráficos	una representación de datos, generalmente numéricos, mediante línea
 
 COPY usuario (login, contrasena, nombre1, nombre2, apellido1, apellido2, email, nivel_escolaridad, pregunta_secreta, respuesta_secreta, vinculo_univalle, genero, fecha_nacimiento, fecha_registro, tipo, estado, fecha_ultimo_acceso) FROM stdin;
 anonimo	anonimo	anonimo	anonimo	anonimo	univalle	anonimo@correo	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	0	f	2010-05-29
-clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	Tecnología	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t	2010-05-29
-monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media Académica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t	2010-05-29
-maria	maria	maria	andrea	cruz		maria@gmail.com	Media Académica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t	2010-05-29
-felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media Académica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	2010-05-29
-yerdogm	yerdogm	yerminson	doney	gonzales	muños	yerdogm@gmail.com	Media Académica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	2010-05-29
-alberto	alberto	alberto		gonzales		alberto@gmail.com	Básica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	2010-05-29
+admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t	2011-06-06
+clrl	clrl	cristian	leonardo	rios	lopez	dragonblanco452@gmail.com	Tecnología	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	1989-06-09	2011-05-08	2	t	2011-06-06
+monki	monki	edgar	andres	moncada	taborda	edgarandres29@gmail.com	Media Académica	Mejor amigo de la infancia	monki	Estudiante de pregrado	M	1991-05-29	2011-05-24	3	t	2011-05-27
+maria	maria	maria	andrea	cruz		maria@gmail.com	Media Académica	Mejor amigo de la infancia	maria	Estudiante de pregrado	F	2011-05-24	2011-05-24	2	t	2011-05-27
+felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media Académica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	2011-05-27
+yerdogm	yerdogm	yerminson	doney	gonzales	muños	yerdogm@gmail.com	Media Académica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	2011-05-27
+alberto	alberto	alberto		gonzales		alberto@gmail.com	Básica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	2011-05-27
 carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	Básica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	2010-05-29
 camilo	camilo	camilo		suarez		camilo@gmail.com	Tecnologí­a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t	2010-05-29
 laura	laura	laura		rodrigues		laura@gmail.com	Media Técnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t	2010-05-29
 marcela	marcela	marcela		lozano		marcela@yahoo.es	Maestrí­a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t	2010-05-29
-alvaivan	alvaivan1	álvaro	iván	gómez	molina	alvaiva-4558@gmail.com	Tecnología	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	1987-05-12	2011-04-10	3	t	2010-05-29
-albertc	albertc2	carlos	alberto	molina	lotero	albertcpenc13@hotmail.es	Tecnología	Ciudad natal de la abuela	cali	Jubilado	M	1980-12-12	2011-06-16	2	t	2010-05-29
-herna08	herna083	hernán	darío	naranjo	naranjo	herna08_12ecw@yahoo.es	Tecnología	Superheroe preferido	superman	Estudiante de pregrado	M	1967-01-12	2011-02-22	3	t	2010-05-29
-jo23leon	jo23leon4	jorge	león	osorio	osorio	jo23leonhero@univalle.edu	Tecnología	Ciudad donde pasa las vacaciones	cartagena	Egresado	M	1980-04-17	2011-02-10	3	t	2010-05-29
-jhon7452	jhon74525	john	jairo	duque	alzate	jhon7452-super@correounivalle.edu.co	Especialización Técnica	Nombre de la primer mascota	lulu	Egresado	M	1979-07-28	2011-02-27	2	t	2010-05-29
+alvaivan	alvaivan1	álvaro	iván	gómez	molina	alvaiva-4558@gmail.com	Tecnología	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	1987-05-12	2011-05-28	3	t	2010-05-29
+albertc	albertc2	carlos	alberto	molina	lotero	albertcpenc13@hotmail.es	Tecnología	Ciudad natal de la abuela	cali	Jubilado	M	1980-12-12	2011-05-28	2	t	2010-05-29
+herna08	herna083	hernán	darío	naranjo	naranjo	herna08_12ecw@yahoo.es	Tecnología	Superheroe preferido	superman	Estudiante de pregrado	M	1967-01-12	2011-05-28	3	t	2010-05-29
+jo23leon	jo23leon4	jorge	león	osorio	osorio	jo23leonhero@univalle.edu	Tecnología	Ciudad donde pasa las vacaciones	cartagena	Egresado	M	1980-04-17	2011-05-28	3	t	2010-05-29
+jhon7452	jhon74525	john	jairo	duque	alzate	jhon7452-super@correounivalle.edu.co	Especialización Técnica	Nombre de la primer mascota	lulu	Egresado	M	1979-07-28	2011-05-28	2	t	2010-05-29
 armidb45	armidb456	armid	benjamín	palacio	duque	armidb45-yo@gmail.com	Profesional/Universidad	Cuento que mas veces ha leido	atalanta	Profesor activo	M	1980-11-10	2011-05-28	3	t	2010-05-29
-elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	Profesional/Universidad	Mejor amigo de la infancia	angie	Estudiante de postgrado	M	1981-04-24	2011-05-17	3	t	2010-05-29
-shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-04-15	3	t	2010-05-29
+elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	Profesional/Universidad	Mejor amigo de la infancia	angie	Estudiante de postgrado	M	1981-04-24	2011-06-03	3	t	2010-05-29
+shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-06-03	3	t	2010-05-29
 osito32	osito321	gabriel	jaime	alzate	palacio	osito32-lomaslindo06@live.com	Técnica Profesional	Superheroe preferido	batman	Estudiante de postgrado	M	1992-02-03	2011-06-03	3	t	2010-05-29
-marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-02-21	2	f	2010-05-29
-admin	digital	biblioteca	digital	eisc	univalle	bibliotecaeisc@correo.univalle.co	Profesional/Universidad	Ciudad natal de la abuela	respuesta	Estudiante de pregrado	M	2011-05-08	2011-05-08	1	t	2010-05-29
+marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-06-03	2	f	2011-05-27
 \.
 
 
@@ -1091,8 +1094,8 @@ ALTER TABLE ONLY documento
 --
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
-
-/*REVOKE ALL ON SCHEMA public FROM PUBLIC;
+/*
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM postgres;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
