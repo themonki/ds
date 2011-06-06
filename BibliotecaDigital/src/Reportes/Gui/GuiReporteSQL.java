@@ -12,6 +12,7 @@ import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -101,8 +102,10 @@ public class GuiReporteSQL extends JTabbedPane {
 		public void actionPerformed(ActionEvent evento)
 		{
 			tabla=null;
+			resultadoPanel.removeAll();
 			String consultaSql =" SELECT " + campoAtributos.getText()+" "+areaConsulta.getText();
 			tabla = conReport.consultaGenerica(consultaSql);
+			if(tabla==null){return;}
 			resultadoPanel.add(tabla);
 			resultadoPanel.repaint();
 			resultadoPanel.updateUI();
