@@ -169,6 +169,15 @@ public class GuiCatalogar extends JScrollPane{
 		panelScrollAreas= new JScrollPane();
 		panelScrollAutores= new JScrollPane();
 		panelScrollPalabras= new JScrollPane();
+		
+		panelScrollAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Autores Documentos"));
+
+		panelScrollPalabras.setBorder(BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Palabras Documentos"));
+
+		panelScrollAreas.setBorder(BorderFactory.createTitledBorder(BorderFactory
+				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Areas Documentos"));
 
 
 			//----------------------------------------------------
@@ -205,15 +214,6 @@ public class GuiCatalogar extends JScrollPane{
 		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel4.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
-
-		panelConAutores.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Autores Documentos"));
-
-		panelConpalabrasC.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Palabras Documentos"));
-
-		panelConAreas.setBorder(BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Areas Documentos"));
 
 		//Organizacion de layouts y paneles
 		panel2.setLayout(new GridBagLayout());
@@ -384,7 +384,7 @@ public class GuiCatalogar extends JScrollPane{
 		panelScrollAutores.setViewportView(panelConAutores);
 		panelScrollPalabras.setViewportView(panelConAreas);
 		panelScrollAreas.setViewportView(panelConpalabrasC);
-
+				
 		panel8.add(panelScrollAutores);
 		panel8.add(panelScrollPalabras);
 		panel8.add(panelScrollAreas);

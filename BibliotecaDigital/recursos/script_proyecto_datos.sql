@@ -520,6 +520,16 @@ COPY consulta (id_documento, login, fecha, hora) FROM stdin;
 --
 
 COPY descarga_usuario_documento (fecha, hora, login, id_documento) FROM stdin;
+2011-06-06	01:47:27	osito32	10006
+2011-06-06	01:47:46	osito32	10010
+2011-06-06	01:49:28	elkin123	10003
+2011-06-06	01:49:40	elkin123	10007
+2011-06-06	01:49:51	elkin123	10006
+2011-06-06	01:51:10	armidb45	10006
+2011-06-06	01:51:22	armidb45	10004
+2011-06-06	01:51:29	armidb45	10004
+2011-06-06	01:51:37	armidb45	10006
+2011-06-06	01:51:42	armidb45	10005
 \.
 
 
@@ -542,9 +552,9 @@ COPY documento (id_documento, idioma, derechos_autor, descripcion, software_reco
 10011	Ingles	No	libro de desarrollo de software	adobe	0	sin editorial	pdf	software project starting	iniciando proyecto de software	repositorio/documento.pdf	2006-05-14	2011-06-06	libro	clrl	2010-06-20
 10012	Frances	No	procesar lenguaje natural	ninguno	0	sin editorial	otro	procesamiento de lenguaje natural		repositorio/libro3(10).djvu	1999-05-15	2005-01-24	material de clase	admin	2011-06-06
 10013	Ingles	No	libro de programacion para la clase de flp	ninguno	0	sin editoral	otro	flp		repositorio/libro3(11).djvu	2001-05-15	2002-01-24	articulo	admin	2011-06-06
-10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual		repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-06-06
-10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos		repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-06-06
-10016	Aleman	Si	animacion usando computadoras	ninguno	0	sin editorial	otro	animaciones graficas		repositorio/libro3(14).djvu	1983-05-15	1984-01-24	material de clase	admin	2011-06-06
+10014	Portuges	No	articulo	ninguno	0	pearson	otro	realidad virtual		repositorio/libro3(12).djvu	1993-05-15	1993-01-24	libro	admin	2011-06-07
+10015	Español	Si	tesis sobre numeros y valores discretos	ninguno	0	sin editorial	otro	analisis de numeros discretos		repositorio/libro3(13).djvu	1987-05-15	1988-01-24	tesis de maestria	admin	2011-06-07
+10016	Aleman	Si	animacion usando computadoras	ninguno	0	sin editorial	otro	animaciones graficas		repositorio/libro3(14).djvu	1983-05-15	1984-01-24	material de clase	admin	2011-06-07
 \.
 
 
@@ -834,20 +844,20 @@ maria	maria	maria	andrea	cruz		maria@gmail.com	Media Académica	Mejor amigo de l
 felipex	felipex	luis	felipe	vargas	rojas	felipex@gmail.com	Media Académica	Mejor amigo de la infancia	felipex	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	2011-05-27
 yerdogm	yerdogm	yerminson	doney	gonzales	muños	yerdogm@gmail.com	Media Académica	Mejor amigo de la infancia	yerdogm	Estudiante de pregrado	M	2011-05-24	2011-05-24	2	t	2011-05-27
 alberto	alberto	alberto		gonzales		alberto@gmail.com	Básica Primaria	Mejor amigo de la infancia	alberto	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	2011-05-27
-carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	Básica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	2010-05-29
-camilo	camilo	camilo		suarez		camilo@gmail.com	Tecnologí­a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t	2010-05-29
-laura	laura	laura		rodrigues		laura@gmail.com	Media Técnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t	2010-05-29
-marcela	marcela	marcela		lozano		marcela@yahoo.es	Maestrí­a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t	2010-05-29
-alvaivan	alvaivan1	álvaro	iván	gómez	molina	alvaiva-4558@gmail.com	Tecnología	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	1987-05-12	2011-05-28	3	t	2010-05-29
-albertc	albertc2	carlos	alberto	molina	lotero	albertcpenc13@hotmail.es	Tecnología	Ciudad natal de la abuela	cali	Jubilado	M	1980-12-12	2011-05-28	2	t	2010-05-29
-herna08	herna083	hernán	darío	naranjo	naranjo	herna08_12ecw@yahoo.es	Tecnología	Superheroe preferido	superman	Estudiante de pregrado	M	1967-01-12	2011-05-28	3	t	2010-05-29
-jo23leon	jo23leon4	jorge	león	osorio	osorio	jo23leonhero@univalle.edu	Tecnología	Ciudad donde pasa las vacaciones	cartagena	Egresado	M	1980-04-17	2011-05-28	3	t	2010-05-29
-jhon7452	jhon74525	john	jairo	duque	alzate	jhon7452-super@correounivalle.edu.co	Especialización Técnica	Nombre de la primer mascota	lulu	Egresado	M	1979-07-28	2011-05-28	2	t	2010-05-29
-armidb45	armidb456	armid	benjamín	palacio	duque	armidb45-yo@gmail.com	Profesional/Universidad	Cuento que mas veces ha leido	atalanta	Profesor activo	M	1980-11-10	2011-05-28	3	t	2010-05-29
-elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	Profesional/Universidad	Mejor amigo de la infancia	angie	Estudiante de postgrado	M	1981-04-24	2011-06-03	3	t	2010-05-29
-shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-06-03	3	t	2010-05-29
-osito32	osito321	gabriel	jaime	alzate	palacio	osito32-lomaslindo06@live.com	Técnica Profesional	Superheroe preferido	batman	Estudiante de postgrado	M	1992-02-03	2011-06-03	3	t	2010-05-29
-marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-06-03	2	f	2011-05-27
+carlos	carlos	carlos	andres	valderrama	aguirre	carlos@gmail.com	Básica Primaria	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	2011-05-24	2011-05-24	3	t	2011-05-24
+camilo	camilo	camilo		suarez		camilo@gmail.com	Tecnologí­a	Mejor amigo de la infancia	camilo	Egresado	M	2011-05-24	2011-05-24	3	t	2011-05-24
+laura	laura	laura		rodrigues		laura@gmail.com	Media Técnica	Mejor amigo de la infancia	laura	Egresado	F	2011-05-24	2011-05-24	3	t	2011-05-24
+marcela	marcela	marcela		lozano		marcela@yahoo.es	Maestrí­a	Mejor amigo de la infancia	marcela	Profesor activo	F	2011-05-24	2011-05-24	3	t	2011-05-24
+alvaivan	alvaivan1	álvaro	iván	gómez	molina	alvaiva-4558@gmail.com	Tecnología	Mejor amigo de la infancia	carlos	Estudiante de pregrado	M	1987-05-12	2011-05-28	3	t	2011-05-28
+albertc	albertc2	carlos	alberto	molina	lotero	albertcpenc13@hotmail.es	Tecnología	Ciudad natal de la abuela	cali	Jubilado	M	1980-12-12	2011-05-28	2	t	2011-05-28
+herna08	herna083	hernán	darío	naranjo	naranjo	herna08_12ecw@yahoo.es	Tecnología	Superheroe preferido	superman	Estudiante de pregrado	M	1967-01-12	2011-05-28	3	t	2011-05-28
+jo23leon	jo23leon4	jorge	león	osorio	osorio	jo23leonhero@univalle.edu	Tecnología	Ciudad donde pasa las vacaciones	cartagena	Egresado	M	1980-04-17	2011-05-28	3	t	2011-05-29
+jhon7452	jhon74525	john	jairo	duque	alzate	jhon7452-super@correounivalle.edu.co	Especialización Técnica	Nombre de la primer mascota	lulu	Egresado	M	1979-07-28	2011-05-28	2	t	2011-05-29
+armidb45	armidb456	armid	benjamín	palacio	duque	armidb45-yo@gmail.com	Profesional/Universidad	Cuento que mas veces ha leido	atalanta	Profesor activo	M	1980-11-10	2011-05-28	3	t	2011-06-06
+elkin123	elkin1237	elkin	octavio	gonzález	gonzález	elkin123-12penm@gmail.com	Profesional/Universidad	Mejor amigo de la infancia	angie	Estudiante de postgrado	M	1981-04-24	2011-06-03	3	t	2011-06-06
+shakespea	shakespear08	julio	cesar	lotero	gómez	shakespear_forever@hotmail.com	Especialización	Ciudad natal de la abuela	tulua	Ninguno	M	1961-02-28	2011-06-03	3	t	2011-06-03
+osito32	osito321	gabriel	jaime	alzate	palacio	osito32-lomaslindo06@live.com	Técnica Profesional	Superheroe preferido	batman	Estudiante de postgrado	M	1992-02-03	2011-06-03	3	t	2011-06-06
+marivicky	marivicky13	maria	victoria	sáenz	sáenz	marivicky13@voiture.fr	Especialización Tecnológica	Ciudad donde pasa las vacaciones	madrid	Profesor activo	F	1964-04-07	2011-06-03	2	f	2011-06-03
 \.
 
 

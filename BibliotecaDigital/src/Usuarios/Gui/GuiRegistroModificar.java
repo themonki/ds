@@ -246,8 +246,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		bordeAreaInteres.setTitleColor(Estilos.colorSubtitulo);
 		bordeAreaInteres.setTitleFont(Estilos.fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
-		panelAreasInteres.setBorder(bordeAreaInteres);
-		panelAreasInteres.setPreferredSize(new Dimension(400, 180));
+		panelAreasInteres.setSize(new Dimension(400, 180));
 		panelAreasInteres
 				.setToolTipText("Aqui se muestran las areas de interes seleccionadas y que quedaran en tu usuario ");
 		panelAreasInteres.setLayout(new BoxLayout(panelAreasInteres,
@@ -256,6 +255,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		// scroll para areas de interes, por si crece demasiado.
 		scrollAreaInteres = new JScrollPane(panelAreasInteres);
 		scrollAreaInteres.getViewport().add(panelAreasInteres);
+		scrollAreaInteres.setBorder(bordeAreaInteres);
 		scrollAreaInteres.setPreferredSize(new Dimension(410, 190));
 		// scrollAreaInteres.setMaximumSize(new Dimension(100, 100));
 		// Panel donde se incluira todo.
