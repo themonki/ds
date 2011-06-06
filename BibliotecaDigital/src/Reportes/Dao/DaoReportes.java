@@ -678,21 +678,23 @@ public class DaoReportes
 	
 	public TableDataSource consultaDocumentosDescargadosFecha()	
 	{
-		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos " +
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
+				" y.fecha AS agrupado, y.cuantos " +
 				"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
 				"FROM descarga_usuario_documento AS d " +
 				"GROUP BY d.id_documento,d.fecha) AS y " +
 				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
 				"FROM documento AS a) AS x " +
 				"ORDER BY y.fecha";
-		
+		//System.out.println(consultaSql);
 		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 
 	public TableDataSource consultaDocumentosDescargadosFecha(String fechaI,
 			String fechaF)	
 	{
-		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos " +
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
+				" y.fecha AS agrupado, y.cuantos " +
 				"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
 				"FROM descarga_usuario_documento AS d " +
 				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
@@ -700,6 +702,7 @@ public class DaoReportes
 				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
 				"FROM documento AS a) AS x " +
 				"ORDER BY y.fecha";
+		//System.out.println(consultaSql);
 		
 		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
@@ -719,6 +722,7 @@ public class DaoReportes
 				data.addColumn(metaData.getColumnName(i + 1));
 			}
 			data.addColumn("autor");
+			data.addColumn("opcion");
 
 			while (resultado.next()) 
 			{
@@ -728,8 +732,9 @@ public class DaoReportes
 				row.add(resultado.getString(2));
 				row.add(resultado.getString(3));
 				row.add(resultado.getString(4));
-				row.add(resultado.getString(5));
+				row.add(resultado.getInt(5));
 				row.add(obtenerAutoresDocumento(columnOne));
+				row.add("");
 
 				data.addRow(row);
 			}
@@ -749,8 +754,8 @@ public class DaoReportes
 	
 	public TableDataSource consultaDocumentosDescargadosArea() 
 	{
-		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
-				"m.fecha, m.cuantos, m.nombre_area " +
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
+				"m.fecha AS opcion, m.cuantos, m.nombre_area AS agrupado " +
 				"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
 				"FROM descarga_usuario_documento AS d " +
 				"GROUP BY d.id_documento,d.fecha) AS y " +
@@ -760,13 +765,15 @@ public class DaoReportes
 				"NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial " +
 				"FROM documento AS t) AS x " +
 				"ORDER BY m.nombre_area";
+		
+		//System.out.println(consultaSql);
 		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 
 	public TableDataSource consultaDocumentosDescargadosArea(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
-				"m.fecha, m.cuantos, m.nombre_area " +
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
+				"m.fecha AS opcion, m.cuantos, m.nombre_area AS agrupado " +
 				"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
 				"FROM descarga_usuario_documento AS d " +
 				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
@@ -777,6 +784,8 @@ public class DaoReportes
 				"NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial " +
 				"FROM documento AS t) AS x " +
 				"ORDER BY m.nombre_area;";
+		
+		//System.out.println(consultaSql);
 		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 	
@@ -804,7 +813,7 @@ public class DaoReportes
 				row.add(resultado.getString(2));
 				row.add(resultado.getString(3));
 				row.add(resultado.getString(4));
-				row.add(resultado.getString(5));
+				row.add(resultado.getInt(5));
 				row.add(resultado.getString(6));
 				row.add(obtenerAutoresDocumento(columnOne));
 
@@ -880,7 +889,7 @@ public class DaoReportes
 				row.add(resultado.getString(2));
 				row.add(resultado.getString(3));
 				row.add(resultado.getString(4));
-				row.add(resultado.getString(5));
+				row.add(resultado.getInt(5));
 				row.add(resultado.getString(6));
 				row.add(resultado.getString(7));
 				row.add(resultado.getString(8));
@@ -906,7 +915,8 @@ public class DaoReportes
 	
 	public TableDataSource consultaDocumentosConsultadosFecha()
 	{
-		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos " +
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
+				" y.fecha AS agrupado, y.cuantos " +
 		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
 		"FROM consulta AS d " +
 		"GROUP BY d.id_documento,d.fecha) AS y " +
@@ -919,7 +929,8 @@ public class DaoReportes
 	
 	public TableDataSource consultaDocumentosConsultadosFecha(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos " +
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
+				" y.fecha AS agrupado, y.cuantos " +
 		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
 		"FROM consulta AS d " +
 		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
@@ -933,8 +944,8 @@ public class DaoReportes
 	
 	public TableDataSource consultaDocumentosConsultadosArea()
 	{
-		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
-		"m.fecha, m.cuantos, m.nombre_area " +
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
+		"m.fecha AS opcion, m.cuantos, m.nombre_area AS agrupado " +
 		"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
 		"FROM consulta AS d " +
 		"GROUP BY d.id_documento,d.fecha) AS y " +
@@ -950,8 +961,8 @@ public class DaoReportes
 
 	public TableDataSource consultaDocumentosConsultadosArea(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
-		"m.fecha, m.cuantos, m.nombre_area " +
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
+		"m.fecha AS opcion, m.cuantos, m.nombre_area AS agrupado " +
 		"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
 		"FROM consulta AS d " +
 		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
