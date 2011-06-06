@@ -29,6 +29,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -149,7 +150,7 @@ public class GuiPrincipal extends JFrame
 			contenidoAyuda = new JMenuItem("Contenido de Ayuda");
 			contenidoAyuda.setMnemonic('Y');
 			contenidoAyuda.addActionListener(manejador);
-			contenidoAyuda.setAccelerator(KeyStroke.getKeyStroke('Y', Event.CTRL_MASK));
+			contenidoAyuda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1,0));
 			
 			informacion = new JMenuItem("Acerca de");
 			informacion.setMnemonic('c');
