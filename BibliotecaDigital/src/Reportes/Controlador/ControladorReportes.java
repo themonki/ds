@@ -4,6 +4,7 @@ package Reportes.Controlador;
 import java.lang.annotation.Documented;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
@@ -458,6 +459,22 @@ public class ControladorReportes
         	e.printStackTrace();
         }
 	}
+	
+	
+	
+	/*
+	 * Metodo que retorna el nombre de las tablas de la base de datos proyecto.
+	 * 
+	 * */
+	
+	public Vector<String> obtenerNombreTablas()
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		Vector<String> tablas = daoReportes.obtenerNombreTablas();
+		
+		return tablas;
+	}
+	
 	
 	public static void main(String arg[])
 	{
