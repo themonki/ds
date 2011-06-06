@@ -256,7 +256,7 @@ public class GuiModificarDoc  extends GuiCatalogar
 					{
 						GuiCatalogador.cambiarPanelVistaAvanzado();
 					}
-					if(GuiConsultaBasica.TIPO_USUARIO == 3)
+					if(GuiConsultaBasica.TIPO_USUARIO == 1)
 					{				
 						GuiAdministrador.cambiarPanelVistaAvanzado();
 					}
