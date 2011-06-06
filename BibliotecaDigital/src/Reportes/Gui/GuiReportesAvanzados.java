@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import com.sun.java.swing.plaf.motif.MotifBorders.BevelBorder;
 
@@ -48,7 +49,7 @@ public class GuiReportesAvanzados extends JPanel{
 
 	private JPanel panelPrincipal, panelOpcionesReportes, panelDescargasConsultas, panelDocumento;
 	
-	private JCheckBox habilitarPeriodoDescargasConsultas, habilitarPorMesDescargasConsultas, habilitarPorAñoDescargasConsultas, habilitarPorHoraDescargasConsultas;
+	private JCheckBox habilitarPeriodoDescargasConsultas, habilitarPorMesDescargasConsultas, habilitarPorAnioDescargasConsultas, habilitarPorHoraDescargasConsultas;
 	
 	private JComboBox tablasAvanzado, atributosAvanzado;
 	
@@ -59,9 +60,11 @@ public class GuiReportesAvanzados extends JPanel{
 	
 	private JTextArea campoIntroDescargasConsultas, campoIntroDocumento;
 	
+	private JScrollPane scrollIntroDescargasConsultas, scrollIntroDocumento;
+	
 	private GridBagConstraints retriccionesAvanzado;
 	
-	private JSpinner campoFecha3, campoFecha4; //estos dos son para el intervaloe de reportes avanzados
+	private JSpinner campoFechaDesdeDescargas, campoFechaDesdeDocumento, campoFechaHastaDescargas, campoFechaHastaDocumento; //estos dos son para el intervaloe de reportes avanzados
 	
 	private Button botonDescargasConsultasGenerar, botonDocumentoGenerar;
 	
@@ -99,27 +102,10 @@ public class GuiReportesAvanzados extends JPanel{
 		inicializarRadioButtons();
 		inicializarButtonsGroup();
 		inicializarTexts();
+		inicializarSpinners();
 		inicializarPanels();
 		
 		
-		//Crear spinner para la fecha3.
-		SpinnerModel modeloFecha3 = new SpinnerDateModel();
-		campoFecha3 = new JSpinner(modeloFecha3);
-	    campoFecha3.setFont(Estilos.fontLabels);
-	    campoFecha3.setForeground(Estilos.colorLabels);
-		JSpinner.DateEditor spinnerFecha3 = new JSpinner.DateEditor(campoFecha3,"yyyy-MM-dd");
-		campoFecha3.setEditor(spinnerFecha3);
-	    ((JSpinner.DateEditor) campoFecha3.getEditor()).getTextField().setEditable(false);
-	    //Crear spinner para la fecha4.
-		SpinnerModel modeloFecha4 = new SpinnerDateModel();
-		campoFecha4 = new JSpinner(modeloFecha4);
-	    campoFecha4.setFont(Estilos.fontLabels);
-	    campoFecha4.setForeground(Estilos.colorLabels);
-		JSpinner.DateEditor spinnerFecha4 = new JSpinner.DateEditor(campoFecha4,"yyyy-MM-dd");
-		campoFecha4.setEditor(spinnerFecha4);
-	    ((JSpinner.DateEditor) campoFecha4.getEditor()).getTextField().setEditable(false);
-	    
-	    
 	    panelPrincipal.add(panelOpcionesReportes, BorderLayout.NORTH);
 	    //---- INSERTAR COMPONENTES EN PANEL ---
 /*
@@ -179,6 +165,46 @@ public class GuiReportesAvanzados extends JPanel{
 		
 	}
 
+	private void inicializarSpinners() {
+		
+		//Crear spinner para la fecha desde de descargas
+		SpinnerModel modeloFechaDesdeDescargas = new SpinnerDateModel();
+		campoFechaDesdeDescargas = new JSpinner(modeloFechaDesdeDescargas);
+	    campoFechaDesdeDescargas.setFont(Estilos.fontLabels);
+	    campoFechaDesdeDescargas.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFechaDD = new JSpinner.DateEditor(campoFechaDesdeDescargas,"yyyy-MM-dd");
+		campoFechaDesdeDescargas.setEditor(spinnerFechaDD);
+	    ((JSpinner.DateEditor) campoFechaDesdeDescargas.getEditor()).getTextField().setEditable(false);
+	    
+	    //Crear spinner para la fecha hasta de descargas
+		SpinnerModel modeloFechaHastaDescargas = new SpinnerDateModel();
+		campoFechaHastaDescargas = new JSpinner(modeloFechaHastaDescargas);
+	    campoFechaHastaDescargas.setFont(Estilos.fontLabels);
+	    campoFechaHastaDescargas.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFechaHD = new JSpinner.DateEditor(campoFechaHastaDescargas,"yyyy-MM-dd");
+		campoFechaHastaDescargas.setEditor(spinnerFechaHD);
+	    ((JSpinner.DateEditor) campoFechaHastaDescargas.getEditor()).getTextField().setEditable(false);
+	    
+	  //Crear spinner para la fecha desde de descargas
+		SpinnerModel modeloFechaDesdeDocumento = new SpinnerDateModel();
+		campoFechaDesdeDocumento = new JSpinner(modeloFechaDesdeDocumento);
+	    campoFechaDesdeDocumento.setFont(Estilos.fontLabels);
+	    campoFechaDesdeDocumento.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFechaDDo = new JSpinner.DateEditor(campoFechaDesdeDocumento,"yyyy-MM-dd");
+		campoFechaDesdeDocumento.setEditor(spinnerFechaDDo);
+	    ((JSpinner.DateEditor) campoFechaDesdeDocumento.getEditor()).getTextField().setEditable(false);
+	    
+	    //Crear spinner para la fecha hasta de descargas
+		SpinnerModel modeloFechaHastaDocumento = new SpinnerDateModel();
+		campoFechaHastaDocumento = new JSpinner(modeloFechaHastaDocumento);
+	    campoFechaHastaDocumento.setFont(Estilos.fontLabels);
+	    campoFechaHastaDocumento.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFechaHDo = new JSpinner.DateEditor(campoFechaHastaDocumento,"yyyy-MM-dd");
+		campoFechaHastaDocumento.setEditor(spinnerFechaHDo);
+	    ((JSpinner.DateEditor) campoFechaHastaDocumento.getEditor()).getTextField().setEditable(false);
+		
+	}
+
 	private void inicializarTexts() {
 		
 		campoTituloDescargasConsultas = new JTextField("Reporte", 20);
@@ -186,8 +212,10 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		campoIntroDescargasConsultas = new JTextArea(8,50);
 		campoIntroDescargasConsultas.setLineWrap(true);
+		scrollIntroDescargasConsultas = new JScrollPane(campoIntroDescargasConsultas);
 		campoIntroDocumento = new JTextArea(8,50);
 		campoIntroDocumento.setLineWrap(true);
+		scrollIntroDocumento = new JScrollPane(campoIntroDocumento);
 		
 	}
 
@@ -271,8 +299,78 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		panelDescargasConsultas.setBackground(Color.WHITE);
 		
+		//Labels indicativas
+		
+		JLabel tipoReporte, contenido, orden, formato, agrupado, desde, hasta;
+		
+		tipoReporte = new JLabel("Reporte de: ");
+		tipoReporte.setFont(Estilos.fontSubrayados);
+		contenido = new JLabel("Que contenga sólo información de: ");
+		orden = new JLabel("Orden");
+		formato = new JLabel("Formato");
+		agrupado = new JLabel("Agrupado");
+		desde = new JLabel("Desde: ");
+		hasta = new JLabel("Hasta: ");
+		
+		//Panel para opciones
+		
+		JPanel opcionesReporte = new JPanel(new GridBagLayout());
+		
+		TitledBorder bordeOpciones = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Opciones reporte");
+		bordeOpciones.setTitleJustification(TitledBorder.LEFT);
+		opcionesReporte.setBorder(bordeOpciones);
+		
+		GridBagConstraints restriccionesOpciones = new GridBagConstraints();
+		restriccionesOpciones.anchor = GridBagConstraints.WEST;
+		restriccionesOpciones.insets = new Insets(4, 4, 4, 4);
+		restriccionesOpciones.gridx = 0;
+		restriccionesOpciones.gridy = 0;
+		
+		opcionesReporte.add(orden, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(ascendente, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(descendente, restriccionesOpciones);
+		
+		restriccionesOpciones.gridx = 1;
+		restriccionesOpciones.gridy = 0;
+		
+		opcionesReporte.add(formato, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(detallado, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(totales, restriccionesOpciones);
+		
+		restriccionesOpciones.gridx = 2;
+		restriccionesOpciones.gridy = 0;
+		
+		opcionesReporte.add(agrupado, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(habilitarPorHoraDescargasConsultas);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(habilitarPorMesDescargasConsultas);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(habilitarPorAnioDescargasConsultas);
+		
+		restriccionesOpciones.gridx = 0;
+		restriccionesOpciones.gridy++;
+		restriccionesOpciones.gridwidth=2;
+		
+		opcionesReporte.add(habilitarPeriodoDescargasConsultas, restriccionesOpciones);
+		restriccionesOpciones.gridwidth=1;
+		restriccionesOpciones.insets = new Insets(4, 20, 4, 4);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(desde, restriccionesOpciones);
+		restriccionesOpciones.gridx = 1;
+		opcionesReporte.add(campoFechaDesdeDescargas, restriccionesOpciones);
+		
+		
+		//Fin panel para opciones
+		
 		GridBagConstraints restricciones = new GridBagConstraints();
 		restricciones.anchor= GridBagConstraints.WEST;
+		
+		
 		
 		
 		
@@ -311,7 +409,7 @@ public class GuiReportesAvanzados extends JPanel{
 		habilitarPeriodoDescargasConsultas.setFont(Estilos.fontSubrayados);
 		
 		habilitarPorMesDescargasConsultas= new JCheckBox("Por Mes");
-		habilitarPorAñoDescargasConsultas= new JCheckBox("Por Año");
+		habilitarPorAnioDescargasConsultas= new JCheckBox("Por Año");
 		habilitarPorHoraDescargasConsultas= new JCheckBox("Por Hora");
 		
 		
