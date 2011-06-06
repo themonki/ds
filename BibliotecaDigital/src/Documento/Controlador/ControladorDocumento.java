@@ -33,7 +33,11 @@ import GestionDocumento.Logica.Autor;
 import GestionDocumento.Logica.PalabraClave;
 
 /**
- * @author 
+ * Clase que permite la comunicación entre la Clase {@link Documento.Dao.DaoDocumento DaoDocumento} y las Clases
+ * de aplicación: {@link Documento.Gui.GuiCatalogar GuiCatalogar}, 
+ * y {@link Documento.Gui.GuiModificarDoc GuiModificarDoc} 
+ * para el intercambio de datos.
+ * @author Edgar Andres Moncada
  *
  */
 public class ControladorDocumento {

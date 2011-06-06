@@ -25,7 +25,7 @@ import Utilidades.FachadaBD;
 
 /**
  * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
- * con el autor
+ * con el autor mediante la Clase {@link Utilidades.FachadaBD FachadaBD}.
  * @author Yerminson Gonzalez Muñoz
  *
  */

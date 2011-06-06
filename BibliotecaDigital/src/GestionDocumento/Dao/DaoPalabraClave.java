@@ -26,7 +26,7 @@ import Utilidades.FachadaBD;
 
 /**
  * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
- * con la palabra clave
+ * con la palabra clave mediante la Clase {@link Utilidades.FachadaBD FachadaBD}.
  * @author Cristian Leonardo Rios
  *
  */
