@@ -24,6 +24,12 @@ import Consultas.Gui.GuiResultadoConsulta;
 import Consultas.Gui.GuiVistaDetalladaConsulta;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite informar al usuario sobre nuevos documentos
+ * que han sido catalogados depues de la fecha de ultimo acceso.
+ * @author Yerminson Gonzalez Munoz
+ *
+ */
 public class GuiNovedades extends JScrollPane
 {
 
@@ -36,6 +42,14 @@ public class GuiNovedades extends JScrollPane
 	public static GuiResultadoConsulta PANEL_RESULTADO_CONSULTA;
 	public static GuiVistaDetalladaConsulta PANEL_VISTA_DETALLADA_CONSULTA;
 	private static TitledBorder BORDE;
+	
+	
+	
+	/**
+	 * 
+	 * Constructor que inicializa todos los elementos basicos de la interfaz.
+	 * 
+	 */
 	public GuiNovedades()
 	{		
 		PANEL_NOVEDADES = new JPanel(new BorderLayout());
@@ -57,6 +71,11 @@ public class GuiNovedades extends JScrollPane
 		
 	}
 	
+	/**
+	 * Metodo que permite poner la vista detallada de un documento que 
+	 * se ha consultado y se ha seleccionado de los documentos que 
+	 * hacen parte del resultado.
+	 */
 	public static void ponerDescripcion()
 	{
 		PANEL_NOVEDADES.remove(PANEL_RESULTADO_CONSULTA);
@@ -64,6 +83,12 @@ public class GuiNovedades extends JScrollPane
 		PANEL_NOVEDADES.add(PANEL_VISTA_DETALLADA_CONSULTA, BorderLayout.CENTER);
 		PANEL_NOVEDADES.updateUI();
 	}
+	
+	/**
+	 *Metodo que permite volver al estado inicial es decir mostrar
+	 *unicamente la lista de resultados de los documentos que hacen 
+	 *parte de novedades 
+	 */
 	public static void restaurar()
 	{
 		PANEL_NOVEDADES.remove(PANEL_VISTA_DETALLADA_CONSULTA);	

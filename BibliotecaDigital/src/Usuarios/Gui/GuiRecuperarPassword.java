@@ -35,6 +35,11 @@ import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * 
+ * @author Yerminson Gonzalez Munoz
+ *
+ */
 public class GuiRecuperarPassword extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -73,11 +78,19 @@ public class GuiRecuperarPassword extends JPanel {
 	private Button botonGuardar;
 	private GuiPrincipal gp;
 
+	/**
+	 * Constructor que recibe como parametro la gui principal a la que pertenece
+	 * @param gp
+	 */
 	public GuiRecuperarPassword(GuiPrincipal gp) {
 		this.gp = gp;
 		this.initComponents();
 	}
 
+	/**
+	 * Metodo que inicializa los componentes de la gui basicos
+	 * 
+	 */
 	private void initComponents() {
 		panelBotonSolicitud = new JPanel();
 		panelBotonCambiar = new JPanel();
@@ -179,6 +192,10 @@ public class GuiRecuperarPassword extends JPanel {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Metodo que inicializa todas las etiquetas de la interfaz
+	 * 
+	 */
 	private void iniciarCampos() {
 		campoNombre = new JTextField(20);
 		campoNombre.addKeyListener(new ManejadorJTexField());
@@ -205,6 +222,12 @@ public class GuiRecuperarPassword extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * Metodo que permite inicializar las etiquetas de la interfaz
+	 * 
+	 * 
+	 */
 	private void iniciarLabels() {
 
 		nombreUsuario = new JLabel("Login  :");
@@ -227,6 +250,12 @@ public class GuiRecuperarPassword extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * Clase que permite manejar los eventos generados por los botones
+	 * @author Yemrinson Gonzalez Munoz
+	 *
+	 */
 	private class ManejadorBoton implements ActionListener {
 
 		Usuario usuario = null;
@@ -315,6 +344,12 @@ public class GuiRecuperarPassword extends JPanel {
 		}
 	}
 
+	/**
+	 * Clase que permite manejar todos los eventos generados cuando 
+	 * se presiona una tecla especialmente enter despues de llenar algunoas campos.
+	 * @author Yerminson Gonzalez Munoz
+	 *
+	 */
 	private class ManejadorJTexField implements KeyListener {
 
 		@Override
@@ -337,6 +372,14 @@ public class GuiRecuperarPassword extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * Metodo que permite recuperar la gui inicial de autentificar es 
+	 * decir volver en caso de que la accion realizada no sea la que
+	 * se queria y poder elegir nuevamente la opcion correcta en la 
+	 * interfaz.
+	 * 
+	 */
 	private void restaurar() {
 		panelConsultarLogin.setVisible(true);
 		panelBotonSolicitud.add(botonRegresar);
