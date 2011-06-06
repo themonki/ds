@@ -219,7 +219,7 @@ public class GuiReportes extends JTabbedPane{
 		GuiReporteSQL sqlpanel= new GuiReporteSQL();
 		
 		addTab("Reportes Basicos",scroll);
-		addTab("Reportes Avanzados",scroll2 );
+		addTab("Reportes Avanzados",scroll2);
 		addTab("Consultas SQL",sqlpanel );
 	}
 
