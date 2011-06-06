@@ -46,8 +46,8 @@ public class GuiReporteSQL extends JTabbedPane {
 		etiquetaSelect= new JLabel(" SELECT  ");
 		etiquetaSelect.setFont(Estilos.fontSubtitulos);
 		etiquetaSelect.setForeground(Color.BLUE);
-		campoAtributos= new JTextField(20);
-		areaConsulta= new JTextArea(5,28);
+		campoAtributos= new JTextField(30);
+		areaConsulta= new JTextArea(5,40);
 		botonConsulta= new Button(" Consultar ");
 		botonConsulta.addActionListener(new Manejador());
 		
