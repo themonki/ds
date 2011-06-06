@@ -3,40 +3,40 @@
 
 --************************************************************************************
 --cantidad documentos(id_documento, editorial, titulo_principal) descargados por fecha -5 atributos
-SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY y.fecha;
+SELECT x.id_documento, x.editorial, x.titulo_principal, y.fecha, y.cuantos FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY y.fecha;
 
 --cantidad documentos(id_documento, editorial, titulo_principal) descargados por un intervalo de fecha - 5 atributos
 SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d WHERE d.fecha BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY y.fecha;
 
---cantidad de documentos descargados por area del conocimiento
+--cantidad de documentos descargados por area del conocimiento - 6 atributos
 SELECT x.id_documento, x.editorial, x. titulo_principal, m.fecha, m.cuantos, m.nombre_area FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS w NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS s) AS m NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial FROM documento AS t) AS x ORDER BY m.nombre_area;
 
---cantidad de documento descargados por area del conocimiento restringido por fecha
+--cantidad de documento descargados por area del conocimiento restringido por fecha - 6 atibutos
 SELECT x.id_documento, x.editorial, x. titulo_principal, m.fecha, m.cuantos, m.nombre_area FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d WHERE d.fecha  BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS w NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS s) AS m NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial FROM documento AS t) AS x ORDER BY m.nombre_area;
 
---cantidad de documentos descargados por usuario
+--cantidad de documentos descargados por usuario - 8 atibutos
 SELECT x.id_documento, x.editorial, x. titulo_principal, w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.id_documento,d.fecha,d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS s) AS w NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY w.login;
 
---cantidad de documentos descargados por usuario restringidos por fecha
+--cantidad de documentos descargados por usuario restringidos por fecha - 8 atibutos
 SELECT x.id_documento, x.editorial, x. titulo_principal, w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d WHERE d.fecha BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha,d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS s) AS w NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY w.login;
 
 --************************************************************************************
---cantidad documentos(id_documento, editorial, titulo_principal) descargados por fecha -5 atributos
+--cantidad documentos(id_documento, editorial, titulo_principal) consultados por fecha -5 atributos
 SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM consulta AS d GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY y.fecha;
 
 --cantidad documentos(id_documento, editorial, titulo_principal) consultados por un intervalo de fecha - 5 atributos
 SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM consulta AS d WHERE d.fecha BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY y.fecha;
 
---cantidad de documentos descargados por area del conocimiento
+--cantidad de documentos consultados por area del conocimiento - 6 atributos
 SELECT x.id_documento, x.editorial, x. titulo_principal, m.fecha, m.cuantos, m.nombre_area FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM consulta AS d GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS w NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS s) AS m NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial FROM documento AS t) AS x ORDER BY m.nombre_area;
 
---cantidad de documento descargados por area del conocimiento restringido por fecha
+--cantidad de documento consultados por area del conocimiento restringido por fecha - 6 atibutos
 SELECT x.id_documento, x.editorial, x. titulo_principal, m.fecha, m.cuantos, m.nombre_area FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM consulta AS d WHERE d.fecha  BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS w NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS s) AS m NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial FROM documento AS t) AS x ORDER BY m.nombre_area;
 
---cantidad de documentos descargados por usuario
+--cantidad de documentos consultados por usuario - 8 atibutos
 SELECT x.id_documento, x.editorial, x. titulo_principal, w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos FROM consulta AS d GROUP BY d.id_documento,d.fecha,d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS s) AS w NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY w.login;
 
---cantidad de documentos descargados por usuario restringidos por fecha
+--cantidad de documentos consultados por usuario restringidos por fecha - 8 atributos
 SELECT x.id_documento, x.editorial, x. titulo_principal, w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos FROM consulta AS d WHERE d.fecha BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha,d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS s) AS w NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x ORDER BY w.login;
 
 --************************************************************************************
