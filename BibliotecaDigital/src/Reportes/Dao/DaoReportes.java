@@ -949,7 +949,7 @@ public class DaoReportes {
 
 			}
 			// se suma 1.
-			System.out.println(modelo.getRowCount());
+			//System.out.println(modelo.getRowCount());
 			tabla.setRowHeight(20);
 			setAnchoColumnas();
 			
@@ -974,9 +974,10 @@ public class DaoReportes {
 			modeloCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 			
 			TableColumn columna = tabla.getColumn(tabla.getColumnName(i));			
-			 System.out.println(maximos[i]);
-			columna.setPreferredWidth(maximos[i]*10);
+			 //System.out.println(maximos[i]);
+			columna.setPreferredWidth(maximos[i]*10- (2*maximos[i]));
 			columna.setCellRenderer(modeloCellRenderer);
+		
 			
 		}
 		
