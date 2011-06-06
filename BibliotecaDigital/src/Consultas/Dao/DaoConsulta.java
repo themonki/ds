@@ -23,15 +23,32 @@ import java.util.Vector;
 import Consultas.Logica.Consulta;
 import Utilidades.FachadaBD;
 
+/**
+ * Clase que permite la inserccion, actualizacion y consulta de lo que tenga que ver 
+ * con las consultas a los documentos mediante la Clase {@link Utilidades.FachadaBD FachadaBD}
+ * @author 
+ */
 public class DaoConsulta {
-	
+	/**
+	 * Permite la conexion con la base de datos
+	 */
 	FachadaBD fachada;
-	
+	/**
+	 * Constructor por defecto que inicia la variable fachada
+	 */
 	public DaoConsulta(){
 		fachada = new FachadaBD();
 	}
 	
 	//metodo de consulta general
+	/**
+	 * Metodo que realiza una consulta general de la Biblioteca Digital. Se busca en la mayoria
+	 * de los metadatos del documento: titulo principal, titulo secundario, descripcion, las palabras
+	 * clave y su respectiva descripcion, el nombre o apellido de los autores del documento, 
+	 * las areas de conocimiento y en su respectiva descripcion.
+	 * @param parametro - Vector<String> con los parametros para consultar los documentos
+	 * @return Vector<Consulta> con el resultado de las consultas que correspondan a los parametros dados
+	 */
 	public Vector<Consulta> consultaGeneral(Vector<String> parametro)
 	{
 		Vector<Consulta> consultas = new Vector<Consulta>();
@@ -145,10 +162,15 @@ public class DaoConsulta {
 			} catch (Exception e) {
 				System.out.println(e);					
 			}
-			System.out.println(consultas);
+			//System.out.println(consultas);
 		return consultas;
 	}
 	
+	/**
+	 * Metodo que consulta los autores que escribieron un documento
+	 * @param idDocumento - String con la llave del documento
+	 * @return Vector<String> con 
+	 */
 	public Vector<String> consultarAutoresDocumento(String idDocumento)
 	{
 		Vector<String> autores = new Vector<String>();

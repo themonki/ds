@@ -28,6 +28,16 @@ import GestionDocumento.Controlador.ControladorPalabraClave;
 import Consultas.Dao.DaoConsulta;
 import Consultas.Logica.Consulta;
 
+/**
+ * Clase que permite la comunicación entre la Clase {@link Consultas.Dao.DaoConsulta DaoConsulta} y las Clases
+ * de aplicación: {@link Consultas.Gui.GuiConsultaAvanzada GuiConsultaAvanzada}, 
+ * {@link Consultas.Gui.GuiConsultaBasica GuiConsultaBasica},
+ * {@link Consultas.Gui.GuiResultadoConsulta GuiResultadoConsulta}
+ * y {@link Consultas.Gui.GuiVistaDetallada GuiVistaDetallada} 
+ * para el intercambio de datos.
+ * @author 
+ *
+ */
 public class ControladorConsulta
 {
 //metodo que llama a otros controladores para obtener todos los datos de un documento dado su llave

@@ -20,9 +20,15 @@ import java.util.Vector;
 import GestionDocumento.Dao.DaoTipoMaterial;
 import GestionDocumento.Logica.TipoMaterial;
 
-/*
- * Yerminson Gonzalez
- * */
+/**
+ * Clase que permite la comunicación entre la Clase {@link GestionDocumento.Dao.DaoTipoMaterial DaoTipoMaterial}
+ *  y las Clases
+ * de aplicación: {@link GestionDocumento.Gui.GuiIngresarTipoMaterial GuiIngresarTipoMaterial}, 
+ * y {@link GestionDocumento.Gui.GuiModificarTipoMaterial GuiModificarTipoMaterial} 
+ * para el intercambio de datos.
+ * @author Yerminson Gonzales
+ *
+ */
 public class ControladorTipoMaterial {
 
 	public int insertarTipoMaterial(String nombre, String descripcion) {
