@@ -743,7 +743,7 @@ public class GuiCatalogar extends JScrollPane{
 			};
 			if (event.getSource()== campoPalabras)
 			{	
-				if(campoPalabras.getSelectedIndex()==-1)return;
+				if(campoPalabras.getSelectedIndex()==-1|| actualiza)return;
 				if (palabActualVec.indexOf(campoPalabras.getSelectedItem())==-1)
 				{
 					palabActualVec.add((String) campoPalabras.getSelectedItem());		
@@ -756,7 +756,7 @@ public class GuiCatalogar extends JScrollPane{
 
 			if (event.getSource()==campoAreas)
 			{
-				if(campoAreas.getSelectedIndex()==-1)return;
+				if(campoAreas.getSelectedIndex()==-1|| actualiza)return;
 				if (areasActualVecr.indexOf(campoAreas.getSelectedItem())==-1)
 				{
 					areasActualVecr.add((String) campoAreas.getSelectedItem());			
