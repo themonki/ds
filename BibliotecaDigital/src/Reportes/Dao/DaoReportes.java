@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -61,6 +62,7 @@ public class DaoReportes
 				+ fechaInicio + "' AND '" + FechaFin + "' "
 				+ "ORDER BY agrupado";
 
+		//System.out.println(consultaSql);
 		return procesarDatosUsuario(consultaSql, atributoUsuario);
 	}
 
@@ -1338,6 +1340,7 @@ public class DaoReportes
 			resultado = null;
 		} catch (SQLException e) {
 			System.out.println(e);
+			JOptionPane.showMessageDialog(null, e);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -1449,7 +1452,12 @@ public class DaoReportes
 			TableColumn columna = tabla.getColumn(tabla.getColumnName(i));			
 			 //System.out.println(maximos[i]);
 			columna.setPreferredWidth(maximos[i]*10- (2*maximos[i]));
+		
+		
+			
 			columna.setCellRenderer(modeloCellRenderer);
+			
+		
 		}
 		
 	}  
