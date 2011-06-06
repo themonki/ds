@@ -1451,7 +1451,12 @@ public class DaoReportes
 			TableColumn columna = tabla.getColumn(tabla.getColumnName(i));			
 			 //System.out.println(maximos[i]);
 			columna.setPreferredWidth(maximos[i]*10- (2*maximos[i]));
+		
+		
+			
 			columna.setCellRenderer(modeloCellRenderer);
+			
+		
 		}
 		
 	}  
