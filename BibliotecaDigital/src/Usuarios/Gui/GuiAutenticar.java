@@ -36,6 +36,11 @@ import Utilidades.Button;
 import Utilidades.Estilos;
 
 /**
+ * Clase que permite manejar el ingreso de usuarios a la
+ * bibliteca mediante la solicitud de un login y password
+ * de esta manera se logra ingresar al sistema y de acuerdo
+ * al perfil realizar diferentes actividades.
+ * 
  * @author Cristian Leonardo Rios
  * 
  */
@@ -51,6 +56,11 @@ public class GuiAutenticar extends JPanel {
 	private GuiPrincipal guiPrincipal;
 
 	/**
+	 * 
+	 * Constructor que permite inicializar los componentes de la interfaz
+	 * y recibe la gui principal donde se encuentra ubicada para ser
+	 * despues agregada o qutada dinamicamente
+	 * 
 	 * @param gp
 	 */
 	public GuiAutenticar(GuiPrincipal gp) {
@@ -58,6 +68,10 @@ public class GuiAutenticar extends JPanel {
 		this.initComponents();
 	}
 
+	/**
+	 * Metodo que permite iniciar los componentes mas importantes de la interfaz
+	 * asignadoles estilos  y propiedades iniciales
+	 */
 	private void initComponents() {
 		JPanel panelBoton = new JPanel();
 		JPanel panelDatosInterno = new JPanel(new GridBagLayout());
@@ -123,6 +137,10 @@ public class GuiAutenticar extends JPanel {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Metodo  que permite inicializar los botones y los campos dandoles
+	 * un nombre y una capacidad inicial respectivamente.
+	 */
 	private void iniciarCampos() {
 		campoNombre = new JTextField(20);
 		campoContrasena = new JPasswordField(20);
@@ -135,6 +153,13 @@ public class GuiAutenticar extends JPanel {
 
 	}
 
+	/**
+	 * Metodo que permite inicializar las etiquetas
+	 * dandole un nombre adecuado un color y un tipo de
+	 * letra
+	 * 
+	 * 
+	 */
 	private void iniciarLabels() {
 
 		nombreUsuario = new JLabel("  Login  :");
@@ -149,6 +174,7 @@ public class GuiAutenticar extends JPanel {
 	}
 
 	/**
+	 * Clase que permite manejar los eventos generados por un boton
 	 * @author Cristian Leonardo Rios
 	 * 
 	 */
@@ -184,6 +210,9 @@ public class GuiAutenticar extends JPanel {
 	}
 
 	/**
+	 * 
+	 * Clase que permite manejar los eventos generados al presionar las teclas
+	 * simulando que se hubiera hecho un clic con el mouse.
 	 * @author Cristian Leonardo Rios
 	 * 
 	 */
