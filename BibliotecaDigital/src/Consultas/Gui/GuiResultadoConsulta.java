@@ -206,7 +206,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 		 */
 		private static final long serialVersionUID = 1L;
 		Hashtable<Object, ImageIcon> elementos;
-		ImageIcon icono = new ImageIcon("recursos/book.gif");
+		ImageIcon icono = new ImageIcon("recursos/iconos/book.gif");
 
 		public Component getListCellRendererComponent(JList list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {

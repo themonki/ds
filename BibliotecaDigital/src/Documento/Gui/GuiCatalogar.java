@@ -762,7 +762,7 @@ public class GuiCatalogar extends JScrollPane{
 
 			JLabel refe=(JLabel) e.getSource();
 			refe.setForeground(Color.red);
-			refe.setIcon(new ImageIcon("recursos/CRUZ.gif"));
+			refe.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
 			refe.updateUI();
 		}
 

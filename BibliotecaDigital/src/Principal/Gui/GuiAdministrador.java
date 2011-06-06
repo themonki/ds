@@ -125,7 +125,7 @@ public class GuiAdministrador extends JFrame
 	public GuiAdministrador(Usuario usuario){
 		
 		super("::: Sistema de Biblioteca Digital :::");	
-		setIconImage(new ImageIcon("recursos/bd.gif").getImage());
+		setIconImage(new ImageIcon("recursos/iconos/bd.gif").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.usuario = usuario;
 		LOGIN = usuario.getLogin();
