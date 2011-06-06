@@ -1008,7 +1008,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		public void mouseEntered(MouseEvent e) {
 			JLabel areaAEliminar = (JLabel) e.getSource();
 			areaAEliminar.setForeground(Color.red);
-			areaAEliminar.setIcon(new ImageIcon("recursos/CRUZ.gif"));
+			areaAEliminar.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
 			areaAEliminar.updateUI();
 		}
 
