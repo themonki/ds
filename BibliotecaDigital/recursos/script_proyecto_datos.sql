@@ -512,6 +512,17 @@ COPY consulta (id_documento, login, fecha, hora) FROM stdin;
 10009	admin	2011-06-06	00:28:41
 10010	admin	2011-06-06	00:30:20
 10011	admin	2011-06-06	00:33:54
+10004	osito32	2011-06-06	01:47:10
+10006	osito32	2011-06-06	01:47:22
+10010	osito32	2011-06-06	01:47:40
+10003	elkin123	2011-06-06	01:49:23
+10007	elkin123	2011-06-06	01:49:35
+10006	elkin123	2011-06-06	01:49:47
+10006	armidb45	2011-06-06	01:51:05
+10004	armidb45	2011-06-06	01:51:19
+10004	armidb45	2011-06-06	01:51:27
+10007	armidb45	2011-06-06	01:51:34
+10005	armidb45	2011-06-06	01:51:40
 \.
 
 
@@ -528,7 +539,7 @@ COPY descarga_usuario_documento (fecha, hora, login, id_documento) FROM stdin;
 2011-06-06	01:51:10	armidb45	10006
 2011-06-06	01:51:22	armidb45	10004
 2011-06-06	01:51:29	armidb45	10004
-2011-06-06	01:51:37	armidb45	10006
+2011-06-06	01:51:37	armidb45	10007
 2011-06-06	01:51:42	armidb45	10005
 \.
 
@@ -643,6 +654,39 @@ marcela	62
 marcela	57
 marcela	52
 marcela	43
+osito32	6
+osito32	16
+osito32	49
+osito32	30
+osito32	14
+osito32	7
+osito32	1
+osito32	46
+osito32	47
+osito32	48
+elkin123	6
+elkin123	11
+elkin123	12
+elkin123	13
+elkin123	17
+elkin123	21
+elkin123	25
+elkin123	28
+elkin123	31
+elkin123	33
+jhon7452	2
+jhon7452	6
+jhon7452	14
+jhon7452	15
+jhon7452	16
+jhon7452	17
+jhon7452	22
+jhon7452	31
+jhon7452	38
+jhon7452	52
+jhon7452	61
+jhon7452	57
+jhon7452	58
 \.
 
 
