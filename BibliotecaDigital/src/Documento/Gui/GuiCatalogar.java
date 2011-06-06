@@ -84,6 +84,7 @@ public class GuiCatalogar extends JScrollPane{
 	String idiomasDisponibles [] = {"Ingles", "Español","Frances", "Aleman", "Portuges"};
 	String derechosAutorDisponibles [] = {"Si", "No"};
 	String loginCatalogador;
+	boolean actualiza=false;
 	protected JPanel panel,panelFecha,panelConDatos,panel4,panel5,panelConAutores,panelConpalabrasC,contenedorAreasAutorPala,panelConAreas,panelFecha2;
 	JScrollPane  panelScrollAreas,panelScrollAutores,panelScrollPalabras;
 
@@ -442,6 +443,7 @@ public class GuiCatalogar extends JScrollPane{
 
 		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
 		areasVector =contenedorIdNombreArea.get(0);
+		System.out.println(areasVector.lastElement());
 		areasVector.remove(0);
 		AreasIdVector= contenedorIdNombreArea.get(1);
 		AreasIdVector.remove(0);
@@ -458,19 +460,51 @@ public class GuiCatalogar extends JScrollPane{
 
 	public void actualizarAreas() 
 	{
-		campoAreas.addItem(areasVector.get(areasVector.size()-1));
+		campoAreas.removeAllItems();
+		actualiza=true;
+		
+		for (int i = 0; i < areasVector.size() ; i++) {
+			campoAreas.addItem(areasVector.elementAt(i));
+		}
+		
+		campoAreas.setSelectedIndex(-1);
+		actualiza=false;
 	}
 	public void actualizarAutores() 
 	{
-		campoAutor.addItem(autoresVector.get(autoresVector.size()-1));
+		campoAutor.removeAllItems();
+		actualiza=true;
+		
+		for (int i = 0; i < autoresVector.size() ; i++) {
+			campoAutor.addItem(autoresVector.elementAt(i));
+		}
+		
+		campoAutor.setSelectedIndex(-1);
+		actualiza=false;
 	}
 	public void actualizarPalabras() 
 	{
-		campoPalabras.addItem(palabrasClaveVec.get(palabrasClaveVec.size()-1));
+		campoPalabras.removeAllItems();
+		actualiza=true;
+		
+		for (int i = 0; i < palabrasClaveVec.size() ; i++) {
+			campoPalabras.addItem(palabrasClaveVec.elementAt(i));
+		}
+		
+		campoPalabras.setSelectedIndex(-1);
+		actualiza=false;
 	}
 	public void actualizarTipoMaterial() 
 	{
-		campoTipoMaterial.addItem(tipoMaterialVec.get(tipoMaterialVec.size()-1));
+		campoTipoMaterial.removeAllItems();
+		actualiza=true;
+		
+		for (int i = 0; i < tipoMaterialVec.size() ; i++) {
+			campoTipoMaterial.addItem(tipoMaterialVec.elementAt(i));
+		}
+		
+		campoTipoMaterial.setSelectedIndex(-1);
+		actualiza=false;
 	}
 
 	protected void inicializarFormatos() {
@@ -692,7 +726,7 @@ public class GuiCatalogar extends JScrollPane{
 
 			if (event.getSource()==campoAutor)
 			{	
-				if(campoAutor.getSelectedIndex()==-1)return;
+				if(campoAutor.getSelectedIndex()==-1 || actualiza)return;
 				if (autoresActualVector.indexOf(campoAutor.getSelectedItem())==-1)
 				{
 					autoresActualVector.add((String) campoAutor.getSelectedItem());		
