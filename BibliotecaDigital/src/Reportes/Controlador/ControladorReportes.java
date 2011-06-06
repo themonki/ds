@@ -477,6 +477,7 @@ public class ControladorReportes
 		return tablas;
 	}
 	
+	/*metodo aparentemente no usado*/
 	public Vector<String> obtenerNombreTablas(String nombreTabla)
 	{
 		DaoReportes daoReportes = new DaoReportes();

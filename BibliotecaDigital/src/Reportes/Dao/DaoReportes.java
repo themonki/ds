@@ -19,10 +19,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.lowagie.text.Table;
+
 import Utilidades.FachadaBD;
 import Utilidades.TableDataSource;
 
-public class DaoReportes {
+public class DaoReportes
+{
 
 	FachadaBD fachada;
 
@@ -30,12 +33,14 @@ public class DaoReportes {
 	DefaultTableModel modelo;
 	int[] maximos ;
 
-	public DaoReportes() {
+	public DaoReportes()
+	{
 		fachada = new FachadaBD();
 	}
 
 	/*   ***********************Reportes relacionados con usuarios************** */
-	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario) {
+	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario)
+	{
 		String consultaSql = "SELECT u."
 				+ atributoUsuario
 				+ " AS agrupado, u.login, u.nombre1, u.apellido1, u.email, "
@@ -46,7 +51,8 @@ public class DaoReportes {
 	}
 
 	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario,
-			String cualFecha, String fechaInicio, String FechaFin) {
+			String cualFecha, String fechaInicio, String FechaFin)
+	{
 		String consultaSql = "SELECT u."
 				+ atributoUsuario
 				+ " AS agrupado, u.login, u.nombre1, u.apellido1, u.email, "
@@ -59,7 +65,8 @@ public class DaoReportes {
 	}
 
 	private TableDataSource procesarDatosUsuario(String consultaSql,
-			String atributoUsuario) {
+			String atributoUsuario)
+	{
 		TableDataSource data = new TableDataSource();
 
 		try {
@@ -68,12 +75,14 @@ public class DaoReportes {
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 			ResultSetMetaData metaData = resultado.getMetaData();
 
-			for (int i = 0; i < metaData.getColumnCount(); i++) {
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
 				data.addColumn(metaData.getColumnName(i + 1));
 				// System.out.println(metaData.getColumnTypeName(i+1));
 			}
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				Vector<Object> row = new Vector<Object>(0, 1);
 
 				String columnOne = resultado.getString(1);
@@ -112,7 +121,8 @@ public class DaoReportes {
 	}
 
 	public TableDataSource consultaUsuariosAgrupadosTotales(
-			String atributoUsuario) {
+			String atributoUsuario) 
+	{
 		String consultaSql = "SELECT u." + atributoUsuario
 				+ " AS agrupado, count(" + atributoUsuario + ") As cuantos "
 				+ "FROM usuario AS u " + "GROUP BY agrupado "
@@ -123,7 +133,8 @@ public class DaoReportes {
 
 	public TableDataSource consultaUsuariosAgrupadosTotales(
 			String atributoUsuario, String cualFecha, String fechaInicio,
-			String FechaFin) {
+			String FechaFin) 
+	{
 		String consultaSql = "SELECT u." + atributoUsuario
 				+ " AS agrupado, count(" + atributoUsuario + ") AS cuantos "
 				+ "FROM usuario AS u " + "WHERE u." + cualFecha + " BETWEEN '"
@@ -134,7 +145,8 @@ public class DaoReportes {
 	}
 
 	private TableDataSource procesarDatosUsuarioTotales(String consultaSql,
-			String atributoUsuario) {
+			String atributoUsuario) 
+	{
 		TableDataSource data = new TableDataSource();
 
 		try {
@@ -143,12 +155,14 @@ public class DaoReportes {
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 			ResultSetMetaData metaData = resultado.getMetaData();
 
-			for (int i = 0; i < metaData.getColumnCount(); i++) {
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
 				data.addColumn(metaData.getColumnName(i + 1));
 				// System.out.println(metaData.getColumnTypeName(i+1));
 			}
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				Vector<Object> row = new Vector<Object>(0, 1);
 
 				String columnOne = resultado.getString(1);
@@ -180,7 +194,8 @@ public class DaoReportes {
 		return data;
 	}
 
-	public TableDataSource consultaUsuariosAnio(String tipoAnio) {
+	public TableDataSource consultaUsuariosAnio(String tipoAnio) 
+	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u."
 				+ tipoAnio
 				+ ") AS anio, "
@@ -195,7 +210,8 @@ public class DaoReportes {
 	}
 
 	public TableDataSource consultaUsuariosAnio(String tipoAnio, String anioI,
-			String anioF) {
+			String anioF)
+	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u."
 				+ tipoAnio
 				+ ") AS anio, "
@@ -212,7 +228,8 @@ public class DaoReportes {
 	}
 
 	public TableDataSource consultaUsuariosAnioMes(String tipoAnio,
-			String mesI, String mesF) {
+			String mesI, String mesF)
+	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u."
 				+ tipoAnio
 				+ ") AS anio, "
@@ -229,7 +246,8 @@ public class DaoReportes {
 	}
 
 	public TableDataSource consultaUsuariosAnioMes(String tipoAnio,
-			String anioI, String anioF, String mesI, String mesF) {
+			String anioI, String anioF, String mesI, String mesF) 
+	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u."
 				+ tipoAnio
 				+ ") AS anio, "
@@ -246,7 +264,8 @@ public class DaoReportes {
 		return procesarDatosUsuariosFecha(consultaSql);
 	}
 
-	private TableDataSource procesarDatosUsuariosFecha(String consultaSql) {
+	private TableDataSource procesarDatosUsuariosFecha(String consultaSql) 
+	{
 		TableDataSource data = new TableDataSource();
 
 		try {
@@ -255,12 +274,14 @@ public class DaoReportes {
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 			ResultSetMetaData metaData = resultado.getMetaData();
 
-			for (int i = 0; i < metaData.getColumnCount(); i++) {
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
 				data.addColumn(metaData.getColumnName(i + 1));
 				// System.out.println(metaData.getColumnTypeName(i+1));
 			}
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				Vector<Object> row = new Vector<Object>(0, 1);
 
 				row.add(resultado.getString(1));
@@ -293,7 +314,8 @@ public class DaoReportes {
 	 * ************reportes relacionados con areas de ciencias de la
 	 * computacion***********
 	 */
-	public TableDataSource consultarAreasConocimientoAgrupadas() {
+	public TableDataSource consultarAreasConocimientoAgrupadas() 
+	{
 		String consultaSql = "SELECT A.nombre, B.nombre AS nombre_Area_Padre "
 				+ "FROM area_conocimiento AS A JOIN area_conocimiento AS B "
 				+ "ON A.area_padre = B.id_area ORDER BY nombre_Area_Padre";
@@ -311,7 +333,8 @@ public class DaoReportes {
 				// System.out.println(metaData.getColumnTypeName(i+1));
 			}
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				Vector<Object> row = new Vector<Object>(0, 1);
 
 				row.add(resultado.getString(1));
@@ -334,7 +357,8 @@ public class DaoReportes {
 		return data;
 	}
 
-	public TableDataSource consultarAreasConocimientoAgrupadasTotales() {
+	public TableDataSource consultarAreasConocimientoAgrupadasTotales()
+	{
 		String consultaSql = "SELECT B.nombre AS Areas_Padre, count(B.nombre) AS Cantidad "
 				+ "FROM area_conocimiento AS A JOIN area_conocimiento AS B "
 				+ "ON A.area_padre = B.id_area GROUP BY Areas_Padre ORDER BY Areas_Padre";
@@ -352,7 +376,8 @@ public class DaoReportes {
 				// System.out.println(metaData.getColumnTypeName(i+1));
 			}
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				Vector<Object> row = new Vector<Object>(0, 1);
 
 				row.add(resultado.getString(1));
@@ -375,7 +400,8 @@ public class DaoReportes {
 		return data;
 	}
 
-	private String convertirMes(int mes) {
+	private String convertirMes(int mes)
+	{
 		switch (mes) {
 		case 1:
 			return "Enero";
@@ -404,7 +430,8 @@ public class DaoReportes {
 		}
 	}
 
-	private String convertirTipo(int tipo) {
+	private String convertirTipo(int tipo) 
+	{
 		switch (tipo) {
 		case 3:
 			return "Normal";
@@ -417,7 +444,8 @@ public class DaoReportes {
 		}
 	}
 
-	private String convertirGenero(String genero) {
+	private String convertirGenero(String genero)
+	{
 		if (genero.equals("M")) {
 			return "Masculino";
 
@@ -430,7 +458,8 @@ public class DaoReportes {
 	 * ******************Reporte relacionados con
 	 * documento**********************
 	 */
-	public TableDataSource consultaDocumentosAgrupadosArea() {
+	public TableDataSource consultaDocumentosAgrupadosArea() 
+	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, area.nombre_area AS agrupado "
 				+ "FROM (SELECT d.id_documento, d.titulo_principal, d.editorial FROM documento AS d) AS doc "
 				+ "NATURAL JOIN "
@@ -442,21 +471,24 @@ public class DaoReportes {
 		return procesarDatosDocumento(consultaSql);
 	}
 
-	public TableDataSource consultaDocumentosAgrupadosTipo() {
+	public TableDataSource consultaDocumentosAgrupadosTipo()
+	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.tipo_nombre AS agrupado "
 				+ "FROM documento AS doc ORDER BY doc.tipo_nombre";
 
 		return procesarDatosDocumento(consultaSql);
 	}
 
-	public TableDataSource consultaDocumentosAgrupadosFormato() {
+	public TableDataSource consultaDocumentosAgrupadosFormato()
+	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.formato AS agrupado "
 				+ "FROM documento AS doc ORDER BY doc.formato";
 
 		return procesarDatosDocumento(consultaSql);
 	}
 
-	public TableDataSource consultaDocumentosAgrupadosAutor() {
+	public TableDataSource consultaDocumentosAgrupadosAutor() 
+	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, autor.nombre_autor AS agrupado "
 				+ "FROM (SELECT d.id_documento, d.titulo_principal, d.editorial FROM documento AS d) AS doc "
 				+ "NATURAL JOIN "
@@ -467,7 +499,8 @@ public class DaoReportes {
 		return procesarDatosDocumento2(consultaSql);
 	}
 
-	private TableDataSource procesarDatosDocumento(String consultaSql) {
+	private TableDataSource procesarDatosDocumento(String consultaSql) 
+	{
 		TableDataSource data = new TableDataSource();
 
 		try {
@@ -481,7 +514,8 @@ public class DaoReportes {
 			}
 			data.addColumn("opcion");
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				Vector<Object> row = new Vector<Object>(0, 1);
 
 				String columnOne = resultado.getString(1);
@@ -512,7 +546,8 @@ public class DaoReportes {
 	 * NOTA: si pra el reporte de documentos agrupados por autor se decide no
 	 * agregar nada mas, quitar este metodo
 	 */
-	private TableDataSource procesarDatosDocumento2(String consultaSql) {
+	private TableDataSource procesarDatosDocumento2(String consultaSql)
+	{
 		TableDataSource data = new TableDataSource();
 
 		try {
@@ -526,7 +561,8 @@ public class DaoReportes {
 			}
 			data.addColumn("opcion");
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				Vector<Object> row = new Vector<Object>(0, 1);
 
 				// String columnOne = resultado.getString(1);
@@ -554,7 +590,8 @@ public class DaoReportes {
 		return data;
 	}
 
-	public TableDataSource consultaDocumentosAgrupadosFormatoTotales() {
+	public TableDataSource consultaDocumentosAgrupadosFormatoTotales() 
+	{
 		String consultaSql = "SELECT d.formato AS agrupado, count(d.formato) AS cantidad "
 				+ "FROM documento as d "
 				+ "GROUP BY agrupado "
@@ -563,7 +600,8 @@ public class DaoReportes {
 		return procesarDatosDocumentoTotales(consultaSql);
 	}
 
-	public TableDataSource consultaDocumentosAgrupadosTipoTotales() {
+	public TableDataSource consultaDocumentosAgrupadosTipoTotales() 
+	{
 		String consultaSql = "SELECT d.tipo_nombre AS agrupado, count(d.tipo_nombre) AS cantidad "
 				+ "FROM documento AS d "
 				+ "GROUP BY agrupado "
@@ -572,7 +610,8 @@ public class DaoReportes {
 		return procesarDatosDocumentoTotales(consultaSql);
 	}
 
-	public TableDataSource consultaDocumentosAgrupadosAreaTotales() {
+	public TableDataSource consultaDocumentosAgrupadosAreaTotales() 
+	{
 		String consultaSql = "SELECT area.nombre_area AS agrupado, count(area.nombre_area) AS cantidad "
 				+ "FROM (SELECT d.id_documento FROM documento AS d) AS doc "
 				+ "NATURAL JOIN (SELECT y.id_documento, y.nombre AS nombre_area "
@@ -584,7 +623,8 @@ public class DaoReportes {
 		return procesarDatosDocumentoTotales(consultaSql);
 	}
 
-	public TableDataSource consultaDocumentosAgrupadosAutorTotales() {
+	public TableDataSource consultaDocumentosAgrupadosAutorTotales() 
+	{
 		String consultaSql = "SELECT autor.nombre_autor AS agrupado, count(autor.nombre_autor) AS cantidad "
 				+ "FROM (SELECT d.id_documento FROM documento AS d) AS doc "
 				+ "NATURAL JOIN (SELECT x.id_documento, x.nombre AS nombre_autor "
@@ -595,7 +635,8 @@ public class DaoReportes {
 		return procesarDatosDocumentoTotales(consultaSql);
 	}
 
-	private TableDataSource procesarDatosDocumentoTotales(String consultaSql) {
+	private TableDataSource procesarDatosDocumentoTotales(String consultaSql) 
+	{
 		TableDataSource data = new TableDataSource();
 
 		try {
@@ -608,7 +649,8 @@ public class DaoReportes {
 				data.addColumn(metaData.getColumnName(i + 1));
 			}
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				Vector<Object> row = new Vector<Object>(0, 1);
 
 				row.add(resultado.getString(1));
@@ -632,90 +674,506 @@ public class DaoReportes {
 		return data;
 	}
 
-	public TableDataSource consultaDocumentosDescargadosFecha()	{
-		return null;
+	/*reportes relacionados con la descarga de documentos*/
+	
+	public TableDataSource consultaDocumentosDescargadosFecha()	
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos " +
+				"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.id_documento,d.fecha) AS y " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY y.fecha";
+		
+		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 
 	public TableDataSource consultaDocumentosDescargadosFecha(String fechaI,
-			String fechaF)	{
-		return null;
+			String fechaF)	
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos " +
+				"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.id_documento,d.fecha) AS y " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY y.fecha";
+		
+		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 
-	public TableDataSource consultaDocumentosDescargadosArea() {
-		return null;
-	}
+	private TableDataSource procesarDatosDocumentosDescagadosConsultadosFecha(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
 
-	public TableDataSource consultaDocumentosDescargadosArea(String fechaI, String fechaF) {
-		return null;
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 1; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+			data.addColumn("autor");
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				String columnOne = resultado.getString(1);
+				row.add(resultado.getString(2));
+				row.add(resultado.getString(3));
+				row.add(resultado.getString(4));
+				row.add(resultado.getString(5));
+				row.add(obtenerAutoresDocumento(columnOne));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
 	}
 	
-	public TableDataSource consultaDocumentosDescargadosUsuario() {
-		return null;
+	public TableDataSource consultaDocumentosDescargadosArea() 
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+				"m.fecha, m.cuantos, m.nombre_area " +
+				"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.id_documento,d.fecha) AS y " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento) AS w " +
+				"NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area " +
+				"FROM area_conocimiento AS a) AS s) AS m " +
+				"NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial " +
+				"FROM documento AS t) AS x " +
+				"ORDER BY m.nombre_area";
+		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 
-	public TableDataSource consultaDocumentosDescargadosUsuario(String fechaI, String fechaF) {
-		return null;
+	public TableDataSource consultaDocumentosDescargadosArea(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+				"m.fecha, m.cuantos, m.nombre_area " +
+				"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.id_documento,d.fecha) AS y " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento) AS w " +
+				"NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area " +
+				"FROM area_conocimiento AS a) AS s) AS m " +
+				"NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial " +
+				"FROM documento AS t) AS x " +
+				"ORDER BY m.nombre_area;";
+		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
+	}
+	
+	private TableDataSource procesarDatosDocumentosDescargadosConsultadosArea(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 1; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+			data.addColumn("autor");
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				String columnOne = resultado.getString(1);
+				row.add(resultado.getString(2));
+				row.add(resultado.getString(3));
+				row.add(resultado.getString(4));
+				row.add(resultado.getString(5));
+				row.add(resultado.getString(6));
+				row.add(obtenerAutoresDocumento(columnOne));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosUsuario() 
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+				"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
+				"FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.id_documento,d.fecha,d.login) AS y " +
+				"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS s) AS w " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY w.login;";
+		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosUsuario(String fechaI, String fechaF) 
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+				"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
+				"FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.id_documento,d.fecha,d.login) AS y " +
+				"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS s) AS w " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY w.login;";
+		
+		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
 	} 
+	
+	private TableDataSource procesarDatosDocumentosDescargadosConsultadosUsuario(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 1; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+			data.addColumn("autor");
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				String columnOne = resultado.getString(1);
+				row.add(resultado.getString(2));
+				row.add(resultado.getString(3));
+				row.add(resultado.getString(4));
+				row.add(resultado.getString(5));
+				row.add(resultado.getString(6));
+				row.add(resultado.getString(7));
+				row.add(resultado.getString(8));
+				row.add(obtenerAutoresDocumento(columnOne));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
+	}
+	
+	/*reporte relacioandos con la consulta de documentos*/
 	
 	public TableDataSource consultaDocumentosConsultadosFecha()
 	{
-		return null;
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosConsultadosFecha(String fechaI, String fechaF)
 	{
-		return null;
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosConsultadosArea()
 	{
-		return null;
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+		"m.fecha, m.cuantos, m.nombre_area " +
+		"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN pertenece_documento_area_conocimiento) AS w " +
+		"NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area " +
+		"FROM area_conocimiento AS a) AS s) AS m " +
+		"NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial " +
+		"FROM documento AS t) AS x " +
+		"ORDER BY m.nombre_area";
+		
+		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 
 	public TableDataSource consultaDocumentosConsultadosArea(String fechaI, String fechaF)
 	{
-		return null;
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+		"m.fecha, m.cuantos, m.nombre_area " +
+		"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN pertenece_documento_area_conocimiento) AS w " +
+		"NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area " +
+		"FROM area_conocimiento AS a) AS s) AS m " +
+		"NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial " +
+		"FROM documento AS t) AS x " +
+		"ORDER BY m.nombre_area;";
+		
+		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosConsultadosUsuario()
 	{
-		return null;
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+		"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
+		"FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha,d.login) AS y " +
+		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+		"FROM usuario AS u) AS s) AS w " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY w.login;";
+		
+		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
 	}
 
 	public TableDataSource consultaDocumentosConsultadosUsuario(String fechaI, String fechaF)
 	{
-		return null;
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+		"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
+		"FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha,d.login) AS y " +
+		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+		"FROM usuario AS u) AS s) AS w " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY w.login;";
+
+		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
 	} 
 	
+	/*reporte relacionados con la catalogacion de documentos*/
 	public TableDataSource consultaDocumentosCatalogadosFecha()
 	{
-		return null;
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosFecha(String fechaI, String fechaF)
 	{
-		return null;
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosArea()
 	{
-		return null;
+		String consultaSql = "SELECT y.id_documento, y.editorial, y.titulo_principal, " +
+				"y.fecha_catalogacion, y.login_catalogador, x.nombre1, x.apellido1, y.nombre_area " +
+				"FROM ((SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, " +
+				"d.login_catalogador, c.id_area " +
+				"FROM documento AS d " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento AS c) AS s " +
+				"NATURAL JOIN (SELECT a.id_area, a. nombre AS nombre_area " +
+				"FROM area_conocimiento AS a) AS t) AS y " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON y.login_catalogador = x.login ORDER BY y.nombre_area";
+		
+		return procesarDatosDocumentosCatalogadosAreas(consultaSql);
 	}
 
 	public TableDataSource consultaDocumentosCatalogadosArea(String fechaI, String fechaF)
 	{
-		return null;
+		String consultaSql = "SELECT y.id_documento, y.editorial, y.titulo_principal, " +
+				"y.fecha_catalogacion, y.login_catalogador, x.nombre1, x.apellido1, y.nombre_area " +
+				"FROM ((SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, c.id_area " +
+				"FROM documento AS d " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento AS c) AS s " +
+				"NATURAL JOIN (SELECT a.id_area, a. nombre AS nombre_area " +
+				"FROM area_conocimiento AS a) AS t) AS y " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON y.login_catalogador = x.login " +
+				"WHERE y.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY y.nombre_area";
+		
+		return procesarDatosDocumentosCatalogadosAreas(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosUsuario()
 	{
-		return null;
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"ORDER BY d.login_catalogador";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 
 	public TableDataSource consultaDocumentosCatalogadosUsuario(String fechaI, String fechaF)
 	{
-		return null;
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS x ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY d.login_catalogador";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	} 
+	
+	private TableDataSource procesarDatosDocumentosCatalogadosFechaUsuario(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 1; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+			data.addColumn("autor");
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				String columnOne = resultado.getString(1);
+				row.add(resultado.getString(2));
+				row.add(resultado.getString(3));
+				row.add(resultado.getString(4));
+				row.add(resultado.getString(5));
+				row.add(resultado.getString(6));
+				row.add(resultado.getString(7));
+				row.add(obtenerAutoresDocumento(columnOne));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
+	}
+	
+	private TableDataSource procesarDatosDocumentosCatalogadosAreas(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 1; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+			data.addColumn("autor");
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				String columnOne = resultado.getString(1);
+				row.add(resultado.getString(2));
+				row.add(resultado.getString(3));
+				row.add(resultado.getString(4));
+				row.add(resultado.getString(5));
+				row.add(resultado.getString(6));
+				row.add(resultado.getString(7));
+				row.add(resultado.getString(8));
+				row.add(obtenerAutoresDocumento(columnOne));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
+	}
 	
 	/*FALTAN TODOS LO METODOS PARA TOTALES DE DESCARGA, CONSULTA Y CATALOGO*/
 	
@@ -726,7 +1184,8 @@ public class DaoReportes {
 	 */
 
 	/* metodo usado para obtener los autores de un documento en forma de string */
-	private String obtenerAutoresDocumento(String id_documento) {
+	private String obtenerAutoresDocumento(String id_documento) 
+	{
 		String consultaSql = "SELECT s.nombre AS nombre_autor FROM "
 				+ "(SELECT e.id_autor FROM escribe_autor_documento AS e "
 				+ "WHERE e.id_documento = "
@@ -741,7 +1200,8 @@ public class DaoReportes {
 			Statement sentencia = conn.createStatement();
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				autores += resultado.getString(1) + ", ";
 			}
 			fachada.cerrarConexion(conn);
@@ -758,7 +1218,8 @@ public class DaoReportes {
 	}
 
 	/* metodo para obtener las areas de un documento en forma de string */
-	private String obtenerAreasDocumento(String id_documento) {
+	private String obtenerAreasDocumento(String id_documento) 
+	{
 		String consultaSql = "SELECT a.nombre FROM area_conocimiento AS a "
 				+ "NATURAL JOIN pertenece_documento_area_conocimiento AS p "
 				+ "WHERE p.id_documento = " + id_documento;
@@ -770,7 +1231,8 @@ public class DaoReportes {
 			Statement sentencia = conn.createStatement();
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				areas += resultado.getString(1) + ", ";
 			}
 			fachada.cerrarConexion(conn);
@@ -786,7 +1248,8 @@ public class DaoReportes {
 		return areas;
 	}
 
-	public Vector<String> obtenerNombreTablas() {
+	public Vector<String> obtenerNombreTablas() 
+	{
 		String consultaSql = "select table_name from information_schema.tables where table_schema = 'public'";
 
 		Vector<String> tablas = new Vector<String>();
@@ -797,7 +1260,8 @@ public class DaoReportes {
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 
 			int primerElemento = 1;
-			while (resultado.next()) {
+			while (resultado.next()) 
+			{
 				tablas.add(resultado.getString(primerElemento));
 			}
 
@@ -815,7 +1279,8 @@ public class DaoReportes {
 		return tablas;
 	}
 
-	public Vector<String> obtenerAtributosTabla(String nombreTabla) {
+	public Vector<String> obtenerAtributosTabla(String nombreTabla)
+	{
 		String consultaSql = "SELECT column_name FROM information_schema.columns WHERE table_name = '"
 				+ nombreTabla + "' ;";
 
@@ -845,17 +1310,15 @@ public class DaoReportes {
 		return atributos;
 	}
 	
-	public JTable consultaGenerica(String consultaSql) {
-
-		
-		
+	public JTable consultaGenerica(String consultaSql) 
+	{
 
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
 			ResultSet resultado = sentencia.executeQuery(consultaSql);
 
-			System.out.println(consultaSql);
+			//System.out.println(consultaSql);
 			crearTabla(resultado);			
 			fachada.cerrarConexion(conn);
 			conn = null;
@@ -879,9 +1342,10 @@ public class DaoReportes {
 
 	}
 
-	private void crearTabla(ResultSet rs) {
-		try {
-
+	private void crearTabla(ResultSet rs)
+	{
+		try 
+		{
 			ResultSetMetaData rsmd = rs.getMetaData();
 
 			int columnas = rsmd.getColumnCount();
@@ -890,7 +1354,8 @@ public class DaoReportes {
 			Vector<String> etiquetas = new Vector<String>();
 
 			// Se obtiene cada una de las etiquetas para cada columna
-			for (int i = 0; i < columnas; i++) {
+			for (int i = 0; i < columnas; i++) 
+			{
 				// Nuevamente, para ResultSetMetaData la primera columna es la
 				// 1.
 				etiquetas.add(rsmd.getColumnName(i + 1));
@@ -899,14 +1364,14 @@ public class DaoReportes {
 		
 			configurarTabla();
 			
-
 			modelo.setColumnIdentifiers(etiquetas);
 		
 			maximos = new int[200];
 		
 			String[] fila = new String[columnas];
 
-			for (int i = 0; i < columnas; i++) {
+			for (int i = 0; i < columnas; i++) 
+			{
 				// Nuevamente, para ResultSetMetaData la primera columna es la
 				// 1.
 				String nombreColumna = rsmd.getColumnName(i + 1);
@@ -923,59 +1388,49 @@ public class DaoReportes {
 			
 			modelo.addRow(fila);
 
-			while (rs.next()) {
+			while (rs.next()) 
+			{
 
 				// Se crea un array que será una de las filas de la tabla.
 
 				// Se rellena cada posición del array con una de las columnas de
 				// la tabla en base de datos.
-				for (int i = 0; i < columnas; i++) {
+				for (int i = 0; i < columnas; i++) 
+				{
 					
 					String atributo = rs.getString(i + 1);
 			
 					int valor = 0;
-					if(atributo != null){
-				
+					if(atributo != null)
+					{
 						valor = atributo.length();
-					
 					}
 					
 					if( valor > maximos [i])
 					{
 						maximos[i] = valor;
 					}
-					
 					fila[i] = atributo; // El primer indice en rs es
 													// el 1, no el cero, por eso
 													// se suma 1.
 					//System.out.println(fila[i]);
 				}
 				// Se añade al modelo la fila completa.
-
 				modelo.addRow(fila);
-
 			}
 			// se suma 1.
 			//System.out.println(modelo.getRowCount());
 			tabla.setRowHeight(20);
 			setAnchoColumnas();
-			
-			
-
 		} catch (SQLException e) {
-
-			
+			e.printStackTrace();
 		}
 	}
 	
-	private void setAnchoColumnas(){        
-	 
-
-		
-		
-		for(int i=0; i< tabla.getColumnCount(); i++){
-	
-		
+	private void setAnchoColumnas()
+	{        	
+		for(int i=0; i< tabla.getColumnCount(); i++)
+		{
 			DefaultTableCellRenderer modeloCellRenderer = new DefaultTableCellRenderer();	   
 			
 			modeloCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -984,8 +1439,6 @@ public class DaoReportes {
 			 //System.out.println(maximos[i]);
 			columna.setPreferredWidth(maximos[i]*10- (2*maximos[i]));
 			columna.setCellRenderer(modeloCellRenderer);
-		
-			
 		}
 		
 	}  
