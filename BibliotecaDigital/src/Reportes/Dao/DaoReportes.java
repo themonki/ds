@@ -632,12 +632,12 @@ public class DaoReportes {
 		return data;
 	}
 
-	public TableDataSource consultaDocumentosDescargadosFecha() {
+	public TableDataSource consultaDocumentosDescargadosFecha()	{
 		return null;
 	}
 
 	public TableDataSource consultaDocumentosDescargadosFecha(String fechaI,
-			String fechaF) {
+			String fechaF)	{
 		return null;
 	}
 
@@ -645,10 +645,81 @@ public class DaoReportes {
 		return null;
 	}
 
+	public TableDataSource consultaDocumentosDescargadosArea(String fechaI, String fechaF) {
+		return null;
+	}
+	
 	public TableDataSource consultaDocumentosDescargadosUsuario() {
 		return null;
 	}
 
+	public TableDataSource consultaDocumentosDescargadosUsuario(String fechaI, String fechaF) {
+		return null;
+	} 
+	
+	public TableDataSource consultaDocumentosConsultadosFecha()
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFecha(String fechaI, String fechaF)
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosArea()
+	{
+		return null;
+	}
+
+	public TableDataSource consultaDocumentosConsultadosArea(String fechaI, String fechaF)
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosUsuario()
+	{
+		return null;
+	}
+
+	public TableDataSource consultaDocumentosConsultadosUsuario(String fechaI, String fechaF)
+	{
+		return null;
+	} 
+	
+	public TableDataSource consultaDocumentosCatalogadosFecha()
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFecha(String fechaI, String fechaF)
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosArea()
+	{
+		return null;
+	}
+
+	public TableDataSource consultaDocumentosCatalogadosArea(String fechaI, String fechaF)
+	{
+		return null;
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosUsuario()
+	{
+		return null;
+	}
+
+	public TableDataSource consultaDocumentosCatalogadosUsuario(String fechaI, String fechaF)
+	{
+		return null;
+	} 
+	
+	/*FALTAN TODOS LO METODOS PARA TOTALES DE DESCARGA, CONSULTA Y CATALOGO*/
+	
+	
 	/*
 	 * ********************************** metodos de utilidad
 	 * *************************

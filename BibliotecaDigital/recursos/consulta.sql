@@ -1,8 +1,23 @@
 --area de conocimiento al que pertenece un documerno
 (SELECT a.nombre FROM area_conocimiento AS a NATURAL JOIN pertenece_documento_area_conocimiento AS p WHERE p.id_documento = 10001)
 
---documentos descargados por fecha
+--cantidad documentos(id_documento, editorial, titulo_principal) descargados por fecha
 SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x;
+
+--cantidad documentos(id_documento, editorial, titulo_principal) descargados por un intervalo de fecha
+SELECT x.id_documento, x.editorial, x. titulo_principal, y.fecha, y.cuantos FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d WHERE d.fecha BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x;
+
+--cantidad de documentos descargados por area del conocimiento
+SELECT x.id_documento, x.editorial, x. titulo_principal, m.fecha, m.cuantos, m.nombre_area FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS w NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS s) AS m NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial FROM documento AS t) AS x;
+
+--cantidad de documento descargados por area del conocimiento restringido por fecha
+SELECT x.id_documento, x.editorial, x. titulo_principal, m.fecha, m.cuantos, m.nombre_area FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d WHERE d.fecha  BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS w NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS s) AS m NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial FROM documento AS t) AS x;
+
+--cantidad de documentos descargados por usuario
+SELECT x.id_documento, x.editorial, x. titulo_principal, w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.id_documento,d.fecha,d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS s) AS w NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x;
+
+--cantidad de documentos descargados por usuario restringidos por fecha
+SELECT x.id_documento, x.editorial, x. titulo_principal, w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos FROM descarga_usuario_documento AS d WHERE d.fecha BETWEEN '1980-02-05' AND '2010-07-20' GROUP BY d.id_documento,d.fecha,d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS s) AS w NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial FROM documento AS a) AS x;
 
 --usuarios por fecha de nacimiento para todos los anio y todos los meses organiado
 SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
