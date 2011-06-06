@@ -58,12 +58,17 @@ import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+
 /**
+ * Clase que representa la interfaz de un usuario 
+ * catalogador, lo que permite catalogar nuevos documentos
+ * y tambien la opcion de modificar los documentos
+ * despues de que han sido consultados, tambien
+ * tiene las opciones de un usuario normal para modificar
+ * informacion y descargar documentos.
+ * 
+ * 
  * @author 
- *
- */
-/**
- * @author yerminson
  *
  */
 public class GuiCatalogador extends JFrame
@@ -123,6 +128,9 @@ public class GuiCatalogador extends JFrame
 	
 	
 	/**
+	 * Constructor que permite inicializar los elementos principales de la interfaz
+	 * lo que permite organizar de manera adecuada variables y elementos
+	 * de estilo y forma en la interfaz
 	 * @param usuario
 	 */
 	public GuiCatalogador(Usuario usuario)
@@ -272,6 +280,9 @@ public class GuiCatalogador extends JFrame
 	}
 
 	/**
+	 * Clase que permite manejar todos los eventos
+	 * generados por botones y se basan mas que todo
+	 * en el manejo dinamico de los diferentes paneles dela interfaz
 	 * @author 
 	 *
 	 */
@@ -519,6 +530,8 @@ public class GuiCatalogador extends JFrame
 
 	/**
 	 * 
+	 * Permite regresar desde el panel de moficacion al panel inicio
+	 * que es donde se encuentra consulta basica
 	 */
 	public void cambiarPanelInicio()
 	{
@@ -531,6 +544,11 @@ public class GuiCatalogador extends JFrame
 	}
 	/**
 	 * 
+	 * Permite cambiar desde al panel de consulta basica al 
+	 * panel de edicion de documento donde se pueden hacer
+	 * modifaciones sobre el documento seleccionado
+	 * 
+	 * 
 	 */
 	public static void cambiarPanelEditarDocumento()
 	{
@@ -542,6 +560,10 @@ public class GuiCatalogador extends JFrame
 		
 	}
 	/**
+	 * Metodo que permite cambiar de la interfaz consulta 
+	 * avanzada a la interfaz de edicion de documento
+	 * Cuando realizamos una consulta y la vista detallada del
+	 * documento deseamos editarlo 
 	 * 
 	 */
 	public static void cambiarPanelEditarDocumentoAvanzado()
@@ -555,6 +577,13 @@ public class GuiCatalogador extends JFrame
 	}
 	/**
 	 * 
+	 * Metodo que permite cambiar desde la vista detallada
+	 * de la interfaz novedades a la interfaz editar documento
+	 * en caso de que un catalogador vea que se ha catalogado
+	 * nuevos documentos tiene la posibilidad de modificarlos
+	 * desde la seleccion de uno en la interfaz de novedades
+	 * 
+	 * 
 	 */
 	public static void cambiarPanelEditarDocumentoNovedades()
 	{
@@ -566,6 +595,8 @@ public class GuiCatalogador extends JFrame
 		
 	}
 	/**
+	 * Metodo que permite cambiar desde la opcion de edicion documento
+	 * hasta la interfaz devista detallada documento
 	 * 
 	 */
 	public static void cambiarPanelVista()
@@ -578,6 +609,11 @@ public class GuiCatalogador extends JFrame
 		CONTENEDOR.repaint();
 		
 	}
+	/**
+	 * Metodo que permite cambiar desde la interfaz de editar
+	 * documento al panel de vista avanzada de documento donde
+	 * se pueden ver los efectos del cambio
+	 */
 	public static void cambiarPanelVistaAvanzado()
 	{
 		
@@ -589,6 +625,8 @@ public class GuiCatalogador extends JFrame
 		
 	}
 	/**
+	 * Metodo que permite cambiar desde el panel de consulta avanazda al
+	 * de consulta basica 
 	 * 
 	 */
 	public static void cambiarAvanzadaInicio()
@@ -603,6 +641,8 @@ public class GuiCatalogador extends JFrame
 	}
 	/**
 	 * 
+	 * Metodo que permite cambiar desde el panel novedades
+	 * a la consulta basica es decir al panel de inicio
 	 */
 	public static void cambiarNovedadesInicio()
 	{
@@ -616,6 +656,11 @@ public class GuiCatalogador extends JFrame
 	}
 	
 	/**
+	 * 
+	 * Metodo que orgaiza las novedades cuando se inicializa la gui
+	 * mostrando el total de documentos catalogados en las areas de
+	 * interes de un usuario.
+	 * 
 	 * @param novedades
 	 */
 	public void setNovededadesUsuario(Vector<Consulta> novedades)
@@ -631,6 +676,7 @@ public class GuiCatalogador extends JFrame
 		novedadesUsuario = novedades;	
 	}
 	/**
+	 * Metodo que permite obtner las novedades de un usuario
 	 * @return
 	 */
 	public Vector<Consulta>getNovededadesUsuario()
