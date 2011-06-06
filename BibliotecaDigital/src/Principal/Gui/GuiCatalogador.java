@@ -53,12 +53,17 @@ import Usuarios.Logica.Usuario;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+
 /**
+ * Clase que representa la interfaz de un usuario 
+ * catalogador, lo que permite catalogar nuevos documentos
+ * y tambien la opcion de modificar los documentos
+ * despues de que han sido consultados, tambien
+ * tiene las opciones de un usuario normal para modificar
+ * informacion y descargar documentos.
+ * 
+ * 
  * @author 
- *
- */
-/**
- * @author yerminson
  *
  */
 public class GuiCatalogador extends JFrame
