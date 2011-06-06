@@ -29,6 +29,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
@@ -92,10 +93,10 @@ public class GuiCatalogar extends JScrollPane{
 	protected Button botonCatalogar,nuevaArea,nuevoTipo,nuevoAutor,nuevaPalabra, examinarDoc;
 	//faltan las fechas /////////****************///
 	// en caccoo falta campo editorial
-	protected SpinnerModel model,model2;
-	protected Date fecha,fecha2;
-	protected JSpinner spinner,spinner2;
-	protected JSpinner.DateEditor editor,editor2; 
+	protected SpinnerModel modelCreacion,modelPublicacion;
+	protected Date fechaCreacionDate,fechaPublicacionDate;
+	protected JSpinner spinnerCreacion,spinnerPublicacion;
+	protected JSpinner.DateEditor editorCreacion, editorPublicacion; 
 
 	protected  Vector<String> palabrasClaveVec,areasVector,autoresVector,       
 	palabActualVec,areasActualVecr,autoresActualVector,AutorIdVector,AutorIdActualVector,AreasIdVector,AreasIdActualVector,
@@ -190,25 +191,25 @@ public class GuiCatalogar extends JScrollPane{
 		inicializarButton();
 
 		///fecha	    
-		model = new SpinnerDateModel();
-		model2= new SpinnerDateModel();
-		spinner = new JSpinner(model);
-		spinner2= new JSpinner(model2);
-		editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
-		editor2 = new JSpinner.DateEditor(spinner2, "yyyy-MM-dd");
+		modelCreacion = new SpinnerDateModel();
+		modelPublicacion= new SpinnerDateModel();
+		spinnerCreacion = new JSpinner(modelCreacion);
+		spinnerPublicacion= new JSpinner(modelPublicacion);
+		editorCreacion = new JSpinner.DateEditor(spinnerCreacion, "yyyy-MM-dd");
+		editorPublicacion = new JSpinner.DateEditor(spinnerPublicacion, "yyyy-MM-dd");
 	
-		spinner.setEditor(editor);
-		spinner2.setEditor(editor2);
-		((JSpinner.DateEditor) spinner.getEditor()).getTextField().setEditable(false);
-		((JSpinner.DateEditor) spinner2.getEditor()).getTextField().setEditable(false);
+		spinnerCreacion.setEditor(editorCreacion);
+		spinnerPublicacion.setEditor(editorPublicacion);
+		((JSpinner.DateEditor) spinnerCreacion.getEditor()).getTextField().setEditable(false);
+		((JSpinner.DateEditor) spinnerPublicacion.getEditor()).getTextField().setEditable(false);
 
-		spinner.setFont(Estilos.fontSubtitulos);
-		spinner2.setFont (Estilos.fontSubtitulos);
+		spinnerCreacion.setFont(Estilos.fontSubtitulos);
+		spinnerPublicacion.setFont (Estilos.fontSubtitulos);
 		panelFecha = new JPanel(new BorderLayout());
-		panelFecha.add(spinner, BorderLayout.CENTER);
+		panelFecha.add(spinnerCreacion, BorderLayout.CENTER);
 
 		panelFecha2 = new JPanel(new BorderLayout());
-		panelFecha2.add(spinner2, BorderLayout.CENTER);
+		panelFecha2.add(spinnerPublicacion, BorderLayout.CENTER);
 
 		//-----------------------------ponerBordeaPanel----------	
 		panel5.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
@@ -382,8 +383,8 @@ public class GuiCatalogar extends JScrollPane{
 		panel4.add(panel,BorderLayout.SOUTH);
 
 		panelScrollAutores.setViewportView(panelConAutores);
-		panelScrollPalabras.setViewportView(panelConAreas);
-		panelScrollAreas.setViewportView(panelConpalabrasC);
+		panelScrollPalabras.setViewportView(panelConpalabrasC);
+		panelScrollAreas.setViewportView(panelConAreas);
 				
 		panel8.add(panelScrollAutores);
 		panel8.add(panelScrollPalabras);
@@ -622,12 +623,12 @@ public class GuiCatalogar extends JScrollPane{
 				doc.setDerechosDeAutor(campoDerechosAutor.getSelectedItem().toString());
 				//--------------------------------------
 				//tomar fechas de splinner 
-				fecha=  editor.getModel().getDate();
+				fechaCreacionDate=  editorCreacion.getModel().getDate();
 				SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");  
-				String fes= sdf.format(fecha);			 
-				fecha2=  editor2.getModel().getDate();
+				String fes= sdf.format(fechaCreacionDate);			 
+				fechaPublicacionDate=  editorPublicacion.getModel().getDate();
 				SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");  
-				String fes2= sdf2.format(fecha2);
+				String fes2= sdf2.format(fechaPublicacionDate);
 				doc.setFecha_publicacion(java.sql.Date.valueOf(fes2));
 				
 				java.util.Date fechaactual = new Date();// fecha actual 
@@ -853,12 +854,12 @@ public class GuiCatalogar extends JScrollPane{
 		campoSoftware.setText("");
 		campoResolucion.setText("");
 		campoDescripcion.setText("");
-		campoPalabras.setSelectedIndex(0);
-		campoAutor.setSelectedIndex(0);
+		campoPalabras.setSelectedIndex(-1);
+		campoAutor.setSelectedIndex(-1);
 		campoTipoMaterial.setSelectedIndex(0);
 		campoIdioma.setSelectedIndex(0);
 		campoDerechosAutor.setSelectedIndex(0);
-		campoAreas.setSelectedIndex(0);
+		campoAreas.setSelectedIndex(-1);
 		campoFormato.setSelectedIndex(0);
 		panelConAutores.removeAll();									
 		panelConAutores.updateUI();
@@ -871,5 +872,24 @@ public class GuiCatalogar extends JScrollPane{
 		autoresActualVector.removeAllElements();
 		AutorIdActualVector.removeAllElements();
 		AreasIdActualVector.removeAllElements();
+		
+		//fechas
+				
+		modelCreacion=null;
+		modelPublicacion=null;
+		editorCreacion=null;
+		editorPublicacion=null;
+		
+		modelCreacion = new SpinnerDateModel(new java.util.Date(),null,null,Calendar.DAY_OF_YEAR);
+		modelPublicacion= new SpinnerDateModel(new java.util.Date(),null,null,Calendar.DAY_OF_YEAR);
+		spinnerCreacion.setModel(modelCreacion);
+		spinnerPublicacion.setModel(modelCreacion);
+		editorCreacion = new JSpinner.DateEditor(spinnerCreacion, "yyyy-MM-dd");
+		editorPublicacion = new JSpinner.DateEditor(spinnerPublicacion, "yyyy-MM-dd");
+		
+		editorCreacion.getTextField().setEditable(false);
+		editorPublicacion.getTextField().setEditable(false);
+		spinnerCreacion.setEditor(editorCreacion);		
+		spinnerPublicacion.setEditor(editorPublicacion);
 	}
 }
