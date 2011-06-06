@@ -148,7 +148,7 @@ public class GuiResultadoConsulta extends JScrollPane{
 		listaResultado.setCellRenderer(rl);
 		if(cantidadTotalResultados==0)//no ahi resultados
 		{
-			borde.setTitle("No ahi resultados");
+			borde.setTitle("No Hay Resultados");
 		}else{
 		borde.setTitle("Mostrando desde "+ (posicionResultado+1)+
 				" hasta "+ i +" de "+cantidadTotalResultados+ " resultados");
