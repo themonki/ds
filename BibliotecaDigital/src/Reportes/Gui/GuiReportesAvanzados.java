@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -31,24 +32,24 @@ public class GuiReportesAvanzados extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private JPanel panelPrincipal;
 	
 	private Vector<String> vectorContablasAvanzado;
 	private Vector<String> vectorAtributosAvanzado;
+	
 
+	private JPanel panelPrincipal, panelOpcionesReportes, panelDescargas, panelConsultas, panelDocumento;
 	
 	private JCheckBox habilitarAvanzado, habilitarPorDia, habilitarPorMes, habilitarPorAño, habilitarPorHora;
 	
 	private JComboBox tablasAvanzado, atributosAvanzado;
 	
-	private JLabel etiquetaTablaAvanzado, etiquetaAtributoAvanzado;
+	private JLabel etiquetaTablaAvanzado, etiquetaAtributoAvanzado, etiquetaDescargas, etiquetaConsultas, etiquetaDocumento;
 	
 	private GridBagConstraints retriccionesAvanzado;
 	
 	private JSpinner campoFecha3, campoFecha4; //estos dos son para el intervaloe de reportes avanzados
 	
-	private Button botonAvanzado;
+	private Button botonDescargas, botonConsultas, botonDocumento;
 	
 	ControladorReportes controladorReporte;
 	
@@ -74,13 +75,8 @@ public class GuiReportesAvanzados extends JPanel{
 		inicializarLabels();
 		inicializarComboBox();
 		inicializarCheckBox();
-		
-		panelPrincipal= new JPanel(new GridBagLayout());
-		panelPrincipal.setBackground(Color.WHITE);
-		
-		botonAvanzado= new Button("Generar Reporte");
-		//botonAvanzado.addActionListener(new Manejador());
-		
+		inicializarButtons();
+		inicializarPanels();
 		
 		//Crear spinner para la fecha3.
 		SpinnerModel modeloFecha3 = new SpinnerDateModel();
@@ -147,13 +143,36 @@ public class GuiReportesAvanzados extends JPanel{
 		retriccionesAvanzado.gridx=1;
 		
 				
-		panelPrincipal.add(botonAvanzado,retriccionesAvanzado);
+		//panelPrincipal.add(botonAvanzado,retriccionesAvanzado);
 	
 		
 		retriccionesAvanzado.insets= new Insets(0, 0, 0, 0);
 		
 		this.setLayout(new BorderLayout());
 		this.add(panelPrincipal, BorderLayout.CENTER);
+		
+	}
+
+	private void inicializarPanels() {
+		
+		panelPrincipal= new JPanel(new BorderLayout());
+		panelPrincipal.setBackground(Color.WHITE);
+		
+		panelOpcionesReportes = new JPanel (new GridBagLayout());
+		
+		
+	}
+
+	private void inicializarButtons() {
+
+		botonDescargas = new Button("Generar Reporte");
+		botonConsultas = new Button("Generar Reporte");
+		botonDocumento = new Button("Generar Reporte");
+		
+		//botonDescargas.addActionListener(new Manejador());
+		//botonConsultas.addActionListener(new Manejador());
+		//botonDocumento.addActionListener(new Manejador());
+		
 		
 	}
 
@@ -176,6 +195,20 @@ public class GuiReportesAvanzados extends JPanel{
 	}
 
 	private void inicializarLabels() {
+		
+		//Etiquetas del menu.
+		etiquetaDescargas = new JLabel("Descargas");
+		etiquetaDescargas.setIcon(new ImageIcon("recursos/iconos/download.png"));
+		etiquetaDescargas.setVerticalTextPosition(JLabel.BOTTOM);
+		
+		etiquetaConsultas = new JLabel("Consultas");
+		etiquetaConsultas.setIcon(new ImageIcon("recursos/iconos/search.png"));
+		etiquetaConsultas.setVerticalTextPosition(JLabel.BOTTOM);
+		
+		etiquetaDocumento = new JLabel("Consultas");
+		etiquetaDocumento.setIcon(new ImageIcon("recursos/iconos/search.png"));
+		etiquetaDocumento.setVerticalTextPosition(JLabel.BOTTOM);
+		//Fin etiquetas del menu
 		
 		etiquetaTablaAvanzado= new JLabel("TABLA");
 		etiquetaAtributoAvanzado= new JLabel("CONSULTAR POR   :");
