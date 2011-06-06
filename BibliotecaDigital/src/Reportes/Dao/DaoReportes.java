@@ -901,8 +901,9 @@ public class DaoReportes {
 			
 
 			modelo.setColumnIdentifiers(etiquetas);
-			
+		
 			maximos = new int[200];
+		
 			String[] fila = new String[columnas];
 
 			for (int i = 0; i < columnas; i++) {
