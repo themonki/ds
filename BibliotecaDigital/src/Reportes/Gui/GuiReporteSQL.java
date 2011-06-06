@@ -28,6 +28,10 @@ import Utilidades.Button;
 import Utilidades.Estilos;
 
 public class GuiReporteSQL extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel panelppal,panelConEsquemas;
 	JLabel etiquetaSelect,icon,esquemas;
 	JComboBox Esquematablas;
