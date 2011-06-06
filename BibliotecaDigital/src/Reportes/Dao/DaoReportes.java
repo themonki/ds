@@ -932,7 +932,13 @@ public class DaoReportes {
 				for (int i = 0; i < columnas; i++) {
 					
 					String atributo = rs.getString(i + 1);
-					int valor = atributo.length();
+			
+					int valor = 0;
+					if(atributo != null){
+				
+						valor = atributo.length();
+					
+					}
 					
 					if( valor > maximos [i])
 					{
