@@ -1,8 +1,25 @@
+/**
+ * GuiReporteSQL.java
+ * 
+ * Clase que permite a un usuario administrador
+ * realizar consultas sql mostrando el resultado ordenadamente 
+ * en una tabla las consultas no tienen restriccion , siempre y 
+ * cuando se realicen siguiendo el esquema dado para la base de
+ * datos de la biblioteca digital 
+ * 
+ * JAVA version "1.6.0"
+ *  
+ * Autor(es):  Cristian Leonardo Rios	
+ * 			   Luis Felipe Vargas	
+ * 			  
+ * Version:   4.0
+ */
+
+
 package Reportes.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,10 +32,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -27,6 +42,16 @@ import Reportes.Controlador.ControladorReportes;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * 
+ * Clase que permite modelar una interfaz desde la cual se pueden realizar consultas SQL
+ * si se tiene conocimiento en esta area. 
+ * Desde aca se puede visualizar el esquema de la base de datos para tener un conocimiento sobre 
+ * cuales son los atributos de una relacion determinada.
+ * 
+ * @author Luis Felipe Vargas
+ *
+ */
 public class GuiReporteSQL extends JPanel {
 	/**
 	 * 
@@ -42,11 +67,29 @@ public class GuiReporteSQL extends JPanel {
 	JPanel resultadoPanel;
 	JScrollPane resultadoScroll,scrollArea;
 	ControladorReportes conReport;
+	
+	
+	/**
+	 * Constructor que inicializa el controlador de reportes y llama
+	 * al metodo encargado de inicializar todos los componentes de la interfaz
+	 * 
+	 * 
+	 */
 	GuiReporteSQL(){
 		conReport= new ControladorReportes();
 		initComponents();
 
 	}
+	
+	/**
+	 * 
+	 * Metodo que permite configurar todos los paneles de la interfaz
+	 * a si mismo como su distribuccion  y el estilo que se manejara 
+	 * cada uno de estos elementos se une para formar el editor 
+	 * sql que permitira realizar consultas que tendran como unico
+	 * limite la imaginacion y el conocimiento sql del administrador
+	 * 
+	 */
 	private void initComponents() {
 		icon= new JLabel(new ImageIcon("recursos/iconos/tabla.png"));
 		icon.setText("Esquema BD");
@@ -115,17 +158,38 @@ public class GuiReporteSQL extends JPanel {
 
 
 	}
+	/**
+	 * Metodo que permite inicializar el esquema de la base de datos es decir el nombre de las tablas
+	 */
 	private void initEsquemas() {
 		Vector <String> nada= conReport.obtenerNombreTablas();
 		esquemas.setText(""+nada);
 		panelConEsquemas.add(esquemas);
 
 	}
+	/**
+	 * Metodo que permite administrar todos los eventos generados 
+	 * por los botones y los cuales hacen referencia a mostrar el esquema de 
+	 * la base de datos y a realizar la consulta propuesta en los campos
+	 * en caso de que se presente un error se avisara de ello por lo que 
+	 * no se vera ningun resultado en la consulta.
+	 * @author Luis Felipe Vargas
+	 *
+	 */
 	private class Manejador implements ActionListener
 	{		
 
 		public void actionPerformed(ActionEvent evento)
 		{
+			
+			/*
+			 * Si se solicita a la interfaz que se realice una consulta lo que se busca es
+			 * tomar los valores de los campos y de esta manera crear la consulta SQL que 
+			 * sera enviada al controlador y asu vez esta sera enviadad al dao quien sera
+			 * el encargado de ejecutarla
+			 * 
+			 * 
+			 * */
 			if(evento.getSource()==botonConsulta){
 				tabla=null;
 				resultadoPanel.removeAll();

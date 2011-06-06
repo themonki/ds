@@ -1,11 +1,11 @@
 /**
  * GuiReportes.java
  * 
- * Clase que representa la interfaz de usuario administrador ,en la cual 
- * tiene la posibilidad de consultar basica y avanzadamente, asi mismo
- * la posibilidad de catalogar documentos,modificar sus datos,asignar perfiles
- * de usuario y eliminarlos del sistema.Y cuando consulta los documentos tiene 
- * la posibilidad tanto de descargar como de editar los documentos.
+ * Clase que representa la interfaz de reportes,en la cual un usuario 
+ * administrador tiene la posibilidad de generar distintos tipos de reportes
+ * con los cuales se puede hacer un seguimiento de lo que sucede dia a dia 
+ * en la biblioteca digital de una forma organiza y bonita como lo es un 
+ * reporte el cual puede mostrar tambien graficos.
  * 
  * 
  * JAVA version "1.6.0"
@@ -18,21 +18,15 @@
 
 package Reportes.Gui;
 
-import java.io.File;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -50,20 +44,16 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 import javax.swing.UIManager;
-import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
-
-
 import Reportes.Controlador.ControladorReportes;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
 import com.nilo.plaf.nimrod.NimRODLookAndFeel;
 import com.nilo.plaf.nimrod.NimRODTheme;
-import com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolverException;
 
 /**
  * 
