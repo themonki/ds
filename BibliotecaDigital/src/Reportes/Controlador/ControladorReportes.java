@@ -35,7 +35,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosAgrupados(atributoUsuario, tituloReporte, tableData);
 	}
 	
-	public JasperPrint reporteUsuariosAgrupados(String atributoUsuario, String tituloReporte, String cualFecha, String fechaI, String fechaF) throws JRException
+	public JasperPrint reporteUsuariosAgrupados(String atributoUsuario, String cualFecha, String fechaI, String fechaF, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
 		TableDataSource tableData = daoReportes.consultaUsuariosAgrupados(atributoUsuario, cualFecha, fechaI, fechaF);
@@ -95,7 +95,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosAgrupadosTotales(tituloReporte, atributoUsuario, tableData);
 	}
 	
-	public JasperPrint reporteUsuariosAgrupadosTotales(String atributoUsuario, String tituloReporte, String cualFecha, String fechaI, String fechaF)throws JRException
+	public JasperPrint reporteUsuariosAgrupadosTotales(String atributoUsuario, String cualFecha, String fechaI, String fechaF, String tituloReporte)throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
 		TableDataSource tableData = daoReportes.consultaUsuariosAgrupadosTotales(atributoUsuario,cualFecha, fechaI, fechaF);
@@ -799,43 +799,65 @@ public class ControladorReportes
 		try
 		{
 			//System.out.println(c.consultaGenerica("select * from usuario"));
-			//c.generarReporte("recursos/documento_areas.pdf", c.reporteDocumentosAgrupadosArea("Reporte Documento Areas"));
-			//c.generarReporte("recursos/documento_tipo.pdf", c.reporteDocumentosAgrupadosTipo("Reporte Documento Tipo"));
-			//c.generarReporte("recursos/documento_formato.pdf", c.reporteDocumentosAgrupadosFormato("Reporte Documento Formato"));
-			//c.generarReporte("recursos/documento_autor.pdf", c.reporteDocumentosAgrupadosAutor("Reporte Documento Autores"));	
-			//c.generarReporte("recursos/documento_formato_total.pdf", c.reporteDocumentosAgrupadosFormatoTotales("Reporte Documento Formato Totales"));
-			//c.generarReporte("recursos/documento_tipo_total.pdf", c.reporteDocumentosAgrupadosTipoTotales("Reporte Documento Tipo Totales"));
-			//c.generarReporte("recursos/documento_area_total.pdf", c.reporteDocumentosAgrupadosAreaTotales("Reporte Documento Area Totales"));
-			//c.generarReporte("recursos/documento_autor_total.pdf", c.reporteDocumentosAgrupadosAutorTotales("Reporte Documento Autor Totales"));
+			c.generarReporte("recursos/reportes/documento_areas.pdf", c.reporteDocumentosAgrupadosArea("Reporte Documento Areas"));
+			c.generarReporte("recursos/reportes/documento_tipo.pdf", c.reporteDocumentosAgrupadosTipo("Reporte Documento Tipo"));
+			c.generarReporte("recursos/reportes/documento_formato.pdf", c.reporteDocumentosAgrupadosFormato("Reporte Documento Formato"));
+			c.generarReporte("recursos/reportes/documento_autor.pdf", c.reporteDocumentosAgrupadosAutor("Reporte Documento Autores"));	
+			c.generarReporte("recursos/reportes/documento_formato_total.pdf", c.reporteDocumentosAgrupadosFormatoTotales("Reporte Documento Formato Totales"));
+			c.generarReporte("recursos/reportes/documento_tipo_total.pdf", c.reporteDocumentosAgrupadosTipoTotales("Reporte Documento Tipo Totales"));
+			c.generarReporte("recursos/reportes/documento_area_total.pdf", c.reporteDocumentosAgrupadosAreaTotales("Reporte Documento Area Totales"));
+			c.generarReporte("recursos/reportes/documento_autor_total.pdf", c.reporteDocumentosAgrupadosAutorTotales("Reporte Documento Autor Totales"));
 			
-			//c.generarReporte("recursos/usuario_escolaridad.pdf", c.reporteUsuariosAgrupados("nivel_escolaridad", "Reporte Usuarios Nivel Escolaridad"));
-			//c.generarReporte("recursos/usuario_genero.pdf", c.reporteUsuariosAgrupados("genero", "Reporte Usuarios Genero"));
-			//c.generarReporte("recursos/usuario_tipo.pdf", c.reporteUsuariosAgrupados("tipo", "Reporte Usuarios Tipo"));
-			//c.generarReporte("recursos/usuario_vinculo.pdf", c.reporteUsuariosAgrupados("vinculo_univalle", "Reporte Usuarios Vinculo Univalle"));
-			//c.generarReporte("recursos/usuario_escolaridad_total.pdf", c.reporteUsuariosAgrupadosTotales("nivel_escolaridad", "Reporte Usuarios Nivel Escolaridad Total"));
-			//c.generarReporte("recursos/usuario_genero_total.pdf", c.reporteUsuariosAgrupadosTotales("genero", "Reporte Usuarios Genero Total"));
-			//c.generarReporte("recursos/usuario_tipo_total.pdf", c.reporteUsuariosAgrupadosTotales("tipo", "Reporte Usuarios Tipo Total"));
-			//c.generarReporte("recursos/usuario_vinculo_total.pdf", c.reporteUsuariosAgrupadosTotales("vinculo_univalle", "Reporte Usuarios Vinculo Univalle Totales"));
-			//c.generarReporte("recursos/usuario_fecha_nacimiento.pdf", c.reporteUsuariosAnio("fecha_nacimiento", "Reporte Usuarios por Fecha de Nacimiento"));
-			//c.generarReporte("recursos/usuario_fecha_registro.pdf", c.reporteUsuariosAnio("fecha_registro", "Reporte Usuarios por Fecha de Registro"));
+			c.generarReporte("recursos/reportes/usuario_escolaridad.pdf", c.reporteUsuariosAgrupados("nivel_escolaridad", "Reporte Usuarios Nivel Escolaridad"));
+			c.generarReporte("recursos/reportes/usuario_escolaridad_intervalo_nacimiento.pdf", c.reporteUsuariosAgrupados("nivel_escolaridad", "fecha_nacimiento","1991-03-10","2001-05-21","Reporte Usuarios Nivel Escolaridad"));
+			c.generarReporte("recursos/reportes/usuario_escolaridad_intervalo_registro.pdf", c.reporteUsuariosAgrupados("nivel_escolaridad", "fecha_registro","1991-03-10","2001-05-21","Reporte Usuarios Nivel Escolaridad"));
+			c.generarReporte("recursos/reportes/usuario_genero.pdf", c.reporteUsuariosAgrupados("genero", "Reporte Usuarios Genero"));
+			c.generarReporte("recursos/reportes/usuario_genero_intervalo_nacimiento.pdf", c.reporteUsuariosAgrupados("genero", "fecha_nacimiento","1991-03-10","2001-05-21","Reporte Usuarios Genero"));
+			c.generarReporte("recursos/reportes/usuario_genero_intervalo_registro.pdf", c.reporteUsuariosAgrupados("genero", "fecha_registro","1991-03-10","2001-05-21","Reporte Usuarios Genero"));
+			c.generarReporte("recursos/reportes/usuario_tipo.pdf", c.reporteUsuariosAgrupados("tipo", "Reporte Usuarios Tipo"));
+			c.generarReporte("recursos/reportes/usuario_tipo_intervalo_nacimiento.pdf", c.reporteUsuariosAgrupados("tipo", "fecha_nacimiento","1991-03-10","2001-05-21","Reporte Usuarios Tipo"));
+			c.generarReporte("recursos/reportes/usuario_tipo_intervalo_registro.pdf", c.reporteUsuariosAgrupados("tipo", "fecha_registro","1991-03-10","2001-05-21","Reporte Usuarios Tipo"));
+			c.generarReporte("recursos/reportes/usuario_vinculo.pdf", c.reporteUsuariosAgrupados("vinculo_univalle", "Reporte Usuarios Vinculo Univalle"));
+			c.generarReporte("recursos/reportes/usuario_vinculo_intervalo_nacimiento.pdf", c.reporteUsuariosAgrupados("vinculo_univalle", "fecha_nacimiento","1991-03-10","2001-05-21","Reporte Usuarios Vinculo Univalle"));
+			c.generarReporte("recursos/reportes/usuario_vinculo_intervalo_registro.pdf", c.reporteUsuariosAgrupados("vinculo_univalle", "fecha_registro","1991-03-10","2001-05-21","Reporte Usuarios Vinculo Univalle"));
+			c.generarReporte("recursos/reportes/usuario_escolaridad_total.pdf", c.reporteUsuariosAgrupadosTotales("nivel_escolaridad", "Reporte Usuarios Nivel Escolaridad Total"));
+			c.generarReporte("recursos/reportes/usuario_escolaridad_total_intervalo_nacimiento.pdf", c.reporteUsuariosAgrupadosTotales("nivel_escolaridad", "fecha_nacimiento","1991-03-10","2001-05-21","Reporte Usuarios Nivel Escolaridad Total"));
+			c.generarReporte("recursos/reportes/usuario_escolaridad_total_intervalo_registro.pdf", c.reporteUsuariosAgrupadosTotales("nivel_escolaridad", "fecha_registro","1991-03-10","2001-05-21","Reporte Usuarios Nivel Escolaridad Total"));
+			c.generarReporte("recursos/reportes/usuario_genero_total.pdf", c.reporteUsuariosAgrupadosTotales("genero", "Reporte Usuarios Genero Total"));
+			c.generarReporte("recursos/reportes/usuario_genero_total_intervalo_nacimiento.pdf", c.reporteUsuariosAgrupadosTotales("genero", "fecha_nacimiento","1991-03-10","2001-05-21","Reporte Usuarios Genero Total"));
+			c.generarReporte("recursos/reportes/usuario_genero_total_intervalo_registro.pdf", c.reporteUsuariosAgrupadosTotales("genero", "fecha_registro","1991-03-10","2001-05-21","Reporte Usuarios Genero Total"));
+			c.generarReporte("recursos/reportes/usuario_tipo_total.pdf", c.reporteUsuariosAgrupadosTotales("tipo", "Reporte Usuarios Tipo Total"));
+			c.generarReporte("recursos/reportes/usuario_tipo_total_intervalo_nacimiento.pdf", c.reporteUsuariosAgrupadosTotales("tipo", "fecha_nacimiento","1991-03-10","2001-05-21","Reporte Usuarios Tipo Total"));
+			c.generarReporte("recursos/reportes/usuario_tipo_total_intervalo_registro.pdf", c.reporteUsuariosAgrupadosTotales("tipo", "fecha_registro","1991-03-10","2001-05-21","Reporte Usuarios Tipo Total"));
+			c.generarReporte("recursos/reportes/usuario_vinculo_total.pdf", c.reporteUsuariosAgrupadosTotales("vinculo_univalle", "Reporte Usuarios Vinculo Univalle Totales"));
+			c.generarReporte("recursos/reportes/usuario_vinculo_total_intervalo_nacimiento.pdf", c.reporteUsuariosAgrupadosTotales("vinculo_univalle", "fecha_nacimiento","1991-03-10","2001-05-21","Reporte Usuarios Vinculo Univalle Total"));
+			c.generarReporte("recursos/reportes/usuario_vinculo_total_intervalo_registro.pdf", c.reporteUsuariosAgrupadosTotales("vinculo_univalle", "fecha_registro","1991-03-10","2001-05-21","Reporte Usuarios Vinvulo Univalle Total"));
+			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento.pdf", c.reporteUsuariosAnio("fecha_nacimiento", "Reporte Usuarios por Fecha de Nacimiento"));
+			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento_intervalo_anio.pdf", c.reporteUsuariosAnio("fecha_nacimiento", "1989","2003","Reporte Usuarios por Fecha de Nacimiento"));
+			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento_intervalo_mes.pdf", c.reporteUsuariosAnioMes("fecha_nacimiento","05","11", "Reporte Usuarios por Fecha de Nacimiento"));
+			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento_intervalo_anio_mes.pdf", c.reporteUsuariosAnioMes("fecha_nacimiento","1989","2003","05","11", "Reporte Usuarios por Fecha de Nacimiento"));
+			c.generarReporte("recursos/reportes/usuario_fecha_registro.pdf", c.reporteUsuariosAnio("fecha_registro", "Reporte Usuarios por Fecha de Registro"));
+			c.generarReporte("recursos/reportes/usuario_fecha_registro_intervalo_anio.pdf", c.reporteUsuariosAnio("fecha_registro", "1989","2003","Reporte Usuarios por Fecha de Registro"));
+			c.generarReporte("recursos/reportes/usuario_fecha_registro_intervalo_mes.pdf", c.reporteUsuariosAnioMes("fecha_registro","05","11", "Reporte Usuarios por Fecha de Registro"));
+			c.generarReporte("recursos/reportes/usuario_fecha_registro_intervalo_anio_mes.pdf", c.reporteUsuariosAnioMes("fecha_registro","1989","2003","05","11", "Reporte Usuarios por Fecha de Registro"));
 			
-			//c.generarReporte("recursos/areas.pdf", c.reporteAreasAgrupadas("Reporte Areas"));
-			//c.generarReporte("recursos/areas_totales.pdf", c.reporteAreasAgrupadasTotales("Reporte Areas Totales"));
+			c.generarReporte("recursos/reportes/areas.pdf", c.reporteAreasAgrupadas("Reporte Areas"));
+			c.generarReporte("recursos/reportes/areas_totales.pdf", c.reporteAreasAgrupadasTotales("Reporte Areas Totales"));
 			
-			//c.generarReporte("recursos/descargado_fecha.pdf", c.reporteDocumentosDescargadosFecha("Reporte Documentos Descargados por Fecha"));
-			//c.generarReporte("recursos/descargado_fecha_intervalo.pdf", c.reporteDocumentosDescargadosFecha("1989-02-15","2010-01-12","Reporte Documentos Descargados por Fecha"));
-			//c.generarReporte("recursos/descargado_area.pdf", c.reporteDocumentosDescargadosArea("Reporte Documentos Descargados por Área"));
-			//c.generarReporte("recursos/descargado_area_intervalo.pdf", c.reporteDocumentosDescargadosArea("1989-02-15","2010-01-12","Reporte Documentos Descargados por Área"));
-			//c.generarReporte("recursos/descargado_usuario.pdf", c.reporteDocumentosDescargadosUsuario("Reporte Documentos Descargados por Usuario"));
-			//c.generarReporte("recursos/descargado_usuario_intervalo.pdf", c.reporteDocumentosDescargadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Descargados por Usuario"));
-			//c.generarReporte("recursos/consultado_fecha.pdf", c.reporteDocumentosConsultadosFecha("Reporte Documentos Consultados por Fecha"));
-			//c.generarReporte("recursos/consultado_fecha_intervalo.pdf", c.reporteDocumentosConsultadosFecha("2011-05-20","2011-05-30","Reporte Consultados Descargados por Fecha"));
-			//c.generarReporte("recursos/consultado_area.pdf", c.reporteDocumentosConsultadosArea("Reporte Documentos Consultados por Área"));
-			//c.generarReporte("recursos/consultado_area_intervalo.pdf", c.reporteDocumentosConsultadosArea("2011-05-20","2011-05-30","Reporte Documentos Consultados por Área"));
-			//c.generarReporte("recursos/consultado_usuario.pdf", c.reporteDocumentosConsultadosUsuario("Reporte Documentos Consultados por Usuario"));
-			//c.generarReporte("recursos/consutlado_usuario_intervalo.pdf", c.reporteDocumentosConsultadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Consultados por Usuario"));
+			c.generarReporte("recursos/reportes/descargado_fecha.pdf", c.reporteDocumentosDescargadosFecha("Reporte Documentos Descargados por Fecha"));
+			c.generarReporte("recursos/reportes/descargado_fecha_intervalo.pdf", c.reporteDocumentosDescargadosFecha("1989-02-15","2010-01-12","Reporte Documentos Descargados por Fecha"));
+			c.generarReporte("recursos/reportes/descargado_area.pdf", c.reporteDocumentosDescargadosArea("Reporte Documentos Descargados por Área"));
+			c.generarReporte("recursos/reportes/descargado_area_intervalo.pdf", c.reporteDocumentosDescargadosArea("1989-02-15","2010-01-12","Reporte Documentos Descargados por Área"));
+			c.generarReporte("recursos/reportes/descargado_usuario.pdf", c.reporteDocumentosDescargadosUsuario("Reporte Documentos Descargados por Usuario"));
+			c.generarReporte("recursos/reportes/descargado_usuario_intervalo.pdf", c.reporteDocumentosDescargadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Descargados por Usuario"));
+			c.generarReporte("recursos/reportes/consultado_fecha.pdf", c.reporteDocumentosConsultadosFecha("Reporte Documentos Consultados por Fecha"));
+			c.generarReporte("recursos/reportes/consultado_fecha_intervalo.pdf", c.reporteDocumentosConsultadosFecha("2011-05-20","2011-05-30","Reporte Consultados Descargados por Fecha"));
+			c.generarReporte("recursos/reportes/consultado_area.pdf", c.reporteDocumentosConsultadosArea("Reporte Documentos Consultados por Área"));
+			c.generarReporte("recursos/reportes/consultado_area_intervalo.pdf", c.reporteDocumentosConsultadosArea("2011-05-20","2011-05-30","Reporte Documentos Consultados por Área"));
+			c.generarReporte("recursos/reportes/consultado_usuario.pdf", c.reporteDocumentosConsultadosUsuario("Reporte Documentos Consultados por Usuario"));
+			c.generarReporte("recursos/reportes/consutlado_usuario_intervalo.pdf", c.reporteDocumentosConsultadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Consultados por Usuario"));
 			
-			throw new JRException("no se");
+			//throw new JRException("no se");
 		}catch(JRException e)
 		{
 			e.printStackTrace();

@@ -453,7 +453,7 @@ public class GuiReportes extends JTabbedPane{
 								JasperPrint reporte;
 								if(habilitarFechas)
 								{
-									reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, encabezado, fechaBusqueda, fechaInicioString, fechaFinString);
+									reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
 									controlador.generarReporte(rutaFinal, reporte);
 								}else
 								{
@@ -491,7 +491,7 @@ public class GuiReportes extends JTabbedPane{
 								JasperPrint reporte;
 								if(habilitarFechas)
 								{
-									reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado, fechaBusqueda, fechaInicioString, fechaFinString);
+									reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
 									controlador.generarReporte(rutaFinal, reporte);
 								}else
 								{
