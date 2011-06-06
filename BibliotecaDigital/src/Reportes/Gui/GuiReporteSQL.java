@@ -86,10 +86,12 @@ public class GuiReporteSQL extends JPanel {
 		restricciones.gridy++;
 		restricciones.gridwidth=1;
 		restricciones.gridx=1;
-		panelppal.add(botonConsulta,restricciones);
+		restricciones.anchor=GridBagConstraints.WEST;
+		
+		panelppal.add(botonEsquemas,restricciones);
 		restricciones.anchor= GridBagConstraints.EAST;
 		restricciones.gridx=1;
-		panelppal.add(botonEsquemas,restricciones);
+		panelppal.add(botonConsulta,restricciones);
 		restricciones.gridy++;
 		restricciones.gridwidth=3;
 		restricciones.gridx=0;
