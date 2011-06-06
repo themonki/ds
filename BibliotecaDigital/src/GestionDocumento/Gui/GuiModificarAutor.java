@@ -82,8 +82,8 @@ public class GuiModificarAutor extends JFrame {
 		panelPrincipal.setBorder(borde);
 		
 		// --------------------------------------------------------
-		panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
-		panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		//panel2.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
+		//panel.setBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder));
 		// ---------------------------------------------------------
 		iniciarLabels();
 		// ---------------------------------------------------------
