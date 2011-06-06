@@ -538,7 +538,13 @@ public class GuiReportesAvanzados extends JPanel{
 				botonDescargasConsultas.getModel().setPressed(true);
 				scrollPanel.setViewportView(panelDescargasConsultas);
 				panelPrincipal.updateUI();	
-				
+			}
+			if (e.getSource() == botonDocumento)
+			{
+				botonDocumento.getModel().setArmed(true);
+				botonDocumento.getModel().setPressed(true);
+				scrollPanel.setViewportView(panelDocumento);
+				panelPrincipal.updateUI();
 			}
 				
 		}
