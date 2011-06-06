@@ -64,9 +64,6 @@ SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, d.
 --usuarios por fecha de nacimiento para todos los anio y todos los meses organiado
 SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u ORDER BY date_trunc('year', u.fecha_nacimiento), date_trunc('month',  u.fecha_nacimiento);
 
---usuarios por fecha de nacimiento para todos los anio y todos los meses totales
-
-
 --usuarios por fecha de registro para todos los anio y todos los meses organiado
 SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro);
 
@@ -87,6 +84,30 @@ SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha
 
 --usuarios por fecha registro con años y mes restringidos
 SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, u.login, u.nombre1, u.apellido1, u.email, u.vinculo_univalle, u.tipo FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 5 AND 8 ORDER BY date_trunc('year', u.fecha_registro), date_trunc('month',  u.fecha_registro);
+---------------------------------
+--usuarios por fecha de nacimiento para todos los anio y todos los meses totales
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, count(u.login) AS cuantos FROM usuario AS u GROUP BY anio,mes ORDER BY anio, mes;
+
+--usuarios por fecha de registro para todos los anio y todos los meses totales
+SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, count(u.login) AS cuantos FROM usuario AS u GROUP BY anio, mes ORDER BY anio, mes;
+
+--usuarios por fecha de nacimiento para anios restringidos y todos los meses totales
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2010 Group BY ORDER BY anio, mes;
+
+--usuarios por fecha de resgistro para anios restringidos y todos los meses organiado
+SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 GROUP BY anio, mes ORDER BY anio, mes;
+
+--usuarios por fecha nacimiento para todos los anio y mese restringidos
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN 3 AND 8 GROUP BY anio,mes ORDER BY anio,mes;
+
+--usuarios por fecha registro para todos los anio y meses restringidos
+SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 03 AND 08 GROUP BY anio,mes ORDER BY anio,mes;
+
+--usuarios por fecha nacimiento con años y mes restringidos
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN 5 AND 8 GROUP BY anio,mes ORDER BY anio,mes;
+
+--usuarios por fecha registro con años y mes restringidos
+SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 5 AND 8 GROUP BY anio,mes ORDER BY anio,mes;
 --************************************************************************************
 
 

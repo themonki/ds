@@ -61,6 +61,7 @@ public class DaoReportes
 				+ fechaInicio + "' AND '" + FechaFin + "' "
 				+ "ORDER BY agrupado";
 
+		//System.out.println(consultaSql);
 		return procesarDatosUsuario(consultaSql, atributoUsuario);
 	}
 
