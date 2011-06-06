@@ -48,6 +48,14 @@ import Consultas.Logica.Consulta;
 import Consultas.Controlador.*;
 import Documento.Logica.Documento;
 
+/**
+ * Clase que permite manejar el resultado de las consultas generales y
+ * avanzadas que realizan los usuarios para buscar los documentos 
+ * digitales de la Biblioteca Digital.
+ * 
+ * @author Edgar Andres Moncada
+ * 
+ */
 public class GuiResultadoConsulta extends JScrollPane{
 	
 	/**

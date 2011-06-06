@@ -50,6 +50,15 @@ import Principal.Gui.GuiCatalogador;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar los datos del los documentos que son modificados
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Luis Felipe Vargas
+ * @author Edgar Andres Moncada
+ * 
+ */
 public class GuiModificarDoc  extends GuiCatalogar
 {
 	/**

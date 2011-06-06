@@ -60,11 +60,20 @@ import GestionDocumento.Gui.GuiIngresarArea;
 import GestionDocumento.Gui.GuiIngresarAutor;
 import GestionDocumento.Gui.GuiIngresarPalabraClave;
 import GestionDocumento.Gui.GuiIngresarTipoMaterial;
+import Usuarios.Gui.GuiRegistroModificar;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
 
-
+/**
+ * Clase que permite manejar los datos del los documentos que son catalogados
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Luis Felipe Vargas
+ * @author Edgar Andres Moncada
+ * 
+ */
 public class GuiCatalogar extends JScrollPane{
 
 
@@ -110,7 +119,7 @@ public class GuiCatalogar extends JScrollPane{
 	protected ControladorDocumento controladorDocumento;
 	//-------------Objetos de la base de datos
 	protected Documento doc;
-
+	protected GuiRegistroModificar guiRegistroModi;
 
 	public GuiCatalogar() {
 	}
@@ -130,7 +139,8 @@ public class GuiCatalogar extends JScrollPane{
 
 	public void setBotonCatalogar(Button b){ panel.remove(this.botonCatalogar);botonCatalogar = null;
 	botonCatalogar = b; panel.add(botonCatalogar);}
-
+	
+	public void setGuiRegistroModi(GuiRegistroModificar g){this.guiRegistroModi=g;}
 
 	protected void initComponents(){
 
@@ -406,7 +416,8 @@ public class GuiCatalogar extends JScrollPane{
 		//-------------------------------------------
 	}
 	protected void nuevaArea() {
-		GuiIngresarArea guiArea=	new GuiIngresarArea(this);
+		GuiIngresarArea guiArea=new GuiIngresarArea(this);
+		guiArea.setGuiRegistroModi(guiRegistroModi);
 		guiArea.setVisible(true);
 		//guiArea.setAlwaysOnTop(true);			
 	}

@@ -40,9 +40,18 @@ import javax.swing.border.TitledBorder;
 import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Logica.AreaConocimiento;
+import Usuarios.Gui.GuiRegistroModificar;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar los datos de las nuevas areas de conocimiento que son adicionadas
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Luis Felipe Vargas
+ * 
+ */
 public class GuiIngresarArea extends JFrame {
 
 	/**
@@ -55,6 +64,7 @@ public class GuiIngresarArea extends JFrame {
 	JTextArea campoDescripcionArea;
 	Button botonIngresarArea;
 	GuiCatalogar guiCatalogarModi;
+	GuiRegistroModificar guiRegistroModi;
 
 	
 	JPanel panel, panel2, panel3, panel4, panel5, panelPrincipal;
@@ -71,6 +81,10 @@ public class GuiIngresarArea extends JFrame {
 		initComponents();
 		this.guiCatalogarModi=guiCatalogarModi;
 		
+		
+	}
+	public void setGuiRegistroModi(GuiRegistroModificar guiUsuario){
+		this.guiRegistroModi=guiUsuario;
 	}
 
 	public void initComponents() {
@@ -195,8 +209,14 @@ public class GuiIngresarArea extends JFrame {
 				if(value==0){
 					if(controlador.insertarAreaConocimiento(contador, nombre,
 							descripcion, padre) >= 1) {
-						guiCatalogarModi.vectoresParaComboBox();
-						guiCatalogarModi.actualizarAreas();
+						if(guiCatalogarModi!=null){
+							guiCatalogarModi.vectoresParaComboBox();
+							guiCatalogarModi.actualizarAreas();
+						}
+						if(guiRegistroModi!= null){
+							guiRegistroModi.actualizarAreasInteres();
+						}
+						
 						JOptionPane.showMessageDialog(null,
 								"Se ingreso el Area de Conocimiento correctamente");
 						dispose();

@@ -37,6 +37,15 @@ import Documento.Gui.GuiCatalogar;
 import GestionDocumento.Controlador.ControladorPalabraClave;
 import Utilidades.Button;
 import Utilidades.Estilos;
+
+/**
+ * Clase que permite manejar los datos de las nuevas palabras clave que son adicionadas
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Luis Felipe Vargas
+ * 
+ */
 public class GuiIngresarPalabraClave extends JFrame {
 
 	/**
@@ -50,7 +59,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 
 	JPanel panel1, panel, panel2, panel3;
 	
-	GuiCatalogar guicatalogarModi ;
+	GuiCatalogar guiCatalogarModi ;
 
 	public GuiIngresarPalabraClave() {
 		super(":::Ingresar Palabra Clave:::");
@@ -62,7 +71,7 @@ public class GuiIngresarPalabraClave extends JFrame {
 		super(":::Ingresar Palabra Clave:::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
-		this.guicatalogarModi=guicatalogarModi;
+		this.guiCatalogarModi=guicatalogarModi;
 	}
 	
 
@@ -162,10 +171,12 @@ public class GuiIngresarPalabraClave extends JFrame {
 					ControladorPalabraClave conPalabra = new ControladorPalabraClave();
 					if(conPalabra.insertarPalabraClave(campoNombre.getText(), campoDescripcion.getText())>=1)
 					{
-					guicatalogarModi.vectoresParaComboBox();
-					guicatalogarModi.actualizarPalabras();
-					JOptionPane.showMessageDialog(null, "Se ingreso la Palabra Clave correctamente");
-					dispose();
+						if(guiCatalogarModi!=null){
+							guiCatalogarModi.vectoresParaComboBox();
+							guiCatalogarModi.actualizarPalabras();
+						}
+						JOptionPane.showMessageDialog(null, "Se ingreso la Palabra Clave correctamente");
+						dispose();
 					}else{
 						JOptionPane.showMessageDialog(null, "La Palabra Clave ya existe","ERROR", JOptionPane.ERROR_MESSAGE);
 					}

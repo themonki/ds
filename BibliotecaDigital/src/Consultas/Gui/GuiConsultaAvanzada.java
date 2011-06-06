@@ -44,12 +44,18 @@ import GestionDocumento.Logica.AreaConocimiento;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar las consultas avanzadas que realizan
+ * los usuarios para buscar los documentos digitales de la Biblioteca
+ * Digital.
+ * 
+ * @author 
+ * 
+ */
 public class GuiConsultaAvanzada extends JScrollPane
 {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JLabel palabraClave,area ,titulo,autor,idioma,fechaPublicacionAntes, fechaPublicacionDespues,formatoArchivo,etiquetaCantidadResultado;
 	private static JTextField CAMPO_PALABRA_CLAVE;

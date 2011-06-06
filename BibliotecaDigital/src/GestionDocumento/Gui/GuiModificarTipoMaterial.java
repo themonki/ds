@@ -41,6 +41,14 @@ import GestionDocumento.Logica.TipoMaterial;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar los datos para modificar los tipos de material realizado
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Edgar Andres Moncada
+ * 
+ */
 public class GuiModificarTipoMaterial extends JFrame {
 
 	/**
@@ -58,7 +66,7 @@ public class GuiModificarTipoMaterial extends JFrame {
 
 	JPanel panel, panel1, panel2, panel3, panel4, panel5, panelPrincipal;
 	
-	GuiCatalogar guicatalogarModi;
+	GuiCatalogar guiCatalogarModi;
 
 	public GuiModificarTipoMaterial() {
 		super("::Modificar Tipo Material::");
@@ -68,7 +76,7 @@ public class GuiModificarTipoMaterial extends JFrame {
 	public GuiModificarTipoMaterial(GuiCatalogar guicatalogarModi) {
 		super("::Modificar Tipo Material::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
-		this.guicatalogarModi=guicatalogarModi;
+		this.guiCatalogarModi=guicatalogarModi;
 		initComponents();
 	}
 
@@ -185,9 +193,12 @@ public class GuiModificarTipoMaterial extends JFrame {
 					tp.setNombre((String)campoConsulta.getSelectedItem());
 					tp.setDescripcion(campoDescripcion.getText());
 					if(conMaterial.actualizarTipoMaterial(tp)>=1)
-					{
-						guicatalogarModi.vectoresParaComboBox();
-						guicatalogarModi.actualizarTipoMaterial();
+					{	
+						if(guiCatalogarModi!=null){
+							guiCatalogarModi.vectoresParaComboBox();
+							guiCatalogarModi.actualizarTipoMaterial();
+						}
+						
 						JOptionPane.showMessageDialog(null, "Se modifico el Tipo de Material Correctamente");
 						dispose();
 					}else{

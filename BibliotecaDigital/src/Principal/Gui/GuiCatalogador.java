@@ -52,6 +52,7 @@ import Consultas.Gui.GuiResultadoConsulta;
 import Consultas.Logica.Consulta;
 import Documento.Gui.GuiCatalogar;
 import Documento.Gui.GuiModificarDoc;
+import GestionDocumento.Gui.GuiGestionDocumento;
 import Usuarios.Gui.GuiNovedades;
 import Usuarios.Gui.GuiRegistroModificar;
 import Usuarios.Logica.Usuario;
@@ -80,11 +81,12 @@ public class GuiCatalogador extends JFrame
 
 	// Estados para cada una de las acciones que se puede realiza sirven de memoria a la gui.
 	private String estadoInicial = "Inicio";
-	private String estadoModificacion = "ModificandoUsuario";
-	private String estadoConsultaAvanzada = "ConsultaAvanzada";	
-	private String estadoCatalogando = "CatalogandoDocumento";
+	private String estadoModificacion = "Modificando Usuario";
+	private String estadoConsultaAvanzada = "Consulta Avanzada";	
+	private String estadoCatalogando = "Catalogando Documento";
+	private String estadoGestionDocumento = "Gestion de Documento";
 	private String estadoModificandoDoc = "Modificando Documento";
-	private String estadoNovedades = "NovedadesUsuario";
+	private String estadoNovedades = "Novedades Usuario";
 
 	// Opciones basicas para un usuario
 	private JPanel panelOpcionesGenerales;		
@@ -94,6 +96,7 @@ public class GuiCatalogador extends JFrame
 	private Button logout;
 	private Button catalogar;
 	private Button novedades;
+	private Button gestionDocumento;
 
 	private static JLabel ESTADO;
 
@@ -111,7 +114,8 @@ public class GuiCatalogador extends JFrame
 
 	// otros paneles
 	private GuiRegistroModificar panelModificacion;
-	private GuiCatalogar panelCatalogarModificar;
+	private GuiCatalogar panelCatalogar;
+	private GuiGestionDocumento panelGestionDocumento;
 	private static GuiConsultaBasica panelConsultaBasica;
 	private static GuiConsultaAvanzada panelConsultaAvanzada;
 	public static GuiModificarDoc panelModificarDoc;
@@ -156,7 +160,10 @@ public class GuiCatalogador extends JFrame
 		
 		// se instancias paneles adicionales
 		panelModificacion = new GuiRegistroModificar(usuario,1);
-		panelCatalogarModificar = new GuiCatalogar(usuario.getLogin());
+		panelCatalogar = new GuiCatalogar(usuario.getLogin());
+		panelCatalogar.setGuiRegistroModi(panelModificacion);
+		panelGestionDocumento = new GuiGestionDocumento(panelCatalogar);
+		panelGestionDocumento.setGuiRegistroModi(panelModificacion);
 		panelConsultaBasica = new GuiConsultaBasica();
 		panelConsultaAvanzada = new GuiConsultaAvanzada();
 		panelNovedades = new GuiNovedades();
@@ -219,6 +226,11 @@ public class GuiCatalogador extends JFrame
 		
 		novedades = new Button("Novedades");
 		novedades.addActionListener(manejador);
+		
+		gestionDocumento = new Button("Gestion de Documento");
+		gestionDocumento.setIcon(new ImageIcon("recursos/iconos/add_document.png"));		
+		gestionDocumento.addActionListener(manejador);
+		
 		logout = new Button("Salir");
 		logout.setIcon(new ImageIcon("recursos/iconos/logout.png"));
 		logout.addActionListener(manejador);
@@ -249,6 +261,8 @@ public class GuiCatalogador extends JFrame
 		panelOpcionesGenerales.add(documento, restricciones);
 		restricciones.gridy++;
 		panelOpcionesGenerales.add(catalogar, restricciones);
+		restricciones.gridy++;
+		panelOpcionesGenerales.add(gestionDocumento, restricciones);
 		restricciones.gridy++;
 		
 		panelOpcionesGenerales.add(cuenta, restricciones);
@@ -312,7 +326,7 @@ public class GuiCatalogador extends JFrame
 				
 				}else if(ESTADO.getText().equals(estadoCatalogando))
 				{
-					CONTENEDOR.remove(panelCatalogarModificar);
+					CONTENEDOR.remove(panelCatalogar);
 					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
 					ESTADO.setText(estadoModificacion);
 					repaint();
@@ -331,6 +345,12 @@ public class GuiCatalogador extends JFrame
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(panelModificacion, BorderLayout.CENTER);
+					ESTADO.setText(estadoModificacion);
+					repaint();
+					
 				}
 
 			}else if(evento.getSource() == volver)
@@ -353,7 +373,7 @@ public class GuiCatalogador extends JFrame
 				
 				}else if(ESTADO.getText().equals(estadoCatalogando))
 				{
-					CONTENEDOR.remove(panelCatalogarModificar);
+					CONTENEDOR.remove(panelCatalogar);
 					CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
 					ESTADO.setText(estadoInicial);
 					repaint();
@@ -372,6 +392,12 @@ public class GuiCatalogador extends JFrame
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(panelConsultaBasica, BorderLayout.CENTER);
+					ESTADO.setText(estadoInicial);
+					repaint();
+					
 				}
 				
 			}
@@ -399,7 +425,7 @@ public class GuiCatalogador extends JFrame
 				
 				}else if(ESTADO.getText().equals(estadoCatalogando))
 				{
-					CONTENEDOR.remove(panelCatalogarModificar);
+					CONTENEDOR.remove(panelCatalogar);
 					CONTENEDOR.add(panelConsultaAvanzada, BorderLayout.CENTER);
 					ESTADO.setText(estadoConsultaAvanzada);
 					repaint();
@@ -422,6 +448,12 @@ public class GuiCatalogador extends JFrame
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(panelConsultaAvanzada, BorderLayout.CENTER);
+					ESTADO.setText(estadoConsultaAvanzada);
+					repaint();
+					
 				}
 			}
 			else if(evento.getSource() == catalogar)
@@ -430,7 +462,7 @@ public class GuiCatalogador extends JFrame
 				{
 					GuiConsultaBasica.restaurarTodo();
 					CONTENEDOR.remove(panelConsultaBasica);
-					CONTENEDOR.add(panelCatalogarModificar);
+					CONTENEDOR.add(panelCatalogar);
 					ESTADO.setText(estadoCatalogando);
 					repaint();
 					
@@ -438,34 +470,88 @@ public class GuiCatalogador extends JFrame
 				{
 					GuiConsultaAvanzada.restaurarTodo();
 					CONTENEDOR.remove(panelConsultaAvanzada);
-					CONTENEDOR.add(panelCatalogarModificar);
+					CONTENEDOR.add(panelCatalogar);
 					ESTADO.setText(estadoCatalogando);
 					repaint();
 					
 				}else if(ESTADO.getText().equals(estadoModificacion))
 				{
 					CONTENEDOR.remove(panelModificacion);
-					CONTENEDOR.add(panelCatalogarModificar);
+					CONTENEDOR.add(panelCatalogar);
 					ESTADO.setText(estadoCatalogando);
 					repaint();
 				}else if(ESTADO.getText().equals(estadoModificandoDoc))
 				{
 					CONTENEDOR.remove(panelModificarDoc);
-					CONTENEDOR.add(panelCatalogarModificar);
+					CONTENEDOR.add(panelCatalogar);
 					ESTADO.setText(estadoCatalogando);
 					repaint();
 				}else if(ESTADO.getText().equals(estadoNovedades))
 				{
 					
 					CONTENEDOR.remove(panelNovedades);
-					CONTENEDOR.add(panelCatalogarModificar, BorderLayout.CENTER);
+					CONTENEDOR.add(panelCatalogar, BorderLayout.CENTER);
 					ESTADO.setText(estadoCatalogando);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(panelCatalogar, BorderLayout.CENTER);
+					ESTADO.setText(estadoCatalogando);
+					repaint();
+					
 				}
 				
-			}else if(evento.getSource() == novedades)
+			}else if (evento.getSource() ==gestionDocumento)
+			{
+				if(ESTADO.getText().equals(estadoInicial))
+				{
+					GuiConsultaBasica.restaurarTodo();
+					CONTENEDOR.remove(panelConsultaBasica);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+					
+				}else if(ESTADO.getText().equals(estadoConsultaAvanzada))
+				{
+					GuiConsultaAvanzada.restaurarTodo();
+					CONTENEDOR.remove(panelConsultaAvanzada);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+					
+				}else if(ESTADO.getText().equals(estadoModificacion))
+				{
+					CONTENEDOR.remove(panelModificacion);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+				}else if(ESTADO.getText().equals(estadoModificandoDoc))
+				{
+					CONTENEDOR.remove(panelModificarDoc);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+				}else if(ESTADO.getText().equals(estadoCatalogando))
+				{
+					
+					CONTENEDOR.remove(panelCatalogar);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();
+					
+				}else if(ESTADO.getText().equals(estadoNovedades))
+				{
+					
+					CONTENEDOR.remove(panelNovedades);
+					CONTENEDOR.add(panelGestionDocumento);
+					ESTADO.setText(estadoGestionDocumento);
+					repaint();				
+					
+				}
+			}
+			else if(evento.getSource() == novedades)
 			{
 				GuiResultadoConsulta.TIPO_CONSULTA = 3;
 				if(ESTADO.getText().equals(estadoInicial))
@@ -499,12 +585,17 @@ public class GuiCatalogador extends JFrame
 				}else if(ESTADO.getText().equals(estadoCatalogando))
 				{
 					
-					CONTENEDOR.remove(panelCatalogarModificar);
+					CONTENEDOR.remove(panelCatalogar);
 					CONTENEDOR.add(panelNovedades);
 					ESTADO.setText(estadoNovedades);
 					repaint();
 					
 					//JOptionPane.showMessageDialog(null,"Consulta Avanzada en Construccion");
+				}else if (ESTADO.getText().equals(estadoGestionDocumento)){
+					CONTENEDOR.remove(panelGestionDocumento);
+					CONTENEDOR.add(panelNovedades);
+					ESTADO.setText(estadoNovedades);
+					repaint();					
 				}
 				
 			}

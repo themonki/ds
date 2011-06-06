@@ -41,6 +41,14 @@ import GestionDocumento.Logica.PalabraClave;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
+/**
+ * Clase que permite manejar los datos para modificar las palabras clave realizado
+ * por los usuarios con perfil de catalogador y con perfil de administrador
+ * de la Biblioteca Digital.
+ * 
+ * @author Edgar Andres Moncada
+ * 
+ */
 public class GuiModificarPalabraClave extends JFrame {
 
 	/**
@@ -57,7 +65,7 @@ public class GuiModificarPalabraClave extends JFrame {
 	ManejadorCombo manejadorCombo;
 	JPanel panel1, panel, panel2, panel3;
 	
-	GuiCatalogar guicatalogarModi ;
+	GuiCatalogar guiCatalogarModi ;
 
 	public GuiModificarPalabraClave() {
 		super(":::Modificar Palabra Clave:::");
@@ -69,7 +77,7 @@ public class GuiModificarPalabraClave extends JFrame {
 		super(":::Modificar Palabra Clave:::");
 		setIconImage(new ImageIcon("recursos/iconos/add.png").getImage());
 		initComponents();
-		this.guicatalogarModi=guicatalogarModi;
+		this.guiCatalogarModi=guicatalogarModi;
 	}
 	
 
@@ -192,8 +200,10 @@ public class GuiModificarPalabraClave extends JFrame {
 					conPalabra.actualizarPalabraClave(pc);
 					if(conPalabra.actualizarPalabraClave(pc)>=1)
 					{
-						guicatalogarModi.vectoresParaComboBox();
-						guicatalogarModi.actualizarPalabras();
+						if(guiCatalogarModi!=null){
+							guiCatalogarModi.vectoresParaComboBox();
+							guiCatalogarModi.actualizarPalabras();
+						}
 						JOptionPane.showMessageDialog(null, "Se Modifico la Palabra Clave correctamente");
 						dispose();
 					}else{
