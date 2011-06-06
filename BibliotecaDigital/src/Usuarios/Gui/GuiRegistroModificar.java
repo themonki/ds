@@ -529,6 +529,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		campoGenero.setSelectedIndex(0);
 		campoAreasInteres = new JComboBox(areasInteresArray);
 		campoAreasInteres.addActionListener(manejadorComboBox);
+		campoAreasInteres.setSelectedIndex(-1);
 		campoVinculoUnivalle = new JComboBox(vinculoUnivalleArray);
 		campoVinculoUnivalle.setSelectedIndex(0);
 		campoNivelEscolaridad = new JComboBox(nivelEscolaridadArray);
@@ -964,7 +965,8 @@ public class GuiRegistroModificar extends JScrollPane {
 		public void actionPerformed(ActionEvent e) {
 
 			if (e.getSource() == campoAreasInteres) {
-
+				if(campoAreasInteres.getSelectedIndex()==-1) return;
+				
 				if (areaConocimientoVector.indexOf(campoAreasInteres
 						.getSelectedItem()) == -1) {
 					JLabel nuevaArea = new JLabel();
