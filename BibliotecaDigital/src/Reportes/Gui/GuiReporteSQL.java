@@ -12,6 +12,8 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,20 +27,21 @@ import Reportes.Controlador.ControladorReportes;
 import Utilidades.Button;
 import Utilidades.Estilos;
 
-public class GuiReporteSQL extends JTabbedPane {
-	JPanel panelGlobal,panelppal,panelConEsquemas;
+public class GuiReporteSQL extends JPanel {
+	JPanel panelppal,panelConEsquemas;
 	JLabel etiquetaSelect,icon,esquemas;
+	JComboBox Esquematablas;
 	JTextField campoAtributos ;
 	JTextArea areaConsulta;
 	JTable tabla;
-	Button botonConsulta;
+	Button botonConsulta,botonEsquemas;
 	JPanel resultadoPanel;
-	JScrollPane resultadoScroll;
+	JScrollPane resultadoScroll,scrollArea;
 	ControladorReportes conReport;
 	GuiReporteSQL(){
 		conReport= new ControladorReportes();
 		initComponents();
-		
+
 	}
 	private void initComponents() {
 		icon= new JLabel(new ImageIcon("recursos/iconos/tabla.png"));
@@ -48,14 +51,23 @@ public class GuiReporteSQL extends JTabbedPane {
 		etiquetaSelect.setForeground(Color.BLUE);
 		campoAtributos= new JTextField(30);
 		areaConsulta= new JTextArea(5,40);
+		areaConsulta.setLineWrap(true);
 		botonConsulta= new Button(" Consultar ");
-		botonConsulta.addActionListener(new Manejador());
-		
+		botonEsquemas= new Button("Ver Esquema");
+		Manejador manejador=new Manejador();
+		botonEsquemas.addActionListener(manejador);
+		botonConsulta.addActionListener(manejador);
+		Esquematablas= new JComboBox(conReport.obtenerNombreTablas());
+		Esquematablas.addActionListener(manejador);
+		Esquematablas.setVisible(false);
+
 		panelppal= new JPanel();
-		panelGlobal= new JPanel(new BorderLayout());
+		//panelGlobal= new JPanel(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		panelConEsquemas= new JPanel();
 		resultadoPanel= new JPanel();
 		resultadoScroll= new JScrollPane();
+		scrollArea= new JScrollPane(areaConsulta);
 		//resultadoScroll.setPreferredSize(new Dimension(400, 100));
 		//-----------------------------------
 		panelppal.setLayout(new GridBagLayout());
@@ -69,61 +81,103 @@ public class GuiReporteSQL extends JTabbedPane {
 		panelppal.add(campoAtributos,restricciones);
 		restricciones.gridy++;
 		restricciones.gridwidth=2;
-		panelppal.add(areaConsulta,restricciones);
+
+		panelppal.add(scrollArea,restricciones);
 		restricciones.gridy++;
 		restricciones.gridwidth=1;
 		restricciones.gridx=1;
 		panelppal.add(botonConsulta,restricciones);
+		restricciones.anchor= GridBagConstraints.EAST;
+		restricciones.gridx=1;
+		panelppal.add(botonEsquemas,restricciones);
+		restricciones.gridy++;
+		restricciones.gridwidth=3;
+		restricciones.gridx=0;
+		panelppal.add(Esquematablas,restricciones);
 		//restricciones.gridy++;
 		//restricciones.gridwidth=4;
 		//restricciones.gridx=0;
 		//panelppal.add(resultadoScroll,restricciones);
-		
-		panelGlobal.add(panelppal,BorderLayout.NORTH);
-		panelGlobal.add(resultadoScroll,BorderLayout.CENTER);
+
+		this.add(panelppal,BorderLayout.NORTH);
+		this.add(resultadoScroll,BorderLayout.CENTER);
 		//---------------------------------------------
 		esquemas= new JLabel();
 		initEsquemas();
-		
-		
-		this.addTab("",new ImageIcon("recursos/iconos/SQL.png") , panelGlobal);
-		this.addTab("",icon.getIcon(), panelConEsquemas);
-		
-	
+
+
+
+
 	}
 	private void initEsquemas() {
 		Vector <String> nada= conReport.obtenerNombreTablas();
 		esquemas.setText(""+nada);
 		panelConEsquemas.add(esquemas);
-	
+
 	}
 	private class Manejador implements ActionListener
 	{		
-		
+
 		public void actionPerformed(ActionEvent evento)
 		{
-			
-			tabla=null;
-			resultadoPanel.removeAll();
-			String consultaSql =" SELECT " + campoAtributos.getText()+" "+areaConsulta.getText();
-			tabla = conReport.consultaGenerica(consultaSql);
-			
-			if(tabla==null){return;}
-			tabla.setEnabled(false);
-			tabla.setBorder(BorderFactory.createTitledBorder(BorderFactory
-					.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), ""));
+			if(evento.getSource()==botonConsulta){
+				tabla=null;
+				resultadoPanel.removeAll();
+				String consultaSql =" SELECT " + campoAtributos.getText()+" "+areaConsulta.getText();
+				tabla = conReport.consultaGenerica(consultaSql);
+
+				if(tabla==null){return;}
+				tabla.setEnabled(false);
+				tabla.setBorder(BorderFactory.createTitledBorder(BorderFactory
+						.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), ""));
 
 
-			resultadoPanel.add(tabla);
-			resultadoPanel.repaint();
-			resultadoPanel.updateUI();
-			resultadoScroll.setViewportView(resultadoPanel);
-		
-			System.out.println(tabla.getValueAt(0, 0));
-			
-			
+				resultadoPanel.add(tabla);
+				resultadoPanel.repaint();
+				resultadoPanel.updateUI();
+				resultadoScroll.setViewportView(resultadoPanel);
+
+				System.out.println(tabla.getValueAt(0, 0));
+			}
+
+			if(evento.getSource()==botonEsquemas){
+				if (Esquematablas.isVisible())
+				{
+					Esquematablas.setVisible(false);
+					botonEsquemas.setText("Ver Esquema");
+
+				}
+				else {
+					Esquematablas.setVisible(true);
+					botonEsquemas.setText("Quitar Esquema");
+				}
+
+
+			}
+			if(evento.getSource()==Esquematablas){
+				JScrollPane scroll= new JScrollPane();
+				JLabel etiquetaEsquema = new JLabel("",JLabel.CENTER);
+				etiquetaEsquema.setFont(Estilos.fontSubtitulos);
+				JFrame vistaEsquemas= new JFrame();
+				String item= (String) Esquematablas.getSelectedItem();
+				String atributos= ""+conReport.obtenerNombreTablas(item);
+
+
+				etiquetaEsquema.setText(atributos);
+				scroll.setViewportView(etiquetaEsquema);
+				vistaEsquemas.setTitle(item);
+				vistaEsquemas.add(scroll);
+				vistaEsquemas.setVisible(true);
+				System.out.println(atributos.length());
+				vistaEsquemas.setSize(400,100);
+				vistaEsquemas.setAlwaysOnTop(true);
+				vistaEsquemas.setLocation(300,300);
+				
+
+
+			}
+
 		}
-		
 	}
 
 }
