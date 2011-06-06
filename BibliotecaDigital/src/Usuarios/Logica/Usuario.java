@@ -469,8 +469,9 @@ public class Usuario {
 		areasInteres = value;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Metodo sobreescrito para mostrar el resultado de la consulta de usuarios en 
+	 * {@link Usuarios.Gui.GuiConsultarUsuarios GuiConsultarUsuarios}
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
