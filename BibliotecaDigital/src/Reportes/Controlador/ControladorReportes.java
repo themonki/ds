@@ -879,7 +879,7 @@ public class ControladorReportes
 		return tablas;
 	}
 	
-	/*metodo aparentemente no usado*/
+	/*Metodo usado en la gui de reportesSQL*/
 	public Vector<String> obtenerNombreTablas(String nombreTabla)
 	{
 		DaoReportes daoReportes = new DaoReportes();
