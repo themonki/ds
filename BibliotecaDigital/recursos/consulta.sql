@@ -47,6 +47,15 @@ SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, d.
 --documentos catalogados por intervalo de fecha -a tributos 7
 SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ON d.login_catalogador = x.login WHERE d.fecha_catalogacion BETWEEN '1989-08-15' AND '2010-10-21' ORDER BY d.fecha_catalogacion;
 
+--documento catalogado por intervalo de anio - atributos 8
+SELECT d.id_documento, d.editorial, d.titulo_principal, d.login_catalogador, x.nombre1, x.apellido1, EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ON d.login_catalogador = x.login WHERE EXTRACT(YEAR FROM d.fecha_catalogacion) BETWEEN '1989' AND '2010' ORDER BY d.fecha_catalogacion;
+
+--documetno catalogado por intervalo de mes - atributos
+SELECT d.id_documento, d.editorial, d.titulo_principal, d.login_catalogador, x.nombre1, x.apellido1, EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ON d.login_catalogador = x.login WHERE EXTRACT(MONTH FROM d.fecha_catalogacion) BETWEEN '03' AND '10' ORDER BY d.fecha_catalogacion;
+
+--documento catalogado por intervalo de año y mes
+SELECT d.id_documento, d.editorial, d.titulo_principal, d.login_catalogador, x.nombre1, x.apellido1, EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ON d.login_catalogador = x.login WHERE EXTRACT(MONTH FROM d.fecha_catalogacion) BETWEEN '03' AND '10' AND EXTRACT(YEAR FROM d.fecha_catalogacion) BETWEEN '1989' AND '2010' ORDER BY d.fecha_catalogacion;
+
 --documentos catalogados por area - atributos 8
 SELECT y.id_documento, y.editorial, y.titulo_principal, y.fecha_catalogacion, y.login_catalogador, x.nombre1, x.apellido1, y.nombre_area FROM ((SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, d.login_catalogador, c.id_area FROM documento AS d NATURAL JOIN pertenece_documento_area_conocimiento AS c) AS s NATURAL JOIN (SELECT a.id_area, a. nombre AS nombre_area FROM area_conocimiento AS a) AS t) AS y JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ON y.login_catalogador = x.login ORDER BY y.nombre_area;
 

@@ -1120,6 +1120,52 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 	
+	public TableDataSource consultaDocumentosCatalogadosFechaAnio(String anioI, String anioF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE EXTRACT(YEAR FROM d.fecha_catalogacion) BETWEEN '" + anioI + "' AND '" + anioF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaMes(String mesI, String mesF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE EXTRACT(MONTH FROM d.fecha_catalogacion) BETWEEN '" + mesI + "' AND '" + mesF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaAnioMes(String anioI, String anioF, String mesI, String mesF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE EXTRACT(MONTH FROM d.fecha_catalogacion) BETWEEN '" + mesI + "' AND '" + mesF + "' AND " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) BETWEEN '" + anioI + "' AND '" + anioF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
 	public TableDataSource consultaDocumentosCatalogadosFecha(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
@@ -1219,6 +1265,52 @@ public class DaoReportes
 				row.add(resultado.getString(5));
 				row.add(resultado.getString(6));
 				row.add(resultado.getString(7));
+				row.add(obtenerAutoresDocumento(columnOne));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
+	}
+
+	private TableDataSource procesarDatosDocumentosCatalogadosFecha(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 1; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+			data.addColumn("autor");
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				String columnOne = resultado.getString(1);
+				row.add(resultado.getString(2));
+				row.add(resultado.getString(3));
+				row.add(resultado.getString(4));
+				row.add(resultado.getString(5));
+				row.add(resultado.getString(6));
+				row.add(resultado.getString(7));
+				row.add(resultado.getString(8));
 				row.add(obtenerAutoresDocumento(columnOne));
 
 				data.addRow(row);

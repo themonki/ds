@@ -821,34 +821,202 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosCatalogadosFecha(String tituloReporte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosFecha(String introduccion, String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFecha();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_1.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosCatalogadosFecha(String fechaI, String fechaF, String tituloReporte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosFecha(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFecha(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_1.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosCatalogadosArea(String tituloReporte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosFechaAnio(String anioI, String anioF, String introduccion, String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnio(anioI, anioF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_2.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosCatalogadosArea(String fechaI, String fechaF, String tiutloReporte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosFechaMes(String mesI, String mesF, String introduccion, String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaMes(mesI, mesF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_3.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumetnosCatalogadosUsuario(String tituloReporte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosFechaAnioMes(String anioI, String anioF, String mesI, String mesF, String introduccion, String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnioMes(anioI, anioF, mesI, mesF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_4.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosCatalogadosUsuario(String fechaI, String fechaF, String tituloReprte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosArea(String introduccion,String tituloReporte) throws JRException
 	{
-		return null;
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosArea();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaArea.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosArea(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosArea(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaArea.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosUsuario(String introduccion, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosUsuario();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaUsuario.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosUsuario(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosUsuario(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaUsuario.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
 	}
 	
 /* ********************metodos utilitarios *********************************/
@@ -972,7 +1140,17 @@ public class ControladorReportes
 //			c.generarReporte("recursos/reportes/consultado_area.pdf", c.reporteDocumentosConsultadosArea("Reporte Documentos Consultados por Área"));
 //			c.generarReporte("recursos/reportes/consultado_area_intervalo.pdf", c.reporteDocumentosConsultadosArea("2011-05-20","2011-05-30","Reporte Documentos Consultados por Área"));
 //			c.generarReporte("recursos/reportes/consultado_usuario.pdf", c.reporteDocumentosConsultadosUsuario("Reporte Documentos Consultados por Usuario"));
-//			c.generarReporte("recursos/reportes/consutlado_usuario_intervalo.pdf", c.reporteDocumentosConsultadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Consultados por Usuario"));
+//			c.generarReporte("recursos/reportes/consultado_usuario_intervalo.pdf", c.reporteDocumentosConsultadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Consultados por Usuario"));
+			
+//			c.generarReporte("recursos/reportes/catalogado_fecha.pdf", c.reporteDocumentosCatalogadosFecha("Esto es una introducción", "Reporte Documentos Catalogados por Fecha"));
+//			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo.pdf", c.reporteDocumentosCatalogadosFecha("1999-02-23","2011-05-03","Esto es una introducción", "Reporte Documentos Catalogados por Fecha"));
+//			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_anio.pdf", c.reporteDocumentosCatalogadosFechaAnio("1999","2011","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Año"));
+//			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_mes.pdf", c.reporteDocumentosCatalogadosFechaMes("02","05","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Mes"));
+//			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_anio_mes.pdf", c.reporteDocumentosCatalogadosFechaAnioMes("1993","2011","03","12","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Año Mes"));
+//			c.generarReporte("recursos/reportes/catalogado_area.pdf", c.reporteDocumentosCatalogadosArea("Esto es una introducción", "Reporte Documentos Catalogados por Área"));
+//			c.generarReporte("recursos/reportes/catalogado_area_intervalo.pdf", c.reporteDocumentosCatalogadosArea("1993-03-18","2011-09-08","Esto es una introducción", "Reporte Documentos Catalogados por Área"));
+//			c.generarReporte("recursos/reportes/catalogado_usuario.pdf", c.reporteDocumentosCatalogadosUsuario("Esto es una introducción", "Reporte Documentos Catalogados por Usaurio"));
+//			c.generarReporte("recursos/reportes/catalogado_usuario_intervalo.pdf", c.reporteDocumentosCatalogadosUsuario("1993-03-18","2011-09-08","Esto es una introducción", "Reporte Documentos Catalogados por Usuario"));
 			
 			throw new JRException("no se");
 		}catch(JRException e)
