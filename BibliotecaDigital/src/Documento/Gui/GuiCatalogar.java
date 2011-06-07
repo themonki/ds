@@ -443,7 +443,6 @@ public class GuiCatalogar extends JScrollPane{
 
 		Vector<Vector<String>> contenedorIdNombreArea = controladorAreas.obtenerTodasAreas();
 		areasVector =contenedorIdNombreArea.get(0);
-		System.out.println(areasVector.lastElement());
 		areasVector.remove(0);
 		AreasIdVector= contenedorIdNombreArea.get(1);
 		AreasIdVector.remove(0);

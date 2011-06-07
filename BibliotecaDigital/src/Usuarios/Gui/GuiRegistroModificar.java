@@ -17,6 +17,7 @@
 
 package Usuarios.Gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -71,7 +72,7 @@ public class GuiRegistroModificar extends JScrollPane {
 	private JLabel login, password, verificacionPassword, preguntaSecreta,
 			respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero,
 			fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle,
-			perfilLabel, estadoLabel, areasInteres;
+			perfilLabel, estadoLabel, areasInteres, icono;
 	private JPasswordField campoPassword, campoVerificacionPassword;
 	private JComboBox campoPreguntaSecreta, campoGenero, campoPerfil,
 			campoEstado, campoAreasInteres, campoVinculoUnivalle,
@@ -169,7 +170,22 @@ public class GuiRegistroModificar extends JScrollPane {
 		borde.setTitleFont(Estilos.fontTitulo);
 		borde.setTitleJustification(TitledBorder.LEFT);
 		setBorder(borde);
-
+		
+		icono = new JLabel();
+		if(modo==0){
+			icono.setIcon(new ImageIcon("recursos/iconos/contact-new.png"));
+		}
+		if(modo ==1 || modo==2){
+			String genero = usuarioModificar.getGenero();
+			if(genero.equals("M")){
+				icono.setIcon(new ImageIcon("recursos/iconos/man-editar.png"));
+			}
+			if(genero.equals("F")){
+				icono.setIcon(new ImageIcon("recursos/iconos/mujer-editar.png"));
+			}
+		}
+		
+		
 		// Inicializar Labels que apareceran en cualquier modo
 
 		login = inicializarLabel("Login:* ");
@@ -241,8 +257,8 @@ public class GuiRegistroModificar extends JScrollPane {
 		panelAreasInteres = new JPanel();
 		TitledBorder bordeAreaInteres;
 		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder,
-						Estilos.colorLightBorder), "Áreas de interés");
+				.createEtchedBorder(this.getBackground(),
+						this.getBackground()), "Áreas de interés");
 		bordeAreaInteres.setTitleColor(Estilos.colorSubtitulo);
 		bordeAreaInteres.setTitleFont(Estilos.fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
@@ -434,8 +450,15 @@ public class GuiRegistroModificar extends JScrollPane {
 
 		panelPrincipal.add(panelBotones, restriccionesPanel);
 		// panelPrincipal.setBorder(borde);
+		
+		JPanel panelIcono = new JPanel(new GridBagLayout());
+		GridBagConstraints restriccionesImprovisado = new GridBagConstraints();
+		restriccionesImprovisado.anchor = GridBagConstraints.WEST;
+		panelIcono.add(panelPrincipal, restriccionesImprovisado);
+		restriccionesImprovisado.anchor = GridBagConstraints.NORTHEAST;
+		panelIcono.add(icono, restriccionesImprovisado);
 
-		this.getViewport().add(panelPrincipal);
+		this.getViewport().add(panelIcono);
 
 		// Inicializar vector de areas de interes usuario.
 		areaConocimientoVector = new Vector<String>();

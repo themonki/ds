@@ -77,11 +77,12 @@ public class GuiReportes extends JTabbedPane{
 	
 	private GridBagConstraints retricciones;
 	
-	private JCheckBox habilitar;
+	private JCheckBox habilitar, restringirAnio, restringirMes;
 	
 	private JScrollPane scroll, scroll2;
 	
-	private JLabel etiquetaIcono,etiquetaTabla, etiquetaAtributo, etiquetaTitulo, etiquetaDesde, etiquetaHasta; ;
+	private JLabel etiquetaIcono,etiquetaTabla, etiquetaAtributo, etiquetaTitulo, etiquetaDesde, etiquetaHasta,
+				   etiquetaDesdeAnio, etiquetaDesdeMes, etiquetaHastaAnio, etiquetaHastaMes;
 	
 	private JTextField campoTitulo;
 	
@@ -93,7 +94,8 @@ public class GuiReportes extends JTabbedPane{
 	
 	private ButtonGroup opcionReporte;
 	
-	private JSpinner campoFecha, campoFecha2; //estos dos son para el intervalo de reportes basicos
+	private JSpinner campoFecha, campoFecha2, campoFechaDesdeAnio, campoFechaDesdeMes,
+					 campoFechaHastaAnio, campoFechaHastaMes; //estos dos son para el intervalo de reportes basicos
  
 	private ControladorReportes controladorReporte;
 
@@ -132,6 +134,14 @@ public class GuiReportes extends JTabbedPane{
 		habilitar= new JCheckBox("Habilitar Periodo Con : ");
 		habilitar.setFont(Estilos.fontSubrayados);
 		habilitar.addActionListener(new Manejador());
+		
+		restringirAnio = new JCheckBox("Restringir por año");
+		restringirAnio.setFont(Estilos.fontSubrayados);
+		restringirAnio.addActionListener(new Manejador());
+		
+		restringirMes = new JCheckBox("Restringir por mes");
+		restringirMes.setFont(Estilos.fontSubrayados);
+		restringirMes.addActionListener(new Manejador());
 
 		detallado = new JRadioButton("Informe Detallado", true);
 		detallado.addActionListener(new Manejador());
@@ -166,6 +176,53 @@ public class GuiReportes extends JTabbedPane{
 	    //-------------------------------------
 	    campoFecha2.setVisible(false);
 	    //-------------------------------------
+	    
+	  //Crear spinner para la fecha desde del anio.
+		SpinnerModel modeloFechaDesdeAnio = new SpinnerDateModel();
+		campoFechaDesdeAnio = new JSpinner(modeloFechaDesdeAnio);
+	    campoFechaDesdeAnio.setFont(Estilos.fontLabels);
+	    campoFechaDesdeAnio.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFechaDA = new JSpinner.DateEditor(campoFechaDesdeAnio,"yyyy");
+		campoFechaDesdeAnio.setEditor(spinnerFechaDA);
+	    ((JSpinner.DateEditor) campoFechaDesdeAnio.getEditor()).getTextField().setEditable(false);
+	    //-------------------------------------
+	    campoFechaDesdeAnio.setVisible(false);
+	    //-------------------------------------
+	    //Crear spinner para la fecha desde del mes.
+	    SpinnerModel modeloFechaDesdeMes = new SpinnerDateModel();
+		campoFechaDesdeMes = new JSpinner(modeloFechaDesdeMes);
+	    campoFechaDesdeMes.setFont(Estilos.fontLabels);
+	    campoFechaDesdeMes.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFechaDM = new JSpinner.DateEditor(campoFechaDesdeMes,"MM");
+		campoFechaDesdeMes.setEditor(spinnerFechaDM);
+	    ((JSpinner.DateEditor) campoFechaDesdeMes.getEditor()).getTextField().setEditable(false);
+	    //-------------------------------------
+	    campoFechaDesdeMes.setVisible(false);
+	    //-------------------------------------
+	    
+	  //Crear spinner para la fecha hasta del anio.
+		SpinnerModel modeloFechaHastaAnio = new SpinnerDateModel();
+		campoFechaHastaAnio = new JSpinner(modeloFechaHastaAnio);
+	    campoFechaHastaAnio.setFont(Estilos.fontLabels);
+	    campoFechaHastaAnio.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFechaHA = new JSpinner.DateEditor(campoFechaHastaAnio,"yyyy");
+		campoFechaHastaAnio.setEditor(spinnerFechaHA);
+	    ((JSpinner.DateEditor) campoFechaHastaAnio.getEditor()).getTextField().setEditable(false);
+	    //-------------------------------------
+	    campoFechaHastaAnio.setVisible(false);
+	    //-------------------------------------
+	    //Crear spinner para la fecha hasta del mes.
+	    SpinnerModel modeloFechaHastaMes = new SpinnerDateModel();
+		campoFechaHastaMes = new JSpinner(modeloFechaHastaMes);
+	    campoFechaHastaMes.setFont(Estilos.fontLabels);
+	    campoFechaHastaMes.setForeground(Estilos.colorLabels);
+		JSpinner.DateEditor spinnerFechaHM = new JSpinner.DateEditor(campoFechaHastaMes,"MM");
+		campoFechaHastaMes.setEditor(spinnerFechaHM);
+	    ((JSpinner.DateEditor) campoFechaHastaMes.getEditor()).getTextField().setEditable(false);
+	    //-------------------------------------
+	    campoFechaHastaMes.setVisible(false);
+	    //-------------------------------------
+	    
 
 		botonGenerarReporte= new Button("Generar Reporte");
 		botonGenerarReporte.setIcon(new ImageIcon("recursos/iconos/Report2.png"));
@@ -209,17 +266,49 @@ public class GuiReportes extends JTabbedPane{
 		PanelreportesBasicos.add(detallado, retricciones);
 		PanelreportesBasicos.add(totales, retricciones);
 		retricciones.gridy++;
-		retricciones.insets= new Insets(30,10,16,2);
+		retricciones.insets= new Insets(10,10,16,2);
 		
+		
+		PanelreportesBasicos.add(restringirAnio, retricciones);
+		retricciones.insets= new Insets(6,10,6,2);
+	    retricciones.gridy++;
+	    retricciones.gridx=0;
+	    retricciones.gridwidth=1;
+	    PanelreportesBasicos.add(etiquetaDesdeAnio, retricciones);
+	    retricciones.gridx = 1;
+	    PanelreportesBasicos.add(campoFechaDesdeAnio, retricciones);
+	    retricciones.gridx = 2;
+	    PanelreportesBasicos.add(etiquetaHastaAnio, retricciones);
+	    retricciones.gridx = 3;
+	    PanelreportesBasicos.add(campoFechaHastaAnio, retricciones);
+	    retricciones.gridy++;
+	    retricciones.insets= new Insets(10,10,16,2);
+	    retricciones.gridx = 0;
+	    retricciones.gridwidth=2;
+	    PanelreportesBasicos.add(restringirMes, retricciones);
+	    retricciones.insets= new Insets(6,10,6,2);
+	    retricciones.gridy++;
+	    retricciones.gridwidth=1;
+	    PanelreportesBasicos.add(etiquetaDesdeMes, retricciones);
+	    retricciones.gridx = 1;	    
+	    PanelreportesBasicos.add(campoFechaDesdeMes, retricciones);
+	    retricciones.gridx = 2;
+	    PanelreportesBasicos.add(etiquetaHastaMes, retricciones);
+	    retricciones.gridx = 3;
+	    PanelreportesBasicos.add(campoFechaHastaMes, retricciones);
+	    retricciones.gridy++;
+	    retricciones.insets= new Insets(30,10,16,2);
+	    retricciones.gridx = 0;
+	   
 		PanelreportesBasicos.add(habilitar,retricciones);
 		//retricciones.weightx=1.0;
+		retricciones.gridx=2;
 		PanelreportesBasicos.add(fechas,retricciones);
 		retricciones.insets= new Insets(6,10,6,2);
 	    retricciones.gridy++;
 	    retricciones.gridx=0;
 	    //retricciones.weightx=0.0;
 	    PanelreportesBasicos.add(etiquetaDesde,retricciones);
-	    retricciones.anchor=GridBagConstraints.WEST;
 	    retricciones.gridx=1;
 	    //retricciones.weightx=1.0;
 		PanelreportesBasicos.add(campoFecha,retricciones);
@@ -262,6 +351,7 @@ public class GuiReportes extends JTabbedPane{
 		tablas = new JComboBox();
 		tablas.addItem("Usuarios");
 		tablas.addItem("Areas");
+		tablas.addItem("Documentos");
 		tablas.addActionListener(new Manejador());
 		
 		atributos = new JComboBox();
@@ -270,6 +360,8 @@ public class GuiReportes extends JTabbedPane{
 		atributos.addItem("nivel_escolaridad");
 		atributos.addItem("vinculo_univalle");
 		atributos.addItem("tipo");
+		atributos.addItem("fecha_nacimiento");
+		atributos.addItem("fecha_registro");
 		
 		fechas= new JComboBox();
 		fechas.addItem("fecha_nacimiento");
@@ -292,12 +384,20 @@ public class GuiReportes extends JTabbedPane{
 		etiquetaTabla= new JLabel("Reporte De: ");
 		etiquetaAtributo= new JLabel("Agrupados Por : ");
 		etiquetaTitulo = new JLabel("Titulo Del Reporte : ");
-		etiquetaDesde= new JLabel("Desde :");
-		etiquetaHasta= new JLabel("Hasta :");
+		etiquetaDesde= new JLabel("Desde: ");
+		etiquetaHasta= new JLabel("Hasta: ");
+		etiquetaDesdeAnio = new JLabel("Desde: ");
+		etiquetaDesdeMes = new JLabel("Desde: ");
+		etiquetaHastaAnio = new JLabel("Hasta: ");
+		etiquetaHastaMes = new JLabel("Hasta: ");
 		etiquetaIcono= new JLabel(new ImageIcon("recursos/iconos/custom-reports.png"));
 		
 		etiquetaHasta.setVisible(false);
 		etiquetaDesde.setVisible(false);
+		etiquetaDesdeAnio.setVisible(false);
+		etiquetaDesdeMes.setVisible(false);
+		etiquetaHastaAnio.setVisible(false);
+		etiquetaHastaMes.setVisible(false);
 		
 		etiquetaTabla.setForeground(Estilos.colorLabels);
 		etiquetaAtributo.setForeground(Estilos.colorLabels);
@@ -308,6 +408,10 @@ public class GuiReportes extends JTabbedPane{
 		etiquetaDesde.setFont(Estilos.fontSubtitulos);
 		etiquetaHasta.setFont(Estilos.fontSubtitulos);
 		etiquetaTitulo.setFont(Estilos.fontSubtitulos);
+		etiquetaDesdeAnio.setFont(Estilos.fontSubtitulos);
+		etiquetaDesdeMes.setFont(Estilos.fontSubtitulos);
+		etiquetaHastaAnio.setFont(Estilos.fontSubtitulos);
+		etiquetaHastaMes.setFont(Estilos.fontSubtitulos);
 		
 	}
 
@@ -364,6 +468,41 @@ public class GuiReportes extends JTabbedPane{
 					etiquetaDesde.setVisible(false);
 				}
 				
+			}else if (evento.getSource() == restringirAnio)
+			{
+				if(restringirAnio.isSelected())
+				{
+					etiquetaDesdeAnio.setVisible(true);
+					etiquetaHastaAnio.setVisible(true);
+					campoFechaDesdeAnio.setVisible(true);
+					campoFechaHastaAnio.setVisible(true);
+					
+				}else
+				{
+					etiquetaDesdeAnio.setVisible(false);
+					etiquetaHastaAnio.setVisible(false);
+					campoFechaDesdeAnio.setVisible(false);
+					campoFechaHastaAnio.setVisible(false);
+				}
+				
+				
+				
+			}else if (evento.getSource() == restringirMes)
+			{
+				if(restringirMes.isSelected())
+				{
+					etiquetaDesdeMes.setVisible(true);
+					etiquetaHastaMes.setVisible(true);
+					campoFechaDesdeMes.setVisible(true);
+					campoFechaHastaMes.setVisible(true);
+				}else
+				{
+					etiquetaDesdeMes.setVisible(false);
+					etiquetaHastaMes.setVisible(false);
+					campoFechaDesdeMes.setVisible(false);
+					campoFechaHastaMes.setVisible(false);
+				}
+				
 			}else if (evento.getSource()== tablas)
 			{
 				String item =(String) tablas.getSelectedItem(); 
@@ -378,6 +517,16 @@ public class GuiReportes extends JTabbedPane{
 					fechas.setVisible(false);
 					etiquetaDesde.setVisible(false);
 					etiquetaHasta.setVisible(false);
+					restringirAnio.setVisible(false);
+					restringirMes.setVisible(false);
+					etiquetaDesdeMes.setVisible(false);
+					etiquetaHastaMes.setVisible(false);
+					campoFechaDesdeMes.setVisible(false);
+					campoFechaHastaMes.setVisible(false);
+					etiquetaDesdeAnio.setVisible(false);
+					etiquetaHastaAnio.setVisible(false);
+					campoFechaDesdeAnio.setVisible(false);
+					campoFechaHastaAnio.setVisible(false);
 				}
 				if ( item.contains("Usuario"))
 				{
@@ -386,6 +535,10 @@ public class GuiReportes extends JTabbedPane{
 					atributos.addItem("nivel_escolaridad");
 					atributos.addItem("vinculo_univalle");
 					atributos.addItem("tipo");
+					atributos.addItem("fecha_nacimiento");
+					atributos.addItem("fecha_registro");
+					restringirAnio.setVisible(true);
+					restringirMes.setVisible(true);
 					habilitar.setVisible(true);
 					fechas.setVisible(true);
 					if(habilitar.isSelected())
@@ -395,6 +548,45 @@ public class GuiReportes extends JTabbedPane{
 						campoFecha.setVisible(true);
 						campoFecha2.setVisible(true);
 					}
+					if(restringirAnio.isSelected())
+					{
+						etiquetaDesdeAnio.setVisible(true);
+						etiquetaHastaAnio.setVisible(true);
+						campoFechaDesdeAnio.setVisible(true);
+						campoFechaHastaAnio.setVisible(true);
+					}
+					
+					if(restringirMes.isSelected())
+					{
+						etiquetaDesdeMes.setVisible(true);
+						etiquetaHastaMes.setVisible(true);
+						campoFechaDesdeMes.setVisible(true);
+						campoFechaHastaMes.setVisible(true);
+					}
+				}
+				if ( item.contains("Documentos"))
+				{
+					atributos.removeAllItems();
+					atributos.addItem("formato");
+					atributos.addItem("area");
+					atributos.addItem("autor");
+					atributos.addItem("tipo");
+					campoFecha.setVisible(false);
+					campoFecha2.setVisible(false);
+					habilitar.setVisible(false);
+					fechas.setVisible(false);
+					etiquetaDesde.setVisible(false);
+					etiquetaHasta.setVisible(false);
+					restringirAnio.setVisible(false);
+					restringirMes.setVisible(false);
+					etiquetaDesdeMes.setVisible(false);
+					etiquetaHastaMes.setVisible(false);
+					campoFechaDesdeMes.setVisible(false);
+					campoFechaHastaMes.setVisible(false);
+					etiquetaDesdeAnio.setVisible(false);
+					etiquetaHastaAnio.setVisible(false);
+					campoFechaDesdeAnio.setVisible(false);
+					campoFechaHastaAnio.setVisible(false);
 				}
 			
 			}else if (evento.getSource()== botonGenerarReporte)
