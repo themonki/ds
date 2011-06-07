@@ -779,10 +779,11 @@ public class GuiCatalogador extends JFrame
 		novedadesUsuario = novedades;	
 	}
 	/**
-	 * Metodo que permite obtner las novedades de un usuario
-	 * @return
+	 * Metodo que retorna las consultas de documentos relacionadas con las areas de interes de
+	 * un usuario catalogador
+	 * @return Vector<Consulta> con los documentos de las areas de interes
 	 */
-	public Vector<Consulta>getNovededadesUsuario()
+	public Vector<Consulta> getNovededadesUsuario()
 	{
 		return novedadesUsuario;			
 		

@@ -22,7 +22,7 @@ import GestionDocumento.Logica.Autor;
 
 /**
  * Clase que permite la comunicación entre la Clase {@link GestionDocumento.Dao.DaoAutor DaoAutor} y las Clases
- * de aplicación: {@link GestionDocumento.Gui.GuiInsertarAutor GuiInsertarAutor}, 
+ * de aplicación: {@link GestionDocumento.Gui.GuiIngresarAutor GuiIngresarAutor}, 
  * y {@link GestionDocumento.Gui.GuiModificarAutor GuiModificarAutor} 
  * para el intercambio de datos.
  * @author Yerminson Gonzales

@@ -29,7 +29,7 @@ import javax.swing.JButton;
 /**
  * Esta clase es usada para todos los botones en las GUI
  * 
- * @author
+ * @author Luis Felipe Vargas
  * 
  */
 public class Button extends JButton {

@@ -569,7 +569,7 @@ public class DaoUsuario {
 	 * catalogados despues del ultimo acceso del usuario que tengan que ver con
 	 * sus areas de interes
 	 * 
-	 * @param parametro
+	 * @param login
 	 *            - String con el login del usuario
 	 * @return Vector<Consulta> con los documentos que pertenescan a las areas
 	 *         de interes del usuario

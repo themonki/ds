@@ -893,9 +893,11 @@ public class GuiAdministrador extends JFrame
 		
 	}
 	/**
-	 * @return
+	 * Metodo que retorna las consultas de documentos relacionadas con las areas de interes de
+	 * un usuario administrador
+	 * @return Vector<Consulta> con los documentos de las areas de interes
 	 */
-	public Vector<Consulta>getNovededadesUsuario()
+	public Vector<Consulta> getNovededadesUsuario()
 	{
 		return novedadesUsuario;			
 		

@@ -33,7 +33,7 @@ import Consultas.Logica.Consulta;
  * de aplicación: {@link Consultas.Gui.GuiConsultaAvanzada GuiConsultaAvanzada}, 
  * {@link Consultas.Gui.GuiConsultaBasica GuiConsultaBasica},
  * {@link Consultas.Gui.GuiResultadoConsulta GuiResultadoConsulta}
- * y {@link Consultas.Gui.GuiVistaDetallada GuiVistaDetallada} 
+ * y {@link Consultas.Gui.GuiVistaDetalladaConsulta GuiVistaDetalladaConsulta} 
  * para el intercambio de datos.
  * @author 
  *

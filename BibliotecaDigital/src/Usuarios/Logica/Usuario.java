@@ -125,7 +125,7 @@ public class Usuario {
 	 *            - String con el correo electronico del usuario del usuario.
 	 * @param nivelEscolaridad
 	 *            - String con el nivel de estudios del usuario.
-	 * @param vinculoConUnivalle
+	 * @param vinculoUnivalle
 	 *            - String con la relacion con la Universidad del valle que
 	 *            tiene el usuario.
 	 * @param preguntaSecreta

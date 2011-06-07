@@ -486,12 +486,9 @@ public class GuiUsuarioNormal extends JFrame
 	}
 	/**
 	 * 
-	 * Metodo que retorna las novedades del usuario es decir
-	 * el vector de consultas. En caso de ser vacio el
-	 * usuario no tiene novedades es decir documentos que se 
-	 * le puedan mostrar como nuevos.
-	 * 
-	 * @return
+	 * Metodo que retorna las consultas de documentos relacionadas con las areas de interes de
+	 * un usuario normal
+	 * @return Vector<Consulta> con los documentos de las areas de interes
 	 */
 	public Vector<Consulta>getNovededadesUsuario()
 	{

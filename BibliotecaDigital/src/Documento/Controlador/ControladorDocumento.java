@@ -492,11 +492,11 @@ public class ControladorDocumento {
 	public boolean comprobarEnlace(Documento d){
 		DaoDocumento daoDoc = new DaoDocumento();
 		return daoDoc.comprobarURL(d.getUrl());
-	}
-//metodo que retorna el documento con la llave id_documento, sin areas, autor y palabras	
+	}	
 	/**
+	 * Metodo que retorna el documento con la llave id_documento, sin areas, autor y palabras
 	 * @param id_documento
-	 * @return
+	 * @return Documento con los datos del documento que coincidan con la llave id_documento
 	 * @author Edgar Andres Moncada
 	 */
 	public Documento obtenerDocumento(String id_documento){

@@ -24,14 +24,14 @@ import Usuarios.Dao.DaoUsuario;
 import Usuarios.Logica.Usuario;
 
 /**
- * Clase que permite la comunicación entre la Clase {@link Consultas.Dao.DaoUsuario DaoUsuario} y las Clases
- * de aplicación: {@link Usuario.Gui.GuiRegistroModificar GuiRegistroModificar}, 
- * {@link Usuario.GuiAutentificar GuiAuntentificar},
- * {@link Usuario.Gui.GuiRecuperarPassword GuiRecuperarPassword},
- * {@link Usuario.Gui.GuiConsultarUsuarios GuiConsultarUsuarios} y {@link Usuario.Gui.GuiNovedades GuiNovedades} 
+ * Clase que permite la comunicación entre la Clase {@link Usuarios.Dao.DaoUsuario DaoUsuario} y las Clases
+ * de aplicación: {@link Usuarios.Gui.GuiRegistroModificar GuiRegistroModificar}, 
+ * {@link Usuarios.Gui.GuiAutentificar GuiAuntentificar},
+ * {@link Usuarios.Gui.GuiRecuperarPassword GuiRecuperarPassword},
+ * {@link Usuarios.Gui.GuiConsultarUsuarios GuiConsultarUsuarios} y {@link Usuarios.Gui.GuiNovedades GuiNovedades} 
  * para el intercambio de datos.
 
- * @author Yerminson
+ * @author Yerminson Gonzales
  * 
  */
 public class ControladorUsuario {
@@ -71,7 +71,7 @@ public class ControladorUsuario {
 	 *            - String con el tipo de usuario
 	 * @param estado
 	 *            - boolean con el estado (activo o inactivo) del usuario
-	 * @return retorna 1 si se insertaron los datos del usuario en la base de
+	 * @return 1 si se insertaron los datos del usuario en la base de
 	 *         datos, -1 de ser lo contrario u
 	 * @author
 	 */
@@ -536,7 +536,7 @@ public class ControladorUsuario {
 	 * pueden ser de su interes.
 	 * 
 	 * @param login
-	 * @return
+	 * @return Vector<Consulta> con las consultas de las areas de interes de un usuario
 	 */
 	public Vector<Consulta> consultaDocumentosInteresArea(String login) {
 
