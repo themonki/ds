@@ -1,7 +1,6 @@
 package Reportes.Controlador;
 
 
-import java.lang.annotation.Documented;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -17,8 +16,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-
-
 import Reportes.Dao.DaoReportes;
 import Utilidades.TableDataSource;
 
@@ -1071,7 +1068,7 @@ public class ControladorReportes
 	
 	public static void main(String arg[])
 	{
-		ControladorReportes c = new ControladorReportes();
+	//	ControladorReportes c = new ControladorReportes();
 		try
 		{
 			//System.out.println(c.consultaGenerica("select * from usuario"));

@@ -1,26 +1,18 @@
 package Reportes.Dao;
 
-import java.awt.Font;
-import java.awt.ScrollPane;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.Vector;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
-import com.lowagie.text.Table;
 
 import Utilidades.FachadaBD;
 import Utilidades.TableDataSource;
@@ -1418,7 +1410,7 @@ public class DaoReportes
 	}
 
 	/* metodo para obtener las areas de un documento en forma de string */
-	private String obtenerAreasDocumento(String id_documento) 
+	public String obtenerAreasDocumento(String id_documento) 
 	{
 		String consultaSql = "SELECT a.nombre FROM area_conocimiento AS a "
 				+ "NATURAL JOIN pertenece_documento_area_conocimiento AS p "
@@ -1651,7 +1643,7 @@ public class DaoReportes
 
 	public static void main(String args[]) {
 
-		DaoReportes daoReportes = new DaoReportes();
+		//DaoReportes daoReportes = new DaoReportes();
 		// daoReportes.consultaUsuarioBasica("vinculo_univalle", "=",
 		// "Estudiante de pregrado");
 		// daoReportes.consultaDocumentoBasica("titulo_principal", "=",
