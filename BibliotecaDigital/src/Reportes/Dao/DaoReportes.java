@@ -312,6 +312,101 @@ public class DaoReportes
 		return data;
 	}
 
+	public TableDataSource consultaUsuariosAnioTotal(String tipoAnio) 
+	{
+		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
+				"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
+				"count(u.login) AS cuantos " +
+				"FROM usuario AS u GROUP BY anio,mes ORDER BY anio, mes";
+
+		return procesarDatosUsuariosFechaTotal(consultaSql);
+	}
+
+	public TableDataSource consultaUsuariosAnioTotal(String tipoAnio, String anioI,
+			String anioF)
+	{
+		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
+				"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
+				"count(u.login) AS cuantos FROM usuario AS u " +
+				"WHERE EXTRACT(YEAR FROM u." + tipoAnio + ") " +
+				"BETWEEN " + anioI + " AND " + anioF +
+				" GROUP BY anio,mes " +
+				"ORDER BY anio, mes";
+
+		return procesarDatosUsuariosFechaTotal(consultaSql);
+	}
+
+	public TableDataSource consultaUsuariosAnioMesTotal(String tipoAnio,
+			String mesI, String mesF)
+	{
+		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
+				"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
+				"count(u.login) AS cuantos " +
+				"FROM usuario AS u " +
+				"WHERE EXTRACT(MONTH FROM u." + tipoAnio + ") " +
+				"BETWEEN " + mesI + " AND " + mesF + 
+				" GROUP BY anio,mes " +
+				"ORDER BY anio,mes";
+
+		return procesarDatosUsuariosFechaTotal(consultaSql);
+	}
+
+	public TableDataSource consultaUsuariosAnioMesTotal(String tipoAnio,
+			String anioI, String anioF, String mesI, String mesF) 
+	{
+		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
+				"EXTRACT(MONTH FROM u." + tipoAnio + ") AS mes, " +
+				"count(u.login) AS cuantos FROM usuario AS u " +
+				"WHERE EXTRACT(YEAR FROM u." + tipoAnio + ") " +
+				"BETWEEN " + anioI + " AND " + anioF + " AND " +
+				"EXTRACT(MONTH FROM u." + tipoAnio + ") " +
+				"BETWEEN " + mesI + " AND " + mesF +
+				" GROUP BY anio,mes " +
+				"ORDER BY anio,mes";
+
+		return procesarDatosUsuariosFechaTotal(consultaSql);
+	}
+
+	private TableDataSource procesarDatosUsuariosFechaTotal(String consultaSql) 
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+				// System.out.println(metaData.getColumnTypeName(i+1));
+			}
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				row.add(resultado.getString(1));
+				row.add(resultado.getString(2));
+				row.add(resultado.getInt(3));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return data;
+	}
 	/*
 	 * ************reportes relacionados con areas de ciencias de la
 	 * computacion***********

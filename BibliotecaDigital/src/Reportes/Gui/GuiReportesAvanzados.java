@@ -58,7 +58,7 @@ public class GuiReportesAvanzados extends JPanel{
 
 	private JPanel panelPrincipal, panelOpcionesReportes, panelDescargasConsultas, panelDocumento;
 	
-	private JCheckBox habilitarPeriodoDescargasConsultas, habilitarPorMesDescargasConsultas, habilitarPorAnioDescargasConsultas, habilitarPorHoraDescargasConsultas,
+	private JCheckBox habilitarPeriodoDescargasConsultas, habilitarPorMesDescargasConsultas, habilitarPorAnioDescargasConsultas,
 					  habilitarPeriodoDocumento, habilitarPorMesDocumento, habilitarPorAnioDocumento;
 	
 	private JComboBox tablasAvanzado, atributosAvanzado, campoAtributo;
@@ -202,6 +202,7 @@ public class GuiReportesAvanzados extends JPanel{
 		JSpinner.DateEditor spinnerFechaDD = new JSpinner.DateEditor(campoFechaDesdeDescargas,"yyyy-MM-dd");
 		campoFechaDesdeDescargas.setEditor(spinnerFechaDD);
 	    ((JSpinner.DateEditor) campoFechaDesdeDescargas.getEditor()).getTextField().setEditable(false);
+	    campoFechaDesdeDescargas.setEnabled(false);
 	    
 	    //Crear spinner para la fecha hasta de descargas
 		SpinnerModel modeloFechaHastaDescargas = new SpinnerDateModel();
@@ -211,6 +212,7 @@ public class GuiReportesAvanzados extends JPanel{
 		JSpinner.DateEditor spinnerFechaHD = new JSpinner.DateEditor(campoFechaHastaDescargas,"yyyy-MM-dd");
 		campoFechaHastaDescargas.setEditor(spinnerFechaHD);
 	    ((JSpinner.DateEditor) campoFechaHastaDescargas.getEditor()).getTextField().setEditable(false);
+	    campoFechaHastaDescargas.setEnabled(false);
 	    
 	  //Crear spinner para la fecha desde de descargas
 		SpinnerModel modeloFechaDesdeDocumento = new SpinnerDateModel();
@@ -220,6 +222,7 @@ public class GuiReportesAvanzados extends JPanel{
 		JSpinner.DateEditor spinnerFechaDDo = new JSpinner.DateEditor(campoFechaDesdeDocumento,"yyyy-MM-dd");
 		campoFechaDesdeDocumento.setEditor(spinnerFechaDDo);
 	    ((JSpinner.DateEditor) campoFechaDesdeDocumento.getEditor()).getTextField().setEditable(false);
+	    campoFechaDesdeDocumento.setEnabled(false);
 	    
 	    //Crear spinner para la fecha hasta de descargas
 		SpinnerModel modeloFechaHastaDocumento = new SpinnerDateModel();
@@ -229,13 +232,14 @@ public class GuiReportesAvanzados extends JPanel{
 		JSpinner.DateEditor spinnerFechaHDo = new JSpinner.DateEditor(campoFechaHastaDocumento,"yyyy-MM-dd");
 		campoFechaHastaDocumento.setEditor(spinnerFechaHDo);
 	    ((JSpinner.DateEditor) campoFechaHastaDocumento.getEditor()).getTextField().setEditable(false);
+	    campoFechaHastaDocumento.setEnabled(false);
 		
 	}
 
 	private void inicializarTexts() {
 		
-		campoTituloDescargasConsultas = new JTextField("Reporte", 20);
-		campoTituloDocumento = new JTextField("Reporte", 20);
+		campoTituloDescargasConsultas = new JTextField("Título del reporte", 20);
+		campoTituloDocumento = new JTextField("Título del reporte", 20);
 		
 		campoIntroDescargasConsultas = new JTextArea(8,50);
 		campoIntroDescargasConsultas.setLineWrap(true);
@@ -354,20 +358,95 @@ public class GuiReportesAvanzados extends JPanel{
 		tipoReporte.setForeground(Estilos.colorSubtitulo);
 		
 		orden = new JLabel("Orden de catalogadores");
+		orden.setFont(Estilos.fontSubrayados);
 		
 		agrupadosAtributo = new JLabel("Agrupado por: ");
 		agrupadosAtributo.setFont(Estilos.fontSubrayados);
 		
-		agrupadoPeriodo = new JLabel("Agrupado periodo: ");
+		agrupadoPeriodo = new JLabel("Agrupado por periodo: ");
 		agrupadoPeriodo.setFont(Estilos.fontSubrayados);
 		
-		formato = new JLabel("Formato reporte: ");
+		formato = new JLabel("Formato ");
 		formato.setFont(Estilos.fontSubrayados);
 		
 		desde = new JLabel("Desde: ");
 		hasta = new JLabel("Hasta: ");
 		
 		//-----Fin labels indicatorias
+		
+		//---panel para opciones reportes
+		JPanel opcionesReporte = new JPanel(new GridBagLayout());
+		
+		TitledBorder bordeOpciones = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Opciones reporte");
+		bordeOpciones.setTitleJustification(TitledBorder.LEFT);
+		bordeOpciones.setTitleFont(Estilos.fontSubtitulos);
+		bordeOpciones.setTitleColor(Estilos.colorSubtitulo);
+		opcionesReporte.setBorder(bordeOpciones);
+		
+		
+		GridBagConstraints restriccionesOpciones = new GridBagConstraints();
+		restriccionesOpciones.anchor = GridBagConstraints.WEST;
+		restriccionesOpciones.gridy = 0;
+		restriccionesOpciones.gridx = 0;
+		restriccionesOpciones.insets = new Insets(4, 20, 4, 20);
+		
+		restriccionesOpciones.gridwidth = 1;
+		opcionesReporte.add(orden, restriccionesOpciones);
+		restriccionesOpciones.insets.left = 40;
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(ascendenteDocumento, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(descendenteDocumento, restriccionesOpciones);
+		
+		restriccionesOpciones.insets.left = 20;
+		restriccionesOpciones.gridy = 0;
+		restriccionesOpciones.gridx = 1;
+		opcionesReporte.add(formato, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		restriccionesOpciones.insets.left = 40;
+		opcionesReporte.add(detalladoDocumento, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(totalesDocumento, restriccionesOpciones);
+		
+		restriccionesOpciones.insets.left = 20;
+		restriccionesOpciones.gridy = 0;
+		restriccionesOpciones.gridx = 2;
+		opcionesReporte.add(agrupadoPeriodo, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		restriccionesOpciones.insets.left = 40;
+		opcionesReporte.add(habilitarPorMesDocumento, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		opcionesReporte.add(habilitarPorAnioDocumento, restriccionesOpciones);
+				
+		restriccionesOpciones.gridwidth = 1;
+		restriccionesOpciones.gridx = 0;
+		restriccionesOpciones.gridy++;
+		restriccionesOpciones.insets.left = 20;
+		opcionesReporte.add(agrupadosAtributo, restriccionesOpciones);
+		restriccionesOpciones.gridx = 1;
+		restriccionesOpciones.gridwidth = 2;
+		opcionesReporte.add(campoAtributo, restriccionesOpciones);
+		
+		restriccionesOpciones.gridx = 0;
+		restriccionesOpciones.gridy++;
+		restriccionesOpciones.gridwidth = 3;
+		opcionesReporte.add(habilitarPeriodoDocumento, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		restriccionesOpciones.gridwidth =2;
+		restriccionesOpciones.insets.left= 40;
+		opcionesReporte.add(desde, restriccionesOpciones);
+		restriccionesOpciones.insets.left = 20;
+		restriccionesOpciones.gridx = 1;
+		opcionesReporte.add(campoFechaDesdeDocumento, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		restriccionesOpciones.gridx = 0;
+		restriccionesOpciones.insets.left = 40;
+		opcionesReporte.add(hasta, restriccionesOpciones);
+		restriccionesOpciones.insets.left = 20;
+		restriccionesOpciones.gridx = 1;
+		opcionesReporte.add(campoFechaHastaDocumento, restriccionesOpciones);
+		
+		//---fin panel de opciones reprotes
 		
 		GridBagConstraints restricciones = new GridBagConstraints();
 		restricciones.anchor = GridBagConstraints.WEST;
@@ -378,54 +457,31 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		panelDocumento.add(tipoReporte, restricciones);
 		restricciones.gridy++;
-		restricciones.gridwidth = 2;
 		panelDocumento.add(documentosExistentes, restricciones);
-		restricciones.gridx = 2;
+		restricciones.gridy++;
 		panelDocumento.add(documentosCatalogados, restricciones);
 		
-		restricciones.insets.left = 40;
 		restricciones.gridy++;
-		restricciones.gridx = 0;
-		restricciones.gridwidth = 4;
-		panelDocumento.add(orden, restricciones);
-		restricciones.insets.left = 60;
-		restricciones.gridy++;
-		panelDocumento.add(ascendenteDocumento, restricciones);
-		restricciones.gridy++;
-		panelDocumento.add(descendenteDocumento, restricciones);
-		
-		restricciones.insets.left = 20;
-		restricciones.gridy++;
+		panelDocumento.add(opcionesReporte, restricciones);
 		restricciones.gridwidth = 2;
-		panelDocumento.add(agrupadosAtributo, restricciones);
-		restricciones.gridx = 2;
-		panelDocumento.add(campoAtributo, restricciones);
-		
 		restricciones.gridy++; 
-		restricciones.gridwidth = 4;
-		restricciones.gridx = 0;
-		panelDocumento.add(agrupadoPeriodo, restricciones);
-		restricciones.gridwidth = 2;
-		restricciones.gridy++;
-		restricciones.insets.left = 40;
-		panelDocumento.add(habilitarPorMesDocumento, restricciones);
+		panelDocumento.add(etiquetaTituloDocumento, restricciones);
 		restricciones.gridx = 2;
-		panelDocumento.add(habilitarPorAnioDocumento, restricciones);
+		panelDocumento.add(campoTituloDocumento, restricciones);
 		
 		restricciones.gridx = 0;
-		restricciones.gridy++;
 		restricciones.gridwidth = 4;
-		restricciones.insets.left = 20;
-		panelDocumento.add(habilitarPeriodoDocumento, restricciones);
 		restricciones.gridy++;
-		restricciones.gridwidth =1;
-		restricciones.insets.left= 40;
-		panelDocumento.add(desde, restricciones);
-		restricciones.insets.left = 20;
-		restricciones.gridx = 1;
-		panelDocumento.add(campoFechaDesdeDocumento, restricciones);
-		restricciones.gridx = 2;
-		panelDocumento.add(hasta, restricciones);
+		panelDocumento.add(etiquetaIntroDocumento, restricciones);
+		restricciones.gridy++;
+		panelDocumento.add(scrollIntroDocumento, restricciones);
+		
+		restricciones.gridy++;
+		restricciones.anchor = GridBagConstraints.CENTER;
+		panelDocumento.add(botonDocumentoGenerar, restricciones);
+		
+		
+		
 		
 	}
 
@@ -486,8 +542,6 @@ public class GuiReportesAvanzados extends JPanel{
 		restriccionesOpciones.gridy = 0;
 		
 		opcionesReporte.add(agrupado, restriccionesOpciones);
-		restriccionesOpciones.gridy++;
-		opcionesReporte.add(habilitarPorHoraDescargasConsultas, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
 		opcionesReporte.add(habilitarPorMesDescargasConsultas, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
@@ -598,13 +652,14 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		habilitarPeriodoDescargasConsultas = new JCheckBox("Restringir periodo");
 		habilitarPeriodoDescargasConsultas.setFont(Estilos.fontSubrayados);
+		habilitarPeriodoDescargasConsultas.addActionListener(manejador);
 		
 		habilitarPorMesDescargasConsultas= new JCheckBox("Por Mes");
 		habilitarPorAnioDescargasConsultas= new JCheckBox("Por Año");
-		habilitarPorHoraDescargasConsultas= new JCheckBox("Por Hora");
 		
 		habilitarPeriodoDocumento = new JCheckBox("Restringir periodo");
 		habilitarPeriodoDocumento.setFont(Estilos.fontSubrayados);
+		habilitarPeriodoDocumento.addActionListener(manejador);
 		
 		habilitarPorMesDocumento= new JCheckBox("Por Mes");
 		habilitarPorAnioDocumento= new JCheckBox("Por Año");
@@ -679,6 +734,48 @@ public class GuiReportesAvanzados extends JPanel{
 				opcionOrdenCatalogadores.clearSelection();
 				ascendenteDocumento.setEnabled(false);
 				descendenteDocumento.setEnabled(false);
+			}
+			if (e.getSource() == habilitarPeriodoDescargasConsultas)
+			{
+				if(habilitarPeriodoDescargasConsultas.isSelected())
+				{
+					campoFechaDesdeDescargas.setEnabled(true);
+					campoFechaHastaDescargas.setEnabled(true);
+				}
+				else
+				{
+					campoFechaDesdeDescargas.setEnabled(false);
+					campoFechaHastaDescargas.setEnabled(false);
+				}
+			}
+			if (e.getSource() == habilitarPeriodoDocumento)
+			{
+				if(habilitarPeriodoDocumento.isSelected())
+				{
+					campoFechaDesdeDocumento.setEnabled(true);
+					campoFechaHastaDocumento.setEnabled(true);
+				}
+				else
+				{
+					campoFechaDesdeDocumento.setEnabled(false);
+					campoFechaHastaDocumento.setEnabled(false);
+				}
+			}
+			if(e.getSource() == botonDescargasConsultasGenerar)
+			{
+				boolean descargas = descargasRadio.isSelected();
+				if(descargas)
+				{
+					
+					
+				}else //consultas
+				{
+					
+				}
+			}
+			if(e.getSource() == botonDocumentoGenerar)
+			{
+				
 			}
 				
 		}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="3.452271214393134"/>
-	<property name="ireport.x" value="5"/>
-	<property name="ireport.y" value="515"/>
+	<property name="ireport.zoom" value="0.7513148009015849"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="opcion" class="java.lang.String"/>
 	<field name="agrupado" class="java.lang.String"/>
@@ -142,7 +142,7 @@
 		<band height="752" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="76" y="77" width="420" height="419"/>
+					<reportElement x="61" y="113" width="451" height="527"/>
 					<chartTitle>
 						<font fontName="DejaVu Serif Condensed" size="12" isBold="true"/>
 						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>

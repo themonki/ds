@@ -92,21 +92,21 @@ SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha
 SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, count(u.login) AS cuantos FROM usuario AS u GROUP BY anio, mes ORDER BY anio, mes;
 
 --usuarios por fecha de nacimiento para anios restringidos y todos los meses totales
-SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2010 Group BY ORDER BY anio, mes;
+SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2010 Group anio,mes BY ORDER BY anio, mes;
 
---usuarios por fecha de resgistro para anios restringidos y todos los meses organiado
+--usuarios por fecha de resgistro para anios restringidos y todos los meses totales
 SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 GROUP BY anio, mes ORDER BY anio, mes;
 
---usuarios por fecha nacimiento para todos los anio y mese restringidos
+--usuarios por fecha nacimiento para todos los anio y mese restringidos totales
 SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN 3 AND 8 GROUP BY anio,mes ORDER BY anio,mes;
 
---usuarios por fecha registro para todos los anio y meses restringidos
+--usuarios por fecha registro para todos los anio y meses restringidos totales
 SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 03 AND 08 GROUP BY anio,mes ORDER BY anio,mes;
 
---usuarios por fecha nacimiento con años y mes restringidos
+--usuarios por fecha nacimiento con años y mes restringidos totales
 SELECT EXTRACT(YEAR FROM u.fecha_nacimiento) AS anio, EXTRACT(MONTH FROM u.fecha_nacimiento) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_nacimiento) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_nacimiento) BETWEEN 5 AND 8 GROUP BY anio,mes ORDER BY anio,mes;
 
---usuarios por fecha registro con años y mes restringidos
+--usuarios por fecha registro con años y mes restringidos totales
 SELECT EXTRACT(YEAR FROM u.fecha_registro) AS anio, EXTRACT(MONTH FROM u.fecha_registro) AS mes, count(u.login) AS cuantos FROM usuario AS u WHERE EXTRACT(YEAR FROM u.fecha_registro) BETWEEN 1989 AND 2011 AND EXTRACT(MONTH FROM u.fecha_registro) BETWEEN 5 AND 8 GROUP BY anio,mes ORDER BY anio,mes;
 --************************************************************************************
 
