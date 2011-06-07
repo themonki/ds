@@ -42,6 +42,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
@@ -364,7 +365,7 @@ public class GuiPrincipal extends JFrame
 					System.exit(0);
 					
 				}
-				if(evento.getSource()==contenidoAyuda){
+				else if(evento.getSource()==contenidoAyuda){
 					try {
 						Desktop.getDesktop().browse(new URI("http://bibliotecadigitaleisc.wikispaces.com/"));
 					} catch (IOException e) {
@@ -372,6 +373,17 @@ public class GuiPrincipal extends JFrame
 					} catch (URISyntaxException e) {
 						e.printStackTrace();
 					}
+				}
+				else if(evento.getSource() == informacion)
+				{
+					JOptionPane.showMessageDialog(null,
+							"Sistema Biblioteca Digital" +
+							"Desarrollado por:\n" +
+							"		 Maria Andrea Cruz  \n" +
+							"		 Cristian Leonardo Rios  \n" +
+							"		 Edgar Andres Moncada \n" +
+							"		 Luis Felipe Vargas \n" +
+							"		 Yerminson Gonzalez Munoz");
 				}
 			}
 		}
