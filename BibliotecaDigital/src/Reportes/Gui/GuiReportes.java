@@ -18,6 +18,7 @@
 
 package Reportes.Gui;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -27,6 +28,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -137,10 +139,12 @@ public class GuiReportes extends JTabbedPane{
 		
 		restringirAnio = new JCheckBox("Restringir por año");
 		restringirAnio.setFont(Estilos.fontSubrayados);
+		restringirAnio.setVisible(false);
 		restringirAnio.addActionListener(new Manejador());
 		
 		restringirMes = new JCheckBox("Restringir por mes");
 		restringirMes.setFont(Estilos.fontSubrayados);
+		restringirMes.setVisible(false);
 		restringirMes.addActionListener(new Manejador());
 
 		detallado = new JRadioButton("Informe Detallado", true);
@@ -362,6 +366,7 @@ public class GuiReportes extends JTabbedPane{
 		atributos.addItem("tipo");
 		atributos.addItem("fecha_nacimiento");
 		atributos.addItem("fecha_registro");
+		atributos.addActionListener(new Manejador());
 		
 		fechas= new JComboBox();
 		fechas.addItem("fecha_nacimiento");
@@ -479,6 +484,7 @@ public class GuiReportes extends JTabbedPane{
 					
 				}else
 				{
+					
 					etiquetaDesdeAnio.setVisible(false);
 					etiquetaHastaAnio.setVisible(false);
 					campoFechaDesdeAnio.setVisible(false);
@@ -491,6 +497,7 @@ public class GuiReportes extends JTabbedPane{
 			{
 				if(restringirMes.isSelected())
 				{
+					
 					etiquetaDesdeMes.setVisible(true);
 					etiquetaHastaMes.setVisible(true);
 					campoFechaDesdeMes.setVisible(true);
@@ -502,6 +509,58 @@ public class GuiReportes extends JTabbedPane{
 					campoFechaDesdeMes.setVisible(false);
 					campoFechaHastaMes.setVisible(false);
 				}
+				
+			}else if(evento.getSource() == atributos)
+			{
+				if(atributos.getSelectedIndex() != -1)
+				{
+					if(((String) atributos.getSelectedItem()).contains("fecha_nacimiento") ||
+							   ((String) atributos.getSelectedItem()).contains("fecha_registro"))
+							{
+								restringirAnio.setVisible(true);
+								restringirMes.setVisible(true);
+								habilitar.setVisible(false);
+								fechas.setVisible(false);
+								etiquetaDesde.setVisible(false);
+								etiquetaHasta.setVisible(false);
+								
+								if(restringirAnio.isSelected())
+								{
+									etiquetaDesdeAnio.setVisible(true);
+									etiquetaHastaAnio.setVisible(true);
+									campoFechaDesdeAnio.setVisible(true);
+									campoFechaHastaAnio.setVisible(true);
+								}
+								
+								if(restringirMes.isSelected())
+								{
+									etiquetaDesdeMes.setVisible(true);
+									etiquetaHastaMes.setVisible(true);
+									campoFechaDesdeMes.setVisible(true);
+									campoFechaHastaMes.setVisible(true);
+								}
+							}
+					else
+					{
+						restringirAnio.setVisible(false);
+						restringirMes.setVisible(false);
+						etiquetaDesdeMes.setVisible(false);
+						etiquetaHastaMes.setVisible(false);
+						campoFechaDesdeMes.setVisible(false);
+						campoFechaHastaMes.setVisible(false);
+						etiquetaDesdeAnio.setVisible(false);
+						etiquetaHastaAnio.setVisible(false);
+						campoFechaDesdeAnio.setVisible(false);
+						campoFechaHastaAnio.setVisible(false);
+						if(tablas.getSelectedItem().equals("Usuarios"))
+						{
+							habilitar.setVisible(true);
+							fechas.setVisible(true);
+						}
+						
+					}
+				}
+				
 				
 			}else if (evento.getSource()== tablas)
 			{
@@ -537,10 +596,19 @@ public class GuiReportes extends JTabbedPane{
 					atributos.addItem("tipo");
 					atributos.addItem("fecha_nacimiento");
 					atributos.addItem("fecha_registro");
-					restringirAnio.setVisible(true);
-					restringirMes.setVisible(true);
 					habilitar.setVisible(true);
 					fechas.setVisible(true);
+					restringirAnio.setVisible(false);
+					restringirMes.setVisible(false);
+					etiquetaDesdeMes.setVisible(false);
+					etiquetaHastaMes.setVisible(false);
+					campoFechaDesdeMes.setVisible(false);
+					campoFechaHastaMes.setVisible(false);
+					etiquetaDesdeAnio.setVisible(false);
+					etiquetaHastaAnio.setVisible(false);
+					campoFechaDesdeAnio.setVisible(false);
+					campoFechaHastaAnio.setVisible(false);
+					
 					if(habilitar.isSelected())
 					{
 						etiquetaDesde.setVisible(true);
@@ -548,21 +616,7 @@ public class GuiReportes extends JTabbedPane{
 						campoFecha.setVisible(true);
 						campoFecha2.setVisible(true);
 					}
-					if(restringirAnio.isSelected())
-					{
-						etiquetaDesdeAnio.setVisible(true);
-						etiquetaHastaAnio.setVisible(true);
-						campoFechaDesdeAnio.setVisible(true);
-						campoFechaHastaAnio.setVisible(true);
-					}
 					
-					if(restringirMes.isSelected())
-					{
-						etiquetaDesdeMes.setVisible(true);
-						etiquetaHastaMes.setVisible(true);
-						campoFechaDesdeMes.setVisible(true);
-						campoFechaHastaMes.setVisible(true);
-					}
 				}
 				if ( item.contains("Documentos"))
 				{
@@ -611,8 +665,11 @@ public class GuiReportes extends JTabbedPane{
 					boolean detalladoR = opcionReporte.isSelected(detallado.getModel());
 					boolean totalesR = opcionReporte.isSelected(totales.getModel());
 					boolean habilitarFechas = habilitar.isSelected();
+					boolean restringirAnioBool = restringirAnio.isSelected();
+					boolean restringirMesBool = restringirMes.isSelected();
 					boolean usuario = tablas.getSelectedItem().equals("Usuarios");
 					boolean areas = tablas.getSelectedItem().equals("Areas");
+					boolean documento = tablas.getSelectedItem().equals("Documentos");
 					
 					String atributoSeleccionado = (String) atributos.getSelectedItem();
 					String fechaBusqueda = (String)fechas.getSelectedItem();
@@ -623,6 +680,13 @@ public class GuiReportes extends JTabbedPane{
 					fecha= ((JSpinner.DateEditor) campoFecha2.getEditor()).getModel().getDate();
 					String fechaFinString = formatoFecha.format(fecha);
 					System.out.println("Fecha fin " +fechaFinString);
+					
+					SimpleDateFormat formatoAnio= new SimpleDateFormat("yyyy");
+					String fechaDesdeAnio =  formatoAnio.format(((JSpinner.DateEditor) campoFechaDesdeAnio.getEditor()).getModel().getDate());
+					String fechaHastaAnio =  formatoAnio.format(((JSpinner.DateEditor) campoFechaHastaAnio.getEditor()).getModel().getDate());
+					SimpleDateFormat formatoMes= new SimpleDateFormat("MM");
+					String fechaDesdeMes =  formatoMes.format(((JSpinner.DateEditor) campoFechaDesdeMes.getEditor()).getModel().getDate());
+					String fechaHastaMes =  formatoMes.format(((JSpinner.DateEditor) campoFechaHastaMes.getEditor()).getModel().getDate());
 					
 					ControladorReportes controlador = new ControladorReportes();
 					
@@ -635,13 +699,38 @@ public class GuiReportes extends JTabbedPane{
 								JasperPrint reporte;
 								if(habilitarFechas)
 								{
-									reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									
+										reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									
+									
 								}else
 								{
-									reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									if(restringirMesBool && restringirAnioBool)
+									{
+										reporte = controlador.reporteUsuariosAnioMes(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, fechaDesdeMes, fechaHastaMes, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									}else if(restringirAnioBool)
+									{
+										reporte = controlador.reporteUsuariosAnio(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									}else if (restringirMesBool)
+									{
+										reporte = controlador.reporteUsuariosAnioMes(atributoSeleccionado, fechaDesdeMes, fechaHastaMes, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										if(atributoSeleccionado.contains("fecha_"))
+										{
+											reporte = controlador.reporteUsuariosAnio(atributoSeleccionado, encabezado);
+											controlador.generarReporte(rutaFinal, reporte);
+										}
+										reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									}
+									
 								}
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
@@ -655,6 +744,7 @@ public class GuiReportes extends JTabbedPane{
 							{
 								JasperPrint reporte = controlador.reporteAreasAgrupadas(encabezado);
 								controlador.generarReporte(rutaFinal, reporte);
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								
 							}catch(JRException e)
 							{
@@ -662,6 +752,38 @@ public class GuiReportes extends JTabbedPane{
 										"tratando de llamarse el generar reporte de areas detalladas");
 								e.printStackTrace();
 							}
+						}
+						
+						if(documento)
+						{
+							try
+							{
+								JasperPrint reporte;
+								
+								if(atributoSeleccionado.contains("formato"))
+								{
+									reporte= controlador.reporteDocumentosAgrupadosFormato(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("area"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosArea(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("autor"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosAutor(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("tipo"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosTipo(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
+							
 						}
 					}
 					if(totalesR)
@@ -677,9 +799,30 @@ public class GuiReportes extends JTabbedPane{
 									controlador.generarReporte(rutaFinal, reporte);
 								}else
 								{
-									reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									if(restringirMesBool && restringirAnioBool)
+									{
+										reporte = controlador.reporteUsuariosAnioMesTotales(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, fechaDesdeMes, fechaHastaMes, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									}else if(restringirAnioBool)
+									{
+										reporte = controlador.reporteUsuariosAnioTotales(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									} else if(restringirMesBool)
+									{
+										reporte = controlador.reporteUsuariosAnioMesTotales(atributoSeleccionado, fechaDesdeMes, fechaHastaMes, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									}else
+									{		
+										if(atributoSeleccionado.contains("fecha_"))
+										{
+											reporte = controlador.reporteUsuariosAnioTotales(atributoSeleccionado, encabezado);
+											controlador.generarReporte(rutaFinal, reporte);
+										}
+										reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
+										controlador.generarReporte(rutaFinal, reporte);
+									}
 								}
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
@@ -693,7 +836,7 @@ public class GuiReportes extends JTabbedPane{
 							{
 								JasperPrint reporte = controlador.reporteAreasAgrupadasTotales(encabezado);
 								controlador.generarReporte(rutaFinal, reporte);
-								
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed" +
@@ -701,13 +844,45 @@ public class GuiReportes extends JTabbedPane{
 								e.printStackTrace();
 							}
 						}
+						
+						if(documento)
+						{
+							try
+							{
+								JasperPrint reporte;
+								
+								if(atributoSeleccionado.contains("formato"))
+								{
+									reporte= controlador.reporteDocumentosAgrupadosFormatoTotales(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("area"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosAreaTotales(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("autor"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosAutorTotales(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("tipo"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosTipoTotales(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
+							
+						}
 					}
 					
 					//reporte.setEncabezado(encabezado);
 				}
 				
 				//System.out.println(controladorReporte.consultarUsuariosAgrupados((String) atributos.getSelectedItem()));
-				JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+				
 				//System.out.println("reporte generado");
 				
 				}
