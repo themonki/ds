@@ -226,11 +226,14 @@ public class GuiReporteSQL extends JPanel {
 			}
 			if(evento.getSource()==Esquematablas){
 				JScrollPane scroll= new JScrollPane();
-				JLabel etiquetaEsquema = new JLabel("",JLabel.CENTER);
+				JTextArea etiquetaEsquema = new JTextArea();
+				etiquetaEsquema.setEditable(false);
+				etiquetaEsquema.setLineWrap(true);
 				etiquetaEsquema.setFont(Estilos.fontSubtitulos);
+				etiquetaEsquema.setForeground(Estilos.colorFondoPanel);
 				JFrame vistaEsquemas= new JFrame();
 				String item= (String) Esquematablas.getSelectedItem();
-				String atributos= ""+conReport.obtenerNombreTablas(item);
+				String atributos= item+":\n"+conReport.obtenerNombreTablas(item);
 
 
 				etiquetaEsquema.setText(atributos);
