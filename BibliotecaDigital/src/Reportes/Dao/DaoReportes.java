@@ -1112,7 +1112,20 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 	
-	public TableDataSource consultaDocumentosCatalogadosFechaAnio(String anioI, String anioF)
+	public TableDataSource consultaDocumentosCatalogadosFecha(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaAnio()
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
 				"d.login_catalogador, x.nombre1, x.apellido1, " +
@@ -1121,13 +1134,12 @@ public class DaoReportes
 				"FROM documento AS d JOIN " +
 				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
 				"ON d.login_catalogador = x.login " +
-				"WHERE EXTRACT(YEAR FROM d.fecha_catalogacion) BETWEEN '" + anioI + "' AND '" + anioF + "' " +
 				"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
-	public TableDataSource consultaDocumentosCatalogadosFechaMes(String mesI, String mesF)
+	public TableDataSource consultaDocumentosCatalogadosFechaAnio(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
 				"d.login_catalogador, x.nombre1, x.apellido1, " +
@@ -1136,13 +1148,42 @@ public class DaoReportes
 				"FROM documento AS d JOIN " +
 				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
 				"ON d.login_catalogador = x.login " +
-				"WHERE EXTRACT(MONTH FROM d.fecha_catalogacion) BETWEEN '" + mesI + "' AND '" + mesF + "' " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
 				"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
-	public TableDataSource consultaDocumentosCatalogadosFechaAnioMes(String anioI, String anioF, String mesI, String mesF)
+	public TableDataSource consultaDocumentosCatalogadosFechaMes()
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaMes(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
+	/*public TableDataSource consultaDocumentosCatalogadosFechaAnioMes(String anioI, String anioF, String mesI, String mesF)
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
 				"d.login_catalogador, x.nombre1, x.apellido1, " +
@@ -1156,20 +1197,7 @@ public class DaoReportes
 				"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
-	}
-	
-	public TableDataSource consultaDocumentosCatalogadosFecha(String fechaI, String fechaF)
-	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
-				"FROM documento AS d " +
-				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
-				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-				"ORDER BY d.fecha_catalogacion";
-		
-		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
-	}
+	}*/
 	
 	public TableDataSource consultaDocumentosCatalogadosArea()
 	{
