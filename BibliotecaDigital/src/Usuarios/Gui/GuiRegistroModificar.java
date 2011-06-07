@@ -72,7 +72,8 @@ public class GuiRegistroModificar extends JScrollPane {
 	private JLabel login, password, verificacionPassword, preguntaSecreta,
 			respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero,
 			fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle,
-			perfilLabel, estadoLabel, areasInteres, icono;
+			perfilLabel, estadoLabel, areasInteres, icono, fechaUltimoAcceso, fechaRegistro,
+			campoFechaUltimoAcceso, campoFechaRegistro;
 	private JPasswordField campoPassword, campoVerificacionPassword;
 	private JComboBox campoPreguntaSecreta, campoGenero, campoPerfil,
 			campoEstado, campoAreasInteres, campoVinculoUnivalle,
@@ -175,7 +176,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		if(modo==0){
 			icono.setIcon(new ImageIcon("recursos/iconos/contact-new.png"));
 		}
-		if(modo ==1 || modo==2){
+		if(modo ==1){
 			String genero = usuarioModificar.getGenero();
 			if(genero.equals("M")){
 				icono.setIcon(new ImageIcon("recursos/iconos/man-editar.png"));
@@ -199,6 +200,8 @@ public class GuiRegistroModificar extends JScrollPane {
 		nivelEscolaridad = inicializarLabel("Nivel Escolaridad: ");
 		vinculoUnivalle = inicializarLabel("Vinculo con Univalle: ");
 		areasInteres = inicializarLabel("Áreas de Interés: ");
+		fechaRegistro = inicializarLabel("Fecha de Registro: ");
+		fechaUltimoAcceso = inicializarLabel("Ultimo Acceso: ");
 
 		if (modo == 0 || modo == 1) {
 
@@ -388,7 +391,15 @@ public class GuiRegistroModificar extends JScrollPane {
 			panelDatos.add(campoAreasInteres, restriccionCampo);
 		}
 		if (modo == 2) {
-			panelDatos.add(areasInteres, restriccionEtiqueta);
+			panelDatos.add(fechaRegistro, restriccionEtiqueta);
+			panelDatos.add(campoFechaRegistro, restriccionCampo);
+			filaPanelDatos++;
+			restriccionEtiqueta.gridy = filaPanelDatos;
+			restriccionCampo.gridy = filaPanelDatos;
+			panelDatos.add(fechaUltimoAcceso, restriccionEtiqueta);
+			panelDatos.add(campoFechaUltimoAcceso, restriccionCampo);
+			
+			
 		}
 
 		filaPanelDatos++;
@@ -598,6 +609,8 @@ public class GuiRegistroModificar extends JScrollPane {
 		campoEmail.setText(usuarioModificar.getEmail());
 		campoEmail.setEditable(false);
 
+		campoFechaUltimoAcceso = new JLabel(usuarioModificar.getFechaUltimoAcceso().toString());
+		campoFechaRegistro = new JLabel(usuarioModificar.getFechaRegistro().toString());
 		// Obtener fecha para organizar el formato para mostrar
 		Date fechaNacimientoUsuarioModificar = usuarioModificar
 				.getFechaNacimiento();
