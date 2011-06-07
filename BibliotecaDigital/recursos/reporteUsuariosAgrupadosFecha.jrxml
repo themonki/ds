@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="0.9090909090909145"/>
-	<property name="ireport.x" value="239"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.0000000000000067"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="91"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<field name="anio" class="java.lang.String"/>
 	<field name="tipo" class="java.lang.String"/>
@@ -175,7 +175,7 @@
 		<band height="572" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="166" y="77" width="420" height="419"/>
+					<reportElement x="30" y="28" width="689" height="485"/>
 					<chartTitle>
 						<font fontName="DejaVu Serif Condensed" size="12" isBold="true"/>
 						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>
@@ -184,7 +184,7 @@
 						<font fontName="DejaVu Serif Condensed" isBold="true"/>
 						<subtitleExpression><![CDATA["Total de Usuarios: " + $V{agrupado_1}]]></subtitleExpression>
 					</chartSubtitle>
-					<chartLegend/>
+					<chartLegend position="Right"/>
 				</chart>
 				<pieDataset>
 					<keyExpression><![CDATA[$F{anio}]]></keyExpression>
