@@ -446,7 +446,6 @@ public class GuiConsultaAvanzada extends JScrollPane
 				ControladorConsulta controlador = new ControladorConsulta();
 				Vector<Consulta> consulta = controlador.consultaAvanzada(atributosConsulta, valoresConsulta, opcionTitulo, opcionPalabra, opcionAutor);
 			
-				System.out.println(consulta);
 				GuiResultadoConsulta.TIPO_CONSULTA = 2;
 				
 				
@@ -470,15 +469,12 @@ public class GuiConsultaAvanzada extends JScrollPane
 					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
 					
 				}	
-				System.out.println(GuiConsultaBasica.TIPO_USUARIO);
-				
 				
 				
 				
 			}else if(fuente == campoAreas)
 			{
 				area = (String)campoAreas.getSelectedItem();
-				System.out.println("seleccionado area " + area);
 				
 			}else if(fuente == campoIdioma)
 			{

@@ -592,9 +592,8 @@ public class GuiVistaDetalladaConsulta extends JScrollPane {
 								ControladorConsulta conCon = new ControladorConsulta();
 								conCon.insertarDescargaDocumento(documento.getId_doc(), GuiAdministrador.LOGIN);
 							}else{
-								System.out.println("Error al insertar Descarga no se conoce el login");
-							}
-							
+								JOptionPane.showMessageDialog(null, "Error al Descargar no se conoce el login", "ERROR", JOptionPane.OK_OPTION);
+							}							
 							JOptionPane.showMessageDialog(null,"Se descargo correctamente el archivo en la siguiente ubicacion: \n "+descarga);
 						}
 						
@@ -834,7 +833,6 @@ public class GuiVistaDetalladaConsulta extends JScrollPane {
 		
 		
 		int cantidad = 10;
-		System.out.println(vector);
 		GuiConsultaBasica.PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(vector,cantidad);
 		GuiConsultaBasica.CAMPO_CONSULTA.setText(parametro);
 		GuiResultadoConsulta.TIPO_CONSULTA = 1;
@@ -878,7 +876,6 @@ public class GuiVistaDetalladaConsulta extends JScrollPane {
 		
 		
 		int cantidad = 10;
-		System.out.println(vector);
 		GuiConsultaBasica.PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(vector,cantidad);
 		GuiConsultaBasica.CAMPO_CONSULTA.setText(parametro);
 		GuiResultadoConsulta.TIPO_CONSULTA = 1;
@@ -934,7 +931,6 @@ public class GuiVistaDetalladaConsulta extends JScrollPane {
 		
 		
 		int cantidad = 10;
-		System.out.println(vector);
 		GuiConsultaBasica.PANEL_RESULTADO_CONSULTA = new GuiResultadoConsulta(vector,cantidad);
 		GuiConsultaBasica.CAMPO_CONSULTA.setText(parametro);
 		GuiResultadoConsulta.TIPO_CONSULTA = 1;

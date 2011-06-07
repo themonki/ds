@@ -1574,7 +1574,7 @@ public class DaoReportes
 		// System.out.println(daoReportes.consultaUsuariosOrdenados("nivel_escolaridad"));
 		// System.out.println(daoReportes.consultaUsuariosOrdenadosTotales("genero"));
 		
-		JFrame a = new JFrame();
+		/*JFrame a = new JFrame();
 		JPanel panel =  new JPanel();
 		panel.add(daoReportes.consultaGenerica("select * from usuario where login ='monki'"));
 		JScrollPane asd = new JScrollPane(panel);
@@ -1583,7 +1583,7 @@ public class DaoReportes
 	
 		a.setVisible(true);
 		a.setSize(400,400);
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 
 		
 	}

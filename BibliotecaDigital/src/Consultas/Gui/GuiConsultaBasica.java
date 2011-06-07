@@ -200,7 +200,7 @@ public class GuiConsultaBasica extends JScrollPane
 					JOptionPane.showMessageDialog(null, "La consulta no arrojo resultados");
 					
 				}	
-				System.out.println(GuiConsultaBasica.TIPO_USUARIO);
+				
 			}
 			
 		}

@@ -12,10 +12,6 @@
  * Version:   4.0
  */
 
-
-
-
-
 package Usuarios.Controlador;
 
 import java.sql.Date;
@@ -134,6 +130,7 @@ public class ControladorUsuario {
 		int value = 0;
 		if (verificarDatosInsertar(u)) {
 			value = daoUs.guardarUsuario(u);
+			System.out.println("Se Registro el usuario");
 		}
 		daoUs = null;
 		return value;

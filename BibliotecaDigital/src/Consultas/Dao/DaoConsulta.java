@@ -244,11 +244,11 @@ public class DaoConsulta {
 			consultaAreaSql = "";
 		}
 	
-		System.out.println(consultaDocumentoSql);
-		System.out.println(consultaPalabraSql);
+		//System.out.println(consultaDocumentoSql);
+		//System.out.println(consultaPalabraSql);
 		//System.out.println(consultaDocumentoTituloSql);
-		System.out.println(consultaAreaSql);
-		System.out.println(consultaAutorSql);
+		//System.out.println(consultaAreaSql);
+		//System.out.println(consultaAutorSql);
 		
 		
 		//Construir consulta final.
@@ -331,7 +331,7 @@ public class DaoConsulta {
 			} catch (Exception e) {
 				System.out.println(e);					
 			}
-			System.out.println(consultas);
+			//System.out.println(consultas);
 		return consultas;
 		
 	}
