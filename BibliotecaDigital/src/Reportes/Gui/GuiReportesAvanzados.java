@@ -325,6 +325,7 @@ public class GuiReportesAvanzados extends JPanel{
 		ascendenteDocumento.setVisible(false);
 		descendenteDocumento = new JRadioButton("Descendente", false);
 		descendenteDocumento.setVisible(false);
+		descendenteDocumento.setSelected(true);
 		
 		habilitarPorAnioDescargasConsultas = new JRadioButton("Por año", false);
 		habilitarPorAnioDescargasConsultas.setVisible(false);
