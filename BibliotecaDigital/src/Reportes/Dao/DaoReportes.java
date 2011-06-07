@@ -1641,7 +1641,7 @@ public class DaoReportes
 		
 	}  
 
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 
 		//DaoReportes daoReportes = new DaoReportes();
 		// daoReportes.consultaUsuarioBasica("vinculo_univalle", "=",
@@ -1667,9 +1667,9 @@ public class DaoReportes
 	
 		a.setVisible(true);
 		a.setSize(400,400);
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
-	}
+	}/**/
 
 }

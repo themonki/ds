@@ -16,10 +16,12 @@
 package Usuarios.Gui;
 
 import java.awt.BorderLayout;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+
 import Consultas.Gui.GuiResultadoConsulta;
 import Consultas.Gui.GuiVistaDetalladaConsulta;
 import Utilidades.Estilos;

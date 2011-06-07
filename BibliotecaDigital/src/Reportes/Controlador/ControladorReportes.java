@@ -1066,7 +1066,7 @@ public class ControladorReportes
 	
 	
 	
-	public static void main(String arg[])
+	/*public static void main(String arg[])
 	{
 	//	ControladorReportes c = new ControladorReportes();
 		try
@@ -1154,6 +1154,6 @@ public class ControladorReportes
 		{
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 }

@@ -20,13 +20,13 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import Consultas.Dao.DaoConsulta;
+import Consultas.Logica.Consulta;
 import Documento.Controlador.ControladorDocumento;
 import Documento.Logica.Documento;
 import GestionDocumento.Controlador.ControladorAreaConocimiento;
 import GestionDocumento.Controlador.ControladorAutor;
 import GestionDocumento.Controlador.ControladorPalabraClave;
-import Consultas.Dao.DaoConsulta;
-import Consultas.Logica.Consulta;
 
 /**
  * Clase que permite la comunicación entre la Clase {@link Consultas.Dao.DaoConsulta DaoConsulta} y las Clases

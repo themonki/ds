@@ -17,9 +17,7 @@
 package Consultas.Gui;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
-
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -29,6 +27,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.Vector;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -39,6 +38,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+
 import Consultas.Controlador.ControladorConsulta;
 import Consultas.Logica.Consulta;
 import Documento.Controlador.ControladorDocumento;

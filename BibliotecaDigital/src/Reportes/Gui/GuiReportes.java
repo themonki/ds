@@ -79,7 +79,7 @@ public class GuiReportes extends JTabbedPane{
 	
 	private JCheckBox habilitar, restringirAnio, restringirMes;
 	
-	private JScrollPane scroll, scroll2;
+	private JScrollPane scroll;
 	
 	private JLabel etiquetaIcono,etiquetaTabla, etiquetaAtributo, etiquetaTitulo, etiquetaDesde, etiquetaHasta,
 				   etiquetaDesdeAnio, etiquetaDesdeMes, etiquetaHastaAnio, etiquetaHastaMes;
@@ -123,7 +123,6 @@ public class GuiReportes extends JTabbedPane{
 	private void initComponents() {
 		
 		scroll= new JScrollPane();
-		scroll2= new JScrollPane();
 		
 		inicializarLabels();
 		inicializarComboBOx();
@@ -688,7 +687,7 @@ public class GuiReportes extends JTabbedPane{
 					String fechaDesdeMes =  formatoMes.format(((JSpinner.DateEditor) campoFechaDesdeMes.getEditor()).getModel().getDate());
 					String fechaHastaMes =  formatoMes.format(((JSpinner.DateEditor) campoFechaHastaMes.getEditor()).getModel().getDate());
 					
-					ControladorReportes controlador = new ControladorReportes();
+					
 					
 					if(detalladoR)
 					{
@@ -700,33 +699,33 @@ public class GuiReportes extends JTabbedPane{
 								if(habilitarFechas)
 								{
 									
-										reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAgrupados(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									
 									
 								}else
 								{
 									if(restringirMesBool && restringirAnioBool)
 									{
-										reporte = controlador.reporteUsuariosAnioMes(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, fechaDesdeMes, fechaHastaMes, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAnioMes(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, fechaDesdeMes, fechaHastaMes, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}else if(restringirAnioBool)
 									{
-										reporte = controlador.reporteUsuariosAnio(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAnio(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}else if (restringirMesBool)
 									{
-										reporte = controlador.reporteUsuariosAnioMes(atributoSeleccionado, fechaDesdeMes, fechaHastaMes, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAnioMes(atributoSeleccionado, fechaDesdeMes, fechaHastaMes, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}else
 									{
 										if(atributoSeleccionado.contains("fecha_"))
 										{
-											reporte = controlador.reporteUsuariosAnio(atributoSeleccionado, encabezado);
-											controlador.generarReporte(rutaFinal, reporte);
+											reporte = controladorReporte.reporteUsuariosAnio(atributoSeleccionado, encabezado);
+											controladorReporte.generarReporte(rutaFinal, reporte);
 										}
-										reporte = controlador.reporteUsuariosAgrupados(atributoSeleccionado, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAgrupados(atributoSeleccionado, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
 									
 								}
@@ -742,8 +741,8 @@ public class GuiReportes extends JTabbedPane{
 						{
 							try
 							{
-								JasperPrint reporte = controlador.reporteAreasAgrupadas(encabezado);
-								controlador.generarReporte(rutaFinal, reporte);
+								JasperPrint reporte = controladorReporte.reporteAreasAgrupadas(encabezado);
+								controladorReporte.generarReporte(rutaFinal, reporte);
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								
 							}catch(JRException e)
@@ -762,20 +761,20 @@ public class GuiReportes extends JTabbedPane{
 								
 								if(atributoSeleccionado.contains("formato"))
 								{
-									reporte= controlador.reporteDocumentosAgrupadosFormato(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte= controladorReporte.reporteDocumentosAgrupadosFormato(encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}else if(atributoSeleccionado.contains("area"))
 								{
-									reporte = controlador.reporteDocumentosAgrupadosArea(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte = controladorReporte.reporteDocumentosAgrupadosArea(encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}else if(atributoSeleccionado.contains("autor"))
 								{
-									reporte = controlador.reporteDocumentosAgrupadosAutor(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte = controladorReporte.reporteDocumentosAgrupadosAutor(encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}else if(atributoSeleccionado.contains("tipo"))
 								{
-									reporte = controlador.reporteDocumentosAgrupadosTipo(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte = controladorReporte.reporteDocumentosAgrupadosTipo(encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
@@ -795,31 +794,31 @@ public class GuiReportes extends JTabbedPane{
 								JasperPrint reporte;
 								if(habilitarFechas)
 								{
-									reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte = controladorReporte.reporteUsuariosAgrupadosTotales(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}else
 								{
 									if(restringirMesBool && restringirAnioBool)
 									{
-										reporte = controlador.reporteUsuariosAnioMesTotales(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, fechaDesdeMes, fechaHastaMes, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAnioMesTotales(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, fechaDesdeMes, fechaHastaMes, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}else if(restringirAnioBool)
 									{
-										reporte = controlador.reporteUsuariosAnioTotales(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAnioTotales(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									} else if(restringirMesBool)
 									{
-										reporte = controlador.reporteUsuariosAnioMesTotales(atributoSeleccionado, fechaDesdeMes, fechaHastaMes, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAnioMesTotales(atributoSeleccionado, fechaDesdeMes, fechaHastaMes, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}else
 									{		
 										if(atributoSeleccionado.contains("fecha_"))
 										{
-											reporte = controlador.reporteUsuariosAnioTotales(atributoSeleccionado, encabezado);
-											controlador.generarReporte(rutaFinal, reporte);
+											reporte = controladorReporte.reporteUsuariosAnioTotales(atributoSeleccionado, encabezado);
+											controladorReporte.generarReporte(rutaFinal, reporte);
 										}
-										reporte = controlador.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
-										controlador.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
 								}
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
@@ -834,8 +833,8 @@ public class GuiReportes extends JTabbedPane{
 						{
 							try
 							{
-								JasperPrint reporte = controlador.reporteAreasAgrupadasTotales(encabezado);
-								controlador.generarReporte(rutaFinal, reporte);
+								JasperPrint reporte = controladorReporte.reporteAreasAgrupadasTotales(encabezado);
+								controladorReporte.generarReporte(rutaFinal, reporte);
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
@@ -853,20 +852,20 @@ public class GuiReportes extends JTabbedPane{
 								
 								if(atributoSeleccionado.contains("formato"))
 								{
-									reporte= controlador.reporteDocumentosAgrupadosFormatoTotales(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte= controladorReporte.reporteDocumentosAgrupadosFormatoTotales(encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}else if(atributoSeleccionado.contains("area"))
 								{
-									reporte = controlador.reporteDocumentosAgrupadosAreaTotales(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte = controladorReporte.reporteDocumentosAgrupadosAreaTotales(encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}else if(atributoSeleccionado.contains("autor"))
 								{
-									reporte = controlador.reporteDocumentosAgrupadosAutorTotales(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte = controladorReporte.reporteDocumentosAgrupadosAutorTotales(encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}else if(atributoSeleccionado.contains("tipo"))
 								{
-									reporte = controlador.reporteDocumentosAgrupadosTipoTotales(encabezado);
-									controlador.generarReporte(rutaFinal, reporte);
+									reporte = controladorReporte.reporteDocumentosAgrupadosTipoTotales(encabezado);
+									controladorReporte.generarReporte(rutaFinal, reporte);
 								}
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
