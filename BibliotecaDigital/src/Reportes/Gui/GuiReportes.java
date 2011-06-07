@@ -552,6 +552,8 @@ public class GuiReportes extends JTabbedPane{
 						etiquetaHastaAnio.setVisible(false);
 						campoFechaDesdeAnio.setVisible(false);
 						campoFechaHastaAnio.setVisible(false);
+						campoFecha.setVisible(false);
+						campoFecha2.setVisible(false);
 						if(tablas.getSelectedItem().equals("Usuarios"))
 						{
 							habilitar.setVisible(true);
