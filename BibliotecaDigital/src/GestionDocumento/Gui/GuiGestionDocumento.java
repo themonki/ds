@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -30,6 +31,8 @@ public class GuiGestionDocumento extends JScrollPane{
 	private GuiRegistroModificar guiRegistroModi;
 	
 	private Manejador manejador;
+	
+	private JLabel add, update;
 	
 	public GuiGestionDocumento() {
 		initComponent();
@@ -53,6 +56,15 @@ public class GuiGestionDocumento extends JScrollPane{
 		botonModificarAutor = initBoton("Modificar Autor");
 		botonModificarPalabra = initBoton("Modificar Palabra Clave");
 		botonModificarTipoMaterial = initBoton("Modificar Tipo de Material");
+		
+		add = new JLabel();
+		update = new JLabel();
+		ImageIcon iconAdd = new ImageIcon("recursos/iconos/newadd.png");
+		ImageIcon iconUpdate = new ImageIcon("recursos/iconos/update.png");
+		add.setIcon(iconAdd);
+		update.setIcon(iconUpdate);
+		
+		
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
 		
 		
@@ -65,7 +77,10 @@ public class GuiGestionDocumento extends JScrollPane{
 		restriccion.anchor = GridBagConstraints.WEST;
 				
 		int pos = 1;
-
+		restriccion.anchor = GridBagConstraints.CENTER;
+		panel.add(add,restriccion);
+		restriccion.gridy=pos++;
+		restriccion.anchor = GridBagConstraints.WEST;
 		panel.add(botonIngresarArea, restriccion);
 		restriccion.gridy=pos++;
 		restriccion.ipadx=100;
@@ -80,6 +95,10 @@ public class GuiGestionDocumento extends JScrollPane{
 		restriccion.gridy=0;
 		restriccion.gridx=1;
 		restriccion.ipadx=0;
+		restriccion.anchor = GridBagConstraints.CENTER;
+		panel.add(update,restriccion);
+		restriccion.gridy=pos++;
+		restriccion.anchor = GridBagConstraints.WEST;
 		panel.add(botonModificarArea, restriccion);
 		restriccion.gridy=pos++;
 		restriccion.ipadx=100;
