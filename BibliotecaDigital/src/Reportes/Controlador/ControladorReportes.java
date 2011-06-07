@@ -382,6 +382,7 @@ public class ControladorReportes
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		parametros.put("opcion", "Autor(es)");
+		parametros.put("opcionA" , "Área: ");
 				
 		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupado.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
@@ -404,6 +405,7 @@ public class ControladorReportes
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		parametros.put("opcion", "Autor(es)");
+		parametros.put("opcionA" , "Tipo: ");
 				
 		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupado.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
@@ -426,6 +428,7 @@ public class ControladorReportes
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		parametros.put("opcion", "Autor(es)");
+		parametros.put("opcionA" , "Formato: ");
 				
 		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupado.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
@@ -447,6 +450,7 @@ public class ControladorReportes
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
+		parametros.put("opcionA" , "Autor: ");
 		//parametros.put("opcion", "Areas de Conocimiento");
 				
 		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupado.jasper");
@@ -903,6 +907,7 @@ public class ControladorReportes
 		try
 		{
 			//System.out.println(c.consultaGenerica("select * from usuario"));
+			
 			/*c.generarReporte("recursos/reportes/documento_areas.pdf", c.reporteDocumentosAgrupadosArea("Reporte Documento Areas"));
 			c.generarReporte("recursos/reportes/documento_tipo.pdf", c.reporteDocumentosAgrupadosTipo("Reporte Documento Tipo"));
 			c.generarReporte("recursos/reportes/documento_formato.pdf", c.reporteDocumentosAgrupadosFormato("Reporte Documento Formato"));
@@ -943,17 +948,15 @@ public class ControladorReportes
 			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento_total.pdf", c.reporteUsuariosAnioTotales("fecha_nacimiento", "Reporte Usuarios por Fecha de Nacimiento Total"));
 			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento_total_intervalo_anio.pdf", c.reporteUsuariosAnioTotales("fecha_nacimiento", "1989","2003","Reporte Usuarios por Fecha de Nacimiento Total"));
 			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento_total_intervalo_mes.pdf", c.reporteUsuariosAnioMesTotales("fecha_nacimiento","05","11", "Reporte Usuarios por Fecha de Nacimiento Total"));
-			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento_total_intervalo_anio_mes.pdf", c.reporteUsuariosAnioMesTotales("fecha_nacimiento","1989","2003","05","11", "Reporte Usuarios por Fecha de Nacimiento Total"));*/
-			
-			/*c.generarReporte("recursos/reportes/usuario_fecha_registro.pdf", c.reporteUsuariosAnio("fecha_registro", "Reporte Usuarios por Fecha de Registro"));
+			c.generarReporte("recursos/reportes/usuario_fecha_nacimiento_total_intervalo_anio_mes.pdf", c.reporteUsuariosAnioMesTotales("fecha_nacimiento","1989","2003","05","11", "Reporte Usuarios por Fecha de Nacimiento Total"));
+			c.generarReporte("recursos/reportes/usuario_fecha_registro.pdf", c.reporteUsuariosAnio("fecha_registro", "Reporte Usuarios por Fecha de Registro"));
 			c.generarReporte("recursos/reportes/usuario_fecha_registro_intervalo_anio.pdf", c.reporteUsuariosAnio("fecha_registro", "1989","2003","Reporte Usuarios por Fecha de Registro"));
 			c.generarReporte("recursos/reportes/usuario_fecha_registro_intervalo_mes.pdf", c.reporteUsuariosAnioMes("fecha_registro","05","11", "Reporte Usuarios por Fecha de Registro"));
-			c.generarReporte("recursos/reportes/usuario_fecha_registro_intervalo_anio_mes.pdf", c.reporteUsuariosAnioMes("fecha_registro","1989","2003","05","11", "Reporte Usuarios por Fecha de Registro"));*/
-			
+			c.generarReporte("recursos/reportes/usuario_fecha_registro_intervalo_anio_mes.pdf", c.reporteUsuariosAnioMes("fecha_registro","1989","2003","05","11", "Reporte Usuarios por Fecha de Registro"));
 			c.generarReporte("recursos/reportes/usuario_fecha_registro_total.pdf", c.reporteUsuariosAnioTotales("fecha_registro", "Reporte Usuarios por Fecha de Registro Total"));
 			c.generarReporte("recursos/reportes/usuario_fecha_registro_total_intervalo_anio.pdf", c.reporteUsuariosAnioTotales("fecha_registro", "1989","2003","Reporte Usuarios por Fecha de Registro Total"));
 			c.generarReporte("recursos/reportes/usuario_fecha_registro_total_intervalo_mes.pdf", c.reporteUsuariosAnioMesTotales("fecha_registro","05","11", "Reporte Usuarios por Fecha de Registro Total"));
-			c.generarReporte("recursos/reportes/usuario_fecha_registro_total_intervalo_anio_mes.pdf", c.reporteUsuariosAnioMesTotales("fecha_registro","1989","2003","05","11", "Reporte Usuarios por Fecha de Registro Total"));
+			c.generarReporte("recursos/reportes/usuario_fecha_registro_total_intervalo_anio_mes.pdf", c.reporteUsuariosAnioMesTotales("fecha_registro","1989","2003","05","11", "Reporte Usuarios por Fecha de Registro Total"));*/
 			
 			/*c.generarReporte("recursos/reportes/areas.pdf", c.reporteAreasAgrupadas("Reporte Areas"));
 			c.generarReporte("recursos/reportes/areas_totales.pdf", c.reporteAreasAgrupadasTotales("Reporte Areas Totales"));*/
@@ -971,7 +974,7 @@ public class ControladorReportes
 			c.generarReporte("recursos/reportes/consultado_usuario.pdf", c.reporteDocumentosConsultadosUsuario("Reporte Documentos Consultados por Usuario"));
 			c.generarReporte("recursos/reportes/consutlado_usuario_intervalo.pdf", c.reporteDocumentosConsultadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Consultados por Usuario"));*/
 			
-			//throw new JRException("no se");
+			throw new JRException("no se");
 		}catch(JRException e)
 		{
 			e.printStackTrace();

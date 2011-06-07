@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="0.7513148009015849"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.zoom" value="0.8264462809917438"/>
+	<property name="ireport.x" value="4"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="opcion" class="java.lang.String"/>
+	<parameter name="introduccion" class="java.lang.String"/>
 	<field name="agrupado" class="java.lang.String"/>
 	<field name="cantidad" class="java.lang.Integer"/>
 	<variable name="total" class="java.lang.Integer" calculation="Sum">
@@ -14,7 +15,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="140" splitType="Stretch">
+		<band height="229" splitType="Stretch">
 			<textField>
 				<reportElement x="57" y="32" width="321" height="56"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -31,6 +32,11 @@
 				<reportElement x="388" y="0" width="184" height="140"/>
 				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="57" y="120" width="321" height="94"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{introduccion}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<columnHeader>
@@ -142,7 +148,7 @@
 		<band height="752" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="61" y="113" width="451" height="527"/>
+					<reportElement x="47" y="77" width="479" height="599"/>
 					<chartTitle>
 						<font fontName="DejaVu Serif Condensed" size="12" isBold="true"/>
 						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>
@@ -176,7 +182,7 @@
 			<line>
 				<reportElement x="-2" y="713" width="572" height="1"/>
 				<graphicElement>
-					<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#CCCCCC"/>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</graphicElement>
 			</line>
 			<staticText>

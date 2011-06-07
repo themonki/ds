@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_2" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.3310000000000048"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="87"/>
+	<property name="ireport.zoom" value="1.6105100000000079"/>
+	<property name="ireport.x" value="736"/>
+	<property name="ireport.y" value="939"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<field name="agrupado" class="java.lang.String"/>
 	<field name="login" class="java.lang.String"/>
@@ -198,7 +198,7 @@
 		<band height="572" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="166" y="77" width="420" height="419"/>
+					<reportElement x="31" y="37" width="686" height="475"/>
 					<chartTitle>
 						<font fontName="DejaVu Serif Condensed" size="12" isBold="true"/>
 						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>
@@ -207,7 +207,7 @@
 						<font fontName="DejaVu Serif Condensed" isBold="true"/>
 						<subtitleExpression><![CDATA["Total de Usuarios: " + $V{agrupado_1}]]></subtitleExpression>
 					</chartSubtitle>
-					<chartLegend/>
+					<chartLegend position="Right"/>
 				</chart>
 				<pieDataset>
 					<keyExpression><![CDATA[$F{agrupado}]]></keyExpression>
@@ -248,7 +248,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement positionType="Float" x="657" y="541" width="24" height="20"/>
+				<reportElement positionType="Float" x="657" y="540" width="24" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

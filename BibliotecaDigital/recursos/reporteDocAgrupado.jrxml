@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.2100000000000057"/>
+	<property name="ireport.zoom" value="1.0000000000000075"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="94"/>
+	<property name="ireport.y" value="17"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Documents and Settings\\Leonardo\\Escritorio\\univalle\\semestreSeis\\desarrolloSoftwareI\\ds\\BibliotecaDigital\\recursos\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="opcion" class="java.lang.String"/>
+	<parameter name="opcionA" class="java.lang.String"/>
+	<parameter name="introduccion" class="java.lang.String"/>
 	<field name="agrupado" class="java.lang.String"/>
 	<field name="titulo_principal" class="java.lang.String"/>
 	<field name="editorial" class="java.lang.String"/>
@@ -24,7 +26,7 @@
 					<textElement>
 						<font size="11"/>
 					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{agrupado}]]></textFieldExpression>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{opcionA} + $F{agrupado}]]></textFieldExpression>
 				</textField>
 				<frame>
 					<reportElement mode="Opaque" x="14" y="20" width="558" height="20" forecolor="#FFFFFF" backcolor="#FF3333"/>
@@ -57,7 +59,7 @@
 				<staticText>
 					<reportElement x="299" y="1" width="106" height="20"/>
 					<textElement/>
-					<text><![CDATA[Toral Documentos:]]></text>
+					<text><![CDATA[Total Documentos:]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="405" y="1" width="33" height="20"/>
@@ -71,7 +73,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="140" splitType="Stretch">
+		<band height="242" splitType="Stretch">
 			<textField>
 				<reportElement x="57" y="32" width="321" height="56"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -88,6 +90,11 @@
 				<reportElement x="388" y="0" width="184" height="140"/>
 				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="57" y="126" width="321" height="94"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{introduccion}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
@@ -137,7 +144,7 @@
 		<band height="752" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="76" y="77" width="420" height="419"/>
+					<reportElement x="47" y="77" width="479" height="599"/>
 					<chartTitle>
 						<font fontName="DejaVu Serif Condensed" size="12" isBold="true"/>
 						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>
@@ -171,7 +178,7 @@
 			<line>
 				<reportElement x="-2" y="720" width="572" height="1"/>
 				<graphicElement>
-					<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#CCCCCC"/>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</graphicElement>
 			</line>
 			<staticText>
@@ -187,7 +194,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement positionType="Float" x="511" y="721" width="24" height="20"/>
+				<reportElement positionType="Float" x="511" y="720" width="24" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
