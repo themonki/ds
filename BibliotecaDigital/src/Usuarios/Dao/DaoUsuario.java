@@ -370,7 +370,7 @@ public class DaoUsuario {
 					+ valor.elementAt(i) + "%'" + " AND ";
 		sqlSelect += atributo.lastElement() + " LIKE " + "'%"
 				+ valor.lastElement() + "%'";
-		sqlSelect += "AND login != 'anonimo';";
+		sqlSelect += "AND login != 'anonimo' AND login != 'admin';";
 		try {
 			Connection conn = this.fachada.conectar();
 			Statement sentencia = conn.createStatement();
@@ -427,7 +427,7 @@ public class DaoUsuario {
 		String sqlSelect;
 
 		sqlSelect = "SELECT * FROM Usuario WHERE Usuario.login = '" + login
-				+ "'";
+				+ "' AND login != 'anonimo'";
 
 		try {
 			Connection conn = this.fachada.conectar();
