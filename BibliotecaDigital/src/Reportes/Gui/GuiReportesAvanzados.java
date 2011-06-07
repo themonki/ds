@@ -16,6 +16,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -25,6 +28,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -38,6 +42,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrint;
 
 import com.sun.java.swing.plaf.motif.MotifBorders.BevelBorder;
 
@@ -1052,14 +1060,157 @@ public class GuiReportesAvanzados extends JPanel{
 			}
 			if(e.getSource() == botonDescargasConsultasGenerar)
 			{
-				boolean descargas = descargasRadio.isSelected();
-				if(descargas)
+				String ruta;
+				JFileChooser archivos = new JFileChooser();
+				archivos.setDialogType(JFileChooser.SAVE_DIALOG);
+				archivos.setDragEnabled(true);
+				archivos.setAcceptAllFileFilterUsed(false);
+				FileNameExtensionFilter filtroPdf = new FileNameExtensionFilter("*.pdf", "pdf");
+				archivos.setFileFilter(filtroPdf);
+				int opcion = archivos.showSaveDialog(null);
+
+				if(opcion == JFileChooser.APPROVE_OPTION)
 				{
-					
-					
-				}else //consultas
-				{
-					
+					File archivo = archivos.getSelectedFile();
+					ruta = archivo.getPath();
+					String rutaFinal = ruta+".pdf";
+
+					boolean descargas = descargasRadio.isSelected();
+					boolean detalladoBool = detallado.isSelected();
+					boolean totalesBool = totales.isSelected();
+					boolean areas = areasRadio.isSelected();
+					boolean usuarios = usuariosRadio.isSelected();
+					boolean fecha = fechaRadio.isSelected();
+					boolean habilitarFecha = habilitarPeriodoDescargasConsultas.isSelected();
+					boolean asc = ascendente.isSelected();
+					boolean desc = descendente.isSelected();
+
+					SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
+					Date fechaIni= ((JSpinner.DateEditor) campoFechaDesdeDescargas.getEditor()).getModel().getDate();			    
+					String fechaInicial = formatoFecha.format(fechaIni);
+					Date fechaFin = ((JSpinner.DateEditor) campoFechaHastaDescargas.getEditor()).getModel().getDate();
+					String fechaFinal = formatoFecha.format(fechaFin);
+
+					String tituloReporte = campoTituloDescargasConsultas.getText();
+					String introduccion = campoIntroDescargasConsultas.getText();
+
+
+					if(descargas)
+					{
+						try
+						{
+							JasperPrint reporte;
+
+							if(detalladoBool)
+							{
+								if(areas)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosArea(fechaInicial, fechaFinal, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosArea(tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								}
+								if(usuarios)
+								{
+									if(habilitarFecha)
+									{
+										reporte =  controladorReporte.reporteDocumentosDescargadosUsuario(fechaInicial, fechaFinal, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+										
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosUsuario(tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								}
+								
+								if(fecha)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								}
+							}
+							if(totalesBool)
+							{
+								if(areas)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosArea(fechaInicial, fechaFinal, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosArea(tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								}
+								if(usuarios)
+								{
+									if(asc)
+									{
+										if(habilitarFecha)
+										{
+											reporte =  controladorReporte.reporteDocumentosDescargadosUsuario(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+											
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosUsuario(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}
+									if(desc)
+									{
+										if(habilitarFecha)
+										{
+											reporte =  controladorReporte.reporteDocumentosDescargadosUsuario(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+											
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosUsuario(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}
+									
+								}
+								
+								if(fecha)
+								{
+									
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								}
+							}
+
+						}catch(JRException exc)
+						{
+							System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+							exc.printStackTrace();
+						}
+					}else //consultas
+					{
+
+					}
 				}
 			}
 			if(e.getSource() == botonDocumentoGenerar)
