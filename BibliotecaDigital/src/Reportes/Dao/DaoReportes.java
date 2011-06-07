@@ -1410,7 +1410,7 @@ public class DaoReportes
 	}
 
 	/* metodo para obtener las areas de un documento en forma de string */
-	private String obtenerAreasDocumento(String id_documento) 
+	public String obtenerAreasDocumento(String id_documento) 
 	{
 		String consultaSql = "SELECT a.nombre FROM area_conocimiento AS a "
 				+ "NATURAL JOIN pertenece_documento_area_conocimiento AS p "
@@ -1643,7 +1643,7 @@ public class DaoReportes
 
 	/*public static void main(String args[]) {
 
-		DaoReportes daoReportes = new DaoReportes();
+		//DaoReportes daoReportes = new DaoReportes();
 		// daoReportes.consultaUsuarioBasica("vinculo_univalle", "=",
 		// "Estudiante de pregrado");
 		// daoReportes.consultaDocumentoBasica("titulo_principal", "=",
