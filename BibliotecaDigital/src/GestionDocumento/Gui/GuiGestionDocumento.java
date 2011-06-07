@@ -29,6 +29,14 @@ public class GuiGestionDocumento extends JScrollPane{
 	
 	private GuiCatalogar panelCatalogar;
 	private GuiRegistroModificar guiRegistroModi;
+	private GuiIngresarArea guiIngresarArea;
+	private GuiIngresarAutor guiIngresarAutor;
+	private GuiIngresarPalabraClave guiIngresarPalabra;
+	private GuiIngresarTipoMaterial guiIngresarTipo;
+	private GuiModificarArea guiModificarArea;
+	private GuiModificarAutor guiModificarAutor;
+	private GuiModificarPalabraClave guiModificarPalabra;
+	private GuiModificarTipoMaterial guiModificarTipo;
 	
 	private Manejador manejador;
 	
@@ -127,38 +135,98 @@ public class GuiGestionDocumento extends JScrollPane{
 		public void actionPerformed(ActionEvent e) {
 			
 			if(e.getSource()==botonIngresarArea){
-				GuiIngresarArea gui = new GuiIngresarArea(panelCatalogar);
-				gui.setGuiRegistroModi(guiRegistroModi);
-				gui.setVisible(true);
+				if(guiIngresarArea==null){
+					guiIngresarArea = new GuiIngresarArea(panelCatalogar);
+					guiIngresarArea.setGuiRegistroModi(guiRegistroModi);
+					guiIngresarArea.setVisible(true);
+				}else if(!guiIngresarArea.isVisible()){
+					guiIngresarArea.dispose();
+					guiIngresarArea = null;
+					guiIngresarArea = new GuiIngresarArea(panelCatalogar);
+					guiIngresarArea.setGuiRegistroModi(guiRegistroModi);
+					guiIngresarArea.setVisible(true);					
+				}				
 			}
 			if(e.getSource()==botonIngresarAutor){
-				GuiIngresarAutor gui = new GuiIngresarAutor(panelCatalogar);
-				gui.setVisible(true);
+				if(guiIngresarAutor==null){
+					guiIngresarAutor = new GuiIngresarAutor(panelCatalogar);
+					guiIngresarAutor.setVisible(true);
+				}else if(!guiIngresarAutor.isVisible()){
+					guiIngresarAutor.dispose();
+					guiIngresarAutor = null;
+					guiIngresarAutor = new GuiIngresarAutor(panelCatalogar);
+					guiIngresarAutor.setVisible(true);					
+				}
 			}
 			if(e.getSource()==botonIngresarPalabra){
-				GuiIngresarPalabraClave gui = new GuiIngresarPalabraClave(panelCatalogar);
-				gui.setVisible(true);
+				if(guiIngresarPalabra==null){
+					guiIngresarPalabra = new GuiIngresarPalabraClave(panelCatalogar);
+					guiIngresarPalabra.setVisible(true);
+				}else if(!guiIngresarPalabra.isVisible()){
+					guiIngresarPalabra.dispose();
+					guiIngresarPalabra = null;
+					guiIngresarPalabra = new GuiIngresarPalabraClave(panelCatalogar);
+					guiIngresarPalabra.setVisible(true);					
+				}
 			}
 			if(e.getSource()==botonIngresarTipoMaterial){
-				GuiIngresarTipoMaterial gui = new GuiIngresarTipoMaterial(panelCatalogar);
-				gui.setVisible(true);
+				if(guiIngresarTipo==null){
+					guiIngresarTipo = new GuiIngresarTipoMaterial(panelCatalogar);
+					guiIngresarTipo.setVisible(true);
+				}else if(!guiIngresarTipo.isVisible()){
+					guiIngresarTipo.dispose();
+					guiIngresarTipo = null;
+					guiIngresarTipo = new GuiIngresarTipoMaterial(panelCatalogar);
+					guiIngresarTipo.setVisible(true);					
+				}
 			}
 			if(e.getSource()==botonModificarArea){
-				GuiModificarArea gui = new GuiModificarArea(panelCatalogar);
-				gui.setGuiRegistroModi(guiRegistroModi);
-				gui.setVisible(true);
+				if(guiModificarArea==null){
+					guiModificarArea = new GuiModificarArea(panelCatalogar);
+					guiModificarArea.setGuiRegistroModi(guiRegistroModi);
+					guiModificarArea.setVisible(true);
+				}else if(!guiModificarArea.isVisible()){
+					guiModificarArea.dispose();
+					guiModificarArea = null;
+					guiModificarArea = new GuiModificarArea(panelCatalogar);
+					guiModificarArea.setGuiRegistroModi(guiRegistroModi);
+					guiModificarArea.setVisible(true);					
+				}
 			}
 			if(e.getSource()==botonModificarAutor){
-				GuiModificarAutor gui = new GuiModificarAutor(panelCatalogar);
-				gui.setVisible(true);
+				if(guiModificarAutor==null){
+					guiModificarAutor = new GuiModificarAutor(panelCatalogar);
+					guiModificarAutor.setVisible(true);
+				}else if(!guiModificarAutor.isVisible()){
+					guiModificarAutor.dispose();
+					guiModificarAutor = null;
+					guiModificarAutor = new GuiModificarAutor(panelCatalogar);
+					guiModificarAutor.setVisible(true);					
+				}
 			}
-			if(e.getSource()==botonModificarPalabra){
-				GuiModificarPalabraClave gui = new GuiModificarPalabraClave(panelCatalogar);
-				gui.setVisible(true);
+			if(e.getSource()==botonModificarPalabra){				
+				if(guiModificarPalabra==null){
+					guiModificarPalabra = new GuiModificarPalabraClave(panelCatalogar);
+					guiModificarPalabra.setVisible(true);
+				}else if(!guiModificarPalabra.isVisible()){
+					guiModificarPalabra.dispose();
+					guiModificarPalabra = null;
+					guiModificarPalabra = new GuiModificarPalabraClave(panelCatalogar);
+					guiModificarPalabra.setVisible(true);					
+				}
 			}
 			if(e.getSource()==botonModificarTipoMaterial){
 				GuiModificarTipoMaterial gui = new GuiModificarTipoMaterial(panelCatalogar);
 				gui.setVisible(true);
+				if(guiModificarTipo==null){
+					guiModificarTipo = new GuiModificarTipoMaterial(panelCatalogar);
+					guiModificarTipo.setVisible(true);
+				}else if(!guiModificarTipo.isVisible()){
+					guiModificarTipo.dispose();
+					guiModificarTipo = null;
+					guiModificarTipo = new GuiModificarTipoMaterial(panelCatalogar);
+					guiModificarTipo.setVisible(true);					
+				}
 			}
 		}
 		
