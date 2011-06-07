@@ -26,7 +26,7 @@ import Usuarios.Logica.Usuario;
 /**
  * Clase que permite la comunicación entre la Clase {@link Usuarios.Dao.DaoUsuario DaoUsuario} y las Clases
  * de aplicación: {@link Usuarios.Gui.GuiRegistroModificar GuiRegistroModificar}, 
- * {@link Usuarios.Gui.GuiAutentificar GuiAuntentificar},
+ * {@link Usuarios.Gui.GuiAutenticar GuiAutenticar},
  * {@link Usuarios.Gui.GuiRecuperarPassword GuiRecuperarPassword},
  * {@link Usuarios.Gui.GuiConsultarUsuarios GuiConsultarUsuarios} y {@link Usuarios.Gui.GuiNovedades GuiNovedades} 
  * para el intercambio de datos.
