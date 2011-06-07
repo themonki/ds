@@ -30,6 +30,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -1082,6 +1083,9 @@ public class GuiReportesAvanzados extends JPanel{
 					boolean usuarios = usuariosRadio.isSelected();
 					boolean fecha = fechaRadio.isSelected();
 					boolean habilitarFecha = habilitarPeriodoDescargasConsultas.isSelected();
+					boolean porDia = habilitarPorDiaDescargasConsultas.isSelected();
+					boolean porMes = habilitarPorMesDescargasConsultas.isSelected();
+					boolean porAnio = habilitarPorAnioDescargasConsultas.isSelected();
 					boolean asc = ascendente.isSelected();
 					boolean desc = descendente.isSelected();
 
@@ -1114,8 +1118,7 @@ public class GuiReportesAvanzados extends JPanel{
 										reporte = controladorReporte.reporteDocumentosDescargadosArea(tituloReporte);
 										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
-								}
-								if(usuarios)
+								} else if(usuarios)
 								{
 									if(habilitarFecha)
 									{
@@ -1127,22 +1130,45 @@ public class GuiReportesAvanzados extends JPanel{
 										reporte = controladorReporte.reporteDocumentosDescargadosUsuario(tituloReporte);
 										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
-								}
-								
-								if(fecha)
+								}else if(fecha)
 								{
-									if(habilitarFecha)
+									if(porDia)
 									{
-										reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
-										controladorReporte.generarReporte(rutaFinal, reporte);
-									}else
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									} else if(porMes)
 									{
-										reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
-										controladorReporte.generarReporte(rutaFinal, reporte);
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									} else if(porAnio)
+									{
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
 									}
+									
 								}
-							}
-							if(totalesBool)
+							} else if(totalesBool)
 							{
 								if(areas)
 								{
@@ -1155,8 +1181,7 @@ public class GuiReportesAvanzados extends JPanel{
 										reporte = controladorReporte.reporteDocumentosDescargadosArea(tituloReporte);
 										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
-								}
-								if(usuarios)
+								} else if(usuarios)
 								{
 									if(asc)
 									{
@@ -1170,8 +1195,7 @@ public class GuiReportesAvanzados extends JPanel{
 											reporte = controladorReporte.reporteDocumentosDescargadosUsuario(tituloReporte);
 											controladorReporte.generarReporte(rutaFinal, reporte);
 										}
-									}
-									if(desc)
+									}else if(desc)
 									{
 										if(habilitarFecha)
 										{
@@ -1185,23 +1209,46 @@ public class GuiReportesAvanzados extends JPanel{
 										}
 									}
 									
-								}
-								
-								if(fecha)
+								}else if(fecha)
 								{
-									
-									if(habilitarFecha)
+									if(porDia)
 									{
-										reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
-										controladorReporte.generarReporte(rutaFinal, reporte);
-									}else
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}else if(porMes)
 									{
-										reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
-										controladorReporte.generarReporte(rutaFinal, reporte);
-									}
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									} else if(porAnio)
+									{
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosDescargadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}									
 								}
 							}
 
+							JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 						}catch(JRException exc)
 						{
 							System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
@@ -1209,12 +1256,361 @@ public class GuiReportesAvanzados extends JPanel{
 						}
 					}else //consultas
 					{
+						try
+						{
+							JasperPrint reporte;
 
+							if(detalladoBool)
+							{
+								if(areas)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosConsultadosArea(fechaInicial, fechaFinal, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosConsultadosArea(tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								} else if(usuarios)
+								{
+									if(habilitarFecha)
+									{
+										reporte =  controladorReporte.reporteDocumentosConsultadosUsuario(fechaInicial, fechaFinal, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+										
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosConsultadosUsuario(tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								} else if(fecha)
+								{
+									if(porDia)
+									{
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									} else if(porMes)
+									{
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									} else if(porAnio)
+									{
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}
+									
+								}
+							} else if(totalesBool)
+							{
+								if(areas)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosConsultadosArea(fechaInicial, fechaFinal, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosConsultadosArea(tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								}else if(usuarios)
+								{
+									if(asc)
+									{
+										if(habilitarFecha)
+										{
+											reporte =  controladorReporte.reporteDocumentosConsultadosUsuario(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+											
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosUsuario(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									} else if(desc)
+									{
+										if(habilitarFecha)
+										{
+											reporte =  controladorReporte.reporteDocumentosConsultadosUsuario(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+											
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosUsuario(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}
+									
+								}else if(fecha)
+								{
+									if(porDia)
+									{
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}else if(porMes)
+									{
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}else if(porAnio)
+									{
+										if(habilitarFecha)
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(fechaInicial, fechaFinal, tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}else
+										{
+											reporte = controladorReporte.reporteDocumentosConsultadosFecha(tituloReporte);
+											controladorReporte.generarReporte(rutaFinal, reporte);
+										}
+									}									
+								}
+							}
+
+							JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+						}catch(JRException exc)
+						{
+							System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+							exc.printStackTrace();
+						}
 					}
 				}
 			}
 			if(e.getSource() == botonDocumentoGenerar)
 			{
+				String ruta;
+				JFileChooser archivos = new JFileChooser();
+				archivos.setDialogType(JFileChooser.SAVE_DIALOG);
+				archivos.setDragEnabled(true);
+				archivos.setAcceptAllFileFilterUsed(false);
+				FileNameExtensionFilter filtroPdf = new FileNameExtensionFilter("*.pdf", "pdf");
+				archivos.setFileFilter(filtroPdf);
+				int opcion = archivos.showSaveDialog(null);
+
+				if(opcion == JFileChooser.APPROVE_OPTION)
+				{
+					File archivo = archivos.getSelectedFile();
+					ruta = archivo.getPath();
+					String rutaFinal = ruta+".pdf";
+					
+					
+					boolean detalladoBool = detalladoDocumento.isSelected();
+					boolean totalesBool = totalesDocumento.isSelected();
+					
+					boolean areas = areasRadioDocumento.isSelected();
+					boolean catalogadores = catalogadorRadio.isSelected();
+					boolean fecha = fechaRadioDocumento.isSelected();
+					
+					boolean habilitarFecha = habilitarPeriodoDocumento.isSelected();
+					
+					boolean porDia = habilitarPorDiaDocumento.isSelected();
+					boolean porMes = habilitarPorMesDocumento.isSelected();
+					boolean porAnio = habilitarPorAnioDocumento.isSelected();
+					boolean asc = ascendenteDocumento.isSelected();
+					boolean desc = descendenteDocumento.isSelected();
+
+					SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
+					Date fechaIni= ((JSpinner.DateEditor) campoFechaDesdeDocumento.getEditor()).getModel().getDate();			    
+					String fechaInicial = formatoFecha.format(fechaIni);
+					Date fechaFin = ((JSpinner.DateEditor) campoFechaHastaDocumento.getEditor()).getModel().getDate();
+					String fechaFinal = formatoFecha.format(fechaFin);
+
+					String tituloReporte = campoTituloDocumento.getText();
+					String introduccion = campoIntroDocumento.getText();
+					
+					try
+					{
+						JasperPrint reporte;
+						
+						if(detalladoBool)
+						{
+							if(catalogadores)
+							{
+								if(habilitarFecha)
+								{
+									reporte = controladorReporte.reporteDocumentosCatalogadosUsuario(fechaInicial, fechaFinal, introduccion, tituloReporte);
+									controladorReporte.generarReporte(rutaFinal, reporte);
+								}else
+								{
+									reporte = controladorReporte.reporteDocumentosCatalogadosUsuario(introduccion, tituloReporte);
+									controladorReporte.generarReporte(rutaFinal, reporte);
+								}
+								
+							}else if(areas)
+							{
+								if(habilitarFecha)
+								{
+									reporte = controladorReporte.reporteDocumentosCatalogadosArea(fechaInicial, fechaFinal, introduccion, tituloReporte);
+									controladorReporte.generarReporte(rutaFinal, reporte);
+								}else
+								{
+									reporte = controladorReporte.reporteDocumentosCatalogadosArea(introduccion, tituloReporte);
+									controladorReporte.generarReporte(rutaFinal, reporte);
+								}
+							}else if (fecha)
+							{
+								if(porDia)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosCatalogadosFecha(fechaInicial, fechaFinal, introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+										
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosCatalogadosFecha(introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+									
+								}else if(porMes)
+								{
+									if(habilitarFecha)
+									{
+										//reporte = controladorReporte.reporteDocumentosCatalogadosFechaMes
+										//controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										
+									}
+									
+									
+								}else if(porAnio)
+								{
+									if(habilitarFecha)
+									{
+										//reporte = controladorReporte.reporteDocumentosCatalogadosFechaAnio
+										//controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										
+									}
+								}
+							}
+								
+						}else if(totalesBool)
+						{
+							if(catalogadores)
+							{
+								if(asc)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosCatalogadosUsuario(fechaInicial, fechaFinal, introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosCatalogadosUsuario(introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								}else if(desc)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosCatalogadosUsuario(fechaInicial, fechaFinal, introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosCatalogadosUsuario(introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+								}
+								
+							}else if(areas)
+							{
+								if(habilitarFecha)
+								{
+									reporte = controladorReporte.reporteDocumentosCatalogadosArea(fechaInicial, fechaFinal, introduccion, tituloReporte);
+									controladorReporte.generarReporte(rutaFinal, reporte);
+								}else
+								{
+									reporte = controladorReporte.reporteDocumentosCatalogadosArea(introduccion, tituloReporte);
+									controladorReporte.generarReporte(rutaFinal, reporte);
+								}
+							}else if (fecha)
+							{
+								if(porDia)
+								{
+									if(habilitarFecha)
+									{
+										reporte = controladorReporte.reporteDocumentosCatalogadosFecha(fechaInicial, fechaFinal, introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+										
+									}else
+									{
+										reporte = controladorReporte.reporteDocumentosCatalogadosFecha(introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
+									}
+									
+								}else if(porMes)
+								{
+									if(habilitarFecha)
+									{
+										//reporte = controladorReporte.reporteDocumentosCatalogadosFechaMes
+										//controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										
+									}
+									
+									
+								}else if(porAnio)
+								{
+									if(habilitarFecha)
+									{
+										//reporte = controladorReporte.reporteDocumentosCatalogadosFechaAnio
+										//controladorReporte.generarReporte(rutaFinal, reporte);
+									}else
+									{
+										
+									}
+								}
+							}
+						}
+						JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+					}catch(JRException exc)
+					{
+						System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+						exc.printStackTrace();
+					}
+					
+					
+				}
 				
 			}
 				
@@ -1245,16 +1641,10 @@ public class GuiReportesAvanzados extends JPanel{
 		}
 
 		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void keyReleased(KeyEvent e) {}
 
 		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void keyTyped(KeyEvent e) {}
 
 		
 	}
