@@ -12,6 +12,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
@@ -241,11 +243,13 @@ public class GuiReportesAvanzados extends JPanel{
 		campoTituloDescargasConsultas = new JTextField("Título del reporte", 20);
 		campoTituloDocumento = new JTextField("Título del reporte", 20);
 		
-		campoIntroDescargasConsultas = new JTextArea(8,50);
+		campoIntroDescargasConsultas = new JTextArea(5,50);
 		campoIntroDescargasConsultas.setLineWrap(true);
+		campoIntroDescargasConsultas.addKeyListener(manejador);
 		scrollIntroDescargasConsultas = new JScrollPane(campoIntroDescargasConsultas);
-		campoIntroDocumento = new JTextArea(8,50);
+		campoIntroDocumento = new JTextArea(5,50);
 		campoIntroDocumento.setLineWrap(true);
+		campoIntroDocumento.addKeyListener(manejador);
 		scrollIntroDocumento = new JScrollPane(campoIntroDocumento);
 		
 	}
@@ -703,7 +707,7 @@ public class GuiReportesAvanzados extends JPanel{
 		
 	}
 
-	private class Manejador implements ActionListener
+	private class Manejador implements ActionListener, KeyListener 
 	{
 
 		@Override
@@ -778,6 +782,42 @@ public class GuiReportesAvanzados extends JPanel{
 				
 			}
 				
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			if (e.getSource() == campoIntroDescargasConsultas || e.getSource() == campoIntroDocumento)
+			{
+				if(new String(campoIntroDescargasConsultas.getText()).length()>299)
+				{
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoIntroDescargasConsultas.setText(new String(campoIntroDescargasConsultas.getText()).substring(0,299));
+					}
+				}
+				if(new String(campoIntroDocumento.getText()).length()>299)
+				{
+					if(e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+						getToolkit().beep();//sonido
+						campoIntroDocumento.setText(new String(campoIntroDocumento.getText()).substring(0,299));
+					}
+				}
+			}
+			
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 
 		
