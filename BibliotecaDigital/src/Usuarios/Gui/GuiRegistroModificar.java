@@ -241,8 +241,8 @@ public class GuiRegistroModificar extends JScrollPane {
 		panelAreasInteres = new JPanel();
 		TitledBorder bordeAreaInteres;
 		bordeAreaInteres = BorderFactory.createTitledBorder(BorderFactory
-				.createEtchedBorder(Estilos.colorBorder,
-						Estilos.colorLightBorder), "Áreas de interés");
+				.createEtchedBorder(this.getBackground(),
+						this.getBackground()), "Áreas de interés");
 		bordeAreaInteres.setTitleColor(Estilos.colorSubtitulo);
 		bordeAreaInteres.setTitleFont(Estilos.fontSubtitulos);
 		bordeAreaInteres.setTitleJustification(TitledBorder.CENTER);
