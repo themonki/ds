@@ -1,7 +1,6 @@
 package GestionDocumento.Gui;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,6 +17,8 @@ import Usuarios.Gui.GuiRegistroModificar;
 import Utilidades.Button;
 
 public class GuiGestionDocumento extends JScrollPane{
+	
+	private static final long serialVersionUID = 1L;
 	private Button botonIngresarArea;
 	private Button botonIngresarAutor;
 	private Button botonIngresarPalabra;
