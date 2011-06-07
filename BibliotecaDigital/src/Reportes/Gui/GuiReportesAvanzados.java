@@ -58,15 +58,16 @@ public class GuiReportesAvanzados extends JPanel{
 	private Vector<String> vectorAgrupadoAtributos;
 	
 
-	private JPanel panelPrincipal, panelOpcionesReportes, panelDescargasConsultas, panelDocumento;
+	private JPanel panelPrincipal, panelOpcionesReportes, panelDescargasConsultas, panelDocumento, panelOpcionesReporteDescargas,
+				   panelOpcionesReportesDocumento;
 	
-	private JCheckBox habilitarPeriodoDescargasConsultas, habilitarPorMesDescargasConsultas, habilitarPorAnioDescargasConsultas,
-					  habilitarPeriodoDocumento, habilitarPorMesDocumento, habilitarPorAnioDocumento;
+	private JCheckBox habilitarPeriodoDescargasConsultas, habilitarPeriodoDocumento;
 	
 	private JComboBox tablasAvanzado, atributosAvanzado, campoAtributo;
 	
 	private JLabel etiquetaTablaAvanzado, etiquetaAtributoAvanzado, etiquetaTituloDescargasConsultas,
-				   etiquetaTituloDocumento, etiquetaIntroDocumento, etiquetaIntroDescargasConsultas;
+				   etiquetaTituloDocumento, etiquetaIntroDocumento, etiquetaIntroDescargasConsultas,
+				   ordenDescargas, ordenDocumento, mostrarDescargas, mostrarDocumento;
 	
 	private JTextField campoTituloDescargasConsultas, campoTituloDocumento;
 	
@@ -80,12 +81,16 @@ public class GuiReportesAvanzados extends JPanel{
 	
 	private JButton botonDescargasConsultas, botonDocumento;
 	
-	private JRadioButton descargasRadio, consultasRadio, documentosRadio, usuariosRadio, 
+	private JRadioButton descargasRadio, consultasRadio, areasRadio, usuariosRadio, fechaRadio, 
 						 detallado, totales, ascendente, descendente, documentosExistentes, documentosCatalogados,
-						 detalladoDocumento, totalesDocumento, ascendenteDocumento, descendenteDocumento;
+						 detalladoDocumento, totalesDocumento, ascendenteDocumento, descendenteDocumento,
+						 habilitarPorMesDescargasConsultas, habilitarPorAnioDescargasConsultas,
+						 habilitarPorDiaDescargasConsultas, habilitarPorMesDocumento, habilitarPorAnioDocumento,
+						 habilitarPorDiaDocumento;
 	
-	private ButtonGroup opcionTipo, opcionInformacion, opcionReporte, opcionOrden, menu,
-						opcionTipoDocuemento, opcionReporteDocumento, opcionOrdenCatalogadores;
+	private ButtonGroup opcionTipo, opcionAgrupado, opcionReporte, opcionOrden, menu,
+						opcionTipoDocuemento, opcionReporteDocumento, opcionOrdenCatalogadores,
+						opcionMostrarDescargas, opcionMostrarDocumento;
 	
 	private ControladorReportes controladorReporte;
 	
@@ -260,9 +265,10 @@ public class GuiReportesAvanzados extends JPanel{
 		opcionTipo.add(detallado);
 		opcionTipo.add(totales);
 		
-		opcionInformacion = new ButtonGroup();
-		opcionInformacion.add(documentosRadio);
-		opcionInformacion.add(usuariosRadio);
+		opcionAgrupado = new ButtonGroup();
+		opcionAgrupado.add(usuariosRadio);
+		opcionAgrupado.add(areasRadio);
+		opcionAgrupado.add(fechaRadio);
 		
 		opcionReporte = new ButtonGroup();
 		opcionReporte.add(descargasRadio);
@@ -284,6 +290,15 @@ public class GuiReportesAvanzados extends JPanel{
 		opcionOrdenCatalogadores.add(ascendenteDocumento);
 		opcionOrdenCatalogadores.add(descendenteDocumento);
 		
+		opcionMostrarDescargas = new ButtonGroup();
+		opcionMostrarDescargas.add(habilitarPorDiaDescargasConsultas);
+		opcionMostrarDescargas.add(habilitarPorMesDescargasConsultas);
+		opcionMostrarDescargas.add(habilitarPorAnioDescargasConsultas);
+		
+		opcionMostrarDocumento = new ButtonGroup();
+		opcionMostrarDocumento.add(habilitarPorDiaDocumento);
+		opcionMostrarDocumento.add(habilitarPorMesDocumento);
+		opcionMostrarDocumento.add(habilitarPorAnioDocumento);
 		
 		menu = new ButtonGroup();
 		menu.add(botonDescargasConsultas);
@@ -296,14 +311,22 @@ public class GuiReportesAvanzados extends JPanel{
 		descargasRadio = new JRadioButton("Descargas", true);
 		consultasRadio = new JRadioButton("Consultas", false);
 		
-		documentosRadio = new JRadioButton("Documentos", true);		
-		usuariosRadio = new JRadioButton("Usuarios", false);
+		areasRadio = new JRadioButton("Áreas", false);
+		areasRadio.addActionListener(manejador);
+		fechaRadio = new JRadioButton("Fecha", false);
+		fechaRadio.addActionListener(manejador);
+		usuariosRadio = new JRadioButton("Usuarios", true);
+		usuariosRadio.addActionListener(manejador);
 		
-		detallado = new JRadioButton("Detallado", true);		
+		detallado = new JRadioButton("Detallado", true);
+		detallado.addActionListener(manejador);
 		totales = new JRadioButton("Solo totales", false);
+		totales.addActionListener(manejador);
 		
-		ascendente = new JRadioButton("Ascendente", true);		
+		ascendente = new JRadioButton("Ascendente", true);	
+		ascendente.setVisible(false);
 		descendente = new JRadioButton("Descendente", false);
+		descendente.setVisible(false);
 		
 		documentosExistentes = new JRadioButton("Documentos existentes", true);
 		documentosExistentes.addActionListener(manejador);
@@ -314,9 +337,23 @@ public class GuiReportesAvanzados extends JPanel{
 		totalesDocumento = new JRadioButton("Solo totales", false);
 		
 		ascendenteDocumento = new JRadioButton("Ascendente", false);
-		ascendenteDocumento.setEnabled(false);
+		ascendenteDocumento.setVisible(false);
 		descendenteDocumento = new JRadioButton("Descendente", false);
-		descendenteDocumento.setEnabled(false);
+		descendenteDocumento.setVisible(false);
+		
+		habilitarPorAnioDescargasConsultas = new JRadioButton("Por año", false);
+		habilitarPorAnioDescargasConsultas.setVisible(false);
+		habilitarPorMesDescargasConsultas = new JRadioButton("Por mes", false);
+		habilitarPorMesDescargasConsultas.setVisible(false);
+		habilitarPorDiaDescargasConsultas = new JRadioButton("Por día", true);
+		habilitarPorDiaDescargasConsultas.setVisible(false);
+		
+		habilitarPorAnioDocumento = new JRadioButton("Por año", false);
+		habilitarPorAnioDocumento.setVisible(false);
+		habilitarPorMesDocumento = new JRadioButton("Por mes", false);
+		habilitarPorMesDocumento.setVisible(false);
+		habilitarPorDiaDocumento = new JRadioButton("Por día", true);
+		habilitarPorDiaDocumento.setVisible(false);
 
 	}
 
@@ -495,31 +532,29 @@ public class GuiReportesAvanzados extends JPanel{
 		
 		//Labels indicativas
 		
-		JLabel tipoReporte, contenido, orden, formato, agrupado, desde, hasta;
+		JLabel tipoReporte, contenido, formato, desde, hasta;
 		
 		tipoReporte = new JLabel("Reporte de: ");
 		tipoReporte.setFont(Estilos.fontLabels);
 		tipoReporte.setForeground(Estilos.colorSubtitulo);
-		contenido = new JLabel("Que contenga sólo información de: ");
+		contenido = new JLabel("Agrupado por: ");
 		contenido.setFont(Estilos.fontSubrayados);
-		orden = new JLabel("Orden");
-		orden.setFont(Estilos.fontSubrayados);
 		formato = new JLabel("Formato");
-		formato.setFont(Estilos.fontSubrayados);
-		agrupado = new JLabel("Agrupado por");
-		agrupado.setFont(Estilos.fontSubrayados);
+		formato.setFont(Estilos.fontSubrayados);		
 		desde = new JLabel("Desde: ");
 		hasta = new JLabel("Hasta: ");
 		
+		//
+		
 		//-------------Panel para opciones
 		
-		JPanel opcionesReporte = new JPanel(new GridBagLayout());
+		panelOpcionesReporteDescargas = new JPanel(new GridBagLayout());
 		
 		TitledBorder bordeOpciones = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(Estilos.colorBorder, Estilos.colorLightBorder), "Opciones reporte");
 		bordeOpciones.setTitleJustification(TitledBorder.LEFT);
 		bordeOpciones.setTitleFont(Estilos.fontSubtitulos);
 		bordeOpciones.setTitleColor(Estilos.colorSubtitulo);
-		opcionesReporte.setBorder(bordeOpciones);
+		panelOpcionesReporteDescargas.setBorder(bordeOpciones);
 		
 		GridBagConstraints restriccionesOpciones = new GridBagConstraints();
 		restriccionesOpciones.anchor = GridBagConstraints.WEST;
@@ -527,49 +562,51 @@ public class GuiReportesAvanzados extends JPanel{
 		restriccionesOpciones.gridx = 0;
 		restriccionesOpciones.gridy = 0;
 		
-		opcionesReporte.add(orden, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(formato, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(ascendente, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(detallado, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(descendente, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(totales, restriccionesOpciones);
 		
 		restriccionesOpciones.gridx = 1;
 		restriccionesOpciones.gridy = 0;
 		
-		opcionesReporte.add(formato, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(ordenDescargas, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(detallado, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(ascendente, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(totales, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(descendente, restriccionesOpciones);
 		
 		restriccionesOpciones.gridx = 2;
 		restriccionesOpciones.gridy = 0;
 		
-		opcionesReporte.add(agrupado, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(mostrarDescargas, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(habilitarPorMesDescargasConsultas, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(habilitarPorDiaDescargasConsultas, restriccionesOpciones);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(habilitarPorAnioDescargasConsultas, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(habilitarPorMesDescargasConsultas, restriccionesOpciones);
+		restriccionesOpciones.gridy++;
+		panelOpcionesReporteDescargas.add(habilitarPorAnioDescargasConsultas, restriccionesOpciones);
 		
 		restriccionesOpciones.gridx = 0;
 		restriccionesOpciones.gridy++;
 		restriccionesOpciones.gridwidth=2;
 		
-		opcionesReporte.add(habilitarPeriodoDescargasConsultas, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(habilitarPeriodoDescargasConsultas, restriccionesOpciones);
 		restriccionesOpciones.gridwidth=1;
 		restriccionesOpciones.insets = new Insets(4, 80, 4, 4);
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(desde, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(desde, restriccionesOpciones);
 		restriccionesOpciones.gridx = 1;
 		restriccionesOpciones.insets.left = 40;
-		opcionesReporte.add(campoFechaDesdeDescargas, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(campoFechaDesdeDescargas, restriccionesOpciones);
 		restriccionesOpciones.gridx = 0;
 		restriccionesOpciones.insets.left = 80;
 		restriccionesOpciones.gridy++;
-		opcionesReporte.add(hasta, restriccionesOpciones);
+		panelOpcionesReporteDescargas.add(hasta, restriccionesOpciones);
 		restriccionesOpciones.gridx = 1;
 		restriccionesOpciones.insets.left = 40;
-		opcionesReporte.add(campoFechaHastaDescargas, restriccionesOpciones);		
+		panelOpcionesReporteDescargas.add(campoFechaHastaDescargas, restriccionesOpciones);		
 		
 		//---------Fin panel para opciones
 		
@@ -592,14 +629,16 @@ public class GuiReportesAvanzados extends JPanel{
 		panelDescargasConsultas.add(contenido, restricciones);
 		restricciones.gridwidth = 1;
 		restricciones.gridy++;
-		panelDescargasConsultas.add(documentosRadio, restricciones);
-		restricciones.gridx = 1;
 		panelDescargasConsultas.add(usuariosRadio, restricciones);
+		restricciones.gridx = 1;
+		panelDescargasConsultas.add(areasRadio, restricciones);
+		restricciones.gridx = 2;
+		panelDescargasConsultas.add(fechaRadio, restricciones);
 		
 		restricciones.gridy++;
 		restricciones.gridwidth=3;
 		restricciones.gridx = 0;
-		panelDescargasConsultas.add(opcionesReporte, restricciones);
+		panelDescargasConsultas.add(panelOpcionesReporteDescargas, restricciones);
 		
 		restricciones.gridwidth =1;
 		restricciones.gridy++;
@@ -658,15 +697,12 @@ public class GuiReportesAvanzados extends JPanel{
 		habilitarPeriodoDescargasConsultas.setFont(Estilos.fontSubrayados);
 		habilitarPeriodoDescargasConsultas.addActionListener(manejador);
 		
-		habilitarPorMesDescargasConsultas= new JCheckBox("Por Mes");
-		habilitarPorAnioDescargasConsultas= new JCheckBox("Por Año");
 		
 		habilitarPeriodoDocumento = new JCheckBox("Restringir periodo");
 		habilitarPeriodoDocumento.setFont(Estilos.fontSubrayados);
 		habilitarPeriodoDocumento.addActionListener(manejador);
 		
-		habilitarPorMesDocumento= new JCheckBox("Por Mes");
-		habilitarPorAnioDocumento= new JCheckBox("Por Año");
+	
 		
 	}
 
@@ -704,6 +740,21 @@ public class GuiReportesAvanzados extends JPanel{
 		etiquetaAtributoAvanzado.setForeground(Estilos.colorLabels);
 		etiquetaAtributoAvanzado.setFont(Estilos.fontLabels);
 		
+		ordenDescargas = new JLabel("Orden usuarios");
+		ordenDescargas.setFont(Estilos.fontSubrayados);
+		ordenDescargas.setVisible(false);
+		
+		mostrarDescargas = new JLabel("Mostrar");
+		mostrarDescargas.setFont(Estilos.fontSubrayados);
+		mostrarDescargas.setVisible(false);
+		
+		ordenDocumento = new JLabel("Orden usuarios");
+		ordenDocumento.setFont(Estilos.fontSubrayados);
+		ordenDocumento.setVisible(false);
+		
+		mostrarDocumento = new JLabel("Mostrar");
+		mostrarDocumento.setFont(Estilos.fontSubrayados);
+		mostrarDocumento.setVisible(false);
 		
 	}
 
@@ -713,6 +764,134 @@ public class GuiReportesAvanzados extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
+			if(e.getSource() == usuariosRadio)
+			{
+				if(usuariosRadio.isSelected())
+				{
+					if(totales.isSelected())
+					{
+						ordenDescargas.setVisible(true);
+						ascendente.setVisible(true);
+						descendente.setVisible(true);
+						mostrarDescargas.setVisible(false);
+						habilitarPorAnioDescargasConsultas.setVisible(false);
+						habilitarPorDiaDescargasConsultas.setVisible(false);
+						habilitarPorMesDescargasConsultas.setVisible(false);
+					}
+					else
+					{
+						ordenDescargas.setVisible(false);
+						ascendente.setVisible(false);
+						descendente.setVisible(false);
+						mostrarDescargas.setVisible(false);
+						habilitarPorAnioDescargasConsultas.setVisible(false);
+						habilitarPorDiaDescargasConsultas.setVisible(false);
+						habilitarPorMesDescargasConsultas.setVisible(false);
+					}
+					
+				}else
+				{
+					ordenDescargas.setVisible(false);
+					ascendente.setVisible(false);
+					descendente.setVisible(false);
+				}
+			}
+			
+			if(e.getSource() == fechaRadio)
+			{
+
+				if(fechaRadio.isSelected())
+				{
+					
+						mostrarDescargas.setVisible(true);
+						habilitarPorAnioDescargasConsultas.setVisible(true);
+						habilitarPorDiaDescargasConsultas.setVisible(true);
+						habilitarPorMesDescargasConsultas.setVisible(true);
+						ordenDescargas.setVisible(false);
+						ascendente.setVisible(false);
+						descendente.setVisible(false);
+					
+					
+				}else
+				{
+					mostrarDescargas.setVisible(false);
+					habilitarPorAnioDescargasConsultas.setVisible(false);
+					habilitarPorDiaDescargasConsultas.setVisible(false);
+					habilitarPorMesDescargasConsultas.setVisible(false);
+				}
+			}
+			
+			if(e.getSource() == areasRadio)
+			{
+
+				if(areasRadio.isSelected())
+				{
+					
+						mostrarDescargas.setVisible(false);
+						habilitarPorAnioDescargasConsultas.setVisible(false);
+						habilitarPorDiaDescargasConsultas.setVisible(false);
+						habilitarPorMesDescargasConsultas.setVisible(false);
+						ordenDescargas.setVisible(false);
+						ascendente.setVisible(false);
+						descendente.setVisible(false);
+					
+					
+				}
+			}
+			
+			if(e.getSource() == totales)
+			{
+				if(totales.isSelected())
+				{
+					if(usuariosRadio.isSelected())
+					{
+						ordenDescargas.setVisible(true);
+						ascendente.setVisible(true);
+						descendente.setVisible(true);
+						mostrarDescargas.setVisible(false);
+						habilitarPorAnioDescargasConsultas.setVisible(false);
+						habilitarPorDiaDescargasConsultas.setVisible(false);
+						habilitarPorMesDescargasConsultas.setVisible(false);
+					}else
+					{
+						ordenDescargas.setVisible(false);
+						ascendente.setVisible(false);
+						descendente.setVisible(false);
+					}
+					
+				}
+			}
+			
+			if(e.getSource() == detallado)
+			{
+				if(detallado.isSelected())
+				{
+					if(usuariosRadio.isSelected())
+					{
+						ordenDescargas.setVisible(false);
+						ascendente.setVisible(false);
+						descendente.setVisible(false);
+						mostrarDescargas.setVisible(false);
+						habilitarPorAnioDescargasConsultas.setVisible(false);
+						habilitarPorDiaDescargasConsultas.setVisible(false);
+						habilitarPorMesDescargasConsultas.setVisible(false);
+					}else if(areasRadio.isSelected())
+					{
+						ordenDescargas.setVisible(false);
+						ascendente.setVisible(false);
+						descendente.setVisible(false);
+						mostrarDescargas.setVisible(false);
+						habilitarPorAnioDescargasConsultas.setVisible(false);
+						habilitarPorDiaDescargasConsultas.setVisible(false);
+						habilitarPorMesDescargasConsultas.setVisible(false);
+					}else
+					{
+						ordenDescargas.setVisible(false);
+						ascendente.setVisible(false);
+						descendente.setVisible(false);
+					}
+				}
+			}
 			if(e.getSource() == botonDescargasConsultas)
 			{
 				botonDescargasConsultas.getModel().setArmed(true);
