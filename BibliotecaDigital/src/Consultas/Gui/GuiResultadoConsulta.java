@@ -25,8 +25,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.Vector;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -37,16 +37,15 @@ import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.TitledBorder;
 
+import Consultas.Controlador.ControladorConsulta;
+import Consultas.Logica.Consulta;
+import Documento.Logica.Documento;
 import Principal.Gui.GuiAdministrador;
 import Principal.Gui.GuiCatalogador;
 import Principal.Gui.GuiUsuarioNormal;
 import Usuarios.Gui.GuiNovedades;
-import Utilidades.Estilos;
 import Utilidades.Button;
-
-import Consultas.Logica.Consulta;
-import Consultas.Controlador.*;
-import Documento.Logica.Documento;
+import Utilidades.Estilos;
 
 /**
  * Clase que permite manejar el resultado de las consultas generales y

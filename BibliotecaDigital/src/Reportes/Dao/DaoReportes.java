@@ -1,26 +1,18 @@
 package Reportes.Dao;
 
-import java.awt.Font;
-import java.awt.ScrollPane;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.Vector;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
-import com.lowagie.text.Table;
 
 import Utilidades.FachadaBD;
 import Utilidades.TableDataSource;
@@ -1649,7 +1641,7 @@ public class DaoReportes
 		
 	}  
 
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 
 		DaoReportes daoReportes = new DaoReportes();
 		// daoReportes.consultaUsuarioBasica("vinculo_univalle", "=",
@@ -1675,9 +1667,9 @@ public class DaoReportes
 	
 		a.setVisible(true);
 		a.setSize(400,400);
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
-	}
+	}/**/
 
 }

@@ -17,7 +17,9 @@ package Usuarios.Controlador;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
+
 import javax.swing.JOptionPane;
+
 import Consultas.Logica.Consulta;
 import GestionDocumento.Logica.AreaConocimiento;
 import Usuarios.Dao.DaoUsuario;
