@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupadosTotales" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.2100000000000177"/>
+	<property name="ireport.zoom" value="0.5131581182307128"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="143"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -24,19 +24,20 @@
 		</box>
 	</style>
 	<parameter name="titulo" class="java.lang.String"/>
-	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="grupo" class="java.lang.String"/>
+	<field name="agrupado" class="java.lang.String"/>
 	<field name="cuantos" class="java.lang.Integer"/>
-	<field name="anio" class="java.lang.String"/>
-	<field name="mes" class="java.lang.String"/>
 	<variable name="total" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{cuantos}]]></variableExpression>
 	</variable>
-	<group name="AGRUPADO"/>
+	<group name="AGRUPADO">
+		<groupExpression><![CDATA[$F{agrupado}]]></groupExpression>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="146" splitType="Stretch">
+		<band height="143" splitType="Stretch">
 			<textField>
 				<reportElement x="57" y="32" width="327" height="56"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -56,95 +57,95 @@
 		</band>
 	</title>
 	<columnHeader>
-		<band height="33">
+		<band height="42">
 			<frame>
-				<reportElement mode="Opaque" x="57" y="10" width="349" height="20" backcolor="#FF3333"/>
+				<reportElement mode="Opaque" x="0" y="20" width="473" height="20" backcolor="#FF3333"/>
 				<staticText>
-					<reportElement x="202" y="0" width="147" height="20" forecolor="#FFFFFF"/>
+					<reportElement x="326" y="0" width="147" height="20" forecolor="#FFFFFF"/>
 					<textElement>
 						<font size="11"/>
 					</textElement>
 					<text><![CDATA[  Cantidad Usuarios]]></text>
 				</staticText>
-				<staticText>
-					<reportElement x="0" y="0" width="100" height="20" forecolor="#FFFFFF"/>
-					<textElement/>
-					<text><![CDATA[Año]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="100" y="0" width="100" height="20" forecolor="#FFFFFF"/>
-					<textElement/>
-					<text><![CDATA[Mes]]></text>
-				</staticText>
+				<textField>
+					<reportElement x="3" y="0" width="325" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["  " + $P{grupo}]]></textFieldExpression>
+				</textField>
 			</frame>
+			<staticText>
+				<reportElement x="2" y="0" width="123" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Usuarios agrupados por]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="0" width="274" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{grupo}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="22">
+		<band height="21">
 			<line>
-				<reportElement x="57" y="19" width="349" height="1"/>
+				<reportElement x="4" y="19" width="471" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="56" y="0" width="1" height="20"/>
+				<reportElement x="4" y="0" width="1" height="20"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="405" y="0" width="1" height="20"/>
+				<reportElement x="327" y="0" width="1" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="474" y="0" width="1" height="20"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="260" y="0" width="146" height="20" forecolor="#595959"/>
+				<reportElement x="5" y="0" width="322" height="20" forecolor="#595959"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{agrupado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="328" y="0" width="146" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cuantos}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="258" y="0" width="1" height="20"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
-				</graphicElement>
-			</line>
-			<textField>
-				<reportElement x="57" y="0" width="100" height="20" forecolor="#595959"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{anio}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="157" y="0" width="100" height="20" forecolor="#595959"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{mes}]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement x="157" y="0" width="1" height="20"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
-				</graphicElement>
-			</line>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="22">
 			<line>
-				<reportElement x="93" y="0" width="263" height="1"/>
+				<reportElement x="57" y="0" width="349" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#CCCCCC"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="213" y="1" width="44" height="20"/>
+				<reportElement x="283" y="1" width="44" height="20"/>
 				<textElement>
 					<font fontName="DejaVu Serif Condensed"/>
 				</textElement>
 				<text><![CDATA[Total: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="261" y="1" width="75" height="20"/>
+				<reportElement x="331" y="1" width="75" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total}]]></textFieldExpression>
 			</textField>
@@ -178,7 +179,7 @@
 		<band height="722" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="56" y="42" width="451" height="612"/>
+					<reportElement x="76" y="42" width="420" height="584"/>
 					<chartTitle>
 						<font fontName="Comic Sans MS" size="12" isBold="true"/>
 						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>
@@ -190,7 +191,7 @@
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{anio} + "-" + $F{mes}]]></keyExpression>
+					<keyExpression><![CDATA[$F{agrupado}]]></keyExpression>
 					<valueExpression><![CDATA[$F{cuantos}]]></valueExpression>
 					<labelExpression><![CDATA[$F{cuantos}]]></labelExpression>
 				</pieDataset>

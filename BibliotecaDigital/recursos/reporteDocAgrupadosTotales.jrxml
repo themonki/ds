@@ -15,7 +15,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="229" splitType="Stretch">
+		<band height="153" splitType="Stretch">
 			<textField>
 				<reportElement x="57" y="32" width="321" height="56"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -32,11 +32,6 @@
 				<reportElement x="388" y="0" width="184" height="140"/>
 				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
 			</image>
-			<textField>
-				<reportElement x="57" y="120" width="321" height="94"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{introduccion}]]></textFieldExpression>
-			</textField>
 		</band>
 	</title>
 	<columnHeader>
