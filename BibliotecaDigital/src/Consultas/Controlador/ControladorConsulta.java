@@ -153,7 +153,6 @@ public class ControladorConsulta
 				}else if(opAutor == 3)
 				{
 					valorAutor.add(valor.elementAt(i));
-					System.out.print("qqqqqqqqqqqqqqqqqqqqqqq");
 				}
 				
 			}else if(elemento.equals("titulo"))
@@ -187,7 +186,7 @@ public class ControladorConsulta
 				{
 					atributoDocumento.setElementAt(1, 3);
 					valorDocumento.add(valor.elementAt(i));
-					System.out.println("indice: " + i + " valor: " + valor.elementAt(i)+ " atributo en indice3: " + atributoDocumento.elementAt(3));
+					//System.out.println("indice: " + i + " valor: " + valor.elementAt(i)+ " atributo en indice3: " + atributoDocumento.elementAt(3));
 				}
 			}else if(elemento.equals("formato"))
 			{
@@ -195,7 +194,7 @@ public class ControladorConsulta
 				{
 					atributoDocumento.setElementAt(1, 4);
 					valorDocumento.add(valor.elementAt(i));
-					System.out.println("indice: " + i + " valor: " + valor.elementAt(i)+ " atributo en indice4: " + atributoDocumento.elementAt(4));
+					//System.out.println("indice: " + i + " valor: " + valor.elementAt(i)+ " atributo en indice4: " + atributoDocumento.elementAt(4));
 				}
 			}else if(elemento.equals("area"))
 			{
@@ -212,7 +211,7 @@ public class ControladorConsulta
 		
 		
 		//lo que me envio la guiConsultaAvanzada
-		System.out.println(atributo);
+		/*System.out.println(atributo);
 		System.out.println(valor);
 		
 		//Lo que se construyo en controlador para enviar al dao.
@@ -221,7 +220,7 @@ public class ControladorConsulta
 		System.out.println(valorPalabra);
 		System.out.println(valorAutor);
 		System.out.println(areaString);
-		
+		*/
 		
 		DaoConsulta daoConsulta = new DaoConsulta();
 		//No estaban asigando lo de dao a vector xD. Corregido

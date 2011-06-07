@@ -12,12 +12,6 @@
  * 
  */
 
-
-
-
-
-
-
 package Usuarios.Dao;
 
 import java.sql.Connection;
@@ -527,7 +521,6 @@ public class DaoUsuario {
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
-			System.out.println(sql_actualizar);
 			value = sentencia.executeUpdate(sql_actualizar);
 			conn.close();
 			return value;
@@ -560,7 +553,6 @@ public class DaoUsuario {
 		try {
 			Connection conn = fachada.conectar();
 			Statement sentencia = conn.createStatement();
-			System.out.println(sql_actualizar);
 			numFilas = sentencia.executeUpdate(sql_actualizar);
 			conn.close();
 			return numFilas;
@@ -604,8 +596,6 @@ public class DaoUsuario {
 				+ "WHERE fecha_catalogacion >= (" + consultaFechaUltimoAcceso
 				+ ");";
 
-		System.out.println(consultaCatalogadosDespuesUltimoAcceso);
-
 		ResultSet resultado;
 
 		try {
@@ -631,7 +621,6 @@ public class DaoUsuario {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		System.out.println(consultas);
 		return consultas;
 	}
 
