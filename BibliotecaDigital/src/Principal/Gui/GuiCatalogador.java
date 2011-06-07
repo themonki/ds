@@ -43,6 +43,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
@@ -182,7 +183,7 @@ public class GuiCatalogador extends JFrame
 		archivo = new JMenu("Archivo");
 		archivo.setMnemonic('A');
 
-		ayuda = new JMenu("Aydua ");
+		ayuda = new JMenu("Ayuda ");
 		ayuda.setMnemonic('y');
 
 		salir = new JMenuItem("Salir");
@@ -615,6 +616,17 @@ public class GuiCatalogador extends JFrame
 				} catch (URISyntaxException e) {
 					e.printStackTrace();
 				}
+			}
+			if(evento.getSource() == informacion)
+			{
+				JOptionPane.showMessageDialog(null,
+						"Sistema Biblioteca Digital" +
+						"Desarrollado por:\n" +
+						"		 Maria Andrea Cruz  \n" +
+						"		 Cristian Leonardo Rios  \n" +
+						"		 Edgar Andres Moncada \n" +
+						"		 Luis Felipe Vargas \n" +
+						"		 Yerminson Gonzalez Munoz");
 			}
 		}
 	}

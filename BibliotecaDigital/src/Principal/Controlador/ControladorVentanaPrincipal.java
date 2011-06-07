@@ -86,7 +86,7 @@ public class ControladorVentanaPrincipal {
 				
 				GuiUsuarioNormal guiUsuarioNormal = new GuiUsuarioNormal(usuario);
 				Vector<Consulta> documentos = controladorUsuario.consultaDocumentosInteresArea(usuario.getLogin());
-				System.out.println(documentos);
+				
 				guiUsuarioNormal.setNovededadesUsuario(documentos);
 				controladorUsuario.actualizarAccesoUsuario(usuario.getLogin());
 				//guiUsuarioNormal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

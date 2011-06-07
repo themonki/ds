@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.3310000000000088"/>
-	<property name="ireport.x" value="160"/>
-	<property name="ireport.y" value="713"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteDocConsultadosDescargados_2" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.1000000000000105"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="85"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="uso" class="java.lang.String"/>
+	<parameter name="introduccion" class="java.lang.String"/>
 	<field name="login" class="java.lang.String"/>
 	<field name="nombre1" class="java.lang.String"/>
 	<field name="apellido1" class="java.lang.String"/>
@@ -68,15 +69,15 @@
 						<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#CCCCCC"/>
 					</graphicElement>
 				</line>
-				<textField isBlankWhenNull="true">
-					<reportElement x="521" y="0" width="37" height="20"/>
-					<textElement/>
-					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{cuantos_1}]]></textFieldExpression>
-				</textField>
 				<textField>
 					<reportElement x="425" y="1" width="96" height="20"/>
 					<textElement/>
 					<textFieldExpression class="java.lang.String"><![CDATA["Total " + $P{uso}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="521" y="1" width="37" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{cuantos_1}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -85,7 +86,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="140" splitType="Stretch">
+		<band height="229" splitType="Stretch">
 			<textField>
 				<reportElement x="57" y="32" width="430" height="56"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -102,6 +103,11 @@
 				<reportElement x="514" y="0" width="184" height="140"/>
 				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
 			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="57" y="130" width="430" height="81"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{introduccion}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
@@ -161,7 +167,7 @@
 		<band height="572" splitType="Stretch">
 			<pieChart>
 				<chart isShowLegend="true">
-					<reportElement x="166" y="77" width="420" height="419"/>
+					<reportElement x="45" y="49" width="662" height="475"/>
 					<chartTitle>
 						<font fontName="DejaVu Serif Condensed" size="12" isBold="true"/>
 						<titleExpression><![CDATA[$P{titulo}]]></titleExpression>
@@ -170,7 +176,7 @@
 						<font fontName="DejaVu Serif Condensed" isBold="true"/>
 						<subtitleExpression><![CDATA["Total de " + $P{uso} + $V{cuantos_2}]]></subtitleExpression>
 					</chartSubtitle>
-					<chartLegend/>
+					<chartLegend position="Right"/>
 				</chart>
 				<pieDataset>
 					<keyExpression><![CDATA[$F{login}]]></keyExpression>

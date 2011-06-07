@@ -669,6 +669,7 @@ public class GuiReportes extends JTabbedPane{
 					boolean restringirMesBool = restringirMes.isSelected();
 					boolean usuario = tablas.getSelectedItem().equals("Usuarios");
 					boolean areas = tablas.getSelectedItem().equals("Areas");
+					boolean documento = tablas.getSelectedItem().equals("Documentos");
 					
 					String atributoSeleccionado = (String) atributos.getSelectedItem();
 					String fechaBusqueda = (String)fechas.getSelectedItem();
@@ -729,6 +730,7 @@ public class GuiReportes extends JTabbedPane{
 									}
 									
 								}
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
@@ -742,6 +744,7 @@ public class GuiReportes extends JTabbedPane{
 							{
 								JasperPrint reporte = controlador.reporteAreasAgrupadas(encabezado);
 								controlador.generarReporte(rutaFinal, reporte);
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								
 							}catch(JRException e)
 							{
@@ -749,6 +752,38 @@ public class GuiReportes extends JTabbedPane{
 										"tratando de llamarse el generar reporte de areas detalladas");
 								e.printStackTrace();
 							}
+						}
+						
+						if(documento)
+						{
+							try
+							{
+								JasperPrint reporte;
+								
+								if(atributoSeleccionado.contains("formato"))
+								{
+									reporte= controlador.reporteDocumentosAgrupadosFormato(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("area"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosArea(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("autor"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosAutor(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("tipo"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosTipo(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
+							
 						}
 					}
 					if(totalesR)
@@ -787,6 +822,7 @@ public class GuiReportes extends JTabbedPane{
 										controlador.generarReporte(rutaFinal, reporte);
 									}
 								}
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
@@ -800,7 +836,7 @@ public class GuiReportes extends JTabbedPane{
 							{
 								JasperPrint reporte = controlador.reporteAreasAgrupadasTotales(encabezado);
 								controlador.generarReporte(rutaFinal, reporte);
-								
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed" +
@@ -808,13 +844,45 @@ public class GuiReportes extends JTabbedPane{
 								e.printStackTrace();
 							}
 						}
+						
+						if(documento)
+						{
+							try
+							{
+								JasperPrint reporte;
+								
+								if(atributoSeleccionado.contains("formato"))
+								{
+									reporte= controlador.reporteDocumentosAgrupadosFormatoTotales(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("area"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosAreaTotales(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("autor"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosAutorTotales(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}else if(atributoSeleccionado.contains("tipo"))
+								{
+									reporte = controlador.reporteDocumentosAgrupadosTipoTotales(encabezado);
+									controlador.generarReporte(rutaFinal, reporte);
+								}
+								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+							}catch(JRException e)
+							{
+								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
+								e.printStackTrace();
+							}
+							
+						}
 					}
 					
 					//reporte.setEncabezado(encabezado);
 				}
 				
 				//System.out.println(controladorReporte.consultarUsuariosAgrupados((String) atributos.getSelectedItem()));
-				JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+				
 				//System.out.println("reporte generado");
 				
 				}
