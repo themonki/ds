@@ -649,22 +649,9 @@ public class GuiReportes extends JTabbedPane{
 			}else if (evento.getSource()== botonGenerarReporte)
 			{
 				//tablas.getSelectedItem();
-				
-				String ruta;
-				JFileChooser archivos = new JFileChooser();
-				archivos.setDialogType(JFileChooser.SAVE_DIALOG);
-				archivos.setDragEnabled(true);
-				archivos.setAcceptAllFileFilterUsed(false);
-				FileNameExtensionFilter filtroPdf = new FileNameExtensionFilter("*.pdf", "pdf");
-				archivos.setFileFilter(filtroPdf);
-				int opcion = archivos.showSaveDialog(null);
+					scroll.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 					
-				if(opcion == JFileChooser.APPROVE_OPTION)
-				{	scroll.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-					File archivo = archivos.getSelectedFile();
-					ruta = archivo.getPath();
-					String rutaFinal = ruta+".pdf";
-					
+					String rutaFinal = "";
 					String encabezado = campoTitulo.getText();
 					boolean detalladoR = opcionReporte.isSelected(detallado.getModel());
 					boolean totalesR = opcionReporte.isSelected(totales.getModel());
@@ -739,7 +726,7 @@ public class GuiReportes extends JTabbedPane{
 									}
 									
 								}
-								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}catch(JRException e)
 							{
@@ -789,7 +776,7 @@ public class GuiReportes extends JTabbedPane{
 									controladorReporte.generarReporte(rutaFinal, reporte);
 								}
 								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
@@ -834,7 +821,7 @@ public class GuiReportes extends JTabbedPane{
 										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
 								}
-								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}catch(JRException e)
 							{
@@ -849,7 +836,7 @@ public class GuiReportes extends JTabbedPane{
 							{
 								JasperPrint reporte = controladorReporte.reporteAreasAgrupadasTotales(encabezado);
 								controladorReporte.generarReporte(rutaFinal, reporte);
-								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}catch(JRException e)
 							{
@@ -882,7 +869,7 @@ public class GuiReportes extends JTabbedPane{
 									reporte = controladorReporte.reporteDocumentosAgrupadosTipoTotales(encabezado);
 									controladorReporte.generarReporte(rutaFinal, reporte);
 								}
-								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}catch(JRException e)
 							{
@@ -894,7 +881,7 @@ public class GuiReportes extends JTabbedPane{
 					}
 					
 					//reporte.setEncabezado(encabezado);
-				}
+				
 				
 				//System.out.println(controladorReporte.consultarUsuariosAgrupados((String) atributos.getSelectedItem()));
 				
