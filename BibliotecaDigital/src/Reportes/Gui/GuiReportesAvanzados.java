@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -20,9 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -32,9 +29,6 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 import javax.swing.border.TitledBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-//import sun.awt.geom.AreaOp.IntOp;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -1465,7 +1459,7 @@ public class GuiReportesAvanzados extends JPanel{
 									reporte = controladorReporte.reporteDocumentosCatalogadosUsuario(introduccion, tituloReporte);
 									controladorReporte.generarReporte(rutaFinal, reporte);
 								}
-								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								
 							}else if(areas)
 							{
@@ -1478,7 +1472,7 @@ public class GuiReportesAvanzados extends JPanel{
 									reporte = controladorReporte.reporteDocumentosCatalogadosArea(introduccion, tituloReporte);
 									controladorReporte.generarReporte(rutaFinal, reporte);
 								}
-								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}else if (fecha)
 							{
 								if(porDia)
@@ -1493,7 +1487,7 @@ public class GuiReportesAvanzados extends JPanel{
 										reporte = controladorReporte.reporteDocumentosCatalogadosFecha(introduccion, tituloReporte);
 										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
-									JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+									//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 									
 								}else if(porMes)
 								{
@@ -1507,7 +1501,7 @@ public class GuiReportesAvanzados extends JPanel{
 										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
 									
-									JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+									//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								}else if(porAnio)
 								{
 									if(habilitarFecha)
@@ -1519,7 +1513,7 @@ public class GuiReportesAvanzados extends JPanel{
 										reporte = controladorReporte.reporteDocumentosCatalogadosFechaAnio(introduccion, tituloReporte);
 										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
-									JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+									//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								}
 							}
 								

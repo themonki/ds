@@ -24,7 +24,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,10 +31,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -45,7 +42,6 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
 import javax.swing.UIManager;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -740,7 +736,7 @@ public class GuiReportes extends JTabbedPane{
 							{
 								JasperPrint reporte = controladorReporte.reporteAreasAgrupadas(encabezado);
 								controladorReporte.generarReporte(rutaFinal, reporte);
-								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								
 							}catch(JRException e)
 							{
