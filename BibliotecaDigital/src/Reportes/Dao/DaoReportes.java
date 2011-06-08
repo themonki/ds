@@ -1343,7 +1343,7 @@ public class DaoReportes
 		String consultaSql = "SELECT x.login AS agrupado, x.nombre1, x.apellido1, y.cantidad " +
 		"FROM (SELECT d.login, count(*) AS cantidad " +
 		"FROM descarga_usuario_documento AS d " +
-		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
 		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
 		"FROM usuario AS u) AS x " +
 		"ORDER BY x.login";
@@ -1770,7 +1770,7 @@ public class DaoReportes
 		String consultaSql = "SELECT x.login AS agrupado, x.nombre1, x.apellido1, y.cantidad " +
 		"FROM (SELECT d.login, count(*) AS cantidad " +
 		"FROM consulta AS d " +
-		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' "+
 		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
 		"FROM usuario AS u) AS x " +
 		"ORDER BY x.login";

@@ -185,3 +185,6 @@ SELECT m.nombre_area, x.cuantos FROM (SELECT id_area, sum(total) AS cuantos FROM
 
 --conusltas àra totales documentos consultados por usuario
 SELECT x.login, x.nombre1, x.apellido1, y.cuantos FROM (SELECT d.login, count(*) AS cuantos FROM consulta AS d GROUP BY d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ORDER BY x.login; 
+
+--consulta area totales para documentos catalogados
+SELECT y.nombre AS agrupado, x.cantidad FROM (SELECT id_area, count(id_area) AS cantidad FROM (SELECT d.id_documento FROM documento AS d) AS a NATURAL JOIN pertenece_documento_area_conocimiento GROUP BY id_area) AS x NATURAL JOIN (SELECT id_area, nombre FROM area_conocimiento) AS y ORDER BY y.nombre;
