@@ -2071,7 +2071,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 //			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_mes.pdf", c.reporteDocumentosCatalogadosFechaMes("1999-02-03","2011-05-05","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Mes"));
 //			c.generarReporte("recursos/reportes/catalogado_area.pdf", c.reporteDocumentosCatalogadosArea("Esto es una introducción", "Reporte Documentos Catalogados por Área"));
 //			c.generarReporte("recursos/reportes/catalogado_area_intervalo.pdf", c.reporteDocumentosCatalogadosArea("1993-03-18","2011-09-08","Esto es una introducción", "Reporte Documentos Catalogados por Área"));
-//			c.generarReporte("recursos/reportes/catalogado_usuario.pdf", c.reporteDocumentosCatalogadosUsuario("Esto es una introducción", "Reporte Documentos Catalogados por Usaurio"));
+			c.generarReporte("recursos/reportes/catalogado_usuario.pdf", c.reporteDocumentosCatalogadosUsuario("Esto es una introducción", "Reporte Documentos Catalogados por Usaurio"));
 //			c.generarReporte("recursos/reportes/catalogado_usuario_intervalo.pdf", c.reporteDocumentosCatalogadosUsuario("1993-03-18","2011-09-08","Esto es una introducción", "Reporte Documentos Catalogados por Usuario"));
 			
 //			c.generarReporte("", c.reporteDocumentosDescargadosAreaTotales("introduccion", "Reporte Documentos Descargados por Area Total"));

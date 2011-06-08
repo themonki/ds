@@ -1933,26 +1933,21 @@ public class DaoReportes
 	
 	public TableDataSource consultaDocumentosCatalogadosUsuario()
 	{
-		String consultaSql = "SELECT x.login, x.nombre1, x.apellido1, y.cuantos " +
-		"FROM (SELECT d.login, count(*) AS cuantos " +
-		"FROM consulta AS d " +
-		"GROUP BY d.login) AS y " +
-		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
-		"FROM usuario AS u) AS x " +
-		"ORDER BY x.login";
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ON d.login_catalogador = x.login ORDER BY d.login_catalogador;";
 		
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 
 	public TableDataSource consultaDocumentosCatalogadosUsuario(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT x.login, x.nombre1, x.apellido1, y.cuantos " +
-		"FROM (SELECT d.login, count(*) AS cuantos " +
-		"FROM consulta AS d " +
-		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF +
-		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
-		"FROM usuario AS u) AS x " +
-		"ORDER BY x.login";
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, " +
+				"x.nombre1, x.apellido1 " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS x ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + 
+				"' ORDER BY d.login_catalogador";
 		
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	} 
