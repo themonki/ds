@@ -18,6 +18,7 @@
 
 package Reportes.Gui;
 
+import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -648,6 +649,7 @@ public class GuiReportes extends JTabbedPane{
 			}else if (evento.getSource()== botonGenerarReporte)
 			{
 				//tablas.getSelectedItem();
+				
 				String ruta;
 				JFileChooser archivos = new JFileChooser();
 				archivos.setDialogType(JFileChooser.SAVE_DIALOG);
@@ -658,7 +660,7 @@ public class GuiReportes extends JTabbedPane{
 				int opcion = archivos.showSaveDialog(null);
 					
 				if(opcion == JFileChooser.APPROVE_OPTION)
-				{
+				{	scroll.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 					File archivo = archivos.getSelectedFile();
 					ruta = archivo.getPath();
 					String rutaFinal = ruta+".pdf";
@@ -704,7 +706,7 @@ public class GuiReportes extends JTabbedPane{
 									
 										reporte = controladorReporte.reporteUsuariosAgrupados(atributoSeleccionado, fechaBusqueda, fechaInicioString, fechaFinString, encabezado);
 										controladorReporte.generarReporte(rutaFinal, reporte);
-									
+										scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));									
 									
 								}else
 								{
@@ -712,27 +714,33 @@ public class GuiReportes extends JTabbedPane{
 									{
 										reporte = controladorReporte.reporteUsuariosAnioMes(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, fechaDesdeMes, fechaHastaMes, encabezado);
 										controladorReporte.generarReporte(rutaFinal, reporte);
+										scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 									}else if(restringirAnioBool)
 									{
 										reporte = controladorReporte.reporteUsuariosAnio(atributoSeleccionado, fechaDesdeAnio, fechaHastaAnio, encabezado);
 										controladorReporte.generarReporte(rutaFinal, reporte);
+										scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 									}else if (restringirMesBool)
 									{
 										reporte = controladorReporte.reporteUsuariosAnioMes(atributoSeleccionado, fechaDesdeMes, fechaHastaMes, encabezado);
 										controladorReporte.generarReporte(rutaFinal, reporte);
+										scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 									}else
 									{
 										if(atributoSeleccionado.contains("fecha_"))
 										{
 											reporte = controladorReporte.reporteUsuariosAnio(atributoSeleccionado, encabezado);
 											controladorReporte.generarReporte(rutaFinal, reporte);
+											scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 										}
 										reporte = controladorReporte.reporteUsuariosAgrupados(atributoSeleccionado, encabezado);
 										controladorReporte.generarReporte(rutaFinal, reporte);
+										
 									}
 									
 								}
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
@@ -747,6 +755,7 @@ public class GuiReportes extends JTabbedPane{
 								JasperPrint reporte = controladorReporte.reporteAreasAgrupadas(encabezado);
 								controladorReporte.generarReporte(rutaFinal, reporte);
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 								
 							}catch(JRException e)
 							{
@@ -779,6 +788,7 @@ public class GuiReportes extends JTabbedPane{
 									reporte = controladorReporte.reporteDocumentosAgrupadosTipo(encabezado);
 									controladorReporte.generarReporte(rutaFinal, reporte);
 								}
+								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 							}catch(JRException e)
 							{
@@ -825,6 +835,7 @@ public class GuiReportes extends JTabbedPane{
 									}
 								}
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
@@ -839,6 +850,7 @@ public class GuiReportes extends JTabbedPane{
 								JasperPrint reporte = controladorReporte.reporteAreasAgrupadasTotales(encabezado);
 								controladorReporte.generarReporte(rutaFinal, reporte);
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed" +
@@ -871,6 +883,7 @@ public class GuiReportes extends JTabbedPane{
 									controladorReporte.generarReporte(rutaFinal, reporte);
 								}
 								JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
+								scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							}catch(JRException e)
 							{
 								System.out.println("Exception generada en GuiReportes.Manejador,actionPreformed");
