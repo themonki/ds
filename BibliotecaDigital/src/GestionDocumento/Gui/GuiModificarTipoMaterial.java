@@ -292,9 +292,5 @@ public class GuiModificarTipoMaterial extends JFrame {
 		}
 	}
 
-	public static void main(String[] args) {
-		GuiModificarTipoMaterial a = new GuiModificarTipoMaterial(new GuiCatalogar("admin"));
-		a.setVisible(true);
-	}
 
 }

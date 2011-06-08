@@ -1979,7 +1979,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	
 	
 	
-	public static void main(String arg[])
+	/*public static void main(String arg[])
 	{
 		ControladorReportes c = new ControladorReportes();
 		try
@@ -2091,7 +2091,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		{
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 }
 

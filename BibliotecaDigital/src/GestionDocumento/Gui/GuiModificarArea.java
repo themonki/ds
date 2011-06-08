@@ -343,8 +343,4 @@ public class GuiModificarArea extends JFrame{
 		
 	}
 	
-	public static void main (String []args){
-		GuiModificarArea a = new GuiModificarArea(new GuiCatalogar("admin"));
-		a.setVisible(true);
-	}
 }

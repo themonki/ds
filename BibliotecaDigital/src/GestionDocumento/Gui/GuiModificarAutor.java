@@ -376,8 +376,5 @@ public class GuiModificarAutor extends JFrame {
 		
 		
 	}
-	public static void main (String []args){
-		GuiModificarAutor a = new GuiModificarAutor(new GuiCatalogar("admin"));
-		a.setVisible(true);
-	}
+
 }

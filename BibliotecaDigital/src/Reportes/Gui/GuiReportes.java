@@ -414,7 +414,7 @@ public class GuiReportes extends JTabbedPane{
 		
 	}
 
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 
 		try
 		{				
@@ -435,7 +435,7 @@ public class GuiReportes extends JTabbedPane{
 
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	}
+	}*/
 	
 	/**
 	 * Clase que permite manejar todos los eventos relacionados con 
@@ -564,7 +564,7 @@ public class GuiReportes extends JTabbedPane{
 			}else if (evento.getSource()== tablas)
 			{
 				String item =(String) tablas.getSelectedItem(); 
-				System.out.println(item);
+				//System.out.println(item);
 				if ( item.contains("Areas"))
 				{
 					atributos.removeAllItems();
@@ -663,10 +663,10 @@ public class GuiReportes extends JTabbedPane{
 					Date fecha= ((JSpinner.DateEditor) campoFecha.getEditor()).getModel().getDate();
 				    SimpleDateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
 					String fechaInicioString = formatoFecha.format(fecha);
-					System.out.println("Fecha inio " + fechaInicioString);
+					//System.out.println("Fecha inio " + fechaInicioString);
 					fecha= ((JSpinner.DateEditor) campoFecha2.getEditor()).getModel().getDate();
 					String fechaFinString = formatoFecha.format(fecha);
-					System.out.println("Fecha fin " +fechaFinString);
+					//System.out.println("Fecha fin " +fechaFinString);
 					
 					SimpleDateFormat formatoAnio= new SimpleDateFormat("yyyy");
 					String fechaDesdeAnio =  formatoAnio.format(((JSpinner.DateEditor) campoFechaDesdeAnio.getEditor()).getModel().getDate());
