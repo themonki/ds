@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosAgrupados_1" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="0.8264462809917438"/>
-	<property name="ireport.x" value="4"/>
+	<property name="ireport.zoom" value="1.2100000000000126"/>
+	<property name="ireport.x" value="147"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="opcion" class="java.lang.String"/>
@@ -15,7 +15,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="153" splitType="Stretch">
+		<band height="193" splitType="Stretch">
 			<textField>
 				<reportElement x="57" y="32" width="321" height="56"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -32,6 +32,11 @@
 				<reportElement x="388" y="0" width="184" height="140"/>
 				<imageExpression class="java.lang.String"><![CDATA["recursos/logo3dpajaroGrande.png"]]></imageExpression>
 			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="57" y="120" width="321" height="59"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{introduccion}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<columnHeader>
