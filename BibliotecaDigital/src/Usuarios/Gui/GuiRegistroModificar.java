@@ -18,6 +18,7 @@
 package Usuarios.Gui;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -25,6 +26,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -74,7 +77,7 @@ public class GuiRegistroModificar extends JScrollPane {
 			respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero,
 			fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle,
 			perfilLabel, estadoLabel, areasInteres, icono, fechaUltimoAcceso, fechaRegistro,
-			campoFechaUltimoAcceso, campoFechaRegistro;
+			campoFechaUltimoAcceso, campoFechaRegistro, iconoVerificaLogin;
 	private JPasswordField campoPassword, campoVerificacionPassword;
 	private JComboBox campoPreguntaSecreta, campoGenero, campoPerfil,
 			campoEstado, campoAreasInteres, campoVinculoUnivalle,
@@ -109,7 +112,7 @@ public class GuiRegistroModificar extends JScrollPane {
 	private ManejadorComboBox manejadorComboBox;
 	private ManejadorMouse manejadorMouse;
 	private ManejadorJTextField manejadorJTextField;
-	boolean actualiza=false;
+	boolean actualiza=false, estadoLogin=false;
 	int modo; // Indica si es modo registrar 0, modo modificar por usuario
 	// normal 1 o modo modificar por usuario administrador 2.
 
@@ -186,6 +189,8 @@ public class GuiRegistroModificar extends JScrollPane {
 				icono.setIcon(new ImageIcon("recursos/iconos/mujer-editar.png"));
 			}
 		}
+		
+		iconoVerificaLogin= new JLabel();
 		
 		
 		// Inicializar Labels que apareceran en cualquier modo
@@ -298,10 +303,15 @@ public class GuiRegistroModificar extends JScrollPane {
 				14, 2, 2));
 		GridBagConstraints restriccionCampo = configurar(1, 0, new Insets(2,
 				40, 2, 2));
-
+		JPanel panelLogin = new JPanel(new BorderLayout());
+		panelLogin.add(campoLoginTF, BorderLayout.WEST);
+		panelLogin.add(iconoVerificaLogin, BorderLayout.CENTER);
 		restriccionCampo.ipady = 0;
-		panelDatos.add(login, restriccionEtiqueta);
-		panelDatos.add(campoLoginTF, restriccionCampo);
+		panelDatos.add(login, restriccionEtiqueta);	
+		panelDatos.add(panelLogin, restriccionCampo);
+		//restriccionCampo.gridx=2;
+		//panelDatos.add(iconoVerificaLogin, restriccionCampo);
+		//restriccionCampo.gridx=1;
 		filaPanelDatos++;
 
 		restriccionEtiqueta.gridy = filaPanelDatos;
@@ -385,7 +395,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy = filaPanelDatos;
 		restriccionCampo.gridy = filaPanelDatos;
-
+		
 		if (modo == 0 || modo == 1) { // para usuarios a registrar, o usuarios
 										// normales que van a modificar.
 			panelDatos.add(areasInteres, restriccionEtiqueta);
@@ -537,6 +547,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		// JTextField
 		campoLoginTF = new JTextField(10);
 		campoLoginTF.addKeyListener(manejadorJTextField);
+		campoLoginTF.addFocusListener(manejadorJTextField);
 		campoRespuestaSecreta = new JTextField(30);
 		campoRespuestaSecreta.addKeyListener(manejadorJTextField);
 		campoNombre1 = new JTextField(30);
@@ -865,17 +876,21 @@ public class GuiRegistroModificar extends JScrollPane {
 						perfilString, estado, areasInteresUsuario);
 
 				ControladorUsuario controlador = new ControladorUsuario();
-				int registro = controlador
-						.insertarDatosUsuario(usuarioModificar);
+				if (controlador.verificarDatosInsertar(usuarioModificar, estadoLogin)) {
+					int registro = controlador
+							.insertarDatosUsuario(usuarioModificar);
 
-				// Se indica que ya se puede loguear.
-				if (registro != 0) {
-					JOptionPane
-							.showMessageDialog(null,
-									"Su registro a sido exitoso.\n Puede ingresar al sistema.");
-					LimpiarCampos();
-					GuiPrincipal.cambiarPanelIngresar();
+					// Se indica que ya se puede loguear.
+					if (registro != 0) {
+						JOptionPane
+								.showMessageDialog(null,
+										"Su registro a sido exitoso.\n Puede ingresar al sistema.");
+						LimpiarCampos();
+						GuiPrincipal.cambiarPanelIngresar();
 
+					}
+				}else{
+					;
 				}
 
 			}
@@ -1079,7 +1094,7 @@ public class GuiRegistroModificar extends JScrollPane {
 	 * @author Maria Andrea Cruz Blandon
 	 *
 	 */
-	private class ManejadorJTextField implements KeyListener {
+	private class ManejadorJTextField implements KeyListener, FocusListener{
 
 		@Override
 		public void keyPressed(KeyEvent e) {
@@ -1142,6 +1157,31 @@ public class GuiRegistroModificar extends JScrollPane {
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
 
+		}
+//**********************************************************
+		@Override
+		public void focusGained(FocusEvent e) {
+						
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			if(campoLoginTF.getText().equals("")){
+				iconoVerificaLogin.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
+				estadoLogin=false;
+				return;
+			}
+			
+			ControladorUsuario controlador = new ControladorUsuario();
+			Usuario u = controlador.consultarUsuario(campoLoginTF.getText());
+			if(u.getLogin()!=null){
+				iconoVerificaLogin.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
+				estadoLogin=false;
+			}else{
+				iconoVerificaLogin.setIcon(new ImageIcon("recursos/iconos/ok.png"));
+				estadoLogin=true;
+			}
+						
 		}
 
 	}

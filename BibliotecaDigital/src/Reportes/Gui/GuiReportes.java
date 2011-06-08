@@ -517,9 +517,12 @@ public class GuiReportes extends JTabbedPane{
 								restringirAnio.setVisible(true);
 								restringirMes.setVisible(true);
 								habilitar.setVisible(false);
+								habilitar.setSelected(false);
 								fechas.setVisible(false);
 								etiquetaDesde.setVisible(false);
 								etiquetaHasta.setVisible(false);
+								campoFecha.setVisible(false);
+								campoFecha2.setVisible(false);
 								
 								if(restringirAnio.isSelected())
 								{

@@ -874,10 +874,10 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosCatalogadosFechaAnio(String anioI, String anioF, String introduccion, String tituloReporte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosFechaAnio(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnio(anioI, anioF);
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnio();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -896,17 +896,17 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosCatalogadosFechaMes(String mesI, String mesF, String introduccion, String tituloReporte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosFechaAnio(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaMes(mesI, mesF);
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnio(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_3.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_2.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -918,7 +918,50 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	public JasperPrint reporteDocumentosCatalogadosFechaAnioMes(String anioI, String anioF, String mesI, String mesF, String introduccion, String tituloReporte) throws JRException
+	public JasperPrint reporteDocumentosCatalogadosFechaMes(String introduccion, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaMes();
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_4.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	
+	public JasperPrint reporteDocumentosCatalogadosFechaMes(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
+	{
+		DaoReportes daoReportes = new DaoReportes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaMes(fechaI, fechaF);
+		daoReportes = null;
+		
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("titulo", tituloReporte);
+		parametros.put("introduccion", introduccion);
+				
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_4.jasper");
+		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
+        
+        parametros = null;
+        tableData = null;
+        table = null;
+        reporte = null;
+        
+        return jasperPrint;
+	}
+	/*public JasperPrint reporteDocumentosCatalogadosFechaAnioMes(String anioI, String anioF, String mesI, String mesF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
 		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnioMes(anioI, anioF, mesI, mesF);
@@ -938,7 +981,7 @@ public class ControladorReportes
         reporte = null;
         
         return jasperPrint;
-	}
+	}*/
 	
 	public JasperPrint reporteDocumentosCatalogadosArea(String introduccion,String tituloReporte) throws JRException
 	{
@@ -1078,9 +1121,9 @@ public class ControladorReportes
 	
 	
 	
-	/*public static void main(String arg[])
+	public static void main(String arg[])
 	{
-	//	ControladorReportes c = new ControladorReportes();
+		/*ControladorReportes c = new ControladorReportes();
 		try
 		{
 			//System.out.println(c.consultaGenerica("select * from usuario"));
@@ -1138,23 +1181,25 @@ public class ControladorReportes
 //			c.generarReporte("recursos/reportes/areas.pdf", c.reporteAreasAgrupadas("Reporte Areas"));
 //			c.generarReporte("recursos/reportes/areas_totales.pdf", c.reporteAreasAgrupadasTotales("Reporte Areas Totales"));
 			
-//			c.generarReporte("recursos/reportes/descargado_fecha.pdf", c.reporteDocumentosDescargadosFecha("Reporte Documentos Descargados por Fecha"));
-//			c.generarReporte("recursos/reportes/descargado_fecha_intervalo.pdf", c.reporteDocumentosDescargadosFecha("1989-02-15","2010-01-12","Reporte Documentos Descargados por Fecha"));
-//			c.generarReporte("recursos/reportes/descargado_area.pdf", c.reporteDocumentosDescargadosArea("Reporte Documentos Descargados por Área"));
-//			c.generarReporte("recursos/reportes/descargado_area_intervalo.pdf", c.reporteDocumentosDescargadosArea("1989-02-15","2010-01-12","Reporte Documentos Descargados por Área"));
-//			c.generarReporte("recursos/reportes/descargado_usuario.pdf", c.reporteDocumentosDescargadosUsuario("Reporte Documentos Descargados por Usuario"));
-//			c.generarReporte("recursos/reportes/descargado_usuario_intervalo.pdf", c.reporteDocumentosDescargadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Descargados por Usuario"));
-//			c.generarReporte("recursos/reportes/consultado_fecha.pdf", c.reporteDocumentosConsultadosFecha("Reporte Documentos Consultados por Fecha"));
-//			c.generarReporte("recursos/reportes/consultado_fecha_intervalo.pdf", c.reporteDocumentosConsultadosFecha("2011-05-20","2011-05-30","Reporte Consultados Descargados por Fecha"));
-//			c.generarReporte("recursos/reportes/consultado_area.pdf", c.reporteDocumentosConsultadosArea("Reporte Documentos Consultados por Área"));
-//			c.generarReporte("recursos/reportes/consultado_area_intervalo.pdf", c.reporteDocumentosConsultadosArea("2011-05-20","2011-05-30","Reporte Documentos Consultados por Área"));
-//			c.generarReporte("recursos/reportes/consultado_usuario.pdf", c.reporteDocumentosConsultadosUsuario("Reporte Documentos Consultados por Usuario"));
-//			c.generarReporte("recursos/reportes/consultado_usuario_intervalo.pdf", c.reporteDocumentosConsultadosUsuario("1989-02-15","2010-01-12","Reporte Documentos Consultados por Usuario"));
+//			c.generarReporte("recursos/reportes/descargado_fecha.pdf", c.reporteDocumentosDescargadosFecha("introduccion.","Reporte Documentos Descargados por Fecha"));
+//			c.generarReporte("recursos/reportes/descargado_fecha_intervalo.pdf", c.reporteDocumentosDescargadosFecha("1989-02-15","2010-01-12","introduccion.","Reporte Documentos Descargados por Fecha"));
+//			c.generarReporte("recursos/reportes/descargado_area.pdf", c.reporteDocumentosDescargadosArea("introduccion.","Reporte Documentos Descargados por Área"));
+//			c.generarReporte("recursos/reportes/descargado_area_intervalo.pdf", c.reporteDocumentosDescargadosArea("1989-02-15","2010-01-12","introduccion.","Reporte Documentos Descargados por Área"));
+//			c.generarReporte("recursos/reportes/descargado_usuario.pdf", c.reporteDocumentosDescargadosUsuario("introduccion.","Reporte Documentos Descargados por Usuario"));
+//			c.generarReporte("recursos/reportes/descargado_usuario_intervalo.pdf", c.reporteDocumentosDescargadosUsuario("1989-02-15","2010-01-12","introduccion.","Reporte Documentos Descargados por Usuario"));
+//			c.generarReporte("recursos/reportes/consultado_fecha.pdf", c.reporteDocumentosConsultadosFecha("introduccion.","Reporte Documentos Consultados por Fecha"));
+//			c.generarReporte("recursos/reportes/consultado_fecha_intervalo.pdf", c.reporteDocumentosConsultadosFecha("2011-05-20","2011-05-30","introduccion.","Reporte Consultados Descargados por Fecha"));
+//			c.generarReporte("recursos/reportes/consultado_area.pdf", c.reporteDocumentosConsultadosArea("introduccion.","Reporte Documentos Consultados por Área"));
+//			c.generarReporte("recursos/reportes/consultado_area_intervalo.pdf", c.reporteDocumentosConsultadosArea("2011-05-20","2011-05-30","introduccion.","Reporte Documentos Consultados por Área"));
+//			c.generarReporte("recursos/reportes/consultado_usuario.pdf", c.reporteDocumentosConsultadosUsuario("introduccion.","Reporte Documentos Consultados por Usuario"));
+//			c.generarReporte("recursos/reportes/consultado_usuario_intervalo.pdf", c.reporteDocumentosConsultadosUsuario("1989-02-15","2010-01-12","introduccion.","Reporte Documentos Consultados por Usuario"));
 			
-//			c.generarReporte("recursos/reportes/catalogado_fecha.pdf", c.reporteDocumentosCatalogadosFecha("Esto es una introducción", "Reporte Documentos Catalogados por Fecha"));
-//			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo.pdf", c.reporteDocumentosCatalogadosFecha("1999-02-23","2011-05-03","Esto es una introducción", "Reporte Documentos Catalogados por Fecha"));
-//			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_anio.pdf", c.reporteDocumentosCatalogadosFechaAnio("1999","2011","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Año"));
-//			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_mes.pdf", c.reporteDocumentosCatalogadosFechaMes("02","05","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Mes"));
+			c.generarReporte("recursos/reportes/catalogado_fecha.pdf", c.reporteDocumentosCatalogadosFecha("Esto es una introducción", "Reporte Documentos Catalogados por Fecha"));
+			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo.pdf", c.reporteDocumentosCatalogadosFecha("1999-02-23","2011-05-03","Esto es una introducción", "Reporte Documentos Catalogados por Fecha"));
+			c.generarReporte("recursos/reportes/catalogado_fecha_anio.pdf", c.reporteDocumentosCatalogadosFechaAnio("Esto es una introducción", "Reporte Documentos Catalogados por Fecha Año"));
+			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_anio.pdf", c.reporteDocumentosCatalogadosFechaAnio("1999-02-01","2011-04-05","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Año"));
+			c.generarReporte("recursos/reportes/catalogado_fecha_mes.pdf", c.reporteDocumentosCatalogadosFechaMes("Esto es una introducción", "Reporte Documentos Catalogados por Fecha Mes"));
+			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_mes.pdf", c.reporteDocumentosCatalogadosFechaMes("1999-02-03","2011-05-05","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Mes"));
 //			c.generarReporte("recursos/reportes/catalogado_fecha_intervalo_anio_mes.pdf", c.reporteDocumentosCatalogadosFechaAnioMes("1993","2011","03","12","Esto es una introducción", "Reporte Documentos Catalogados por Fecha Año Mes"));
 //			c.generarReporte("recursos/reportes/catalogado_area.pdf", c.reporteDocumentosCatalogadosArea("Esto es una introducción", "Reporte Documentos Catalogados por Área"));
 //			c.generarReporte("recursos/reportes/catalogado_area_intervalo.pdf", c.reporteDocumentosCatalogadosArea("1993-03-18","2011-09-08","Esto es una introducción", "Reporte Documentos Catalogados por Área"));
@@ -1165,7 +1210,7 @@ public class ControladorReportes
 		}catch(JRException e)
 		{
 			e.printStackTrace();
-		}
-	}*/
+		}*/
+	}
 
 }

@@ -24,29 +24,50 @@
 + Acomodar formato en base de datos .. djvu--------------LISTO
 + Descripcion evento de enter cuando llegue a estos 20 caracteres. linewrap en true ---------agregado tambn en las gui de gestion documento----LISTO
 + DOS DOCUMENTOS POR INTEGRANTE EN FORMATO TXT TAL Y CMO ESTA EN LA INTERFAZ. ^^
++ poner manito en resultados documento
 
 
 
 ***********************************************************+EXPOSICION+****************************************************************+
-Consulta Basica
-Mostrar detallado de documentos
-link autor palabra clave etc,.
-Consulta Avanzada
-Titulo = bases de , autor james f, palabra programacion
-consultar solo por titulo exacta con.. todas las opciones
-se agrega autor y titulo en con estas palabras 
-se muestran todas las opciones con autor
-y luego se agrega palabra y lo mismo
-luego por area area modelos de simulacion  idioma ingles, formato pdf 
-Se selecciona documento y se le da descargar
-se registra nuevo usuario *
-se ingreas con el usuario 
-se consulta y se descarga
-se modifican datos y se sale
-se ingresa con admnin
-y se cambia el usuario registrado a catalogador
++introduccion: se presenstan los integrantes y el trabajo realizado por cada uno
 
++Consulta Basica: se busca por bases
+++Mostrar detallado de documentos
+++mostrar link de autor, palabra clave etc,.
 
++Consulta Avanzada
+++Titulo = bases de , autor = james f, palabra = programacion
+++consultar solo por titulo en 'exacto con estas palabras' toda y luego todass las opciones
+++se agrega autor y titulo en 'con estas palabras' luego se muestran todas las demas opciones con autor
+++luego se agrega palabra y se hace lo mismo que con autor
+++luego por area, area = 'modelos de simulacion' idioma  = 'ingles', formato = 'pdf' 
+
+USUARIO NORMAL DESCARGA Y MODIFICACION DATOS
+++Se selecciona documento y se le da descargar, mostrando que no se puede descargar
++se registra nuevo usuario solo con datos obligatorios, login = maria8
++se ingresa con el usuario recien registrado
++se hace consulta básica y se muestra la descarga
++se modifican datos de usuario y se sale.
+
+USUARIO ADMIN, CONSULTA USUARIOS, CAMBIO PERFIL, OLVIDO CONTRASEÑA
++se ingresa con usuario admnin y se cambia el usuario registrado a catalogador y se sale
++se muestra el cambio de contraseña para el usuario maria8
++se ingresa nuevamente con el usuario maria8
+
+USUARIO CATALOGADOR, CATALOGAR DOCUMENTO, GESTION DOCUMENTO, MODIFICACION DOCUMENTO
++se cataloga un nuevo documento solo con datos obligatorios, se muestra que se pueden crear nuevos usuario, palabra, etc(solo se muestra uno)
++se muestra el modulo de gestion diciendo que por aca tambien se pueden crear nuevos usuarios, areas,etc pero que adicional se puede modificar
++se consulta el documento catalogado y lo modificamos
+
+DESACTIVAR USUARIO
++se sale y se ingresa con el usuario admin, se desactiva el usuario maria8 y se sale
++se intenta ingresar con el usuario maria8 mostrando lo que sucede
+
+MOSTRAR NOVEDADES
++se ingresa con el usuario monki y se muestra las novedades, luego se sale
+
+MOSTRAR REPORTES
++se ingresa con el usuario admin y se muestra el modulo de reportes
 
 
 
@@ -57,7 +78,7 @@ y se cambia el usuario registrado a catalogador
 + Modificar diagrama de clases 
 + Modificar diagrama de secuencias
 + Modificar resumen ¬¬ (Baah)
-+ Modificar Modelo de datos.
++ Modificar Modelo de datos. LISTO
 
 
 
