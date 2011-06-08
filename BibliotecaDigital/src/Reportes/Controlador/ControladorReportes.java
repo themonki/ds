@@ -1123,7 +1123,7 @@ public class ControladorReportes
 	
 	public static void main(String arg[])
 	{
-		/*ControladorReportes c = new ControladorReportes();
+		ControladorReportes c = new ControladorReportes();
 		try
 		{
 			//System.out.println(c.consultaGenerica("select * from usuario"));
@@ -1210,7 +1210,7 @@ public class ControladorReportes
 		}catch(JRException e)
 		{
 			e.printStackTrace();
-		}*/
+		}
 	}
 
 }
