@@ -15,6 +15,7 @@ package Consultas.Gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -308,6 +309,8 @@ public class GuiResultadoConsulta extends JScrollPane{
 		}
 
 		public void mouseEntered(MouseEvent e) {
+			JList a =   (JList) e.getSource();
+			 a.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 
 		public void mouseExited(MouseEvent arg0) {
