@@ -571,6 +571,7 @@ public class GuiVistaDetalladaConsulta extends JScrollPane {
 					JFileChooser manager = new JFileChooser();
 					manager.setDialogTitle("Seleccionar destino");
 					manager.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+					panel.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 					int returnVal = manager.showSaveDialog(new JFrame());
 					if (returnVal == JFileChooser.APPROVE_OPTION) {//si selecciona guardar
 						File file = manager.getSelectedFile();
@@ -593,7 +594,8 @@ public class GuiVistaDetalladaConsulta extends JScrollPane {
 								conCon.insertarDescargaDocumento(documento.getId_doc(), GuiAdministrador.LOGIN);
 							}else{
 								JOptionPane.showMessageDialog(null, "Error al Descargar no se conoce el login", "ERROR", JOptionPane.OK_OPTION);
-							}							
+							}
+							panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 							JOptionPane.showMessageDialog(null,"Se descargo correctamente el archivo en la siguiente ubicacion: \n "+descarga);
 						}
 						

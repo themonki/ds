@@ -18,6 +18,7 @@
 package Usuarios.Gui;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -25,6 +26,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -74,7 +77,7 @@ public class GuiRegistroModificar extends JScrollPane {
 			respuestaSecreta, nombre1, nombre2, apellido1, apellido2, genero,
 			fechaNacimiento, email, nivelEscolaridad, vinculoUnivalle,
 			perfilLabel, estadoLabel, areasInteres, icono, fechaUltimoAcceso, fechaRegistro,
-			campoFechaUltimoAcceso, campoFechaRegistro;
+			campoFechaUltimoAcceso, campoFechaRegistro, iconoVerificaLogin, iconoVerificaPassword;
 	private JPasswordField campoPassword, campoVerificacionPassword;
 	private JComboBox campoPreguntaSecreta, campoGenero, campoPerfil,
 			campoEstado, campoAreasInteres, campoVinculoUnivalle,
@@ -109,7 +112,7 @@ public class GuiRegistroModificar extends JScrollPane {
 	private ManejadorComboBox manejadorComboBox;
 	private ManejadorMouse manejadorMouse;
 	private ManejadorJTextField manejadorJTextField;
-	boolean actualiza=false;
+	boolean actualiza=false, estadoLogin=false, estadoPassword=false;
 	int modo; // Indica si es modo registrar 0, modo modificar por usuario
 	// normal 1 o modo modificar por usuario administrador 2.
 
@@ -187,6 +190,8 @@ public class GuiRegistroModificar extends JScrollPane {
 			}
 		}
 		
+		iconoVerificaLogin= new JLabel();
+		iconoVerificaPassword= new JLabel();
 		
 		// Inicializar Labels que apareceran en cualquier modo
 
@@ -298,10 +303,15 @@ public class GuiRegistroModificar extends JScrollPane {
 				14, 2, 2));
 		GridBagConstraints restriccionCampo = configurar(1, 0, new Insets(2,
 				40, 2, 2));
-
+		JPanel panelLogin = new JPanel(new BorderLayout());
+		panelLogin.add(campoLoginTF, BorderLayout.WEST);
+		panelLogin.add(iconoVerificaLogin, BorderLayout.CENTER);
 		restriccionCampo.ipady = 0;
-		panelDatos.add(login, restriccionEtiqueta);
-		panelDatos.add(campoLoginTF, restriccionCampo);
+		panelDatos.add(login, restriccionEtiqueta);	
+		panelDatos.add(panelLogin, restriccionCampo);
+		//restriccionCampo.gridx=2;
+		//panelDatos.add(iconoVerificaLogin, restriccionCampo);
+		//restriccionCampo.gridx=1;
 		filaPanelDatos++;
 
 		restriccionEtiqueta.gridy = filaPanelDatos;
@@ -343,13 +353,19 @@ public class GuiRegistroModificar extends JScrollPane {
 			filaPanelDatos++;
 			restriccionEtiqueta.gridy = filaPanelDatos;
 			restriccionCampo.gridy = filaPanelDatos;
+			
 			panelDatos.add(password, restriccionEtiqueta);
 			panelDatos.add(campoPassword, restriccionCampo);
 			filaPanelDatos++;
 			restriccionEtiqueta.gridy = filaPanelDatos;
 			restriccionCampo.gridy = filaPanelDatos;
+			
+			JPanel panelPassword = new JPanel(new BorderLayout());
+			panelPassword.add(campoVerificacionPassword, BorderLayout.WEST);
+			panelPassword.add(iconoVerificaPassword, BorderLayout.CENTER);
 			panelDatos.add(verificacionPassword, restriccionEtiqueta);
-			panelDatos.add(campoVerificacionPassword, restriccionCampo);
+			panelDatos.add(panelPassword, restriccionCampo);
+			
 			filaPanelDatos++;
 			restriccionEtiqueta.gridy = filaPanelDatos;
 			restriccionCampo.gridy = filaPanelDatos;
@@ -385,7 +401,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		filaPanelDatos++;
 		restriccionEtiqueta.gridy = filaPanelDatos;
 		restriccionCampo.gridy = filaPanelDatos;
-
+		
 		if (modo == 0 || modo == 1) { // para usuarios a registrar, o usuarios
 										// normales que van a modificar.
 			panelDatos.add(areasInteres, restriccionEtiqueta);
@@ -537,6 +553,7 @@ public class GuiRegistroModificar extends JScrollPane {
 		// JTextField
 		campoLoginTF = new JTextField(10);
 		campoLoginTF.addKeyListener(manejadorJTextField);
+		campoLoginTF.addFocusListener(manejadorJTextField);
 		campoRespuestaSecreta = new JTextField(30);
 		campoRespuestaSecreta.addKeyListener(manejadorJTextField);
 		campoNombre1 = new JTextField(30);
@@ -553,8 +570,10 @@ public class GuiRegistroModificar extends JScrollPane {
 		// JPasswordField
 		campoPassword = new JPasswordField(25);
 		campoPassword.addKeyListener(manejadorJTextField);
+		campoPassword.addFocusListener(manejadorJTextField);
 		campoVerificacionPassword = new JPasswordField(25);
 		campoVerificacionPassword.addKeyListener(manejadorJTextField);
+		campoVerificacionPassword.addFocusListener(manejadorJTextField);
 
 		// JComboBox
 		campoPreguntaSecreta = new JComboBox(preguntaSecretaArray);
@@ -676,9 +695,11 @@ public class GuiRegistroModificar extends JScrollPane {
 		campoPassword = new JPasswordField(20);
 		campoPassword.setText(usuarioModificar.getContrasena());
 		campoPassword.addKeyListener(manejadorJTextField);
+		campoPassword.addFocusListener(manejadorJTextField);
 		campoVerificacionPassword = new JPasswordField(20);
 		campoVerificacionPassword.setText(usuarioModificar.getContrasena());
 		campoVerificacionPassword.addKeyListener(manejadorJTextField);
+		campoVerificacionPassword.addFocusListener(manejadorJTextField);
 
 		// Obtener los datos que deben de aparecer seleccionados en los
 		// JComboBox.
@@ -775,6 +796,10 @@ public class GuiRegistroModificar extends JScrollPane {
 		campoAreasInteres.setSelectedIndex(-1);
 		panelAreasInteres.removeAll();
 		areaConocimientoVector.removeAllElements();
+		estadoLogin = false;
+		estadoPassword = false;
+		this.iconoVerificaLogin.setIcon(new ImageIcon());
+		this.iconoVerificaPassword.setIcon(new ImageIcon());
 	}
 
 	
@@ -843,7 +868,7 @@ public class GuiRegistroModificar extends JScrollPane {
 											.elementAt(i)) + 1));
 				}
 
-				if (!(passwordString.equals(verPasswordString))) {
+				/*if (!(passwordString.equals(verPasswordString))) {
 					JOptionPane.showMessageDialog(null,
 							"Verifique el password.", "password diferentes",
 							JOptionPane.WARNING_MESSAGE);
@@ -852,7 +877,7 @@ public class GuiRegistroModificar extends JScrollPane {
 					campoVerificacionPassword.selectAll();
 					campoVerificacionPassword.requestFocus(true);
 					return;
-				}
+				}*/
 
 				// Crear usuario para introducirlo en la base de la biblioteca
 				// digital.
@@ -865,17 +890,21 @@ public class GuiRegistroModificar extends JScrollPane {
 						perfilString, estado, areasInteresUsuario);
 
 				ControladorUsuario controlador = new ControladorUsuario();
-				int registro = controlador
-						.insertarDatosUsuario(usuarioModificar);
+				if (controlador.verificarDatosInsertar(usuarioModificar, estadoLogin,estadoPassword)) {
+					int registro = controlador
+							.insertarDatosUsuario(usuarioModificar);
 
-				// Se indica que ya se puede loguear.
-				if (registro != 0) {
-					JOptionPane
-							.showMessageDialog(null,
-									"Su registro a sido exitoso.\n Puede ingresar al sistema.");
-					LimpiarCampos();
-					GuiPrincipal.cambiarPanelIngresar();
+					// Se indica que ya se puede loguear.
+					if (registro != 0) {
+						JOptionPane
+								.showMessageDialog(null,
+										"Su registro a sido exitoso.\n Puede ingresar al sistema.");
+						LimpiarCampos();
+						GuiPrincipal.cambiarPanelIngresar();
 
+					}
+				}else{
+					;
 				}
 
 			}
@@ -923,7 +952,7 @@ public class GuiRegistroModificar extends JScrollPane {
 												.elementAt(i)) + 1));
 					}
 
-					if (!(passwordString.equals(verPasswordString))) {
+					/*if (!(passwordString.equals(verPasswordString))) {
 						JOptionPane.showMessageDialog(null,
 								"Verifique el password.",
 								"Passwords Diferentes",
@@ -933,7 +962,7 @@ public class GuiRegistroModificar extends JScrollPane {
 						campoVerificacionPassword.selectAll();
 						campoVerificacionPassword.requestFocus(true);
 						return;
-					}
+					}*/
 
 					// se modifica usuario.
 					usuarioModificar.setNombre1(nombre1String);
@@ -953,14 +982,15 @@ public class GuiRegistroModificar extends JScrollPane {
 					usuarioModificar.setFechaNacimiento(fechaNacimientoDate);
 
 					ControladorUsuario controlador = new ControladorUsuario();
-					int modificar = controlador
-							.modificarDatosUsuario(usuarioModificar);
-					if (modificar != 0) {
-						JOptionPane.showMessageDialog(null,
-								"Se modifico satisfactoriamente sus datos");
+					if(controlador.verificarDatosModificar(usuarioModificar, estadoPassword)){
+						int modificar = controlador
+								.modificarDatosUsuario(usuarioModificar);
+						if (modificar != 0) {
+							JOptionPane.showMessageDialog(null,
+									"Se modifico satisfactoriamente sus datos");
 
-					}
-
+						}
+					}	
 				}
 				if (modo == 2) {
 
@@ -1079,7 +1109,7 @@ public class GuiRegistroModificar extends JScrollPane {
 	 * @author Maria Andrea Cruz Blandon
 	 *
 	 */
-	private class ManejadorJTextField implements KeyListener {
+	private class ManejadorJTextField implements KeyListener, FocusListener{
 
 		@Override
 		public void keyPressed(KeyEvent e) {
@@ -1095,8 +1125,7 @@ public class GuiRegistroModificar extends JScrollPane {
 				}
 			}
 
-			if (e.getSource() == campoPassword
-					|| e.getSource() == campoVerificacionPassword) {
+			if (e.getSource() == campoPassword) {
 				if (new String(campoPassword.getPassword()).length() > 19) {
 
 					if (e.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
@@ -1105,6 +1134,8 @@ public class GuiRegistroModificar extends JScrollPane {
 								.getPassword()).substring(0, 19));
 					}
 				}
+			}
+			if(e.getSource() == campoVerificacionPassword){
 				if (new String(campoVerificacionPassword.getPassword())
 						.length() > 19) {
 
@@ -1143,7 +1174,65 @@ public class GuiRegistroModificar extends JScrollPane {
 			// TODO Auto-generated method stub
 
 		}
+//**********************************************************
+		@Override
+		public void focusGained(FocusEvent e) {
+						
+		}
 
+		@Override
+		public void focusLost(FocusEvent e) {
+			
+			if(e.getSource()==campoLoginTF){
+				if(campoLoginTF.getText().equals("")){
+					iconoVerificaLogin.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
+					estadoLogin=false;
+					return;
+				}
+				
+				ControladorUsuario controlador = new ControladorUsuario();
+				Usuario u = controlador.consultarUsuario(campoLoginTF.getText());
+				if(u.getLogin()!=null){
+					iconoVerificaLogin.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
+					estadoLogin=false;
+				}else{
+					iconoVerificaLogin.setIcon(new ImageIcon("recursos/iconos/ok.png"));
+					estadoLogin=true;
+				}
+			}
+			if(e.getSource()==campoVerificacionPassword){
+				String stringVerificaPassword = new String(campoVerificacionPassword.getPassword());
+				if(stringVerificaPassword.equals("")){
+					iconoVerificaPassword.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
+					estadoPassword=false;
+					return;
+				}
+				String stringPassword =new String(campoPassword.getPassword());
+				if(stringVerificaPassword.equals(stringPassword)){
+					iconoVerificaPassword.setIcon(new ImageIcon("recursos/iconos/ok.png"));
+					estadoPassword=true;
+				}else{
+					iconoVerificaPassword.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
+					estadoPassword=false;
+				}
+			}
+			if(e.getSource()==campoPassword){
+				String stringPassword =new String(campoPassword.getPassword());
+				if(stringPassword.equals("")){
+					iconoVerificaPassword.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
+					estadoPassword=false;
+					return;
+				}
+				String stringVerificaPassword = new String(campoVerificacionPassword.getPassword());
+				if(stringVerificaPassword.equals(stringPassword)){
+					iconoVerificaPassword.setIcon(new ImageIcon("recursos/iconos/ok.png"));
+					estadoPassword=true;
+				}else{
+					iconoVerificaPassword.setIcon(new ImageIcon("recursos/iconos/CRUZ.gif"));
+					estadoPassword=false;					
+				}
+			}				
+		}
 	}
 	
 	public void actualizarAreasInteres(){

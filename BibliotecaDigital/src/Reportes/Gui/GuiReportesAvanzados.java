@@ -34,7 +34,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import sun.awt.geom.AreaOp.IntOp;
+//import sun.awt.geom.AreaOp.IntOp;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -920,10 +920,10 @@ public class GuiReportesAvanzados extends JPanel{
 						ordenDocumento.setVisible(false);
 						ascendenteDocumento.setVisible(false);
 						descendenteDocumento.setVisible(false);
-						mostrarDocumento.setVisible(false);
-						habilitarPorAnioDocumento.setVisible(false);
+						//mostrarDocumento.setVisible(false);
+						//habilitarPorAnioDocumento.setVisible(false);
 						//habilitarPorDiaDocumento.setVisible(false);
-						habilitarPorMesDocumento.setVisible(false);
+						//habilitarPorMesDocumento.setVisible(false);
 					}
 				}else
 				{
@@ -942,9 +942,9 @@ public class GuiReportesAvanzados extends JPanel{
 					ascendenteDocumento.setVisible(false);
 					descendenteDocumento.setVisible(false);
 					mostrarDocumento.setVisible(true);
-					//habilitarPorAnioDocumento.setVisible(true);
+					habilitarPorAnioDocumento.setVisible(true);
 					habilitarPorDiaDocumento.setVisible(true);
-					//habilitarPorMesDocumento.setVisible(true);
+					habilitarPorMesDocumento.setVisible(true);
 				}else
 				{
 					mostrarDocumento.setVisible(false);
@@ -987,10 +987,10 @@ public class GuiReportesAvanzados extends JPanel{
 						ordenDocumento.setVisible(false);
 						ascendenteDocumento.setVisible(false);
 						descendenteDocumento.setVisible(false);
-						mostrarDocumento.setVisible(false);
-						habilitarPorAnioDocumento.setVisible(false);
+						//mostrarDocumento.setVisible(false);
+						//habilitarPorAnioDocumento.setVisible(false);
 						//habilitarPorDiaDocumento.setVisible(false);
-						habilitarPorMesDocumento.setVisible(false);
+						//habilitarPorMesDocumento.setVisible(false);
 						
 					}
 				}
@@ -1007,9 +1007,9 @@ public class GuiReportesAvanzados extends JPanel{
 						ascendenteDocumento.setVisible(false);
 						descendenteDocumento.setVisible(false);
 						mostrarDocumento.setVisible(true);
-						//habilitarPorAnioDocumento.setVisible(true);
+						habilitarPorAnioDocumento.setVisible(true);
 						habilitarPorDiaDocumento.setVisible(true);
-						//habilitarPorMesDocumento.setVisible(true);
+						habilitarPorMesDocumento.setVisible(true);
 					}else
 					{
 						ordenDocumento.setVisible(false);
@@ -1515,24 +1515,27 @@ public class GuiReportesAvanzados extends JPanel{
 								{
 									if(habilitarFecha)
 									{
-										//reporte = controladorReporte.reporteDocumentosCatalogadosFechaMes
-										//controladorReporte.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteDocumentosCatalogadosFechaMes(fechaInicial, fechaFinal, introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}else
 									{
-										
+										reporte = controladorReporte.reporteDocumentosCatalogadosFechaMes(introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
 									
-									
+									JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								}else if(porAnio)
 								{
 									if(habilitarFecha)
 									{
-										//reporte = controladorReporte.reporteDocumentosCatalogadosFechaAnio
-										//controladorReporte.generarReporte(rutaFinal, reporte);
+										reporte = controladorReporte.reporteDocumentosCatalogadosFechaAnio(fechaInicial, fechaFinal, introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}else
 									{
-										
+										reporte = controladorReporte.reporteDocumentosCatalogadosFechaAnio(introduccion, tituloReporte);
+										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
+									JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
 								}
 							}
 								

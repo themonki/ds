@@ -130,10 +130,8 @@ public class ControladorUsuario {
 
 		DaoUsuario daoUs = new DaoUsuario();
 		int value = 0;
-		if (verificarDatosInsertar(u)) {
-			value = daoUs.guardarUsuario(u);
-			System.out.println("Se Registro el usuario");
-		}
+		value = daoUs.guardarUsuario(u);
+		System.out.println("Se Registro el usuario");		
 		daoUs = null;
 		return value;
 	}
@@ -149,20 +147,19 @@ public class ControladorUsuario {
 	 * @author Maria Andrea Cruz
 	 * @author Edgar Andres Moncada
 	 */
-	private boolean verificarDatosInsertar(Usuario u) {
+	public boolean verificarDatosInsertar(Usuario u, boolean estadoLogin, boolean estadoPassword) {
 		Vector<String> atributo = new Vector<String>();
 		Vector<String> valor = new Vector<String>();
 		DaoUsuario du = new DaoUsuario();
 		Vector<Usuario> respuesta;
-		Usuario uRespuesta;
 		String mensaje = "";
 		boolean estado = true;
-		if (u.getLogin().equals("")) {
-			mensaje += "Debe de proporcionar un Login\n";
+		if (!estadoLogin) {
+			mensaje += "Debe de proporcionar un Login valido\n";
 			estado = false;
 		}
-		if (u.getContrasena().equals("")) {
-			mensaje += "Debe de proporcionar una contrasena\n";
+		if (!estadoPassword) {
+			mensaje += "Debe verificar la contraseña\n";
 			estado = false;
 		}
 		if (u.getNombre1().equals("")) {
@@ -184,12 +181,7 @@ public class ControladorUsuario {
 		if (u.getRespuestaSecreta().equals("")) {
 			mensaje += "Debe de proporcionar una respuesta a la pregunta secreta\n";
 			estado = false;
-		}
-		uRespuesta = du.consultarUsuario(u.getLogin());
-		if (uRespuesta.getLogin() != null) {
-			mensaje += "El Login ya existe, por favor seleccione uno distinto\n";
-			estado = false;
-		}
+		}		
 		atributo.add("email");
 		valor.add(u.getEmail());
 		respuesta = du.consultarUsuarios(atributo, valor);
@@ -201,7 +193,6 @@ public class ControladorUsuario {
 		valor = null;
 		du = null;
 		respuesta = null;
-		uRespuesta = null;
 		if (!estado)
 			JOptionPane.showMessageDialog(null, mensaje,
 					"Error al Registrarse", JOptionPane.ERROR_MESSAGE);
@@ -219,12 +210,12 @@ public class ControladorUsuario {
 	 * @author Maria Andrea Cruz
 	 * @author Edgar Andres Moncada
 	 */
-	private boolean verificarDatosModificar(Usuario u) {
+	public boolean verificarDatosModificar(Usuario u, boolean estadoPassword) {
 		String mensaje = "";
 		boolean estado = true;
 
-		if (u.getContrasena().equals("")) {
-			mensaje += "Debe de proporcionar una contrasena\n";
+		if (!estadoPassword) {
+			mensaje += "Debe verificar la contraseña\n";
 			estado = false;
 		}
 		if (u.getNombre1().equals("")) {
@@ -345,10 +336,8 @@ public class ControladorUsuario {
 
 		DaoUsuario daoUs = new DaoUsuario();
 		int value = 0;
-		if (verificarDatosModificar(u)) {
-			value = daoUs.modificarUsuario(u);
-			System.out.println("Se modifico el usuario");
-		}
+		value = daoUs.modificarUsuario(u);
+		System.out.println("Se modifico el usuario");
 		daoUs = null;
 		return value;
 	}
