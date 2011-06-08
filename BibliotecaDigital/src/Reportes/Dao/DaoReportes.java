@@ -796,6 +796,123 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 
+	public TableDataSource consultaDocumentosDescargadosFechaAnio()	
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+				"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+				"EXTRACT(MONTH FROM y.fecha) AS mes " +
+				"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.id_documento,d.fecha) AS y " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY y.fecha";
+		//System.out.println(consultaSql);
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosFechaAnio(String fechaI,
+			String fechaF)	
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+				"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+				"EXTRACT(MONTH FROM y.fecha) AS mes " +
+				"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.id_documento,d.fecha) AS y " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY y.fecha";
+		//System.out.println(consultaSql);
+		
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosFechaMes()	
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+				"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+				"EXTRACT(MONTH FROM y.fecha) AS mes " +
+				"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.id_documento,d.fecha) AS y " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY y.fecha";
+		//System.out.println(consultaSql);
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosFechaMes(String fechaI,
+			String fechaF)	
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+				"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+				"EXTRACT(MONTH FROM y.fecha) AS mes " +
+				"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.id_documento,d.fecha) AS y " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY y.fecha";
+		//System.out.println(consultaSql);
+		
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource procesarDatosDocumentosDescagadosConsultadosFecha2(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 1; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+			data.addColumn("autor");
+			data.addColumn("opcion");
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				String columnOne = resultado.getString(1);
+				row.add(resultado.getString(2));
+				row.add(resultado.getString(3));
+				row.add(resultado.getString(4));
+				row.add(resultado.getInt(5));
+				row.add(resultado.getString(6));
+				row.add(resultado.getString(7));
+				row.add(obtenerAutoresDocumento(columnOne));
+				row.add("");
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
+	}
+	
 	private TableDataSource procesarDatosDocumentosDescagadosConsultadosFecha(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -1000,6 +1117,146 @@ public class DaoReportes
 		return data;
 	}
 	
+			/*descarga totales*/
+	public TableDataSource consultaDocumentosDescargadosFechaTotales()	
+	{
+		String consultaSql = "SELECT d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.fecha ORDER BY d.fecha";
+		//System.out.println(consultaSql);
+		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosFechaTotales(String fechaI,
+			String fechaF)	
+	{
+		String consultaSql = "SELECT d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.fecha ORDER BY d.fecha";
+		//System.out.println(consultaSql);
+		
+		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosFechaAnioTotales()	
+	{
+		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
+				"EXTRACT(YEAR FROM d.fecha) AS anio, " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.fecha ORDER BY d.fecha";
+		//System.out.println(consultaSql);
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosFechaAnioTotales(String fechaI,
+			String fechaF)	
+	{
+		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
+				"EXTRACT(YEAR FROM d.fecha) AS anio, " +
+				"FROM descarga_usuario_documento AS d " +
+				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.fecha ORDER BY d.fecha";
+		//System.out.println(consultaSql);
+		
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosFechaMesTotales()	
+	{
+		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
+		"EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha) AS mes " +
+		"FROM descarga_usuario_documento AS d " +
+		"GROUP BY d.fecha ORDER BY d.fecha";
+		//System.out.println(consultaSql);
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosFechaMesTotales(String fechaI,
+			String fechaF)	
+	{
+		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
+		"EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha) AS mes " +
+		"FROM descarga_usuario_documento AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.fecha ORDER BY d.fecha";
+		//System.out.println(consultaSql);
+		
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosAreaTotales() 
+	{
+		String consultaSql = "SELECT m.nombre_area, x.cuantos " +
+				"FROM (SELECT id_area, sum(total) AS cuantos " +
+				"FROM ((SELECT d.id_documento, count(*) AS total " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.id_documento) AS y " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento) AS b " +
+				"GROUP BY id_area) AS x " +
+				"NATURAL JOIN " +
+				"(SELECT a.id_area, a.nombre AS nombre_area " +
+				"FROM area_conocimiento AS a) AS m " +
+				"ORDER BY m.nombre_area;";
+		
+		//System.out.println(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosAreaTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT m.nombre_area, x.cuantos " +
+		"FROM (SELECT id_area, sum(total) AS cuantos " +
+		"FROM ((SELECT d.id_documento, count(*) AS total " +
+		"FROM descarga_usuario_documento AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF +  
+		" GROUP BY d.id_documento) AS y " +
+		"NATURAL JOIN pertenece_documento_area_conocimiento) AS b " +
+		"GROUP BY id_area) AS x " +
+		"NATURAL JOIN " +
+		"(SELECT a.id_area, a.nombre AS nombre_area " +
+		"FROM area_conocimiento AS a) AS m " +
+		"ORDER BY m.nombre_area;";
+		
+		//System.out.println(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosDescargadosUsuarioTotales() 
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+				"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
+				"FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"GROUP BY d.id_documento,d.fecha,d.login) AS y " +
+				"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS s) AS w " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY w.login;";
+		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosDescargadosUsuarioTotales(String fechaI, String fechaF) 
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+				"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
+				"FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos " +
+				"FROM descarga_usuario_documento AS d " +
+				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.id_documento,d.fecha,d.login) AS y " +
+				"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS s) AS w " +
+				"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+				"FROM documento AS a) AS x " +
+				"ORDER BY w.login;";
+		
+		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
+	} 
+	
+	
 	/*reporte relacioandos con la consulta de documentos*/
 	
 	public TableDataSource consultaDocumentosConsultadosFecha()
@@ -1029,6 +1286,72 @@ public class DaoReportes
 		"ORDER BY y.fecha";
 
 		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaAnio()
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+		"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM y.fecha) AS mes " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaAnio(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+		"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM y.fecha) AS mes " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaMes()
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+		"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM y.fecha) AS mes " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaMes(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+		"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM y.fecha) AS mes " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosConsultadosArea()
@@ -1083,6 +1406,170 @@ public class DaoReportes
 	}
 
 	public TableDataSource consultaDocumentosConsultadosUsuario(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+		"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
+		"FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha,d.login) AS y " +
+		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+		"FROM usuario AS u) AS s) AS w " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY w.login;";
+
+		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
+	} 
+	
+			/*consulta totales*/
+	public TableDataSource consultaDocumentosConsultadosFechaTotales()
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
+				" y.fecha AS agrupado, y.cuantos " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
+				" y.fecha AS agrupado, y.cuantos " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaAnioTotales()
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+		"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM y.fecha) AS mes " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaAnioTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+		"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM y.fecha) AS mes " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaMesTotales()
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+		"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM y.fecha) AS mes " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosFechaMesTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
+				" y.fecha AS agrupado, y.cuantos, " +
+		"EXTRACT(YEAR FROM y.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM y.fecha) AS mes " +
+		"FROM (SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY y.fecha";
+
+		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosAreaTotales()
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
+		"m.fecha AS opcion, m.cuantos, m.nombre_area AS agrupado " +
+		"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN pertenece_documento_area_conocimiento) AS w " +
+		"NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area " +
+		"FROM area_conocimiento AS a) AS s) AS m " +
+		"NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial " +
+		"FROM documento AS t) AS x " +
+		"ORDER BY m.nombre_area";
+		
+		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosConsultadosAreaTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
+		"m.fecha AS opcion, m.cuantos, m.nombre_area AS agrupado " +
+		"FROM (((SELECT d.id_documento, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.id_documento,d.fecha) AS y " +
+		"NATURAL JOIN pertenece_documento_area_conocimiento) AS w " +
+		"NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area " +
+		"FROM area_conocimiento AS a) AS s) AS m " +
+		"NATURAL JOIN (SELECT t.id_documento, t.titulo_principal, t.editorial " +
+		"FROM documento AS t) AS x " +
+		"ORDER BY m.nombre_area;";
+		
+		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosConsultadosUsuarioTotales()
+	{
+		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
+		"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
+		"FROM ((SELECT d.id_documento, d.login, d.fecha, count(*) AS cuantos " +
+		"FROM consulta AS d " +
+		"GROUP BY d.id_documento,d.fecha,d.login) AS y " +
+		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+		"FROM usuario AS u) AS s) AS w " +
+		"NATURAL JOIN (SELECT a.id_documento, a.titulo_principal, a.editorial " +
+		"FROM documento AS a) AS x " +
+		"ORDER BY w.login;";
+		
+		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosConsultadosUsuarioTotales(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
 		"w.fecha, w.cuantos, w.login, w.nombre1, w.apellido1 " +
@@ -1182,22 +1669,6 @@ public class DaoReportes
 		
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
-	
-	/*public TableDataSource consultaDocumentosCatalogadosFechaAnioMes(String anioI, String anioF, String mesI, String mesF)
-	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.login_catalogador, x.nombre1, x.apellido1, " +
-				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
-				"FROM documento AS d JOIN " +
-				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
-				"WHERE EXTRACT(MONTH FROM d.fecha_catalogacion) BETWEEN '" + mesI + "' AND '" + mesF + "' AND " +
-				"EXTRACT(YEAR FROM d.fecha_catalogacion) BETWEEN '" + anioI + "' AND '" + anioF + "' " +
-				"ORDER BY d.fecha_catalogacion";
-		
-		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
-	}*/
 	
 	public TableDataSource consultaDocumentosCatalogadosArea()
 	{
@@ -1394,6 +1865,150 @@ public class DaoReportes
 		}
 		return data;
 	}
+	
+			/*catalogadoTotales*/
+	public TableDataSource consultaDocumentosCatalogadosFechaTotales()
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaAnioTotales()
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaAnioTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaMesTotales()
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosFechaMesTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.login_catalogador, x.nombre1, x.apellido1, " +
+				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+				"FROM documento AS d JOIN " +
+				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY d.fecha_catalogacion";
+		
+		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosAreaTotales()
+	{
+		String consultaSql = "SELECT y.id_documento, y.editorial, y.titulo_principal, " +
+				"y.fecha_catalogacion, y.login_catalogador, x.nombre1, x.apellido1, y.nombre_area " +
+				"FROM ((SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, " +
+				"d.login_catalogador, c.id_area " +
+				"FROM documento AS d " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento AS c) AS s " +
+				"NATURAL JOIN (SELECT a.id_area, a. nombre AS nombre_area " +
+				"FROM area_conocimiento AS a) AS t) AS y " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON y.login_catalogador = x.login ORDER BY y.nombre_area";
+		
+		return procesarDatosDocumentosCatalogadosAreas(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosCatalogadosAreaTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT y.id_documento, y.editorial, y.titulo_principal, " +
+				"y.fecha_catalogacion, y.login_catalogador, x.nombre1, x.apellido1, y.nombre_area " +
+				"FROM ((SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, c.id_area " +
+				"FROM documento AS d " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento AS c) AS s " +
+				"NATURAL JOIN (SELECT a.id_area, a. nombre AS nombre_area " +
+				"FROM area_conocimiento AS a) AS t) AS y " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
+				"ON y.login_catalogador = x.login " +
+				"WHERE y.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY y.nombre_area";
+		
+		return procesarDatosDocumentosCatalogadosAreas(consultaSql);
+	}
+	
+	public TableDataSource consultaDocumentosCatalogadosUsuarioTotales()
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS x " +
+				"ON d.login_catalogador = x.login " +
+				"ORDER BY d.login_catalogador";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+	}
+
+	public TableDataSource consultaDocumentosCatalogadosUsuarioTotales(String fechaI, String fechaF)
+	{
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
+				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+				"FROM documento AS d " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS x ON d.login_catalogador = x.login " +
+				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"ORDER BY d.login_catalogador";
+		
+		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+	} 
+	
 	
 	/*FALTAN TODOS LO METODOS PARA TOTALES DE DESCARGA, CONSULTA Y CATALOGO*/
 	

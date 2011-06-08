@@ -174,3 +174,14 @@ SELECT autor.nombre_autor AS agrupado, count(autor.nombre_autor) AS cantidad FRO
 NATURAL JOIN
 (SELECT x.id_documento, x.nombre AS nombre_autor FROM (escribe_autor_documento NATURAL JOIN (SELECT a.id_autor, a.nombre FROM autor AS a) AS s) AS x) AS autor GROUP BY agrupado ORDER BY agrupado;
 --************************************************************************************
+--consutlas pora totales docuemtnos descargados por area
+SELECT m.nombre_area, x.cuantos FROM (SELECT id_area, sum(total) AS cuantos FROM ((SELECT d.id_documento, count(*) AS total FROM descarga_usuario_documento AS d GROUP BY d.id_documento) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS b GROUP BY id_area) AS x NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS m ORDER BY m.nombre_area;
+
+--conusltas àra totales documentos descargados por usuario
+SELECT x.login, x.nombre1, x.apellido1, y.cuantos FROM (SELECT d.login, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ORDER BY x.login;
+
+--consutlas pora totales docuemtnos consultados por area
+SELECT m.nombre_area, x.cuantos FROM (SELECT id_area, sum(total) AS cuantos FROM ((SELECT d.id_documento, count(*) AS total FROM consulta AS d GROUP BY d.id_documento) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS b GROUP BY id_area) AS x NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS m ORDER BY m.nombre_area;
+
+--conusltas àra totales documentos consultados por usuario
+SELECT x.login, x.nombre1, x.apellido1, y.cuantos FROM (SELECT d.login, count(*) AS cuantos FROM consulta AS d GROUP BY d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ORDER BY x.login; 
