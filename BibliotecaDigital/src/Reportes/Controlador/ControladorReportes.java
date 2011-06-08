@@ -1394,16 +1394,15 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosConsultadosAreaTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosArea();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosAreaTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Fecha");
-		parametros.put("uso", "Consultas: ");
+		parametros.put("opcion", "Area Conocimiento");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1423,11 +1422,10 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Fecha");
-		parametros.put("uso", "Consultas: ");
+		parametros.put("opcion", "Area Conocimiento");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1442,15 +1440,15 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosConsultadosUsuarioTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosUsuario();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosUsuarioTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("uso", "Consultas: ");
+		parametros.put("opcion", "Usuario");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados_2.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1470,10 +1468,10 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("uso", "Consultas: ");
+		parametros.put("opcion", "Usuario");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados_2.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1843,7 +1841,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosCatalogadosAreaTotales(String introduccion,String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosArea();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosAreaTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -1865,7 +1863,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosCatalogadosAreaTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosArea(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosAreaTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -1887,7 +1885,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosCatalogadosUsuarioTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosUsuario();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosUsuarioTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -1909,7 +1907,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosCatalogadosUsuarioTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosUsuario(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosUsuarioTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -2074,8 +2072,13 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 			
 //			c.generarReporte("", c.reporteDocumentosDescargadosAreaTotales("introduccion", "Reporte Documentos Descargados por Area Total"));
 //			c.generarReporte("", c.reporteDocumentosDescargadosAreaTotales("1989-02-03","2005-03-14","introduccion", "Reporte Documentos Descargados por Area Total"));
-//			c.generarReporte("", c.reporteDocumentosDescargadosUsuarioTotales("introduccion", "Reporte Documentos Descargados por Usuario Total"));
+//			c.generarReporte("", c.reporteDocumentosDescargadosUsuarioTotales("introduccion", "Reporte Documentos Descargadospor Usuario Total"));
 //			c.generarReporte("", c.reporteDocumentosDescargadosUsuarioTotales("1989-02-03","2005-03-14","introduccion", "Reporte Documentos Descargados por Usuario Total"));
+			
+//			c.generarReporte("", c.reporteDocumentosConsultadosAreaTotales("introduccion", "Reporte Documentos consultados por Area Total"));
+//			c.generarReporte("", c.reporteDocumentosConsultadosAreaTotales("1989-02-03","2005-03-14","introduccion", "Reporte Documentos consultados por Area Total"));
+//			c.generarReporte("", c.reporteDocumentosConsultadosUsuarioTotales("introduccion", "Reporte Documentos Consultados por Usuario Total"));
+//			c.generarReporte("", c.reporteDocumentosConsultadosUsuarioTotales("1989-02-03","2005-03-14","introduccion", "Reporte Documentos Consultados por Usuario Total"));
 			
 			throw new JRException("no se");
 		}catch(JRException e)
