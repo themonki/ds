@@ -2097,11 +2097,9 @@ public class DaoReportes
 			/*catalogadoTotales*/
 	public TableDataSource consultaDocumentosCatalogadosFechaTotales()
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad " +
 				"FROM documento AS d " +
-				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
+				"GROUP BY d.fecha_catalogacion " +
 				"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
@@ -2109,132 +2107,245 @@ public class DaoReportes
 	
 	public TableDataSource consultaDocumentosCatalogadosFechaTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
-				"FROM documento AS d " +
-				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
-				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-				"ORDER BY d.fecha_catalogacion";
+		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad " +
+		"FROM documento AS d " +
+		"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.fecha_catalogacion " +
+		"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosFechaAnioTotales()
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.login_catalogador, x.nombre1, x.apellido1, " +
-				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
-				"FROM documento AS d JOIN " +
-				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
-				"ORDER BY d.fecha_catalogacion";
+		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad,  " +
+		"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+		"FROM documento AS d " +
+		"GROUP BY d.fecha_catalogacion " +
+		"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosFechaAnioTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.login_catalogador, x.nombre1, x.apellido1, " +
-				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
-				"FROM documento AS d JOIN " +
-				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
-				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-				"ORDER BY d.fecha_catalogacion";
+		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad,  " +
+		"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+		"FROM documento AS d " +
+		"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.fecha_catalogacion " +
+		"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosFechaMesTotales()
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.login_catalogador, x.nombre1, x.apellido1, " +
-				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
-				"FROM documento AS d JOIN " +
-				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
-				"ORDER BY d.fecha_catalogacion";
+		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad,  " +
+		"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+		"FROM documento AS d " +
+		"GROUP BY d.fecha_catalogacion " +
+		"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosFechaMesTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.login_catalogador, x.nombre1, x.apellido1, " +
-				"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-				"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
-				"FROM documento AS d JOIN " +
-				"(SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
-				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-				"ORDER BY d.fecha_catalogacion";
+		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad,  " +
+		"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+		"FROM documento AS d " +
+		"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.fecha_catalogacion " +
+		"ORDER BY d.fecha_catalogacion";
 		
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosAreaTotales()
 	{
-		String consultaSql = "SELECT y.id_documento, y.editorial, y.titulo_principal, " +
-				"y.fecha_catalogacion, y.login_catalogador, x.nombre1, x.apellido1, y.nombre_area " +
-				"FROM ((SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, " +
-				"d.login_catalogador, c.id_area " +
-				"FROM documento AS d " +
-				"NATURAL JOIN pertenece_documento_area_conocimiento AS c) AS s " +
-				"NATURAL JOIN (SELECT a.id_area, a. nombre AS nombre_area " +
-				"FROM area_conocimiento AS a) AS t) AS y " +
-				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON y.login_catalogador = x.login ORDER BY y.nombre_area";
+		String consultaSql = "SELECT y.nombre AS agrupado, x.cantidad " +
+				"FROM (SELECT id_area, count(id_area) AS cantidad " +
+				"FROM (SELECT d.id_documento FROM documento AS d) AS a " +
+				"NATURAL JOIN pertenece_documento_area_conocimiento " +
+				"GROUP BY id_area) AS x " +
+				"NATURAL JOIN (SELECT id_area, nombre " +
+				"FROM area_conocimiento) AS y " +
+				"ORDER BY y.nombre";
 		
-		return procesarDatosDocumentosCatalogadosAreas(consultaSql);
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				row.add(resultado.getString(1));
+				row.add(resultado.getInt(2));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
 	}
 
 	public TableDataSource consultaDocumentosCatalogadosAreaTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT y.id_documento, y.editorial, y.titulo_principal, " +
-				"y.fecha_catalogacion, y.login_catalogador, x.nombre1, x.apellido1, y.nombre_area " +
-				"FROM ((SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.fecha_catalogacion, d.login_catalogador, c.id_area " +
-				"FROM documento AS d " +
-				"NATURAL JOIN pertenece_documento_area_conocimiento AS c) AS s " +
-				"NATURAL JOIN (SELECT a.id_area, a. nombre AS nombre_area " +
-				"FROM area_conocimiento AS a) AS t) AS y " +
-				"JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x " +
-				"ON y.login_catalogador = x.login " +
-				"WHERE y.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-				"ORDER BY y.nombre_area";
+		String consultaSql = "SELECT y.nombre AS agrupado, x.cantidad " +
+		"FROM (SELECT id_area, count(id_area) AS cantidad " +
+		"FROM (SELECT d.id_documento FROM documento AS d " +
+		"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "') AS a " +
+		"NATURAL JOIN pertenece_documento_area_conocimiento " +
+		"GROUP BY id_area) AS x " +
+		"NATURAL JOIN (SELECT id_area, nombre " +
+		"FROM area_conocimiento) AS y " +
+		"ORDER BY y.nombre";
 		
-		return procesarDatosDocumentosCatalogadosAreas(consultaSql);
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				row.add(resultado.getString(1));
+				row.add(resultado.getInt(2));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
 	}
 	
 	public TableDataSource consultaDocumentosCatalogadosUsuarioTotales()
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
-				"FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
-				"FROM usuario AS u) AS x " +
-				"ON d.login_catalogador = x.login " +
-				"ORDER BY d.login_catalogador";
+		String consultaSql = "SELECT d.login_catalogador AS agrupado, count(d.login_catalogador) AS cantidad " +
+		"FROM documento AS d " +
+		"GROUP BY d.login_catalogador " +
+		"ORDER BY d.login_catalogador";
 		
-		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				row.add(resultado.getString(1));
+				row.add(resultado.getInt(2));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
 	}
 
 	public TableDataSource consultaDocumentosCatalogadosUsuarioTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
-				"d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 " +
+		String consultaSql = "SELECT d.login_catalogador AS agrupado, count(d.login_catalogador) AS cantidad " +
 				"FROM documento AS d " +
-				"JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
-				"FROM usuario AS u) AS x ON d.login_catalogador = x.login " +
 				"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+				"GROUP BY d.login_catalogador " +
 				"ORDER BY d.login_catalogador";
 		
-		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+
+				row.add(resultado.getString(1));
+				row.add(resultado.getInt(2));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
 	} 
 	
 	

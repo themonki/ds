@@ -978,7 +978,7 @@ public class ControladorReportes
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Usuario");
+		parametros.put("opcion", "Login Usuario");
 		parametros.put("introduccion", introduccion);
 				
 		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
@@ -1002,7 +1002,7 @@ public class ControladorReportes
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Usuario ");
+		parametros.put("opcion", "Login Usuario ");
 		parametros.put("introduccion", introduccion);
 				
 		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
@@ -1445,7 +1445,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Usuario");
+		parametros.put("opcion", "Login Usuario");
 		parametros.put("introduccion", introduccion);
 				
 		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
@@ -1468,7 +1468,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Usuario");
+		parametros.put("opcion", "Login Usuario");
 		parametros.put("introduccion", introduccion);
 				
 		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
@@ -1846,9 +1846,10 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Area Conocimiento");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaArea.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1868,9 +1869,10 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Area Conocimiento");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaArea.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1890,9 +1892,10 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Login Usuario");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaUsuario.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1912,9 +1915,10 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Login Usuario");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaUsuario.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocAgrupadosTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -2079,6 +2083,11 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 //			c.generarReporte("", c.reporteDocumentosConsultadosAreaTotales("1989-02-03","2005-03-14","introduccion", "Reporte Documentos consultados por Area Total"));
 //			c.generarReporte("", c.reporteDocumentosConsultadosUsuarioTotales("introduccion", "Reporte Documentos Consultados por Usuario Total"));
 //			c.generarReporte("", c.reporteDocumentosConsultadosUsuarioTotales("1989-02-03","2005-03-14","introduccion", "Reporte Documentos Consultados por Usuario Total"));
+			
+//			c.generarReporte("", c.reporteDocumentosCatalogadosAreaTotales("introduccion", "Reporte Documentos Catalogados por Area Total"));
+//			c.generarReporte("", c.reporteDocumentosCatalogadosAreaTotales("1989-02-03","2005-03-14","introduccion", "Reporte Documentos Catalogados por Area Total"));
+//			c.generarReporte("", c.reporteDocumentosCatalogadosUsuarioTotales("introduccion", "Reporte Documentos Catalogados por Usuario Total"));
+//			c.generarReporte("", c.reporteDocumentosCatalogadosUsuarioTotales("1989-02-03","2005-03-14","introduccion", "Reporte Documentos Catalogados por Usuario Total"));
 			
 			throw new JRException("no se");
 		}catch(JRException e)
