@@ -23,34 +23,29 @@
 				<frame>
 					<reportElement mode="Opaque" x="10" y="20" width="742" height="20" backcolor="#FF3333"/>
 					<staticText>
-						<reportElement x="36" y="0" width="188" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="0" y="0" width="188" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Título Documento]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="224" y="0" width="110" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="188" y="0" width="110" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Editorial]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="498" y="0" width="100" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="462" y="0" width="100" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Login Catalogador]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="598" y="0" width="144" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="562" y="0" width="144" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Nombre Catalogador]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="334" y="0" width="164" height="20" forecolor="#FFFFFF"/>
+						<reportElement x="298" y="0" width="164" height="20" forecolor="#FFFFFF"/>
 						<textElement/>
 						<text><![CDATA[Autor(es)]]></text>
-					</staticText>
-					<staticText>
-						<reportElement x="0" y="0" width="36" height="20" forecolor="#FFFFFF"/>
-						<textElement/>
-						<text><![CDATA[Mes]]></text>
 					</staticText>
 				</frame>
 				<textField>
@@ -114,34 +109,29 @@
 	<detail>
 		<band height="23" splitType="Stretch">
 			<textField>
-				<reportElement x="45" y="0" width="188" height="20" forecolor="#595959"/>
+				<reportElement x="10" y="0" width="188" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{titulo_principal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="233" y="0" width="110" height="20" forecolor="#595959"/>
+				<reportElement x="198" y="0" width="110" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{editorial}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="343" y="0" width="164" height="20" forecolor="#595959"/>
+				<reportElement x="308" y="0" width="164" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{autor}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="507" y="0" width="100" height="20" forecolor="#595959"/>
+				<reportElement x="472" y="0" width="100" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{login_catalogador}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="607" y="0" width="144" height="20" forecolor="#595959"/>
+				<reportElement x="572" y="0" width="144" height="20" forecolor="#595959"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre1} + " " + $F{apellido1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="10" y="0" width="36" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{mes}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
