@@ -25,6 +25,7 @@ public class ControladorReportes
 /* ***********************Reportes relacionados con usuarios************** */
 	
 	/*atributoUsuarios pueder ser genero, tipo de usuario,vinvulo con univalle o nivel escolaridad */
+	/*OK*/
 	public JasperPrint reporteUsuariosAgrupados(String atributoUsuario, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -33,6 +34,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosAgrupados(atributoUsuario, tituloReporte, tableData);
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAgrupados(String atributoUsuario, String cualFecha, String fechaI, String fechaF, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -41,6 +43,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosAgrupados(atributoUsuario, tituloReporte, tableData);
 	}
 	
+	/*OK*/
 	private JasperPrint procesarDatosReporteUsuariosAgrupados(String atributoUsuario, String tituloReporte, TableDataSource tableData) throws JRException
 	{
 		boolean opcionReporte;
@@ -85,6 +88,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAgrupadosTotales(String atributoUsuario, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -93,6 +97,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosAgrupadosTotales(tituloReporte, atributoUsuario, tableData);
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAgrupadosTotales(String atributoUsuario, String cualFecha, String fechaI, String fechaF, String tituloReporte)throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -101,6 +106,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosAgrupadosTotales(tituloReporte, atributoUsuario, tableData);
 	}
 	
+	/*OK*/
 	private JasperPrint procesarDatosReporteUsuariosAgrupadosTotales(String tituloReporte,String atributoUsuario, TableDataSource tableData) throws JRException
 	{
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -119,7 +125,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	
+	/*OK*/
 	public JasperPrint reporteUsuariosAnio(String tipoAnio, String tituloReporte) throws JRException
 	{
 		/**
@@ -139,6 +145,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosFecha(tituloReporte, tableData);
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAnio(String tipoAnio, String anioI, String anioF, String tituloReporte) throws JRException
 	{
 		/**
@@ -160,6 +167,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosFecha(tituloReporte, tableData);
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAnioMes(String tipoAnio, String mesI, String mesF, String tituloReporte) throws JRException
 	{
 		/**
@@ -182,6 +190,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosFecha(tituloReporte, tableData);
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAnioMes(String tipoAnio, String anioI, String anioF, String mesI, String mesF, String tituloReporte) throws JRException
 	{
 		/**
@@ -206,6 +215,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosFecha(tituloReporte, tableData);
 	}
 	
+	/*OK*/
 	private JasperPrint procesarDatosReporteUsuariosFecha(String tituloReporte, TableDataSource tableData) throws JRException
 	{
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -223,6 +233,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAnioTotales(String tipoAnio, String tituloReporte) throws JRException
 	{
 		/**
@@ -242,6 +253,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosFechaTotales(tituloReporte, tipoAnio, tableData);
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAnioTotales(String tipoAnio, String anioI, String anioF, String tituloReporte) throws JRException
 	{
 		/**
@@ -263,6 +275,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosFechaTotales(tituloReporte, tipoAnio, tableData);
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAnioMesTotales(String tipoAnio, String mesI, String mesF, String tituloReporte) throws JRException
 	{
 		/**
@@ -285,6 +298,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosFechaTotales(tituloReporte, tipoAnio, tableData);
 	}
 	
+	/*OK*/
 	public JasperPrint reporteUsuariosAnioMesTotales(String tipoAnio, String anioI, String anioF, String mesI, String mesF, String tituloReporte) throws JRException
 	{
 		/**
@@ -309,6 +323,7 @@ public class ControladorReportes
 		return procesarDatosReporteUsuariosFechaTotales(tituloReporte, tipoAnio, tableData);
 	}
 	
+	/*OK*/
 	private JasperPrint procesarDatosReporteUsuariosFechaTotales(String tituloReporte, String tipoAnio, TableDataSource tableData) throws JRException
 	{
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -328,6 +343,7 @@ public class ControladorReportes
 	}
 	
 /* **************reporte relacionados con areas ************************** */
+	/*OK*/
 	public JasperPrint reporteAreasAgrupadas(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -349,6 +365,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteAreasAgrupadasTotales(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -371,6 +388,7 @@ public class ControladorReportes
 	}
 
 /* ****************reportes relacionados con documentos **************************** */
+	/*OK*/
 	public JasperPrint reporteDocumentosAgrupadosArea(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -394,6 +412,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosAgrupadosTipo(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -417,6 +436,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosAgrupadosFormato(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -440,6 +460,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosAgrupadosAutor(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -463,6 +484,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosAgrupadosFormatoTotales(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -485,6 +507,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosAgrupadosTipoTotales(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -507,6 +530,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosAgrupadosAreaTotales(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -529,6 +553,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosAgrupadosAutorTotales(String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -551,8 +576,9 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-	/*reporte relacionado con descarga documentos*/
+	/* ********reporte relacionado con descarga documentos* *******************/
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFecha(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -576,6 +602,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFecha(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -599,6 +626,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFechaAnio(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -622,6 +650,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFechaAnio(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -645,6 +674,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFechaMes(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -668,6 +698,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFechaMes(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -691,6 +722,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosArea(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -715,6 +747,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosArea(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -739,6 +772,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosUsuario(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -762,6 +796,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosUsuario(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -787,17 +822,20 @@ public class ControladorReportes
 	
 	
 			/*totales para descarga*/
+	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFechaTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFecha();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		//parametros.put("opcion", "Descargas: ");
+		parametros.put("opcion", "Día de Descarga ");
+		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -809,18 +847,19 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFechaTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFecha(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("uso", "Descargas: ");
+		parametros.put("opcion", "Día de Descarga ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -832,18 +871,19 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFechaAnioTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaAnio();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaAnioTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Año Descarga: ");
+		parametros.put("opcion", "Año de Descarga ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocDescargaConsultaFecha_1.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -855,18 +895,19 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosFechaAnioTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaAnio(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaAnioTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Año Descarga: ");
+		parametros.put("opcion", "Año de Descarga ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocDescargaConsultaFecha_1.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -881,15 +922,15 @@ public class ControladorReportes
 	public JasperPrint reporteDocumentosDescargadosFechaMesTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaMes();
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaMesTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Mes Descarga: ");
+		parametros.put("opcion", "Mes de Descarga ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocDescargaConsultaFecha_2.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales2.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -904,15 +945,15 @@ public class ControladorReportes
 	public JasperPrint reporteDocumentosDescargadosFechaMesTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaMes(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosDescargadosFechaMesTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Mes Descarga: ");
+		parametros.put("opcion", "Mes de Descarga ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocDescargaConsultaFecha_2.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales2.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -924,6 +965,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosAreaTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -947,6 +989,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosAreaTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -970,6 +1013,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosUsuarioTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -993,6 +1037,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosDescargadosUsuarioTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 
@@ -1018,7 +1063,9 @@ public class ControladorReportes
 	}
 	
 	
-	/*reporte relacionados con consulta documentos*/
+	/* ***************reporte relacionados con consulta documentos* *********/
+	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFecha(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1042,6 +1089,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFecha(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1065,6 +1113,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFechaAnio(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1088,6 +1137,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFechaAnio(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1111,6 +1161,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFechaMes(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1134,6 +1185,7 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFechaMes(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1157,7 +1209,8 @@ public class ControladorReportes
         return jasperPrint;
 	}
 	
-public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String tituloReporte) throws JRException
+	/*OK*/
+	public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
 		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosArea();
@@ -1181,6 +1234,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosArea(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1205,6 +1259,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosUsuario(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1228,6 +1283,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosUsuario(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1253,18 +1309,20 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	
 	
 			/*totales para consulta*/
+	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFechaTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFecha();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("uso", "Consultas: ");
+		parametros.put("opcion", "Día de Consulta ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1276,18 +1334,19 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFechaTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFecha(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("uso", "Consultas: ");
+		parametros.put("opcion", "Día de Consulta ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosDescargados.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1299,18 +1358,19 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFechaAnioTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaAnio();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaAnioTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Año Consulta: ");
+		parametros.put("opcion", "Año de Consulta ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocDescargaConsultaFecha_1.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1322,18 +1382,19 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosFechaAnioTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaAnio(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaAnioTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Año Consulta: ");
+		parametros.put("opcion", "Año de Consulta ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocDescargaConsultaFecha_1.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1348,15 +1409,15 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosConsultadosFechaMesTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaMes();
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaMesTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Mes Consulta: ");
+		parametros.put("opcion", "Mes de Consulta ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocDescargaConsultaFecha_2.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales2.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1371,15 +1432,15 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosConsultadosFechaMesTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaMes(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosFechaMesTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
-		parametros.put("opcion", "Mes Consulta: ");
+		parametros.put("opcion", "Mes de Consulta ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocDescargaConsultaFecha_2.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales2.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1391,6 +1452,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosAreaTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1414,10 +1476,11 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosAreaTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosArea(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosAreaTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -1437,6 +1500,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosUsuarioTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1460,10 +1524,11 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosConsultadosUsuarioTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosUsuario(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosConsultadosUsuarioTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
@@ -1483,7 +1548,9 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
-	/*reporte relacionado con catalogo de documetnos*/
+	/* ************reporte relacionado con catalogo de documentos************ */
+	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFecha(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1506,6 +1573,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFecha(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1528,6 +1596,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFechaAnio(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1550,6 +1619,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFechaAnio(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1572,6 +1642,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFechaMes(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1594,6 +1665,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFechaMes(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1616,6 +1688,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosArea(String introduccion,String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1638,6 +1711,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosArea(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1660,6 +1734,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*Ok*/
 	public JasperPrint reporteDocumentosCatalogadosUsuario(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1682,6 +1757,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosUsuario(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1706,17 +1782,19 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	
 			/*totales catalogados*/
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFechaTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFecha();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Día de Catalogación ");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_1.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1728,17 +1806,19 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFechaTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFecha(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
+		parametros.put("opcion", "Día de Catalogación");
 		parametros.put("introduccion", introduccion);
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_1.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1750,17 +1830,19 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFechaAnioTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnio();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnioTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		parametros.put("introduccion", introduccion);
+		parametros.put("opcion", "Año de Catalogación");
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_2.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1772,17 +1854,19 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosFechaAnioTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnio(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaAnioTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		parametros.put("introduccion", introduccion);
+		parametros.put("opcion", "Año de Catalogación");
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_2.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1797,14 +1881,15 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosCatalogadosFechaMesTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaMes();
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaMesTotales();
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		parametros.put("introduccion", introduccion);
+		parametros.put("opcion", "Mes de Catalogación");
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_4.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales2.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1819,14 +1904,15 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
 	public JasperPrint reporteDocumentosCatalogadosFechaMesTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
-		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaMes(fechaI, fechaF);
+		TableDataSource tableData = daoReportes.consultaDocumentosCatalogadosFechaMesTotales(fechaI, fechaF);
 		daoReportes = null;
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("titulo", tituloReporte);
 		parametros.put("introduccion", introduccion);
+		parametros.put("opcion", "Mes de Catalogación");
 				
-		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocCatalogaFecha_4.jasper");
+		JasperReport reporte = (JasperReport) JRLoader.loadObject("recursos/reporteDocConsultadosCatalogadosDescargadosFechaTotales2.jasper");
 		JRTableModelDataSource table = new JRTableModelDataSource(tableData);
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, table);
         
@@ -1838,6 +1924,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosAreaTotales(String introduccion,String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1861,6 +1948,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosAreaTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1884,6 +1972,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosUsuarioTotales(String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();
@@ -1907,6 +1996,7 @@ public JasperPrint reporteDocumentosConsultadosArea(String introduccion, String 
         return jasperPrint;
 	}
 	
+	/*OK*/
 	public JasperPrint reporteDocumentosCatalogadosUsuarioTotales(String fechaI, String fechaF, String introduccion, String tituloReporte) throws JRException
 	{
 		DaoReportes daoReportes = new DaoReportes();

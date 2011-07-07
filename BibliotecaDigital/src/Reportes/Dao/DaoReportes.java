@@ -32,6 +32,8 @@ public class DaoReportes
 	}
 
 	/*   ***********************Reportes relacionados con usuarios************** */
+	
+	/*OK*/
 	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario)
 	{
 		String consultaSql = "SELECT u."
@@ -43,6 +45,7 @@ public class DaoReportes
 		return procesarDatosUsuario(consultaSql, atributoUsuario);
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAgrupados(String atributoUsuario,
 			String cualFecha, String fechaInicio, String FechaFin)
 	{
@@ -58,6 +61,7 @@ public class DaoReportes
 		return procesarDatosUsuario(consultaSql, atributoUsuario);
 	}
 
+	/*OK*/
 	private TableDataSource procesarDatosUsuario(String consultaSql,
 			String atributoUsuario)
 	{
@@ -114,6 +118,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAgrupadosTotales(
 			String atributoUsuario) 
 	{
@@ -125,6 +130,7 @@ public class DaoReportes
 		return procesarDatosUsuarioTotales(consultaSql, atributoUsuario);
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAgrupadosTotales(
 			String atributoUsuario, String cualFecha, String fechaInicio,
 			String FechaFin) 
@@ -138,6 +144,7 @@ public class DaoReportes
 		return procesarDatosUsuarioTotales(consultaSql, atributoUsuario);
 	}
 
+	/*OK*/
 	private TableDataSource procesarDatosUsuarioTotales(String consultaSql,
 			String atributoUsuario) 
 	{
@@ -188,6 +195,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAnio(String tipoAnio) 
 	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u."
@@ -203,6 +211,7 @@ public class DaoReportes
 		return procesarDatosUsuariosFecha(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAnio(String tipoAnio, String anioI,
 			String anioF)
 	{
@@ -221,6 +230,7 @@ public class DaoReportes
 		return procesarDatosUsuariosFecha(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAnioMes(String tipoAnio,
 			String mesI, String mesF)
 	{
@@ -239,6 +249,7 @@ public class DaoReportes
 		return procesarDatosUsuariosFecha(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAnioMes(String tipoAnio,
 			String anioI, String anioF, String mesI, String mesF) 
 	{
@@ -258,6 +269,7 @@ public class DaoReportes
 		return procesarDatosUsuariosFecha(consultaSql);
 	}
 
+	/*OK*/
 	private TableDataSource procesarDatosUsuariosFecha(String consultaSql) 
 	{
 		TableDataSource data = new TableDataSource();
@@ -304,6 +316,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAnioTotal(String tipoAnio) 
 	{
 		String consultaSql = "SELECT EXTRACT(YEAR FROM u." + tipoAnio + ") AS anio, " +
@@ -314,6 +327,7 @@ public class DaoReportes
 		return procesarDatosUsuariosFechaTotal(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAnioTotal(String tipoAnio, String anioI,
 			String anioF)
 	{
@@ -328,6 +342,7 @@ public class DaoReportes
 		return procesarDatosUsuariosFechaTotal(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAnioMesTotal(String tipoAnio,
 			String mesI, String mesF)
 	{
@@ -343,6 +358,7 @@ public class DaoReportes
 		return procesarDatosUsuariosFechaTotal(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaUsuariosAnioMesTotal(String tipoAnio,
 			String anioI, String anioF, String mesI, String mesF) 
 	{
@@ -359,6 +375,7 @@ public class DaoReportes
 		return procesarDatosUsuariosFechaTotal(consultaSql);
 	}
 
+	/*OK*/
 	private TableDataSource procesarDatosUsuariosFechaTotal(String consultaSql) 
 	{
 		TableDataSource data = new TableDataSource();
@@ -399,10 +416,13 @@ public class DaoReportes
 
 		return data;
 	}
+	
 	/*
 	 * ************reportes relacionados con areas de ciencias de la
 	 * computacion***********
 	 */
+	
+	/*OK*/
 	public TableDataSource consultarAreasConocimientoAgrupadas() 
 	{
 		String consultaSql = "SELECT A.nombre, B.nombre AS nombre_Area_Padre "
@@ -446,6 +466,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultarAreasConocimientoAgrupadasTotales()
 	{
 		String consultaSql = "SELECT B.nombre AS Areas_Padre, count(B.nombre) AS Cantidad "
@@ -547,6 +568,8 @@ public class DaoReportes
 	 * ******************Reporte relacionados con
 	 * documento**********************
 	 */
+	
+	/*OK*/
 	public TableDataSource consultaDocumentosAgrupadosArea() 
 	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, area.nombre_area AS agrupado "
@@ -560,6 +583,7 @@ public class DaoReportes
 		return procesarDatosDocumento(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosAgrupadosTipo()
 	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.tipo_nombre AS agrupado "
@@ -568,6 +592,7 @@ public class DaoReportes
 		return procesarDatosDocumento(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosAgrupadosFormato()
 	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, doc.formato AS agrupado "
@@ -576,6 +601,7 @@ public class DaoReportes
 		return procesarDatosDocumento(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosAgrupadosAutor() 
 	{
 		String consultaSql = "SELECT doc.id_documento, doc.titulo_principal, doc.editorial, autor.nombre_autor AS agrupado "
@@ -588,6 +614,7 @@ public class DaoReportes
 		return procesarDatosDocumento2(consultaSql);
 	}
 
+	/*OK*/
 	private TableDataSource procesarDatosDocumento(String consultaSql) 
 	{
 		TableDataSource data = new TableDataSource();
@@ -631,10 +658,7 @@ public class DaoReportes
 		return data;
 	}
 
-	/*
-	 * NOTA: si pra el reporte de documentos agrupados por autor se decide no
-	 * agregar nada mas, quitar este metodo
-	 */
+	/*OK*/
 	private TableDataSource procesarDatosDocumento2(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -679,6 +703,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosAgrupadosFormatoTotales() 
 	{
 		String consultaSql = "SELECT d.formato AS agrupado, count(d.formato) AS cantidad "
@@ -688,7 +713,8 @@ public class DaoReportes
 
 		return procesarDatosDocumentoTotales(consultaSql);
 	}
-
+	
+	/*OK*/
 	public TableDataSource consultaDocumentosAgrupadosTipoTotales() 
 	{
 		String consultaSql = "SELECT d.tipo_nombre AS agrupado, count(d.tipo_nombre) AS cantidad "
@@ -699,6 +725,7 @@ public class DaoReportes
 		return procesarDatosDocumentoTotales(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosAgrupadosAreaTotales() 
 	{
 		String consultaSql = "SELECT area.nombre_area AS agrupado, count(area.nombre_area) AS cantidad "
@@ -712,6 +739,7 @@ public class DaoReportes
 		return procesarDatosDocumentoTotales(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosAgrupadosAutorTotales() 
 	{
 		String consultaSql = "SELECT autor.nombre_autor AS agrupado, count(autor.nombre_autor) AS cantidad "
@@ -724,6 +752,7 @@ public class DaoReportes
 		return procesarDatosDocumentoTotales(consultaSql);
 	}
 
+	/*OK*/
 	private TableDataSource procesarDatosDocumentoTotales(String consultaSql) 
 	{
 		TableDataSource data = new TableDataSource();
@@ -763,8 +792,9 @@ public class DaoReportes
 		return data;
 	}
 
-	/*reportes relacionados con la descarga de documentos*/
+	/* ***************reportes relacionados con la descarga de documentos* ************/
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFecha()	
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
@@ -779,6 +809,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFecha(String fechaI,
 			String fechaF)	
 	{
@@ -796,6 +827,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaAnio()	
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
@@ -812,6 +844,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaAnio(String fechaI,
 			String fechaF)	
 	{
@@ -831,6 +864,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaMes()	
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
@@ -847,6 +881,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaMes(String fechaI,
 			String fechaF)	
 	{
@@ -866,6 +901,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource procesarDatosDocumentosDescagadosConsultadosFecha2(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -913,6 +949,7 @@ public class DaoReportes
 		return data;
 	}
 	
+	/*OK*/
 	private TableDataSource procesarDatosDocumentosDescagadosConsultadosFecha(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -958,6 +995,7 @@ public class DaoReportes
 		return data;
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosArea() 
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
@@ -976,6 +1014,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosArea(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
@@ -995,6 +1034,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 	
+	/*OK*/
 	private TableDataSource procesarDatosDocumentosDescargadosConsultadosArea(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -1039,6 +1079,7 @@ public class DaoReportes
 		return data;
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosUsuario() 
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
@@ -1054,6 +1095,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosUsuario(String fechaI, String fechaF) 
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
@@ -1071,6 +1113,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
 	} 
 	
+	/*OK*/
 	private TableDataSource procesarDatosDocumentosDescargadosConsultadosUsuario(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -1118,15 +1161,17 @@ public class DaoReportes
 	}
 	
 			/*descarga totales*/
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaTotales()	
 	{
 		String consultaSql = "SELECT d.fecha, count(*) AS cuantos " +
 				"FROM descarga_usuario_documento AS d " +
 				"GROUP BY d.fecha ORDER BY d.fecha";
 		//System.out.println(consultaSql);
-		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaTotales(String fechaI,
 			String fechaF)	
 	{
@@ -1136,57 +1181,140 @@ public class DaoReportes
 				"GROUP BY d.fecha ORDER BY d.fecha";
 		//System.out.println(consultaSql);
 		
-		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaAnioTotales()	
 	{
-		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
-				"EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha) AS fecha, " +
+				"count(d.fecha) AS cuantos " +
 				"FROM descarga_usuario_documento AS d " +
-				"GROUP BY d.fecha ORDER BY d.fecha";
+				"GROUP BY EXTRACT(YEAR FROM d.fecha) ORDER BY fecha";
 		//System.out.println(consultaSql);
-		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaAnioTotales(String fechaI,
 			String fechaF)	
 	{
-		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
-				"EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha) AS fecha, " +
+				"count(d.fecha) AS cuantos " +
 				"FROM descarga_usuario_documento AS d " +
 				"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-				"GROUP BY d.fecha ORDER BY d.fecha";
+				"GROUP BY EXTRACT(YEAR FROM d.fecha) ORDER BY fecha";
 		//System.out.println(consultaSql);
 		
-		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaMesTotales()	
 	{
-		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
-		"EXTRACT(YEAR FROM d.fecha) AS anio, " +
-		"EXTRACT(MONTH FROM d.fecha) AS mes " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha) AS mes, " +
+		"count(d.fecha) AS cuantos " +
 		"FROM descarga_usuario_documento AS d " +
-		"GROUP BY d.fecha ORDER BY d.fecha";
+		"GROUP BY anio,mes ORDER BY anio,mes";
 		//System.out.println(consultaSql);
-		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal2(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosFechaMesTotales(String fechaI,
 			String fechaF)	
 	{
-		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
-		"EXTRACT(YEAR FROM d.fecha) AS anio, " +
-		"EXTRACT(MONTH FROM d.fecha) AS mes " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha) AS mes, " +
+		"count(d.fecha) AS cuantos " +		
 		"FROM descarga_usuario_documento AS d " +
 		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-		"GROUP BY d.fecha ORDER BY d.fecha";
+		"GROUP BY anio,mes ORDER BY anio,mes";
 		//System.out.println(consultaSql);
 		
-		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal2(consultaSql);
 	}
 	
+	/*OK*/
+	private TableDataSource procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+				
+				row.add(resultado.getString(1));
+				row.add(resultado.getInt(2));
+
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
+	}
+	
+	/*OK*/
+	private TableDataSource procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal2(String consultaSql)
+	{
+		TableDataSource data = new TableDataSource();
+
+		try {
+			Connection conn = fachada.conectar();
+			Statement sentencia = conn.createStatement();
+			ResultSet resultado = sentencia.executeQuery(consultaSql);
+			ResultSetMetaData metaData = resultado.getMetaData();
+
+			for (int i = 0; i < metaData.getColumnCount(); i++) 
+			{
+				data.addColumn(metaData.getColumnName(i + 1));
+			}
+
+			while (resultado.next()) 
+			{
+				Vector<Object> row = new Vector<Object>(0, 1);
+				
+				row.add(resultado.getString(1));
+				row.add(resultado.getString(2));
+				row.add(resultado.getInt(3));
+				data.addRow(row);
+			}
+			fachada.cerrarConexion(conn);
+			conn = null;
+			fachada = null;
+			sentencia = null;
+			resultado = null;
+			metaData = null;
+		} catch (SQLException e) {
+			System.out.println(e);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return data;
+	}
+	
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosAreaTotales() 
 	{
 		String consultaSql = "SELECT m.nombre_area AS agrupado, x.cantidad " +
@@ -1238,6 +1366,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosAreaTotales(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT m.nombre_area AS agrupado, x.cantidad " +
@@ -1290,6 +1419,7 @@ public class DaoReportes
 		return data;
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosUsuarioTotales() 
 	{
 		String consultaSql = "SELECT x.login AS agrupado, x.nombre1, x.apellido1, y.cantidad " +
@@ -1338,12 +1468,14 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosDescargadosUsuarioTotales(String fechaI, String fechaF) 
 	{
 		String consultaSql = "SELECT x.login AS agrupado, x.nombre1, x.apellido1, y.cantidad " +
 		"FROM (SELECT d.login, count(*) AS cantidad " +
 		"FROM descarga_usuario_documento AS d " +
 		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
+		"GROUP BY d.login) AS y " +
 		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
 		"FROM usuario AS u) AS x " +
 		"ORDER BY x.login";
@@ -1387,8 +1519,9 @@ public class DaoReportes
 	} 
 	
 	
-	/*reporte relacioandos con la consulta de documentos*/
+	/* **************reporte relacioandos con la consulta de documentos************* */
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFecha()
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
@@ -1403,6 +1536,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFecha(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo," +
@@ -1418,6 +1552,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaAnio()
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
@@ -1434,6 +1569,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaAnio(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
@@ -1451,6 +1587,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaMes()
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
@@ -1467,6 +1604,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaMes(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal," +
@@ -1484,6 +1622,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosArea()
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
@@ -1501,6 +1640,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosArea(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal AS titulo, " +
@@ -1519,6 +1659,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescargadosConsultadosArea(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosUsuario()
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
@@ -1535,6 +1676,7 @@ public class DaoReportes
 		return procesarDatosDocumentosDescargadosConsultadosUsuario(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosUsuario(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT x.id_documento, x.editorial, x. titulo_principal, " +
@@ -1553,15 +1695,18 @@ public class DaoReportes
 	} 
 	
 			/*consulta totales*/
+	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaTotales()
 	{
 		String consultaSql = "SELECT d.fecha, count(*) AS cuantos " +
 		"FROM consulta AS d " +
 		"GROUP BY d.fecha ORDER BY d.fecha";
 
-		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaTotales(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT d.fecha, count(*) AS cuantos " +
@@ -1569,53 +1714,58 @@ public class DaoReportes
 		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
 		"GROUP BY d.fecha ORDER BY d.fecha";
 
-		return procesarDatosDocumentosDescagadosConsultadosFecha(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaAnioTotales()
 	{
-		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
-		"EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha) AS fecha, " +
+		"count(d.fecha) AS cuantos " +
 		"FROM consulta AS d " +
-		"GROUP BY d.fecha ORDER BY d.fecha";
+		"GROUP BY EXTRACT(YEAR FROM d.fecha) ORDER BY fecha";
 		//System.out.println(consultaSql);
-		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaAnioTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
-		"EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha) AS fecha, " +
+		"count(d.fecha) AS cuantos " +
 		"FROM consulta AS d " +
 		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-		"GROUP BY d.fecha ORDER BY d.fecha";
+		"GROUP BY EXTRACT(YEAR FROM d.fecha) ORDER BY fecha";
 
-		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaMesTotales()
 	{
-		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
-		"EXTRACT(YEAR FROM d.fecha) AS anio, " +
-		"EXTRACT(MONTH FROM d.fecha) AS mes " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha) AS mes, " +		
+		"count(d.fecha) AS cuantos " +
 		"FROM consulta AS d " +
-		"GROUP BY d.fecha ORDER BY d.fecha";
+		"GROUP BY anio,mes ORDER BY anio,mes";
 		//System.out.println(consultaSql);
-		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosFechaMesTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.fecha, count(*) AS cuantos, " +
-		"EXTRACT(YEAR FROM d.fecha) AS anio, " +
-		"EXTRACT(MONTH FROM d.fecha) AS mes " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha) AS mes, " +		
+		"count(d.fecha) AS cuantos " +
 		"FROM consulta AS d " +
 		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-		"GROUP BY d.fecha ORDER BY d.fecha";
+		"GROUP BY anio,mes ORDER BY anio,mes";
 
-		return procesarDatosDocumentosDescagadosConsultadosFecha2(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosAreaTotales()
 	{
 		String consultaSql = "SELECT m.nombre_area AS agrupado, x.cantidad " +
@@ -1666,6 +1816,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosAreaTotales(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT m.nombre_area AS agrupado, x.cantidad " +
@@ -1717,6 +1868,7 @@ public class DaoReportes
 		return data;
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosUsuarioTotales()
 	{
 		String consultaSql = "SELECT x.login AS agrupado, x.nombre1, x.apellido1, y.cantidad " +
@@ -1765,12 +1917,14 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosConsultadosUsuarioTotales(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT x.login AS agrupado, x.nombre1, x.apellido1, y.cantidad " +
 		"FROM (SELECT d.login, count(*) AS cantidad " +
 		"FROM consulta AS d " +
 		"WHERE d.fecha BETWEEN '" + fechaI + "' AND '" + fechaF + "' "+
+		"GROUP BY d.login) AS y " +
 		"NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
 		"FROM usuario AS u) AS x " +
 		"ORDER BY x.login";
@@ -1813,7 +1967,9 @@ public class DaoReportes
 		return data;
 	} 
 	
-	/*reporte relacionados con la catalogacion de documentos*/
+	/* *********reporte relacionados con la catalogacion de documentos******** */
+	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFecha()
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
@@ -1826,6 +1982,7 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFecha(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
@@ -1839,6 +1996,7 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaAnio()
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
@@ -1853,6 +2011,7 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaAnio(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
@@ -1868,6 +2027,7 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaMes()
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
@@ -1882,6 +2042,7 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaMes(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
@@ -1897,6 +2058,7 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosArea()
 	{
 		String consultaSql = "SELECT y.id_documento, y.editorial, y.titulo_principal, " +
@@ -1913,6 +2075,7 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosAreas(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosArea(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT y.id_documento, y.editorial, y.titulo_principal, " +
@@ -1931,13 +2094,21 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosAreas(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosUsuario()
 	{
-		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, d.fecha_catalogacion, d.login_catalogador, x.nombre1, x.apellido1 FROM documento AS d JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ON d.login_catalogador = x.login ORDER BY d.login_catalogador;";
+		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal," +
+				" d.fecha_catalogacion, d.login_catalogador, x.nombre1," +
+				" x.apellido1 FROM documento AS d " +
+				"JOIN (SELECT u.login, u.nombre1, u.apellido1 " +
+				"FROM usuario AS u) AS x ON " +
+				"d.login_catalogador = x.login " +
+				"ORDER BY d.login_catalogador;";
 		
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosUsuario(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT d.id_documento, d.editorial, d.titulo_principal, " +
@@ -1952,6 +2123,7 @@ public class DaoReportes
 		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
 	} 
 	
+	/*OK*/
 	private TableDataSource procesarDatosDocumentosCatalogadosFechaUsuario(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -1997,6 +2169,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	private TableDataSource procesarDatosDocumentosCatalogadosFecha(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -2043,6 +2216,7 @@ public class DaoReportes
 		return data;
 	}
 	
+	/*OK*/
 	private TableDataSource procesarDatosDocumentosCatalogadosAreas(String consultaSql)
 	{
 		TableDataSource data = new TableDataSource();
@@ -2090,77 +2264,83 @@ public class DaoReportes
 	}
 	
 			/*catalogadoTotales*/
+	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaTotales()
 	{
-		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad " +
+		String consultaSql = "SELECT d.fecha_catalogacion AS fecha, count(*) AS cuantos " +
 				"FROM documento AS d " +
 				"GROUP BY d.fecha_catalogacion " +
 				"ORDER BY d.fecha_catalogacion";
 		
-		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad " +
+		String consultaSql = "SELECT d.fecha_catalogacion AS fecha, count(*) AS cuantos " +
 		"FROM documento AS d " +
 		"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
 		"GROUP BY d.fecha_catalogacion " +
 		"ORDER BY d.fecha_catalogacion";
 		
-		return procesarDatosDocumentosCatalogadosFechaUsuario(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaAnioTotales()
 	{
-		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad,  " +
-		"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha_catalogacion) AS fecha, " +
+		"count(d.fecha_catalogacion) AS cuantos  " +
 		"FROM documento AS d " +
-		"GROUP BY d.fecha_catalogacion " +
-		"ORDER BY d.fecha_catalogacion";
+		"GROUP BY EXTRACT(YEAR FROM d.fecha_catalogacion) " +
+		"ORDER BY fecha";
 		
-		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaAnioTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad,  " +
-		"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha_catalogacion) AS fecha, " +
+		"count(d.fecha_catalogacion) AS cuantos  " +
 		"FROM documento AS d " +
 		"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-		"GROUP BY d.fecha_catalogacion " +
-		"ORDER BY d.fecha_catalogacion";
+		"GROUP BY EXTRACT(YEAR FROM d.fecha_catalogacion) " +
+		"ORDER BY fecha";
 		
-		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaMesTotales()
 	{
-		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad,  " +
-		"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes, " +
+		"count(d.fecha_catalogacion) AS cuantos  " +
 		"FROM documento AS d " +
-		"GROUP BY d.fecha_catalogacion " +
-		"ORDER BY d.fecha_catalogacion";
+		"GROUP BY anio,mes " +
+		"ORDER BY anio,mes";
 		
-		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosFechaMesTotales(String fechaI, String fechaF)
 	{
-		String consultaSql = "SELECT d.fecha_catalogacion, count(*) AS cantidad,  " +
-		"EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
-		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes " +
+		String consultaSql = "SELECT EXTRACT(YEAR FROM d.fecha_catalogacion) AS anio, " +
+		"EXTRACT(MONTH FROM d.fecha_catalogacion) AS mes, " +
+		"count(d.fecha_catalogacion) AS cuantos  " +
 		"FROM documento AS d " +
 		"WHERE d.fecha_catalogacion BETWEEN '" + fechaI + "' AND '" + fechaF + "' " +
-		"GROUP BY d.fecha_catalogacion " +
-		"ORDER BY d.fecha_catalogacion";
+		"GROUP BY anio,mes " +
+		"ORDER BY anio,mes";
 		
-		return procesarDatosDocumentosCatalogadosFecha(consultaSql);
+		return procesarDatosDocumentosDescargadosConsultadosCatalogadosFechaTotal2(consultaSql);
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosAreaTotales()
 	{
 		String consultaSql = "SELECT y.nombre AS agrupado, x.cantidad " +
@@ -2208,6 +2388,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosAreaTotales(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT y.nombre AS agrupado, x.cantidad " +
@@ -2256,6 +2437,7 @@ public class DaoReportes
 		return data;
 	}
 	
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosUsuarioTotales()
 	{
 		String consultaSql = "SELECT d.login_catalogador AS agrupado, count(d.login_catalogador) AS cantidad " +
@@ -2299,6 +2481,7 @@ public class DaoReportes
 		return data;
 	}
 
+	/*OK*/
 	public TableDataSource consultaDocumentosCatalogadosUsuarioTotales(String fechaI, String fechaF)
 	{
 		String consultaSql = "SELECT d.login_catalogador AS agrupado, count(d.login_catalogador) AS cantidad " +

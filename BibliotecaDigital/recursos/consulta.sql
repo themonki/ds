@@ -177,13 +177,13 @@ NATURAL JOIN
 --consutlas pora totales docuemtnos descargados por area
 SELECT m.nombre_area, x.cuantos FROM (SELECT id_area, sum(total) AS cuantos FROM ((SELECT d.id_documento, count(*) AS total FROM descarga_usuario_documento AS d GROUP BY d.id_documento) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS b GROUP BY id_area) AS x NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS m ORDER BY m.nombre_area;
 
---conusltas àra totales documentos descargados por usuario
+--conusltas para totales documentos descargados por usuario
 SELECT x.login, x.nombre1, x.apellido1, y.cuantos FROM (SELECT d.login, count(*) AS cuantos FROM descarga_usuario_documento AS d GROUP BY d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ORDER BY x.login;
 
 --consutlas pora totales docuemtnos consultados por area
 SELECT m.nombre_area, x.cuantos FROM (SELECT id_area, sum(total) AS cuantos FROM ((SELECT d.id_documento, count(*) AS total FROM consulta AS d GROUP BY d.id_documento) AS y NATURAL JOIN pertenece_documento_area_conocimiento) AS b GROUP BY id_area) AS x NATURAL JOIN (SELECT a.id_area, a.nombre AS nombre_area FROM area_conocimiento AS a) AS m ORDER BY m.nombre_area;
 
---conusltas àra totales documentos consultados por usuario
+--conusltas para totales documentos consultados por usuario
 SELECT x.login, x.nombre1, x.apellido1, y.cuantos FROM (SELECT d.login, count(*) AS cuantos FROM consulta AS d GROUP BY d.login) AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ORDER BY x.login; 
 
 --consulta area totales para documentos catalogados
@@ -191,3 +191,12 @@ SELECT y.nombre AS agrupado, x.cantidad FROM (SELECT id_area, count(id_area) AS 
 
 --consulta usuairo total para docuemtnos catalogados
 SELECT d.login_catalogador AS login, count(d.login_catalogador) AS cantidad FROM documento AS d GROUP BY d.login_catalogador;
+
+--consulta usuario total documentos descargados restringido por fecha
+SELECT x.login AS agrupado, x.nombre1, x.apellido1, y.cantidad FROM (SELECT d.login, count(*) AS cantidad FROM descarga_usuario_documento AS d WHERE d.fecha BETWEEN '2011-07-04' AND '2011-07-04') AS y NATURAL JOIN (SELECT u.login, u.nombre1, u.apellido1 FROM usuario AS u) AS x ORDER BY x.login;
+
+--consulta cantidad de documentos descargados por año
+SELECT count(d.fecha) AS cuantos, EXTRACT(YEAR FROM d.fecha) AS anio FROM descarga_usuario_documento AS d GROUP BY EXTRACT(YEAR FROM d.fecha);
+
+--consulta cantidad de documentos descargados por mes encada año
+SELECT EXTRACT(YEAR FROM d.fecha) AS anio, EXTRACT(MONTH FROM d.fecha) AS mes, count(d.fecha) AS cuantos FROM  descarga_usuario_documento AS d GROUP BY anio,mes ORDER BY anio,mes;

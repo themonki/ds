@@ -719,9 +719,12 @@ public class GuiReportes extends JTabbedPane{
 											reporte = controladorReporte.reporteUsuariosAnio(atributoSeleccionado, encabezado);
 											controladorReporte.generarReporte(rutaFinal, reporte);
 											scroll.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+										
+										}else
+										{
+											reporte = controladorReporte.reporteUsuariosAgrupados(atributoSeleccionado, encabezado);
+											controladorReporte.generarReporte(rutaFinal, reporte);
 										}
-										reporte = controladorReporte.reporteUsuariosAgrupados(atributoSeleccionado, encabezado);
-										controladorReporte.generarReporte(rutaFinal, reporte);
 										
 									}
 									
@@ -816,9 +819,12 @@ public class GuiReportes extends JTabbedPane{
 										{
 											reporte = controladorReporte.reporteUsuariosAnioTotales(atributoSeleccionado, encabezado);
 											controladorReporte.generarReporte(rutaFinal, reporte);
+										
+										}else
+										{
+											reporte = controladorReporte.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
+											controladorReporte.generarReporte(rutaFinal, reporte);
 										}
-										reporte = controladorReporte.reporteUsuariosAgrupadosTotales(atributoSeleccionado, encabezado);
-										controladorReporte.generarReporte(rutaFinal, reporte);
 									}
 								}
 								//JOptionPane.showMessageDialog(null, "Informe Generado correctamente");
