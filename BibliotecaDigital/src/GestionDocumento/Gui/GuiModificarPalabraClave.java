@@ -312,8 +312,4 @@ public class GuiModificarPalabraClave extends JFrame {
 		}
 	}
 	
-	public static void main(String []args){
-		GuiModificarPalabraClave a = new GuiModificarPalabraClave(new GuiCatalogar("admin"));
-		a.setVisible(true);
-	}
 }

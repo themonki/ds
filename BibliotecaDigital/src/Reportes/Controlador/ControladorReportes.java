@@ -8,13 +8,10 @@ import java.util.Vector;
 import javax.swing.JTable;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporter;
-import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import Reportes.Dao.DaoReportes;
@@ -2072,7 +2069,7 @@ public class ControladorReportes
 	
 	
 	
-	public static void main(String arg[])
+	/*public static void main(String arg[])
 	{
 		ControladorReportes c = new ControladorReportes();
 		try
@@ -2184,7 +2181,7 @@ public class ControladorReportes
 		{
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 }
 
